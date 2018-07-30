@@ -11,6 +11,7 @@ export default class Google extends Component {
     var googleId = googleUser.getId();
     
     console.log({ googleId });
+    console.log(googleUser);
     console.log({accessToken: id_token});
     //anything else you want to do(save to localStorage)...
   }
@@ -20,7 +21,7 @@ export default class Google extends Component {
   					<GoogleLogin socialId="873832275515-3oclgfb5n1ie7inhfa16a6uu7crbab2a.apps.googleusercontent.com"
                      className="google-login"
                      scope="profile"
-                     fetchBasicProfile={false}
+                     fetchBasicProfile={true}
                      responseHandler={this.responseGoogle}
                      buttonText="Login With Google"/>	
   		</div>

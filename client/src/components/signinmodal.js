@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Modal } from 'antd';
 import Formsignup from './formsignup';
 import Facebook from './Facebook';
+import Google from './Google';
 
 
 
@@ -74,6 +75,7 @@ class Signin extends Component{
 									<button className="loginBtn loginBtn--google">
 									  Sign Up with Google
 									</button>
+									<Google/>
 								</div>{/*col-md-4*/}	
 							</div>{/*row*/}
 							<br/>

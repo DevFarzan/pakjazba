@@ -26,13 +26,13 @@ export default class Facebook extends Component {
 				fbContent = null;
 			}else{
 				fbContent = (<FacebookLogin
-    appId="644559659253564"
-    autoLoad={true}
-    fields="name,email,picture"
-    onClick={this.componentClicked}
-    callback={this.responseFacebook}
-    cssClass="loginBtn loginBtn--facebook"
-    textButton="Sign Up with Facebook"/>)
+				    appId="644559659253564"
+				    autoLoad={true}
+				    fields="name,email,picture"
+				    onClick={this.componentClicked}
+				    callback={this.responseFacebook}
+				    cssClass="loginBtn loginBtn--facebook"
+				    textButton="Sign Up with Facebook"/>)
 			}
 			return(
 				<div>

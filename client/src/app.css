@@ -49,6 +49,7 @@
   border-radius: 0.2em;
   font-size: 16px;
   color: #FFF;
+  display:Signup;
 }
 .loginBtn:before {
   content: "";

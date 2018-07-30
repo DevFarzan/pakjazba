@@ -67,11 +67,7 @@ class Signin extends Component{
 	        				>
 	          				<div className="row">
 				        		<div className="col-md-5">	
-						         	<button className="loginBtn loginBtn--facebook">
-									  Sign Up with Facebook
-									</button>
-									<Facebook/>
-
+						         	<Facebook/>
 								</div>{/*col-md-4*/}
 								<div className="col-md-1"></div>{/*col-md-4*/}
 								<div className="col-md-5">		

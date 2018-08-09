@@ -52,6 +52,13 @@ class ImageDropzone extends Component{
           console.log(response);
         })
 			})
+  }//upload files
+
+  handlecategory = () =>{
+  	var category = this.refs.category.value;
+  	axios.get('http://localhost:5000/api/categoryPost?category='+category).then(function(response){
+  		console.log(response);
+  	})
   }
 
         render(){
@@ -60,6 +67,9 @@ class ImageDropzone extends Component{
               <h4>image upload!</h4>
 
                 <Dropzone onDrop={this.uploadFile.bind(this)}/>
+
+                <input type="text" ref="category" placeholder="add category" />
+                <button className="adddetail" onClick={this.handlecategory}>Add Details</button>
             </div>
           )
         }

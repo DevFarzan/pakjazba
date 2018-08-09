@@ -10,9 +10,13 @@
   },
   "dependencies": {
     "express": "^4.16.2",
+    "ip": "^1.1.5",
+    "jsonwebtoken": "^8.3.0",
     "mongodb": "^3.1.1",
     "mongoose": "^5.2.4",
     "mongoose-unique-validator": "^2.0.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "react-dropzone": "^4.2.13",
     "react-facebook-login": "^4.0.1",
     "react-google-login-component": "^0.9.3",

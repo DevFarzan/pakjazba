@@ -4,7 +4,9 @@ import React, { Component } from 'react';
 import { Input } from 'antd';
 import 'antd/dist/antd.css';
 import Signup from './components/signupmodal';
-
+import Signin from './components/signinmodal';
+import Dropzone from './components/imagedropzone';
+import Category from './components/getcategory';
 
 
 
@@ -19,6 +21,7 @@ class App extends Component {
       this.callApi()
         .then(res => this.setState({ response: res.express }))
         .catch(err => console.log(err));
+
     }
 
     callApi = async () => {
@@ -44,7 +47,7 @@ class App extends Component {
                             <img src="./images/logo.png" />
                           </div>
                       </div>{/*col-md-3*/}
-                      <div className="col-md-7 searchbox">
+                      <div className="col-md-6 searchbox">
                         <Search
                             placeholder="input search text"
                             onSearch={value => console.log(value)}
@@ -53,14 +56,15 @@ class App extends Component {
                       
                       </div>{/*col-md-7*/}
                       <div className="col-md-2 loginSignup">
-                          <p className="padding_left_p"><Signup /></p>
+                          <p className="padding_left_p"><Signup/></p>
                       </div>
+                      <div className="col-md-2 category_margin"><Category/></div>
                       <div>
                           
                       </div>
                 </div>{/*row*/}
             </nav>
-
+            
         </div>
       );
     }

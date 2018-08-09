@@ -133,3 +133,19 @@
   background-color:#8cbc40;
   color:white;
 }*/
+.errorLabel{
+  color:red;
+  padding: 32%;
+}
+.margin_text_align{
+  margin-top: 5px;
+  text-align: right;
+}
+.width_class{
+width:100%;
+}
+
+/*================================category================================*/
+.category_margin{
+  margin-top:14px;
+}

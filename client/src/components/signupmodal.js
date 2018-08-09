@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { Modal, Button, Spin, Alert } from 'antd';
+import { Form, Icon, Input, Button, Checkbox,Modal, Spin, Alert } from 'antd';
 import Signin from './signinmodal';
 import Forgotpassword from './forgotpassword';
 import axios from 'axios';
 
 
+const FormItem = Form.Item;
+
 class Signup extends Component{
 
+	
 	state = {
 	 visible: false,
 	 showloader:false,
@@ -57,9 +60,31 @@ class Signup extends Component{
 	  }
 	}//end if(email&&password)
 
+	handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+        axios.get('http://localhost:5000/api/usersignin?useremail='+values.userName+'&password='+values.password)
+	  	.then((response)=>{
+	  		console.log(response);
+	  		
+	  		this.setState({
+	  			showloader:false
+	  		})
+	  	})
+      }
+    });
+  }
+
+  reset = () => {
+    this.props.form.resetFields()
+  }
 
 
 	render(){
+		const { getFieldDecorator } = this.props.form;
+		const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 		return(
 				<div className="paragraph">
 						<span onClick={this.showModal} >Sign In</span> | <span><Signin/></span>
@@ -92,32 +117,53 @@ class Signup extends Component{
 						</div>{/*row*/}	
 
 						<br/>
-			          <div className="">{/*form div start*/}
-			          	<form onSubmit={this.handleSubmit}>
-						  <div className="form-group">
-						    <label>Email address</label>
-						    <input type="email" className="form-control" ref="email"  placeholder="Enter email" />
-						    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-						  </div>
-						  <div className="form-group">
-						    <label>Password</label>
-						    <input type="password" className="form-control" ref="password" id="exampleInputPassword1" placeholder="Password" />
-						    <small className="form-text text-muted"><a onClick={this.handleCancel}><Forgotpassword /></a>.</small>
-						  </div>
-						  <div className="row center_global" showloader = {this.state.showloader}>
-						  		<Spin tip="Loading...">
-								    <Alert
-								      type="info"
-								    />
-							  	</Spin>
-	        					<button className="btn color_button">Log in</button>
-        					</div>{/*row*/}
-						</form>
-			          </div>{/*form div end*/}
+			          
+			          	<Form onSubmit={this.handleSubmit} className="login-form">
+						        <FormItem>
+						          {getFieldDecorator('userName', {
+						            rules: [{ required: true, message: 'Please input your username!' }],
+						          })(
+						            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+						          )}
+						        </FormItem>
+						        <FormItem>
+						          {getFieldDecorator('password', {
+						            rules: [{ required: true, message: 'Please input your Password!' }],
+						          })(
+						            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+						          )}
+						        </FormItem>
+					        	<FormItem>
+					        	<div className="row">
+					        		<div className="col-md-6 col-sm-6 col-xs-12">
+							         	 {getFieldDecorator('remember', {
+							            	valuePropName: 'checked',
+							            	initialValue: true,
+							         	 })(
+							           	 <Checkbox>Remember me</Checkbox>
+							          	)}
+						          	</div>
+						          	<div className="col-md-6 col-sm-6 col-xs-12 margin_text_align">
+						          		<a className="login-form-forgot" onClick={this.handleCancel}><Forgotpassword/></a>
+						          	</div>
+					          	</div>
+					          	</FormItem>
+					          	<div className="row">
+					          		<div className="col-md-12">
+						          		<Button type="primary" htmlType="submit" className="login-form-button width_class">
+						            		Log in
+						          		</Button>
+					          		</div>
+				          		</div>
+				          		Or <a><span onClick={this.handleCancel}><Signin/></span></a>
+				        		
+      					</Form>
+			          
 	        		</Modal>
 				</div>
 			)
 	}
 }
+const WrappedNormalLoginForm = Form.create()(Signup);
 
-export default Signup;
+export default WrappedNormalLoginForm;

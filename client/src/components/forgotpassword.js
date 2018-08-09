@@ -9,7 +9,8 @@ class Forgotpassword extends Component{
 
 	state = {
 	 visible: false,
-	 email:''
+	 email:'',
+	 shown:false
 	  }
 
 	  showModal = () => {
@@ -46,6 +47,9 @@ class Forgotpassword extends Component{
 	        			shown:true
 	        		})
 	        	}//end if condition
+	        	else{
+
+	        	}
 	        })
 	      }
     });
@@ -87,7 +91,7 @@ class Forgotpassword extends Component{
 						            <Input  />
 						          )}
         					</FormItem>
-        					<span>Email doesnot exit</span>
+        					<span className="errorLabel">{ this.state.shown ? 'email does not exist' : null }</span>
 					        <FormItem
 					          wrapperCol={{ span: 12, offset: 6 }}
 					        >

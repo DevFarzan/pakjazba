@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
+import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, notification, Spin  } from 'antd';
 import axios from 'axios';
 
 
@@ -12,16 +12,25 @@ class Formsignup extends Component{
 	state = {
     confirmDirty: false,
     autoCompleteResult: [],
-    visible: true
+    visible: true,
+    loader:false
   };
   handleSubmit = (e) => {
     e.preventDefault();
+    this.setState({
+          	loader:true
+          })
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ',values);
         axios.get('http://localhost:5000/api/userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
         .then((response) => {
           console.log(response);
+         localStorage.setItem('state', 'off');
+          this.setState({
+          	loader:false
+          })
+          this.props.form.resetFields();
           //this.state.confirmDirty='';
         })
       }
@@ -49,6 +58,11 @@ compareToFirstPassword = (rule, value, callback) => {
     callback();
   }
 
+   	handleipaddress = () =>{
+   		axios.get('https://ipinfo.io?token=4b0cfd2794ad30').then(function(response){
+   			console.log(response);
+   		})
+   	}
   
 
 
@@ -57,6 +71,7 @@ compareToFirstPassword = (rule, value, callback) => {
 
 			const { getFieldDecorator } = this.props.form;
             const { autoCompleteResult,visible } = this.state;
+            const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
             const tailFormItemLayout = {
 			      wrapperCol: {
 			        xs: {
@@ -120,7 +135,7 @@ compareToFirstPassword = (rule, value, callback) => {
 						          )}
         					</FormItem>
         					<div className="row center_global">
-	        					<button className="btn color_button">Sign up</button>
+	        					{this.state.loader ? antIcon : null} <button className="btn color_button">Sign up</button>
         					</div>{/*row*/}
         				<div className="row term_condition">
         					<p>(By clicking register, you agree to our <a href="#">terms</a>, our <a href="#">data policy</a> and cookies use)</p>

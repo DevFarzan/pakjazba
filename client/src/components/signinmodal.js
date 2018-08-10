@@ -5,6 +5,7 @@ import Dropdowns from  './dropdown';
 import Facebook from './Facebook';
 import Google from './Google';
 import axios from 'axios';
+import AsyncStorage from "@callstack/async-storage";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -62,17 +63,20 @@ class Signin extends Component{
 
 /*===============form signup coding====================================*/
 handleLocalStorage = () =>{
-  	if(localStorage.getItem('token') != null){
-  		this.setState({
-  			dropdown:true
-  		})//end state
-  		console.log(localStorage.getItem('token'));
-  	}//end if
-    else{
-      this.setState({
-        dropdown:false
-      })
-    }
+    AsyncStorage.getItem('user')
+		.then((obj) => {
+			var userObj = JSON.parse(obj)
+			if(userObj!== null && userObj.name.length > 0){
+                this.setState({
+                    dropdown: true,
+                })
+            }
+            else {
+                this.setState({
+                    dropdown: false
+                })
+            }
+		})
   }//end handleLocalStorage function
 
 
@@ -86,14 +90,15 @@ handleSubmit = (e) => {
         console.log('Received values of form:',values);
         axios.get('http://localhost:5000/api/userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
         .then((response) => {
-          console.log(response);
-         localStorage.setItem('token',response.data.token);
-         localStorage.setItem('name',response.data.name);
+            AsyncStorage.setItem('user', JSON.stringify(response.data))
+                .then(() => {
+                    this.props.modalContent();
+                })
          this.handleLocalStorage();
          if(response.data.code == 200){
          	this.setState({
           	loader:false,
-          	visible:true
+          	visible:false
           })
          }//end if
          else{
@@ -134,10 +139,6 @@ compareToFirstPassword = (rule, value, callback) => {
    			console.log(response);
    		})
    	}
-  
-
-  
-
 
 	render(){
 		
@@ -158,9 +159,9 @@ compareToFirstPassword = (rule, value, callback) => {
 			      },
 			    };
 		return(
-				
+            <div className="paragraph">
 					<span>
-						{this.state.dropdown ? <span><Dropdowns/></span> : <span onClick={this.showModal}>Sign Up</span>}
+						{this.state.dropdown ? <span><Dropdowns modalContent={this.props.modalContent}/></span> : <span onClick={this.showModal}>Sign Up</span>}
 						<Modal
 						          visible={visible}
 						          title="Title"
@@ -240,7 +241,7 @@ compareToFirstPassword = (rule, value, callback) => {
 			          </div>{/*form div end*/}	
        					 </Modal>
 					</span>
-				
+            </div>
 			)
 	}
 

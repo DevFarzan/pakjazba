@@ -144,6 +144,9 @@
 .width_class{
 width:100%;
 }
+.mainLoginDiv{
+  display: flex;
+}
 
 /*================================category================================*/
 .category_margin{

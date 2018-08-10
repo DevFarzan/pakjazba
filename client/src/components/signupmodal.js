@@ -2,19 +2,42 @@ import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox,Modal, Spin, Alert } from 'antd';
 import Signin from './signinmodal';
 import Forgotpassword from './forgotpassword';
+import AsyncStorage from '@callstack/async-storage';
 import axios from 'axios';
 
 
 const FormItem = Form.Item;
 
 class Signup extends Component{
-
-	
 	state = {
 	 visible: false,
 	 showloader:false,
-	 email:''
+	 email:'',
+	 user: ''
 	  }
+
+    componentWillMount(){
+        this.handleLocalStorage();
+    }
+
+    handleLocalStorage = () => {
+        AsyncStorage.getItem('user')
+            .then((obj) => {
+                var userObj = JSON.parse(obj)
+                if(userObj !== null && userObj.name.length > 0){
+                    this.setState({
+                        user: userObj.name
+                    })
+                }
+                else {
+                	this.setState({
+						user: ''
+					})
+				}
+			}).catch({
+
+			})
+	}
 
 	  showModal = () => {
 	    this.setState({
@@ -28,8 +51,8 @@ class Signup extends Component{
 	      email:this.refs.email,
 	      visible: false,
 	    });
-	    console.log(this.refs.email.value);
-	    console.log(this.refs.password.value);
+	    // console.log(this.refs.email.value);
+	    // console.log(this.refs.password.value);
 	  }
 
 	  handleCancel = (e) => {
@@ -38,27 +61,27 @@ class Signup extends Component{
 	      visible: false
 	    });
 	  }
-	  handleSubmit = (e) =>{
-	  	e.preventDefault();
-	  	this.setState({
-	  		showloader:true
-	  	})
-	  	var email = this.refs.email.value;
-	  	var password = this.refs.password.value;
-	  	if(email && password){
-	  	axios.get('http://localhost:5000/api/usersignin?useremail='+email+'&password='+password)
-	  	.then((response)=>{
-	  		console.log(response);
-	  		this.refs.email.value = '';
-	  		this.refs.password.value = '';
-	  		this.setState({
-	  			showloader:false
-	  		})
-	  	})
-	  	console.log(this.refs.email.value);
-	  	console.log(this.refs.password.value);
-	  }
-	}//end if(email&&password)
+	//   handleSubmit = (e) =>{
+	//   	e.preventDefault();
+	//   	this.setState({
+	//   		showloader:true
+	//   	})
+	//   	var email = this.refs.email.value;
+	//   	var password = this.refs.password.value;
+	//   	if(email && password){
+	//   	axios.get('http://localhost:5000/api/usersignin?useremail='+email+'&password='+password)
+	//   	.then((response)=>{
+	//   		console.log(response);
+	//   		this.refs.email.value = '';
+	//   		this.refs.password.value = '';
+	//   		this.setState({
+	//   			showloader:false
+	//   		})
+	//   	})
+	//   	console.log(this.refs.email.value);
+	//   	console.log(this.refs.password.value);
+	//   }
+	// }//end if(email&&password)
 
 	handleSubmit = (e) => {
     e.preventDefault();
@@ -67,8 +90,9 @@ class Signup extends Component{
         console.log('Received values of form: ', values);
         axios.get('http://localhost:5000/api/usersignin?useremail='+values.userName+'&password='+values.password)
 	  	.then((response)=>{
-	  		console.log(response);
-	  		
+            AsyncStorage.setItem('key', 'value')
+                .then(() => {})
+                .catch(() => {})
 	  		this.setState({
 	  			showloader:false
 	  		})
@@ -81,13 +105,15 @@ class Signup extends Component{
     this.props.form.resetFields()
   }
 
-
 	render(){
+		const { user } = this.state;
+
 		const { getFieldDecorator } = this.props.form;
 		const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 		return(
 				<div className="paragraph">
-						<span onClick={this.showModal} >Sign In</span> | <span><Signin/></span>
+
+					<span onClick={this.showModal} >Sign In</span>
 
 					{/*===================modal code start==========================*/}
 					<Modal

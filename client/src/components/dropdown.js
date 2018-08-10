@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { Menu, Dropdown, Icon, message  } from 'antd';
+import AsyncStorage from '@callstack/async-storage';
 
 
 
 class Dropdowns extends Component{
 
 	handleChangeLogout = () =>{
-		localStorage.clear();
+        AsyncStorage.removeItem('user')
+			.then(() => {
+                this.props.modalContent();
+			})
 	}
 
 		

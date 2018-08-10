@@ -3,11 +3,18 @@ import sha1 from 'sha1';
 import axios from 'axios';
 import superagent from 'superagent'
 import Dropzone from 'react-dropzone';
+//import ReCAPTCHA from 'react-google-recaptcha';
 
 //import { Upload, message, Button, Icon } from 'antd-init';
 
 
 class ImageDropzone extends Component{
+
+  componentWillMount(){
+    this.handlecategory();
+  }
+
+
   uploadFile = (files) =>{
 			console.log('uploadFile:')
 			const image = files[0]
@@ -55,11 +62,12 @@ class ImageDropzone extends Component{
   }//upload files
 
   handlecategory = () =>{
-  	var category = this.refs.category.value;
-  	axios.get('http://localhost:5000/api/categoryPost?category='+category).then(function(response){
+  	//var category = this.refs.category.value;
+  	axios.get('http://localhost:5000/api/allusers').then(function(response){
   		console.log(response);
   	})
   }
+
 
         render(){
           return(

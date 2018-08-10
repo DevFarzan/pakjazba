@@ -340,6 +340,39 @@ app.get('/api/resetpassword',function(req,res){
 });
 /*========================reset password API end===============================================*/
 
+/*========================get all users========================================================*/
+app.get('/api/allusers',function(req,res){
+  User.find({__v:0},function(err,user){
+    if(err){
+      res.send({
+        code:500,
+        content:'Internal Server Error',
+        msg:'API not called properly'
+      })
+    }//end if
+    else if(user!=''){
+      var userEmail  = [];
+      for(var i=0;i<user.length;i++){
+        userEmail.push(user[i].email)
+      }
+      res.send({
+        code:200,
+        content:userEmail,
+        msg:'all registered user'
+      });
+    }//end else if condition
+    else{
+      res.send({
+        code:404,
+        content:'Not Found',
+        msg:'no registered user found'
+      });
+    }//end else condition
+  })
+})
+
+/*========================get all users========================================================*/
+
 
 
 

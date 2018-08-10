@@ -53,7 +53,7 @@ class App extends Component {
                             onSearch={value => console.log(value)}
                             enterButton
                       />
-                      
+                      <Dropzone/>
                       </div>{/*col-md-7*/}
                       <div className="col-md-2 loginSignup">
                           <p className="padding_left_p"><Signup/></p>

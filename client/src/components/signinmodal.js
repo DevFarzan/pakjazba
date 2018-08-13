@@ -11,6 +11,8 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
 
+const ip = require('ip');
+
 class Signin extends Component{
 
 
@@ -19,6 +21,7 @@ class Signin extends Component{
   }
   componentWillMount(){
     this.handleLocalStorage();
+      this.getAllUsers();
   }
 	state = {
     loading: false,
@@ -28,10 +31,18 @@ class Signin extends Component{
     confirmDirty: false,
     autoCompleteResult: [],
     loader:false,
-    dropdown:false
-  }
+    dropdown:false,
+    allUser: []
+    }
 
+    getAllUsers(){
+        console.log(ip.address(), 'ipAddressssssss')
 
+        axios.get('http://localhost:5000/api/allusers')
+            .then((response) => {
+                this.setState({allUser: response.data.content})
+            })
+    }
 
   showModal = () => {
     this.setState({
@@ -140,10 +151,18 @@ compareToFirstPassword = (rule, value, callback) => {
    		})
    	}
 
+    checkValue(rule, value, callback){
+        if(this.state.allUser.includes(value)){
+            callback('This email is already been used')
+            return;
+        }else {
+            callback()
+        }
+    }
+
 	render(){
-		
 		const { getFieldDecorator } = this.props.form;
-        const { autoCompleteResult,visible } = this.state;
+        const { autoCompleteResult,visible, allUser } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 		let {children} = this.props;
 		const tailFormItemLayout = {
@@ -194,9 +213,11 @@ compareToFirstPassword = (rule, value, callback) => {
 							<FormItem label="E-mail">
 						          {getFieldDecorator('email', {
 						            rules: [{
-						              type: 'email', message: 'The input is not valid E-mail!',
-						            }, {
-						              required: true, message: 'Please input your E-mail!',
+                                        type: 'email', message: 'The input is not valid E-mail!',
+                                    }, {
+                                        required: true, message: 'Please input your E-mail!',
+                                    }, {
+						                validator: this.checkValue.bind(this)
 						            }],
 						          })(
 						            <Input  />
@@ -248,4 +269,3 @@ compareToFirstPassword = (rule, value, callback) => {
 }
 const WrappedRegistrationForm = Form.create()(Signin);
 export default WrappedRegistrationForm
-

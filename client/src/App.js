@@ -6,8 +6,9 @@ import 'antd/dist/antd.css';
 import Signup from './components/signupmodal';
 import MainLogin from './components/mainLogin'
 // import Signin from './components/signinmodal';
-// import Dropzone from './components/imagedropzone';
+import Dropzone from './components/imagedropzone';
 import Category from './components/getcategory';
+import axios from "axios";
 
 
 
@@ -16,7 +17,6 @@ class App extends Component {
       response: '',
       username: null
     };
-
 
     componentDidMount() {
       this.callApi()
@@ -37,7 +37,6 @@ class App extends Component {
 
       const Search = Input.Search;
       const {username} = this.state;
-
       return (
 
         <div className ="">
@@ -54,14 +53,14 @@ class App extends Component {
                             onSearch={value => console.log(value)}
                             enterButton
                       />
-                      <Dropzone/>
+
                       </div>{/*col-md-7*/}
                       <div className="col-md-2 loginSignup">
                           <p className="padding_left_p"><MainLogin/></p>
                       </div>
                       <div className="col-md-2 category_margin"><Category/></div>
                       <div>
-                          
+                          <Dropzone />
                       </div>
                 </div>{/*row*/}
             </nav>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
+import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, Upload } from 'antd';
 import App from '../App';
+import Geosuggest from 'react-geosuggest';
 
 const FormItem = Form.Item
 const category = [{
@@ -11,11 +12,66 @@ const category = [{
     label: 'local',
 }];
 
+const fileList = []
+
+const props = {
+    action: '//jsonplaceholder.typicode.com/posts/',
+    listType: 'picture',
+    defaultFileList: [...fileList],
+    className: 'upload-list-inline',
+};
+
 class Postbusiness extends Component {
+    state = {
+        fileList: [],
+        uploading: false,
+    }
+    /**
+     * When the input receives focus
+     */
+    onFocus() {
+        console.log('onFocus'); // eslint-disable-line
+    }
+
+    /**
+     * When the input loses focus
+     * @param {String} value The user input
+     */
+    onBlur(value) {
+        console.log('onBlur', value); // eslint-disable-line
+    }
+
+    /**
+     * When the input got changed
+     * @param {String} value The new value
+     */
+    onChange(value) {
+        console.log('input changes to :' + value); // eslint-disable-line
+    }
+
+    /**
+     * When a suggest got selected
+     * @param  {Object} suggest The suggest
+     */
+    onSuggestSelect(suggest) {
+        console.log(suggest, '1111111111111'); // eslint-disable-line
+    }
+
+    /**
+     * When there are no suggest results
+     * @param {String} userInput The user input
+     */
+    onSuggestNoResults(userInput) {
+        console.log('onSuggestNoResults for :' + userInput); // eslint-disable-line
+    }
 
     render() {
         const {getFieldDecorator} = this.props.form;
-
+        var fixtures = [
+            {label: 'New York', location: {lat: 40.7033127, lng: -73.979681}},
+            {label: 'Rio', location: {lat: -22.066452, lng: -42.9232368}},
+            {label: 'Tokyo', location: {lat: 35.673343, lng: 139.710388}}
+        ];
         const formItemLayout = {
 
             labelCol: {
@@ -57,7 +113,18 @@ class Postbusiness extends Component {
                                             {getFieldDecorator('address', {
                                                 rules: [{ required: true, message: 'Please input your Address!', whitespace: true }],
                                             })(
-                                                <Input  />
+                                                <div>
+                                                <Geosuggest
+                                                    fixtures={fixtures}
+                                                    onFocus={this.onFocus}
+                                                    onBlur={this.onBlur}
+                                                    onChange={this.onChange}
+                                                    onSuggestSelect={this.onSuggestSelect}
+                                                    onSuggestNoResults={this.onSuggestNoResults}
+                                                    location={new google.maps.LatLng(53.558572, 9.9278215)}
+                                                    radius="20"
+                                                    />
+                                                </div>
                                             )}
                                         	</FormItem>
 											<FormItem
@@ -181,7 +248,13 @@ class Postbusiness extends Component {
                                     <div class="panel panel-default">
                                         <div class="panel-heading bold_c_text"><Icon type="info-circle"/><span
                                             className="margin_font_location">Upload</span></div>
-                                        <div class="panel-body">Upload Form</div>
+                                        <div class="panel-body">
+                                            <Upload {...props}>
+                                                <Button>
+                                                    <Icon type="upload" /> Upload
+                                                </Button>
+                                            </Upload>
+                                        </div>
                                     </div>
                                     {/*==========upload panel end===========*/}
                                 </div>

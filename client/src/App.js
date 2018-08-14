@@ -60,7 +60,6 @@ class App extends Component {
                       </div>
                       <div className="col-md-2 category_margin"><Category/></div>
                       <div>
-                          <Dropzone />
                       </div>
                 </div>{/*row*/}
             </nav>

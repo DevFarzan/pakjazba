@@ -63,7 +63,7 @@ class App extends Component {
                       </div>
                 </div>{/*row*/}
             </nav>
-            
+
         </div>
       );
     }

@@ -83,12 +83,10 @@ class Postbusiness extends Component {
 
     //-------------- upload functions start -------------------
     handleCancel = () => {
-        console.log('hellooooooo')
         this.setState({ previewVisible: false })
     }
 
     handlePreview = (file) => {
-        console.log('9999999999999999')
         this.setState({
             previewImage: file.url || file.thumbUrl,
             previewVisible: true,
@@ -102,20 +100,13 @@ class Postbusiness extends Component {
 
     //--------------function for cloudnary url ---------------
     uploadFile = (files) =>{
-        console.log(files, 'filessssssssssssss')
         var { arrURL, fileList } = this.state;
-        console.log('uploadFile:')
         const image = files.originFileObj
-        console.log(image);
-
         const cloudName = 'dxk0bmtei'
         const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/upload'
-
         const timestamp = Date.now()/1000
         const uploadPreset = 'toh6r3p2'
-
         const paramsStr = 'timestamp='+timestamp+'&upload_preset='+uploadPreset+'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
-
         const signature = sha1(paramsStr)
         const params = {
             'api_key':'878178936665133',
@@ -124,32 +115,16 @@ class Postbusiness extends Component {
             'signature':signature
         }
 
-        let uploadRequest = superagent.post(url)
-        uploadRequest.attach('file', image)
+        return new Promise((res, rej) => {
+            let uploadRequest = superagent.post(url)
+            uploadRequest.attach('file', image)
+            Object.keys(params).forEach((key) =>{
+                uploadRequest.field(key, params[key])
+            })
 
-        Object.keys(params).forEach((key) =>{
-            uploadRequest.field(key, params[key])
-        })
-        // this.setState({
-        //     fileList: files,
-        // })
-        uploadRequest.end((err, resp) =>{
-            if(err){
-                alert(err)
-                return
-            }else {
-                console.log('Upload Complete: '+JSON.stringify(resp.body.url))
-                return JSON.stringify(resp.body.url)
-            }
-            // arrURL.push(JSON.stringify(resp.body.url))
-            // // fileList.push(files[0])
-            // console.log('Upload Complete: '+JSON.stringify(resp.body.url))
-            // this.setState({
-            //     // imageresponse:JSON.stringify(resp.body.url)
-            //     lengthFileList : fileList.length,
-            //
-            //     arrURL: arrURL
-            // })
+            uploadRequest.end((err, resp) =>{
+                err ? rej(err) : res(resp);
+            })
         })
     }
 
@@ -159,16 +134,12 @@ class Postbusiness extends Component {
         e.preventDefault();
         const { fileList } = this.state;
         var cloudURL = [];
-            console.log(fileList, 'eeeeeeeeeeeeeeeeee')
         fileList.map((val) => {
-            // new Promise((resolve, reject) => {
-                var res = this.uploadFile(val)
-                console.log(val, 'resssssssssss')
-            // })
-
-            // cloudURL.push(res)
-            // console.log(cloudURL, 'cloudURLLLLLLLLLLLL')
+            var res = this.uploadFile(val).then((res) => {
+                console.log(res.body.url, 'urlllllllllll');
+            })
         })
+
         this.props.form.validateFieldsAndScroll((err, values) => {
             console.log(err, 'errrrrrr')
             console.log(values, 'valuesssssss')
@@ -177,7 +148,6 @@ class Postbusiness extends Component {
 
     render() {
         const { previewVisible, previewImage, fileList, arrURL } = this.state;
-        // console.log(arrURL, 'arrUrlllllllllllll')
         const {getFieldDecorator} = this.props.form;
         const uploadButton = (
             <div>
@@ -185,13 +155,14 @@ class Postbusiness extends Component {
                 <div className="ant-upload-text">Upload</div>
             </div>
         );
+
         var fixtures = [
             {label: 'New York', location: {lat: 40.7033127, lng: -73.979681}},
             {label: 'Rio', location: {lat: -22.066452, lng: -42.9232368}},
             {label: 'Tokyo', location: {lat: 35.673343, lng: 139.710388}}
         ];
-        const formItemLayout = {
 
+        const formItemLayout = {
             labelCol: {
             	md:{span:6},
                 xs: {span: 24},
@@ -203,6 +174,7 @@ class Postbusiness extends Component {
                 sm: {span: 16},
             },
         };
+
         return (
             <div>
                 {/*================================App component include Start===========================*/}

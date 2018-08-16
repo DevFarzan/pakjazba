@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, notification, Spin, Modal  } from 'antd';
 import Formsignup from './formsignup';
 import Dropdowns from  './dropdown';
@@ -36,7 +36,7 @@ class Signin extends Component{
   showModal = () => {
     this.setState({
       visible: true,
-    });
+    });7
   }
   
 
@@ -90,6 +90,7 @@ handleSubmit = (e) => {
         console.log('Received values of form:',values);
         axios.get('http://localhost:5000/api/userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
         .then((response) => {
+          console.log(response);
             AsyncStorage.setItem('user', JSON.stringify(response.data))
                 .then(() => {
                     this.props.modalContent();
@@ -142,7 +143,7 @@ compareToFirstPassword = (rule, value, callback) => {
 
 	render(){
 		
-		const { getFieldDecorator } = this.props.form;
+		    const { getFieldDecorator } = this.props.form;
         const { autoCompleteResult,visible } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 		let {children} = this.props;

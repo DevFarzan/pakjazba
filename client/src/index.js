@@ -9,6 +9,7 @@ import reducers from './reducers';
 
 //component
 import App from './App';
+import Signin from './components/signin_seperate/signin';
 import Postbusiness from './components/postBusiness';
 import Postroommates from './components/postRoommates';
 import Postbuysell from './components/postBuysell';
@@ -25,6 +26,7 @@ ReactDOM.render(
 			<BrowserRouter>
 				<div>
 					<Route exact path="/" component={App}></Route>
+					<Route path="/sigin" component={Signin}></Route>
 					<Route path="/postad_business" component={Postbusiness}></Route>
 					<Route path="/postad_Roommates" component={Postroommates}></Route>
 					<Route path="/postad_buysell" component={Postbuysell}></Route>

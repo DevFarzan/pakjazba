@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from   'react';
 //import antd  from 'antd-init';
 //import ImageDropzone from './components/imagedropzone';
 import { Input } from 'antd';
@@ -17,7 +17,7 @@ class App extends Component {
       username: null
     };
 
-
+    
     componentDidMount() {
       this.callApi()
         .then(res => this.setState({ response: res.express }))
@@ -37,9 +37,7 @@ class App extends Component {
 
       const Search = Input.Search;
       const {username} = this.state;
-
       return (
-
         <div className ="">
             <nav className="navbar navbar-default">
                 <div className="row">
@@ -54,7 +52,7 @@ class App extends Component {
                             onSearch={value => console.log(value)}
                             enterButton
                       />
-                      <Dropzone/>
+                      
                       </div>{/*col-md-7*/}
                       <div className="col-md-2 loginSignup">
                           <p className="padding_left_p"><MainLogin/></p>

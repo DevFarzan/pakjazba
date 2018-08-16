@@ -120,6 +120,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const app = express();
+var nodemailer = require("nodemailer");
 var passport = require('passport');
 var jwt = require('jsonwebtoken');
 var ip = require('ip');
@@ -215,7 +216,25 @@ app.get('/api/getcategory',(req,res) =>{
 
 /*========================category List=====================================*/
 
+/*
+  Here we are configuring our SMTP Server details.
+  STMP is mail server which is responsible for sending and recieving email.
+*/
+var smtpTransport = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+        user: "caream224@gmail.com",
+        pass: "farzi1234"
+    },
+    tls: {
+        rejectUnauthorized: false
+    }
 
+});
+var rand,mailOptions,host,link;
+/*------------------SMTP Over-----------------------------*/
+
+/*------------------Routing Started ------------------------*/
 
 /*=================================user register start==================================*/
 app.get('/api/userregister',(req,res) =>{
@@ -239,6 +258,98 @@ app.get('/api/userregister',(req,res) =>{
     status:false,
     blocked:false
   });
+rand=Math.floor((Math.random() * 100) + 54);
+  host=req.get('host');
+  link="http://"+req.get('host')+"/verify?id="+rand;
+  mailOptions={
+    to : req.query.email,
+    subject : "Please confirm your Email account",
+    html : `<html style="opacity: 1;font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;box-sizing: border-box;border: solid;">
+<head>
+  <title>Verify your email address</title>
+</head>
+<body style="width: 100% !important;height: 100%;margin: 0;line-height: 1.4;background-color: #F5F7F9;color: #555555;">
+    <div class="email-di" style=" width:480px;margin:0 auto;padding:30px;">
+  <table class="email" width="100%" cellpadding="0" cellspacing="0" style="width: 100%;margin: 0;padding: 0;background-color: #FFFFFF;">
+    <tr>
+      <td align="center" style="border: 1px groove;color: grey">
+        <table class="email-content" width="100%" cellpadding="0" cellspacing="0" style="width: 100%;margin: 0;padding: 0;">
+          <tr>
+           <td><img src="http://res.cloudinary.com/dxk0bmtei/image/upload/v1534159021/pakjazba_f3orb0.png" style="display: block;margin-left: auto;margin-right: auto;"></td>
+          </tr>
+          <tr>
+            <td class="email-body" width="100%" style="width: 100%;margin: 0;padding: 0;border-top: 1px solid #FFFFFF;border-bottom: 1px solid #E7EAEC;background-color: #FFFFFF;">
+              <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0" style="width: 570px;margin: 0 auto;padding: 0;">
+                <tr>
+                  <td class="content" style="padding: 35px;">
+                    <h1 style="margin-top: 0;color:#292E31;font-size: 19px;font-weight: bold;text-align: left;">Verify your email address</h1>
+                    <p style="margin-top: 0;color: #555555;font-size: 16px;line-height: 1.5em;text-align: left;">Welcome to myEFSOLI! Just verify your email to get</p>
+                    <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" style=" width: 100%;margin: 30px auto;padding: 0;text-align: center;">
+                      <tr>
+                        <td align="center">
+                          <div>
+                                <a href='+link+' class="button button--blue" style="background-color: #8cbc40; display: inline-block;width: 200px;border-radius: 3px;color: #ffffff;font-size: 15px;line-height: 45px;text-align: center;text-decoration: none;">Verify Email</a>
+                          </div>
+                        </td>
+                      </tr>
+                    <p style="margin-top: 0;color: #555555;font-size: 16px;line-height: 1.5em;text-align: left;">EFSOL Team<br>Level 23</p>
+                    <tr>
+                        <td>
+                        <ul style="list-style-type: none;text-align: center;">
+                            <li style="float: left;"><a href="#"><p style="align-content: left"><img class="social-icon" src="http://i.imgur.com/oyXO6zq.png" width="30" height="30"></p></a></li>
+                            <li style="float: left;"><a href="#"><p class="text-center"><img class="social-icon" src="http://i.imgur.com/AJNmSZs.png" width="30" height="30"></p></a><li>
+                            <li style="float: left;"><a href="#"><p class="text-center"><img class="social-icon" src="http://i.imgur.com/GLEVM7N.png" width="30" height="30"></p></a><li>
+                      </ul>
+                        </td>
+                        </tr>
+                        </table>
+                      
+                     <table class="body-sub" style="margin-top: 25px;padding-top: 25px;border-top: 1px solid #E7EAEC;">
+                      <tr>
+                        <td>
+                          <p class="sub" style="font-size: 12px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0" style="width: 570px;margin: 0 auto;padding: 0;text-align: center;">
+                <tr>
+                  <td class="content-cell">
+                    <p class="sub center" style="text-align:center;">
+                      Equitable Financial
+                      <br>ABN 86 151 172 039
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>`
+  }
+  console.log(mailOptions);
+  smtpTransport.sendMail(mailOptions, function(error, response){
+     if(error){
+          console.log(error);
+    res.end("error");
+   }else{
+          console.log("Message sent: " + response.message);
+    res.end("sent");
+       }
+});
+
   //res.send({message:user_info,code:200});
       //res.json({token: jwt.sign({ email: user_info.Useremail, _id: user_info._id}, 'RESTFULAPIs')})
       res.send({
@@ -253,6 +364,35 @@ app.get('/api/userregister',(req,res) =>{
       // })
      });
 // /*============================user register end===========================================*/
+
+app.get('/verify',function(req,res){
+console.log(req.protocol+":/"+req.get('host'));
+if((req.protocol+"://"+req.get('host'))==("http://"+host))
+{
+  console.log("Domain is matched. Information is from Authentic email");
+  if(req.query.id==rand)
+  {
+    console.log("email is verified");
+    res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
+  } 
+  else
+  {
+    console.log("email is not verified");
+    res.end("<h1>Bad Request</h1>");
+  }
+}
+else
+{
+  res.end("<h1>Request is from unknown source");
+}
+});
+
+/*--------------------Routing Over----------------------------*/
+
+
+
+
+
 
 /*========================user signin start==============================================*/
  app.get('/api/usersignin',(req,res) =>{
@@ -373,7 +513,18 @@ app.get('/api/allusers',function(req,res){
 
 /*========================get all users========================================================*/
 
+/*========================post business data start==================================================*/
 
+app.post('/api/postbusinessdata',function(req,res){
+  var businessData = req.body.businessdata;
+  if(businessData){
+    res.send({message:'data get on server'});
+  }//end businessData
+})
+
+
+
+/*======================post business data end==================================================*/
 
 
 

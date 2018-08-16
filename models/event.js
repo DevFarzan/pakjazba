@@ -26,4 +26,6 @@ var eventSchema = new mongoose.Schema({
 	ticketfree:{type:Boolean},
 	eventpaymentmethod:{type:String},
 
-}) 
+});
+eventSchema.plugin('uniqueValidator');
+mongoose.model('eventdatabase',eventSchema);

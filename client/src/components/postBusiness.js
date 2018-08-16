@@ -98,6 +98,43 @@ class Postbusiness extends Component {
     }
     //--------------upload functions end ---------------------
 
+    //--------------delete uploaded image start-------------------
+    deleteFile = () => {
+        const cloudName = 'dxk0bmtei'
+        const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/destroy'
+        const timestamp = Date.now()/1000
+        const publicId = "kc2i5zrbymr6dwlp9man"
+        const paramsStr = 'timestamp='+timestamp+'&public_id='+publicId+'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
+        const signature = sha1(paramsStr)
+        console.log(signature.toString(),' signatureeeeeeeeeeee')
+        // const signature = "f32d42d4c15b560b49ead0878aaefb71016ca04d"
+        const params = {
+            'api_key':'878178936665133',
+            'timestamp':timestamp,
+            'public_id':publicId,
+            'signature':signature.toString()
+        }
+
+        axios.post('https://api.cloudinary.com/v1_1/'+cloudName+'/image/destroy?'+'public_id='+publicId+'&timestamp='+timestamp+'&api_key=878178936665133'+'&signature='+signature,{}).then((res) => {
+            console.log(res, 'resssssssssss')
+        }).catch((err) => {
+            console.log(err, 'errrrrrrrrrr')
+        })
+
+        // let deleteRequest = superagent.post(url)
+        // console.log(deleteRequest, 'urlllllllll')
+        // Object.keys(params).forEach((key) =>{
+        //     deleteRequest.field(key, params[key])
+        // })
+        // deleteRequest.end((err, resp) =>{
+        //     console.log(err, 'errrrrrrrrrr')
+        //     console.log(resp, 'respppppppp')
+        //     err ? rej(err) : res(resp);
+        // })
+
+    }
+    //--------------delete uploaded image end-------------------
+
     //--------------function for cloudnary url ---------------
     uploadFile = (files) =>{
         var { arrURL, fileList } = this.state;
@@ -134,15 +171,28 @@ class Postbusiness extends Component {
         e.preventDefault();
         const { fileList } = this.state;
         var cloudURL = [];
-        fileList.map((val) => {
-            var res = this.uploadFile(val).then((res) => {
-                console.log(res.body.url, 'urlllllllllll');
-            })
-        })
 
         this.props.form.validateFieldsAndScroll((err, values) => {
-            console.log(err, 'errrrrrr')
-            console.log(values, 'valuesssssss')
+            if (!err) {
+                if (fileList.length) {
+                    console.log('11111111111111')
+                    fileList.map((val) => {
+                        var res = this.uploadFile(val).then((res) => {
+                            console.log(res, 'urlllllllllll');
+                        })
+                    })
+                } else {
+                    var objectData = {
+                        key: 'value'
+                    }
+                    axios.post('http://localhost:5000/api/postbusinessdata', {
+                        businessdata:objectData
+                    }).then((response) => {
+                        console.log(response, 'responseeeeeeeeeeee')
+                    })
+                    console.log('222222222222222222')
+                }
+            }
         })
     }
 

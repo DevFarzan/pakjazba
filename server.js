@@ -122,6 +122,7 @@ const mongoose = require('mongoose');
 const app = express();
 var nodemailer = require("nodemailer");
 var passport = require('passport');
+var bodyParser = require('body-parser')
 var jwt = require('jsonwebtoken');
 var ip = require('ip');
 
@@ -134,7 +135,8 @@ app.use(function(req, res, next) {
        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
       next();
    });
-
+app.use(bodyParser.json()) // handle json data
+app.use(bodyParser.urlencoded({ extended: true })) // handle URL-encoded data
 // // DB models
 require('./models/User');
 require('./models/category');
@@ -515,8 +517,9 @@ app.get('/api/allusers',function(req,res){
 
 /*========================post business data start==================================================*/
 
+
 app.post('/api/postbusinessdata',function(req,res){
-  var businessData = req.body.businessdata;
+  var businessData = req.body;
   if(businessData){
     res.send({message:'data get on server'});
   }//end businessData

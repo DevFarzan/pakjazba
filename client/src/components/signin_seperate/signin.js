@@ -6,8 +6,6 @@ import Form_signup from './form_signup.js';
 
 
 class Signin extends Component{
-	
-
 
 	render(){
 		return(
@@ -23,7 +21,7 @@ class Signin extends Component{
 				<div className="row">
 					<div className="col-md-2"></div>
 					<div className="col-md-3">
-							<span className="font_weight_signin_seperate_he">Sign in to your pakjazba account</span><br/><br/>
+							<span className="font_weight_signin_seperate_he">Sign in to your Pakjazba account</span><br/><br/>
 							<div className="main_seperate_div">
 								<Formsignin/>
 							</div>
@@ -43,7 +41,7 @@ class Signin extends Component{
 					</div>
 				</div>
 			</div>
-			)
+		)
 	}
 }
 

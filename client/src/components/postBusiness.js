@@ -23,6 +23,7 @@ import axios from "axios";
 import {HttpUtils} from '../Services/HttpUtils';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 
+const { TextArea } = Input;
 const FormItem = Form.Item
 const category = [{
 	value: 'imported',
@@ -40,6 +41,7 @@ class Postbusiness extends Component {
         fileList: [],
         arrURL: [],
         lengthFileList : 0,
+        desLength: 0,
     };
 
     componentWillMount(){
@@ -237,10 +239,16 @@ class Postbusiness extends Component {
             arr_url: response ? response : []
         }
         var req = await HttpUtils.post('postbusinessdata', obj)
+        this.props.form.resetFields();
+    }
+
+    checkValue(rule, value, callback) {
+        this.setState({desLength: value.length})
+        callback();
     }
 
     render() {
-        const { previewVisible, previewImage, fileList, arrURL } = this.state;
+        const { previewVisible, previewImage, fileList, desLength } = this.state;
         const {getFieldDecorator} = this.props.form;
         const uploadButton = (
             <div>
@@ -412,6 +420,27 @@ class Postbusiness extends Component {
                                                     <Cascader options={category} />
                                                 )}
                                             </FormItem>
+                                            <FormItem
+                                                {...formItemLayout}
+                                                label="Description"
+                                            >
+                                                {getFieldDecorator('description', {
+                                                    rules: [
+                                                        {
+                                                            required: true, message: 'Please input your Description!', whitespace: true
+                                                        },
+                                                        {
+                                                            validator: this.checkValue.bind(this)
+                                                        }],
+                                                })(
+                                                    <TextArea
+                                                        rows={6}
+                                                        maxlength="500"
+                                                    />
+                                                )}
+                                                <br />
+                                                <span>{500 - desLength}</span>
+                                            </FormItem>
 										</div>
                                     </div>
                                     <br/>
@@ -438,7 +467,7 @@ class Postbusiness extends Component {
                                     {/*==========upload panel end===========*/}
                                 </div>
                                 <div className="row center_global">
-                                    <button className="btn color_button">Sign up</button>
+                                    <button className="btn color_button">Submit</button>
                                 </div>
                                 {/*main panel content*/}
                             </div>

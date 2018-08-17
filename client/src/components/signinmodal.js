@@ -77,7 +77,7 @@ handleLocalStorage = () =>{
     AsyncStorage.getItem('user')
 		.then((obj) => {
 			var userObj = JSON.parse(obj)
-			if(userObj!== null && userObj.name.length > 0){
+			if(!!userObj){
                 this.setState({
                     dropdown: true,
                 })

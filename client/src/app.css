@@ -182,6 +182,23 @@ body{
 .background_sigin{
   background-color:white;
 }
-
+.font_weight_signin_seperate_he{
+  font-weight:700;
+}
+.border_heading_sigin{
+ border: 1px solid #80808066;
+}
+.signup_button_signin_seperate{
+    margin-top: -11px;
+    margin-bottom: 7px;
+}
+.main_seperate_div{
+    background: none repeat scroll 0 0 #F9F9F9;
+    border: 1px solid #CCCCCC;
+    float: left;
+    height: 461px;
+    padding: 10px;
+    width: 255px;
+  }
 
 /*============================custom signin end===============================*/

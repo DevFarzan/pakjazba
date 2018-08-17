@@ -1,29 +1,22 @@
- import React, { Component } from 'react';
+import React, { Component } from   'react';
 import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, notification, Spin, Modal  } from 'antd';
-import Formsignup from './formsignup';
-import Dropdowns from  './dropdown';
-import Facebook from './Facebook';
-import Google from './Google';
+
 import axios from 'axios';
 import AsyncStorage from "@callstack/async-storage";
 
 const FormItem = Form.Item;
-const Option = Select.Option;
-const AutoCompleteOption = AutoComplete.Option;
-
 const ip = require('ip');
 
-class Signin extends Component{
-
-
-  componentDidMount(){
+class Form_signup extends Component{
+	componentDidMount(){
     this.handleLocalStorage();
   }
   componentWillMount(){
     this.handleLocalStorage();
       this.getAllUsers();
   }
-	state = {
+
+  state = {
     loading: false,
     visible: false,
     passwordValidator:false,
@@ -35,7 +28,7 @@ class Signin extends Component{
     allUser: []
     }
 
-    getAllUsers(){
+   getAllUsers(){
         console.log(ip.address(), 'ipAddressssssss')
 
         axios.get('http://localhost:5000/api/allusers')
@@ -44,35 +37,6 @@ class Signin extends Component{
             })
     }
 
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });7
-  }
-  
-
-  handleOk = () => {
-    this.setState({ loading: true });
-    setTimeout(() => {
-      this.setState({ loading: false, visible: false });
-    }, 3000);
-  }
-  
-  handleBlur = () => {
-  this.setState({validating: true});
-}
-
-  handleCancel = () => {
-    this.setState({ visible: false });
-  }
-  renderPasswordConfirmError = (e) => {
-  this.setState({
-  	passwordValidator:true
-  })
-}
-
-
-/*===============form signup coding====================================*/
 handleLocalStorage = () =>{
     AsyncStorage.getItem('user')
 		.then((obj) => {
@@ -90,8 +54,7 @@ handleLocalStorage = () =>{
 		})
   }//end handleLocalStorage function
 
-
-handleSubmit = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.setState({
           	loader:true
@@ -122,37 +85,7 @@ handleSubmit = (e) => {
     });
   }//end handleSubmit
 
-  
-
-
-  handleConfirmBlur = (e) => {
-    const value = e.target.value;
-    this.setState({ confirmDirty:this.state.confirmDirty || !!value});
-  }
-compareToFirstPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!');
-    } else {
-      callback();
-    }
-  }
-
-  validateToNextPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && this.state.confirmDirty) {
-      form.validateFields(['confirm'], { force: true });
-    }
-    callback();
-  }
-
-   	handleipaddress = () =>{
-   		axios.get('https://ipinfo.io?token=4b0cfd2794ad30').then(function(response){
-   			console.log(response);
-   		})
-   	}
-
-    checkValue(rule, value, callback){
+  checkValue(rule, value, callback){
         if(this.state.allUser.includes(value)){
             callback('This email is already been used')
             return;
@@ -161,12 +94,15 @@ compareToFirstPassword = (rule, value, callback) => {
         }
     }
 
+
 	render(){
-		    const { getFieldDecorator } = this.props.form;
-        const { autoCompleteResult,visible, allUser } = this.state;
+
+
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
-		let {children} = this.props;
-		const tailFormItemLayout = {
+		const { getFieldDecorator } = this.props.form;
+        const { autoCompleteResult,visible, allUser } = this.state;
+        let {children} = this.props;
+        const tailFormItemLayout = {
 			      wrapperCol: {
 			        xs: {
 			          span: 24,
@@ -179,31 +115,8 @@ compareToFirstPassword = (rule, value, callback) => {
 			      },
 			    };
 		return(
-            <div className="paragraph">
-					<span>
-						{this.state.dropdown ? <span><Dropdowns modalContent={this.props.modalContent}/></span> : <span onClick={this.showModal}>Sign Up</span>}
-						<Modal
-						          visible={visible}
-						          title="Title"
-						          onOk={this.handleOk}
-						          onCancel={this.handleCancel}
-						          
-	        				>
-	          				<div className="row">
-				        		<div className="col-md-5">	
-						         	<Facebook/>
-								</div>{/*col-md-4*/}
-								<div className="col-md-1"></div>{/*col-md-4*/}
-								<div className="col-md-5">		
-									<button className="loginBtn loginBtn--google">
-									  Sign Up with Google
-									</button>
-									<Google/>
-								</div>{/*col-md-4*/}	
-							</div>{/*row*/}
-							<br/>
-							<div className="">{/*form div start*/}
-					          	<Form onSubmit={this.handleSubmit}>
+			<div>
+				<Form onSubmit={this.handleSubmit}>
 							<FormItem label="Name">
 						          {getFieldDecorator('nickname', {
 						            rules: [{ required: true, message: 'Please input your Name!', whitespace: true }],
@@ -260,13 +173,12 @@ compareToFirstPassword = (rule, value, callback) => {
         					<p>(By clicking register, you agree to our <a href="#">terms</a>, our <a href="#">data policy</a> and cookies use)</p>
         				</div>
 						</Form>
-			          </div>{/*form div end*/}	
-       					 </Modal>
-					</span>
-            </div>
+			</div>		
 			)
 	}
-
+	
 }
-const WrappedRegistrationForm = Form.create()(Signin);
+
+const WrappedRegistrationForm = Form.create()(Form_signup);
 export default WrappedRegistrationForm
+

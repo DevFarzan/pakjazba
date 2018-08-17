@@ -140,9 +140,11 @@ app.use(bodyParser.urlencoded({ extended: true })) // handle URL-encoded data
 // // DB models
 require('./models/User');
 require('./models/category');
+require('./models/businessyellowpages');
 require('./config/passport');
 var User = mongoose.model('User');
 var categorypost = mongoose.model('category');
+var yellowPagesBusiness = mongoose.model('business');
 
 
 
@@ -520,9 +522,45 @@ app.get('/api/allusers',function(req,res){
 
 app.post('/api/postbusinessdata',function(req,res){
   var businessData = req.body;
-  if(businessData){
-    res.send({message:'data get on server'});
-  }//end businessData
+  var user_id = businessData.user_id,
+      address = businessData.address,
+      businessname = businessData.businessName,
+      businessnumber = businessData.businessNumber
+      firstname = businessData.firstName,
+      lastname = businessData.lastName,
+      city = businessData.city,
+      state = businessData.state,
+      zipcode = businessData.zip,
+      businessaddress = businessData.businessAddress,
+      businessownername = businessData.businessOwner,
+      businessemail = businessData.businessEmail,
+      businesscategory = businessData.businessCategory,
+      businessImages = businessData.arr_url,
+      businessId = businessData.businessId;
+
+
+   var yellowBusiness_info = new yellowPagesBusiness({
+    user_id:user_id,
+    address:address,
+    businessname:businessname,
+    businessnumber:businessnumber,
+    firstname:firstname,
+    lastname:lastname,
+    businessemailid:businessId,
+    city:city,
+    state:state,
+    zipcode:zipcode,
+    businessaddress:businessaddress,
+    businessownername:businessownername,
+    businessemail:businessemail,
+    businesscategory:businesscategory,
+    businessImages:businessImages
+
+   });
+
+   yellowBusiness_info.save(function(err,data){
+    res.send({err:err,data:data});
+   })
 })
 
 

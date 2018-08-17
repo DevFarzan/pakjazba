@@ -229,6 +229,8 @@ class Postbusiness extends Component {
             businessEmail: values.businessEmail,
             businessId: values.businessId,
             businessName: values.businessName,
+            firstName:values.firstName,
+            lastName:values.lastName,
             businessNumber: values.businessNumber,
             businessOwner: values.businessOwner,
             city: values.city,
@@ -338,6 +340,26 @@ class Postbusiness extends Component {
                                         <div class="panel-heading bold_c_text"><Icon type="info-circle"/><span
                                             className="margin_font_location">Business</span></div>
                                         <div class="panel-body">
+                                        <FormItem
+                                                {...formItemLayout}
+                                                label="First Name"
+                                            >
+                                                {getFieldDecorator('firstName', {
+                                                    rules: [{ required: true, message: 'Please input your  First Name!', whitespace: true }],
+                                                })(
+                                                    <Input  />
+                                                )}
+                                            </FormItem>
+                                            <FormItem
+                                                {...formItemLayout}
+                                                label="Last Name"
+                                            >
+                                                {getFieldDecorator('lastName', {
+                                                    rules: [{ required: true, message: 'Please input your Last Name!', whitespace: true }],
+                                                })(
+                                                    <Input  />
+                                                )}
+                                            </FormItem>
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Business Name"

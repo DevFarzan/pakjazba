@@ -20,6 +20,8 @@ import Geosuggest from 'react-geosuggest';
 import sha1 from "sha1";
 import superagent from "superagent";
 import axios from "axios";
+import {HttpUtils} from '../Services/HttpUtils';
+import AsyncStorage from "@callstack/async-storage/lib/index";
 
 const FormItem = Form.Item
 const category = [{
@@ -32,12 +34,33 @@ const category = [{
 
 class Postbusiness extends Component {
     state = {
+        userId: '',
         previewVisible: false,
         previewImage: '',
         fileList: [],
         arrURL: [],
         lengthFileList : 0,
     };
+
+    componentWillMount(){
+        this.handleLocalStorage();
+    }
+
+    componentDidMount(){
+        this.handleLocalStorage();
+    }
+
+    handleLocalStorage = () =>{
+        AsyncStorage.getItem('user')
+            .then((obj) => {
+                var userObj = JSON.parse(obj)
+                if(!!userObj) {
+                    this.setState({
+                        userId: userObj._id
+                    })
+                }
+            })
+    }
     //-------- GeoSuggest fuctions start ------------
 
     /**
@@ -137,7 +160,6 @@ class Postbusiness extends Component {
 
     //--------------function for cloudnary url ---------------
     uploadFile = (files) =>{
-        var { arrURL, fileList } = this.state;
         const image = files.originFileObj
         const cloudName = 'dxk0bmtei'
         const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/upload'
@@ -170,30 +192,51 @@ class Postbusiness extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const { fileList } = this.state;
-        var cloudURL = [];
-
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 if (fileList.length) {
-                    console.log('11111111111111')
-                    fileList.map((val) => {
-                        var res = this.uploadFile(val).then((res) => {
-                            console.log(res, 'urlllllllllll');
-                        })
-                    })
+                    this.postDataWithURL(values)
                 } else {
                     var objectData = {
                         key: 'value'
                     }
-                    axios.post('http://localhost:5000/api/postbusinessdata', {
-                        businessdata:objectData
-                    }).then((response) => {
-                        console.log(response, 'responseeeeeeeeeeee')
-                    })
-                    console.log('222222222222222222')
+                    this.postData(values)
                 }
             }
         })
+    }
+
+    async postDataWithURL(values){
+        const { fileList } = this.state;
+        var cloudURL = [];
+
+        Promise.all(fileList.map((val) => {
+            return this.uploadFile(val).then((result) => {
+                return result.body.url
+            })
+        })).then((results) => {
+            this.postData(values, results)
+        })
+    }
+
+    async postData(values, response){
+        const { userId } = this.state;
+        var obj = {
+            user_id: userId,
+            address: values.address,
+            businessAddress: values.businessAddress,
+            businessCategory: values.businessCategory[0],
+            businessEmail: values.businessEmail,
+            businessId: values.businessId,
+            businessName: values.businessName,
+            businessNumber: values.businessNumber,
+            businessOwner: values.businessOwner,
+            city: values.city,
+            state: values.state,
+            zip: values.zip,
+            arr_url: response ? response : []
+        }
+        var req = await HttpUtils.post('postbusinessdata', obj)
     }
 
     render() {

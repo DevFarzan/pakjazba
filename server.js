@@ -567,10 +567,21 @@ app.post('/api/postbusinessdata',function(req,res){
 })
 /*======================post business data end==================================================*/
 
+
+/*======================post buy & sell business start==========================================*/
+app.post('/api/postbuyselldata',function(req,res){
+  var buyselldata = req.body;
+  if(buyselldata){
+   res.send({message:'data get on server'})
+}//end if
+})
+
+/*======================post buy & sell business end===========================================*/
+
 /*======================get Market place start========================================================*/
 app.get('/api/marketplace',function(req,res){
   var session = req.query.session;
-  if(session == true){
+  
     yellowPagesBusiness.find({__v:0},function(err,yellowPages){
       console.log(yellowPages);
     if(err){
@@ -584,7 +595,7 @@ app.get('/api/marketplace',function(req,res){
       var businesses  = [];
       for(var i=0;i<yellowPages.length;i++){
         businesses.push(yellowPages[i])
-      }
+      }//end for
       res.send({
         code:200,
         content:businesses,
@@ -599,15 +610,8 @@ app.get('/api/marketplace',function(req,res){
       });
     }//end else condition
   })
-}
-else{
-  res.send('session not maintain');
-}
 
 });
-
-
-
 /*====================get market Market place end=====================================================*/
 
 

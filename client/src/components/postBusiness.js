@@ -455,13 +455,13 @@ class Postbusiness extends Component {
                                                             validator: this.checkValue.bind(this)
                                                         }],
                                                 })(
-                                                    <TextArea
+                                                    <TextArea style={{"margin-bottom": "12px"}}
                                                         rows={6}
                                                         maxlength="500"
                                                     />
                                                 )}
-                                                <br />
-                                                <span>{500 - desLength}</span>
+                                                <br /><br />
+                                                <span className="text-area_business">{500 - desLength} Words</span>
                                             </FormItem>
 										</div>
                                     </div>

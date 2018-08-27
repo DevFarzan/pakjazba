@@ -369,34 +369,44 @@ class Postbuysell extends Component{
                                         )}
                                     </FormItem>
                                     <div className="row">
+                                    <div className="col-md-2"></div>
+                                    <div className="col-md-2"><label>Size/Dimension:</label></div>
+                                    <div className="col-md-2">
                                         <FormItem
                                             {...formItemLayout}
-                                            label="Length"
+                                            label=""
                                         >
                                             {getFieldDecorator('sizeLength', {
                                                 rules: [{ required: true, message: 'Please input your Length!', whitespace: true }],
                                             })(
-                                                <Input  />
+                                                <Input placeholder="length"  />
                                             )}
-                                        </FormItem><FormItem
+                                        </FormItem>
+                                    </div>
+                                    <div className="col-md-2">   
+                                        <FormItem
                                         {...formItemLayout}
-                                        label="Width"
+                                        label=""
                                     >
                                         {getFieldDecorator('sizeWidth', {
                                             rules: [{ required: true, message: 'Please input your Width!', whitespace: true }],
                                         })(
-                                            <Input  />
+                                            <Input placeholder="Width" />
                                         )}
-                                    </FormItem><FormItem
+                                        </FormItem>
+                                    </div>
+                                    <div className="col-md-2">
+                                    <FormItem
                                         {...formItemLayout}
-                                        label="Height"
+                                        label=""
                                     >
                                         {getFieldDecorator('sizeHeight', {
                                             rules: [{ required: true, message: 'Please input your Height!', whitespace: true }],
                                         })(
-                                            <Input  />
+                                            <Input placeholder="Height" />
                                         )}
                                     </FormItem>
+                                    </div>
                                     </div>
                                     <FormItem
                                         {...formItemLayout}

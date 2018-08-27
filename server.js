@@ -596,7 +596,9 @@ app.post('/api/postbuyselldata',function(req,res){
       delivery = [],
       classifiedImages = [],
       sizedimension = [];
+
   var buyselldata = req.body;
+  console.log(buyselldata);
   var userid = buyselldata.user_id,
       contactname = buyselldata.contactName,
       contactemail = buyselldata.contactEmail,

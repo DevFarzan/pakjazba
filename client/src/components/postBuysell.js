@@ -168,7 +168,7 @@ class Postbuysell extends Component{
         }
         console.log(obj, 'objjjjjjjjjjjjjj')
         var req = await HttpUtils.post('postbuyselldata', obj)
-        this.props.form.resetFields();
+        //this.props.form.resetFields();
     }
 
     render(){

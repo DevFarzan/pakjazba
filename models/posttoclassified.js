@@ -4,25 +4,28 @@ var uniqueValidator = require('uniqueValidator');
 
 
 var postclassifiedSchema = new mongoose.Schema({
-	name:{type:String},
-	email:{type:String},
-	number:{type:String},
-	modeofcontact:{type:String},
-	delivery:{type:String},
-	address:{type:String},
-	condition:{type:String},
-	sizedimension:{type:String},
-	modelnumber:{type:String},
 	userid:{type:String},
-	classifiedimages:{type:Array},
+	contactname:{type:String},
+	contactemail:{type:String},
+	contactnumber:{type:String},
+	modeofcontact:{type:Array},
+	delivery:{type:Array},
+	address:{type:String},
+	hideaddress:{type:Boolean},
+	condition:{type:String},
+	sizedimension:{type:Array},
+	images:{type:Array},
 	city:{type:String},
 	postingtype:{type:String},
-	classifiedcategory:{type:String},
-	classifiedtitle:{type:String},
-	descriptiondetail:{typ:String},
-	classifiedprice:{type:String},
+	category:{type:String},
+	title:{type:String},
+	description:{typ:String},
+	price:{type:String},
 	hideprice:{type:Boolean},
-	delivery:{type:String},
+	modelmake:{type:String},
+	modelnumber:{type:String},
+	modelname:{type:String},
+
 });
 
 postclassifiedSchema.plugin(uniqueValidator);

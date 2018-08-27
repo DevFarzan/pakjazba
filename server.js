@@ -570,10 +570,33 @@ app.post('/api/postbusinessdata',function(req,res){
 
 /*======================post buy & sell business start==========================================*/
 app.post('/api/postbuyselldata',function(req,res){
+  var modeofcontact = [],
+      delivery = [],
+      classifiedImages = [],
+      sizedimension = [];
   var buyselldata = req.body;
-  if(buyselldata){
+  var userid = buyselldata.user_id,
+      contactname = buyselldata.contactname,
+      contactemail = buyselldata.contactemail,
+      contactnumber = buyselldata.contactInfo;
+      modeofcontact = buyselldata.contactMode;
+  var address = buyselldata.address,
+      category = buyselldata.category,
+      city = buyselldata.city,
+      condition = buyselldata.condition;
+      delivery =   buyselldata.delivery;
+  var description = buyselldata.description,
+      modelmake   =  buyselldata.make,
+      modelnumber = buyselldata.number,
+      modelname   = buyselldata.modelName,
+      title       = buyselldata.postingTitle,
+      postingtype = buyselldata.postingType,
+      price       = buyselldata.price;
+      classifiedImages = buyselldata.arr_url;
+  var hideprice    = buyselldata.hideprice,
+      hideaddress  = buyselldata.hideaddress;
+      sizedimension = buyselldata.sizedimension;
    res.send({message:'data get on server'})
-}//end if
 })
 
 /*======================post buy & sell business end===========================================*/

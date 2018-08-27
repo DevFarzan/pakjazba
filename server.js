@@ -610,7 +610,6 @@ app.get('/api/marketplace',function(req,res){
       });
     }//end else condition
   })
-
 });
 /*====================get market Market place end=====================================================*/
 

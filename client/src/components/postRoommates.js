@@ -126,10 +126,8 @@ class Postroommates extends Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(e, 'helloooooooo')
         this.props.form.validateFieldsAndScroll((err, values) => {
         	if(!err) {
-                console.log(values, 'errorrrrrrrrr')
                 this.funcForUpload(values)
             }
 		})

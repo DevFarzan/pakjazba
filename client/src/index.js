@@ -13,6 +13,10 @@ import Signin from './components/signin_seperate/signin';
 import Postbusiness from './components/postBusiness';
 import Postroommates from './components/postRoommates';
 import Postbuysell from './components/postBuysell';
+import ProfileUser from './components/profileUser';
+import DetailedPage from './components/detailedPage';
+import MarketBusiness from './components/marketBusiness';
+import MarketClassified from './components/marketClassified';
 
 //css
 import './app.css';
@@ -30,6 +34,10 @@ ReactDOM.render(
 					<Route path="/postad_business" component={Postbusiness}></Route>
 					<Route path="/postad_Roommates" component={Postroommates}></Route>
 					<Route path="/postad_buysell" component={Postbuysell}></Route>
+					<Route path="/profile_user" component={ProfileUser}></Route>
+					<Route path="/detail_page" component={DetailedPage}></Route>
+					<Route path="/market_business" component={MarketBusiness}></Route>
+					<Route path="/market_classified" component={MarketClassified}></Route>
 				</div>
 			</BrowserRouter>
 		</Provider>

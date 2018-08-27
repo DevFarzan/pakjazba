@@ -141,11 +141,14 @@ app.use(bodyParser.urlencoded({ extended: true })) // handle URL-encoded data
 require('./models/User');
 require('./models/category');
 require('./models/businessyellowpages');
+require('./models/posttoclassified');
+
 require('./config/passport');
+
 var User = mongoose.model('User');
 var categorypost = mongoose.model('category');
 var yellowPagesBusiness = mongoose.model('business');
-
+var classifiedBusiness = mongoose.model('postclassified');
 
 
 app.use(passport.initialize());
@@ -562,7 +565,26 @@ app.post('/api/postbusinessdata',function(req,res){
    });
 
    yellowBusiness_info.save(function(err,data){
-    res.send({err:err,data:data});
+    if(err){
+      res.send({
+        code:500,
+        content:'Internal Server Error',
+        msg:'API not called properly'
+      })
+    }//end if
+    else if(data!=''){
+      res.send({
+        code:200,
+        msg:'Data inserted successfully'
+      });
+    }//end else if condition
+    else{
+      res.send({
+        code:404,
+        content:'Not Found',
+        msg:'no  data inserted'
+      });
+    }//end else condition
    })
 })
 /*======================post business data end==================================================*/
@@ -576,9 +598,9 @@ app.post('/api/postbuyselldata',function(req,res){
       sizedimension = [];
   var buyselldata = req.body;
   var userid = buyselldata.user_id,
-      contactname = buyselldata.contactname,
-      contactemail = buyselldata.contactemail,
-      contactnumber = buyselldata.contactInfo;
+      contactname = buyselldata.contactName,
+      contactemail = buyselldata.contactEmail,
+      contactnumber = buyselldata.contactNumber;
       modeofcontact = buyselldata.contactMode;
   var address = buyselldata.address,
       category = buyselldata.category,
@@ -593,10 +615,57 @@ app.post('/api/postbuyselldata',function(req,res){
       postingtype = buyselldata.postingType,
       price       = buyselldata.price;
       classifiedImages = buyselldata.arr_url;
-  var hideprice    = buyselldata.hideprice,
-      hideaddress  = buyselldata.hideaddress;
+  var hideprice    = buyselldata.hidePrice,
+      hideaddress  = buyselldata.hideAddress;
       sizedimension = buyselldata.sizedimension;
-   res.send({message:'data get on server'})
+
+ var classifiedBusiness_info = new classifiedBusiness({
+      userid:userid,
+      contactname:contactname,
+      contactemail:contactemail,
+      contactnumber:contactnumber,
+      modeofcontact:modeofcontact,
+      delivery:delivery,
+      address:address,
+      hideaddress:hideaddress,
+      condition:condition,
+      sizedimension:sizedimension,
+      images:classifiedImages,
+      city:city,
+      postingtype:postingtype,
+      category:category,
+      title:title,
+      description:description,
+      price:price,
+      hideprice:hideprice,
+      modelmake:modelmake,
+      modelnumber:modelnumber,
+      modelname:modelname
+ });
+
+classifiedBusiness_info.save(function(err,data){
+  if(err){
+      res.send({
+        code:500,
+        content:'Internal Server Error',
+        msg:'API not called properly'
+      })
+    }//end if
+    else if(data!=''){
+      res.send({
+        code:200,
+        msg:'Data inserted successfully'
+      });
+    }//end else if condition
+    else{
+      res.send({
+        code:404,
+        content:'Not Found',
+        msg:'no  data inserted'
+      });
+    }//end else condition
+})
+  // res.send({message:'data get on server'})
 })
 
 /*======================post buy & sell business end===========================================*/

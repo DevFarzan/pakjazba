@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var config = require('../config/config');
-var uniqueValidator = require('uniqueValidator');
+//var uniqueValidator = require('uniqueValidator');
 
 
 var postclassifiedSchema = new mongoose.Schema({
@@ -28,5 +28,5 @@ var postclassifiedSchema = new mongoose.Schema({
 
 });
 
-postclassifiedSchema.plugin(uniqueValidator);
+//postclassifiedSchema.plugin(uniqueValidator);
 mongoose.model('postclassified',postclassifiedSchema);

@@ -43,6 +43,8 @@ class Postbuysell extends Component{
             fileList: [],
             previewVisible: false,
             previewImage: '',
+            hidePrice: false,
+            hideAddress: false
         }
     }
 
@@ -67,8 +69,15 @@ class Postbuysell extends Component{
         callback();
     }
 
+    checkPriceValue(rule, value, callback){
+        if (!value) {
+            callback('Please input your Price!');
+        } else {
+            callback();
+        }
+    }
+
     checkCheckBox = (rule, value, callback) => {
-        console.log(value);
         if (!value) {
             callback('Please check at least one!');
         } else {
@@ -153,8 +162,13 @@ class Postbuysell extends Component{
             address: values.address,
             category: values.category[0],
             city: values.city[0],
+            hideAddress: this.state.hideAddress,
+            hidePrice: this.state.hidePrice,
             condition: values.condition[0],
-            contactInfo: values.contactInfo,
+            contactName: values.contactName,
+            contactEmail: values.contactEmail,
+            contactNumber: values.contactNumber,
+            sizedimension: [{length: values.sizeLength, width: values.sizeWidth, height: values.sizeHeight}],
             contactMode: values.contactMode,
             delivery: values.delivery,
             description: values.description,
@@ -166,13 +180,20 @@ class Postbuysell extends Component{
             price: values.price,
             arr_url: response ? response : []
         }
-        console.log(obj, 'objjjjjjjjjjjjjj')
         var req = await HttpUtils.post('postbuyselldata', obj)
         this.props.form.resetFields();
     }
 
+    onChangePrice(e) {
+        this.setState({hidePrice: e.target.checked});
+    }
+
+    onChangeAddress(e) {
+        this.setState({hideAddress: e.target.checked});
+    }
+
     render(){
-        const { previewVisible, previewImage, fileList, desLength } = this.state;
+        const { previewVisible, previewImage, fileList, desLength, hideAddress, hidePrice } = this.state;
         const {getFieldDecorator} = this.props.form;
         const uploadButton = (
             <div>
@@ -282,23 +303,25 @@ class Postbuysell extends Component{
                                         <br />
                                         <span>{500 - desLength}</span>
                                     </FormItem>
-                                    <FormItem
-                                        {...formItemLayout}
-                                        label="Price"
-                                    >
-                                        {getFieldDecorator('price', {
-                                            rules: [{ required: true, message: 'Please input your Price!', whitespace: true }],
-                                        })(
-                                            <div>
-                                                <Col span={5}>
-                                                    <InputNumber  />
-                                                </Col>
-                                                <Col span={5}>
-                                                    <Checkbox>(Hide Price)</Checkbox>
-                                                </Col>
-                                            </div>
-                                        )}
-                                    </FormItem>
+                                    <div className="row" style={{'text-align': 'center'}}>
+                                        <div className="col-md-2"></div>
+                                        <div class="col-md-3">
+                                            <FormItem
+                                                {...formItemLayout}
+                                                label="Price"
+                                            >
+                                                {getFieldDecorator('price', {
+                                                    rules: [{ validator: this.checkPriceValue.bind(this) }],
+                                                })(
+                                                    <Input />
+                                                )}
+                                            </FormItem>
+                                        </div>
+                                        <div className="col-md-3" style={{'text-align': 'left'}}>
+                                            <Checkbox onChange={this.onChangePrice.bind(this)}>(Hide Price)</Checkbox>
+                                        </div>
+                                        <div className="col-md-4"></div>
+                                    </div>
                                 </div>
                             </div>
                             <br/>
@@ -345,26 +368,42 @@ class Postbuysell extends Component{
                                             <Input  />
                                         )}
                                     </FormItem>
-                                    <FormItem
+                                    <div className="row">
+                                        <FormItem
+                                            {...formItemLayout}
+                                            label="Length"
+                                        >
+                                            {getFieldDecorator('sizeLength', {
+                                                rules: [{ required: true, message: 'Please input your Length!', whitespace: true }],
+                                            })(
+                                                <Input  />
+                                            )}
+                                        </FormItem><FormItem
                                         {...formItemLayout}
-                                        label="Size/Dimensions"
+                                        label="Width"
                                     >
-                                        {getFieldDecorator('dimensions', {
-                                            rules: [{ required: true, message: 'Please input your Size/Dimensions!', whitespace: true }],
+                                        {getFieldDecorator('sizeWidth', {
+                                            rules: [{ required: true, message: 'Please input your Width!', whitespace: true }],
                                         })(
-                                            <InputGroup compact>
-                                                <Input style={{ width: '20%' }} placeholder="Length" />
-                                                <Input style={{ width: '20%' }} placeholder="Width"/>
-                                                <Input style={{ width: '20%' }} placeholder="Height"/>
-                                            </InputGroup>
+                                            <Input  />
+                                        )}
+                                    </FormItem><FormItem
+                                        {...formItemLayout}
+                                        label="Height"
+                                    >
+                                        {getFieldDecorator('sizeHeight', {
+                                            rules: [{ required: true, message: 'Please input your Height!', whitespace: true }],
+                                        })(
+                                            <Input  />
                                         )}
                                     </FormItem>
+                                    </div>
                                     <FormItem
                                         {...formItemLayout}
-                                        label="Size/Dimensions"
+                                        label="Images"
                                     >
-                                        {getFieldDecorator('dimensions', {
-                                            rules: [{ required: true, message: 'Please input your Size/Dimensions!', whitespace: true }],
+                                        {getFieldDecorator('images', {
+                                            rules: [{ required: true, message: 'Please input your Images!', whitespace: true }],
                                         })(
                                             <div>
                                                 <Upload
@@ -389,24 +428,32 @@ class Postbuysell extends Component{
                                 <div className="panel-body">
                                     <FormItem
                                         {...formItemLayout}
-                                        label="Contact Info"
+                                        label="Contact Name"
                                     >
-                                        {getFieldDecorator('contactInfo', {
-                                            rules: [{ required: true, message: 'Please input your Contact Info!', whitespace: true }],
+                                        {getFieldDecorator('contactName', {
+                                            rules: [{ required: true, message: 'Please input your Contact Name!', whitespace: true }],
                                         })(
-                                            <div>
-                                                <Col span={5}>
-                                                    <Input placeholder="name" />
-                                                </Col>
-                                                &emsp;
-                                                <Col span={8}>
-                                                    <Input placeholder="email"/>
-                                                </Col>
-                                                &emsp;
-                                                <Col span={5}>
-                                                    <Input placeholder="number"/>
-                                                </Col>
-                                            </div>
+                                            <Input  />
+                                        )}
+                                    </FormItem>
+                                    <FormItem
+                                        {...formItemLayout}
+                                        label="Contact Email"
+                                    >
+                                        {getFieldDecorator('contactEmail', {
+                                            rules: [{ required: true, message: 'Please input your Contact Email!', whitespace: true }],
+                                        })(
+                                            <Input  />
+                                        )}
+                                    </FormItem>
+                                    <FormItem
+                                        {...formItemLayout}
+                                        label="Contact Number"
+                                    >
+                                        {getFieldDecorator('contactNumber', {
+                                            rules: [{ required: true, message: 'Please input your Contact Number!', whitespace: true }],
+                                        })(
+                                            <Input  />
                                         )}
                                     </FormItem>
                                     <FormItem
@@ -429,23 +476,29 @@ class Postbuysell extends Component{
                                             <CheckboxGroup options={optionsDelivery} />
                                         )}
                                     </FormItem>
-                                    <FormItem
-                                        {...formItemLayout}
-                                        label="Address"
-                                    >
-                                        {getFieldDecorator('address', {
-                                            rules: [{ required: true, message: 'Please input your Address!', whitespace: true }],
-                                        })(
-                                            <div>
-                                                <Col span={12}>
-                                                    <Input />
-                                                </Col>
-                                                <Col span={5}>
-                                                    <Checkbox>(Hide Price)</Checkbox>
-                                                </Col>
-                                            </div>
-                                        )}
-                                    </FormItem>
+                                    <div className="row">
+                                        <div className="col-md-2"></div>
+                                        <div className="col-md-4">
+                                            <FormItem
+                                                {...formItemLayout}
+                                                label="Address"
+                                            >
+                                                {getFieldDecorator('address', {
+                                                    rules: [{
+                                                        required: true,
+                                                        message: 'Please input your Address!',
+                                                        whitespace: true
+                                                    }],
+                                                })(
+                                                    <Input/>
+                                                )}
+                                            </FormItem>
+                                        </div>
+                                        <div className="col-md-3" style={{'text-align': 'left'}}>
+                                            <Checkbox onChange={this.onChangeAddress.bind(this)}>(Hide Price)</Checkbox>
+                                        </div>
+                                        <div className="col-md-3"></div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="row center_global">

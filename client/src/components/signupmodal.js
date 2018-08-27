@@ -90,6 +90,7 @@ class Signup extends Component{
         console.log('Received values of form: ', values);
         axios.get('http://localhost:5000/api/usersignin?useremail='+values.userName+'&password='+values.password)
 	  	.then((response)=>{
+	  		console.log(response);
             AsyncStorage.setItem('key', 'value')
                 .then(() => {})
                 .catch(() => {})

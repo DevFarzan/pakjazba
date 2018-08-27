@@ -202,3 +202,9 @@ body{
   }
 
 /*============================custom signin end===============================*/
+
+.text-area_business{
+  float: right;
+  font-size:15px;
+  color:gray;
+}

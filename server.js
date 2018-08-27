@@ -415,10 +415,13 @@ else
             }//end if
             else if(User!=''){
                 res.send({
-                    code: 200,
-                    content : res.json({token: jwt.sign({ email: User.Useremail, _id: User._id}, 'RESTFULAPIs')}),
-                    msg: 'User logged in successfully'
-                });
+                 _id:User[0]._id,
+                name:User[0].username,
+                email:User[0].email,
+                token:jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs'),
+                code:200,
+                msg:'User logged successfully'
+              })
             }//end else if
             else {
                 res.send({
@@ -562,17 +565,53 @@ app.post('/api/postbusinessdata',function(req,res){
     res.send({err:err,data:data});
    })
 })
-
-
-
 /*======================post business data end==================================================*/
 
 
+/*======================post buy & sell business start==========================================*/
+app.post('/api/postbuyselldata',function(req,res){
+  var buyselldata = req.body;
+  if(buyselldata){
+   res.send({message:'data get on server'})
+}//end if
+})
 
+/*======================post buy & sell business end===========================================*/
 
-
-
-
+/*======================get Market place start========================================================*/
+app.get('/api/marketplace',function(req,res){
+  var session = req.query.session;
+  
+    yellowPagesBusiness.find({__v:0},function(err,yellowPages){
+      console.log(yellowPages);
+    if(err){
+      res.send({
+        code:500,
+        content:'Internal Server Error',
+        msg:'API not called properly'
+      })
+    }//end if
+    else if(yellowPages!=''){
+      var businesses  = [];
+      for(var i=0;i<yellowPages.length;i++){
+        businesses.push(yellowPages[i])
+      }//end for
+      res.send({
+        code:200,
+        content:businesses,
+        msg:'all Businesses'
+      });
+    }//end else if condition
+    else{
+      res.send({
+        code:404,
+        content:'Not Found',
+        msg:'no registered business found'
+      });
+    }//end else condition
+  })
+});
+/*====================get market Market place end=====================================================*/
 
 
 

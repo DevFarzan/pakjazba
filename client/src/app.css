@@ -208,3 +208,34 @@ body{
   font-size:15px;
   color:gray;
 }
+
+/*==========================profile_user=====================================*/
+.background_image{
+  background-image: url('/public/images/profile-sid.png')
+}
+.hero{
+  z-index: 3;
+  background-color: #f2f2f2;
+  margin-top: 32px;
+}
+.content {
+    background-color: #f2f2f2;
+    z-index: 1;
+  }
+  .linktext_margin{
+    margin: 9px;
+  }
+  .side-nav > a{
+    color: #000;
+    transition: .3s color ease, .3s background-color ease, .3s box-shadow ease;
+    text-decoration: none;
+}
+.border_sidenav{
+  border-bottom: 1px solid #8080804d;;
+    padding-bottom: 7px;
+}
+.side-nav > a:hover{
+  text-decoration: none;
+  color:#ff0000;
+  font-weight: bold;
+}

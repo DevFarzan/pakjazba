@@ -678,31 +678,29 @@ app.get('/api/marketplace',function(req,res){
   
     yellowPagesBusiness.find({__v:0},function(err,yellowPages){
       console.log(yellowPages);
-    if(err){
-      res.send({
-        code:500,
-        content:'Internal Server Error',
-        msg:'API not called properly'
-      })
-    }//end if
-    else if(yellowPages!=''){
+     if(yellowPages!=''){
       var businesses  = [];
+          //buysell = [];
       for(var i=0;i<yellowPages.length;i++){
-        businesses.push(yellowPages[i])
+        businesses.push(yellowPages[i]);
       }//end for
+      }//end if
+      classifiedBusiness.find({__v:0},function(err,classifiedData){
+        console.log(classifiedData);
+        if(classifiedData!=''){
+          var buysell = [];
+          for(var j=0;j<classifiedData.length;j++){
+            buysell.push(classifiedData[i]);
+          }
+        }//end if
+      
       res.send({
         code:200,
-        content:businesses,
-        msg:'all Businesses'
+        business:businesses,
+        busell:buysell,
+        msg:'data recieve successfully'
       });
-    }//end else if condition
-    else{
-      res.send({
-        code:404,
-        content:'Not Found',
-        msg:'no registered business found'
-      });
-    }//end else condition
+    })
   })
 });
 /*====================get market Market place end=====================================================*/

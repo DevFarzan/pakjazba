@@ -8,65 +8,75 @@ import MainLogin from './components/mainLogin'
 // import Signin from './components/signinmodal';
 import Dropzone from './components/imagedropzone';
 import Category from './components/getcategory';
+import {HttpUtils} from "./Services/HttpUtils";
 import axios from "axios";
 
-
-
 class App extends Component {
-  state = {
-      response: '',
-      username: null
-    };
+    constructor(props) {
+        super(props)
+        this.state = {
+            response: '',
+            username: null
+        };
+    }
 
+    componentWillMount(){
+        this.getAllBusiness();
+    }
+
+    async getAllBusiness(){
+        var req = await HttpUtils.get('marketplace')
+        console.log(req, 'reqqqqqqqqqqqq')
+    }
 
     componentDidMount() {
-      this.callApi()
-        .then(res => this.setState({ response: res.express }))
-        .catch(err => console.log(err));
+        this.callApi()
+            .then(res => this.setState({ response: res.express }))
+            .catch(err => console.log(err));
 
     }
 
     callApi = async () => {
-      const response = await fetch('/api/hello');
-      const body = await response.json();
+        const response = await fetch('/api/hello');
+        const body = await response.json();
 
-      if (response.status !== 200) throw Error(body.message);
-      return body;
+        if (response.status !== 200) throw Error(body.message);
+        return body;
     };
 
     render() {
 
-      const Search = Input.Search;
-      const {username} = this.state;
-      return (
-        <div className ="">
-            <nav className="navbar navbar-default">
-                <div className="row">
-                      <div className="col-md-2">
-                          <div className="logoWidth_main">
-                            <img src="./images/logo.png" />
-                          </div>
-                      </div>{/*col-md-3*/}
-                      <div className="col-md-6 searchbox">
-                        <Search
-                            placeholder="input search text"
-                            onSearch={value => console.log(value)}
-                            enterButton
-                      />
+        const Search = Input.Search;
+        const {username} = this.state;
+        return (
+            <div className ="">
+                <nav className="navbar navbar-default">
+                    <div className="row">
+                        <div className="col-md-2">
+                            <div className="logoWidth_main">
+                                <img src="./images/logo.png" />
+                            </div>
+                        </div>{/*col-md-3*/}
+                        <div className="col-md-6 searchbox">
+                            <Search
+                                placeholder="input search text"
+                                onSearch={value => console.log(value)}
+                                enterButton
+                            />
 
-                      </div>{/*col-md-7*/}
-                      <div className="col-md-2 loginSignup">
-                          <p className="padding_left_p"><MainLogin/></p>
-                      </div>
-                      <div className="col-md-2 category_margin"><Category/></div>
-                      <div>
-                      </div>
-                </div>{/*row*/}
-            </nav>
+                        </div>{/*col-md-7*/}
+                        <div className="col-md-2 loginSignup">
+                            <p className="padding_left_p"><MainLogin/></p>
+                        </div>
+                        <div className="col-md-2 category_margin"><Category/></div>
+                        <div>
+                        </div>
+                    </div>{/*row*/}
+                </nav>
 
-        </div>
-      );
+            </div>
+        );
     }
-  }
+}
 
-  export default App;
+export default App;

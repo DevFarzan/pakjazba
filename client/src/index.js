@@ -13,7 +13,7 @@ import Signin from './components/signin_seperate/signin';
 import Postbusiness from './components/postBusiness';
 import Postroommates from './components/postRoommates';
 import Postbuysell from './components/postBuysell';
-import ProfileUser from './components/profileUser';
+import ProfileUser from './components/user_profile/profileUser';
 import DetailedPage from './components/detailedPage';
 import MarketBusiness from './components/marketBusiness';
 import MarketClassified from './components/marketClassified';

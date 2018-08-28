@@ -12,6 +12,7 @@ import {
     Checkbox,
     Button,
     AutoComplete,
+    notification,
     Upload,
     Modal
 } from 'antd';
@@ -20,6 +21,7 @@ import Geosuggest from 'react-geosuggest';
 import sha1 from "sha1";
 import superagent from "superagent";
 import axios from "axios";
+import { Redirect } from 'react-router';
 import {HttpUtils} from '../Services/HttpUtils';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 
@@ -42,6 +44,7 @@ class Postbusiness extends Component {
         arrURL: [],
         lengthFileList : 0,
         desLength: 0,
+        msg: false,
     };
 
     componentWillMount(){
@@ -241,8 +244,19 @@ class Postbusiness extends Component {
             arr_url: response ? response : []
         }
         var req = await HttpUtils.post('postbusinessdata', obj)
-        this.props.form.resetFields();
+        if(req.code == 200){
+            this.props.form.resetFields();
+            this.openNotification()
+            this.setState({msg: true})
+        }
     }
+
+    openNotification() {
+        notification.open({
+            message: 'Success ',
+            description: 'Your need is submited successfully, Kindly visit your profile',
+        });
+    };
 
     checkValue(rule, value, callback) {
         this.setState({desLength: value.length})
@@ -252,6 +266,10 @@ class Postbusiness extends Component {
     render() {
         const { previewVisible, previewImage, fileList, desLength } = this.state;
         const {getFieldDecorator} = this.props.form;
+        if (this.state.msg === true) {
+            return <Redirect to='/' />
+        }
+
         const uploadButton = (
             <div>
                 <Icon type="plus" />

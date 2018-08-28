@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import App from '../App';
-// import {Cascader, Form, Input} from "antd";
 import {
     Form,
     Input,
@@ -14,12 +13,14 @@ import {
     Checkbox,
     Button,
     AutoComplete,
+    notification,
     Upload,
     Modal
 } from 'antd';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 import sha1 from "sha1";
 import superagent from "superagent";
+import { Redirect } from 'react-router';
 import {HttpUtils} from "../Services/HttpUtils";
 
 const InputGroup = Input.Group;
@@ -44,7 +45,13 @@ class Postbuysell extends Component{
             previewVisible: false,
             previewImage: '',
             hidePrice: false,
-            hideAddress: false
+            hideAddress: false,
+            msg: false,
+            dLength: '',
+            dWidth: '',
+            dHeight: '',
+            err: false,
+            errMsg: ''
         }
     }
 
@@ -156,7 +163,7 @@ class Postbuysell extends Component{
     }
 
     async postData(values, response) {
-        const {userId} = this.state;
+        const {userId, dLength, dWidth, dHeight} = this.state;
         var obj = {
             user_id: userId,
             address: values.address,
@@ -168,7 +175,7 @@ class Postbuysell extends Component{
             contactName: values.contactName,
             contactEmail: values.contactEmail,
             contactNumber: values.contactNumber,
-            sizedimension: [{length: values.sizeLength, width: values.sizeWidth, height: values.sizeHeight}],
+            sizedimension: !!(dLength && dWidth && dHeight) ? [{length: dLength, width: dWidth, height: dHeight}] : !!(dLength) ? [{length: dLength}] : !!(dWidth) ? [{width: dWidth}] : !!(dHeight) ? [{height: dHeight}] : [],
             contactMode: values.contactMode,
             delivery: values.delivery,
             description: values.description,
@@ -181,8 +188,19 @@ class Postbuysell extends Component{
             arr_url: response ? response : []
         }
         var req = await HttpUtils.post('postbuyselldata', obj)
-        //this.props.form.resetFields();
+        if(req.code == 200){
+            this.props.form.resetFields();
+            this.openNotification()
+            this.setState({msg: true, dLength: '', dWidth: '', dHeight: ''})
+        }
     }
+
+    openNotification() {
+        notification.open({
+            message: 'Success ',
+            description: 'Your need is submited successfully, Kindly visit your profile',
+        });
+    };
 
     onChangePrice(e) {
         this.setState({hidePrice: e.target.checked});
@@ -192,9 +210,35 @@ class Postbuysell extends Component{
         this.setState({hideAddress: e.target.checked});
     }
 
+    onDimensionChange = (e) => {
+        if (!isNaN(e.target.value)) {
+            this.setState({err: false, errMsg: ''})
+            if (e.target.placeholder == 'Length') {
+                this.setState({dLength: e.target.value})
+            } else if (e.target.placeholder == 'Width') {
+                this.setState({dWidth: e.target.value})
+            } else if (e.target.placeholder == 'Height') {
+                this.setState({dHeight: e.target.value})
+            }
+        } else {
+            if (e.target.placeholder == 'Length') {
+                this.setState({err: true, errMsg: 'Input must be number', dLength: ''})
+            } else if (e.target.placeholder == 'Width') {
+                this.setState({err: true, errMsg: 'Input must be number', dWidth: ''})
+            } else if (e.target.placeholder == 'Height') {
+                this.setState({err: true, errMsg: 'Input must be number', dHeight: ''})
+            }
+        }
+    }
+
+
     render(){
         const { previewVisible, previewImage, fileList, desLength, hideAddress, hidePrice } = this.state;
         const {getFieldDecorator} = this.props.form;
+        if (this.state.msg === true) {
+            return <Redirect to='/' />
+        }
+
         const uploadButton = (
             <div>
                 <Icon type="plus" />
@@ -207,6 +251,7 @@ class Postbuysell extends Component{
             { label: 'phone', value: 'phone' },
             { label: 'text', value: 'text' },
         ];
+
         const optionsDelivery = [
             { label: 'Pickup', value: 'pickup' },
             { label: 'Free Shipping', value: 'freeShipping' },
@@ -368,46 +413,12 @@ class Postbuysell extends Component{
                                             <Input  />
                                         )}
                                     </FormItem>
-                                    <div className="row">
-                                    <div className="col-md-2"></div>
-                                    <div className="col-md-2"><label>Size/Dimension:</label></div>
-                                    <div className="col-md-2">
-                                        <FormItem
-                                            {...formItemLayout}
-                                            label=""
-                                        >
-                                            {getFieldDecorator('sizeLength', {
-                                                rules: [{ required: true, message: 'Please input your Length!', whitespace: true }],
-                                            })(
-                                                <Input placeholder="length"  />
-                                            )}
-                                        </FormItem>
+                                    <div>
+                                        <Input style={{ width: '20%' }} onChange={this.onDimensionChange} placeholder="Length" />
+                                        <Input style={{ width: '20%' }} onChange={this.onDimensionChange} placeholder="Width"/>
+                                        <Input style={{ width: '20%' }} onChange={this.onDimensionChange} placeholder="Height"/>
                                     </div>
-                                    <div className="col-md-2">   
-                                        <FormItem
-                                        {...formItemLayout}
-                                        label=""
-                                    >
-                                        {getFieldDecorator('sizeWidth', {
-                                            rules: [{ required: true, message: 'Please input your Width!', whitespace: true }],
-                                        })(
-                                            <Input placeholder="Width" />
-                                        )}
-                                        </FormItem>
-                                    </div>
-                                    <div className="col-md-2">
-                                    <FormItem
-                                        {...formItemLayout}
-                                        label=""
-                                    >
-                                        {getFieldDecorator('sizeHeight', {
-                                            rules: [{ required: true, message: 'Please input your Height!', whitespace: true }],
-                                        })(
-                                            <Input placeholder="Height" />
-                                        )}
-                                    </FormItem>
-                                    </div>
-                                    </div>
+                                    <span>{this.state.err && this.state.errMsg}</span>
                                     <FormItem
                                         {...formItemLayout}
                                         label="Images"

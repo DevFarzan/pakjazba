@@ -13,16 +13,19 @@ const AutoCompleteOption = AutoComplete.Option;
 const ip = require('ip');
 
 class Signin extends Component{
-    state = {
-        loading: false,
-        visible: false,
-        passwordValidator:false,
-        username: null,
-        confirmDirty: false,
-        autoCompleteResult: [],
-        loader:false,
-        dropdown:false,
-        allUser: []
+    constructor(props) {
+        super(props)
+        this.state = {
+            loading: false,
+            visible: false,
+            passwordValidator: false,
+            username: null,
+            confirmDirty: false,
+            autoCompleteResult: [],
+            loader: false,
+            dropdown: false,
+            allUser: []
+        }
     }
 
     componentWillMount(){
@@ -180,7 +183,6 @@ class Signin extends Component{
                         title="Title"
                         onOk={this.handleOk}
                         onCancel={this.handleCancel}
-
                     >
                         <div className="row">
                             <div className="col-md-5">

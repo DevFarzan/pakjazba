@@ -91,8 +91,46 @@ class ProfileUser extends Component{
                                                 		<label for="email" className="col-form-label">Facebook</label>
                                                 		<input name="email" type="text" className="form-control" id="facebook" placeholder="Your Facebook Link" />
                                             		</div>
-		                                         </section>   
+		                                         </section>
+		                                         <section>
+		                                         		<div className="form-group">
+                                                			<label for="email" className="col-form-label">Current Password</label>
+                                                			<input name="email" type="text" className="form-control" id="facebook" placeholder="Your Facebook Link" />
+                                            			</div>
+		                                         </section>
+		                                         <section>
+		                                         	<div className="row">
+		                                         		<div className="col-md-12" >
+		                                         			<button className="btn btn-primary" style={{"float": "right"}}>Save Changes</button>
+		                                         		</div>
+		                                         	</div>
+		                                         </section>
 	                						</div>{/*col-md-8*/}
+	                						<div className="col-md-8">
+	                							<h2>Change Password</h2>
+	                							<section>
+	                								<div className="form-group">
+	                									<label for="currentpassword" className="col-form-label">Current Password</label>
+	                									<input name="currentpassword" type="password" className="form-control" id="password" placeholder="Current Password" />
+	                								</div>
+	                								<div className="form-group">
+	                									<label for="newpassword" className="col-from-label">New Password</label>
+	                									<input name="newpassword" type="password" className="form-control" id="New password" placeholder="new password" />
+	                								</div>
+	                								<div className="form-group">
+	                									<label for="confrimpassword" className="col-form-label">Confrim Password</label>
+	                									<input name="confrimpassword" className="form-control" id="confrimpassword" placeholder="Confrim Password" />
+	                								</div>
+	                							</section>
+	                							<section>
+		                                         	<div className="row">
+		                                         		<div className="col-md-12" >
+		                                         			<button className="btn btn-primary" style={{"float": "right"}}>Change Password</button>
+		                                         		</div>
+		                                         	</div>
+		                                         </section>
+	                						</div>
+	                						
 	                						<div class="col-md-4">
                                         		<div className="profile-image">
                                             <div className="img-circle">
@@ -106,7 +144,7 @@ class ProfileUser extends Component{
 
 	                					</div>{/*row*/}
 	                				</form>
-	                			</div>{/*col-md-9*/}		
+	                			</div>{/*col-md-9*/}	
 	                		</div>{/*row*/}
 	                	</div>
 	            	</div>{/*container*/}	

@@ -3,16 +3,10 @@ import App from '../App';
 import {
     Form,
     Input,
-    Tooltip,
     Icon,
     Cascader,
-    Select,
     InputNumber,
-    Row,
-    Col,
     Checkbox,
-    Button,
-    AutoComplete,
     notification,
     Upload,
     Modal
@@ -424,7 +418,7 @@ class Postbuysell extends Component{
                                         label="Images"
                                     >
                                         {getFieldDecorator('images', {
-                                            rules: [{ required: true, message: 'Please input your Images!', whitespace: true }],
+                                            rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
                                         })(
                                             <div>
                                                 <Upload

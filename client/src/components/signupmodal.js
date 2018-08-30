@@ -8,11 +8,14 @@ import axios from 'axios';
 const FormItem = Form.Item;
 
 class Signup extends Component{
-    state = {
-        visible: false,
-        showloader:false,
-        email:'',
-        user: ''
+    constructor(props) {
+        super(props)
+        this.state = {
+            visible: false,
+            showloader: false,
+            email: '',
+            user: ''
+        }
     }
 
     componentWillMount(){

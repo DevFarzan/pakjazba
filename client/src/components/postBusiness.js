@@ -36,16 +36,20 @@ const category = [{
 }];
 
 class Postbusiness extends Component {
-    state = {
-        userId: '',
-        previewVisible: false,
-        previewImage: '',
-        fileList: [],
-        arrURL: [],
-        lengthFileList : 0,
-        desLength: 0,
-        msg: false,
-    };
+    constructor(props) {
+        super(props)
+        this.state = {
+            userId: '',
+            previewVisible: false,
+            previewImage: '',
+            fileList: [],
+            arrURL: [],
+            lengthFileList: 0,
+            desLength: 0,
+            msg: false,
+        };
+    }
+
 
     componentWillMount(){
         this.handleLocalStorage();

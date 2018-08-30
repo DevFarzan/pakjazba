@@ -749,15 +749,15 @@ else if(profileData.profileId != ''){
           console.log("Profile update Error:::", err);
           return res.status(400).json({"Unexpected Error:: ": err});
         }
-          profile.user_id = req.body.userId;
-          profile.description = req.body.description;
-          profile.email = req.body.email;
-          profile.location = req.body.location;
-          profile.facebooklink = req.body.facebook;
-          profile.twitterlink = req.body.twitter;
-          profile.googlelink = req.body.google;
-          profile.linkdin = req.body.linkdin;
-          profile.imageurl = req.body.url;
+          profile.user_id = profileData.userId;
+          profile.description = profileData.description;
+          profile.email = profileData.email;
+          profile.location = profileData.location;
+          profile.facebooklink = profileData.facebook;
+          profile.twitterlink = profileData.twitter;
+          profile.googlelink = profileData.google;
+          profile.linkdin = profileData.linkdin;
+          profile.imageurl = profileData.url;
           profile.blockprofile = false;
           profile.verifiedprofile = true;
 

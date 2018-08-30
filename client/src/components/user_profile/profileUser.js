@@ -15,15 +15,15 @@ class ProfileUser extends Component{
             userId: '',
             loading: false,
             imageUrl: '',
-			profileSec: true,
-			changePass: false,
-			name: '',
-			email: '',
-			phone: '',
-			description: '',
-			location: '',
-			twitter: '',
-			facebook: '',
+         profileSec: true,
+         changePass: false,
+         name: '',
+         email: '',
+         phone: '',
+         description: '',
+         location: '',
+         twitter: '',
+         facebook: '',
         };
     }
 
@@ -95,11 +95,11 @@ class ProfileUser extends Component{
             return;
         }
         if (info.file.status === 'done') {
-			this.uploadFile(info.file).then((result) => {
-				this.setState({url : result.body.url})
-			})
+         this.uploadFile(info.file).then((result) => {
+            this.setState({url : result.body.url})
+         })
             this.getBase64(info.file.originFileObj, imageUrl => {
-            	this.setState({
+               this.setState({
                 imageUrl,
                 loading: false,
             })});
@@ -122,7 +122,7 @@ class ProfileUser extends Component{
             })
         }else {
             var obj = {
-            	userId,
+               userId,
                 description,
                 email,
                 facebook,
@@ -133,40 +133,40 @@ class ProfileUser extends Component{
                 url
             }
             console.log(obj, 'objjjjjjjjjjjj')
-		}
+      }
     }
 
     handleProfile(){
-		this.setState({
+      this.setState({
             profileSec: true,
             changePass: false
-		})
-	}
+      })
+   }
 
     handlePassSec(){
         this.setState({
             profileSec: false,
             changePass: true
         })
-	}
+   }
 
     onChangeValue(e){
-		if(e.target.id === 'name'){
-			this.setState({name: e.target.value})
-		}else if(e.target.id === 'location'){
+      if(e.target.id === 'name'){
+         this.setState({name: e.target.value})
+      }else if(e.target.id === 'location'){
             this.setState({location: e.target.value})
-		}else if(e.target.id === 'description'){
+      }else if(e.target.id === 'description'){
             this.setState({description: e.target.value})
-		}else if(e.target.id === 'phone'){
+      }else if(e.target.id === 'phone'){
             this.setState({phone: e.target.value})
-		}else if(e.target.id === 'email'){
+      }else if(e.target.id === 'email'){
             this.setState({email: e.target.value})
-		}else if(e.target.id === 'twitter'){
+      }else if(e.target.id === 'twitter'){
             this.setState({twitter: e.target.value})
-		}else if(e.target.id === 'facebook'){
+      }else if(e.target.id === 'facebook'){
             this.setState({facebook: e.target.value})
-		}
-	}
+      }
+   }
 
     compareToFirstPassword = (rule, value, callback) => {
         const form = this.props.form;
@@ -198,33 +198,33 @@ class ProfileUser extends Component{
             <div>
                 <App/>
                 <div className="content" style={{"margin-top":"110px"}}>
-	                <div className="container">
-	                	<div className="hero">
-	                		<div className="row">
-	                	{/*=======================col-md-3============================*/}
-	                			<div className="col-md-3">
-	                				<nav className="nav flex-column side-nav">
-		                                <a className="nav-link active icon border_sidenav" onClick={this.handleProfile.bind(this)}>
-		                                    <Icon type="user" /><span className="linktext_margin">My Profile</span>
-		                                </a><br/><br/>
-		                                <a className="nav-link active icon border_sidenav" href="my-profile.html">
-		                                    <Icon type="heart" /><span className="linktext_margin">My Ads Listing</span>
-		                                </a><br/><br/>
-		                                <a className="nav-link active icon border_sidenav" onClick={this.handlePassSec.bind(this)}>
-		                                    <Icon type="key" /><span className="linktext_margin">Change Password</span>
-		                                </a>
-		                            </nav>
-	                			</div>{/*col-md-3*/}
-	                	{/*======================col-md-3================================*/}
-	                	{/*======================col-md-9================================*/}
-	                			<div className="col-md-9">
-	                				<Form onSubmit={this.handleSubmit} className="form">
-	                					<div className="row">
-											{profileSec && <div className="col-md-8">
-	                							<h2>Personal Information</h2>
-	                							<section>
-	                								<div className="row">
-	                									<div className="col-md-4">
+                   <div className="container">
+                      <div className="hero">
+                         <div className="row">
+                      {/*=======================col-md-3============================*/}
+                            <div className="col-md-3">
+                               <nav className="nav flex-column side-nav">
+                                      <a className="nav-link active icon border_sidenav" onClick={this.handleProfile.bind(this)}>
+                                          <Icon type="user" /><span className="linktext_margin">My Profile</span>
+                                      </a><br/><br/>
+                                      <a className="nav-link active icon border_sidenav" href="my-profile.html">
+                                          <Icon type="heart" /><span className="linktext_margin">My Ads Listing</span>
+                                      </a><br/><br/>
+                                      <a className="nav-link active icon border_sidenav" onClick={this.handlePassSec.bind(this)}>
+                                          <Icon type="key" /><span className="linktext_margin">Change Password</span>
+                                      </a>
+                                  </nav>
+                            </div>{/*col-md-3*/}
+                      {/*======================col-md-3================================*/}
+                      {/*======================col-md-9================================*/}
+                            <div className="col-md-9">
+                               <Form onSubmit={this.handleSubmit} className="form">
+                                  <div className="row">
+                                 {profileSec && <div className="col-md-8">
+                                        <h2>Personal Information</h2>
+                                        <section>
+                                           <div className="row">
+                                              <div className="col-md-4">
                                                             <div className="form-group">
                                                                 <label htmlFor="sel1">Title:</label>
                                                                 <select className="form-control" id="sel1">
@@ -232,10 +232,10 @@ class ProfileUser extends Component{
                                                                     <option>Mrs</option>
                                                                 </select>
                                                             </div>
-	                									</div>
-		                								<div className="col-md-8">
-		                									<div class="form-group">
-															  	<label for="usr">Name:</label>
+                                              </div>
+                                              <div className="col-md-8">
+                                                 <div class="form-group">
+                                                <label for="usr">Name:</label>
                                                                 <FormItem>
                                                                     {getFieldDecorator('name', {
                                                                         rules: [{ required: true, message: 'Please input your Name!', whitespace: true }],
@@ -243,13 +243,13 @@ class ProfileUser extends Component{
                                                                         <input type="text" className="form-control" onChange={this.onChangeValue.bind(this)} />
                                                                     )}
                                                                 </FormItem>
-															</div>
-		                								</div>
-	                								</div>
-	                								<div className="row">
-	                									<div className="col-md-12">
-	                										<div class="form-group">
-															  	<label for="usr">Your Location:</label>
+                                             </div>
+                                              </div>
+                                           </div>
+                                           <div className="row">
+                                              <div className="col-md-12">
+                                                 <div class="form-group">
+                                                <label for="usr">Your Location:</label>
                                                                 <FormItem>
                                                                     {getFieldDecorator('location', {
                                                                         rules: [{ required: true, message: 'Please input your Location!', whitespace: true }],
@@ -257,31 +257,31 @@ class ProfileUser extends Component{
                                                                         <input type="text" className="form-control" onChange={this.onChangeValue.bind(this)} />
                                                                     )}
                                                                 </FormItem>
-															</div>
-	                									</div>
-	                								</div>
-	                								<div className="row">
-	                									<div className="col-md-12">
-	                										<div class="form-group">
-															  	<label for="usr">More About You:</label>
-																<FormItem>
-																	{getFieldDecorator('description', {
-																		rules: [
-																			{
-																				required: true, message: 'Please input your Info!', whitespace: true
-																			}],
-																	})(
+                                             </div>
+                                              </div>
+                                           </div>
+                                           <div className="row">
+                                              <div className="col-md-12">
+                                                 <div class="form-group">
+                                                <label for="usr">More About You:</label>
+                                                <FormItem>
+                                                   {getFieldDecorator('description', {
+                                                      rules: [
+                                                         {
+                                                            required: true, message: 'Please input your Info!', whitespace: true
+                                                         }],
+                                                   })(
                                                                         <TextArea className="form-control" onChange={this.onChangeValue.bind(this)} placeholder="tell more" rows={3} maxlength="500" />
-																	)}
-																</FormItem>
-															</div>
-	                									</div>
-	                								</div>
-	                							</section>
-	                							 <section>
-		                                            <h2>Contact</h2>
-		                                            <div className="form-group">
-                                                		<label for="phone" className="col-form-label">Phone</label>
+                                                   )}
+                                                </FormItem>
+                                             </div>
+                                              </div>
+                                           </div>
+                                        </section>
+                                         <section>
+                                                  <h2>Contact</h2>
+                                                  <div className="form-group">
+                                                      <label for="phone" className="col-form-label">Phone</label>
                                                         <FormItem>
                                                             {getFieldDecorator('phone', {
                                                                 rules: [{ required: true, message: 'Please input your Phone!', whitespace: true }],
@@ -289,9 +289,9 @@ class ProfileUser extends Component{
                                                                 <Input name="phone" type="text" className="form-control" onChange={this.onChangeValue.bind(this)} placeholder="Your Phone" />
                                                             )}
                                                         </FormItem>
-                                            		</div>
-                                            		<div className="form-group">
-                                                		<label for="email" className="col-form-label">Email</label>
+                                                  </div>
+                                                  <div className="form-group">
+                                                      <label for="email" className="col-form-label">Email</label>
                                                         <FormItem>
                                                             {getFieldDecorator('email', {
                                                                 rules: [{
@@ -303,12 +303,12 @@ class ProfileUser extends Component{
                                                                 <Input name="email" type="email" className="form-control" onChange={this.onChangeValue.bind(this)} placeholder="Your Email" />
                                                             )}
                                                         </FormItem>
-                                            		</div>
-		                                         </section>
-		                                         <section>
-		                                         	<h2>Social</h2>
-		                                         	<div className="form-group">
-                                                		<label for="phone" className="col-form-label">Twitter</label>
+                                                  </div>
+                                               </section>
+                                               <section>
+                                                 <h2>Social</h2>
+                                                 <div className="form-group">
+                                                      <label for="phone" className="col-form-label">Twitter</label>
                                                         <FormItem>
                                                             {getFieldDecorator('twitter', {
                                                                 rules: [{ required: true, message: 'Please input your Twitter!', whitespace: true }],
@@ -316,9 +316,9 @@ class ProfileUser extends Component{
                                                                 <input name="phone" type="text" className="form-control" onChange={this.onChangeValue.bind(this)} placeholder="Your Twitter Link" />
                                                             )}
                                                         </FormItem>
-                                            		</div>
-                                            		<div className="form-group">
-                                                		<label for="email" className="col-form-label">Facebook</label>
+                                                  </div>
+                                                  <div className="form-group">
+                                                      <label for="email" className="col-form-label">Facebook</label>
                                                         <FormItem>
                                                             {getFieldDecorator('facebook', {
                                                                 rules: [{ required: true, message: 'Please input your Facebook!', whitespace: true }],
@@ -326,21 +326,21 @@ class ProfileUser extends Component{
                                                                 <input name="email" type="text" className="form-control" onChange={this.onChangeValue.bind(this)} placeholder="Your Facebook Link" />
                                                             )}
                                                         </FormItem>
-                                            		</div>
-		                                         </section>
-		                                         <section>
-		                                         	<div className="row">
-		                                         		<div className="col-md-12" >
-		                                         			<button className="btn btn-primary" style={{"float": "right"}}>Save Changes</button>
-		                                         		</div>
-		                                         	</div>
-		                                         </section>
-	                						</div>}
-											{changePass && <div className="col-md-8">
-	                							<h2>Change Password</h2>
-	                							<section>
-	                								<div className="form-group">
-	                									<label for="currentpassword" className="col-form-label">Current Password</label>
+                                                  </div>
+                                               </section>
+                                               <section>
+                                                 <div className="row">
+                                                    <div className="col-md-12" >
+                                                       <button className="btn btn-primary" style={{"float": "right"}}>Save Changes</button>
+                                                    </div>
+                                                 </div>
+                                               </section>
+                                     </div>}
+                                 {changePass && <div className="col-md-8">
+                                        <h2>Change Password</h2>
+                                        <section>
+                                           <div className="form-group">
+                                              <label for="currentpassword" className="col-form-label">Current Password</label>
                                                         <FormItem>
                                                             {getFieldDecorator('currentPass', {
                                                                 rules: [{
@@ -350,9 +350,9 @@ class ProfileUser extends Component{
                                                                 <Input name="currentpassword" type="password" className="form-control" id="password" placeholder="Current Password" />
                                                             )}
                                                         </FormItem>
-	                								</div>
-	                								<div className="form-group">
-	                									<label for="newpassword" className="col-from-label">New Password</label>
+                                           </div>
+                                           <div className="form-group">
+                                              <label for="newpassword" className="col-from-label">New Password</label>
                                                         <FormItem>
                                                             {getFieldDecorator('password', {
                                                                 rules: [{
@@ -364,9 +364,9 @@ class ProfileUser extends Component{
                                                                 <Input name="newpassword" type="password" className="form-control" id="New password" placeholder="new password" />
                                                             )}
                                                         </FormItem>
-	                								</div>
-	                								<div className="form-group">
-	                									<label for="confrimpassword" className="col-form-label">Confrim Password</label>
+                                           </div>
+                                           <div className="form-group">
+                                              <label for="confrimpassword" className="col-form-label">Confrim Password</label>
                                                         <FormItem>
                                                             {getFieldDecorator('confirm', {
                                                                 rules: [{
@@ -378,35 +378,35 @@ class ProfileUser extends Component{
                                                                 <Input name="confrimpassword" type="password" className="form-control" id="confrimpassword" placeholder="Confrim Password" />
                                                             )}
                                                         </FormItem>
-	                								</div>
-	                							</section>
-	                							<section>
-		                                         	<div className="row">
-		                                         		<div className="col-md-12" >
-		                                         			<button className="btn btn-primary" style={{"float": "right"}}>Change Password</button>
-		                                         		</div>
-		                                         	</div>
-		                                         </section>
-	                						</div>}
-											{profileSec && <div class="col-md-4">
-												<div className="profile-image">
-													<div className="img-circle">
-														<img className="img-circle" src={imageUrl ? imageUrl : '../images/images.jpg'} alt="" />
-													</div>
-													<div className="single-file-input" style={{"text-align": "center","margin-top": "9px"}}>
+                                           </div>
+                                        </section>
+                                        <section>
+                                                 <div className="row">
+                                                    <div className="col-md-12" >
+                                                       <button className="btn btn-primary" style={{"float": "right"}}>Change Password</button>
+                                                    </div>
+                                                 </div>
+                                               </section>
+                                     </div>}
+                                 {profileSec && <div class="col-md-4">
+                                    <div className="profile-image">
+                                       <div className="img-circle">
+                                          <img className="img-circle" src={imageUrl ? imageUrl : '../images/images.jpg'} alt="" />
+                                       </div>
+                                       <div className="single-file-input" style={{"text-align": "center","margin-top": "9px"}}>
                                                         <Upload {...props} >
                                                             <div className="btn btn-framed btn-primary small">Upload a picture</div>
                                                         </Upload>
-													</div>
-												</div>
-											</div>}
-	                					</div>
-	                				</Form>
-	                			</div>
-	                		</div>
-	                	</div>
-	            	</div>
-	            </div>
+                                       </div>
+                                    </div>
+                                 </div>}
+                                  </div>
+                               </Form>
+                            </div>
+                         </div>
+                      </div>
+                  </div>
+               </div>
             </div>
         )
     }

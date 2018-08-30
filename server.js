@@ -142,6 +142,7 @@ require('./models/User');
 require('./models/category');
 require('./models/businessyellowpages');
 require('./models/posttoclassified');
+require('./models/profile');
 
 require('./config/passport');
 
@@ -149,7 +150,7 @@ var User = mongoose.model('User');
 var categorypost = mongoose.model('category');
 var yellowPagesBusiness = mongoose.model('business');
 var classifiedBusiness = mongoose.model('postclassified');
-
+var profiledata = mongoose.model('profiledatabase');
 
 app.use(passport.initialize());
 
@@ -705,11 +706,79 @@ app.get('/api/marketplace',function(req,res){
 });
 /*====================get market Market place end=====================================================*/
 
+/*====================post profile api start=====================================================*/
+app.post('/api/profile',function(req,res){
+  var profileData = req.body;
+  var user_id = profileData.userId,
+      description = profileData.description,
+      email = profileData.email,
+      location = profileData.location,
+      facebooklink = profileData.facebook,
+      twitterlink = profileData.twitter,
+      googlelink = profileData.google,
+      linkdin = profileData.linkdin,
+      imageurl = profileData.url,
+      blockprofile = false,
+      verifiedprofile = true
 
+if(profileData.profileId == ''){
+  var profileInfo = new profiledata({
+    user_id:user_id,
+    description:description,
+    email:email,
+    location:location,
+    facebooklink:facebooklink,
+    twitterlink:twitterlink,
+    googlelink:googlelink,
+    linkdin:linkdin,
+    imageurl:imageurl,
+    blockprofile:blockprofile,
+    verifiedprofile:verifiedprofile
+  })
+  profileInfo.save(function(err,data){
+    res.send({
+      code:200,
+      msg:'data inserted successfully',
+      content:data._id
+    })
+  })
+}
+else if(profileData.profileId != ''){
+  profiledata.findOne({"_id" : profileData.profileId},function(err,profile){
+    if(err){
+          console.log("Profile update Error:::", err);
+          return res.status(400).json({"Unexpected Error:: ": err});
+        }
+          profile.user_id = profileData.userId;
+          profile.description = profileData.description;
+          profile.email = profileData.email;
+          profile.location = profileData.location;
+          profile.facebooklink = profileData.facebook;
+          profile.twitterlink = profileData.twitter;
+          profile.googlelink = profileData.google;
+          profile.linkdin = profileData.linkdin;
+          profile.imageurl = profileData.url;
+          profile.blockprofile = false;
+          profile.verifiedprofile = true;
 
+          profile.save(function(err, doc){
+          if(err){
+            console.log("profile update Error:::", err);
+            return res.status(400).json({"Unexpected Error:: ": err});
+          }
+          console.log('profile has been updated successfully.');
+          return res.status(200).json({message: 'profile has been updated successfully.'} );
 
+        });
+  })
+}
+});
 
+// var profileinfo = new profiledata({
 
+// })
+
+/*====================post profile api end=======================================================*/
 
 
 

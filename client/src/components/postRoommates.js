@@ -15,7 +15,9 @@ import {
 import moment from 'moment';
 import superagent from "superagent";
 import {HttpUtils} from "../Services/HttpUtils";
-
+import MapContainer from './google_map/Map'
+import sha1 from "sha1";
+import AsyncStorage from "@callstack/async-storage/lib/index";
 const RangePicker = DatePicker.RangePicker;
 const InputGroup = Input.Group;
 const { TextArea } = Input;
@@ -33,11 +35,33 @@ class Postroommates extends Component{
     constructor(props) {
         super(props)
         this.state = {
+            userId: '',
             desLength: 0,
             fileList: [],
             previewVisible: false,
             previewImage: '',
+            hideAddress: false,
+            dateObj: {
+                from: '',
+                to: ''
+            }
         }
+    }
+
+    componentWillMount(){
+        this.handleLocalStorage();
+    }
+
+    handleLocalStorage = () =>{
+        AsyncStorage.getItem('user')
+            .then((obj) => {
+                var userObj = JSON.parse(obj)
+                if(!!userObj) {
+                    this.setState({
+                        userId: userObj._id
+                    })
+                }
+            })
     }
 
     //-------------- upload functions start -------------------
@@ -71,7 +95,7 @@ class Postroommates extends Component{
     }
 
     validateDate(rule, value, callback){
-        if (!value.length) {
+        if (!(!!value)) {
             callback('Please select your Date Range!');
         } else {
             callback();
@@ -83,34 +107,108 @@ class Postroommates extends Component{
     }
 
     onChangeDate(dates, dateStrings) {
-        console.log('From: ', dates[0], ', to: ', dates[1]);
-        console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
+        this.setState({
+            dateObj: {
+                from: dateStrings[0],
+                to: dateStrings[1]
+            }
+        })
     }
 
     onChangeAddress(e) {
         this.setState({hideAddress: e.target.checked});
     }
 
-    async addressLatLong() {
-        var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=Tuheed+Commercial+Area,+Defence+Karachi&key=AIzaSyDhMPFM50yo4Is2afbhqgStOWTPULLr0F8'
-        let uploadRequest = await superagent.post(url)
-        console.log(uploadRequest, 'oooooooooooooooooooo')
+    checkCheckBox = (rule, value, callback) => {
+        if (!value) {
+            callback('Please check at least one!');
+        } else {
+            callback();
+        }
+    };
+
+    // async addressLatLong() {
+    //     var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=Tuheed+Commercial+Area,+Defence+Karachi&key=AIzaSyDhMPFM50yo4Is2afbhqgStOWTPULLr0F8'
+    //     let uploadRequest = await superagent.post(url)
+    //     console.log(uploadRequest, 'oooooooooooooooooooo')
+    // }
+
+    uploadFile = (files) =>{
+        const image = files.originFileObj
+        const cloudName = 'dxk0bmtei'
+        const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/upload'
+        const timestamp = Date.now()/1000
+        const uploadPreset = 'toh6r3p2'
+        const paramsStr = 'timestamp='+timestamp+'&upload_preset='+uploadPreset+'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
+        const signature = sha1(paramsStr)
+        const params = {
+            'api_key':'878178936665133',
+            'timestamp':timestamp,
+            'upload_preset':uploadPreset,
+            'signature':signature
+        }
+
+        return new Promise((res, rej) => {
+            let uploadRequest = superagent.post(url)
+            uploadRequest.attach('file', image)
+            Object.keys(params).forEach((key) =>{
+                uploadRequest.field(key, params[key])
+            })
+
+            uploadRequest.end((err, resp) =>{
+                err ? rej(err) : res(resp);
+            })
+        })
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.addressLatLong();
+        // this.addressLatLong();
+        this.props.form.validateFieldsAndScroll((err, values) => {
+            if(!err) {
+                this.funcForUpload(values)
+            }
+        })
+    }
 
+    async funcForUpload(values){
+        const { fileList } = this.state;
+        var cloudURL = [];
 
-        // this.props.form.validateFieldsAndScroll((err, values) => {
-        //     if(!err) {
-        //         this.funcForUpload(values)
-        //     }
-        // })
+        Promise.all(fileList.map((val) => {
+            return this.uploadFile(val).then((result) => {
+                return result.body.url
+            })
+        })).then((results) => {
+            this.postData(values, results)
+        })
+    }
+
+    async postData(values, response) {
+        const {dateObj, userId} = this.state;
+        var obj = {
+            user_id: userId,
+            accommodates : values.accommodates[0],
+            attachedBath :values.attachedBath,
+            category: values.category[0],
+            city : values.city[0],
+            contactEmail: values.contactEmail,
+            contactMode:values.contactMode,
+            contactName:values.contactName,
+            contactNumber:values.contactNumber,
+            dateRange:dateObj,
+            description: values.description,
+            genderPreference:values.genderPreference,
+            location:values.location,
+            postingTitle :values.postingTitle,
+            price: values.price,
+            arr_url: response ? response : []
+        }
+        console.log(obj, 'objjjjjjjj')
     }
 
     render(){
-        const { desLength, fileList, previewVisible, previewImage } = this.state;
+        const { desLength, fileList, previewVisible, previewImage, hideAddress } = this.state;
         const {getFieldDecorator} = this.props.form;
         const optionsContact = [
             { label: 'email', value: 'email' },
@@ -236,7 +334,7 @@ class Postroommates extends Component{
                                                     </FormItem>
                                                 </div>
                                                 <div className="col-md-3" style={{'text-align': 'left'}}>
-                                                    <Checkbox onChange={this.onChangePrice.bind(this)}>/ month</Checkbox>
+                                                    (/ month)
                                                 </div>
                                                 <div className="col-md-4"></div>
                                             </div>
@@ -245,7 +343,6 @@ class Postroommates extends Component{
                                                 label="Accommodates"
                                             >
                                                 {getFieldDecorator('accommodates', {
-                                                    initialValue: ['zhejiang', 'hangzhou', 'xihu'],
                                                     rules: [{ type: 'array', required: true, message: 'Please select your Accommodates!' }],
                                                 })(
                                                     <Cascader options={category} />
@@ -317,6 +414,12 @@ class Postroommates extends Component{
                                                 </div>
                                                 <div className="col-md-3"></div>
                                             </div>
+                                            {hideAddress && <div className="row">
+                                                <div className="col-md-3"></div>
+                                                <div className="col-md-9" style={{height: '700px', width: '800px'}}>
+                                                    <MapContainer />
+                                                </div>
+                                            </div>}
                                         </div>
                                     </div>
                                 </div>

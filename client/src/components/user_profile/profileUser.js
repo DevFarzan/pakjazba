@@ -4,6 +4,7 @@ import App from '../../App';
 import sha1 from "sha1";
 import superagent from "superagent";
 import AsyncStorage from "@callstack/async-storage";
+import {HttpUtils} from "../../Services/HttpUtils";
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -13,17 +14,18 @@ class ProfileUser extends Component{
         super(props)
         this.state = {
             userId: '',
+            profileId: '',
             loading: false,
             imageUrl: '',
-         profileSec: true,
-         changePass: false,
-         name: '',
-         email: '',
-         phone: '',
-         description: '',
-         location: '',
-         twitter: '',
-         facebook: '',
+            profileSec: true,
+            changePass: false,
+            name: '',
+            email: '',
+            phone: '',
+            description: '',
+            location: '',
+            twitter: '',
+            facebook: '',
         };
     }
 
@@ -108,7 +110,7 @@ class ProfileUser extends Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { url, name, location, description, email, phone, twitter, facebook, profileSec, changePass, userId } = this.state;
+        const { url, name, location, description, email, phone, twitter, facebook, profileSec, changePass, userId, profileId } = this.state;
         if(changePass) {
             this.props.form.validateFieldsAndScroll((err, values) => {
                 if(!err) {
@@ -117,12 +119,13 @@ class ProfileUser extends Component{
                         newPassword: values.password,
                         confirmPassword: values.confirm,
                     }
-                    console.log(obj, 'objjjjjjjjj')
+                    this.passwordData(obj)
                 }
             })
         }else {
             var obj = {
-               userId,
+                profileId,
+                userId,
                 description,
                 email,
                 facebook,
@@ -132,8 +135,16 @@ class ProfileUser extends Component{
                 twitter,
                 url
             }
-            console.log(obj, 'objjjjjjjjjjjj')
+            this.profileData(obj)
       }
+    }
+
+    async profileData(obj){
+        var req = await HttpUtils.post('profile', obj)
+    }
+
+    async passwordData(obj){
+        var req = await HttpUtils.post('postbuyselldata', obj)
     }
 
     handleProfile(){

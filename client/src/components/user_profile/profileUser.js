@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Icon } from 'antd';
-import App from '../../App';
 
+//component
+import App from '../../App';
+import MycardListing from './mycard_listining';
 
 class ProfileUser extends Component{
     render(){
@@ -36,7 +38,7 @@ class ProfileUser extends Component{
 	                							<section>
 	                								<div className="row">
 	                									<div className="col-md-4">
-	                										<div class="form-group">
+	                										<div className="form-group">
 															  <label for="sel1">Title:</label>
 															  <select className="form-control" id="sel1">
 															    <option>Mr</option>
@@ -50,7 +52,7 @@ class ProfileUser extends Component{
 															  <input type="text" className="form-control" id="usr" />
 															</div>
 		                								</div>{/*col-md-8*/}
-	                								</div>{/*row*/}	
+	                								</div>{/*row*/}
 	                								<div className="row">
 	                									<div className="col-md-12">
 	                										<div class="form-group">
@@ -141,7 +143,7 @@ class ProfileUser extends Component{
                                             </div>
                                         </div>
                                     </div>
-
+                                    	
 	                					</div>{/*row*/}
 	                				</form>
 	                			</div>{/*col-md-9*/}	

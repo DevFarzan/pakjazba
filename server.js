@@ -798,7 +798,30 @@ app.get('/api/getprofile',function(req,res){
 
 /*===================post change password API start==========================================================*/
 app.post('/api/changepassword',function(req,res){
-  
+  var resetPassword = req.body;
+  console.log(resetPassword);
+  User.findOne({"_id":req.body.userId},function(err,speUser){
+      if(err){
+        console.log("Profile not found Error:::", err);
+         return res.status(400).json({"Unexpected Error:: ": err});
+      }//end 
+      else if(speUser){
+        if(req.body.currentPassword != speUser.password){
+          return res.status(200).json({"error":"Password not belong to current user"});
+        }
+        else if(req.body.currentPassword == speUser.password){
+          speUser.password = req.body.newPassword;
+          speUser.save(function(err,data){
+            if(err){
+            console.log("Password update Error:::", err);
+            return res.status(400).json({"Unexpected Error:: ": err});
+          }
+          console.log('Password has been updated successfully.');
+          return res.status(200).json({message: 'Password has been updated successfully.'} );
+          })
+        }
+      }
+  });
 })
 
 /*===================post change password API end============================================================*/

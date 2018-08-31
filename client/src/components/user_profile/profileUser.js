@@ -115,6 +115,7 @@ class ProfileUser extends Component{
             this.props.form.validateFieldsAndScroll((err, values) => {
                 if(!err) {
                     var obj = {
+                        userId,
                         currentPassword: values.currentPass,
                         newPassword: values.password,
                         confirmPassword: values.confirm,
@@ -140,12 +141,13 @@ class ProfileUser extends Component{
     }
 
     async profileData(obj){
+      console.log(obj)
         var req = await HttpUtils.post('profile', obj)
     }
 
     async passwordData(obj){
       console.log(obj, 'sending to api')
-        var req = await HttpUtils.post('postbuyselldata', obj)
+        var req = await HttpUtils.post('changepassword', obj)
         console.log(req, 'response from api')
     }
 

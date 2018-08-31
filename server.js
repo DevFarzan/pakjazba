@@ -778,7 +778,7 @@ else if(profileData.profileId != ''){
 
 /*====================get profile api start============================================================*/
 app.get('/api/getprofile',function(req,res){
-  var profileId = '5b87f2121e86b4133c33c762';
+  var profileId = req.body;
   profiledata.findOne({"_id":profileId},function(err,specificProfile){
     if(err){
           console.log("Profile not found Error:::", err);

@@ -363,8 +363,8 @@ rand=Math.floor((Math.random() * 100) + 54);
       res.send({
         _id:user_info._id,
         name:user_info.username,
-        email:user_info.Useremail,
-        token:jwt.sign({ email: user_info.Useremail, _id: user_info._id}, 'RESTFULAPIs'),
+        email:user_info.email,
+        token:jwt.sign({ email: user_info.email, _id: user_info._id}, 'RESTFULAPIs'),
         code:200
       })
   

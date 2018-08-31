@@ -423,6 +423,7 @@ else
                  _id:User[0]._id,
                 name:User[0].username,
                 email:User[0].email,
+                profileId:User[0].profileId,
                 token:jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs'),
                 code:200,
                 msg:'User logged successfully'
@@ -744,11 +745,21 @@ if(profileData.profileId == ''){
       msg:'data inserted successfully',
       content:data._id
     })
-  })
-/*====================ProfileId save in user schema start==========================*/
 
+    /*====================ProfileId save in user schema start==========================*/
+User.findOne({"_id":profileData.userId},function(err,user){
+  if(err){
+    //console.log("Profile update Error:::", err);
+    return res.status(400).json({"Unexpected Error:: ": err});
+  }//end err if
+  user.profileId = data._id;
+  user.save(function(err,doc){
+  })
+})
 
 /*====================ProfileId save in user schema end==========================*/
+  })
+
 
 }
 else if(profileData.profileId != ''){

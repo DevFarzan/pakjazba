@@ -144,7 +144,9 @@ class ProfileUser extends Component{
     }
 
     async passwordData(obj){
+      console.log(obj, 'sending to api')
         var req = await HttpUtils.post('postbuyselldata', obj)
+        console.log(req, 'response from api')
     }
 
     handleProfile(){

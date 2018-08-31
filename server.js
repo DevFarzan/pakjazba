@@ -774,14 +774,33 @@ else if(profileData.profileId != ''){
 }
 });
 
-// var profileinfo = new profiledata({
-
-// })
-
 /*====================post profile api end=======================================================*/
 
+/*====================get profile api start============================================================*/
+app.get('/api/getprofile',function(req,res){
+  var profileId = '5b87f2121e86b4133c33c762';
+  profiledata.findOne({"_id":profileId},function(err,specificProfile){
+    if(err){
+          console.log("Profile not found Error:::", err);
+          return res.status(400).json({"Unexpected Error:: ": err});
+        }
+     else if(specificProfile){
+      res.send({
+        code:200,
+        content:specificProfile,
+        msg:'Specific Profile'
+      })
+     }   
+  });
+});
+/*====================get profile api end==============================================================*/
 
+/*===================post change password API start==========================================================*/
+app.post('/api/changepassword',function(req,res){
+  
+})
 
+/*===================post change password API end============================================================*/
 
 
 if (process.env.NODE_ENV === 'production') {

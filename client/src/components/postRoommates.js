@@ -15,7 +15,7 @@ import {
 import moment from 'moment';
 import superagent from "superagent";
 import {HttpUtils} from "../Services/HttpUtils";
-import MapContainer from './google_map/Map'
+//import MapContainer from './google_map/Map'
 import sha1 from "sha1";
 import AsyncStorage from "@callstack/async-storage/lib/index";
 const RangePicker = DatePicker.RangePicker;
@@ -417,7 +417,7 @@ class Postroommates extends Component{
                                             {hideAddress && <div className="row">
                                                 <div className="col-md-3"></div>
                                                 <div className="col-md-9" style={{height: '700px', width: '800px'}}>
-                                                    <MapContainer />
+                                                   {/* <MapContainer />*/}
                                                 </div>
                                             </div>}
                                         </div>

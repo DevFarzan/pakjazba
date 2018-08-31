@@ -679,7 +679,7 @@ app.get('/api/marketplace',function(req,res){
   var session = req.query.session;
   
     yellowPagesBusiness.find({__v:0},function(err,yellowPages){
-      console.log(yellowPages);
+      //console.log(yellowPages);
      if(yellowPages!=''){
       var businesses  = [];
           //buysell = [];
@@ -688,7 +688,7 @@ app.get('/api/marketplace',function(req,res){
       }//end for
       }//end if
       classifiedBusiness.find({__v:0},function(err,classifiedData){
-        console.log(classifiedData);
+        //console.log(classifiedData);
         if(classifiedData!=''){
           var buysell = [];
           for(var j=0;j<classifiedData.length;j++){
@@ -711,6 +711,7 @@ app.get('/api/marketplace',function(req,res){
 app.post('/api/profile',function(req,res){
   var profileData = req.body;
   var user_id = profileData.userId,
+      name = profileData.name,
       description = profileData.description,
       email = profileData.email,
       location = profileData.location,
@@ -725,6 +726,7 @@ app.post('/api/profile',function(req,res){
 if(profileData.profileId == ''){
   var profileInfo = new profiledata({
     user_id:user_id,
+    name:name,
     description:description,
     email:email,
     location:location,
@@ -743,6 +745,11 @@ if(profileData.profileId == ''){
       content:data._id
     })
   })
+/*====================ProfileId save in user schema start==========================*/
+
+
+/*====================ProfileId save in user schema end==========================*/
+
 }
 else if(profileData.profileId != ''){
   profiledata.findOne({"_id" : profileData.profileId},function(err,profile){
@@ -752,6 +759,7 @@ else if(profileData.profileId != ''){
         }
           profile.user_id = profileData.userId;
           profile.description = profileData.description;
+          profile.name = profileData.name,
           profile.email = profileData.email;
           profile.location = profileData.location;
           profile.facebooklink = profileData.facebook;
@@ -779,7 +787,7 @@ else if(profileData.profileId != ''){
 
 /*====================get profile api start============================================================*/
 app.get('/api/getprofile',function(req,res){
-  var profileId = req.body;
+  var profileId = req.query.profileId;
   profiledata.findOne({"_id":profileId},function(err,specificProfile){
     if(err){
           console.log("Profile not found Error:::", err);

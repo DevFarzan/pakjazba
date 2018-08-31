@@ -16,6 +16,7 @@ var UserSchema = new mongoose.Schema({
   status:   {type: Boolean ,  default: false },
   blocked: {type:Boolean , default:false},
   loginvia:{type: String},
+  profileId:{type:String},
 
 });
 

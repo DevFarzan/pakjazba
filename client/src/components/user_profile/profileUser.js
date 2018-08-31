@@ -38,12 +38,22 @@ class ProfileUser extends Component{
             .then((obj) => {
                 var userObj = JSON.parse(obj)
                 if(!!userObj) {
+                    this.getprofileData(userObj.profileId)
                     this.setState({
                         userId: userObj._id,
                         profileId: userObj.profileId
                     })
                 }
             })
+    }
+
+    async getprofileData(id){
+        var req = await HttpUtils.get('getprofile?profileId=' + id)
+        var user = req.content;
+        this.setState({
+            name: user.name,
+            email: user.email,
+        })
     }
 
     getBase64(img, callback) {
@@ -142,14 +152,11 @@ class ProfileUser extends Component{
     }
 
     async profileData(obj){
-      console.log(obj)
         var req = await HttpUtils.post('profile', obj)
     }
 
     async passwordData(obj){
-      console.log(obj, 'sending to api')
         var req = await HttpUtils.post('changepassword', obj)
-        console.log(req, 'response from api')
     }
 
     handleProfile(){
@@ -203,7 +210,7 @@ class ProfileUser extends Component{
 
     render(){
         const {getFieldDecorator} = this.props.form;
-        const { imageUrl, profileSec, changePass } = this.state;
+        const { imageUrl, profileSec, changePass, name, email } = this.state;
         const props = {
             action: '//jsonplaceholder.typicode.com/posts/',
             onChange: this.handleChange,
@@ -213,34 +220,37 @@ class ProfileUser extends Component{
         return(
             <div>
                 <App/>
-                <div className="content" style={{"margin-top":"110px"}}>
-                   <div className="container">
-                      <div className="hero">
-                         <div className="row">
-                      {/*=======================col-md-3============================*/}
-                            <div className="col-md-3">
-                               <nav className="nav flex-column side-nav">
-                                      <a className="nav-link active icon border_sidenav" onClick={this.handleProfile.bind(this)}>
-                                          <Icon type="user" /><span className="linktext_margin">My Profile</span>
-                                      </a><br/><br/>
-                                      <a className="nav-link active icon border_sidenav" href="my-profile.html">
-                                          <Icon type="heart" /><span className="linktext_margin">My Ads Listing</span>
-                                      </a><br/><br/>
-                                      <a className="nav-link active icon border_sidenav" onClick={this.handlePassSec.bind(this)}>
-                                          <Icon type="key" /><span className="linktext_margin">Change Password</span>
-                                      </a>
-                                  </nav>
-                            </div>{/*col-md-3*/}
-                      {/*======================col-md-3================================*/}
-                      {/*======================col-md-9================================*/}
-                            <div className="col-md-9">
-                               <Form onSubmit={this.handleSubmit} className="form">
-                                  <div className="row">
-                                 {profileSec && <div className="col-md-8">
-                                        <h2>Personal Information</h2>
-                                        <section>
-                                           <div className="row">
-                                              <div className="col-md-4">
+                <div className="content" style={{"margin-top": "110px"}}>
+                    <div className="container">
+                        <div className="hero">
+                            <div className="row">
+                                {/*=======================col-md-3============================*/}
+                                <div className="col-md-3">
+                                    <nav className="nav flex-column side-nav">
+                                        <a className="nav-link active icon border_sidenav"
+                                           onClick={this.handleProfile.bind(this)}>
+                                            <Icon type="user"/><span className="linktext_margin">My Profile</span>
+                                        </a><br/><br/>
+                                        <a className="nav-link active icon border_sidenav" href="my-profile.html">
+                                            <Icon type="heart"/><span className="linktext_margin">My Ads Listing</span>
+                                        </a><br/><br/>
+                                        <a className="nav-link active icon border_sidenav"
+                                           onClick={this.handlePassSec.bind(this)}>
+                                            <Icon type="key"/><span className="linktext_margin">Change Password</span>
+                                        </a>
+                                    </nav>
+                                </div>
+                                {/*col-md-3*/}
+                                {/*======================col-md-3================================*/}
+                                {/*======================col-md-9================================*/}
+                                <div className="col-md-9">
+                                    <Form onSubmit={this.handleSubmit} className="form">
+                                        <div className="row">
+                                            {profileSec && <div className="col-md-8">
+                                                <h2>Personal Information</h2>
+                                                <section>
+                                                    <div className="row">
+                                                        <div className="col-md-4">
                                                             <div className="form-group">
                                                                 <label htmlFor="sel1">Title:</label>
                                                                 <select className="form-control" id="sel1">
@@ -248,181 +258,244 @@ class ProfileUser extends Component{
                                                                     <option>Mrs</option>
                                                                 </select>
                                                             </div>
-                                              </div>
-                                              <div className="col-md-8">
-                                                 <div class="form-group">
-                                                <label for="usr">Name:</label>
+                                                        </div>
+                                                        <div className="col-md-8">
+                                                            <div className="form-group">
+                                                                <label htmlFor="usr">Name:</label>
                                                                 <FormItem>
                                                                     {getFieldDecorator('name', {
-                                                                        rules: [{ required: true, message: 'Please input your Name!', whitespace: true }],
+                                                                        initialValue: name,
+                                                                        rules: [{
+                                                                            required: true,
+                                                                            message: 'Please input your Name!',
+                                                                            whitespace: true
+                                                                        }],
                                                                     })(
-                                                                        <input type="text" className="form-control" onChange={this.onChangeValue.bind(this)} />
+                                                                        <input type="text" className="form-control"
+                                                                               onChange={this.onChangeValue.bind(this)}
+                                                                        />
                                                                     )}
                                                                 </FormItem>
-                                             </div>
-                                              </div>
-                                           </div>
-                                           <div className="row">
-                                              <div className="col-md-12">
-                                                 <div class="form-group">
-                                                <label for="usr">Your Location:</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="row">
+                                                        <div className="col-md-12">
+                                                            <div className="form-group">
+                                                                <label htmlFor="usr">Your Location:</label>
                                                                 <FormItem>
                                                                     {getFieldDecorator('location', {
-                                                                        rules: [{ required: true, message: 'Please input your Location!', whitespace: true }],
+                                                                        rules: [{
+                                                                            required: true,
+                                                                            message: 'Please input your Location!',
+                                                                            whitespace: true
+                                                                        }],
                                                                     })(
-                                                                        <input type="text" className="form-control" onChange={this.onChangeValue.bind(this)} />
+                                                                        <input type="text" className="form-control"
+                                                                               onChange={this.onChangeValue.bind(this)}/>
                                                                     )}
                                                                 </FormItem>
-                                             </div>
-                                              </div>
-                                           </div>
-                                           <div className="row">
-                                              <div className="col-md-12">
-                                                 <div class="form-group">
-                                                <label for="usr">More About You:</label>
-                                                <FormItem>
-                                                   {getFieldDecorator('description', {
-                                                      rules: [
-                                                         {
-                                                            required: true, message: 'Please input your Info!', whitespace: true
-                                                         }],
-                                                   })(
-                                                                        <TextArea className="form-control" onChange={this.onChangeValue.bind(this)} placeholder="tell more" rows={3} maxlength="500" />
-                                                   )}
-                                                </FormItem>
-                                             </div>
-                                              </div>
-                                           </div>
-                                        </section>
-                                         <section>
-                                                  <h2>Contact</h2>
-                                                  <div className="form-group">
-                                                      <label for="phone" className="col-form-label">Phone</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="row">
+                                                        <div className="col-md-12">
+                                                            <div className="form-group">
+                                                                <label htmlFor="usr">More About You:</label>
+                                                                <FormItem>
+                                                                    {getFieldDecorator('description', {
+                                                                        rules: [
+                                                                            {
+                                                                                required: true,
+                                                                                message: 'Please input your Info!',
+                                                                                whitespace: true
+                                                                            }],
+                                                                    })(
+                                                                        <TextArea className="form-control"
+                                                                                  onChange={this.onChangeValue.bind(this)}
+                                                                                  placeholder="tell more" rows={3}
+                                                                                  maxlength="500"/>
+                                                                    )}
+                                                                </FormItem>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                                <section>
+                                                    <h2>Contact</h2>
+                                                    <div className="form-group">
+                                                        <label htmlFor="phone" className="col-form-label">Phone</label>
                                                         <FormItem>
                                                             {getFieldDecorator('phone', {
-                                                                rules: [{ required: true, message: 'Please input your Phone!', whitespace: true }],
-                                                            })(
-                                                                <Input name="phone" type="text" className="form-control" onChange={this.onChangeValue.bind(this)} placeholder="Your Phone" />
-                                                            )}
-                                                        </FormItem>
-                                                  </div>
-                                                  <div className="form-group">
-                                                      <label for="email" className="col-form-label">Email</label>
-                                                        <FormItem>
-                                                            {getFieldDecorator('email', {
                                                                 rules: [{
-                                                                    type: 'email', message: 'The input is not valid E-mail!',
-                                                                }, {
-                                                                    required: true, message: 'Please input your E-mail!',
+                                                                    required: true,
+                                                                    message: 'Please input your Phone!',
+                                                                    whitespace: true
                                                                 }],
                                                             })(
-                                                                <Input name="email" type="email" className="form-control" onChange={this.onChangeValue.bind(this)} placeholder="Your Email" />
+                                                                <Input name="phone" type="text" className="form-control"
+                                                                       onChange={this.onChangeValue.bind(this)}
+                                                                       placeholder="Your Phone"/>
                                                             )}
                                                         </FormItem>
-                                                  </div>
-                                               </section>
-                                               <section>
-                                                 <h2>Social</h2>
-                                                 <div className="form-group">
-                                                      <label for="phone" className="col-form-label">Twitter</label>
+                                                    </div>
+                                                    <div className="form-group">
+                                                        <label htmlFor="email" className="col-form-label">Email</label>
+                                                        <FormItem>
+                                                            {getFieldDecorator('email', {
+                                                                initialValue: email,
+                                                                rules: [{
+                                                                    type: 'email',
+                                                                    message: 'The input is not valid E-mail!',
+                                                                }, {
+                                                                    required: true,
+                                                                    message: 'Please input your E-mail!',
+                                                                }],
+                                                            })(
+                                                                <Input name="email" type="email"
+                                                                       className="form-control"
+                                                                       onChange={this.onChangeValue.bind(this)}
+                                                                       placeholder="Your Email"/>
+                                                            )}
+                                                        </FormItem>
+                                                    </div>
+                                                </section>
+                                                <section>
+                                                    <h2>Social</h2>
+                                                    <div className="form-group">
+                                                        <label htmlFor="phone"
+                                                               className="col-form-label">Twitter</label>
                                                         <FormItem>
                                                             {getFieldDecorator('twitter', {
-                                                                rules: [{ required: true, message: 'Please input your Twitter!', whitespace: true }],
+                                                                rules: [{
+                                                                    required: true,
+                                                                    message: 'Please input your Twitter!',
+                                                                    whitespace: true
+                                                                }],
                                                             })(
-                                                                <input name="phone" type="text" className="form-control" onChange={this.onChangeValue.bind(this)} placeholder="Your Twitter Link" />
+                                                                <input name="phone" type="text" className="form-control"
+                                                                       onChange={this.onChangeValue.bind(this)}
+                                                                       placeholder="Your Twitter Link"/>
                                                             )}
                                                         </FormItem>
-                                                  </div>
-                                                  <div className="form-group">
-                                                      <label for="email" className="col-form-label">Facebook</label>
+                                                    </div>
+                                                    <div className="form-group">
+                                                        <label htmlFor="email"
+                                                               className="col-form-label">Facebook</label>
                                                         <FormItem>
                                                             {getFieldDecorator('facebook', {
-                                                                rules: [{ required: true, message: 'Please input your Facebook!', whitespace: true }],
+                                                                rules: [{
+                                                                    required: true,
+                                                                    message: 'Please input your Facebook!',
+                                                                    whitespace: true
+                                                                }],
                                                             })(
-                                                                <input name="email" type="text" className="form-control" onChange={this.onChangeValue.bind(this)} placeholder="Your Facebook Link" />
+                                                                <input name="email" type="text" className="form-control"
+                                                                       onChange={this.onChangeValue.bind(this)}
+                                                                       placeholder="Your Facebook Link"/>
                                                             )}
                                                         </FormItem>
-                                                  </div>
-                                               </section>
-                                               <section>
-                                                 <div className="row">
-                                                    <div className="col-md-12" >
-                                                       <button className="btn btn-primary" style={{"float": "right"}}>Save Changes</button>
                                                     </div>
-                                                 </div>
-                                               </section>
-                                     </div>}
-                                 {changePass && <div className="col-md-8">
-                                        <h2>Change Password</h2>
-                                        <section>
-                                           <div className="form-group">
-                                              <label for="currentpassword" className="col-form-label">Current Password</label>
+                                                </section>
+                                                <section>
+                                                    <div className="row">
+                                                        <div className="col-md-12">
+                                                            <button className="btn btn-primary"
+                                                                    style={{"float": "right"}}>Save Changes
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div>}
+                                            {changePass && <div className="col-md-8">
+                                                <h2>Change Password</h2>
+                                                <section>
+                                                    <div className="form-group">
+                                                        <label htmlFor="currentpassword" className="col-form-label">Current
+                                                            Password</label>
                                                         <FormItem>
                                                             {getFieldDecorator('currentPass', {
                                                                 rules: [{
-                                                                    required: true, message: 'Please input your Current Password!',
+                                                                    required: true,
+                                                                    message: 'Please input your Current Password!',
                                                                 }],
                                                             })(
-                                                                <Input name="currentpassword" type="password" className="form-control" id="password" placeholder="Current Password" />
+                                                                <Input name="currentpassword" type="password"
+                                                                       className="form-control" id="password"
+                                                                       placeholder="Current Password"/>
                                                             )}
                                                         </FormItem>
-                                           </div>
-                                           <div className="form-group">
-                                              <label for="newpassword" className="col-from-label">New Password</label>
+                                                    </div>
+                                                    <div className="form-group">
+                                                        <label htmlFor="newpassword" className="col-from-label">New
+                                                            Password</label>
                                                         <FormItem>
                                                             {getFieldDecorator('password', {
                                                                 rules: [{
-                                                                    required: true, message: 'Please input your New Password!',
+                                                                    required: true,
+                                                                    message: 'Please input your New Password!',
                                                                 }, {
                                                                     validator: this.validateToNextPassword,
                                                                 }],
                                                             })(
-                                                                <Input name="newpassword" type="password" className="form-control" id="New password" placeholder="new password" />
+                                                                <Input name="newpassword" type="password"
+                                                                       className="form-control" id="New password"
+                                                                       placeholder="new password"/>
                                                             )}
                                                         </FormItem>
-                                           </div>
-                                           <div className="form-group">
-                                              <label for="confrimpassword" className="col-form-label">Confrim Password</label>
+                                                    </div>
+                                                    <div className="form-group">
+                                                        <label htmlFor="confrimpassword" className="col-form-label">Confrim
+                                                            Password</label>
                                                         <FormItem>
                                                             {getFieldDecorator('confirm', {
                                                                 rules: [{
-                                                                    required: true, message: 'Please input your Confirm Password!',
+                                                                    required: true,
+                                                                    message: 'Please input your Confirm Password!',
                                                                 }, {
                                                                     validator: this.compareToFirstPassword,
                                                                 }],
                                                             })(
-                                                                <Input name="confrimpassword" type="password" className="form-control" id="confrimpassword" placeholder="Confrim Password" />
+                                                                <Input name="confrimpassword" type="password"
+                                                                       className="form-control" id="confrimpassword"
+                                                                       placeholder="Confrim Password"/>
                                                             )}
                                                         </FormItem>
-                                           </div>
-                                        </section>
-                                        <section>
-                                                 <div className="row">
-                                                    <div className="col-md-12" >
-                                                       <button className="btn btn-primary" style={{"float": "right"}}>Change Password</button>
                                                     </div>
-                                                 </div>
-                                               </section>
-                                     </div>}
-                                 {profileSec && <div class="col-md-4">
-                                    <div className="profile-image">
-                                       <div className="img-circle">
-                                          <img className="img-circle" src={imageUrl ? imageUrl : '../images/images.jpg'} alt="" />
-                                       </div>
-                                       <div className="single-file-input" style={{"text-align": "center","margin-top": "9px"}}>
+                                                </section>
+                                                <section>
+                                                    <div className="row">
+                                                        <div className="col-md-12">
+                                                            <button className="btn btn-primary"
+                                                                    style={{"float": "right"}}>Change Password
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div>}
+                                            {profileSec && <div className="col-md-4">
+                                                <div className="profile-image">
+                                                    <div className="img-circle">
+                                                        <img className="img-circle"
+                                                             src={imageUrl ? imageUrl : '../images/images.jpg'} alt=""/>
+                                                    </div>
+                                                    <div className="single-file-input"
+                                                         style={{"text-align": "center", "margin-top": "9px"}}>
                                                         <Upload {...props} >
-                                                            <div className="btn btn-framed btn-primary small">Upload a picture</div>
+                                                            <div className="btn btn-framed btn-primary small">Upload a
+                                                                picture
+                                                            </div>
                                                         </Upload>
-                                       </div>
-                                    </div>
-                                 </div>}
-                                  </div>
-                               </Form>
+                                                    </div>
+                                                </div>
+                                            </div>}
+                                        </div>
+                                    </Form>
+                                </div>
                             </div>
-                         </div>
-                      </div>
-                  </div>
-               </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

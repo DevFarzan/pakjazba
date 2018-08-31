@@ -6,6 +6,7 @@ import Facebook from './Facebook';
 import Google from './Google';
 import axios from 'axios';
 import AsyncStorage from "@callstack/async-storage";
+import {HttpUtils} from "../Services/HttpUtils";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -97,28 +98,40 @@ class Signin extends Component{
         })
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log('Received values of form:',values);
                 axios.get('http://localhost:5000/api/userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
                     .then((response) => {
-                        AsyncStorage.setItem('user', JSON.stringify(response.data))
-                            .then(() => {
-                                this.props.modalContent();
-                            })
-                        this.handleLocalStorage();
-                        if(response.data.code == 200){
-                            this.setState({
-                                loader:false,
-                                visible:false
-                            })
-                        }//end if
-                        else{
-                        }
-                        this.props.form.resetFields();
-                        //this.state.confirmDirty='';
+                        this.getProfileId(response)
                     })
             }
         });
     }//end handleSubmit
+
+    async getProfileId(response){
+        if(response.data.code === 200){
+            var obj = {
+                name: response.data.name,
+                email: response.data.email,
+                userId: response.data._id,
+                profileId: ''
+            }
+            var req = await HttpUtils.post('profile', obj)
+            var userInfo = {...response.data, ...{profileId: req.content}}
+            AsyncStorage.setItem('user', JSON.stringify(userInfo))
+                .then(() => {
+                    this.props.modalContent();
+                })
+            this.handleLocalStorage();
+            this.props.form.resetFields();
+            this.setState({
+                loader:false,
+                visible:false
+            })
+        }//end if
+        else{
+
+        }
+        //this.state.confirmDirty='';
+    }
 
     handleConfirmBlur = (e) => {
         const value = e.target.value;

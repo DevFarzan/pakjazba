@@ -39,7 +39,8 @@ class ProfileUser extends Component{
                 var userObj = JSON.parse(obj)
                 if(!!userObj) {
                     this.setState({
-                        userId: userObj._id
+                        userId: userObj._id,
+                        profileId: userObj.profileId
                     })
                 }
             })

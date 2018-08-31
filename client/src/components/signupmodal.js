@@ -92,17 +92,17 @@ class Signup extends Component{
                 console.log('Received values of form: ', values);
                 axios.get('http://localhost:5000/api/usersignin?useremail='+values.userName+'&password='+values.password)
                     .then((response)=>{
-                        console.log(response);
-                        AsyncStorage.setItem('user', JSON.stringify(response.data))
-                            .then(() => {
-                                this.props.modalContent();
-                            })
-                        if(response.data.code == 200){
-                            this.setState({
-                                loader:false,
-                                visible:false,
-                                showloader:false
-                            })
+                        if(response.data.code === 200){
+                            console.log(response);
+                            AsyncStorage.setItem('user', JSON.stringify(response.data))
+                                .then(() => {
+                                    this.props.modalContent();
+                                })
+                                this.setState({
+                                    loader:false,
+                                    visible:false,
+                                    showloader:false
+                                })
                         }//end if
                         else{
                         }

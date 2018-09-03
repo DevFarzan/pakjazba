@@ -721,6 +721,7 @@ app.post('/api/profile',function(req,res){
       name = profileData.name,
       description = profileData.description,
       email = profileData.email,
+      phone = profileData.phone,
       location = profileData.location,
       facebooklink = profileData.facebook,
       twitterlink = profileData.twitter,
@@ -736,6 +737,7 @@ if(profileData.profileId == ''){
     name:name,
     description:description,
     email:email,
+    phone:phone,
     location:location,
     facebooklink:facebooklink,
     twitterlink:twitterlink,
@@ -778,6 +780,7 @@ else if(profileData.profileId != ''){
           profile.description = profileData.description;
           profile.name = profileData.name,
           profile.email = profileData.email;
+          profile.phone = profileData.phone;
           profile.location = profileData.location;
           profile.facebooklink = profileData.facebook;
           profile.twitterlink = profileData.twitter;

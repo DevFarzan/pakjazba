@@ -53,6 +53,11 @@ class ProfileUser extends Component{
         this.setState({
             name: user.name,
             email: user.email,
+            location:user.location,
+            description:user.description,
+            phone:user.phone,
+            twitter:user.twitterlink,
+            facebook:user.facebooklink
         })
     }
 
@@ -210,7 +215,7 @@ class ProfileUser extends Component{
 
     render(){
         const {getFieldDecorator} = this.props.form;
-        const { imageUrl, profileSec, changePass, name, email } = this.state;
+        const { imageUrl, profileSec, changePass, name, email, description, phone, twitter, facebook, location } = this.state;
         const props = {
             action: '//jsonplaceholder.typicode.com/posts/',
             onChange: this.handleChange,
@@ -285,6 +290,7 @@ class ProfileUser extends Component{
                                                                 <label htmlFor="usr">Your Location:</label>
                                                                 <FormItem>
                                                                     {getFieldDecorator('location', {
+                                                                        initialValue: location,
                                                                         rules: [{
                                                                             required: true,
                                                                             message: 'Please input your Location!',
@@ -304,6 +310,7 @@ class ProfileUser extends Component{
                                                                 <label htmlFor="usr">More About You:</label>
                                                                 <FormItem>
                                                                     {getFieldDecorator('description', {
+                                                                        initialValue: description,
                                                                         rules: [
                                                                             {
                                                                                 required: true,
@@ -327,6 +334,7 @@ class ProfileUser extends Component{
                                                         <label htmlFor="phone" className="col-form-label">Phone</label>
                                                         <FormItem>
                                                             {getFieldDecorator('phone', {
+                                                                initialValue: phone,
                                                                 rules: [{
                                                                     required: true,
                                                                     message: 'Please input your Phone!',
@@ -367,6 +375,7 @@ class ProfileUser extends Component{
                                                                className="col-form-label">Twitter</label>
                                                         <FormItem>
                                                             {getFieldDecorator('twitter', {
+                                                                initialValue: twitter,
                                                                 rules: [{
                                                                     required: true,
                                                                     message: 'Please input your Twitter!',
@@ -384,6 +393,7 @@ class ProfileUser extends Component{
                                                                className="col-form-label">Facebook</label>
                                                         <FormItem>
                                                             {getFieldDecorator('facebook', {
+                                                                initialValue: facebook,
                                                                 rules: [{
                                                                     required: true,
                                                                     message: 'Please input your Facebook!',

@@ -11,7 +11,8 @@ class Form_signin extends Component{
         visible: false,
         showloader:false,
         email:'',
-        user: ''
+        user: '',
+        msg: ''
     }
 
     componentWillMount(){
@@ -44,14 +45,24 @@ class Form_signin extends Component{
                 console.log('Received values of form: ', values);
                 axios.get('http://localhost:5000/api/usersignin?useremail='+values.email+'&password='+values.password)
                     .then((response)=>{
-                        AsyncStorage.setItem('user', JSON.stringify(response.data))
-                            .then(() => {
-                                console.log('login doneee')
-                                // this.props.modalContent();
+                        if(response.data.code === 200){
+                            console.log(response);
+                            AsyncStorage.setItem('user', JSON.stringify(response.data))
+                                .then(() => {
+                                    console.log('hhhhhhhhhhhhhh')
+                                    this.setState({
+                                        loader:false,
+                                        visible:false,
+                                        showloader:false
+                                    })
+                                })
+                        }//end if
+                        else{
+                            console.log(response.data, 'responseeeeeeeeeee')
+                            this.setState({
+                                msg: response.data.msg,
                             })
-                        this.setState({
-                            showloader:false
-                        })
+                        }
                     })
             }
         });
@@ -84,7 +95,10 @@ class Form_signin extends Component{
                                 <Input type="password" />
                             )}
                         </FormItem>
-                        <div className="row center_global signup_button_signin_seperate">
+                        {this.state.msg.length > 0 && <div style={{marginBottom: '10px'}}>
+                            <span style={{ color: 'red', fontWeight: 'bold'}}>{this.state.msg}</span>
+                        </div>}
+                        <div style={{marginTop: '10px'}} className="row center_global signup_button_signin_seperate">
                             <button className="btn color_button">Login</button>
                         </div>{/*row*/}
                     </Form>

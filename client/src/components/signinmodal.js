@@ -119,13 +119,13 @@ class Signin extends Component{
             AsyncStorage.setItem('user', JSON.stringify(userInfo))
                 .then(() => {
                     this.props.modalContent();
+                    // this.handleLocalStorage();
+                    this.props.form.resetFields();
+                    this.setState({
+                        loader:false,
+                        visible:false
+                    })
                 })
-            this.handleLocalStorage();
-            this.props.form.resetFields();
-            this.setState({
-                loader:false,
-                visible:false
-            })
         }//end if
         else{
 

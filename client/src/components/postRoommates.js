@@ -10,7 +10,10 @@ import {
     notification,
     Upload,
     Modal,
-    DatePicker
+    DatePicker,
+    Radio,
+    Row,
+    Col
 } from 'antd';
 import moment from 'moment';
 import superagent from "superagent";
@@ -22,6 +25,7 @@ const RangePicker = DatePicker.RangePicker;
 const InputGroup = Input.Group;
 const { TextArea } = Input;
 const CheckboxGroup = Checkbox.Group;
+const RadioGroup = Radio.Group;
 const FormItem = Form.Item
 const category = [{
     value: 'imported',
@@ -41,10 +45,12 @@ class Postroommates extends Component{
             previewVisible: false,
             previewImage: '',
             hideAddress: false,
-            dateObj: {
-                from: '',
-                to: ''
-            }
+            dateObj: { from: '', to: '' },
+            radio: true,
+            amenities: [],
+            vegNoVeg: 'Yes',
+            petFriendly: 'No',
+            smoking: 'No'
         }
     }
 
@@ -115,6 +121,10 @@ class Postroommates extends Component{
         })
     }
 
+    onChangeAmenities(checkedValues) {
+        this.setState({amenities: checkedValues});
+    }
+
     onChangeAddress(e) {
         this.setState({hideAddress: e.target.checked});
     }
@@ -127,11 +137,25 @@ class Postroommates extends Component{
         }
     };
 
-    // async addressLatLong() {
-    //     var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=Tuheed+Commercial+Area,+Defence+Karachi&key=AIzaSyDhMPFM50yo4Is2afbhqgStOWTPULLr0F8'
-    //     let uploadRequest = await superagent.post(url)
-    //     console.log(uploadRequest, 'oooooooooooooooooooo')
-    // }
+    changeAttBath = (e) => {
+        if(e.target.name === 'radio') {
+            this.setState({
+                radio: e.target.value,
+            });
+        }else if(e.target.name === 'vegNoVeg'){
+            this.setState({
+                vegNoVeg: e.target.value,
+            });
+        }else if(e.target.name === 'smoking'){
+            this.setState({
+                smoking: e.target.value,
+            });
+        }else if(e.target.name === 'petFriendly'){
+            this.setState({
+                petFriendly: e.target.value,
+            });
+        }
+    }
 
     uploadFile = (files) =>{
         const image = files.originFileObj
@@ -163,7 +187,6 @@ class Postroommates extends Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        // this.addressLatLong();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if(!err) {
                 this.funcForUpload(values)
@@ -185,26 +208,34 @@ class Postroommates extends Component{
     }
 
     async postData(values, response) {
-        const {dateObj, userId} = this.state;
+        const {dateObj, userId, petFriendly, radio, smoking, vegNoVeg} = this.state;
         var obj = {
             user_id: userId,
             accommodates : values.accommodates[0],
-            attachedBath :values.attachedBath,
+            amenities: values.amenities,
+            attachedBath : radio,
             category: values.category[0],
             city : values.city[0],
             contactEmail: values.contactEmail,
-            contactMode:values.contactMode,
-            contactName:values.contactName,
-            contactNumber:values.contactNumber,
-            dateRange:dateObj,
+            contactMode: values.contactMode,
+            contactName: values.contactName,
+            contactNumber: values.contactNumber,
+            dateRange: dateObj,
             description: values.description,
-            genderPreference:values.genderPreference,
-            location:values.location,
+            furnished: values.furnished[0],
+            housingType: values.housingType[0],
             postingTitle :values.postingTitle,
             price: values.price,
+            priceMode: values.priceMode[0],
+            propertyLocation: values.propertyLocation,
+            zipCode: values.zipCode,
+            petFriendly: petFriendly,
+            smoking: smoking,
+            vegNoVeg: vegNoVeg,
             arr_url: response ? response : []
         }
         console.log(obj, 'objjjjjjjj')
+        // var req = await HttpUtils.post('postbuyselldata', obj)
     }
 
     render(){
@@ -266,11 +297,50 @@ class Postroommates extends Component{
                                             </FormItem>
                                             <FormItem
                                                 {...formItemLayout}
+                                                label="Property Location"
+                                            >
+                                                {getFieldDecorator('propertyLocation', {
+                                                    rules: [{
+                                                        required: true,
+                                                        message: 'Please input your Property Location!',
+                                                        whitespace: true
+                                                    }],
+                                                })(
+                                                    <Input/>
+                                                )}
+                                            </FormItem>
+                                            <FormItem
+                                                {...formItemLayout}
+                                                label="Property Zip Code"
+                                            >
+                                                {getFieldDecorator('zipCode', {
+                                                    rules: [{
+                                                        required: true,
+                                                        message: 'Please input your Property Zip Code!',
+                                                        whitespace: true
+                                                    }],
+                                                })(
+                                                    <Input/>
+                                                )}
+                                            </FormItem>
+                                            <FormItem
+                                                {...formItemLayout}
                                                 label="Category"
                                             >
                                                 {getFieldDecorator('category', {
                                                     initialValue: ['zhejiang', 'hangzhou', 'xihu'],
                                                     rules: [{ type: 'array', required: true, message: 'Please select your Category!' }],
+                                                })(
+                                                    <Cascader options={category} />
+                                                )}
+                                            </FormItem>
+                                            <FormItem
+                                                {...formItemLayout}
+                                                label="Housing Type"
+                                            >
+                                                {getFieldDecorator('housingType', {
+                                                    initialValue: ['zhejiang', 'hangzhou', 'xihu'],
+                                                    rules: [{ type: 'array', required: true, message: 'Please select your Housing Type!' }],
                                                 })(
                                                     <Cascader options={category} />
                                                 )}
@@ -287,12 +357,12 @@ class Postroommates extends Component{
                                             </FormItem>
                                             <FormItem
                                                 {...formItemLayout}
-                                                label="Description"
+                                                label="Description/Details"
                                             >
                                                 {getFieldDecorator('description', {
                                                     rules: [
                                                         {
-                                                            required: true, message: 'Please input your Description!', whitespace: true
+                                                            required: true, message: 'Please input your Description/Details!', whitespace: true
                                                         },
                                                         {
                                                             validator: this.checkValue.bind(this)
@@ -321,10 +391,10 @@ class Postroommates extends Component{
                                             </FormItem>
                                             <div className="row" style={{'text-align': 'center'}}>
                                                 <div className="col-md-2"></div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <FormItem
                                                         {...formItemLayout}
-                                                        label="Rent (Expected/Preferred)"
+                                                        label="Rent"
                                                     >
                                                         {getFieldDecorator('price', {
                                                             rules: [{ validator: this.checkPriceValue.bind(this) }],
@@ -333,10 +403,20 @@ class Postroommates extends Component{
                                                         )}
                                                     </FormItem>
                                                 </div>
-                                                <div className="col-md-3" style={{'text-align': 'left'}}>
-                                                    (/ month)
+                                                <div className="col-md-5" style={{'text-align': 'left'}}>
+                                                    <FormItem
+                                                        {...formItemLayout}
+                                                        label="Price Mode"
+                                                    >
+                                                        {getFieldDecorator('priceMode', {
+                                                            initialValue: ['zhejiang', 'hangzhou', 'xihu'],
+                                                            rules: [{ type: 'array', required: true, message: 'Please select your Price Mode!' }],
+                                                        })(
+                                                            <Cascader options={category} />
+                                                        )}
+                                                    </FormItem>
                                                 </div>
-                                                <div className="col-md-4"></div>
+                                                <div className="col-md-1"></div>
                                             </div>
                                             <FormItem
                                                 {...formItemLayout}
@@ -350,23 +430,77 @@ class Postroommates extends Component{
                                             </FormItem>
                                             <FormItem
                                                 {...formItemLayout}
-                                                label="Gender Preference"
+                                                label="Furnished"
                                             >
-                                                {getFieldDecorator('genderPreference', {
-                                                    rules: [{ required: true, message: 'Please input your Gender Preference!', whitespace: true }],
+                                                {getFieldDecorator('furnished', {
+                                                    rules: [{ type: 'array', required: true, message: 'Please select your Furnished!' }],
                                                 })(
-                                                    <Input  />
+                                                    <Cascader options={category} />
                                                 )}
                                             </FormItem>
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Attached Bath"
                                             >
-                                                {getFieldDecorator('attachedBath', {
-                                                    rules: [{ required: true, message: 'Please input your Attached Bath!', whitespace: true }],
+                                                <RadioGroup onChange={this.changeAttBath} name='radio' value={this.state.radio}>
+                                                    <Radio value={true}>YES</Radio>
+                                                    <Radio value={false}>NO</Radio>
+                                                </RadioGroup>
+                                            </FormItem>
+                                            <FormItem
+                                                {...formItemLayout}
+                                                label="Amenities include"
+                                            >
+                                                {getFieldDecorator('amenities', {
+                                                    rules: [{ validator: this.checkCheckBox }],
                                                 })(
-                                                    <Input  />
+                                                    <CheckboxGroup style={{ width: '100%' }} onChange={this.onChangeAmenities.bind(this)}>
+                                                        <Row>
+                                                            <Col span={8}><Checkbox value="Gym/Fitness Center">Gym/Fitness Center</Checkbox></Col>
+                                                            <Col span={8}><Checkbox value="Swimming Pool">Swimming Pool</Checkbox></Col>
+                                                            <Col span={8}><Checkbox value="Car Park">Car Park</Checkbox></Col>
+                                                            <Col span={8}><Checkbox value="Visitors Parking">Visitors Parking</Checkbox></Col>
+                                                            <Col span={8}><Checkbox value="Power Backup">Power Backup</Checkbox></Col>
+                                                            <Col span={8}><Checkbox value="Garbage Disposal">Garbage Disposal</Checkbox></Col>
+                                                            <Col span={8}><Checkbox value="Private Lawn">Private Lawn</Checkbox></Col>
+                                                            <Col span={8}><Checkbox value="Water Heater Plant">Water Heater Plant</Checkbox></Col>
+                                                            <Col span={8}><Checkbox value="Security System">Security System</Checkbox></Col>
+                                                            <Col span={8}><Checkbox value="Laundry Service">Laundry Service </Checkbox></Col>
+                                                            <Col span={8}><Checkbox value="Elevator">Elevator</Checkbox></Col>
+                                                            <Col span={8}><Checkbox value="Club House">Club House</Checkbox></Col>
+                                                        </Row>
+                                                    </CheckboxGroup>
                                                 )}
+                                            </FormItem>
+                                            <FormItem
+                                                {...formItemLayout}
+                                                label="Vegetarians Preferred"
+                                            >
+                                                <RadioGroup onChange={this.changeAttBath} name='vegNoVeg' value={this.state.vegNoVeg}>
+                                                    <Radio value={'Yes'}>YES</Radio>
+                                                    <Radio value={'No'}>NO</Radio>
+                                                </RadioGroup>
+                                            </FormItem>
+                                            <FormItem
+                                                {...formItemLayout}
+                                                label="Smoking"
+                                            >
+                                                <RadioGroup onChange={this.changeAttBath} name='smoking' value={this.state.smoking}>
+                                                    <Radio value={'Yes'}>YES</Radio>
+                                                    <Radio value={'No'}>NO</Radio>
+                                                    <Radio value={'Outside'}>Outside only</Radio>
+                                                </RadioGroup>
+                                            </FormItem>
+                                            <FormItem
+                                                {...formItemLayout}
+                                                label="Pet Friendly"
+                                            >
+                                                <RadioGroup onChange={this.changeAttBath} name='petFriendly' value={this.state.petFriendly}>
+                                                    <Radio value={'No'}>No</Radio>
+                                                    <Radio value={'Only Cats'}>Only Cats</Radio>
+                                                    <Radio value={'Only Dogs'}>Only Dogs</Radio>
+                                                    <Radio value={'Any Pet'}>Any Pet</Radio>
+                                                </RadioGroup>
                                             </FormItem>
                                             <FormItem
                                                 {...formItemLayout}
@@ -391,35 +525,6 @@ class Postroommates extends Component{
                                                     </div>
                                                 )}
                                             </FormItem>
-                                            <div className="row">
-                                                <div className="col-md-2"></div>
-                                                <div className="col-md-4">
-                                                    <FormItem
-                                                        {...formItemLayout}
-                                                        label="Location"
-                                                    >
-                                                        {getFieldDecorator('location', {
-                                                            rules: [{
-                                                                required: true,
-                                                                message: 'Please input your Location!',
-                                                                whitespace: true
-                                                            }],
-                                                        })(
-                                                            <Input/>
-                                                        )}
-                                                    </FormItem>
-                                                </div>
-                                                <div className="col-md-3" style={{'text-align': 'left'}}>
-                                                    <Checkbox onChange={this.onChangeAddress.bind(this)}>(insert Map)</Checkbox>
-                                                </div>
-                                                <div className="col-md-3"></div>
-                                            </div>
-                                            {hideAddress && <div className="row">
-                                                <div className="col-md-3"></div>
-                                                <div className="col-md-9" style={{height: '700px', width: '800px'}}>
-                                                   {/* <MapContainer />*/}
-                                                </div>
-                                            </div>}
                                         </div>
                                     </div>
                                 </div>
@@ -470,16 +575,6 @@ class Postroommates extends Component{
                                                     <CheckboxGroup options={optionsContact} />
                                                 )}
                                             </FormItem>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="panel-body">
-                                    {/*==========main panel content=============*/}
-                                    {/*==========location panel start=========*/}
-                                    <div className="panel panel-default">
-                                        <div className="panel-heading bold_c_text"><Icon type="info-circle"/><span
-                                            className="margin_font_location">About</span></div>
-                                        <div className="panel-body">
                                         </div>
                                     </div>
                                 </div>

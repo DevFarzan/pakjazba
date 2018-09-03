@@ -3,6 +3,7 @@ import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Butto
 
 import axios from 'axios';
 import AsyncStorage from "@callstack/async-storage";
+import {HttpUtils} from "../../Services/HttpUtils";
 
 const FormItem = Form.Item;
 const ip = require('ip');
@@ -17,7 +18,8 @@ class Form_signup extends Component{
         autoCompleteResult: [],
         loader:false,
         dropdown:false,
-        allUser: []
+        allUser: [],
+        msg: ''
     }
 
     componentDidMount(){
@@ -65,26 +67,40 @@ class Form_signup extends Component{
                 console.log('Received values of form:',values);
                 axios.get('http://localhost:5000/api/userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
                     .then((response) => {
-                        console.log(response);
-                        AsyncStorage.setItem('user', JSON.stringify(response.data))
-                            .then(() => {
-                                console.log('signup done')
-                            })
-                        this.handleLocalStorage();
-                        if(response.data.code == 200){
-                            this.setState({
-                                loader:false,
-                                visible:false
-                            })
-                        }//end if
-                        else{
-                        }
-                        this.props.form.resetFields();
-                        //this.state.confirmDirty='';
+                        this.getProfileId(response)
                     })
             }
         });
     }//end handleSubmit
+
+    async getProfileId(response){
+        if(response.data.code === 200){
+            var obj = {
+                name: response.data.name,
+                email: response.data.email,
+                userId: response.data._id,
+                profileId: ''
+            }
+            var req = await HttpUtils.post('profile', obj)
+            var userInfo = {...response.data, ...{profileId: req.content}}
+            AsyncStorage.setItem('user', JSON.stringify(userInfo))
+                .then(() => {
+                    // this.handleLocalStorage();
+                    console.log('signUpppppppppp')
+                    this.props.form.resetFields();
+                    this.setState({
+                        loader:false,
+                        visible:false
+                    })
+                })
+        }//end if
+        else{
+            console.log(response.data, 'response form_signUppppppp')
+            this.setState({
+                msg: response.data.msg,
+            })
+        }
+    }
 
     checkValue(rule, value, callback){
         if(this.state.allUser.includes(value)){
@@ -164,7 +180,10 @@ class Form_signup extends Component{
                             <Checkbox>I'm not a Robot</Checkbox>
                         )}
                     </FormItem>
-                    <div className="row center_global">
+                    {this.state.msg.length > 0 && <div style={{marginBottom: '5px'}}>
+                        <span style={{ color: 'red', fontWeight: 'bold'}}>{this.state.msg}</span>
+                    </div>}
+                    <div style={{marginTop: '5px'}} className="row center_global">
                         {this.state.loader ? antIcon : null} <button className="btn color_button">Sign up</button>
                     </div>{/*row*/}
                     <div className="row term_condition">

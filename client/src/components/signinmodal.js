@@ -4,7 +4,6 @@ import Formsignup from './formsignup';
 import Dropdowns from  './dropdown';
 import Facebook from './Facebook';
 import Google from './Google';
-import axios from 'axios';
 import AsyncStorage from "@callstack/async-storage";
 import {HttpUtils} from "../Services/HttpUtils";
 
@@ -25,7 +24,8 @@ class Signin extends Component{
             autoCompleteResult: [],
             loader: false,
             dropdown: false,
-            allUser: []
+            allUser: [],
+            msg: ''
         }
     }
 
@@ -38,13 +38,10 @@ class Signin extends Component{
         this.handleLocalStorage();
     }
 
-    getAllUsers(){
+    async getAllUsers(){
         console.log(ip.address(), 'ipAddressssssss')
-
-        axios.get('http://localhost:5000/api/allusers')
-            .then((response) => {
-                this.setState({allUser: response.data.content})
-            })
+        var response = await HttpUtils.get('allusers')
+        this.setState({allUser: response.content})
     }
 
     showModal = () => {
@@ -98,28 +95,29 @@ class Signin extends Component{
         })
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                axios.get('http://localhost:5000/api/userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
-                    .then((response) => {
-                        this.getProfileId(response)
-                    })
+                this.funcSignUp(values)
             }
         });
     }//end handleSubmit
 
+    async funcSignUp(values){
+        var response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
+        this.getProfileId(response)
+    }
+
     async getProfileId(response){
-        if(response.data.code === 200){
+        if(response.code === 200){
             var obj = {
-                name: response.data.name,
-                email: response.data.email,
-                userId: response.data._id,
+                name: response.name,
+                email: response.email,
+                userId: response._id,
                 profileId: ''
             }
             var req = await HttpUtils.post('profile', obj)
-            var userInfo = {...response.data, ...{profileId: req.content}}
+            var userInfo = {...response, ...{profileId: req.content}}
             AsyncStorage.setItem('user', JSON.stringify(userInfo))
                 .then(() => {
                     this.props.modalContent();
-                    // this.handleLocalStorage();
                     this.props.form.resetFields();
                     this.setState({
                         loader:false,
@@ -128,9 +126,10 @@ class Signin extends Component{
                 })
         }//end if
         else{
-
+            this.setState({
+                msg: response.msg,
+            })
         }
-        //this.state.confirmDirty='';
     }
 
     handleConfirmBlur = (e) => {
@@ -155,15 +154,18 @@ class Signin extends Component{
         callback();
     }
 
-    handleipaddress = () =>{
-        axios.get('https://ipinfo.io?token=4b0cfd2794ad30').then(function(response){
-            console.log(response);
-        })
-    }
-
     checkValue(rule, value, callback){
         if(this.state.allUser.includes(value)){
             callback('This email is already been used')
+            return;
+        }else {
+            callback()
+        }
+    }
+
+    checkName(rule, value, callback){
+        if(value.includes('<') || value.includes('>') || value.includes('/')){
+            callback('Name should be string')
             return;
         }else {
             callback()
@@ -214,7 +216,11 @@ class Signin extends Component{
                             <Form onSubmit={this.handleSubmit}>
                         <FormItem label="Name">
                               {getFieldDecorator('nickname', {
-                                  rules: [{ required: true, message: 'Please input your Name!', whitespace: true }],
+                                  rules: [{
+                                      required: true, message: 'Please input your Name!', whitespace: true
+                                  }, {
+                                      validator: this.checkName.bind(this)
+                                  }],
                               })(
                                   <Input  />
                               )}
@@ -261,6 +267,9 @@ class Signin extends Component{
                                   <Checkbox>I'm not a Robot</Checkbox>
                               )}
                         </FormItem>
+                        {this.state.msg.length > 0 && <div style={{marginBottom: '10px'}}>
+                            <span style={{ color: 'red', fontWeight: 'bold'}}>{this.state.msg}</span>
+                        </div>}
                         <div className="row center_global">
                             {this.state.loader ? antIcon : null} <button className="btn color_button">Sign up</button>
                         </div>{/*row*/}

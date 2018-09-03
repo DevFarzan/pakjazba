@@ -6,12 +6,16 @@ import { Redirect } from 'react-router';
 class Dropdowns extends Component{
     state = {
         toDashboard: false,
+        logout: false
     }
 
     handleChangeLogout = () =>{
         AsyncStorage.removeItem('user')
             .then(() => {
                 this.props.modalContent();
+                this.setState({
+                    logout: true
+                })
             })
     }
 
@@ -22,6 +26,10 @@ class Dropdowns extends Component{
     render(){
         if (this.state.toDashboard === true) {
             return <Redirect to='/profile_user' />
+        }
+
+        if(this.state.logout === true) {
+            return <Redirect to='/'/>
         }
 
         const onClick = function ({ key }) {

@@ -1,18 +1,23 @@
 import React, { Component } from   'react';
 import { Form, Input, Icon, Button } from 'antd';
-import axios from 'axios';
 import AsyncStorage from "@callstack/async-storage";
+import { withRouter, Redirect, } from 'react-router-dom';
+import {HttpUtils} from "../../Services/HttpUtils";
 
 const FormItem = Form.Item;
 const ip = require('ip');
 
 class Form_signin extends Component{
-    state = {
-        visible: false,
-        showloader:false,
-        email:'',
-        user: '',
-        msg: ''
+    constructor(props) {
+        super(props)
+        this.state = {
+            visible: false,
+            showloader: false,
+            email: '',
+            user: '',
+            msg: '',
+            redirectToReferrer: false
+        }
     }
 
     componentWillMount(){
@@ -42,30 +47,29 @@ class Form_signin extends Component{
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
-                axios.get('http://localhost:5000/api/usersignin?useremail='+values.email+'&password='+values.password)
-                    .then((response)=>{
-                        if(response.data.code === 200){
-                            console.log(response);
-                            AsyncStorage.setItem('user', JSON.stringify(response.data))
-                                .then(() => {
-                                    console.log('hhhhhhhhhhhhhh')
-                                    this.setState({
-                                        loader:false,
-                                        visible:false,
-                                        showloader:false
-                                    })
-                                })
-                        }//end if
-                        else{
-                            console.log(response.data, 'responseeeeeeeeeee')
-                            this.setState({
-                                msg: response.data.msg,
-                            })
-                        }
-                    })
+                this.funcLogin(values)
             }
         });
+    }
+
+    async funcLogin(values){
+        var response = await HttpUtils.get('usersignin?useremail='+values.email+'&password='+values.password)
+        if(response.code === 200){
+            AsyncStorage.setItem('user', JSON.stringify(response))
+                .then(() => {
+                    this.setState({
+                        loader:false,
+                        visible:false,
+                        showloader:false,
+                        redirectToReferrer: true
+                    })
+                })
+        }//end if
+        else{
+            this.setState({
+                msg: response.msg,
+            })
+        }
     }
 
     reset(){
@@ -74,7 +78,11 @@ class Form_signin extends Component{
 
     render(){
         const { getFieldDecorator } = this.props.form;
-        let {children} = this.props;
+        const { from } = this.props.location.state || { from: { pathname: "/" } };
+        let {redirectToReferrer} = this.state;
+        if (redirectToReferrer) {
+            return <Redirect to={from} />;
+        }
         return(
             <div>
                 <div>
@@ -109,4 +117,4 @@ class Form_signin extends Component{
 }
 
 const WrappedSigninForm = Form.create()(Form_signin);
-export default WrappedSigninForm;
+export default withRouter(WrappedSigninForm);

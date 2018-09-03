@@ -3,7 +3,7 @@ import { Form, Icon, Input, Button, Checkbox,Modal, Spin, Alert } from 'antd';
 import Signin from './signinmodal';
 import Forgotpassword from './forgotpassword';
 import AsyncStorage from '@callstack/async-storage';
-import axios from 'axios';
+import {HttpUtils} from "../Services/HttpUtils";
 
 const FormItem = Form.Item;
 
@@ -14,7 +14,8 @@ class Signup extends Component{
             visible: false,
             showloader: false,
             email: '',
-            user: ''
+            user: '',
+            msg: ''
         }
     }
 
@@ -53,62 +54,41 @@ class Signup extends Component{
             email:this.refs.email,
             visible: false,
         });
-        // console.log(this.refs.email.value);
-        // console.log(this.refs.password.value);
     }
 
     handleCancel = (e) => {
-        console.log(e);
         this.setState({
             visible: false
         });
     }
-    //   handleSubmit = (e) =>{
-    //   	e.preventDefault();
-    //   	this.setState({
-    //   		showloader:true
-    //   	})
-    //   	var email = this.refs.email.value;
-    //   	var password = this.refs.password.value;
-    //   	if(email && password){
-    //   	axios.get('http://localhost:5000/api/usersignin?useremail='+email+'&password='+password)
-    //   	.then((response)=>{
-    //   		console.log(response);
-    //   		this.refs.email.value = '';
-    //   		this.refs.password.value = '';
-    //   		this.setState({
-    //   			showloader:false
-    //   		})
-    //   	})
-    //   	console.log(this.refs.email.value);
-    //   	console.log(this.refs.password.value);
-    //   }
-    // }//end if(email&&password)
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
-                axios.get('http://localhost:5000/api/usersignin?useremail='+values.userName+'&password='+values.password)
-                    .then((response)=>{
-                        if(response.data.code === 200){
-                            console.log(response);
-                            AsyncStorage.setItem('user', JSON.stringify(response.data))
-                                .then(() => {
-                                    this.props.modalContent();
-                                })
-                                this.setState({
-                                    loader:false,
-                                    visible:false,
-                                    showloader:false
-                                })
-                        }//end if
-                        else{
-                        }
-                    })
+                this.funcLogin(values)
             }
         });
+    }
+
+    async funcLogin(values){
+        var response = await HttpUtils.get('usersignin?useremail='+values.userName+'&password='+values.password)
+        if(response.code === 200){
+            AsyncStorage.setItem('user', JSON.stringify(response))
+                .then(() => {
+                    this.props.modalContent();
+                    this.setState({
+                        loader:false,
+                        visible:false,
+                        showloader:false
+                    })
+                })
+        }//end if
+        else{
+            this.setState({
+                msg: response.msg,
+            })
+        }
     }
 
     reset = () => {
@@ -183,6 +163,9 @@ class Signup extends Component{
                                 </div>
                             </div>
                         </FormItem>
+                        {this.state.msg.length > 0 && <div style={{marginBottom: '10px'}}>
+                            <span style={{ color: 'red', fontWeight: 'bold'}}>{this.state.msg}</span>
+                        </div>}
                         <div className="row">
                             <div className="col-md-12">
                                 <Button type="primary" htmlType="submit" className="login-form-button width_class">

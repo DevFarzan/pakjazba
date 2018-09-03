@@ -1,25 +1,28 @@
 import React, { Component } from   'react';
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, notification, Spin, Modal  } from 'antd';
-
-import axios from 'axios';
+import { Form, Input, Icon, Select, Row, Col, Checkbox, Button, AutoComplete, notification, Spin, Modal  } from 'antd';
 import AsyncStorage from "@callstack/async-storage";
 import {HttpUtils} from "../../Services/HttpUtils";
+import { withRouter, Redirect, } from 'react-router-dom';
 
 const FormItem = Form.Item;
 const ip = require('ip');
 
 class Form_signup extends Component{
-    state = {
-        loading: false,
-        visible: false,
-        passwordValidator:false,
-        username: null,
-        confirmDirty: false,
-        autoCompleteResult: [],
-        loader:false,
-        dropdown:false,
-        allUser: [],
-        msg: ''
+    constructor(props) {
+        super(props)
+        this.state = {
+            loading: false,
+            visible: false,
+            passwordValidator: false,
+            username: null,
+            confirmDirty: false,
+            autoCompleteResult: [],
+            loader: false,
+            dropdown: false,
+            allUser: [],
+            msg: '',
+            redirectToReferrer: false
+        }
     }
 
     componentDidMount(){
@@ -31,13 +34,10 @@ class Form_signup extends Component{
         this.getAllUsers();
     }
 
-    getAllUsers(){
+    async getAllUsers(){
         console.log(ip.address(), 'ipAddressssssss')
-
-        axios.get('http://localhost:5000/api/allusers')
-            .then((response) => {
-                this.setState({allUser: response.data.content})
-            })
+        var response = await HttpUtils.get('allusers')
+        this.setState({allUser: response.content})
     }
 
     handleLocalStorage = () =>{
@@ -64,38 +64,37 @@ class Form_signup extends Component{
         })
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log('Received values of form:',values);
-                axios.get('http://localhost:5000/api/userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
-                    .then((response) => {
-                        this.getProfileId(response)
-                    })
+                this.funcSignUp(values)
             }
         });
     }//end handleSubmit
 
+    async funcSignUp(values){
+        var response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
+        this.getProfileId(response)
+    }
+
     async getProfileId(response){
-        if(response.data.code === 200){
+        if(response.code === 200){
             var obj = {
-                name: response.data.name,
-                email: response.data.email,
-                userId: response.data._id,
+                name: response.name,
+                email: response.email,
+                userId: response._id,
                 profileId: ''
             }
             var req = await HttpUtils.post('profile', obj)
-            var userInfo = {...response.data, ...{profileId: req.content}}
+            var userInfo = {...response, ...{profileId: req.content}}
             AsyncStorage.setItem('user', JSON.stringify(userInfo))
                 .then(() => {
-                    // this.handleLocalStorage();
-                    console.log('signUpppppppppp')
                     this.props.form.resetFields();
                     this.setState({
                         loader:false,
-                        visible:false
+                        visible:false,
+                        redirectToReferrer: true
                     })
                 })
         }//end if
         else{
-            console.log(response.data, 'response form_signUppppppp')
             this.setState({
                 msg: response.data.msg,
             })
@@ -111,11 +110,24 @@ class Form_signup extends Component{
         }
     }
 
+    checkName(rule, value, callback){
+        if(value.includes('<') || value.includes('>') || value.includes('/')){
+            callback('Name should be string')
+            return;
+        }else {
+            callback()
+        }
+    }
+
     render(){
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
         const { getFieldDecorator } = this.props.form;
         const { autoCompleteResult,visible, allUser } = this.state;
-        let {children} = this.props;
+        const { from } = this.props.location.state || { from: { pathname: "/" } };
+        let {redirectToReferrer} = this.state;
+        if (redirectToReferrer) {
+            return <Redirect to={from} />;
+        }
         const tailFormItemLayout = {
             wrapperCol: {
                 xs: {
@@ -133,7 +145,11 @@ class Form_signup extends Component{
                 <Form onSubmit={this.handleSubmit}>
                     <FormItem label="Name">
                         {getFieldDecorator('nickname', {
-                            rules: [{ required: true, message: 'Please input your Name!', whitespace: true }],
+                            rules: [{
+                                required: true, message: 'Please input your Name!', whitespace: true
+                            }, {
+                                validator: this.checkName.bind(this)
+                            }],
                         })(
                             <Input  />
                         )}
@@ -197,5 +213,5 @@ class Form_signup extends Component{
 }
 
 const WrappedRegistrationForm = Form.create()(Form_signup);
-export default WrappedRegistrationForm
+export default withRouter(WrappedRegistrationForm);
 

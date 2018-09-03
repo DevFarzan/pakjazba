@@ -17,6 +17,7 @@ import ProfileUser from './components/user_profile/profileUser';
 import DetailedPage from './components/detailedPage';
 import MarketBusiness from './components/marketBusiness';
 import MarketClassified from './components/marketClassified';
+import {PrivateRoute} from './components/signin_seperate'
 
 //css
 import './app.css';
@@ -31,13 +32,13 @@ ReactDOM.render(
 				<div>
 					<Route exact path="/" component={App}></Route>
 					<Route path="/sigin" component={Signin}></Route>
-					<Route path="/postad_business" component={Postbusiness}></Route>
-					<Route path="/postad_Roommates" component={Postroommates}></Route>
-					<Route path="/postad_buysell" component={Postbuysell}></Route>
-					<Route path="/profile_user" component={ProfileUser}></Route>
-					<Route path="/detail_page" component={DetailedPage}></Route>
-					<Route path="/market_business" component={MarketBusiness}></Route>
-					<Route path="/market_classified" component={MarketClassified}></Route>
+					<PrivateRoute path="/postad_business" component={Postbusiness}></PrivateRoute>
+					<PrivateRoute path="/postad_Roommates" component={Postroommates}></PrivateRoute>
+					<PrivateRoute path="/postad_buysell" component={Postbuysell}></PrivateRoute>
+					<PrivateRoute path="/profile_user" component={ProfileUser}></PrivateRoute>
+					<PrivateRoute path="/detail_page" component={DetailedPage}></PrivateRoute>
+					<PrivateRoute path="/market_business" component={MarketBusiness}></PrivateRoute>
+					<PrivateRoute path="/market_classified" component={MarketClassified}></PrivateRoute>
 				</div>
 			</BrowserRouter>
 		</Provider>

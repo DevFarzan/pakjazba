@@ -143,6 +143,7 @@ require('./models/category');
 require('./models/businessyellowpages');
 require('./models/posttoclassified');
 require('./models/profile');
+require('./models/roommatesSchema');
 
 require('./config/passport');
 
@@ -151,6 +152,8 @@ var categorypost = mongoose.model('category');
 var yellowPagesBusiness = mongoose.model('business');
 var classifiedBusiness = mongoose.model('postclassified');
 var profiledata = mongoose.model('profiledatabase');
+var roomrentsdata = mongoose.model('roomdata');
+
 
 app.use(passport.initialize());
 
@@ -848,7 +851,61 @@ app.post('/api/changepassword',function(req,res){
 
 /*===================post change password API end============================================================*/
 
+/*===================post roommates API start================================================================*/
+  app.post('/api/postroomrent',function(req,res){
+    var postroomrent = req.body;
+    var roommates_info = new roomrentsdata({
+      user_id:postroomrent.user_id,
+      city:postroomrent.city,
+      propertylocation:postroomrent.propertyLocation,
+      propertyzipcode:postroomrent.zipCode,
+      category:postroomrent.category,
+      housingtype:postroomrent.housingType,
+      postingtitle:postroomrent.postingTitle,
+      discription:postroomrent.description,
+      startdate:postroomrent.dateRange.from,
+      enddate:postroomrent.dateRange.to,
+      rent:postroomrent.price,
+      pricemode:postroomrent.priceMode,
+      accomodates:postroomrent.accommodates,
+      furnished:postroomrent.furnished,
+      Attachedbath:postroomrent.attachedBath,
+      amenitiesinclude:postroomrent.amenities,
+      vegetariansprefered:postroomrent.vegNoVeg,
+      smoking:postroomrent.smoking,
+      petfriendly:postroomrent.petFriendly,
+      imageurl:postroomrent.arr_url,
+      contactname:postroomrent.contactName,
+      contactemail:postroomrent.contactEmail,
+      contactnumber:postroomrent.contactNumber,
+      modeofcontact:postroomrent.contactMode
+    })
+    roommates_info.save(function(err,data){
+  if(err){
+      res.send({
+        code:500,
+        content:'Internal Server Error',
+        msg:'API not called properly'
+      })
+    }//end if
+    else if(data!=''){
+      res.send({
+        code:200,
+        msg:'Data inserted successfully'
+      });
+    }//end else if condition
+    else{
+      res.send({
+        code:404,
+        content:'Not Found',
+        msg:'no  data inserted'
+      });
+    }//end else condition
+})
 
+  })
+
+/*===================post roommates API end =================================================================*/
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
   app.use(express.static(path.join(__dirname, 'client/build')));

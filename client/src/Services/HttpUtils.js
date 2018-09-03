@@ -15,7 +15,7 @@ const headersFor = (token) => {
 const handleErrors = (response) => {
     return response.json().then(responseData => {
         if (responseData.errors) {
-            if (responseData.errors.indexOf('Invalid token') != -1) {
+            if (responseData.errors.indexOf('Invalid token') !== -1) {
                 return AsyncStorage.removeItem('auth_token').then(() => {
                     let err = Error('Invalid auth token')
                    // Sentry.captureException(err)
@@ -40,7 +40,7 @@ const hitEndpoint = (method, endpoint, token, body) => {
     return fetch(url, { method, headers, body }).then((response) => {
         return handleErrors(response)
     }).catch((err) => {
-        if (err.message == 'Network request failed')
+        if (err.message === 'Network request failed')
         //Sentry.captureException(err)
         throw err
     });

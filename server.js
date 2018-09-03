@@ -683,7 +683,7 @@ app.get('/api/marketplace',function(req,res){
   var session = req.query.session;
   
     yellowPagesBusiness.find({__v:0},function(err,yellowPages){
-      //console.log(yellowPages);
+      console.log(yellowPages);
      if(yellowPages!=''){
       var businesses  = [];
           //buysell = [];

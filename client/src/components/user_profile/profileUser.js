@@ -57,7 +57,8 @@ class ProfileUser extends Component{
             description:user.description,
             phone:user.phone,
             twitter:user.twitterlink,
-            facebook:user.facebooklink
+            facebook:user.facebooklink,
+            imageUrl: user.imageurl
         })
     }
 
@@ -67,17 +68,18 @@ class ProfileUser extends Component{
         reader.readAsDataURL(img);
     }
 
-    beforeUpload(file) {
-        const isJPG = file.type === 'image/jpeg';
-        if (!isJPG) {
-            message.error('You can only upload JPG file!');
-        }
-        const isLt2M = file.size / 1024 / 1024 < 2;
-        if (!isLt2M) {
-            message.error('Image must smaller than 2MB!');
-        }
-        return isJPG && isLt2M;
-    }
+    // beforeUpload(file) {
+    //     console.log(file, 'fileeeeee')
+    //     const isJPG = file.type === 'image/jpeg';
+    //     if (!isJPG) {
+    //         message.error('You can only upload JPG file!');
+    //     }
+    //     const isLt2M = file.size / 1024 / 1024 < 2;
+    //     if (!isLt2M) {
+    //         message.error('Image must smaller than 2MB!');
+    //     }
+    //     return isJPG && isLt2M;
+    // }
 
     uploadFile = (files) =>{
         const image = files.originFileObj
@@ -108,25 +110,30 @@ class ProfileUser extends Component{
     }
 
     handleChange = (info) => {
-        if (info.file.status === 'uploading') {
-            this.setState({ loading: true });
-            return;
-        }
-        if (info.file.status === 'done') {
+        // console.log(info, 'infoooooooooooooo')
+        // if (info.file.status === 'uploading') {
+        //     this.setState({ loading: true });
+        //     return;
+        // }
+        // if (info.file.status === 'done') {
          this.uploadFile(info.file).then((result) => {
-            this.setState({url : result.body.url})
-         })
-            this.getBase64(info.file.originFileObj, imageUrl => {
-               this.setState({
-                imageUrl,
-                loading: false,
-            })});
-        }
+             this.setState({
+                 url : result.body.url,
+                 imageUrl : result.body.url,
+                 loading: false,
+         })})
+            // this.getBase64(info.file.originFileObj, imageUrl => {
+            //    this.setState({
+            //     imageUrl,
+            //     loading: false,
+            // })
+            // });
+        // }
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { url, name, location, description, email, phone, twitter, facebook, profileSec, changePass, userId, profileId } = this.state;
+        const { url, name, location, description, email, phone, twitter, facebook, changePass, userId, profileId } = this.state;
         if(changePass) {
             this.props.form.validateFieldsAndScroll((err, values) => {
                 if(!err) {
@@ -219,7 +226,6 @@ class ProfileUser extends Component{
         const props = {
             action: '//jsonplaceholder.typicode.com/posts/',
             onChange: this.handleChange,
-            beforeUpload: this.beforeUpload.bind(this)
         };
 
         return(
@@ -490,7 +496,7 @@ class ProfileUser extends Component{
                                                              src={imageUrl ? imageUrl : '../images/images.jpg'} alt=""/>
                                                     </div>
                                                     <div className="single-file-input"
-                                                         style={{"text-align": "center", "margin-top": "9px"}}>
+                                                         style={{"textAlign": "center", "marginTop": "9px"}}>
                                                         <Upload {...props} >
                                                             <div className="btn btn-framed btn-primary small">Upload a
                                                                 picture

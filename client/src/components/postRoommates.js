@@ -234,8 +234,9 @@ class Postroommates extends Component{
             vegNoVeg: vegNoVeg,
             arr_url: response ? response : []
         }
-        console.log(obj, 'objjjjjjjj')
-        // var req = await HttpUtils.post('postbuyselldata', obj)
+        console.log(obj, 'objjjjjjjj');
+        var req = await HttpUtils.post('postroomrent', obj)
+        console.log(req,'server response');
     }
 
     render(){
@@ -371,10 +372,10 @@ class Postroommates extends Component{
                                                     <TextArea
                                                         rows={6}
                                                         maxlength="500"
-                                                    />
+                                                    style={{"margin-bottom": "10px"}}/>
                                                 )}
                                                 <br />
-                                                <span>{500 - desLength}</span>
+                                                <span style={{"float": "right"}}>{500 - desLength}</span>
                                             </FormItem>
                                             <FormItem
                                                 {...formItemLayout}

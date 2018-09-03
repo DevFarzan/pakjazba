@@ -17,6 +17,16 @@ var RoomSchema = new mongoose.Schema({
 	pricemode:{type:String},
 	accomodates:{type:String},
 	furnished:{type:String},
-		
+	Attachedbath:{type:Boolean},
+	amenitiesinclude:{type:Array},
+	vegetariansprefered:{type:String},
+	smoking:{type:String},
+	petfriendly:{type:String},
+	imageurl:{type:Array},
+	contactname:{type:String},
+	contactemail:{type:String},
+	contactnumber:{type:String},
+	modeofcontact:{type:Array},
+});
 
-})
+mongoose.model('roomdata',RoomSchema);

@@ -19,6 +19,7 @@ import {
 import App from '../App';
 import Geosuggest from 'react-geosuggest';
 import Burgermenu from '../components/business/burgermenu';
+import Footer from '../components/footer/footer';
 import sha1 from "sha1";
 import superagent from "superagent";
 import axios from "axios";
@@ -243,6 +244,7 @@ class Postbusiness extends Component {
             lastName:values.lastName,
             businessNumber: values.businessNumber,
             businessOwner: values.businessOwner,
+            description: values.description,
             city: values.city,
             state: values.state,
             zip: values.zip,
@@ -519,6 +521,7 @@ class Postbusiness extends Component {
                         </div>
                         {/*panel-group*/}
                     </Form>
+                    <Footer />
                 </div>
                 {/*container*/}
 

@@ -1,91 +1,77 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
-//import { Row, Col } from 'antd';
 import './secondfold.css'
+import { Pagination } from 'antd';
+import {HttpUtils} from "../../Services/HttpUtils";
 
 
 class Secondfold extends Component{
- render(){
-  return(
-    <div className="secondfold">
-      <h1 className="text-align"> Great Places </h1>
-        <div className="index-content">
-        <div className="row">
-            <a href="blog-ici.html">
-                <div className="col-md-4 ">
-                    <div className="card">
-                        <img src="http://cevirdikce.com/proje/hasem-2/images/finance-1.jpg"/>
-                        <h4>Investment Strategy</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="blog-ici.html" className="blue-button">Read More</a>
-                    </div>
-                </div>
-            </a>
+    constructor(props){
+        super(props);
+        this.state = {
+            current: 1,
+            business: [],
+            showBusiness: []
+        }
+    }
 
-            <a href="blog-ici.html">
-                <div className="col-md-4">
-                    <div className="card">
-                        <img src="http://cevirdikce.com/proje/hasem-2/images/finance-2.jpg"/>
-                        <h4>Investment Strategy</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="blog-ici.html" className="blue-button">Read More</a>
-                    </div>
-                </div>
-            </a>
+    componentDidMount(){
+        this.getAllBusiness()
+    }
 
-            <a href="blog-ici.html">
-                <div className="col-md-4">
-                    <div className="card">
-                        <img src="http://cevirdikce.com/proje/hasem-2/images/finance-3.jpg"/>
-                        <h4>Investment Strategy</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="blog-ici.html" className="blue-button">Read More</a>
+    async getAllBusiness(){
+        var res = await HttpUtils.get('marketplace')
+        this.setState({
+            business: res.business,
+            showBusiness: res.business.slice(0, 6)
+        })
+    }
+
+    funcIndexes(page){
+        var to = 6 * page + 1;
+        var from = to - 6;
+        return {from: page === 1 ? 0 : from, to: page === 1 ? 6 : to}
+
+    }
+
+    onChange = (page) => {
+        const { business, showBusiness } = this.state;
+        var indexes = this.funcIndexes(page)
+        console.log(indexes, 'indexessssss')
+        this.setState({
+            current: page,
+            showBusiness: business.slice(indexes.from, indexes.to)
+        });
+    }
+
+    render(){
+        const { business, showBusiness } = this.state;
+        console.log(business, 'reqqqqqqqqqqqq')
+        console.log(showBusiness, 'showBusiness')
+
+        return(
+            <div className="secondfold">
+                <h1 className="text-align"> Great Places </h1>
+                <div className="index-content">
+                    <div className="row">
+                        {showBusiness && showBusiness.map((elem) => {
+                            return (<a href="blog-ici.html">
+                            <div className="col-md-4"  style={{'marginBottom': '30px'}}>
+                                <div className="card">
+                                    <img src="http://cevirdikce.com/proje/hasem-2/images/finance-1.jpg"/>
+                                    <h4>{elem.businessname}</h4>
+                                    <p>{elem.description}</p>
+                                    <a href="blog-ici.html" className="blue-button">Read More</a>
+                                </div>
+                            </div>
+                        </a>)
+                        })}
                     </div>
+                    <Pagination defaultCurrent={1} total={business.length} onChange={this.onChange} />
                 </div>
-            </a>
             </div>
-        </div>
-
-        <div className="index-content">
-        <div className="row">
-            <a href="blog-ici.html">
-
-                <div className="col-md-4">
-                    <div className="card">
-                        <img src="http://cevirdikce.com/proje/hasem-2/images/finance-1.jpg"/>
-                        <h4>Investment Strategy</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="blog-ici.html" className="blue-button">Read More</a>
-                    </div>
-                </div>
-            </a>
-
-            <a href="blog-ici.html">
-                <div className="col-md-4">
-                    <div className="card">
-                        <img src="http://cevirdikce.com/proje/hasem-2/images/finance-2.jpg"/>
-                        <h4>Investment Strategy</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="blog-ici.html" className="blue-button">Read More</a>
-                    </div>
-                </div>
-            </a>
-
-            <a href="blog-ici.html">
-                <div className="col-md-4">
-                    <div className="card">
-                        <img src="http://cevirdikce.com/proje/hasem-2/images/finance-3.jpg"/>
-                        <h4>Investment Strategy</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="blog-ici.html" className="blue-button">Read More</a>
-                    </div>
-                </div>
-            </a>
-        </div>
-        </div>
-    </div>
-  )
-}
+        )
+    }
 }
 
 export default Secondfold;

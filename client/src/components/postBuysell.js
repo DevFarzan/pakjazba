@@ -13,6 +13,7 @@ import {
 } from 'antd';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 import Burgermenu from '../components/business/burgermenu';
+import Footer from '../components/footer/footer';
 import sha1 from "sha1";
 import superagent from "superagent";
 import { Redirect } from 'react-router';
@@ -522,6 +523,7 @@ class Postbuysell extends Component{
                             </div>
                         </div>
                     </Form>
+                    <Footer />
                 </div>
             </div>
         )

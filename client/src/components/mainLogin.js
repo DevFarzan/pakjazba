@@ -11,7 +11,7 @@ export default class MainLogin extends Component{
         }
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.handleLocalStorage();
     }
 

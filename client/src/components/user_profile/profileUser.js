@@ -5,6 +5,7 @@ import sha1 from "sha1";
 import superagent from "superagent";
 import AsyncStorage from "@callstack/async-storage";
 import {HttpUtils} from "../../Services/HttpUtils";
+import Burgermenu from '../../components/business/burgermenu';
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -230,7 +231,7 @@ class ProfileUser extends Component{
 
         return(
             <div>
-                <App/>
+                <Burgermenu/>
                 <div className="content" style={{"margin-top": "110px"}}>
                     <div className="container">
                         <div className="hero">

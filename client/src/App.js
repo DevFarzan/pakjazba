@@ -1,10 +1,13 @@
 import React, { Component } from   'react';
 //import antd  from 'antd-init';
 //import ImageDropzone from './components/imagedropzone';
-import { Input } from 'antd';
+import { Input, Button } from 'antd';
 import 'antd/dist/antd.css';
+import Burgermenu from './components/business/burgermenu';
+import Slider from './components/business/Slider';
 import Signup from './components/signupmodal';
 import MainLogin from './components/mainLogin'
+import Firstfold from './components/business/firstfold';
 // import Signin from './components/signinmodal';
 import Dropzone from './components/imagedropzone';
 import Category from './components/getcategory';
@@ -50,13 +53,12 @@ class App extends Component {
         const {username} = this.state;
         return (
             <div className ="">
-                <nav className="navbar navbar-default">
-                    <div className="row">
+                    {/*<div className="row">
                         <div className="col-md-2">
                             <div className="logoWidth_main">
                                 <img src="./images/logo.png" />
                             </div>
-                        </div>{/*col-md-3*/}
+                        </div>{/*col-md-3*
                         <div className="col-md-6 searchbox">
                             <Search
                                 placeholder="input search text"
@@ -64,15 +66,18 @@ class App extends Component {
                                 enterButton
                             />
 
-                        </div>{/*col-md-7*/}
+                        </div>{/*col-md-7*
                         <div className="col-md-2 loginSignup">
                             <span className="padding_left_p"><MainLogin/></span>
                         </div>
                         <div className="col-md-2 category_margin"><Category/></div>
                         <div>
                         </div>
-                    </div>{/*row*/}
-                </nav>
+                    </div>*/}
+                    <div className="background-image" style={{backgroundImage: 'url(https://images.alphacoders.com/633/633643.jpg)'}}>>
+                        <Burgermenu/>
+                        <Slider/>
+                    </div>
 
             </div>
         );

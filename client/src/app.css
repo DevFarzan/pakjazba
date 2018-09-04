@@ -501,6 +501,189 @@ a:-webkit-any-link {
 .ant-form-item-label label{
   margin-top:8px !important;
 }
+/*==========================shayan css====================================*/
+
+#body{
+    background-color: 	#D3D3D3;
+    width: 100%;
+}
+
+.context-menu {
+    cursor: context-menu;
+}
+
+.SignUp{
+    display: inline;
+    color: white;
+}
+
+.SignIn{
+    display: inline;
+    float: left;
+    color: white;
+    padding-left: 6px;
+}
+
+.header {
+    overflow: hidden;
+    background-color: rgba(192,192,192,0);
+    padding: 20px 10px 0 10px;
+
+}
+
+.header a {
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+}
+
+.header a.logo {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: -20px;
+}
+
+.header a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.header a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.header-right {
+    float: left;
+    padding-left: 20px;
+}
+
+.ant-input-affix-wrapper {
+    font-family: "Monospaced Number", "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.65);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+
+}
+.ant-col-24 {
+    display: block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 500px;
+    background-color: rgba(192,192,192,0);
+}
+
+.col-24{
+    display: block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 200px;
+    background-color:rgba(192,192,192,0);
+    position: absolute;
+}
+
+.text-h1{
+    text-align:  center;
+    text-shadow: 1px solid #eee;
+    padding-top: 50px;
+    color: white;
+}
+
+.paragragh-text{
+    text-align: center;
+    text-shadow: 1px solid #eee;
+    padding-top: 60px;
+    color: white;
+}
+/*css for first fold container*/
+.cards{
+    width:20%;
+    margin: 30px;
+    border: 1px solid #A9A9A9;
+    box-shadow: 2px 3px 2px 3px #ccc;
+    padding: 10px;
+    text-align: center;
+    height: 140px;
+    float: left;
+
+}
+
+.margin-serachbox{
+    margin-top: 10px;
+
+}
+
+.login-button{
+    width: 20%;
+    font-size: 15px;
+    float: right;
+    margin-top: -40px;
+    background-color: black;
+    margin-right: 80px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius:4px;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+    height: 30px;
+    padding-top: 3px;
+}
+.background-image{
+    background-image: 'url(https://images.alphacoders.com/633/633643.jpg)';
+}
+.color{
+    font-weight: bold;
+    color: white;
+}
+
+.text-align{
+    text-align: center;
+    padding-top:  20px;
+}
+
+.form-group2{
+
+    text-align: center;
+    float: left;
+}
+
+#wrapper{
+    width: 100%;
+    height:80px;
+    margin-top: -10px;
+}
+.button2{
+    height:20px;
+    position:relative;
+    margin: 0 25px;
+    width:200px;
+    top:5%;
+    left:40%;
+}
+
+.banner{
+    background-color:#FFFFFF ;
+    height: 150px;
+    padding:0;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius:4px;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+
+}
 .ant-upload-list-item{
   display:none;
 }

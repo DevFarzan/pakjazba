@@ -20,6 +20,7 @@ import superagent from "superagent";
 import {HttpUtils} from "../Services/HttpUtils";
 //import MapContainer from './google_map/Map'
 import sha1 from "sha1";
+import Burgermenu from '../components/business/burgermenu';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 const RangePicker = DatePicker.RangePicker;
 const InputGroup = Input.Group;
@@ -270,7 +271,7 @@ class Postroommates extends Component{
 
         return(
             <div>
-                <App/>
+                <Burgermenu/>
                 <div className="container">
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="panel-group">

@@ -493,10 +493,10 @@ class ProfileUser extends Component{
                                                 <div className="profile-image">
                                                     <div className="img-circle">
                                                         <img className="img-circle"
-                                                             src={imageUrl ? imageUrl : '../images/images.jpg'} alt=""/>
+                                                             src={imageUrl ? imageUrl : '../images/images.jpg'} alt="" style={{"width":"78%"}} />
                                                     </div>
                                                     <div className="single-file-input"
-                                                         style={{"textAlign": "center", "marginTop": "9px"}}>
+                                                         style={{"padding": "40px", "marginTop": "-25px"}}>
                                                         <Upload {...props} >
                                                             <div className="btn btn-framed btn-primary small">Upload a
                                                                 picture

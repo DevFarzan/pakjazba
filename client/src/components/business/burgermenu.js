@@ -35,7 +35,7 @@ class Burgermenu extends Component{
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <a className="navbar-brand" href="#"><img src="./images/mobile-logo.png"/></a>
+              <a className="navbar-brand" href="#"><img src="./images/mobile-logo.png" style={{"width": "100px","margin-top": "11px"}} /></a>
             </div>
 
 

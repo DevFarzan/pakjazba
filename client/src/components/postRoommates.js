@@ -272,7 +272,7 @@ class Postroommates extends Component{
         return(
             <div>
                 <Burgermenu/>
-                <div className="container">
+                <div className="">
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="panel-group">
                             <div className="panel panel-default">

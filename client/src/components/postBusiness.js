@@ -308,7 +308,7 @@ class Postbusiness extends Component {
                 {/*================================App component include End===========================*/}
 
                 {/*================================post business form start============================*/}
-                <div className="container">
+                <div className="">
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="panel-group">
                             <div className="panel panel-default">

@@ -28,7 +28,7 @@ class Secondfold extends Component{
     }
 
     funcIndexes(page){
-        var to = 6 * page + 1;
+        var to = 6 * page;
         var from = to - 6;
         return {from: page === 1 ? 0 : from, to: page === 1 ? 6 : to}
 
@@ -55,19 +55,24 @@ class Secondfold extends Component{
                 <div className="index-content">
                     <div className="row">
                         {showBusiness && showBusiness.map((elem) => {
+                            let str = elem.description;
+                            if(str.length > 100) {
+                                str = str.substring(0, 100);
+                                str = str + '...'
+                            }
                             return (<a href="blog-ici.html">
                             <div className="col-md-4"  style={{'marginBottom': '30px'}}>
                                 <div className="card">
                                     <img src="http://cevirdikce.com/proje/hasem-2/images/finance-1.jpg"/>
                                     <h4>{elem.businessname}</h4>
-                                    <p>{elem.description}</p>
+                                    <p>{str}</p>
                                     <a href="blog-ici.html" className="blue-button">Read More</a>
                                 </div>
                             </div>
                         </a>)
                         })}
                     </div>
-                    <Pagination defaultCurrent={1} total={business.length} onChange={this.onChange} />
+                    <Pagination defaultCurrent={1} defaultPageSize={6} total={business.length} onChange={this.onChange} />
                 </div>
             </div>
         )

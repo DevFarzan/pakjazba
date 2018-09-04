@@ -8,9 +8,8 @@ class Slider extends Component{
  render(){
    return (
      <div>
-     <Row>
-        <Col span={24}>
-            <div>
+     
+            <div style={{backgroundImage: 'url(https://images.alphacoders.com/633/633643.jpg)',"height": "407px","margin-top": "-19px"}}>
               <p className="paragragh-text">Lorem Forem</p>
               <h1 className="text-h1">Lorem Forem</h1>
               <form className="navbar-form navbar-left">
@@ -20,8 +19,6 @@ class Slider extends Component{
                 <button type="submit" className="btn btn-default col-md-4 col-sm-4 col-xs-4">Submit</button>
               </form>
             </div>
-        </Col>
-      </Row>
     </div>
   );
  }

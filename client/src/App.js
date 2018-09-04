@@ -74,7 +74,7 @@ class App extends Component {
                         <div>
                         </div>
                     </div>*/}
-                    <div className="background-image" style={{backgroundImage: 'url(https://images.alphacoders.com/633/633643.jpg)'}}>>
+                    <div className="background-image">
                         <Burgermenu/>
                         <Slider/>
                     </div>

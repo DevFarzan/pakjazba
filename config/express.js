@@ -32,7 +32,7 @@ module.exports = function(app, config) {
   app.use(compress());
   app.use(methodOverride());
 
-  var controllers1 = glob.sync(config.root + '/app/controllers/home.js');
+  var controllers1 = glob.sync(config.root + '/app/controllers/business.js');
 
   controllers1.forEach(function (controller) {
     require(controller)(app);

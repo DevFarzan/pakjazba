@@ -18,6 +18,7 @@ import {
 } from 'antd';
 import App from '../App';
 import Geosuggest from 'react-geosuggest';
+import Burgermenu from '../components/business/burgermenu';
 import sha1 from "sha1";
 import superagent from "superagent";
 import axios from "axios";
@@ -303,7 +304,7 @@ class Postbusiness extends Component {
         return (
             <div>
                 {/*================================App component include Start===========================*/}
-                <App/>
+                <Burgermenu/>
                 {/*================================App component include End===========================*/}
 
                 {/*================================post business form start============================*/}

@@ -17,6 +17,7 @@ import ProfileUser from './components/user_profile/profileUser';
 import DetailedPage from './components/detailedPage';
 import MarketBusiness from './components/marketBusiness';
 import MarketClassified from './components/marketClassified';
+import MarketRoommates from './components/MarketRoommates';
 import {PrivateRoute} from './components/signin_seperate'
 
 //css
@@ -36,9 +37,10 @@ ReactDOM.render(
 					<PrivateRoute path="/postad_Roommates" component={Postroommates}></PrivateRoute>
 					<PrivateRoute path="/postad_buysell" component={Postbuysell}></PrivateRoute>
 					<PrivateRoute path="/profile_user" component={ProfileUser}></PrivateRoute>
-					<PrivateRoute path="/detail_page" component={DetailedPage}></PrivateRoute>
-					<PrivateRoute path="/market_business" component={MarketBusiness}></PrivateRoute>
-					<PrivateRoute path="/market_classified" component={MarketClassified}></PrivateRoute>
+					<Route path="/detail_page" component={DetailedPage}></Route>
+					<Route path="/market_business" component={MarketBusiness}></Route>
+					<Route path="/market_classified" component={MarketClassified}></Route>
+					<Route path="/market_roommates" component={MarketRoommates}></Route>
 				</div>
 			</BrowserRouter>
 		</Provider>

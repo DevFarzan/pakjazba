@@ -29,13 +29,9 @@ class Signin extends Component{
         }
     }
 
-    componentWillMount(){
-        this.handleLocalStorage();
-        this.getAllUsers();
-    }
-
     componentDidMount(){
         this.handleLocalStorage();
+        this.getAllUsers();
     }
 
     async getAllUsers(){

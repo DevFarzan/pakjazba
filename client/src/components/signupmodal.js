@@ -19,7 +19,7 @@ class Signup extends Component{
         }
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.handleLocalStorage();
     }
 

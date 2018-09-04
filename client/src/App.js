@@ -66,7 +66,7 @@ class App extends Component {
 
                         </div>{/*col-md-7*/}
                         <div className="col-md-2 loginSignup">
-                            <p className="padding_left_p"><MainLogin/></p>
+                            <span className="padding_left_p"><MainLogin/></span>
                         </div>
                         <div className="col-md-2 category_margin"><Category/></div>
                         <div>

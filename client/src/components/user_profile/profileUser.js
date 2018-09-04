@@ -497,7 +497,7 @@ class ProfileUser extends Component{
                                                              src={imageUrl ? imageUrl : '../images/images.jpg'} alt="" style={{"width":"78%"}} />
                                                     </div>
                                                     <div className="single-file-input"
-                                                         style={{"padding": "40px", "marginTop": "-25px"}}>
+                                                         style={{"padding": "16px", "marginTop": "-6px"}}>
                                                         <Upload {...props} >
                                                             <div className="btn btn-framed btn-primary small">Upload a
                                                                 picture

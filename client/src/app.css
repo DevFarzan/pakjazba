@@ -690,3 +690,21 @@ a:-webkit-any-link {
 .ant-upload-list-item-info i{
  display:none;
 }
+.home-newsletter .single .form-control {
+height: 50px;
+background: #fff;
+border-color: transparent;
+border-radius: 20px 0 0 20px;
+}
+
+.home-newsletter .single .form-control:focus {
+box-shadow: none;
+border-color: #243c4f;
+}
+
+.home-newsletter .single .btn {
+min-height: 50px;
+border-radius: 0 20px 20px 0;
+background: #8cbc40;
+color: #fff;
+}

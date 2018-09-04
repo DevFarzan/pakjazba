@@ -25,7 +25,8 @@ class Burgermenu extends Component{
     const { Link } = Anchor;
 
     return(
-      <nav className="navbar navbar-default">
+      <div>
+      <nav className="navbar navbar-default hidden-xs">
         <div className="container-fluid">
           <div className="col-md-2 col-sm-6 col-xs-6">
             <div className="navbar-header">
@@ -60,6 +61,34 @@ class Burgermenu extends Component{
           </div>
         </div>
       </nav>
+{/*=============================================visible xs============================================*/}
+
+<nav className="navbar navbar-default visible-xs">
+        <div className="container-fluid">
+          <div className="row">
+              <div className="col-xs-9">
+                  <div className="navbar-header">
+                    <a className="navbar-brand" href="#"><img src="./images/mobile-logo.png" style={{"width": "100px","margin-top": "11px"}} /></a>
+                  </div>
+            </div>{/*col-md-12*/}
+            <div className="col-xs-3" style={{"margin-top": "28px"}}><MainLogin/></div>
+          </div>{/*row*/}  
+          <div className="row" style={{"margin-top": "22px","margin-bottom": "11px"}}>
+            <div className="col-xs-6">
+                    <div style={{"float": "right"}}>
+                      <Button type="primary" ghost>Room Renting</Button>
+                      <Button type="primary" ghost style={{"margin-top": "8px"}}>Bussiness Listing</Button>
+                    </div>
+            </div>        
+            <div className="col-xs-6"> 
+              <Button type="primary" ghost style={{"margin-bottom": "8px"}}>Buy & Sell</Button>
+              <span ><Category/></span>
+            </div> 
+            </div>{/*row*/}
+        
+        </div>
+      </nav>
+</div>
     )
   }
 }

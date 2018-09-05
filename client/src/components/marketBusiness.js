@@ -4,15 +4,14 @@ import Firstfold from "./business/firstfold";
 import Secondfold from './business/secondfold'
 import Footer from '../components/footer/footer';
 import {Button} from "antd";
-
-
+import { connect } from 'react-redux'
 
 class MarketBusiness extends Component{
     render(){
         return(
             <div>
                 <App/>
-                <Firstfold/>
+                {!this.props.text && <Firstfold/>}
                 <Secondfold/>
                 <div id="wrapper">
                     <Button className="button2 col-md-12 col-sm-12 col-xs-12" type="primary" block>Veiw More</Button>
@@ -29,4 +28,10 @@ class MarketBusiness extends Component{
     }
 }
 
-export default MarketBusiness;
+const mapStateToProps = (state) => {
+    return({
+        text: state.text
+    })
+}
+
+export default connect(mapStateToProps)(MarketBusiness);

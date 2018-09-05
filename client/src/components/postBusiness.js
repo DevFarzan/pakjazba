@@ -105,7 +105,197 @@ const category = [{
     value:'Data Cabling Installer',
     label:'Data Cabling Installer',
 },{
-    
+   value:'Detective Agency',
+   label:'Detective Agency' 
+},{
+    value:'Email Marketing Service',
+    label:'Email Marketing Service',
+},{
+    value:'Executive Coach',
+    label:'Executive Coach',
+},{
+    value:'Fire Safety Training Provider',
+    label:'Fire Safety Training Provider',
+},{
+    value:'Furniture Shop',
+    label:'Furniture Shop',
+},{
+    value:'Graphic Designer',
+    label:'Graphic Designer',
+},{
+    value:'Hotel',
+    label:'Hotel',
+},{
+    value:'Human Resources Consultant',
+    label:'Human Resources Consultant',
+},{
+    value:'Illustrator',
+    label:'Illustrator',
+},{
+    value:'Information Technology Consultant',
+    label:'Information Technology Consultant',
+},{
+    value:'Internet Marketing Consultant',
+    label:'Internet Marketing Consultant',
+},{
+    value:'Internet Service Provider',
+    label:'Internet Service Provider',
+},{
+    value:'IT Support Services',
+    label:'IT Support Services',
+},{
+    value:'Language Tutor',
+    label:'Language Tutor',
+},{
+    value:'Leadership Development Consultant',
+    label:'Leadership Development Consultant',
+},{
+    value:'Limousine Service',
+    label:'Limousine Service',
+},{
+    value:'Local Magazine or Directory',
+    label:'Local Magazine or Directory',
+},{
+    value:'Mailing Service',
+    label:'Mailing Service',
+},{
+    value:'Management Consultant',
+    label:'Management Consultant',
+},{
+    value:'Market Research Agency',
+    label:'Market Research Agency',
+},{
+    value:'Marketing Consultant',
+    label:'Marketing Consultant',
+},{
+    value:'Mediation Service',
+    label:'Mediation Service',
+},{
+    value:'Mobile Phone Supplier',
+    label:'Mobile Phone Supplier',
+},{
+    value:'Office Equipment Leasing',
+    label:'Office Equipment Leasing',
+},{
+    value:'Office Furnisher',
+    label:'Office Furnisher',
+},{
+    value:'Office Machines Company',
+    label:'Office Machines Company',
+},{
+    value:'Office Products Supplier',
+    label:'Office Products Supplier',
+},{
+    value:'Personal Assistant',
+    label:'Personal Assistant',
+},{
+    value:'Printer',
+    label:'Printer',
+},{
+    value:'Printer Ink Cartridges Supplier',
+    label:'Printer Ink Cartridges Supplier',
+},{
+    value:'Professional Organiser',
+    label:'Professional Organiser',
+},{
+    value:'Professional Speaker',
+    label:'Professional Speaker',
+},{
+    value:'Promotional Goods Supplier',
+    label:'Promotional Goods Supplier',
+},{
+    value:'Public Relations Agency',
+    label:'Public Relations Agency',
+},{
+    value:'Public Speaking Coach',
+    label:'Public Speaking Coach',
+},{
+    value:'Publicist',
+    label:'Publicist',
+},{
+    value:'Radio Station',
+    label:'Radio Station',
+},{
+    value:'Recruitment Agency',
+    label:'Recruitment Agency',
+},{
+    value:'Restaurant',
+    label:'Restaurant',
+},{
+    value:'Sales Training Consultant',
+    label:'Sales Training Consultant',
+},{
+    value:'Search Engine Optimisation Consultant',
+    label:'Search Engine Optimisation Consultant',
+},{
+    value:'Security Guarding Agency',
+    label:'Security Guarding Agency',
+},{
+    value:'Security Personnel Agency',
+    label:'Security Personnel Agency',
+},{
+    value:'Shop Fitter',
+    label:'Shop Fitter',
+},{
+    value:'Sign Company',
+    label:'Sign Company',
+},{
+    value:'Social Media Marketing Agency',
+    label:'Social Media Marketing Agency',
+},{
+    value:'Solicitor',
+    label:'Solicitor',
+},{
+    value:'Storage Facility',
+    label:'Storage Facility',
+},{
+    value:'Tailor',
+    label:'Tailor',
+},{
+    value:'Taxi Service',
+    label:'Taxi Service',
+},{
+    value:'Telecommunications Service',
+    label:'Telecommunications Service',
+},{
+    value:'Telemarketing Service',
+    label:'Telemarketing Service',
+},{
+    value:'Tour Operator',
+    label:'Tour Operator',
+},{
+    value:'Translator',
+    label:'Translator',
+},{
+    value:'Trophie Supplier',
+    label:'Trophie Supplier',
+},{
+    value:'Utilities Broker',
+    label:'Utilities Broker',
+},{
+    value:'Vending Machine Supplier',
+    label:'Vending Machine Supplier',
+},{
+    value:'Video Production Service',
+    label:'Video Production Service',
+},{
+    value:'Virtual Assistant',
+    label:'Virtual Assistant',
+},{
+    value:'Water Cooler Supplier',
+    label:'Water Cooler Supplier',
+},{
+    value:'Web Designer',
+    label:'Web Designer',
+},{
+    value:'Web Developer',
+    label:'Web Developer',
+},{
+    value:'Web Hosting Provider',
+    label:'Web Hosting Provider',
+},{
+    value:'Writer',
+    label:'Writer',
 }];
 
 class Postbusiness extends Component {

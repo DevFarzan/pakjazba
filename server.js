@@ -646,7 +646,7 @@ app.post('/api/postbuyselldata',function(req,res){
       postingtype:postingtype,
       category:category,
       title:title,
-      description:description,
+      description:req.body.description,
       price:price,
       hideprice:hideprice,
       modelmake:modelmake,
@@ -686,7 +686,7 @@ app.get('/api/marketplace',function(req,res){
   var session = req.query.session;
   
     yellowPagesBusiness.find({__v:0},function(err,yellowPages){
-      console.log(yellowPages);
+      //console.log(yellowPages);
      if(yellowPages!=''){
       var businesses  = [];
           //buysell = [];
@@ -695,11 +695,11 @@ app.get('/api/marketplace',function(req,res){
       }//end for
       }//end if
       classifiedBusiness.find({__v:0},function(err,classifiedData){
-        //console.log(classifiedData);
+        console.log('classified:'+classifiedData);
         if(classifiedData!=''){
           var buysell = [];
           for(var j=0;j<classifiedData.length;j++){
-            buysell.push(classifiedData[i]);
+            buysell.push(classifiedData[j]);
           }
         }//end if
       

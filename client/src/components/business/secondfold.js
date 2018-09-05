@@ -52,7 +52,7 @@ class Secondfold extends Component{
         return(
             <div className="secondfold">
                 <h1 className="text-align"> Great Places </h1>
-                <div className="index-content">
+                <div className="index-content" style={{marginBottom: "-225px"}}>
                     <div className="row">
                         {showBusiness && showBusiness.map((elem) => {
                             let str = elem.description;
@@ -72,7 +72,7 @@ class Secondfold extends Component{
                         </a>)
                         })}
                     </div>
-                    <Pagination defaultCurrent={1} defaultPageSize={6} total={business.length} onChange={this.onChange} />
+                    <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={business.length} onChange={this.onChange} /></span>
                 </div>
             </div>
         )

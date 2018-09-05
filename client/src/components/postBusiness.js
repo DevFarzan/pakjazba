@@ -30,11 +30,74 @@ import AsyncStorage from "@callstack/async-storage/lib/index";
 const { TextArea } = Input;
 const FormItem = Form.Item
 const category = [{
-	value: 'imported',
-    label: 'imported'
+	value: 'Advertising Agency',
+    label: 'Advertising Agency'
 },{
-    value: 'local',
-    label: 'local',
+    value: 'Answering Service',
+    label: 'Answering Service',
+},{
+    value: 'Audio Visual Equipment Hire',
+    label: 'Audio Visual Equipment Hire',
+},{value:'Branding Consultant',label:'Branding Consultant'},{
+    value:'Business Advisor',
+    label:'Business Advisor',
+},{
+    value:'Business Consultant',
+    label:'Business Consultant',
+},{
+    label:'Business Franchise Consultant',
+    value:'Business Franchise Consultant',
+},{
+    label:'Business Training Service',
+    value:'Business Training Service',
+},{
+    value:'Car Body Shop',
+    label:'Car Body Shop',
+},{
+    value:'Car Detailer',
+    label:'Car Detailer',
+},{
+    value:'Car Sales Showroom',
+    label:'Car Sales Showroom',
+},{
+    value:'Caterer',
+    label:'Caterer',
+},{
+    value:'Charity',
+    label:'Charity',
+},{
+    value:'Chauffeur',
+    label:'Chauffeur',
+},{
+    value:'Chef',
+    label:'Chef',
+},{
+    value:'Clothing Supplier',
+    label:'Clothing Supplier',
+},{
+    value:'Computer Networks Installer',
+    label:'Computer Networks Installer',
+},{
+    value:'Computer Repair Centre',
+    label:'Computer Repair Centre',
+},{
+    value:'Computer Software Developer',
+    label:'Computer Software Developer',
+},{
+    value:'Computer Software Sales',
+    label:'Computer Software Sales',
+},{
+    value:'Computer Training Provider',
+    label:'Computer Training Provider',
+},{
+    value:'Concierge',
+    label:'Concierge',
+},{
+    value:'Copywriter',
+    label:'Copywriter',
+},{
+    value:'Courier',
+    label:'Courier',
 }];
 
 class Postbusiness extends Component {

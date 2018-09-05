@@ -14,15 +14,13 @@ class MarketBusiness extends Component{
                 <App/>
                 <Firstfold/>
                 <Secondfold/>
-                <div id="wrapper">
-                    <Button className="button2 col-md-12 col-sm-12 col-xs-12" type="primary" block>Veiw More</Button>
-                </div>
-                <div className="col-md-12 col-sm-12 col-xs-12">
-                    <div className="banner">
-                        <h1 className="text-align">  Lorem Foren </h1>
-                        <Button className="button2 col-md-12 col-sm-12 col-xs-12" type="primary" block>Click Here</Button>
+                
+                {/*<div className="col-md-12 col-sm-12 col-xs-12">
+                    <div className="banner" style={{backgroundImage:"url('../images/afterpaginate.jpg')"}}>
+                        <h1 className="text-align">Explore Exciting Destination</h1>
+                        <h3>lorem Ipsum doller amet sit,consectecture adipiscing.</h3>
                     </div>
-                </div>
+                </div>*/}
                 <Footer/>
             </div>
         )

@@ -98,6 +98,14 @@ const category = [{
 },{
     value:'Courier',
     label:'Courier',
+},{
+    value:'Custom Clothing Company',
+    label:'Custom Clothing Company',
+},{
+    value:'Data Cabling Installer',
+    label:'Data Cabling Installer',
+},{
+    
 }];
 
 class Postbusiness extends Component {

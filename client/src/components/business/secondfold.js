@@ -3,6 +3,7 @@ import 'antd/dist/antd.css';
 import './secondfold.css'
 import { Pagination } from 'antd';
 import {HttpUtils} from "../../Services/HttpUtils";
+import { connect } from 'react-redux'
 
 
 class Secondfold extends Component{
@@ -11,12 +12,43 @@ class Secondfold extends Component{
         this.state = {
             current: 1,
             business: [],
-            showBusiness: []
+            showBusiness: [],
+            filteredArr: [],
+            searchValue: ''
         }
     }
 
     componentDidMount(){
         this.getAllBusiness()
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        const { business } = this.state;
+        const { text } = this.props;
+        if(prevProps.text !== text){
+            if(!!text){
+                this.searchedArr(text)
+            }else {
+                this.setState({
+                    showBusiness: business.slice(0, 6),
+                    filteredArr: []
+                })
+            }
+        }
+    }
+
+    searchedArr(text){
+        const { business } = this.state;
+        let filteredArr = business.filter((elem) => {
+            return elem.businesscategory && elem.businesscategory.toLowerCase().includes(text.toLowerCase()) ||
+                elem.businessownername && elem.businessownername.toLowerCase().includes(text.toLowerCase()) ||
+                elem.businessname && elem.businessname.toLowerCase().includes(text.toLowerCase()) ||
+                elem.businessnumber && elem.businessnumber.toLowerCase().includes(text.toLowerCase())
+        })
+        this.setState({
+            filteredArr,
+            showBusiness: filteredArr.slice(0, 6)
+        })
     }
 
     async getAllBusiness(){
@@ -31,23 +63,26 @@ class Secondfold extends Component{
         var to = 6 * page;
         var from = to - 6;
         return {from: page === 1 ? 0 : from, to: page === 1 ? 6 : to}
-
     }
 
     onChange = (page) => {
-        const { business, showBusiness } = this.state;
+        const { business, filteredArr } = this.state;
         var indexes = this.funcIndexes(page)
-        console.log(indexes, 'indexessssss')
-        this.setState({
-            current: page,
-            showBusiness: business.slice(indexes.from, indexes.to)
-        });
+        if(!!filteredArr.length){
+            this.setState({
+                current: page,
+                showBusiness: filteredArr.slice(indexes.from, indexes.to)
+            });
+        }else {
+            this.setState({
+                current: page,
+                showBusiness: business.slice(indexes.from, indexes.to)
+            });
+        }
     }
 
     render(){
-        const { business, showBusiness } = this.state;
-        console.log(business, 'reqqqqqqqqqqqq')
-        console.log(showBusiness, 'showBusiness')
+        const { business, showBusiness, filteredArr } = this.state;
 
         return(
             <div className="secondfold">
@@ -72,11 +107,17 @@ class Secondfold extends Component{
                         </a>)
                         })}
                     </div>
-                    <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={business.length} onChange={this.onChange} /></span>
+                    <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :business.length} onChange={this.onChange} /></span>
                 </div>
             </div>
         )
     }
 }
 
-export default Secondfold;
+const mapStateToProps = (state) => {
+    return({
+        text: state.text
+    })
+}
+
+export default connect(mapStateToProps)(Secondfold);

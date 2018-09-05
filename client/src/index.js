@@ -4,8 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware} from 'redux';
 import promiseMiddleware from 'redux-promise';
 import {BrowserRouter, Route} from 'react-router-dom';
-import reducers from './reducers';
-
+// import reducers from './reducers';
 
 //component
 import App from './App';
@@ -24,12 +23,30 @@ import {PrivateRoute} from './components/signin_seperate'
 //css
 import './app.css';
 
+const initialState = {
+    text: ''
+}
 
+function reducer(state = initialState, action){
+
+    switch (action.type) {
+        case 'SEARCHON':
+            return {
+                text: action.inputValue
+            }
+        case 'SEARCHOF':
+            return {
+                text: initialState.text
+            }
+        default:
+            return state;
+    }
+}
 
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware)(createStore)
 
 ReactDOM.render(
-		<Provider store={createStoreWithMiddleware(reducers)}>
+		<Provider store={createStoreWithMiddleware(reducer)}>
 			<BrowserRouter>
 				<div>
 					<Route exact path="/" component={App}></Route>

@@ -607,7 +607,8 @@ app.post('/api/postbuyselldata',function(req,res){
       sizedimension = [];
 
   var buyselldata = req.body;
-  console.log(buyselldata);
+  //console.log(buyselldata);
+  console.log('buysellDescription:'+req.body.description);
   var userid = buyselldata.user_id,
       contactname = buyselldata.contactName,
       contactemail = buyselldata.contactEmail,

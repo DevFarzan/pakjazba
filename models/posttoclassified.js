@@ -19,7 +19,7 @@ var postclassifiedSchema = new mongoose.Schema({
 	postingtype:{type:String},
 	category:{type:String},
 	title:{type:String},
-	description:{typ:String},
+	description:{type:String},
 	price:{type:String},
 	hideprice:{type:Boolean},
 	modelmake:{type:String},

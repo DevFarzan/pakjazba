@@ -11,11 +11,11 @@ import App from './App';
 import Signin from './components/signin_seperate/signin';
 import Postbusiness from './components/postBusiness';
 import Postroommates from './components/postRoommates';
-import Postbuysell from './components/postBuysell';
+import Postbuysell from './components/buy_sell/postBuysell';
 import ProfileUser from './components/user_profile/profileUser';
 import DetailedPage from './components/detailedPage';
 import MarketBusiness from './components/marketBusiness';
-import MarketClassified from './components/marketClassified';
+import MarketClassified from './components/buy_sell/marketClassified';
 import MarketRoommates from './components/MarketRoommates';
 import {PrivateRoute} from './components/signin_seperate'
 

@@ -1,0 +1,37 @@
+.home-newsletter1 {
+
+}
+
+.home-newsletter1 .single {
+max-width: 650px;
+margin: 0 auto;
+text-align: center;
+position: relative;
+z-index: 2;
+}
+
+.home-newsletter1 .single h2 {
+font-size: 22px;
+color: white;
+text-transform: uppercase;
+margin-bottom: 40px;
+}
+
+.home-newsletter1 .single .form-control {
+height: 50px;
+background: #fff;
+border-color: transparent;
+border-radius: 20px 0 0 20px;
+}
+
+.home-newsletter1.single .form-control:focus {
+box-shadow: none;
+border-color: #243c4f;
+}
+
+.home-newsletter1 .single .btn {
+min-height: 50px;
+border-radius: 0 20px 20px 0;
+background: #8cbc40;
+color: #fff;
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import App from '../App';
+import App from '../../App';
 import {
     Form,
     Input,
@@ -12,12 +12,12 @@ import {
     Modal
 } from 'antd';
 import AsyncStorage from "@callstack/async-storage/lib/index";
-import Burgermenu from '../components/business/burgermenu';
-import Footer from '../components/footer/footer';
+import Burgermenu from '../business/burgermenu';
+import Footer from '../footer/footer';
 import sha1 from "sha1";
 import superagent from "superagent";
 import { Redirect } from 'react-router';
-import {HttpUtils} from "../Services/HttpUtils";
+import {HttpUtils} from "../../Services/HttpUtils";
 
 const InputGroup = Input.Group;
 const { TextArea } = Input;
@@ -183,6 +183,7 @@ class Postbuysell extends Component{
             price: values.price,
             arr_url: response ? response : []
         }
+
         var req = await HttpUtils.post('postbuyselldata', obj)
         if(req.code == 200){
             this.props.form.resetFields();

@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import './buyfirstfold.css'
+import { connect } from 'react-redux'
 
 class Firstfold extends Component{
+    constructor(props){
+        super(props);
+        this.category = this.category.bind(this);
+    }
+    category(e){
+        const { dispatch } = this.props;
+        var inputValue = e.target.alt;
+        dispatch({type: 'SEARCHON', inputValue})
+    }
+
     render(){
         return(
             <div className="firstfold">
@@ -10,8 +21,8 @@ class Firstfold extends Component{
                     <div className="col-md-3">
                         <div className="media">
                             <div className="media-left">
-                                <a href="#">
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="..."/>
+                                <a onClick={this.category}>
+                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Furniture"/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -24,8 +35,8 @@ class Firstfold extends Component{
                     <div className="col-md-3">
                         <div className="media">
                             <div className="media-left">
-                                <a href="#">
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="..."/>
+                                <a onClick={this.category}>
+                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Pets"/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -38,8 +49,8 @@ class Firstfold extends Component{
                     <div className="col-md-3">
                         <div className="media">
                             <div className="media-left">
-                                <a href="#">
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="..."/>
+                                <a onClick={this.category}>
+                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Real Estate"/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -52,8 +63,8 @@ class Firstfold extends Component{
                     <div className="col-md-3">
                         <div className="media">
                             <div className="media-left">
-                                <a href="#">
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="..."/>
+                                <a onClick={this.category}>
+                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Jobs"/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -68,8 +79,8 @@ class Firstfold extends Component{
                     <div className="col-md-3">
                         <div className="media">
                             <div className="media-left">
-                                <a href="#">
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="..."/>
+                                <a onClick={this.category}>
+                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Cars"/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -82,8 +93,8 @@ class Firstfold extends Component{
                     <div className="col-md-3">
                         <div className="media">
                             <div className="media-left">
-                                <a href="#">
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="..."/>
+                                <a onClick={this.category}>
+                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Mobile"/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -96,8 +107,8 @@ class Firstfold extends Component{
                     <div className="col-md-3">
                         <div className="media">
                             <div className="media-left">
-                                <a href="#">
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="..."/>
+                                <a onClick={this.category}>
+                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Cameras"/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -110,8 +121,8 @@ class Firstfold extends Component{
                     <div className="col-md-3">
                         <div className="media">
                             <div className="media-left">
-                                <a href="#">
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="..."/>
+                                <a onClick={this.category}>
+                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Sports"/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -126,8 +137,8 @@ class Firstfold extends Component{
                     <div className="col-md-3">
                         <div className="media">
                             <div className="media-left">
-                                <a href="#">
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="..."/>
+                                <a onClick={this.category}>
+                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Electro"/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -140,8 +151,8 @@ class Firstfold extends Component{
                     <div className="col-md-3">
                         <div className="media">
                             <div className="media-left">
-                                <a href="#">
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="..."/>
+                                <a onClick={this.category}>
+                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Clothing"/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -154,8 +165,8 @@ class Firstfold extends Component{
                     <div className="col-md-3">
                         <div className="media">
                             <div className="media-left">
-                                <a href="#">
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="..."/>
+                                <a onClick={this.category}>
+                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Books"/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -168,8 +179,8 @@ class Firstfold extends Component{
                     <div className="col-md-3">
                         <div className="media">
                             <div className="media-left">
-                                <a href="#">
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="..."/>
+                                <a onClick={this.category}>
+                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Music"/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -185,4 +196,4 @@ class Firstfold extends Component{
     }
 }
 
-export default Firstfold;
+export default connect()(Firstfold);

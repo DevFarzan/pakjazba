@@ -79,6 +79,7 @@ class Forthfold extends Component{
 
     render(){
         const { buySell, showBuySell, filteredArr } = this.state;
+        const { text } = this.props;
         return(
             <div className="secondfold">
                 <div className="row">
@@ -88,9 +89,14 @@ class Forthfold extends Component{
                             <div className="ibox">
                                 <div className="ibox-content product-box">
                                     <div className="product-imitation">
-                                        <span className="card-button">{elem.category}</span>
-                                        <h4> Furniture For Sale </h4>
-                                        <i className="glyphicon glyphicon-map-marker"/><p className="text">Home & Decor</p>
+                                        <div className="card2">
+                                            <img src={elem.images[0]}/>
+                                            <span className="card-button">
+                                                <p className="categories-on-card">{elem.category}</p>
+                                                <h4> Furniture For Sale </h4>
+                                                <i className="glyphicon glyphicon-map-marker"/><p className="text">Home & Decor</p>
+                                            </span>
+                                        </div>
                                     </div>
                                     <div className="cust-margin">
                                         <i className="glyphicon glyphicon-home"/>
@@ -113,7 +119,9 @@ class Forthfold extends Component{
                         )
                     })}
                 </div>
-                <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :buySell.length} onChange={this.onChange} /></span>
+                {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
+                {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
+                {!!showBuySell.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :buySell.length} onChange={this.onChange} /></span>}
             </div>
         )
     }

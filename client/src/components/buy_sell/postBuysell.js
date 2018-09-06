@@ -164,6 +164,7 @@ class Postbuysell extends Component{
             user_id: userId,
             address: values.address,
             category: values.category[0],
+            subCategory: values.subCategory,
             city: values.city[0],
             hideAddress: this.state.hideAddress,
             hidePrice: this.state.hidePrice,
@@ -185,7 +186,7 @@ class Postbuysell extends Component{
         }
 
         var req = await HttpUtils.post('postbuyselldata', obj)
-        if(req.code == 200){
+        if(req.code === 200){
             this.props.form.resetFields();
             this.openNotification()
             this.setState({msg: true, dLength: '', dWidth: '', dHeight: ''})
@@ -210,19 +211,19 @@ class Postbuysell extends Component{
     onDimensionChange = (e) => {
         if (!isNaN(e.target.value)) {
             this.setState({err: false, errMsg: ''})
-            if (e.target.placeholder == 'Length') {
+            if (e.target.placeholder === 'Length') {
                 this.setState({dLength: e.target.value})
-            } else if (e.target.placeholder == 'Width') {
+            } else if (e.target.placeholder === 'Width') {
                 this.setState({dWidth: e.target.value})
-            } else if (e.target.placeholder == 'Height') {
+            } else if (e.target.placeholder === 'Height') {
                 this.setState({dHeight: e.target.value})
             }
         } else {
-            if (e.target.placeholder == 'Length') {
+            if (e.target.placeholder === 'Length') {
                 this.setState({err: true, errMsg: 'Input must be number', dLength: ''})
-            } else if (e.target.placeholder == 'Width') {
+            } else if (e.target.placeholder === 'Width') {
                 this.setState({err: true, errMsg: 'Input must be number', dWidth: ''})
-            } else if (e.target.placeholder == 'Height') {
+            } else if (e.target.placeholder === 'Height') {
                 this.setState({err: true, errMsg: 'Input must be number', dHeight: ''})
             }
         }
@@ -310,6 +311,17 @@ class Postbuysell extends Component{
                                         {getFieldDecorator('category', {
                                             initialValue: ['zhejiang', 'hangzhou', 'xihu'],
                                             rules: [{ type: 'array', required: true, message: 'Please select your Category!' }],
+                                        })(
+                                            <Cascader options={category} />
+                                        )}
+                                    </FormItem>
+                                    <FormItem
+                                        {...formItemLayout}
+                                        label="Sub-Category"
+                                    >
+                                        {getFieldDecorator('subcategory', {
+                                            initialValue: ['zhejiang', 'hangzhou', 'xihu'],
+                                            rules: [{ type: 'array', required: true, message: 'Please select your Sub-Category!' }],
                                         })(
                                             <Cascader options={category} />
                                         )}

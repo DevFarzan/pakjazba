@@ -144,6 +144,7 @@ require('./models/businessyellowpages');
 require('./models/posttoclassified');
 require('./models/profile');
 require('./models/roommatesSchema');
+require('./models/categoryclassified');
 
 require('./config/passport');
 
@@ -153,7 +154,7 @@ var yellowPagesBusiness = mongoose.model('business');
 var classifiedBusiness = mongoose.model('postclassified');
 var profiledata = mongoose.model('profiledatabase');
 var roomrentsdata = mongoose.model('roomdata');
-
+var categoryclassified = mongoose.model('categoryclassified');
 
 app.use(passport.initialize());
 
@@ -191,6 +192,15 @@ app.get('/api/categoryPost',(req,res) =>{
     res.send({err:err,data:data});
   })
   //res.send({message:category});
+});
+
+app.get('/api/categoryclassifieddata',function(req,res){
+categorypost.find(function(err,data){
+  res.send({
+    code:200,
+    data:data
+  })
+})
 });
 
 app.get('/api/getcategory',(req,res) =>{

@@ -20,7 +20,7 @@ class Burgermenu extends Component{
                                   <span className="icon-bar"></span>
                                   <span className="icon-bar"></span>
                               </button>
-                              <a className="navbar-brand" href="#"><img src="./images/mobile-logo.png" style={{"width": "100px","margin-top": "11px"}} /></a>
+                              <Link to={`/`} className="navbar-brand"><img src="./images/mobile-logo.png" style={{"width": "100px","margin-top": "11px"}} /></Link>
                           </div>
                       </div>
                       <div className="col-md-10 col-sm-6 col-xs-6">

@@ -191,7 +191,7 @@ class Postbuysell extends Component{
             user_id: userId,
             address: values.address,
             category: values.category[0],
-            subCategory: values.subCategory,
+            subCategory: values.subcategory[0],
             city: values.city[0],
             hideAddress: this.state.hideAddress,
             hidePrice: this.state.hidePrice,
@@ -207,10 +207,11 @@ class Postbuysell extends Component{
             modelName: values.modelName,
             number: values.number,
             postingTitle: values.postingTitle,
-            postingType: values.postingType[0],
+            subSubCategory: values.subsubcategory[0],
             price: values.price,
             arr_url: response ? response : []
         }
+        console.log(obj, 'objjjjjjjjjjjjjjjjjj')
 
         var req = await HttpUtils.post('postbuyselldata', obj)
         if(req.code === 200){
@@ -293,7 +294,6 @@ class Postbuysell extends Component{
         }
     }
 
-
     render(){
         const { previewVisible, previewImage, fileList, desLength, categ, subCat, selectSubCat, secSubCat } = this.state;
         const {getFieldDecorator} = this.props.form;
@@ -351,7 +351,6 @@ class Postbuysell extends Component{
                                         label="City"
                                     >
                                         {getFieldDecorator('city', {
-                                            initialValue: ['zhejiang', 'hangzhou', 'xihu'],
                                             rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
                                         })(
                                             <Cascader options={category} />
@@ -362,7 +361,6 @@ class Postbuysell extends Component{
                                         label="Category"
                                     >
                                         {getFieldDecorator('category', {
-                                            initialValue: ['zhejiang', 'hangzhou', 'xihu'],
                                             rules: [{ type: 'array', required: true, message: 'Please select your Category!' }],
                                         })(
                                             <Cascader options={categ} onChange={this.onChangeCat.bind(this)}/>
@@ -373,7 +371,6 @@ class Postbuysell extends Component{
                                         label="Sub-Category"
                                     >
                                         {getFieldDecorator('subcategory', {
-                                            initialValue: ['zhejiang', 'hangzhou', 'xihu'],
                                             rules: [{ type: 'array', required: true, message: 'Please select your Sub-Category!' }],
                                         })(
                                             <Cascader options={subCat} onChange={this.onChangeSubCat.bind(this)}/>
@@ -383,8 +380,7 @@ class Postbuysell extends Component{
                                         <div className="col-md-3"></div>
                                         <div className="col-md-6" style={{padding: 0}}>
                                             <FormItem>
-                                                {getFieldDecorator('postingType', {
-                                                    initialValue: ['zhejiang', 'hangzhou', 'xihu'],
+                                                {getFieldDecorator('subsubcategory', {
                                                     rules: [{ type: 'array', required: true, message: 'Please select your Posting Type!' }],
                                                 })(
                                                     <Cascader options={secSubCat} />
@@ -453,7 +449,6 @@ class Postbuysell extends Component{
                                         label="Condition"
                                     >
                                         {getFieldDecorator('condition', {
-                                            initialValue: ['zhejiang', 'hangzhou', 'xihu'],
                                             rules: [{ type: 'array', required: true, message: 'Please select your Condition!' }],
                                         })(
                                             <Cascader options={category} />

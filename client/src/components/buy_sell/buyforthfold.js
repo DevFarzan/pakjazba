@@ -3,6 +3,7 @@ import './buysecondfold.css'
 import {HttpUtils} from "../../Services/HttpUtils";
 import { Pagination } from 'antd';
 import { connect } from 'react-redux'
+import {Link} from "react-router-dom";
 
 class Forthfold extends Component{
     constructor(props){
@@ -84,7 +85,7 @@ class Forthfold extends Component{
             <div className="secondfold">
                 <div className="row">
                     {showBuySell && showBuySell.map((elem) => {
-                        return (
+                        return (<Link to={{pathname: `/detail_buySell`, state: elem}}>
                         <div className="col-md-4">
                             <div className="ibox">
                                 <div className="ibox-content product-box">
@@ -110,13 +111,13 @@ class Forthfold extends Component{
                                             {elem.description && elem.description}
                                         </div>
                                         <div className="m-t text-righ">
-                                            <a href="#" className="btn btn-xs btn-outline btn-primary">Info <i className="fa fa-long-arrow-right"></i> </a>
+                                            <Link to={{pathname: `/detail_buySell`, state: elem}} className="btn btn-xs btn-outline btn-primary">Info <i className="fa fa-long-arrow-right"></i> </Link>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        )
+                        </Link>)
                     })}
                 </div>
                 {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h1>Not found....</h1></span>}

@@ -16,15 +16,15 @@ import {
     Upload,
     Modal
 } from 'antd';
-import App from '../App';
+import App from '../../App';
 import Geosuggest from 'react-geosuggest';
-import Burgermenu from '../components/business/burgermenu';
-import Footer from '../components/footer/footer';
+import Burgermenu from '../header/burgermenu';
+import Footer from '../footer/footer';
 import sha1 from "sha1";
 import superagent from "superagent";
 import axios from "axios";
 import { Redirect } from 'react-router';
-import {HttpUtils} from '../Services/HttpUtils';
+import {HttpUtils} from '../../Services/HttpUtils';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 
 const { TextArea } = Input;

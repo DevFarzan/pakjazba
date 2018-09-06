@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, notification, Spin, Modal  } from 'antd';
-import Formsignup from './formsignup';
-import Dropdowns from  './dropdown';
-import Facebook from './Facebook';
-import Google from './Google';
+import Formsignup from '../formsignup';
+import Dropdowns from './dropdown';
+import Facebook from '../Facebook';
+import Google from '../Google';
 import AsyncStorage from "@callstack/async-storage";
-import {HttpUtils} from "../Services/HttpUtils";
+import {HttpUtils} from "../../Services/HttpUtils";
 
 const FormItem = Form.Item;
 const Option = Select.Option;

@@ -3,14 +3,14 @@ import React, { Component } from   'react';
 //import ImageDropzone from './components/imagedropzone';
 import { Input, Button } from 'antd';
 import 'antd/dist/antd.css';
-import Burgermenu from './components/business/burgermenu';
-import Slider from './components/business/Slider';
-import Signup from './components/signupmodal';
-import MainLogin from './components/mainLogin'
+import Burgermenu from './components/header/burgermenu';
+import Slider from './components/header/Slider';
+import Signup from './components/header/signupmodal';
+import MainLogin from './components/header/mainLogin'
 import Firstfold from './components/business/firstfold';
 // import Signin from './components/signinmodal';
 import Dropzone from './components/imagedropzone';
-import Category from './components/getcategory';
+import Category from './components/header/getcategory';
 import {HttpUtils} from "./Services/HttpUtils";
 import axios from "axios";
 

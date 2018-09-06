@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox,Modal, Spin, Alert } from 'antd';
 import Signin from './signinmodal';
-import Forgotpassword from './forgotpassword';
+import Forgotpassword from '../forgotpassword';
 import AsyncStorage from '@callstack/async-storage';
-import {HttpUtils} from "../Services/HttpUtils";
+import {HttpUtils} from "../../Services/HttpUtils";
 
 const FormItem = Form.Item;
 

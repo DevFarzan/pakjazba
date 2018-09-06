@@ -4,7 +4,7 @@ import './secondfold.css'
 import { Pagination } from 'antd';
 import {HttpUtils} from "../../Services/HttpUtils";
 import { connect } from 'react-redux'
-
+import { Link } from "react-router-dom";
 
 class Secondfold extends Component{
     constructor(props){
@@ -95,16 +95,16 @@ class Secondfold extends Component{
                                 str = str.substring(0, 100);
                                 str = str + '...'
                             }
-                            return (<a href="blog-ici.html">
+                            return (<Link to={{pathname: `/detail_business`, state: elem}}>
                             <div className="col-md-4"  style={{'marginBottom': '30px'}}>
                                 <div className="card">
                                     <img src="http://cevirdikce.com/proje/hasem-2/images/finance-1.jpg"/>
                                     <h4>{elem.businessname}</h4>
                                     <p>{str}</p>
-                                    <a href="blog-ici.html" className="blue-button">Read More</a>
+                                    <Link to={{pathname: `/detail_business`, state: elem}} className="blue-button">Read More</Link>
                                 </div>
                             </div>
-                        </a>)
+                        </Link>)
                         })}
                     </div>
                     <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :business.length} onChange={this.onChange} /></span>

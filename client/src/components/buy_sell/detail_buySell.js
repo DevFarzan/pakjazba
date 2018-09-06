@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import Burgermenu from '../components/business/burgermenu';
+import Burgermenu from '../header/burgermenu';
 
 
-class DetailedPage extends Component{
+class DetailBuySell extends Component{
+
+    componentDidMount(){
+        console.log(this.props.location.state, 'kia mila bhai props')
+    }
+
     render(){
         return(
             <div>
@@ -14,10 +19,10 @@ class DetailedPage extends Component{
                 <span className="background_listing">
                 	<Burgermenu/>
                 </span>
-                DetailedPage
+                Detailed Buy Sell
             </div>
         )
     }
 }
 
-export default DetailedPage;
+export default DetailBuySell;

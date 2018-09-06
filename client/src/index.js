@@ -9,12 +9,13 @@ import {BrowserRouter, Route} from 'react-router-dom';
 //component
 import App from './App';
 import Signin from './components/signin_seperate/signin';
-import Postbusiness from './components/postBusiness';
+import Postbusiness from './components/business/postBusiness';
 import Postroommates from './components/postRoommates';
 import Postbuysell from './components/buy_sell/postBuysell';
 import ProfileUser from './components/user_profile/profileUser';
-import DetailedPage from './components/detailedPage';
-import MarketBusiness from './components/marketBusiness';
+import DetailBuySell from './components/buy_sell/detail_buySell';
+import DetailBusiness from './components/business/detail_business';
+import MarketBusiness from './components/business/marketBusiness';
 import MarketClassified from './components/buy_sell/marketClassified';
 import MarketRoommates from './components/MarketRoommates';
 import {PrivateRoute} from './components/signin_seperate'
@@ -28,7 +29,6 @@ const initialState = {
 }
 
 function reducer(state = initialState, action){
-
     switch (action.type) {
         case 'SEARCHON':
             return {
@@ -55,7 +55,8 @@ ReactDOM.render(
 					<PrivateRoute path="/postad_Roommates" component={Postroommates}></PrivateRoute>
 					<PrivateRoute path="/postad_buysell" component={Postbuysell}></PrivateRoute>
 					<PrivateRoute path="/profile_user" component={ProfileUser}></PrivateRoute>
-					<Route path="/detail_page" component={DetailedPage}></Route>
+					<Route path="/detail_buySell" component={DetailBuySell}></Route>
+					<Route path="/detail_business" component={DetailBusiness}></Route>
 					<Route path="/market_business" component={MarketBusiness}></Route>
 					<Route path="/market_classified" component={MarketClassified}></Route>
 					<Route path="/market_roommates" component={MarketRoommates}></Route>

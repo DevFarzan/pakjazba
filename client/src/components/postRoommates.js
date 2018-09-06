@@ -20,7 +20,7 @@ import superagent from "superagent";
 import {HttpUtils} from "../Services/HttpUtils";
 //import MapContainer from './google_map/Map'
 import sha1 from "sha1";
-import Burgermenu from '../components/business/burgermenu';
+import Burgermenu from './header/burgermenu';
 import Footer from '../components/footer/footer';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 const RangePicker = DatePicker.RangePicker;

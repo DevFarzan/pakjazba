@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './burgermenu.css';
 import { Button } from 'antd';
-import MainLogin from '../mainLogin';
-import Category from '../getcategory';
+import MainLogin from '../header/mainLogin';
+import Category from '../header/getcategory';
 import { Link } from "react-router-dom";
 
 class Burgermenu extends Component{

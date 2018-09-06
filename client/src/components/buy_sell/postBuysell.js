@@ -12,7 +12,7 @@ import {
     Modal
 } from 'antd';
 import AsyncStorage from "@callstack/async-storage/lib/index";
-import Burgermenu from '../business/burgermenu';
+import Burgermenu from '../header/burgermenu';
 import Footer from '../footer/footer';
 import sha1 from "sha1";
 import superagent from "superagent";
@@ -47,12 +47,39 @@ class Postbuysell extends Component{
             dWidth: '',
             dHeight: '',
             err: false,
-            errMsg: ''
+            errMsg: '',
+            categ: [],
+            subCat: [],
+            selectedCat: [],
+            allCateg: {},
+            selectSubCat: false,
+            secSubCat: []
         }
     }
 
     componentWillMount(){
         this.handleLocalStorage();
+    }
+
+    componentDidMount(){
+        this.categorylist();
+    }
+
+    async categorylist(){
+        var res = await HttpUtils.get('categoryclassifieddata')
+        var mainCategory = res.data[1]
+        var categ = Object.keys(mainCategory)
+        categ = categ.filter((val) => val !== '_id')
+        categ = categ.map((elem) => {
+            return {
+                value: elem,
+                label: elem
+            }
+        })
+        this.setState({
+            categ: categ,
+            allCateg: mainCategory
+        })
     }
 
     handleLocalStorage = () =>{
@@ -229,9 +256,46 @@ class Postbuysell extends Component{
         }
     }
 
+    onChangeCat(value){
+        if(!!value.length) {
+            const {allCateg} = this.state;
+            var selected = allCateg[value[0]]
+            var selectedArr = Object.keys(selected[0])
+            selectedArr = selectedArr.map((elem) => {
+                return {
+                    label: elem,
+                    value: elem
+                }
+            })
+            this.setState({
+                subCat: selectedArr,
+                selectedCat: selected[0],
+                secSubCat: [],
+                selectSubCat: false
+            })
+        }
+    }
+
+    onChangeSubCat(value){
+        if(!!value.length) {
+            const { selectedCat } = this.state;
+            var selected = selectedCat[value[0]]
+            selected = selected.map((elem) => {
+                return {
+                    label: elem,
+                    value: elem
+                }
+            })
+            this.setState({
+                secSubCat: selected,
+                selectSubCat: true
+            })
+        }
+    }
+
 
     render(){
-        const { previewVisible, previewImage, fileList, desLength, hideAddress, hidePrice } = this.state;
+        const { previewVisible, previewImage, fileList, desLength, categ, subCat, selectSubCat, secSubCat } = this.state;
         const {getFieldDecorator} = this.props.form;
         if (this.state.msg === true) {
             return <Redirect to='/' />
@@ -295,24 +359,13 @@ class Postbuysell extends Component{
                                     </FormItem>
                                     <FormItem
                                         {...formItemLayout}
-                                        label="Posting Type"
-                                    >
-                                        {getFieldDecorator('postingType', {
-                                            initialValue: ['zhejiang', 'hangzhou', 'xihu'],
-                                            rules: [{ type: 'array', required: true, message: 'Please select your Posting Type!' }],
-                                        })(
-                                            <Cascader options={category} />
-                                        )}
-                                    </FormItem>
-                                    <FormItem
-                                        {...formItemLayout}
                                         label="Category"
                                     >
                                         {getFieldDecorator('category', {
                                             initialValue: ['zhejiang', 'hangzhou', 'xihu'],
                                             rules: [{ type: 'array', required: true, message: 'Please select your Category!' }],
                                         })(
-                                            <Cascader options={category} />
+                                            <Cascader options={categ} onChange={this.onChangeCat.bind(this)}/>
                                         )}
                                     </FormItem>
                                     <FormItem
@@ -323,9 +376,23 @@ class Postbuysell extends Component{
                                             initialValue: ['zhejiang', 'hangzhou', 'xihu'],
                                             rules: [{ type: 'array', required: true, message: 'Please select your Sub-Category!' }],
                                         })(
-                                            <Cascader options={category} />
+                                            <Cascader options={subCat} onChange={this.onChangeSubCat.bind(this)}/>
                                         )}
                                     </FormItem>
+                                    {selectSubCat && <div className="row">
+                                        <div className="col-md-3"></div>
+                                        <div className="col-md-6" style={{padding: 0}}>
+                                            <FormItem>
+                                                {getFieldDecorator('postingType', {
+                                                    initialValue: ['zhejiang', 'hangzhou', 'xihu'],
+                                                    rules: [{ type: 'array', required: true, message: 'Please select your Posting Type!' }],
+                                                })(
+                                                    <Cascader options={secSubCat} />
+                                                )}
+                                            </FormItem>
+                                        </div>
+                                        <div className="col-md-3"></div>
+                                    </div>}
                                     <FormItem
                                         {...formItemLayout}
                                         label="Posting Title"

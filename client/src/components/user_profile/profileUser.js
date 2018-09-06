@@ -5,7 +5,7 @@ import sha1 from "sha1";
 import superagent from "superagent";
 import AsyncStorage from "@callstack/async-storage";
 import {HttpUtils} from "../../Services/HttpUtils";
-import Burgermenu from '../../components/business/burgermenu';
+import Burgermenu from '../header/burgermenu';
 
 const FormItem = Form.Item;
 const { TextArea } = Input;

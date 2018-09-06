@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import App from '../App';
-import Firstfold from "./business/firstfold";
-import Secondfold from './business/secondfold'
-import Footer from '../components/footer/footer';
+import App from '../../App';
+import Firstfold from "./firstfold";
+import Secondfold from './secondfold'
+import Footer from '../footer/footer';
 import {Button} from "antd";
 import { connect } from 'react-redux'
 

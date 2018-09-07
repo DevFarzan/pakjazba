@@ -87,7 +87,6 @@ class Postbuysell extends Component{
         AsyncStorage.getItem('user')
             .then((obj) => {
                 var userObj = JSON.parse(obj)
-                console.log(userObj, 'userObjjjjjjjjjjjjjj')
                 if(!!userObj) {
                     this.setState({
                         userId: userObj._id,
@@ -499,7 +498,7 @@ class Postbuysell extends Component{
                                                     onPreview={this.handlePreview}
                                                     onChange={this.handleChange}
                                                 >
-                                                    {fileList.length >= 3 ? null : uploadButton}
+                                                    {fileList.length >= 4 ? null : uploadButton}
                                                 </Upload>
                                                 <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
                                                     <img alt="example" style={{ width: '100%' }} src={previewImage} />

@@ -53,7 +53,8 @@ class Postbuysell extends Component{
             selectedCat: [],
             allCateg: {},
             selectSubCat: false,
-            secSubCat: []
+            secSubCat: [],
+            profileId: ''
         }
     }
 
@@ -86,9 +87,11 @@ class Postbuysell extends Component{
         AsyncStorage.getItem('user')
             .then((obj) => {
                 var userObj = JSON.parse(obj)
+                console.log(userObj, 'userObjjjjjjjjjjjjjj')
                 if(!!userObj) {
                     this.setState({
-                        userId: userObj._id
+                        userId: userObj._id,
+                        profileId: userObj.profileId
                     })
                 }
             })
@@ -186,9 +189,10 @@ class Postbuysell extends Component{
     }
 
     async postData(values, response) {
-        const {userId, dLength, dWidth, dHeight} = this.state;
+        const {userId, dLength, dWidth, dHeight, profileId} = this.state;
         var obj = {
             user_id: userId,
+            profileId: profileId,
             address: values.address,
             category: values.category[0],
             subCategory: values.subcategory[0],
@@ -346,16 +350,6 @@ class Postbuysell extends Component{
                         <div className="panel-group">
                             <div className="panel panel-default">
                                 <div className="panel-body">
-                                    <FormItem
-                                        {...formItemLayout}
-                                        label="City"
-                                    >
-                                        {getFieldDecorator('city', {
-                                            rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
-                                        })(
-                                            <Cascader options={category} />
-                                        )}
-                                    </FormItem>
                                     <FormItem
                                         {...formItemLayout}
                                         label="Category"
@@ -566,6 +560,16 @@ class Postbuysell extends Component{
                                             rules: [{ validator: this.checkCheckBox }],
                                         })(
                                             <CheckboxGroup options={optionsDelivery} />
+                                        )}
+                                    </FormItem>
+                                    <FormItem
+                                        {...formItemLayout}
+                                        label="City"
+                                    >
+                                        {getFieldDecorator('city', {
+                                            rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
+                                        })(
+                                            <Cascader options={category} />
                                         )}
                                     </FormItem>
                                     <div className="row">

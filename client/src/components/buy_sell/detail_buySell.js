@@ -1,25 +1,51 @@
 import React, { Component } from 'react';
 import Burgermenu from '../header/burgermenu';
-
+import Buydetailfirstfold from './buydetail/buydetailfirstfold'
+import Buydetailsecondfold from './buydetail/buydetailsecondfold'
+import { Redirect } from 'react-router';
+import App from "../../App";
+import Footer from '../footer/footer';
 
 class DetailBuySell extends Component{
 
+    constructor(props){
+        super()
+        this.state = {
+            isData: true,
+            data: {}
+        }
+    }
+
     componentDidMount(){
-        console.log(this.props.location.state, 'kia mila bhai props')
+        if(this.props.location.state === undefined){
+            this.setState({
+                isData: false
+            })
+        }else {
+            this.setState({
+                isData : true,
+                data : this.props.location.state
+            })
+        }
     }
 
     render(){
+        const { isData, data } = this.state;
+
+        if(!isData){
+            return <Redirect to='/' />
+        }
+
         return(
-            <div>
-            <div className="row">
-                <div className="col-md-12">
-                	{/*<span><img src="../images/business_detail.jpg" style={{"width": "100%","height": "260px","margin-top": "-38px"}} /></span>*/}
-                	</div>
+            <div id="body">
+                <div className="background_listing">
+                	<App/>
                 </div>
-                <span className="background_listing">
-                	<Burgermenu/>
-                </span>
-                Detailed Buy Sell
+                <div className='container' style={{width:"80%"}}>
+                    <Buydetailfirstfold data={data}/>
+                    <Buydetailsecondfold data={data}/>
+                </div>
+                <Footer />
             </div>
         )
     }

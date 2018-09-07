@@ -1,14 +1,37 @@
 import React, { Component } from 'react';
 import Burgermenu from '../header/burgermenu';
-
+import { Redirect } from 'react-router';
 
 class DetailBusiness extends Component{
 
+    constructor(props){
+        super()
+        this.state = {
+            isData: true,
+            data: {}
+        }
+    }
+
     componentDidMount(){
-        console.log(this.props.location.state, 'kia mila bhai props mainnnnnnn')
+        if(this.props.location.state === undefined){
+            this.setState({
+                isData: false
+            })
+        }else {
+            this.setState({
+                isData : true,
+                data : this.props.location.state
+            })
+        }
     }
 
     render(){
+        const { isData, data } = this.state;
+
+        if(!isData){
+            return <Redirect to='/' />
+        }
+
         return(
             <div>
                 <div className="row">

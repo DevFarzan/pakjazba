@@ -35,7 +35,7 @@ class Slider extends Component{
     render(){
         return (
             <div>
-                <div style={{backgroundImage: 'url(https://images.alphacoders.com/633/633643.jpg)',"height": "407px","margin-top": "-19px"}}>
+                <div style={{backgroundImage: 'url(https://images.alphacoders.com/633/633643.jpg)',"height": "407px", marginTop: "-19px"}}>
                     <p className="paragragh-text">Lorem Forem</p>
                     <h1 className="text-h1">Lorem Forem</h1>
                     <section className="home-newsletter">

@@ -10,7 +10,7 @@ class Thirdfold extends Component{
                     <div className="col-md-3">
                         <div className="media">
                             <div className="media-left">
-                                <a href="#">
+                                <a href="">
                                     <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="..."/>
                                 </a>
                             </div>
@@ -24,7 +24,7 @@ class Thirdfold extends Component{
                     <div className="col-md-3">
                         <div className="media">
                             <div className="media-left">
-                                <a href="#">
+                                <a href="">
                                     <img className="media-object-2" src="./images/the-right-to-e-read-your-library_110x100.png" alt="..."/>
                                 </a>
                             </div>
@@ -38,7 +38,7 @@ class Thirdfold extends Component{
                     <div className="col-md-3">
                         <div className="media">
                             <div className="media-left">
-                                <a href="#">
+                                <a href="">
                                     <img className="media-object-2" src="./images/the-right-to-e-read-your-library_110x100.png" alt="..."/>
                                 </a>
                             </div>
@@ -52,7 +52,7 @@ class Thirdfold extends Component{
                     <div className="col-md-3">
                         <div className="media">
                             <div className="media-left">
-                                <a href="#">
+                                <a href="">
                                     <img className="media-object-2" src="./images/the-right-to-e-read-your-library_110x100.png" alt="..."/>
                                 </a>
                             </div>

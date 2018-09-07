@@ -640,6 +640,10 @@ app.post('/api/postbuyselldata',function(req,res){
   var hideprice    = buyselldata.hidePrice,
       hideaddress  = buyselldata.hideAddress;
       sizedimension = buyselldata.sizedimension;
+var   subcategory   = buyselldata.subCategory,
+      subsubcategory = buyselldata.subSubCategory,
+      profileid =      buyselldata.profileId,
+      streetaddress = buyselldata.streetAddress
 
  var classifiedBusiness_info = new classifiedBusiness({
       userid:userid,
@@ -662,7 +666,11 @@ app.post('/api/postbuyselldata',function(req,res){
       hideprice:hideprice,
       modelmake:modelmake,
       modelnumber:modelnumber,
-      modelname:modelname
+      modelname:modelname,
+      subcategory:subcategory,
+      subsubcategory:subsubcategory,
+      profileid:profileid,
+      streetaddress:streetaddress
  });
 
 classifiedBusiness_info.save(function(err,data){

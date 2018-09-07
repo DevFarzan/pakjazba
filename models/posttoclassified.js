@@ -25,6 +25,10 @@ var postclassifiedSchema = new mongoose.Schema({
 	modelmake:{type:String},
 	modelnumber:{type:String},
 	modelname:{type:String},
+	subcategory:{type:String},
+	subsubcategory:{type:String},
+	streetaddress:{type:String},
+	profileid:{type:String},
 
 });
 

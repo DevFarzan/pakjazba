@@ -2,9 +2,54 @@ import React, { Component } from 'react';
 import './buydetailsecondfold.css'
 
 class Buydetailsecondfold extends Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            name: '',
+            userEmail: '',
+            msg: ''
+        }
+    }
+
+    onChangeValue(e){
+        var target = e.target.id;
+        var value = e.target.value;
+        if(target === 'name'){
+            this.setState({
+                name: value
+            })
+        }else if(target === 'email'){
+            this.setState({
+                userEmail: value
+            })
+        }else if(target === 'msg'){
+            this.setState({
+                msg: value
+            })
+        }
+    }
+
+    submitData(e){
+        e.preventDefault();
+        const { data } = this.props;
+        const { name, userEmail, msg } = this.state;
+        let obj = {
+            username: name,
+            useremail: userEmail,
+            usermsg: msg,
+            contactemail: data.contactemail
+        }
+        console.log(obj, 'objjjjjjjjjjjj')
+        this.setState({
+            name: '',
+            userEmail: '',
+            msg: ''
+        })
+    }
+
     render(){
-        var data = this.props.data;
-        console.log(data, 'dataaaaaaaa')
+        const { name, userEmail, msg } = this.state;
+        const { data } = this.props;
         var email= 'abc@gmail.com';
         var phone = '***********';
 
@@ -25,7 +70,7 @@ class Buydetailsecondfold extends Component{
                             <div className="col-md-6">
                                 <div className="col-md-3 col-sm-3 col-xs-12" style={{marginTop:"26px"}}>
                                     <div className="review-block-img">
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" className="img-rounded" alt=""/>
+                                        <img src={data.userImage} className="img-circle" alt=""/>
                                     </div>
                                 </div>
                                 <div className="col-sm-9 col-xs-12" style={{marginTop: "33px",textAlign:"left"}}>
@@ -60,17 +105,17 @@ class Buydetailsecondfold extends Component{
                                 <form action="/action_page.php">
                                     <div className="form-group">
                                         <label style={{float:"left"}}>Name:</label>
-                                        <input type="text" className="form-control"/>
+                                        <input type="text" className="form-control" value={name} id='name' onChange={this.onChangeValue.bind(this)}/>
                                     </div>
                                     <div className="form-group">
                                         <label style={{float:"left"}}>Email</label>
-                                        <input type="email" className="form-control" id="email" />
+                                        <input type="email" className="form-control" value={userEmail} id="email" onChange={this.onChangeValue.bind(this)}/>
                                     </div>
                                     <label style={{float:"left"}}>Message:</label>
                                     <div className="form-group">
-                                        <textarea type="text" className="form-control"></textarea>
+                                        <textarea type="text" className="form-control" id='msg' value={msg} onChange={this.onChangeValue.bind(this)}></textarea>
                                     </div>
-                                    <button type="submit" className="btn btn-default">Submit</button>
+                                    <button type="submit" className="btn btn-default" onClick={this.submitData.bind(this)}>Submit</button>
                                 </form>
                             </div>
                         </div>

@@ -5,6 +5,7 @@ import Buydetailsecondfold from './buydetail/buydetailsecondfold'
 import { Redirect } from 'react-router';
 import App from "../../App";
 import Footer from '../footer/footer';
+import {HttpUtils} from "../../Services/HttpUtils";
 
 class DetailBuySell extends Component{
 
@@ -17,16 +18,23 @@ class DetailBuySell extends Component{
     }
 
     componentDidMount(){
-        if(this.props.location.state === undefined){
+        var data = this.props.location.state;
+        if(data === undefined){
             this.setState({
                 isData: false
             })
         }else {
-            this.setState({
-                isData : true,
-                data : this.props.location.state
-            })
+            this.getProfile(data)
         }
+    }
+
+    async getProfile(data){
+        var req = await HttpUtils.get('getprofile?profileId=' + data.profileid)
+        var allData = {...data, ...{userImage: req.content.imageurl}}
+        this.setState({
+            isData : true,
+            data : allData
+        })
     }
 
     render(){

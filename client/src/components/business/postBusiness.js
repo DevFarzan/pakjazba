@@ -14,7 +14,8 @@ import {
     AutoComplete,
     notification,
     Upload,
-    Modal
+    Modal,
+    TimePicker
 } from 'antd';
 import App from '../../App';
 import Geosuggest from 'react-geosuggest';
@@ -478,6 +479,10 @@ class Postbusiness extends Component {
         })
     }
 
+    onChangeTime(time, timeString) {
+        console.log(time, timeString);
+    }
+
     async postDataWithURL(values){
         const { fileList } = this.state;
         var cloudURL = [];
@@ -666,6 +671,17 @@ class Postbusiness extends Component {
                                             </FormItem>
                                             <FormItem
                                                 {...formItemLayout}
+                                                label="Opening & closing Time"
+                                            >
+                                                
+                                                    
+                                                    <TimePicker placeholder="Opening TIme" use12Hours format="h:mm:ss A" onChange={this.openingTime} />
+                                                    <TimePicker placeholder="Closing Time" use12Hours format="h:mm a" onChange={this.closingTime} />
+                                                    
+                                                
+                                            </FormItem>
+                                            <FormItem
+                                                {...formItemLayout}
                                                 label="Business Number"
                                             >
                                                 {getFieldDecorator('businessNumber', {
@@ -753,11 +769,44 @@ class Postbusiness extends Component {
                                     </div>
                                     <br/>
                                     {/*==========Business panel end===========*/}
+                                    {/*==========social links box start===========*/}
+                                        <div className="panel panel-default">
+                                        <div className="panel-heading bold_c_text"><Icon type="info-circle"/><span
+                                            className="margin_font_location">Social Links</span></div>
+                                        <div className="panel-body">
+                                            <FormItem
+                                                {...formItemLayout}
+                                                label="Facebook"
+                                            >
+                                                
+                                                    <Input  />
+                                                
+                                            </FormItem>
+                                            <FormItem
+                                                {...formItemLayout}
+                                                label="Google"
+                                            >
+                                               
+                                                    <Input  />
+                                                
+                                            </FormItem>
+                                            <FormItem
+                                                {...formItemLayout}
+                                                label="Linkedin"
+                                            >
+                                                
+                                                    <Input  />
+                                                
+                                            </FormItem>
+                                            
+                                        </div>
+                                    </div>
+                                    {/*==========social links box end===========*/}
                                     {/*==========upload panel start=========*/}
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading bold_c_text"><Icon type="info-circle"/><span
+                                    <div className="panel panel-default">
+                                        <div className="panel-heading bold_c_text"><Icon type="info-circle"/><span
                                             className="margin_font_location">Upload</span></div>
-                                        <div class="panel-body">
+                                        <div className="panel-body">
                                             <Upload
                                                 action="//jsonplaceholder.typicode.com/posts/"
                                                 listType="picture-card"
@@ -773,6 +822,7 @@ class Postbusiness extends Component {
                                         </div>
                                     </div>
                                     {/*==========upload panel end===========*/}
+                                    
                                 </div>
                                 <div className="row center_global">
                                     <button className="btn color_button">Submit</button>

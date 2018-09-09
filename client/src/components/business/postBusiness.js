@@ -311,6 +311,12 @@ class Postbusiness extends Component {
             lengthFileList: 0,
             desLength: 0,
             msg: false,
+            socFac: '',
+            socGoo: '',
+            socLin: '',
+            profileId: '',
+            openingTime: '',
+            closingTime: ''
         };
     }
 
@@ -329,7 +335,8 @@ class Postbusiness extends Component {
                 var userObj = JSON.parse(obj)
                 if(!!userObj) {
                     this.setState({
-                        userId: userObj._id
+                        userId: userObj._id,
+                        profileId: userObj.profileId
                     })
                 }
             })
@@ -479,8 +486,22 @@ class Postbusiness extends Component {
         })
     }
 
-    onChangeTime(time, timeString) {
-        console.log(time, timeString);
+    onChangeSocial(e){
+        let target = e.target.id;
+        let value = e.target.value;
+        if(target === 'socFac'){
+            this.setState({
+                socFac: value
+            })
+        }else if(target === 'socGoo'){
+            this.setState({
+                socGoo: value
+            })
+        }else if(target === 'socLin'){
+            this.setState({
+                socLin: value
+            })
+        }
     }
 
     async postDataWithURL(values){
@@ -496,10 +517,19 @@ class Postbusiness extends Component {
         })
     }
 
+    validateTime(rule, value, callback){
+        if (!(!!value)) {
+            callback('Please select your Time!');
+        } else {
+            callback();
+        }
+    }
+
     async postData(values, response){
-        const { userId } = this.state;
+        const { userId, socLin, socGoo, socFac, profileId, openingTime, closingTime } = this.state;
         var obj = {
             user_id: userId,
+            profileId: profileId,
             address: values.address,
             businessAddress: values.businessAddress,
             businessCategory: values.businessCategory[0],
@@ -514,14 +544,38 @@ class Postbusiness extends Component {
             city: values.city,
             state: values.state,
             zip: values.zip,
+            openingTime: openingTime,
+            closingTime: closingTime,
+            socialFaceBook: socFac,
+            socialGoogle: socGoo,
+            socialLinkIn: socLin,
             arr_url: response ? response : []
         }
         var req = await HttpUtils.post('postbusinessdata', obj)
-        if(req.code == 200){
+        if(req.code === 200){
             this.props.form.resetFields();
             this.openNotification()
-            this.setState({msg: true})
+            this.setState({
+                msg: true,
+                socFac: '',
+                socGoo: '',
+                socLin: '',
+                openingTime: '',
+                closingTime: ''
+            })
         }
+    }
+
+    onOpeningTime(time, timeString){
+        this.setState({
+            openingTime: timeString,
+        })
+    }
+
+    onClosingTime(time, timeString){
+        this.setState({
+            closingTime: timeString,
+        })
     }
 
     openNotification() {
@@ -537,7 +591,7 @@ class Postbusiness extends Component {
     }
 
     render() {
-        const { previewVisible, previewImage, fileList, desLength } = this.state;
+        const { previewVisible, previewImage, fileList, desLength, socFac, socGoo,socLin } = this.state;
         const {getFieldDecorator} = this.props.form;
         if (this.state.msg === true) {
             return <Redirect to='/' />
@@ -669,6 +723,7 @@ class Postbusiness extends Component {
                                                     <Input  />
                                                 )}
                                             </FormItem>
+<<<<<<< HEAD
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Opening & closing Time"
@@ -676,6 +731,32 @@ class Postbusiness extends Component {
                                                     <TimePicker placeholder="Opening TIme" use12Hours format="h:mm:ss A" onChange={this.openingTime} />
                                                     <TimePicker placeholder="Closing Time" use12Hours format="h:mm a" onChange={this.closingTime} />
                                             </FormItem>
+=======
+                                            <div className='row'>
+                                                <div className="col-md-3">
+                                                    <label htmlFor="email" style={{fontColor: 'black', float: 'right'}}>Opening & closing Time:</label>
+                                                </div>
+                                                <div className="col-md-3">
+                                                    <FormItem>
+                                                        {getFieldDecorator('openingTime', {
+                                                            rules: [{ validator: this.validateTime.bind(this) }],
+                                                        })(
+                                                            <TimePicker placeholder="Opening Time" use12Hours format="h:mm:ss A" onChange={this.onOpeningTime.bind(this)} />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-md-3">
+                                                    <FormItem>
+                                                        {getFieldDecorator('closingTime', {
+                                                            rules: [{ validator: this.validateTime.bind(this) }],
+                                                        })(
+                                                            <TimePicker placeholder="Opening Time" use12Hours format="h:mm:ss A" onChange={this.onClosingTime.bind(this)} />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-md-3"></div>
+                                            </div>
+>>>>>>> 4765c40d8aae516ace362bc61aec218ea0202359
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Business Number"
@@ -774,27 +855,20 @@ class Postbusiness extends Component {
                                                 {...formItemLayout}
                                                 label="Facebook"
                                             >
-                                                
-                                                    <Input  />
-                                                
+                                                <Input id='socFac' value={socFac} onChange={this.onChangeSocial.bind(this)}/>
                                             </FormItem>
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Google"
                                             >
-                                               
-                                                    <Input  />
-                                                
+                                                <Input id='socGoo' value={socGoo} onChange={this.onChangeSocial.bind(this)} />
                                             </FormItem>
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Linkedin"
                                             >
-                                                
-                                                    <Input  />
-                                                
+                                                <Input id='socLin' value={socLin} onChange={this.onChangeSocial.bind(this)} />
                                             </FormItem>
-                                            
                                         </div>
                                     </div>
                                     {/*==========social links box end===========*/}
@@ -810,7 +884,7 @@ class Postbusiness extends Component {
                                                 onPreview={this.handlePreview}
                                                 onChange={this.handleChange}
                                             >
-                                                {fileList.length >= 2 ? null : uploadButton}
+                                                {fileList.length >= 4 ? null : uploadButton}
                                             </Upload>
                                             <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
                                                 <img alt="example" style={{ width: '100%' }} src={previewImage} />

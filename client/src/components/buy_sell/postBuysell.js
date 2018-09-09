@@ -30,6 +30,25 @@ const category = [{
     value: 'local',
     label: 'local',
 }];
+const condition = [{
+    value: 'New',
+    label: 'New'
+},{
+    value: 'Used',
+    label: 'Used',
+},{
+    value: 'Good',
+    label: 'Good',
+},{
+    value: 'Excellent',
+    label: 'Excellent',
+},{
+    value: 'Age-Worn',
+    label: 'Age-Worn',
+},{
+    value: 'Refurbished',
+    label: 'Refurbished',
+}];
 
 class Postbuysell extends Component{
     constructor(props){
@@ -445,7 +464,7 @@ class Postbuysell extends Component{
                                         {getFieldDecorator('condition', {
                                             rules: [{ type: 'array', required: true, message: 'Please select your Condition!' }],
                                         })(
-                                            <Cascader options={category} />
+                                            <Cascader options={condition} />
                                         )}
                                     </FormItem>
                                     <FormItem

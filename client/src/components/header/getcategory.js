@@ -12,10 +12,10 @@ class getCategory extends Component{
 	}
 
 	handlecategory = () =>{
-		axios.get('http://localhost:5000/api/getcategory').then(function(response){
-			console.log(response.data.data[0].categoryName);
-      var category = response.data.data[0].categoryName;
-		})
+		//axios.get('http://localhost:5000/api/getcategory').then(function(response){
+			//console.log(response.data.data[0].categoryName);
+      //var category = response.data.data[0].categoryName;
+		//})
 	}//handlecategory
 
   handleroute = () =>{

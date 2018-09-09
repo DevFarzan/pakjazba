@@ -10,7 +10,9 @@ class Burgermenu extends Component{
   render(){
       return(
           <div>
-              <nav className="navbar navbar-default hidden-xs">
+              <nav className="navbar navbar-default hidden-xs" style={{position: "fixed",
+    width: "100%",
+    "z-index": "99999",marginTop: "-25px"}}>
                   <div className="container-fluid">
                       <div className="col-md-2 col-sm-6 col-xs-6">
                           <div className="navbar-header">

@@ -673,12 +673,8 @@ class Postbusiness extends Component {
                                                 {...formItemLayout}
                                                 label="Opening & closing Time"
                                             >
-                                                
-                                                    
                                                     <TimePicker placeholder="Opening TIme" use12Hours format="h:mm:ss A" onChange={this.openingTime} />
                                                     <TimePicker placeholder="Closing Time" use12Hours format="h:mm a" onChange={this.closingTime} />
-                                                    
-                                                
                                             </FormItem>
                                             <FormItem
                                                 {...formItemLayout}

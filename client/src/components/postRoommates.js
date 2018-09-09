@@ -30,11 +30,101 @@ const CheckboxGroup = Checkbox.Group;
 const RadioGroup = Radio.Group;
 const FormItem = Form.Item
 const category = [{
-    value: 'imported',
-    label: 'imported'
+  value: 'Property to rent',
+  label: 'Property to rent',
+  children: [{
+    value: 'Single Family Home',
+    label: 'Single Family Home',
+    children: [{
+      value: '1 Bed',
+      label: '1 Bed',
+    },{
+      value: '2 Beds',
+      label: '2 Beds',
+    },{
+      value: '3 Beds',
+      label: '3 Beds',
+    },{
+      value: '4+ Beds',
+      label: '4+ Beds',
+    }],
+  },
+{
+    value:'Appartment',
+    label:'Apartment',
+    children: [{
+      value: '1 Bed',
+      label: '1 Bed',
+    },{
+      value: '2 Beds',
+      label: '2 Beds',
+    },{
+      value: '3 Beds',
+      label: '3 Beds',
+    },{
+      value: '4+ Beds',
+      label: '4+ Beds',
+    }],
 },{
-    value: 'local',
-    label: 'local',
+    value:'Condo',
+    label:'Condo',
+    children: [{
+      value: '1 Bed',
+      label: '1 Bed',
+    },{
+      value: '2 Beds',
+      label: '2 Beds',
+    },{
+      value: '3 Beds',
+      label: '3 Beds',
+    },{
+      value: '4+ Beds',
+      label: '4+ Beds',
+    }],
+},{
+    value:'Town house',
+    label:'Town house',
+    children: [{
+      value: '1 Bed',
+      label: '1 Bed',
+    },{
+      value: '2 Beds',
+      label: '2 Beds',
+    },{
+      value: '3 Beds',
+      label: '3 Beds',
+    },{
+      value: '4+ Beds',
+      label: '4+ Beds',
+    }],
+},{
+    value:'Homes',
+    label:'Homes',
+    children: [{
+      value: '1 Bed',
+      label: '1 Bed',
+    },{
+      value: '2 Beds',
+      label: '2 Beds',
+    },{
+      value: '3 Beds',
+      label: '3 Beds',
+    },{
+      value: '4+ Beds',
+      label: '4+ Beds',
+    }],
+}],
+}, {
+  value: 'jiangsu',
+  label: 'Jiangsu',
+  children: [{
+    value: 'nanjing',
+    label: 'Nanjing',
+    children: [{
+      value: 'zhonghuamen',
+      label: 'Zhong Hua Men',
+    }],
+  }],
 }];
 
 class Postroommates extends Component{

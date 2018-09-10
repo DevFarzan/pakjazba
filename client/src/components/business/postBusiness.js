@@ -725,11 +725,6 @@ class Postbusiness extends Component {
                                                     <Input  />
                                                 )}
                                             </FormItem>
-<<<<<<< HEAD
-=======
-
-                                            
->>>>>>> e90310984718654b4b141aec621d8d17d7e0e207
                                             <div className='row'>
                                                 <div className="col-md-3">
                                                     <label htmlFor="email" style={{fontColor: 'black', float: 'right'}}>Opening & closing Time:</label>

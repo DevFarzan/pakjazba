@@ -945,6 +945,17 @@ app.post('/api/changepassword',function(req,res){
 
 app.post('/api/sendmessage',function(req,res){
 var getuserfields = req.body;
+      getuserfields.username = 'Farzan';
+      getuserfields.email = 'farzan@yahoo.com';
+      getuserfields.message = 'This is a testing message for send contact!';
+
+      mailOptions={
+    to : req.query.email,
+    subject : " Pakjazba User want to talk to you",
+    html : ``
+
+  }
+
 })
 
 /*===================post roommates API end =================================================================*/

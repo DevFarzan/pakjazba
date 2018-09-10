@@ -579,8 +579,12 @@ app.post('/api/postbusinessdata',function(req,res){
     businessownername:businessownername,
     businessemail:businessemail,
     businesscategory:businesscategory,
-    businessImages:businessImages
-
+    businessImages:businessImages,
+    openingTime:businessData.openingTime,
+    closingTime:businessData.closingTime,
+    socialFaceBook:businessData.socialFaceBook,
+    socialGoogle:businessData.socialGoogle,
+    socialLinkIn:businessData.socialLinkIn
    });
 
    yellowBusiness_info.save(function(err,data){
@@ -721,6 +725,16 @@ app.get('/api/marketplace',function(req,res){
             buysell.push(classifiedData[j]);
           }
         }//end if
+
+        roomrentsdata.find({__v:0},function(err,roomrents){
+          console.log('roomrents:'+roomrents);
+          if(roomrents!=''){
+            var roomrentsdata = [];
+            for(var k=0;k<roomrents.length;k++){
+              roomrentsdata.push(roomrents[i]);
+            }
+          }//end if
+        })
       
       res.send({
         code:200,

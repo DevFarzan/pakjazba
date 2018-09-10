@@ -114,18 +114,37 @@ const category = [{
       label: '4+ Beds',
     }],
 }],
-}, {
-  value: 'jiangsu',
-  label: 'Jiangsu',
+},{
+  value: 'Room to rent',
+  label: 'Room to rent',
   children: [{
-    value: 'nanjing',
-    label: 'Nanjing',
-    children: [{
-      value: 'zhonghuamen',
-      label: 'Zhong Hua Men',
-    }],
+    value: 'Shared Room',
+    label: 'Shared Room',
+  },{
+    value:'Single Room',
+    label:'Single Room',
+  },{
+    value:'Paying Guest',
+    label:'Paying Guest',
   }],
-}];
+},{
+    value:'Office & commercial to rent',
+    label:'Office & commercial to rent',
+    children:[{
+      value:'Office Space',
+      label:'Office Space',  
+    },{
+        value:'Retail Outlet',
+        label:'Retail Outlet',
+    },{
+        value:'Others',
+        label:'Others',
+    }],
+
+},{
+    value:'Parking & storage to rent',
+    label:'Parking & storage to rent',
+}]
 
 class Postroommates extends Component{
     constructor(props) {
@@ -423,17 +442,6 @@ class Postroommates extends Component{
                                                 {getFieldDecorator('category', {
                                                     initialValue: ['zhejiang', 'hangzhou', 'xihu'],
                                                     rules: [{ type: 'array', required: true, message: 'Please select your Category!' }],
-                                                })(
-                                                    <Cascader options={category} />
-                                                )}
-                                            </FormItem>
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Housing Type"
-                                            >
-                                                {getFieldDecorator('housingType', {
-                                                    initialValue: ['zhejiang', 'hangzhou', 'xihu'],
-                                                    rules: [{ type: 'array', required: true, message: 'Please select your Housing Type!' }],
                                                 })(
                                                     <Cascader options={category} />
                                                 )}

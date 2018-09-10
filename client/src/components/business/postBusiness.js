@@ -551,7 +551,9 @@ class Postbusiness extends Component {
             socialLinkIn: socLin,
             arr_url: response ? response : []
         }
+        console.log('businessData:'+obj);
         var req = await HttpUtils.post('postbusinessdata', obj)
+
         if(req.code === 200){
             this.props.form.resetFields();
             this.openNotification()
@@ -586,7 +588,7 @@ class Postbusiness extends Component {
     };
 
     checkValue(rule, value, callback) {
-        this.setState({desLength: value.length})
+        this.setState({desLength: value.length && value.length})
         callback();
     }
 
@@ -723,6 +725,11 @@ class Postbusiness extends Component {
                                                     <Input  />
                                                 )}
                                             </FormItem>
+<<<<<<< HEAD
+=======
+
+                                            
+>>>>>>> e90310984718654b4b141aec621d8d17d7e0e207
                                             <div className='row'>
                                                 <div className="col-md-3">
                                                     <label htmlFor="email" style={{fontColor: 'black', float: 'right'}}>Opening & closing Time:</label>

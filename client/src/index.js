@@ -17,7 +17,7 @@ import DetailBuySell from './components/buy_sell/detail_buySell';
 import DetailBusiness from './components/business/detail_business';
 import MarketBusiness from './components/business/marketBusiness';
 import MarketClassified from './components/buy_sell/marketClassified';
-import MarketRoommates from './components/MarketRoommates';
+import MarketRoommates from './components/roomrenting/MarketRoommates';
 import {PrivateRoute} from './components/signin_seperate'
 
 

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import Sliderroomrenting from "./roomrentingcontentarea";
 import Roomrenting1content from "./roomrenting1content";
 import Roomrentingtwocontentarea from "./roomrenting2contentarea";
-//import Roomrentingthreecontentarea from "./roomrenting/roomrenting3contentarea";
+//import Roomrentingthreecontentarea from "./roomrenting3contentarea";
 import Footer from '../footer/footer';
 import App from '../../App';
 

@@ -43,7 +43,7 @@ class App extends Component {
         const Search = Input.Search;
         const {username} = this.state;
         return (
-            <div className ="">
+            <div className ="" style={{"background-image":"url('https://images.alphacoders.com/633/633643.jpg')","height": "407px",marginTop: "-19px"}}>
                 <div className="background-image">
                     <Burgermenu/>
                     <Slider/>

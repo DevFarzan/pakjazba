@@ -365,7 +365,7 @@ class Postbuysell extends Component{
                 {/*================================post business form start============================*/}
                 <div className="">
                     <Form onSubmit={this.handleSubmit} className="login-form">
-                        <div className="panel-group">
+                        <div className="panel-group" style={{paddingTop:"104px"}}>
                             <div className="panel panel-default">
                                 <div className="panel-body">
                                     <FormItem

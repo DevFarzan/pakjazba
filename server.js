@@ -731,18 +731,20 @@ app.get('/api/marketplace',function(req,res){
           if(roomrents!=''){
             var roomrentsdata = [];
             for(var k=0;k<roomrents.length;k++){
-              roomrentsdata.push(roomrents[i]);
+              roomrentsdata.push(roomrents[k]);
             }
           }//end if
-        })
+        
       
       res.send({
         code:200,
         business:businesses,
         busell:buysell,
+        roomrentsdata:roomrentsdata,
         msg:'data recieve successfully'
       });
-    })
+    });
+   })
   })
 });
 /*====================get market Market place end=====================================================*/
@@ -940,6 +942,10 @@ app.post('/api/changepassword',function(req,res){
 })
 
   })
+
+app.post('/api/sendmessage',function(req,res){
+var getuserfields = req.body;
+})
 
 /*===================post roommates API end =================================================================*/
 if (process.env.NODE_ENV === 'production') {

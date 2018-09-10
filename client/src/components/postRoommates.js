@@ -144,7 +144,21 @@ const category = [{
 },{
     value:'Parking & storage to rent',
     label:'Parking & storage to rent',
-}]
+}];
+
+const furnishedcategory = [{
+  value: 'Unfurnished',
+  label: 'Unfurnished',
+  },{
+    value:'Furnished with Bed',
+    label:'Furnished with Bed',
+  },{
+    value:'Semi Furnished',
+    label:'Semi Furnished',
+  },{
+    value:'Fully Furnished',
+    label:'Fully Furnished',
+  }];
 
 class Postroommates extends Component{
     constructor(props) {
@@ -536,7 +550,7 @@ class Postroommates extends Component{
                                                 {getFieldDecorator('furnished', {
                                                     rules: [{ type: 'array', required: true, message: 'Please select your Furnished!' }],
                                                 })(
-                                                    <Cascader options={category} />
+                                                    <Cascader options={furnishedcategory} />
                                                 )}
                                             </FormItem>
                                             <FormItem

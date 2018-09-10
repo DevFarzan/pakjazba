@@ -17,6 +17,7 @@ import {
 } from 'antd';
 import moment from 'moment';
 import superagent from "superagent";
+import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
 //import MapContainer from './google_map/Map'
 import sha1 from "sha1";
@@ -29,6 +30,8 @@ const { TextArea } = Input;
 const CheckboxGroup = Checkbox.Group;
 const RadioGroup = Radio.Group;
 const FormItem = Form.Item
+const stateCities= require('countrycitystatejson')
+
 const category = [{
   value: 'Property to rent',
   label: 'Property to rent',
@@ -170,6 +173,9 @@ const priceCategory = [{
     value: 'per night',
     label: 'per night'
 },{
+    value: 'per day',
+    label: 'per day'
+},{
     value: 'per week',
     label: 'per week'
 },{
@@ -206,21 +212,35 @@ class Postroommates extends Component{
             amenities: [],
             vegNoVeg: 'Yes',
             petFriendly: 'No',
-            smoking: 'No'
+            smoking: 'No',
+            statesUS: [],
+            citiesUS: [],
+            profileId: '',
+            msg: false
         }
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.handleLocalStorage();
     }
 
     handleLocalStorage = () =>{
+        console.log(stateCities.getStatesByShort('US'), '666666666666666')
+        let states = stateCities.getStatesByShort('US');
+        states = states.map((elem) => {
+            return {
+                label: elem,
+                value: elem
+            }
+        })
         AsyncStorage.getItem('user')
             .then((obj) => {
                 var userObj = JSON.parse(obj)
                 if(!!userObj) {
                     this.setState({
-                        userId: userObj._id
+                        userId: userObj._id,
+                        profileId: userObj.profileId,
+                        statesUS: states
                     })
                 }
             })
@@ -364,13 +384,17 @@ class Postroommates extends Component{
     }
 
     async postData(values, response) {
-        const {dateObj, userId, petFriendly, radio, smoking, vegNoVeg} = this.state;
+        const {dateObj, userId, petFriendly, radio, smoking, vegNoVeg, profileId} = this.state;
         var obj = {
             user_id: userId,
+            profileId: profileId,
             accommodates : values.accommodates[0],
             amenities: values.amenities,
             attachedBath : radio,
             category: values.category[0],
+            subCategory: values.category[1] ? values.category[1] : '',
+            subSubCategory: values.category[2] ? values.category[2] : '',
+            state: values.state[0],
             city : values.city[0],
             contactEmail: values.contactEmail,
             contactMode: values.contactMode,
@@ -379,7 +403,6 @@ class Postroommates extends Component{
             dateRange: dateObj,
             description: values.description,
             furnished: values.furnished[0],
-            housingType: values.housingType[0],
             postingTitle :values.postingTitle,
             price: values.price,
             priceMode: values.priceMode[0],
@@ -390,14 +413,44 @@ class Postroommates extends Component{
             vegNoVeg: vegNoVeg,
             arr_url: response ? response : []
         }
-        console.log(obj, 'objjjjjjjj');
         var req = await HttpUtils.post('postroomrent', obj)
-        console.log(req,'server response');
+        if(req.code === 200) {
+            this.props.form.resetFields();
+            this.openNotification()
+            this.setState({msg: true})
+        }
+    }
+
+    openNotification() {
+        notification.open({
+            message: 'Success ',
+            description: 'Your need is submited successfully, Kindly visit your profile',
+        });
+    };
+
+    onChangeCat(value) {
+        if (!!value.length) {
+            let cities = stateCities.getCities('US', value[0])
+            cities = cities.map((elem) => {
+                return {
+                    label: elem,
+                    value: elem
+                }
+            })
+            this.setState({
+                citiesUS: cities
+            })
+        }
     }
 
     render(){
-        const { desLength, fileList, previewVisible, previewImage, hideAddress } = this.state;
+        const { desLength, fileList, previewVisible, previewImage, statesUS, citiesUS } = this.state;
         const {getFieldDecorator} = this.props.form;
+
+        if (this.state.msg === true) {
+            return <Redirect to='/' />
+        }
+
         const optionsContact = [
             { label: 'email', value: 'email' },
             { label: 'phone', value: 'phone' },
@@ -443,13 +496,22 @@ class Postroommates extends Component{
                                         <div className="panel-body">
                                             <FormItem
                                                 {...formItemLayout}
+                                                label="State"
+                                            >
+                                                {getFieldDecorator('state', {
+                                                    rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
+                                                })(
+                                                    <Cascader options={statesUS} onChange={this.onChangeCat.bind(this)}/>
+                                                )}
+                                            </FormItem>
+                                            <FormItem
+                                                {...formItemLayout}
                                                 label="City"
                                             >
                                                 {getFieldDecorator('city', {
-                                                    initialValue: ['zhejiang', 'hangzhou', 'xihu'],
                                                     rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
                                                 })(
-                                                    <Cascader options={category} />
+                                                    <Cascader options={citiesUS} />
                                                 )}
                                             </FormItem>
                                             <FormItem

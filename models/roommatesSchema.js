@@ -27,6 +27,10 @@ var RoomSchema = new mongoose.Schema({
 	contactemail:{type:String},
 	contactnumber:{type:String},
 	modeofcontact:{type:Array},
+	profileId:{type:String},
+	subCategory:{type:String},
+	subSubCategory:{type:String},
+	state:{type:String},
 });
 
 mongoose.model('roomdata',RoomSchema);

@@ -584,7 +584,8 @@ app.post('/api/postbusinessdata',function(req,res){
     closingTime:businessData.closingTime,
     socialFaceBook:businessData.socialFaceBook,
     socialGoogle:businessData.socialGoogle,
-    socialLinkIn:businessData.socialLinkIn
+    socialLinkIn:businessData.socialLinkIn,
+    profileId:businessData.profileId
    });
 
    yellowBusiness_info.save(function(err,data){
@@ -916,7 +917,11 @@ app.post('/api/changepassword',function(req,res){
       contactname:postroomrent.contactName,
       contactemail:postroomrent.contactEmail,
       contactnumber:postroomrent.contactNumber,
-      modeofcontact:postroomrent.contactMode
+      modeofcontact:postroomrent.contactMode,
+      profileId:postroomrent.profileId,
+      subCategory:postroomrent.subCategory,
+      subSubCategory:postroomrent.subSubCategory,
+      state:postroomrent.state
     })
     roommates_info.save(function(err,data){
   if(err){

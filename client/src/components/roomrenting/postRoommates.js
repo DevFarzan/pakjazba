@@ -413,6 +413,7 @@ class Postroommates extends Component{
             vegNoVeg: vegNoVeg,
             arr_url: response ? response : []
         }
+        console.log('roommatesobj', obj);
         var req = await HttpUtils.post('postroomrent', obj)
         if(req.code === 200) {
             this.props.form.resetFields();

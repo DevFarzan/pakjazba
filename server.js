@@ -584,7 +584,8 @@ app.post('/api/postbusinessdata',function(req,res){
     closingTime:businessData.closingTime,
     socialFaceBook:businessData.socialFaceBook,
     socialGoogle:businessData.socialGoogle,
-    socialLinkIn:businessData.socialLinkIn
+    socialLinkIn:businessData.socialLinkIn,
+    profileId:businessData.profileId
    });
 
    yellowBusiness_info.save(function(err,data){

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import App from '../App';
+import App from '../../App';
 import {
     Form,
     Input,
@@ -17,11 +17,11 @@ import {
 } from 'antd';
 import moment from 'moment';
 import superagent from "superagent";
-import {HttpUtils} from "../Services/HttpUtils";
+import {HttpUtils} from "../../Services/HttpUtils";
 //import MapContainer from './google_map/Map'
 import sha1 from "sha1";
-import Burgermenu from './header/burgermenu';
-import Footer from '../components/footer/footer';
+import Burgermenu from '../header/burgermenu';
+import Footer from '../footer/footer';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 const RangePicker = DatePicker.RangePicker;
 const InputGroup = Input.Group;
@@ -145,6 +145,37 @@ const category = [{
     value:'Parking & storage to rent',
     label:'Parking & storage to rent',
 }];
+
+const accomodateCategory = [{
+    value: 1,
+    label: 1
+},{
+    value: 2,
+    label: 2
+},{
+    value: 3,
+    label: 3
+},{
+    value: 4,
+    label: 4
+},{
+    value: 5,
+    label: 5
+},{
+    value: 6,
+    label: 6
+}]
+
+const priceCategory = [{
+    value: 'per night',
+    label: 'per night'
+},{
+    value: 'per week',
+    label: 'per week'
+},{
+    value: 'per month',
+    label: 'per month'
+}]
 
 const furnishedcategory = [{
   value: 'Unfurnished',
@@ -527,7 +558,7 @@ class Postroommates extends Component{
                                                             initialValue: ['zhejiang', 'hangzhou', 'xihu'],
                                                             rules: [{ type: 'array', required: true, message: 'Please select your Price Mode!' }],
                                                         })(
-                                                            <Cascader options={category} />
+                                                            <Cascader options={priceCategory} />
                                                         )}
                                                     </FormItem>
                                                 </div>
@@ -540,7 +571,7 @@ class Postroommates extends Component{
                                                 {getFieldDecorator('accommodates', {
                                                     rules: [{ type: 'array', required: true, message: 'Please select your Accommodates!' }],
                                                 })(
-                                                    <Cascader options={category} />
+                                                    <Cascader options={accomodateCategory} />
                                                 )}
                                             </FormItem>
                                             <FormItem

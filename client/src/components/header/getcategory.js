@@ -26,7 +26,7 @@ class getCategory extends Component{
 
   render(){
   		const menu = (
-  <Menu>
+  <Menu >
     <Menu.Item>
       <Link rel="noopener noreferrer" to={`/postad_business`}>Publish Your Business</Link>
     </Menu.Item>

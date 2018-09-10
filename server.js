@@ -309,7 +309,7 @@ rand=Math.floor((Math.random() * 100) + 54);
                       <tr>
                         <td align="center">
                           <div>
-                                <a href='+link+' class="button button--blue" style="background-color: #8cbc40; display: inline-block;width: 200px;border-radius: 3px;color: #ffffff;font-size: 15px;line-height: 45px;text-align: center;text-decoration: none;">Verify Email</a>
+                                <a href="+ link +" class="button button--blue" style="background-color: #8cbc40; display: inline-block;width: 200px;border-radius: 3px;color: #ffffff;font-size: 15px;line-height: 45px;text-align: center;text-decoration: none;">Verify Email</a>
                           </div>
                         </td>
                       </tr>
@@ -945,17 +945,25 @@ app.post('/api/changepassword',function(req,res){
 
 app.post('/api/sendmessage',function(req,res){
 var getuserfields = req.body;
-      getuserfields.username = 'Farzan';
-      getuserfields.email = 'farzan@yahoo.com';
-      getuserfields.message = 'This is a testing message for send contact!';
+      var username = 'Farzan';
+      var email = 'farzan@yahoo.com';
+      var message = 'This is a testing message for send contact!';
 
       mailOptions={
-    to : req.query.email,
+    to : 'farzanhanif123@gmail.com',
     subject : " Pakjazba User want to talk to you",
-    html : ``
-
+    html : "<html><head><style>table {font-family: arial, sans-serif;border-collapse: collapse;width: 100%;}td, th {border: 1px solid #dddddd;text-align: left;padding: 8px;}tr:nth-child(even) {background-color: #dddddd;}</style></head><body><h2>User Details</h2><table> <tr><th>Name</th><th>Email</th><th>Message</th></tr><tr><td>" + username +" </td><td>"+ email +"</td><td>"+ message +"</td></tr></table></body></html>"
   }
-
+  console.log(mailOptions);
+  smtpTransport.sendMail(mailOptions, function(error, response){
+     if(error){
+          console.log(error);
+    res.end("error");
+   }else{
+          console.log("Message sent: " + response.message);
+    res.end("sent");
+       }
+     })
 })
 
 /*===================post roommates API end =================================================================*/

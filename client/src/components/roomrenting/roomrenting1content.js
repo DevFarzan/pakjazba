@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import "./headerroomrenting.css"
+import "./headerroomrenting.css";
+import { connect } from 'react-redux';
+import {Link} from "react-router-dom";
 import {HttpUtils} from "../../Services/HttpUtils";
 
 class Roomrenting1content extends Component{
@@ -21,7 +23,7 @@ class Roomrenting1content extends Component{
         return(
 
             <section id="about">
-                <div className="">
+                {/*<div className="">
                     <div className="row about-container">
                         <div className="col-lg-4 col-md-4 col-sm-12 space-top" >
                             <div className="card outset" >
@@ -50,7 +52,48 @@ class Roomrenting1content extends Component{
                             </div>
                         </div>
                     </div>
+                </div>*/}
+
+
+
+                <div className="secondfold">
+                <div className="row">
+                    <Link to={{pathname: `/detail_buySell`}}>
+                        <div className="col-md-4">
+                            <div className="ibox">
+                                <div className="ibox-content product-box">
+                                    <div className="product-imitation">
+                                        <div className="card2">
+                                            <img src='../images/author-09.jpg'/>
+                                            <span className="card-button">
+                                                <p className="categories-on-card">Furniture</p>
+                                                <h4> Furniture For Sale </h4>
+                                                <i className="glyphicon glyphicon-map-marker"/><p className="text">Home & Decor</p>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="cust-margin">
+                                        <i className="glyphicon glyphicon-home"/>
+                                        <p className="text">Home icon</p>
+                                    </div>
+                                    <div className="product-desc">
+                                        <span className="product-price">12000</span>
+                                        <small className="text-muted">Category</small>
+                                        <a href="#" className="product-name">For Sale</a>
+                                        <div className="small m-t-xs">
+                                            For testing comment in the eye of lorem ipsum field
+                                        </div>
+                                        <div className="m-t text-righ">
+                                            <Link to={{pathname: `/detail_buySell`}} className="btn btn-xs btn-outline btn-primary">Info <i className="fa fa-long-arrow-right"></i> </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </Link>
                 </div>
+                
+            </div>
 
             </section>
 

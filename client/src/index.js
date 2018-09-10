@@ -15,6 +15,7 @@ import Postbuysell from './components/buy_sell/postBuysell';
 import ProfileUser from './components/user_profile/profileUser';
 import DetailBuySell from './components/buy_sell/detail_buySell';
 import DetailBusiness from './components/business/detail_business';
+import DetailRoommates from './components/roomrenting/detail_roomRent';
 import MarketBusiness from './components/business/marketBusiness';
 import MarketClassified from './components/buy_sell/marketClassified';
 import MarketRoommates from './components/roomrenting/MarketRoommates';
@@ -57,6 +58,7 @@ ReactDOM.render(
 					<PrivateRoute path="/profile_user" component={ProfileUser}></PrivateRoute>
 					<Route path="/detail_buySell" component={DetailBuySell}></Route>
 					<Route path="/detail_business" component={DetailBusiness}></Route>
+					<Route path="/detail_roomRent" component={DetailRoommates}></Route>
 					<Route path="/market_business" component={MarketBusiness}></Route>
 					<Route path="/market_classified" component={MarketClassified}></Route>
 					<Route path="/market_roommates" component={MarketRoommates}></Route>

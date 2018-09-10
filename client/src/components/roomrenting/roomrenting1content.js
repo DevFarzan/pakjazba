@@ -1,7 +1,22 @@
 import React, { Component } from 'react';
 import "./headerroomrenting.css"
+import {HttpUtils} from "../../Services/HttpUtils";
 
 class Roomrenting1content extends Component{
+
+    componentDidMount(){
+        this.getAllBusiness()
+    }
+
+    async getAllBusiness(){
+        var res = await HttpUtils.get('marketplace')
+        console.log(res, '///////////////////')
+        // this.setState({
+        //     buySell: res.busell,
+        //     showBuySell: res.busell.slice(0, 6)
+        // })
+    }
+
     render(){
         return(
 

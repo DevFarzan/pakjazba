@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Headerroomrenting from "./headerroomrenting";
-import Sliderroomrenting from "./roomrentingcontentarea";
+// import Headerroomrenting from "./headerroomrenting";
+// import Sliderroomrenting from "./roomrentingcontentarea";
 import Roomrenting1content from "./roomrenting1content";
 import Roomrentingtwocontentarea from "./roomrenting2contentarea";
 //import Roomrentingthreecontentarea from "./roomrenting/roomrenting3contentarea";
@@ -14,7 +14,7 @@ class MarketRoommates extends Component{
             <div>
                 <App />
                 <div className="container" style={{width:"87%"}}>
-                <Roomrentingtwocontentarea />
+                <Roomrenting1content />
                  
                 </div>
                 <Footer />

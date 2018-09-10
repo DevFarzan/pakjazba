@@ -10,7 +10,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import App from './App';
 import Signin from './components/signin_seperate/signin';
 import Postbusiness from './components/business/postBusiness';
-import Postroommates from './components/postRoommates';
+import Postroommates from './components/roomrenting/postRoommates';
 import Postbuysell from './components/buy_sell/postBuysell';
 import ProfileUser from './components/user_profile/profileUser';
 import DetailBuySell from './components/buy_sell/detail_buySell';

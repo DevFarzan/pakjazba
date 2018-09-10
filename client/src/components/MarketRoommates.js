@@ -15,7 +15,7 @@ class MarketRoommates extends Component{
                 <Headerroomrenting />
                 <Sliderroomrenting />
                 <div className="container" style={{width:"87%"}}>
-                <Roomrenting1content />
+                <Roomrentingtwocontentarea />
                  
                 </div>
                 <Footer />

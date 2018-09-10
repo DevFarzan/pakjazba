@@ -19,6 +19,11 @@ var businessSchema = new mongoose.Schema({
 	businesscategory:{type:String},
 	businessdiscription:{type:String},
 	businessImages:{type:Array},
+	openingTime:{type:String},
+    closingTime:{type:String},
+    socialFaceBook:{type:String},
+    socialGoogle:{type:String},
+    socialLinkIn:{type:String},
 });
 //businessSchema.plugin(uniqueValidator);
 mongoose.model('business',businessSchema);

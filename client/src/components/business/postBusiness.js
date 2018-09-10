@@ -551,7 +551,9 @@ class Postbusiness extends Component {
             socialLinkIn: socLin,
             arr_url: response ? response : []
         }
+        console.log('businessData:'+obj);
         var req = await HttpUtils.post('postbusinessdata', obj)
+
         if(req.code === 200){
             this.props.form.resetFields();
             this.openNotification()
@@ -586,7 +588,7 @@ class Postbusiness extends Component {
     };
 
     checkValue(rule, value, callback) {
-        this.setState({desLength: value.length})
+        this.setState({desLength: value.length && value.length})
         callback();
     }
 
@@ -723,15 +725,8 @@ class Postbusiness extends Component {
                                                     <Input  />
                                                 )}
                                             </FormItem>
-<<<<<<< HEAD
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Opening & closing Time"
-                                            >
-                                                    <TimePicker placeholder="Opening TIme" use12Hours format="h:mm:ss A" onChange={this.openingTime} />
-                                                    <TimePicker placeholder="Closing Time" use12Hours format="h:mm a" onChange={this.closingTime} />
-                                            </FormItem>
-=======
+
+                                            
                                             <div className='row'>
                                                 <div className="col-md-3">
                                                     <label htmlFor="email" style={{fontColor: 'black', float: 'right'}}>Opening & closing Time:</label>
@@ -756,7 +751,6 @@ class Postbusiness extends Component {
                                                 </div>
                                                 <div className="col-md-3"></div>
                                             </div>
->>>>>>> 4765c40d8aae516ace362bc61aec218ea0202359
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Business Number"

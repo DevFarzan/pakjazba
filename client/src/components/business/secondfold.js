@@ -54,8 +54,8 @@ class Secondfold extends Component{
     async getAllBusiness(){
         var res = await HttpUtils.get('marketplace')
         this.setState({
-            business: res.business,
-            showBusiness: res.business.slice(0, 6)
+            business: res && res.business,
+            showBusiness: res && res.business.slice(0, 6)
         })
     }
 

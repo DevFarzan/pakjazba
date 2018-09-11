@@ -37,7 +37,7 @@ class Signin extends Component{
     async getAllUsers(){
         console.log(ip.address(), 'ipAddressssssss')
         var response = await HttpUtils.get('allusers')
-        this.setState({allUser: response.content && response.content})
+        this.setState({allUser: response && response.content})
     }
 
     showModal = () => {

@@ -33,109 +33,109 @@ const FormItem = Form.Item
 const stateCities= require('countrycitystatejson')
 
 const category = [{
-  value: 'Property to rent',
-  label: 'Property to rent',
-  children: [{
-    value: 'Single Family Home',
-    label: 'Single Family Home',
+    value: 'Property to rent',
+    label: 'Property to rent',
     children: [{
-      value: '1 Bed',
-      label: '1 Bed',
-    },{
-      value: '2 Beds',
-      label: '2 Beds',
-    },{
-      value: '3 Beds',
-      label: '3 Beds',
-    },{
-      value: '4+ Beds',
-      label: '4+ Beds',
-    }],
-  },
-{
-    value:'Appartment',
-    label:'Apartment',
-    children: [{
-      value: '1 Bed',
-      label: '1 Bed',
-    },{
-      value: '2 Beds',
-      label: '2 Beds',
-    },{
-      value: '3 Beds',
-      label: '3 Beds',
-    },{
-      value: '4+ Beds',
-      label: '4+ Beds',
-    }],
+        value: 'Single Family Home',
+        label: 'Single Family Home',
+        children: [{
+            value: '1 Bed',
+            label: '1 Bed',
+        },{
+            value: '2 Beds',
+            label: '2 Beds',
+        },{
+            value: '3 Beds',
+            label: '3 Beds',
+        },{
+            value: '4+ Beds',
+            label: '4+ Beds',
+        }],
+    },
+        {
+            value:'Appartment',
+            label:'Apartment',
+            children: [{
+                value: '1 Bed',
+                label: '1 Bed',
+            },{
+                value: '2 Beds',
+                label: '2 Beds',
+            },{
+                value: '3 Beds',
+                label: '3 Beds',
+            },{
+                value: '4+ Beds',
+                label: '4+ Beds',
+            }],
+        },{
+            value:'Condo',
+            label:'Condo',
+            children: [{
+                value: '1 Bed',
+                label: '1 Bed',
+            },{
+                value: '2 Beds',
+                label: '2 Beds',
+            },{
+                value: '3 Beds',
+                label: '3 Beds',
+            },{
+                value: '4+ Beds',
+                label: '4+ Beds',
+            }],
+        },{
+            value:'Town house',
+            label:'Town house',
+            children: [{
+                value: '1 Bed',
+                label: '1 Bed',
+            },{
+                value: '2 Beds',
+                label: '2 Beds',
+            },{
+                value: '3 Beds',
+                label: '3 Beds',
+            },{
+                value: '4+ Beds',
+                label: '4+ Beds',
+            }],
+        },{
+            value:'Homes',
+            label:'Homes',
+            children: [{
+                value: '1 Bed',
+                label: '1 Bed',
+            },{
+                value: '2 Beds',
+                label: '2 Beds',
+            },{
+                value: '3 Beds',
+                label: '3 Beds',
+            },{
+                value: '4+ Beds',
+                label: '4+ Beds',
+            }],
+        }],
 },{
-    value:'Condo',
-    label:'Condo',
+    value: 'Room to rent',
+    label: 'Room to rent',
     children: [{
-      value: '1 Bed',
-      label: '1 Bed',
+        value: 'Shared Room',
+        label: 'Shared Room',
     },{
-      value: '2 Beds',
-      label: '2 Beds',
+        value:'Single Room',
+        label:'Single Room',
     },{
-      value: '3 Beds',
-      label: '3 Beds',
-    },{
-      value: '4+ Beds',
-      label: '4+ Beds',
+        value:'Paying Guest',
+        label:'Paying Guest',
     }],
-},{
-    value:'Town house',
-    label:'Town house',
-    children: [{
-      value: '1 Bed',
-      label: '1 Bed',
-    },{
-      value: '2 Beds',
-      label: '2 Beds',
-    },{
-      value: '3 Beds',
-      label: '3 Beds',
-    },{
-      value: '4+ Beds',
-      label: '4+ Beds',
-    }],
-},{
-    value:'Homes',
-    label:'Homes',
-    children: [{
-      value: '1 Bed',
-      label: '1 Bed',
-    },{
-      value: '2 Beds',
-      label: '2 Beds',
-    },{
-      value: '3 Beds',
-      label: '3 Beds',
-    },{
-      value: '4+ Beds',
-      label: '4+ Beds',
-    }],
-}],
-},{
-  value: 'Room to rent',
-  label: 'Room to rent',
-  children: [{
-    value: 'Shared Room',
-    label: 'Shared Room',
-  },{
-    value:'Single Room',
-    label:'Single Room',
-  },{
-    value:'Paying Guest',
-    label:'Paying Guest',
-  }],
 },{
     value:'Office & commercial to rent',
     label:'Office & commercial to rent',
     children:[{
-      value:'Office Space',
-      label:'Office Space',  
+        value:'Office Space',
+        label:'Office Space',
     },{
         value:'Retail Outlet',
         label:'Retail Outlet',

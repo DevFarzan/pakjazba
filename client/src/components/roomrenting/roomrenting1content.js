@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "./headerroomrenting.css";
 import { connect } from 'react-redux';
+import { Pagination } from 'antd';
 import {Link} from "react-router-dom";
 import {HttpUtils} from "../../Services/HttpUtils";
 
@@ -9,31 +10,52 @@ class Roomrenting1content extends Component{
         super(props);
         this.state = {
             roomrents: [],
-            showroomrents: []
+            showroomrents: [],
+            filteredArr: []
         }
     }
+
     componentDidMount(){
         this.getAllBusiness()
     }
 
     async getAllBusiness(){
         var res = await HttpUtils.get('marketplace')
-        console.log(res, '///////////////////')
         this.setState({
-            roomrents: res.roomrentsdata,
-            showroomrents: res.roomrentsdata.slice(0, 10)
+            roomrents: res && res.roomrentsdata,
+            showroomrents: res && res.roomrentsdata.slice(0, 6)
         })
     }
 
+    funcIndexes(page){
+        var to = 6 * page;
+        var from = to - 6;
+        return {from: page === 1 ? 0 : from, to: page === 1 ? 6 : to}
+    }
+
+    onChange = (page) => {
+        const { roomrents, filteredArr } = this.state;
+        var indexes = this.funcIndexes(page)
+        if(!!filteredArr.length){
+            this.setState({
+                current: page,
+                showroomrents: filteredArr.slice(indexes.from, indexes.to)
+            });
+        }else {
+            this.setState({
+                current: page,
+                showroomrents: roomrents.slice(indexes.from, indexes.to)
+            });
+        }
+    }
+
     render(){
-        const { showroomrents } = this.state;
-        console.log()
+        const { showroomrents, filteredArr, roomrents } = this.state;
         return(
             <section id="about">
                 <div className="secondfold">
                     <div className="row">
                         {showroomrents && showroomrents.map((elem) => {
-                            console.log(elem, 'elemmmmmmmmmmmmmmm')
                             let str = elem.propertylocation;
                             if(str.length > 25) {
                                 str = str.substring(0, 25);
@@ -79,6 +101,7 @@ class Roomrenting1content extends Component{
                         })
                         }
                     </div>
+                    {!!showroomrents.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length : roomrents.length} onChange={this.onChange} /></span>}
                 </div>
             </section>
         )

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Burgermenu from '../header/burgermenu';
-import Roomrentingtwocontentarea from "./roomrenting2contentarea";
+import Roomrentingthreecontentarea from "./roomrenting3contentarea";
 import { Redirect } from 'react-router';
 
 class DetailRoommates extends Component{
@@ -43,7 +43,7 @@ class DetailRoommates extends Component{
                 <span className="background_listing">
                 	<Burgermenu/>
                 </span>
-                <Roomrentingtwocontentarea />
+                <Roomrentingthreecontentarea />
                 DetailRoommates
             </div>
         )

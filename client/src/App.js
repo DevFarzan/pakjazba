@@ -3,6 +3,7 @@ import { Input, Button } from 'antd';
 import 'antd/dist/antd.css';
 import Burgermenu from './components/header/burgermenu';
 import Slider from './components/header/Slider';
+import Home1 from "./components/home/home1";
 import {HttpUtils} from "./Services/HttpUtils";
 
 class App extends Component {
@@ -43,12 +44,15 @@ class App extends Component {
         const Search = Input.Search;
         const {username} = this.state;
         return (
+            <span>
             <div className ="" style={{"background-image":"url('https://images.alphacoders.com/633/633643.jpg')","height": "407px",marginTop: "-19px"}}>
                 <div className="background-image">
                     <Burgermenu/>
                     <Slider/>
                 </div>
             </div>
+             <Home1/>
+             </span>
         );
     }
 }

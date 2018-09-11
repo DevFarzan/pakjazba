@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import {Icon, Input, Form, Upload, message} from 'antd';
 import App from '../../App';
+import Footer from '../footer/footer.js';
 import sha1 from "sha1";
 import superagent from "superagent";
 import AsyncStorage from "@callstack/async-storage";
 import {HttpUtils} from "../../Services/HttpUtils";
 import Burgermenu from '../header/burgermenu';
+import { Link } from "react-router-dom";
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -232,8 +234,8 @@ class ProfileUser extends Component{
         return(
             <div>
                 <Burgermenu/>
-                <div className="content" style={{"margin-top": "110px"}}>
-                    <div className="container">
+                <div className="content" style={{"paddingTop": "106px"}}>
+                    <div className="container" style={{width:"87%"}}>
                         <div className="hero">
                             <div className="row">
                                 {/*=======================col-md-3============================*/}
@@ -370,7 +372,7 @@ class ProfileUser extends Component{
                                                                 <Input name="email" type="email"
                                                                        className="form-control"
                                                                        onChange={this.onChangeValue.bind(this)}
-                                                                       placeholder="Your Email"/>
+                                                                       placeholder="Your Email" readOnly />
                                                             )}
                                                         </FormItem>
                                                     </div>
@@ -506,6 +508,26 @@ class ProfileUser extends Component{
                                                     </div>
                                                 </div>
                                             </div>}
+                                        {/*===============Ad Listing start=================*/}
+                                             <div className="secondfold">
+                                                <h1 className="text-align"></h1>
+                                                <div className="index-content" style={{marginBottom: "-225px"}}>
+                                                    <div className="row">
+                                                            
+                                                            <div className="col-md-5"  style={{'marginBottom': '30px'}}>
+                                                                <div className="card" style={{height:"453px"}}>
+                                                                    <img src="http://cevirdikce.com/proje/hasem-2/images/finance-1.jpg" />
+                                                                    <h4>Krl creatives</h4>
+                                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                                                        <i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i>
+                                                                        <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i> 
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                             </div>
+                                        {/*===============Ad listing end=============*/}
                                         </div>
                                     </Form>
                                 </div>
@@ -513,6 +535,7 @@ class ProfileUser extends Component{
                         </div>
                     </div>
                 </div>
+                <Footer/>
             </div>
         )
     }

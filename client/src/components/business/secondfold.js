@@ -90,7 +90,7 @@ class Secondfold extends Component{
                 <div className="index-content" style={{marginBottom: "-225px"}}>
                     <div className="row">
                         {showBusiness && showBusiness.map((elem) => {
-                            let str = elem.description;
+                            let str = elem.description || '';
                             if(str.length > 100) {
                                 str = str.substring(0, 100);
                                 str = str + '...'
@@ -98,7 +98,7 @@ class Secondfold extends Component{
                             return (<Link to={{pathname: `/detail_business`, state: elem}}>
                             <div className="col-md-4"  style={{'marginBottom': '30px'}}>
                                 <div className="card">
-                                    <img src="http://cevirdikce.com/proje/hasem-2/images/finance-1.jpg"/>
+                                    <img src={elem.businessImages[0]}/>
                                     <h4>{elem.businessname}</h4>
                                     <p>{str}</p>
                                     <Link to={{pathname: `/detail_business`, state: elem}} className="blue-button">Read More</Link>

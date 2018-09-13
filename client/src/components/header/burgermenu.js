@@ -10,7 +10,7 @@ class Burgermenu extends Component{
   render(){
       return(
           <div>
-              <nav className="navbar navbar-default hidden-xs" style={{position: "fixed",
+              <nav className="navbar navbar-fixed-top hidden-xs" style={{position: "fixed",
     width: "100%",
     "z-index": "999",marginTop: "-19px"}}>
                   <div className="container-fluid">
@@ -22,7 +22,7 @@ class Burgermenu extends Component{
                                   <span className="icon-bar"></span>
                                   <span className="icon-bar"></span>
                               </button>
-                              <Link to={`/`} className="navbar-brand"><img src="./images/mobile-logo.png" style={{"width": "100px",marginTop: "11px"}} /></Link>
+                              <Link to={`/`} className="navbar-brand"><img src="./images/mobile-logo.png" style={{"width": "100px",marginTop: "28px"}} /></Link>
                           </div>
                       </div>
                       <div className="col-md-10 col-sm-6 col-xs-6">

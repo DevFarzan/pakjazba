@@ -28,6 +28,7 @@ class Roomrenting3contentarea extends Component{
                         <div className="col-md-2 col-sm-12 col-xs-12">
                         </div>
                         <div className="col-md-12 col-sm-12 col-xs-12">
+                            
                             <div className="col-md-3 col-sm-6 col-xs-12">
                                 <h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-calendar"></span>{data.startdate}</h4>
                                 <h4 style={{fontSize: "16px"}}> Available From</h4>

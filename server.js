@@ -436,6 +436,7 @@ app.post('/api/reviews',function(req,res){
       res.send({
         code:200,
         msg:'reviews added successfully',
+        content:data[0]
       })
     }
   })

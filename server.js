@@ -145,6 +145,7 @@ require('./models/posttoclassified');
 require('./models/profile');
 require('./models/roommatesSchema');
 require('./models/categoryclassified');
+require('./models/reviews.js');
 
 require('./config/passport');
 
@@ -155,6 +156,7 @@ var classifiedBusiness = mongoose.model('postclassified');
 var profiledata = mongoose.model('profiledatabase');
 var roomrentsdata = mongoose.model('roomdata');
 var categoryclassified = mongoose.model('categoryclassified');
+var reviewdata = mongoose.model('reviewschema');
 
 app.use(passport.initialize());
 
@@ -414,7 +416,38 @@ else
 
 /*--------------------Routing Over----------------------------*/
 
+/*===================Review api start==============================*/
+app.post('/api/reviews',function(req,res){
+  var reviews  = req.body;
 
+  var review_info = new reviewdata({
+    objid:reviews.objId,
+    name:reviews.name,
+    email:reviews.email,
+    message:reviews.message,
+    star:reviews.star
+  })
+
+  review_info.save(function(err,data){
+    if(err){
+      res.send({error:'something done wrong'})
+    }
+    else if(data){
+      res.send({
+        code:200,
+        msg:'reviews added successfully',
+      })
+    }
+  })
+
+})
+
+
+app.get('/api/getreviews',function(req,res){
+})
+
+
+/*==================Review api end=================================*/
 
 
 

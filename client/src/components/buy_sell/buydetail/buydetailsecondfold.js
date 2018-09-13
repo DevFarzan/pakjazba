@@ -76,23 +76,9 @@ class Buydetailsecondfold extends Component{
                                 <div className="col-sm-9 col-xs-12" style={{marginTop: "33px",textAlign:"left"}}>
                                     <div className="review-block-rate">
                                         <div className="review-block-name"><a href="#">{data.contactname}</a></div>
-                                        <button type="button" className="btn btn-success btn-xs" aria-label="Left Align">
-                                            <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        </button>
-                                        <button type="button" className="btn btn-success btn-xs" aria-label="Left Align">
-                                            <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        </button>
-                                        <button type="button" className="btn btn-success btn-xs" aria-label="Left Align">
-                                            <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        </button>
-                                        <button type="button" className="btn btn-default btn-xs" aria-label="Left Align">
-                                            <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        </button>
-                                        <button type="button" className="btn btn-default btn-xs" aria-label="Left Align">
-                                            <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        </button>
+                                        
                                     </div>
-                                    <div className="review-block-title">Show my Listining(12)</div>
+                                    
                                 </div>
                                 <section  style={{float: "left",marginLeft: "16px"}}>
                                     <span><h4>Phone:</h4></span>

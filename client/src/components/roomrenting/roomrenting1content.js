@@ -56,12 +56,12 @@ class Roomrenting1content extends Component{
                 <div className="secondfold">
                     <div className="row">
                         {showroomrents && showroomrents.map((elem) => {
-                            let str = elem.propertylocation;
+                            let str = elem.propertylocation || '';
                             if(str.length > 25) {
                                 str = str.substring(0, 25);
                                 str = str + '...'
                             }
-                            let des = elem.discription;
+                            let des = elem.discription || '';
                             if(des.length > 100) {
                                 des = des.substring(0, 100);
                                 des = des + '...'
@@ -90,7 +90,7 @@ class Roomrenting1content extends Component{
                                                     <a href="#" className="product-name">{elem.category}</a>
                                                     <div className="small m-t-xs">{des}</div>
                                                     <div className="m-t text-righ">
-                                                        <Link to={{pathname: `/detail_buySell`}} className="btn btn-xs btn-outline btn-primary">Info <i className="fa fa-long-arrow-right"></i> </Link>
+                                                        <Link to={{pathname: `/detail_roomRent`, state: elem}} className="btn btn-xs btn-outline btn-primary">Info <i className="fa fa-long-arrow-right"></i> </Link>
                                                     </div>
                                                 </div>
                                             </div>

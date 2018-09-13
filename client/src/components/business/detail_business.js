@@ -86,6 +86,7 @@ class DetailBusiness extends Component{
 
     render(){
         const { isData, data, reviews } = this.state;
+        console.log(data, 'dataaaaaaaaaaaaa')
         let images = data.businessImages;
         if(!isData){
             return <Redirect to='/' />

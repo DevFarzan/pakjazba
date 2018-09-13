@@ -373,7 +373,7 @@ class Roomrentingtwocontentarea extends Component{
                             <div className="col-lg-4 col-md-4 col-sm-12 space-top">
                             <div className="secondfold" style={{backgroundColor:"#ffffff08"}}>
                                 <div className="row">
-                                    <Link to={{pathname: `/detail_buySell`}}>
+                                    <Link to={{pathname: `/detail_roomRent`, state: elem}}>
                                         <div className="">
                                             <div className="ibox">
                                                 <div className="ibox-content product-box">
@@ -398,7 +398,7 @@ class Roomrentingtwocontentarea extends Component{
                                                             discription
                                                         </div>
                                                         <div className="m-t text-righ">
-                                                            <Link to={{pathname: `/detail_buySell`}} className="btn btn-xs btn-outline btn-primary">Info <i className="fa fa-long-arrow-right"></i> </Link>
+                                                            <Link to={{pathname: `/detail_roomRent`, state: elem}} className="btn btn-xs btn-outline btn-primary">Info <i className="fa fa-long-arrow-right"></i> </Link>
                                                         </div>
                                                     </div>
                                                 </div>

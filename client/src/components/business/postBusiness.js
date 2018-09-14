@@ -27,6 +27,7 @@ import axios from "axios";
 import { Redirect } from 'react-router';
 import {HttpUtils} from '../../Services/HttpUtils';
 import AsyncStorage from "@callstack/async-storage/lib/index";
+import moment from 'moment'
 
 const { TextArea } = Input;
 const FormItem = Form.Item
@@ -316,7 +317,8 @@ class Postbusiness extends Component {
             socLin: '',
             profileId: '',
             openingTime: '',
-            closingTime: ''
+            closingTime: '',
+            imageList: []
         };
     }
 
@@ -328,11 +330,36 @@ class Postbusiness extends Component {
     componentDidMount(){
         this.handleLocalStorage();
         let data = this.props.location.state;
-        console.log(data, 'dataaaaaaaaaaa12344444')
-        this.setState({
-            dataAddress: data.address,
-            dataCity: data.city,
-        })
+        if(data) {
+            this.setState({
+                dataAddress: data.address,
+                dataCity: data.city,
+                dataState: data.state,
+                dataZip: data.zipcode,
+                dataFname: data.firstname,
+                dataLname: data.lastname,
+                dataBname: data.businessname,
+                dataBnumber: data.businessnumber,
+                dataBemailId: data.businessemailid,
+                dataBaddress: data.businessaddress,
+                dataBOwnernamae: data.businessownername,
+                dataBemail: data.businessemail,
+                dataCategory: [data.businesscategory],
+                dataDescription: data.description ? data.description : 'write some description',
+                socFac: data.socialFaceBook ? data.socialFaceBook : '',
+                socGoo: data.socialGoogle ? data.socialGoogle : '',
+                socLin: data.socialLinkIn ? data.socialLinkIn : '',
+                imageList: data.businessImages,
+                dataOtime: data.openingTime,
+                dataCtime: data.closingTime,
+            })
+        }
+    }
+
+    deleteImage(e){
+        let { imageList } = this.state;
+        imageList = imageList.filter((elem) => elem !== e)
+        this.setState({imageList: imageList})
     }
 
     handleLocalStorage = () =>{
@@ -605,6 +632,23 @@ class Postbusiness extends Component {
             return <Redirect to='/' />
         }
 
+        const uploadedImages = (
+            <div style={{display: 'flex'}}>
+                {this.state.imageList.map((elem) => {
+                    return(
+                        <div>
+                            <img alt='img1' style={{width: '100px', height: '100px'}} src={elem} />
+                            <span
+                                onClick={this.deleteImage.bind(this, elem)}
+                                style={{position: 'absolute', marginTop: '10px', marginLeft: '-14px', cursor: 'pointer', color: 'white'}}>
+                                X
+                            </span>
+                        </div>
+                    )
+                })}
+            </div>
+        )
+
         const uploadButton = (
             <div>
                 <Icon type="plus" />
@@ -679,6 +723,7 @@ class Postbusiness extends Component {
 												label="State"
 											>
                                             {getFieldDecorator('state', {
+                                                initialValue: this.state.dataState,
                                                 rules: [{ required: true, message: 'Please input your State!', whitespace: true }],
                                             })(
                                                 <Input  />
@@ -689,6 +734,7 @@ class Postbusiness extends Component {
 												label="Zip"
 											>
                                             {getFieldDecorator('zip', {
+                                                initialValue: this.state.dataZip,
                                                 rules: [{ required: true, message: 'Please input your Zip!', whitespace: true }],
                                             })(
                                                 <Input  />
@@ -708,6 +754,7 @@ class Postbusiness extends Component {
                                                 label="First Name"
                                             >
                                                 {getFieldDecorator('firstName', {
+                                                    initialValue: this.state.dataFname,
                                                     rules: [{ required: true, message: 'Please input your  First Name!', whitespace: true }],
                                                 })(
                                                     <Input  />
@@ -718,6 +765,7 @@ class Postbusiness extends Component {
                                                 label="Last Name"
                                             >
                                                 {getFieldDecorator('lastName', {
+                                                    initialValue: this.state.dataLname,
                                                     rules: [{ required: true, message: 'Please input your Last Name!', whitespace: true }],
                                                 })(
                                                     <Input  />
@@ -728,6 +776,7 @@ class Postbusiness extends Component {
                                                 label="Business Name"
                                             >
                                                 {getFieldDecorator('businessName', {
+                                                    initialValue: this.state.dataBname,
                                                     rules: [{ required: true, message: 'Please input your Business Name!', whitespace: true }],
                                                 })(
                                                     <Input  />
@@ -740,6 +789,7 @@ class Postbusiness extends Component {
                                                 <div className="col-md-3">
                                                     <FormItem>
                                                         {getFieldDecorator('openingTime', {
+                                                            initialValue: moment(this.state.dataOtime, 'HH:mm:ss'),
                                                             rules: [{ validator: this.validateTime.bind(this) }],
                                                         })(
                                                             <TimePicker placeholder="Opening Time" use12Hours format="h:mm:ss A" onChange={this.onOpeningTime.bind(this)} />
@@ -749,9 +799,10 @@ class Postbusiness extends Component {
                                                 <div className="col-md-3">
                                                     <FormItem>
                                                         {getFieldDecorator('closingTime', {
+                                                            initialValue: moment(this.state.dataCtime, 'HH:mm:ss'),
                                                             rules: [{ validator: this.validateTime.bind(this) }],
                                                         })(
-                                                            <TimePicker placeholder="Opening Time" use12Hours format="h:mm:ss A" onChange={this.onClosingTime.bind(this)} />
+                                                            <TimePicker placeholder="Closing Time" use12Hours format="h:mm:ss A" onChange={this.onClosingTime.bind(this)} />
                                                         )}
                                                     </FormItem>
                                                 </div>
@@ -762,6 +813,7 @@ class Postbusiness extends Component {
                                                 label="Business Number"
                                             >
                                                 {getFieldDecorator('businessNumber', {
+                                                    initialValue: this.state.dataBnumber,
                                                     rules: [{ required: true, message: 'Please input your Business Number!', whitespace: true }],
                                                 })(
                                                     <Input  />
@@ -772,6 +824,7 @@ class Postbusiness extends Component {
                                                 label="Your Business Email id"
                                             >
                                                 {getFieldDecorator('businessId', {
+                                                    initialValue: this.state.dataBemailId,
                                                     rules: [{ required: true, message: 'Please input your Business Email id!', whitespace: true }],
                                                 })(
                                                     <Input  />
@@ -782,6 +835,7 @@ class Postbusiness extends Component {
                                                 label="Business Address"
                                             >
                                                 {getFieldDecorator('businessAddress', {
+                                                    initialValue: this.state.dataBaddress,
                                                     rules: [{ required: true, message: 'Please input your Business Address!', whitespace: true }],
                                                 })(
                                                     <Input  />
@@ -792,6 +846,7 @@ class Postbusiness extends Component {
                                                 label="Business Owner Name"
                                             >
                                                 {getFieldDecorator('businessOwner', {
+                                                    initialValue: this.state.dataBOwnernamae,
                                                     rules: [{ required: true, message: 'Please input your Business Owner Name!', whitespace: true }],
                                                 })(
                                                     <Input  />
@@ -802,6 +857,7 @@ class Postbusiness extends Component {
                                                 label="Business Email"
                                             >
                                                 {getFieldDecorator('businessEmail', {
+                                                    initialValue: this.state.dataBemail,
                                                     rules: [
                                                     	{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true },
 														{ required: true, message: 'Please input your E-mail!',}
@@ -815,7 +871,7 @@ class Postbusiness extends Component {
                                                 label="Business Category"
                                             >
                                                 {getFieldDecorator('businessCategory', {
-                                                    initialValue: ['zhejiang', 'hangzhou', 'xihu'],
+                                                    initialValue: this.state.dataCategory,
                                                     rules: [{ type: 'array', required: true, message: 'Please select your Business Category!' }],
                                                 })(
                                                     <Cascader options={category} />
@@ -826,6 +882,7 @@ class Postbusiness extends Component {
                                                 label="Description"
                                             >
                                                 {getFieldDecorator('description', {
+                                                    initialValue: this.state.dataDescription,
                                                     rules: [
                                                         {
                                                             required: true, message: 'Please input your Description!', whitespace: true
@@ -884,11 +941,12 @@ class Postbusiness extends Component {
                                                 onPreview={this.handlePreview}
                                                 onChange={this.handleChange}
                                             >
-                                                {fileList.length >= 4 ? null : uploadButton}
+                                                {this.state.imageList.length + fileList.length >= 4 ? null : uploadButton}
                                             </Upload>
                                             <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
                                                 <img alt="example" style={{ width: '100%' }} src={previewImage} />
                                             </Modal>
+                                            {uploadedImages}
                                         </div>
                                     </div>
                                     {/*==========upload panel end===========*/}

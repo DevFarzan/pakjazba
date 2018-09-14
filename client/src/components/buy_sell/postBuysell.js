@@ -443,10 +443,13 @@ class Postbuysell extends Component{
                                     Find all your Local Business in one place
                                 </div>
                                 <div className="panel-body">
+                                <div class="panel panel-default">
+                                        <div class="panel-heading bold_c_text"><Icon type="info-circle"/><span
+                                            className="margin_font_location">Brand Detail</span></div>
                                     <FormItem
                                         {...formItemLayout}
                                         label="Category"
-                                    >
+                                     style={{marginTop: "20px"}}>
                                         {getFieldDecorator('category', {
                                             initialValue: this.state.dataCat,
                                             rules: [{ type: 'array', required: true, message: 'Please select your Category!' }],
@@ -533,6 +536,7 @@ class Postbuysell extends Component{
                                         <div className="col-md-4"></div>
                                     </div>
                                 </div>
+                            </div>
                             </div>
                             <br/>
                             <div className="panel panel-default">

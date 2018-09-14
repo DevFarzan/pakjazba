@@ -642,8 +642,8 @@ class Postbusiness extends Component {
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="panel-group" style={{paddingTop:"104px"}}>
                             <div className="panel panel-default">
-                                <div className="main_c_panel">Roommates / Rentals<br/>
-                                    Find all your Local Rentals in one place
+                                <div className="main_c_panel">Add Business<br/>
+                                    Find all your Local Business in one place
                                 </div>
                                 <div className="panel-body">
                                     {/*==========main panel content=============*/}

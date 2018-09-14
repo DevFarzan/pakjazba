@@ -8,6 +8,7 @@ import AsyncStorage from "@callstack/async-storage";
 import {HttpUtils} from "../../Services/HttpUtils";
 import Burgermenu from '../header/burgermenu';
 import { Link } from "react-router-dom";
+import { Redirect } from 'react-router';
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -29,10 +30,16 @@ class ProfileUser extends Component{
             location: '',
             twitter: '',
             facebook: '',
+            listing: false,
+            listData: [],
+            buySell: false,
+            business: false,
+            rooms: false,
+            data: []
         };
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.handleLocalStorage();
     }
 
@@ -41,7 +48,7 @@ class ProfileUser extends Component{
             .then((obj) => {
                 var userObj = JSON.parse(obj)
                 if(!!userObj) {
-                    this.getprofileData(userObj.profileId)
+                    this.getprofileData(userObj.profileId, userObj._id)
                     this.setState({
                         userId: userObj._id,
                         profileId: userObj.profileId
@@ -50,7 +57,7 @@ class ProfileUser extends Component{
             })
     }
 
-    async getprofileData(id){
+    async getprofileData(id, userId){
         var req = await HttpUtils.get('getprofile?profileId=' + id)
         var user = req.content;
         this.setState({
@@ -63,6 +70,31 @@ class ProfileUser extends Component{
             facebook:user.facebooklink,
             imageUrl: user.imageurl
         })
+        this.getAllBusiness(userId)
+    }
+
+    async getAllBusiness(id){
+        let arr = [];
+        var req = await HttpUtils.get('marketplace')
+        req && req.busell.map((elem) => {
+            if(elem.userid === id){
+                let data = {...elem, ...{route: 'buySell'}}
+                arr.push(data)
+            }
+        })
+        req && req.business.map((elem) => {
+            if(elem.user_id === id){
+                let data = {...elem, ...{route: 'business'}}
+                arr.push(data)
+            }
+        })
+        req && req.roomrentsdata.map((elem) => {
+            if(elem.user_id === id){
+                let data = {...elem, ...{route: 'rooms'}}
+                arr.push(data)
+            }
+        })
+        this.setState({listData: arr})
     }
 
     getBase64(img, callback) {
@@ -175,36 +207,46 @@ class ProfileUser extends Component{
     }
 
     handleProfile(){
-      this.setState({
+        this.setState({
             profileSec: true,
-            changePass: false
-      })
-   }
+            changePass: false,
+            listing: false
+        })
+    }
+
+    handleListing(){
+        this.setState({
+            profileSec: false,
+            changePass: false,
+            listing: true
+        })
+    }
 
     handlePassSec(){
         this.setState({
             profileSec: false,
-            changePass: true
+            changePass: true,
+            listing: false
         })
-   }
+    }
 
     onChangeValue(e){
-      if(e.target.id === 'name'){
-         this.setState({name: e.target.value})
-      }else if(e.target.id === 'location'){
+        if(e.target.id === 'name'){
+            this.setState({name: e.target.value})
+        }else if(e.target.id === 'location'){
             this.setState({location: e.target.value})
-      }else if(e.target.id === 'description'){
+        }else if(e.target.id === 'description'){
             this.setState({description: e.target.value})
-      }else if(e.target.id === 'phone'){
+        }else if(e.target.id === 'phone'){
             this.setState({phone: e.target.value})
-      }else if(e.target.id === 'email'){
+        }else if(e.target.id === 'email'){
             this.setState({email: e.target.value})
-      }else if(e.target.id === 'twitter'){
+        }else if(e.target.id === 'twitter'){
             this.setState({twitter: e.target.value})
-      }else if(e.target.id === 'facebook'){
+        }else if(e.target.id === 'facebook'){
             this.setState({facebook: e.target.value})
-      }
-   }
+        }
+    }
 
     compareToFirstPassword = (rule, value, callback) => {
         const form = this.props.form;
@@ -223,9 +265,43 @@ class ProfileUser extends Component{
         callback();
     }
 
+    editBusiness = (e) => {
+        if(e.route === "buySell"){
+            this.setState({
+                buySell: true,
+                data: e,
+            })
+        }else if(e.route === "business"){
+            this.setState({
+                business: true,
+                data: e,
+            })
+        }else if(e.route === "rooms"){
+            this.setState({
+                rooms: true,
+                data: e,
+            })
+        }
+    }
+
     render(){
         const {getFieldDecorator} = this.props.form;
-        const { imageUrl, profileSec, changePass, name, email, description, phone, twitter, facebook, location } = this.state;
+        const { imageUrl, profileSec, changePass, name, email, description, phone, twitter, facebook, location, listing, listData, buySell, business, rooms, data } = this.state;
+
+        if(buySell){
+            return(
+                <Redirect to={{pathname: '/postad_buysell', state: data}}/>
+            )
+        }else if(business){
+            return(
+                <Redirect to={{pathname: '/postad_business', state: data}}/>
+            )
+        }else if(rooms){
+            return(
+                <Redirect to={{pathname: '/postad_Roommates', state: data}}/>
+            )
+        }
+
         const props = {
             action: '//jsonplaceholder.typicode.com/posts/',
             onChange: this.handleChange,
@@ -245,7 +321,8 @@ class ProfileUser extends Component{
                                            onClick={this.handleProfile.bind(this)}>
                                             <Icon type="user"/><span className="linktext_margin">My Profile</span>
                                         </a><br/><br/>
-                                        <a className="nav-link active icon border_sidenav" href="my-profile.html">
+                                        <a className="nav-link active icon border_sidenav"
+                                           onClick={this.handleListing.bind(this)}>
                                             <Icon type="heart"/><span className="linktext_margin">My Ads Listing</span>
                                         </a><br/><br/>
                                         <a className="nav-link active icon border_sidenav"
@@ -509,24 +586,32 @@ class ProfileUser extends Component{
                                                 </div>
                                             </div>}
                                         {/*===============Ad Listing start=================*/}
-                                             <div className="secondfold">
-                                                <h1 className="text-align"></h1>
-                                                <div className="index-content" style={{marginBottom: "-225px"}}>
+                                            {listing && <div className="secondfold" style={{backgroundColor: '#FBFAFA'}}>
+                                                <div className="index-content" style={{marginBottom: "-225px", marginTop: '-125px'}}>
                                                     <div className="row">
-                                                            
-                                                            <div className="col-md-5"  style={{'marginBottom': '30px'}}>
-                                                                <div className="card" style={{height:"453px"}}>
-                                                                    <img src="http://cevirdikce.com/proje/hasem-2/images/finance-1.jpg" />
-                                                                    <h4>Krl creatives</h4>
-                                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                                                        <i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i>
-                                                                        <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i> 
+                                                        {listData && listData.map((elem) => {
+                                                            let img = elem.images && elem.images[0] || elem.businessImages && elem.businessImages[0] || elem.imageurl && elem.imageurl[0] || '../images/images.jpg';
+                                                            let title = elem.title || elem.businessname || elem.postingtitle || ''
+                                                            let str = elem.description || elem.discription || '';
+                                                            if(str.length > 100) {
+                                                                str = str.substring(0, 100);
+                                                                str = str + '...'
+                                                            }
+                                                            return(
+                                                                <div className="col-md-5"  style={{'marginBottom': '30px'}}>
+                                                                    <div className="card" style={{height:"453px"}}>
+                                                                        <img src={img} />
+                                                                        <h4>{title}</h4>
+                                                                        <p>{str}</p>
+                                                                        <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i></a>
+                                                                        <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
+                                                            )
+                                                        })}
                                                     </div>
-                                                    
                                                 </div>
-                                             </div>
+                                             </div>}
                                         {/*===============Ad listing end=============*/}
                                         </div>
                                     </Form>

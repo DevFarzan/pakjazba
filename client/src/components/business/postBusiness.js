@@ -321,12 +321,18 @@ class Postbusiness extends Component {
     }
 
 
-    componentWillMount(){
-        this.handleLocalStorage();
-    }
+    // componentWillMount(){
+    //     this.handleLocalStorage();
+    // }
 
     componentDidMount(){
         this.handleLocalStorage();
+        let data = this.props.location.state;
+        console.log(data, 'dataaaaaaaaaaa12344444')
+        this.setState({
+            dataAddress: data.address,
+            dataCity: data.city,
+        })
     }
 
     handleLocalStorage = () =>{
@@ -651,6 +657,7 @@ class Postbusiness extends Component {
 												label="Address"
 											>
                                             {getFieldDecorator('address', {
+                                                initialValue: this.state.dataAddress,
                                                 rules: [{ required: true, message: 'Please input your Address!', whitespace: true }],
                                             })(
                                                 <Input  />
@@ -661,6 +668,7 @@ class Postbusiness extends Component {
 												label="City"
 											>
                                             {getFieldDecorator('city', {
+                                                initialValue: this.state.dataCity,
                                                 rules: [{ required: true, message: 'Please input your City!', whitespace: true }],
                                             })(
                                                 <Input  />

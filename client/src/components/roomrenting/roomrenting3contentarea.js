@@ -28,7 +28,7 @@ class Roomrenting3contentarea extends Component{
                         <div className="col-md-2 col-sm-12 col-xs-12">
                         </div>
                         <div className="col-md-12 col-sm-12 col-xs-12">
-                            
+
                             <div className="col-md-3 col-sm-6 col-xs-12">
                                 <h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-calendar"></span>{data.startdate}</h4>
                                 <h4 style={{fontSize: "16px"}}> Available From</h4>
@@ -49,7 +49,7 @@ class Roomrenting3contentarea extends Component{
                         </div>
                     </div>
                 </div>
-                
+
                 <div className="col-md-12 col-sm-12 col-xs-12">
                     <div className="row">
                         <div className="col-md-12">
@@ -132,10 +132,7 @@ class Roomrenting3contentarea extends Component{
                         <h3 style={{"marginTop":"14px","textAlign":"center","textDecoration": "underline"}}> Author </h3>
                         <div className="">
                             <div className="col-md-6 col-sm-12 col-xs-12">
-                                <img src="./images/black.jpg" class="img-circle" alt="" height="200" width="200"/>
-                                <h3>
-                                    <span className="heading">Asad Butt</span>
-                                </h3>
+                                <img src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} class="img-circle" alt="" height="200" width="200"/>
                                 <hr/>
                                 <br/>
                                 <h4><b> Phone: </b> 830-247-0972</h4>

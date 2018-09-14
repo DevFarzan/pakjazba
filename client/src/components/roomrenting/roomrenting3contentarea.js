@@ -130,15 +130,7 @@ class Roomrenting3contentarea extends Component{
                         <h3> Author </h3>
                         <div className="">
                             <div className="col-md-6 col-sm-12 col-xs-12">
-                                <img src="./images/black.jpg" class="img-circle" alt="" height="200" width="200"/>
-                                <h3>
-                                    <span className="heading">Asad Butt</span>
-                                    <span className="fa fa-star checked"></span>
-                                    <span className="fa fa-star checked"></span>
-                                    <span className="fa fa-star checked"></span>
-                                    <span className="fa fa-star checked"></span>
-                                    <span className="fa fa-star"></span>
-                                </h3>
+                                <img src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} class="img-circle" alt="" height="200" width="200"/>
                                 <hr/>
                                 <br/>
                                 <h4><b> Phone: </b> 830-247-0972</h4>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Burgermenu from '../header/burgermenu';
 import Roomrentingthreecontentarea from "./roomrenting3contentarea";
 import { Redirect } from 'react-router';
+import {HttpUtils} from "../../Services/HttpUtils";
 
 class DetailRoommates extends Component{
 
@@ -14,21 +15,28 @@ class DetailRoommates extends Component{
     }
 
     componentDidMount(){
-        if(this.props.location.state === undefined){
+        var data = this.props.location.state;
+        if(data === undefined){
             this.setState({
                 isData: false
             })
         }else {
-            this.setState({
-                isData : true,
-                data : this.props.location.state
-            })
+            this.getProfile(data)
         }
+    }
+
+    async getProfile(data){
+        var req = await HttpUtils.get('getprofile?profileId=' + data.profileid)
+        var allData = {...data, ...{userImage: req.content ? req.content.imageurl : ''}}
+        this.setState({
+            isData : true,
+            data : allData
+        })
     }
 
     render(){
         const { isData, data } = this.state;
-        console.log(data, 'kkkkkkkkkkkkkkkkkkkk')
+
         if(!isData){
             return <Redirect to='/' />
         }

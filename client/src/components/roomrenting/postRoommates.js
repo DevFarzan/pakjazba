@@ -216,16 +216,52 @@ class Postroommates extends Component{
             statesUS: [],
             citiesUS: [],
             profileId: '',
-            msg: false
+            msg: false,
+            imageList: [],
+            objectId: ''
         }
     }
 
     componentDidMount(){
         this.handleLocalStorage();
+        let data = this.props.location.state;
+        if(data) {
+            this.setState({
+                dataState: [data.state],
+                dataCity: [data.city],
+                dataLocation: data.propertylocation,
+                dataZip: data.propertyzipcode,
+                dataCat: [data.category],
+                dataTitle: data.postingtitle,
+                dataDescription: data.discription,
+                dataRent: data.rent,
+                dataPmode: [data.pricemode],
+                dataAccom: [data.accomodates],
+                dataFurn: [data.furnished],
+                dataAmmen: data.amenitiesinclude,
+                dataName: data.contactname,
+                dataEmail: data.contactemail,
+                dataNumber: data.contactnumber,
+                dataMcont: data.modeofcontact,
+                petFriendly: data.petfriendly,
+                smoking: data.smoking,
+                vegNoVeg: data.vegetariansprefered,
+                radio: data.Attachedbath,
+                imageList: data.imageurl,
+                dataStart: data.startdate,
+                dataEnd: data.enddate,
+                objectId: data._id
+            })
+        }
+    }
+
+    deleteImage(e){
+        let { imageList } = this.state;
+        imageList = imageList.filter((elem) => elem !== e)
+        this.setState({imageList: imageList})
     }
 
     handleLocalStorage = () =>{
-        console.log(stateCities.getStatesByShort('US'), '666666666666666')
         let states = stateCities.getStatesByShort('US');
         states = states.map((elem) => {
             return {
@@ -384,7 +420,7 @@ class Postroommates extends Component{
     }
 
     async postData(values, response) {
-        const {dateObj, userId, petFriendly, radio, smoking, vegNoVeg, profileId} = this.state;
+        const {dateObj, userId, petFriendly, radio, smoking, vegNoVeg, profileId, objectId} = this.state;
         var obj = {
             user_id: userId,
             profileId: profileId,
@@ -411,9 +447,9 @@ class Postroommates extends Component{
             petFriendly: petFriendly,
             smoking: smoking,
             vegNoVeg: vegNoVeg,
-            arr_url: response ? response : []
+            arr_url: response ? response : [],
+            objectId: objectId
         }
-        console.log('roommatesobj', obj);
         var req = await HttpUtils.post('postroomrent', obj)
         if(req.code === 200) {
             this.props.form.resetFields();
@@ -447,6 +483,7 @@ class Postroommates extends Component{
     render(){
         const { desLength, fileList, previewVisible, previewImage, statesUS, citiesUS } = this.state;
         const {getFieldDecorator} = this.props.form;
+        const dateFormat = 'YYYY-MM-DD';
 
         if (this.state.msg === true) {
             return <Redirect to='/' />
@@ -470,6 +507,23 @@ class Postroommates extends Component{
                 sm: {span: 16},
             },
         };
+
+        const uploadedImages = (
+            <div style={{display: 'flex'}}>
+                {this.state.imageList.map((elem) => {
+                    return(
+                        <div>
+                            <img alt='img1' style={{width: '100px', height: '100px'}} src={elem} />
+                            <span
+                                onClick={this.deleteImage.bind(this, elem)}
+                                style={{position: 'absolute', marginTop: '10px', marginLeft: '-14px', cursor: 'pointer', color: 'white'}}>
+                                X
+                            </span>
+                        </div>
+                    )
+                })}
+            </div>
+        )
 
         const uploadButton = (
             <div>
@@ -500,6 +554,7 @@ class Postroommates extends Component{
                                                 label="State"
                                             >
                                                 {getFieldDecorator('state', {
+                                                    initialValue: this.state.dataState,
                                                     rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
                                                 })(
                                                     <Cascader options={statesUS} onChange={this.onChangeCat.bind(this)}/>
@@ -510,6 +565,7 @@ class Postroommates extends Component{
                                                 label="City"
                                             >
                                                 {getFieldDecorator('city', {
+                                                    initialValue: this.state.dataCity,
                                                     rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
                                                 })(
                                                     <Cascader options={citiesUS} />
@@ -520,6 +576,7 @@ class Postroommates extends Component{
                                                 label="Property Location"
                                             >
                                                 {getFieldDecorator('propertyLocation', {
+                                                    initialValue: this.state.dataLocation,
                                                     rules: [{
                                                         required: true,
                                                         message: 'Please input your Property Location!',
@@ -534,6 +591,7 @@ class Postroommates extends Component{
                                                 label="Property Zip Code"
                                             >
                                                 {getFieldDecorator('zipCode', {
+                                                    initialValue: this.state.dataZip,
                                                     rules: [{
                                                         required: true,
                                                         message: 'Please input your Property Zip Code!',
@@ -548,7 +606,7 @@ class Postroommates extends Component{
                                                 label="Category"
                                             >
                                                 {getFieldDecorator('category', {
-                                                    initialValue: ['zhejiang', 'hangzhou', 'xihu'],
+                                                    initialValue: this.state.dataCat,
                                                     rules: [{ type: 'array', required: true, message: 'Please select your Category!' }],
                                                 })(
                                                     <Cascader options={category} />
@@ -559,6 +617,7 @@ class Postroommates extends Component{
                                                 label="Posting Title"
                                             >
                                                 {getFieldDecorator('postingTitle', {
+                                                    initialValue: this.state.dataTitle,
                                                     rules: [{ required: true, message: 'Please input your Posting Title!', whitespace: true }],
                                                 })(
                                                     <Input  />
@@ -569,6 +628,7 @@ class Postroommates extends Component{
                                                 label="Description/Details"
                                             >
                                                 {getFieldDecorator('description', {
+                                                    initialValue: this.state.dataDescription,
                                                     rules: [
                                                         {
                                                             required: true, message: 'Please input your Description/Details!', whitespace: true
@@ -590,6 +650,7 @@ class Postroommates extends Component{
                                                 label="Date Range"
                                             >
                                                 {getFieldDecorator('dateRange', {
+                                                    initialValue: [moment(this.state.dataStart, dateFormat), moment(this.state.dataEnd, dateFormat)],
                                                     rules: [{ validator: this.validateDate.bind(this) }],
                                                 })(
                                                     <RangePicker
@@ -606,6 +667,7 @@ class Postroommates extends Component{
                                                         label="Rent"
                                                     >
                                                         {getFieldDecorator('price', {
+                                                            initialValue: this.state.dataRent,
                                                             rules: [{ validator: this.checkPriceValue.bind(this) }],
                                                         })(
                                                             <Input />
@@ -618,7 +680,7 @@ class Postroommates extends Component{
                                                         label="Price Mode"
                                                     >
                                                         {getFieldDecorator('priceMode', {
-                                                            initialValue: ['zhejiang', 'hangzhou', 'xihu'],
+                                                            initialValue: this.state.dataPmode,
                                                             rules: [{ type: 'array', required: true, message: 'Please select your Price Mode!' }],
                                                         })(
                                                             <Cascader options={priceCategory} />
@@ -632,6 +694,7 @@ class Postroommates extends Component{
                                                 label="Accommodates"
                                             >
                                                 {getFieldDecorator('accommodates', {
+                                                    initialValue: this.state.dataAccom,
                                                     rules: [{ type: 'array', required: true, message: 'Please select your Accommodates!' }],
                                                 })(
                                                     <Cascader options={accomodateCategory} />
@@ -642,6 +705,7 @@ class Postroommates extends Component{
                                                 label="Furnished"
                                             >
                                                 {getFieldDecorator('furnished', {
+                                                    initialValue: this.state.dataFurn,
                                                     rules: [{ type: 'array', required: true, message: 'Please select your Furnished!' }],
                                                 })(
                                                     <Cascader options={furnishedcategory} />
@@ -661,6 +725,7 @@ class Postroommates extends Component{
                                                 label="Amenities include"
                                             >
                                                 {getFieldDecorator('amenities', {
+                                                    initialValue: this.state.dataAmmen,
                                                     rules: [{ validator: this.checkCheckBox }],
                                                 })(
                                                     <CheckboxGroup style={{ width: '100%' }} onChange={this.onChangeAmenities.bind(this)}>
@@ -726,11 +791,12 @@ class Postroommates extends Component{
                                                             onPreview={this.handlePreview}
                                                             onChange={this.handleChange}
                                                         >
-                                                            {fileList.length >= 4 ? null : uploadButton}
+                                                            {this.state.imageList.length + fileList.length >= 4 ? null : uploadButton}
                                                         </Upload>
                                                         <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
                                                             <img alt="example" style={{ width: '100%' }} src={previewImage} />
                                                         </Modal>
+                                                        {uploadedImages}
                                                     </div>
                                                 )}
                                             </FormItem>
@@ -749,6 +815,7 @@ class Postroommates extends Component{
                                                 label="Contact Name"
                                             >
                                                 {getFieldDecorator('contactName', {
+                                                    initialValue: this.state.dataName,
                                                     rules: [{ required: true, message: 'Please input your Contact Name!', whitespace: true }],
                                                 })(
                                                     <Input  />
@@ -759,6 +826,7 @@ class Postroommates extends Component{
                                                 label="Contact Email"
                                             >
                                                 {getFieldDecorator('contactEmail', {
+                                                    initialValue: this.state.dataEmail,
                                                     rules: [{ required: true, message: 'Please input your Contact Email!', whitespace: true }],
                                                 })(
                                                     <Input  />
@@ -769,6 +837,7 @@ class Postroommates extends Component{
                                                 label="Contact Number"
                                             >
                                                 {getFieldDecorator('contactNumber', {
+                                                    initialValue: this.state.dataNumber,
                                                     rules: [{ required: true, message: 'Please input your Contact Number!', whitespace: true }],
                                                 })(
                                                     <Input  />
@@ -779,6 +848,7 @@ class Postroommates extends Component{
                                                 label="Mode of Contact"
                                             >
                                                 {getFieldDecorator('contactMode', {
+                                                    initialValue: this.state.dataMcont,
                                                     rules: [{ validator: this.checkCheckBox }],
                                                 })(
                                                     <CheckboxGroup options={optionsContact} />

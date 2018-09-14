@@ -318,14 +318,10 @@ class Postbusiness extends Component {
             profileId: '',
             openingTime: '',
             closingTime: '',
-            imageList: []
+            imageList: [],
+            objectId: ''
         };
     }
-
-
-    // componentWillMount(){
-    //     this.handleLocalStorage();
-    // }
 
     componentDidMount(){
         this.handleLocalStorage();
@@ -352,6 +348,7 @@ class Postbusiness extends Component {
                 imageList: data.businessImages,
                 dataOtime: data.openingTime,
                 dataCtime: data.closingTime,
+                objectId: data._id
             })
         }
     }
@@ -559,7 +556,7 @@ class Postbusiness extends Component {
     }
 
     async postData(values, response){
-        const { userId, socLin, socGoo, socFac, profileId, openingTime, closingTime } = this.state;
+        const { userId, socLin, socGoo, socFac, profileId, openingTime, closingTime, objectId } = this.state;
         var obj = {
             user_id: userId,
             profileId: profileId,
@@ -582,11 +579,10 @@ class Postbusiness extends Component {
             socialFaceBook: socFac,
             socialGoogle: socGoo,
             socialLinkIn: socLin,
-            arr_url: response ? response : []
+            arr_url: response ? response : [],
+            objectId: objectId
         }
-        console.log('businessData:'+obj);
         var req = await HttpUtils.post('postbusinessdata', obj)
-
         if(req.code === 200){
             this.props.form.resetFields();
             this.openNotification()

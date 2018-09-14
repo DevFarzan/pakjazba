@@ -93,7 +93,8 @@ class Postbuysell extends Component{
             dataCity: [],
             dataAddress: '',
             dataHideAddress: '',
-            imageList: []
+            imageList: [],
+            objectId: ''
         }
     }
 
@@ -129,7 +130,8 @@ class Postbuysell extends Component{
                 dataCity: [data.city],
                 dataAddress: data.address,
                 dataHideAddress: data.hideaddress,
-                imageList: data.images
+                imageList: data.images,
+                objectId: data._id
             })
         }
     }
@@ -256,7 +258,7 @@ class Postbuysell extends Component{
     }
 
     async postData(values, response) {
-        const {userId, dLength, dWidth, dHeight, profileId} = this.state;
+        const {userId, dLength, dWidth, dHeight, profileId, objectId} = this.state;
         var obj = {
             user_id: userId,
             profileId: profileId,
@@ -278,18 +280,17 @@ class Postbuysell extends Component{
             modelName: values.modelName,
             number: values.number,
             postingTitle: values.postingTitle,
-            subSubCategory: values.subsubcategory[0],
+            subSubCategory: values.subsubcategory ? values.subsubcategory[0] : '',
             price: values.price,
-            arr_url: response ? response : []
+            arr_url: response ? response : [],
+            objectId: objectId
         }
-        console.log(obj, 'objjjjjjjjjjjj')
-
-        // var req = await HttpUtils.post('postbuyselldata', obj)
-        // if(req.code === 200){
-        //     this.props.form.resetFields();
-        //     this.openNotification()
-        //     this.setState({msg: true, dLength: '', dWidth: '', dHeight: ''})
-        // }
+        var req = await HttpUtils.post('postbuyselldata', obj)
+        if(req.code === 200){
+            this.props.form.resetFields();
+            this.openNotification()
+            this.setState({msg: true, dLength: '', dWidth: '', dHeight: ''})
+        }
     }
 
     openNotification() {

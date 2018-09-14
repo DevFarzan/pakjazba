@@ -29,6 +29,8 @@ import {HttpUtils} from '../../Services/HttpUtils';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 import moment from 'moment'
 
+const stateCities= require('countrycitystatejson')
+
 const { TextArea } = Input;
 const FormItem = Form.Item
 const category = [{
@@ -319,7 +321,9 @@ class Postbusiness extends Component {
             openingTime: '',
             closingTime: '',
             imageList: [],
-            objectId: ''
+            objectId: '',
+            statesUS: [],
+            citiesUS: [],
         };
     }
 
@@ -329,8 +333,8 @@ class Postbusiness extends Component {
         if(data) {
             this.setState({
                 dataAddress: data.address,
-                dataCity: data.city,
-                dataState: data.state,
+                dataCity: [data.city],
+                dataState: [data.state],
                 dataZip: data.zipcode,
                 dataFname: data.firstname,
                 dataLname: data.lastname,
@@ -360,13 +364,21 @@ class Postbusiness extends Component {
     }
 
     handleLocalStorage = () =>{
+        let states = stateCities.getStatesByShort('US');
+        states = states.map((elem) => {
+            return {
+                label: elem,
+                value: elem
+            }
+        })
         AsyncStorage.getItem('user')
             .then((obj) => {
                 var userObj = JSON.parse(obj)
                 if(!!userObj) {
                     this.setState({
                         userId: userObj._id,
-                        profileId: userObj.profileId
+                        profileId: userObj.profileId,
+                        statesUS: states
                     })
                 }
             })
@@ -571,8 +583,8 @@ class Postbusiness extends Component {
             businessNumber: values.businessNumber,
             businessOwner: values.businessOwner,
             description: values.description,
-            city: values.city,
-            state: values.state,
+            city: values.city[0],
+            state: values.state[0],
             zip: values.zip,
             openingTime: openingTime,
             closingTime: closingTime,
@@ -616,13 +628,28 @@ class Postbusiness extends Component {
         });
     };
 
+    onChangeCat(value) {
+        if (!!value.length) {
+            let cities = stateCities.getCities('US', value[0])
+            cities = cities.map((elem) => {
+                return {
+                    label: elem,
+                    value: elem
+                }
+            })
+            this.setState({
+                citiesUS: cities
+            })
+        }
+    }
+
     checkValue(rule, value, callback) {
         this.setState({desLength: value.length && value.length})
         callback();
     }
 
     render() {
-        const { previewVisible, previewImage, fileList, desLength, socFac, socGoo,socLin } = this.state;
+        const { previewVisible, previewImage, fileList, desLength, socFac, socGoo, socLin, statesUS, citiesUS } = this.state;
         const {getFieldDecorator} = this.props.form;
         if (this.state.msg === true) {
             return <Redirect to='/' />
@@ -703,28 +730,28 @@ class Postbusiness extends Component {
                                                 <Input  />
                                             )}
                                         	</FormItem>
-											<FormItem
+                                            <FormItem
                                                 {...formItemLayout}
-												label="City"
-											>
-                                            {getFieldDecorator('city', {
-                                                initialValue: this.state.dataCity,
-                                                rules: [{ required: true, message: 'Please input your City!', whitespace: true }],
-                                            })(
-                                                <Input  />
-                                            )}
-                                        	</FormItem>
-											<FormItem
+                                                label="State"
+                                            >
+                                                {getFieldDecorator('state', {
+                                                    initialValue: this.state.dataState,
+                                                    rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
+                                                })(
+                                                    <Cascader options={statesUS} onChange={this.onChangeCat.bind(this)}/>
+                                                )}
+                                            </FormItem>
+                                            <FormItem
                                                 {...formItemLayout}
-												label="State"
-											>
-                                            {getFieldDecorator('state', {
-                                                initialValue: this.state.dataState,
-                                                rules: [{ required: true, message: 'Please input your State!', whitespace: true }],
-                                            })(
-                                                <Input  />
-                                            )}
-                                        	</FormItem>
+                                                label="City"
+                                            >
+                                                {getFieldDecorator('city', {
+                                                    initialValue: this.state.dataCity,
+                                                    rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
+                                                })(
+                                                    <Cascader options={citiesUS} />
+                                                )}
+                                            </FormItem>
 											<FormItem
                                                 {...formItemLayout}
 												label="Zip"

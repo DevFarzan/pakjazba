@@ -599,7 +599,7 @@ class ProfileUser extends Component{
                                                             }
                                                             return(
                                                                 <div className="col-md-5"  style={{'marginBottom': '30px'}}>
-                                                                    <div className="card" style={{height:"453px"}}>
+                                                                    <div className="card">
                                                                         <img src={img} />
                                                                         <h4>{title}</h4>
                                                                         <p>{str}</p>

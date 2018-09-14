@@ -534,7 +534,10 @@ if(businessData.objectId == '' || businessData.objectId == undefined || business
         return res.status(400).json({"Unexpected Error::" :err});
       }
       console.log('business data has been updated');
-      return res.status(200).json({message:'business data updated successfully'})
+      return res.send({
+          code:200,
+          msg:'Business data updated successfully'
+        });
     });
   })
  }//end else if businessData objectId
@@ -666,7 +669,10 @@ classifiedBusiness.findOne({"_id" : buyselldata.objectId},function(err,buysell){
         if(err){
           return res.status(400).json({"Unexpected Error:: ": err});
         }//end if
-        return res.status(200).json({message: 'buysell data has been updated successfully.'});
+        return res.send({
+          code:200,
+          msg:'Buy and Sell data updated successfully'
+        });
 
       });
 })
@@ -955,7 +961,10 @@ else if(postroomrent.objectId != '' || postroomrent.objectId != undefined || pos
         if(err){
           return res.status(400).json({"Unexpected Error:: ": err});
         }//end if
-        return res.status(200).json({message: 'roomrentsdata has been updated successfully.'} );
+        return res.send({
+          code:200,
+          msg:'roomrents data updated successfully'
+        })
       });
   })
 }//else if

@@ -440,11 +440,17 @@ class Postbuysell extends Component{
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="panel-group" style={{paddingTop:"104px"}}>
                             <div className="panel panel-default">
+                            <div className="main_c_panel">Add Business<br/>
+                                    Find all your Local Business in one place
+                                </div>
                                 <div className="panel-body">
+                                <div class="panel panel-default">
+                                        <div class="panel-heading bold_c_text"><Icon type="info-circle"/><span
+                                            className="margin_font_location">Brand Detail</span></div>
                                     <FormItem
                                         {...formItemLayout}
                                         label="Category"
-                                    >
+                                     style={{marginTop: "20px"}}>
                                         {getFieldDecorator('category', {
                                             initialValue: this.state.dataCat,
                                             rules: [{ type: 'array', required: true, message: 'Please select your Category!' }],
@@ -532,6 +538,7 @@ class Postbuysell extends Component{
                                     </div>
                                 </div>
                             </div>
+                            </div>
                             <br/>
                             <div className="panel panel-default">
                                 <div className="panel-body">
@@ -579,10 +586,14 @@ class Postbuysell extends Component{
                                             <Input  />
                                         )}
                                     </FormItem>
-                                    <div>
+                                    <div className="row">
+                                    <div></div>
+                                    <div className="col-md-3" style={{textAlign:"right"}}><label style={{"color":"black"}}>Length/Width/Height:</label></div>
+                                    <div className="col-md-6">
                                         <Input style={{ width: '20%' }} value={this.state.dLength} onChange={this.onDimensionChange} placeholder="Length" />
                                         <Input style={{ width: '20%' }} value={this.state.dWidth} onChange={this.onDimensionChange} placeholder="Width"/>
                                         <Input style={{ width: '20%' }} value={this.state.dHeight} onChange={this.onDimensionChange} placeholder="Height"/>
+                                    </div>
                                     </div>
                                     <span>{this.state.err && this.state.errMsg}</span>
                                     <FormItem
@@ -708,7 +719,7 @@ class Postbuysell extends Component{
                                 </div>
                             </div>
                             <div className="row center_global">
-                                <button className="btn color_button">Submit</button>
+                                <button className="btn color_button" style={{"width": "20%"}}>Submit</button>
                             </div>
                         </div>
                     </Form>

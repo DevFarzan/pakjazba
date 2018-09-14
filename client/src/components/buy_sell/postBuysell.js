@@ -23,6 +23,7 @@ const InputGroup = Input.Group;
 const { TextArea } = Input;
 const CheckboxGroup = Checkbox.Group;
 const FormItem = Form.Item
+const stateCities= require('countrycitystatejson')
 const category = [{
     value: 'imported',
     label: 'imported'
@@ -94,7 +95,9 @@ class Postbuysell extends Component{
             dataAddress: '',
             dataHideAddress: '',
             imageList: [],
-            objectId: ''
+            objectId: '',
+            statesUS: [],
+            citiesUS: [],
         }
     }
 
@@ -128,6 +131,7 @@ class Postbuysell extends Component{
                 dataCheckedList: data.modeofcontact,
                 dataDelivery: data.delivery,
                 dataCity: [data.city],
+                dataState: [data.state],
                 dataAddress: data.address,
                 dataHideAddress: data.hideaddress,
                 imageList: data.images,
@@ -154,13 +158,21 @@ class Postbuysell extends Component{
     }
 
     handleLocalStorage = () =>{
+        let states = stateCities.getStatesByShort('US');
+        states = states.map((elem) => {
+            return {
+                label: elem,
+                value: elem
+            }
+        })
         AsyncStorage.getItem('user')
             .then((obj) => {
                 var userObj = JSON.parse(obj)
                 if(!!userObj) {
                     this.setState({
                         userId: userObj._id,
-                        profileId: userObj.profileId
+                        profileId: userObj.profileId,
+                        statesUS: states
                     })
                 }
             })
@@ -266,6 +278,7 @@ class Postbuysell extends Component{
             category: values.category[0],
             subCategory: values.subcategory[0],
             city: values.city[0],
+            state: values.state[0],
             hideAddress: this.state.hideAddress,
             hidePrice: this.state.hidePrice,
             condition: values.condition[0],
@@ -329,6 +342,21 @@ class Postbuysell extends Component{
         }
     }
 
+    onChangeState(value) {
+        if (!!value.length) {
+            let cities = stateCities.getCities('US', value[0])
+            cities = cities.map((elem) => {
+                return {
+                    label: elem,
+                    value: elem
+                }
+            })
+            this.setState({
+                citiesUS: cities
+            })
+        }
+    }
+
     onChangeCat(value){
         if(!!value.length) {
             const {allCateg} = this.state;
@@ -373,7 +401,7 @@ class Postbuysell extends Component{
     }
 
     render(){
-        const { previewVisible, previewImage, fileList, desLength, categ, subCat, selectSubCat, secSubCat } = this.state;
+        const { previewVisible, previewImage, fileList, desLength, categ, subCat, selectSubCat, secSubCat, statesUS, citiesUS } = this.state;
         const {getFieldDecorator} = this.props.form;
         if (this.state.msg === true) {
             return <Redirect to='/' />
@@ -450,7 +478,7 @@ class Postbuysell extends Component{
                                     <FormItem
                                         {...formItemLayout}
                                         label="Category"
-                                     style={{marginTop: "20px"}}>
+                                        style={{marginTop: "20px"}}>
                                         {getFieldDecorator('category', {
                                             initialValue: this.state.dataCat,
                                             rules: [{ type: 'array', required: true, message: 'Please select your Category!' }],
@@ -683,13 +711,24 @@ class Postbuysell extends Component{
                                     </FormItem>
                                     <FormItem
                                         {...formItemLayout}
+                                        label="State"
+                                    >
+                                        {getFieldDecorator('state', {
+                                            initialValue: this.state.dataState,
+                                            rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
+                                        })(
+                                            <Cascader options={statesUS} onChange={this.onChangeState.bind(this)}/>
+                                        )}
+                                    </FormItem>
+                                    <FormItem
+                                        {...formItemLayout}
                                         label="City"
                                     >
                                         {getFieldDecorator('city', {
                                             initialValue: this.state.dataCity,
                                             rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
                                         })(
-                                            <Cascader options={category} />
+                                            <Cascader options={citiesUS} />
                                         )}
                                     </FormItem>
                                     <div className="row">

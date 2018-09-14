@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Icon, Input, Form, Upload, message} from 'antd';
+import {Icon, Input, Form, Upload, message, Pagination} from 'antd';
 import App from '../../App';
 import Footer from '../footer/footer.js';
 import sha1 from "sha1";
@@ -32,6 +32,7 @@ class ProfileUser extends Component{
             facebook: '',
             listing: false,
             listData: [],
+            allData: [],
             buySell: false,
             business: false,
             rooms: false,
@@ -94,7 +95,25 @@ class ProfileUser extends Component{
                 arr.push(data)
             }
         })
-        this.setState({listData: arr})
+        this.setState({
+            listData: arr.slice(0, 6),
+            allData: arr,
+        })
+    }
+
+    funcIndexes(page){
+        var to = 6 * page;
+        var from = to - 6;
+        return {from: page === 1 ? 0 : from, to: page === 1 ? 6 : to}
+    }
+
+    onChange = (page) => {
+        const { allData } = this.state;
+        var indexes = this.funcIndexes(page)
+        this.setState({
+            current: page,
+            listData: allData.slice(indexes.from, indexes.to)
+        });
     }
 
     getBase64(img, callback) {
@@ -102,19 +121,6 @@ class ProfileUser extends Component{
         reader.addEventListener('load', () => callback(reader.result));
         reader.readAsDataURL(img);
     }
-
-    // beforeUpload(file) {
-    //     console.log(file, 'fileeeeee')
-    //     const isJPG = file.type === 'image/jpeg';
-    //     if (!isJPG) {
-    //         message.error('You can only upload JPG file!');
-    //     }
-    //     const isLt2M = file.size / 1024 / 1024 < 2;
-    //     if (!isLt2M) {
-    //         message.error('Image must smaller than 2MB!');
-    //     }
-    //     return isJPG && isLt2M;
-    // }
 
     uploadFile = (files) =>{
         const image = files.originFileObj
@@ -145,25 +151,12 @@ class ProfileUser extends Component{
     }
 
     handleChange = (info) => {
-        // console.log(info, 'infoooooooooooooo')
-        // if (info.file.status === 'uploading') {
-        //     this.setState({ loading: true });
-        //     return;
-        // }
-        // if (info.file.status === 'done') {
          this.uploadFile(info.file).then((result) => {
              this.setState({
                  url : result.body.url,
                  imageUrl : result.body.url,
                  loading: false,
          })})
-            // this.getBase64(info.file.originFileObj, imageUrl => {
-            //    this.setState({
-            //     imageUrl,
-            //     loading: false,
-            // })
-            // });
-        // }
     }
 
     handleSubmit = (e) => {
@@ -286,7 +279,7 @@ class ProfileUser extends Component{
 
     render(){
         const {getFieldDecorator} = this.props.form;
-        const { imageUrl, profileSec, changePass, name, email, description, phone, twitter, facebook, location, listing, listData, buySell, business, rooms, data } = this.state;
+        const { imageUrl, profileSec, changePass, name, email, description, phone, twitter, facebook, location, listing, listData, buySell, business, rooms, data, allData } = this.state;
 
         if(buySell){
             return(
@@ -610,6 +603,7 @@ class ProfileUser extends Component{
                                                             )
                                                         })}
                                                     </div>
+                                                    <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={allData.length} onChange={this.onChange} /></span>
                                                 </div>
                                              </div>}
                                         {/*===============Ad listing end=============*/}

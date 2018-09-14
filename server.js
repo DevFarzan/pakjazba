@@ -972,9 +972,9 @@ else if(postroomrent.objectId != '' || postroomrent.objectId != undefined || pos
 
 app.post('/api/sendmessage',function(req,res){
 var getuserfields = req.body;
-      var username = 'Farzan';
-      var email = 'farzan@yahoo.com';
-      var message = 'This is a testing message for send contact!';
+      var username = getuserfields.name;
+      var email = getuserfields.email;
+      var message = getuserfields.message;
 
       mailOptions={
     to : 'farzanhanif123@gmail.com',

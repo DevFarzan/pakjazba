@@ -17,7 +17,7 @@ var businessSchema = new mongoose.Schema({
 	businessownername:{type:String},
 	businessemail:{type:String},
 	businesscategory:{type:String},
-	businessdiscription:{type:String},
+	description:{type:String},
 	businessImages:{type:Array},
 	openingTime:{type:String},
     closingTime:{type:String},

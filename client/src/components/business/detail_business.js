@@ -112,17 +112,17 @@ class DetailBusiness extends Component{
                                     {/*Start first tile */}
                                     <div className="card outset" >
                                         <img className="card-img-top" src={images && images[0]} alt="Card image" style={{"width":"100%"}} />
-                                        <div className="card-body space">
-                                            <h5><span className="glyphicon glyphicon-home"></span>{data.businessaddress}</h5>
+                                        <div className="card-body space" style={{padding: "17px"}}>
+                                            <h5><span className="glyphicon glyphicon-home" style={{marginRight: "15px"}}></span>{data.businessaddress}</h5>
                                             <hr/>
-                                            <h5><span className="glyphicon glyphicon-phone"></span>{data.businessnumber}</h5>
+                                            <h5><span className="glyphicon glyphicon-phone" style={{marginRight: "15px"}}></span>{data.businessnumber}</h5>
                                             <hr/>
-                                            <h5><span className="glyphicon glyphicon-globe"></span>{data.businessemail}</h5>
+                                            <h5><span className="glyphicon glyphicon-globe" style={{marginRight: "15px"}}></span>{data.businessemail}</h5>
                                             <br/>
                                             <h4>Our Social</h4>
-                                            <a href={data.socialFaceBook} target="_blank"><button type="button" className="btn btn-fb"><i className="fa fa-facebook"></i></button></a>
-                                            <a href={data.socialLinkIn} target="_blank"><button type="button" className="btn btn-linkedin"><i className="fa fa-linkedin"></i></button></a>
-                                            <a href={data.socialGoogle} target="_blank"><button type="button" className="btn btn-gplus"><i className="fa fa-google-plus"></i></button></a>
+                                            <a href={data.socialFaceBook} target="_blank" style={{marginRight: "12px"}}><button type="button" className="btn btn-fb"><i className="fa fa-facebook"></i></button></a>
+                                            <a href={data.socialLinkIn} target="_blank" style={{marginRight: "12px"}}><button type="button" className="btn btn-linkedin"><i className="fa fa-linkedin"></i></button></a>
+                                            <a href={data.socialGoogle} target="_blank" style={{marginRight: "12px"}}><button type="button" className="btn btn-gplus"><i className="fa fa-google-plus"></i></button></a>
                                             <br/><br/>
                                             {/*<a href="#" className="btn btn-primary">Make A Reservation</a>*/}
                                         </div>
@@ -172,7 +172,7 @@ class DetailBusiness extends Component{
                                 <div className="col-lg-10 col-md-10 col-sm-12 " >
                                     {/*Start 3rd tile */}
                                     <div className="card outset" >
-                                        <div className="card-body space">
+                                        <div className="card-body space" style={{padding: "17px"}}>
                                             <div className="row">
                                                 <div className="col-md-12">
                                                     <h3><b>Contact Time</b></h3>
@@ -226,16 +226,18 @@ class DetailBusiness extends Component{
                                                                         {/*Grid column*/}
                                                                         <div className="col-md-11">
                                                                             <div className="md-form mb-0">
+                                                                            <label for="name" className="">Your name</label>
                                                                                 <input type="text" id="name" name="name" className="form-control" value={this.state.name} onChange={this.onChangeInput.bind(this)}/>
-                                                                                <label for="name" className="">Your name</label>
+                                                                                
                                                                             </div>
                                                                         </div>
                                                                         {/*Grid column*/}
                                                                         {/*Grid column*/}
                                                                         <div className="col-md-11">
                                                                             <div className="md-form mb-0">
+                                                                            <label for="email" className="">Your email</label>
                                                                                 <input type="text" id="email" name="email" className="form-control" value={this.state.email} onChange={this.onChangeInput.bind(this)}/>
-                                                                                <label for="email" className="">Your email</label>
+                                                                                
                                                                             </div>
                                                                         </div>
                                                                         {/*Grid column*/}
@@ -246,8 +248,9 @@ class DetailBusiness extends Component{
                                                                         {/*Grid column*/}
                                                                         <div className="col-md-11">
                                                                             <div className="md-form">
+                                                                            <label for="message">Your message</label>
                                                                                 <textarea type="text" id="message" name="message" rows="2" value={this.state.msg} className="form-control md-textarea" onChange={this.onChangeInput.bind(this)}></textarea>
-                                                                                <label for="message">Your message</label>
+                                                                                
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -289,11 +292,7 @@ class DetailBusiness extends Component{
                                             <div className="col-md-2 col-sm-2 col-xs-12">
                                             </div>
                                             <div className="col-md-10 col-sm-10 col-xs-12">
-                                                <h4>Our Social</h4>
-                                                <button type="button" className="btn btn-fb"><i className="fa fa-facebook"></i></button>
-                                                <button type="button" className="btn btn-tw"><i className="fa fa-twitter"></i></button>
-                                                <button type="button" className="btn btn-gplus"><i className="fa fa-google-plus"></i></button>
-                                                <button type="button" className="btn btn-yt"><i className="fa fa-youtube"></i></button>
+                
                                             </div>
                                         </div>
                                     </div>
@@ -308,20 +307,16 @@ class DetailBusiness extends Component{
                                 <div className="card outset" >
                                     <div className="card-body space">
                                         <div className="row">
-                                            <div className="col-md-12 col-sm-12 col-xs-12">
-                                                <div className="col-md-3 col-sm-3 col-xs-12">
+                                            <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>
+                                                <div className="col-md-4 col-sm-3 col-xs-12">
                                                     <a href="#linkAbout" className="a"><h3> About </h3>
                                                         <div className="hr1">...</div> </a>
                                                 </div>
-                                                <div className="col-md-3 col-sm-3 col-xs-12">
-                                                    <a href="#" className="a"><h3> Menu </h3>
-                                                        <div className="hr1">...</div> </a>
-                                                </div>
-                                                <div className="col-md-3 col-sm-3 col-xs-12">
+                                                <div className="col-md-4 col-sm-3 col-xs-12">
                                                     <a href="#linkGallery" className="a"> <h3> Gallery </h3>
                                                         <div className="hr1">...</div> </a>
                                                 </div>
-                                                <div className="col-md-3 col-sm-3 col-xs-12">
+                                                <div className="col-md-4 col-sm-3 col-xs-12">
                                                     <a href="#linkReview" className="a"><h3> Reviews </h3>
                                                         <div className="hr1">...</div></a>
                                                 </div>
@@ -338,7 +333,7 @@ class DetailBusiness extends Component{
                                     <div className="card-body space">
                                         <div className="row">
                                             <div className="col-md-12 col-sm-12 col-xs-12">
-                                                <h3><b><a name="linkAbout">Heading</a></b></h3>
+                                                <h3><b><a name="linkAbout">About</a></b></h3>
                                                 <hr/>
                                             </div>
                                         </div>
@@ -463,16 +458,18 @@ class DetailBusiness extends Component{
                                                                     {/*Grid column*/}
                                                                     <div className="col-md-6">
                                                                         <div className="md-form mb-0">
-                                                                            <input type="text" id="name1" name="name" className="form-control" value={this.state.name1} onChange={this.onChangeReview.bind(this)}/>
                                                                             <label for="name" className="">Your name</label>
+                                                                            <input type="text" id="name1" name="name" className="form-control" value={this.state.name1} onChange={this.onChangeReview.bind(this)}/>
+                                                                            
                                                                         </div>
                                                                     </div>
                                                                     {/*Grid column*/}
                                                                     {/*Grid column*/}
                                                                     <div className="col-md-6">
                                                                         <div className="md-form mb-0">
-                                                                            <input type="text" id="email1" name="email" className="form-control" value={this.state.email1} onChange={this.onChangeReview.bind(this)}/>
                                                                             <label for="email" className="">Your email</label>
+                                                                            <input type="text" id="email1" name="email" className="form-control" value={this.state.email1} onChange={this.onChangeReview.bind(this)}/>
+                                                                            
                                                                         </div>
                                                                     </div>
                                                                     {/*Grid column*/}
@@ -483,8 +480,9 @@ class DetailBusiness extends Component{
                                                                     {/*Grid column*/}
                                                                     <div className="col-md-12">
                                                                         <div className="md-form">
-                                                                            <textarea type="text" id="message1" name="message" rows="2" value={this.state.msg1} className="form-control md-textarea" onChange={this.onChangeReview.bind(this)}></textarea>
                                                                             <label for="message">Your message</label>
+                                                                            <textarea type="text" id="message1" name="message" rows="2" value={this.state.msg1} className="form-control md-textarea" onChange={this.onChangeReview.bind(this)}></textarea>
+                                                                            
                                                                         </div>
                                                                     </div>
                                                                 </div>

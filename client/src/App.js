@@ -51,7 +51,7 @@ class App extends Component {
                     <Slider/>
                 </div>
             </div>
-             <Home1/>
+             
              </span>
         );
     }

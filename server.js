@@ -1,120 +1,3 @@
-// const express = require('express');
-// const path = require('path');
-// const app = express();
-// const mongoose = require('mongoose');
-
-
-
-
-
-
-// // DB models
-// require('./models/User');
-// var user = mongoose.model('User');
-
-
-
-// //database Development
-// var configDB = require('./config/database.js');
-// mongoose.connect(configDB.EvenNodeDB,{ useNewUrlParser: true },function(err,db){
-//   if(err){
-//       console.log(err);
-//       db.on('error', console.error.bind(console, 'Database connection failed:'));
-//   }
-//   else {
-//     var db = mongoose.connection;
-//       //console.log('connected to '+ configDB.EvenNodeDB);
-//       console.log("Database :: pakjazba :: connection established successfully.");
-//       //db.close();
-//   }
-// })
-
-
-// const port = process.env.PORT || 5000;
-
-// app.use(function(req, res, next) {
-//         res.header("Access-Control-Allow-Origin", "*");
-//         res.header("Access-Control-Allow-Credentials", "true");
-//         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//         next();
-//     });
-
-
-// app.get('/api/hello', (req, res) => {
-//   res.send({ express: 'Hello From Express' });
-// });
-
-// app.get('/api/getimagedata',(req, res) =>{
-//   console.log('============='+req.query+'===============');
-//   var imageurl = req.query;
-//   res.send({Image:req.query})
-// });
-
-
-// /*=================================user register start==================================*/
-
-// app.get('/api/userregister',(req,res) =>{
-//   var nickname = req.query.nickname;
-//   var email = req.query.email;
-//   var password = req.query.password;
-//   var notrobot = req.query.notrobot;
-//   var date = new Date();
-
-//   console.log('==========='+nickname+'==='+email+'==='+password+'=='+notrobot+'==='+date);
-
-//   var user_info = new user({
-//     username: nickname,
-//     email: email,
-//     password: password,
-//     InsertedDate:date,
-//     subscribe:false,
-//     status:false,
-//     blocked:false
-//   });
-//   //res.send({message:user_info});
-// setTimeout(function() {
-//        user_info.save(function(err,data) {
-//         res.send({err:err,data:data})
-//        });
-//       //res.send({message:'data recieved'})
-//     }, 1000);
-   
-// });
-// /*============================user register end===========================================*/
-
-
-
-// /*========================reset password API start=============================================*/
-// app.get('/api/resetpassword',function(req,res){
-//   var Email = req.query.email;
-//   console.log('========='+Email);
-//  user.find({email:Email},{__v:0},
-//         function(err,User){
-//             if(err){
-//                 res.send({
-//                     code: 500,
-//                     content : 'Internal Server Error',
-//                     msg: 'API not called properly'
-//                 });
-//             }//end if
-//             else if(User!=''){
-//                 res.send({
-//                     code: 200,
-//                     content : User[0],
-//                     msg: 'user is authenticate'
-//                 });
-//             }//end else if
-//             else {
-//                 res.send({
-//                     code: 404,
-//                     content: 'Not Found',
-//                     msg: 'No User found'
-//                 });
-//             }
-//        })
-// });
-/*========================reset password API end===============================================*/
-
 
 const express = require('express');
 const path = require('path');
@@ -209,31 +92,7 @@ app.get('/api/getcategory',(req,res) =>{
   categorypost.find(function(err,data){
     res.send({err:err,data:data});
   })
-        // function(err,category) {
-
-        //     if(err){
-        //         res.send({
-        //             code: 500,
-        //             content : 'Internal Server Error',
-        //             msg: 'API not called properly'
-        //         });
-        //     }
-        //     else if(category[0]!=undefined){
-
-        //         res.send({
-        //             code: 200,
-        //             content : category,
-        //             msg: 'category retrieved successfully'
-        //         });
-        //     }
-        //     else {
-        //         res.send({
-        //             code: 404,
-        //             content: 'Not Found',
-        //             msg: 'No category found'
-        //         });
-        //     }
-        // });
+        
 })
 
 
@@ -287,37 +146,7 @@ rand=Math.floor((Math.random() * 100) + 54);
   mailOptions={
     to : req.query.email,
     subject : "Please confirm your Email account",
-    html : `<html style="opacity: 1;font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;box-sizing: border-box;border: solid;">
-<head>
-  <title>Verify your email address</title>
-</head>
-<body style="width: 100% !important;height: 100%;margin: 0;line-height: 1.4;background-color: #F5F7F9;color: #555555;">
-    <div class="email-di" style=" width:480px;margin:0 auto;padding:30px;">
-  <table class="email" width="100%" cellpadding="0" cellspacing="0" style="width: 100%;margin: 0;padding: 0;background-color: #FFFFFF;">
-    <tr>
-      <td align="center" style="border: 1px groove;color: grey">
-        <table class="email-content" width="100%" cellpadding="0" cellspacing="0" style="width: 100%;margin: 0;padding: 0;">
-          <tr>
-           <td><img src="http://res.cloudinary.com/dxk0bmtei/image/upload/v1534159021/pakjazba_f3orb0.png" style="display: block;margin-left: auto;margin-right: auto;"></td>
-          </tr>
-          <tr>
-            <td class="email-body" width="100%" style="width: 100%;margin: 0;padding: 0;border-top: 1px solid #FFFFFF;border-bottom: 1px solid #E7EAEC;background-color: #FFFFFF;">
-              <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0" style="width: 570px;margin: 0 auto;padding: 0;">
-                <tr>
-                  <td class="content" style="padding: 35px;">
-                    <h1 style="margin-top: 0;color:#292E31;font-size: 19px;font-weight: bold;text-align: left;">Verify your email address</h1>
-                    <p style="margin-top: 0;color: #555555;font-size: 16px;line-height: 1.5em;text-align: left;">Welcome to myEFSOLI! Just verify your email to get</p>
-                    <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" style=" width: 100%;margin: 30px auto;padding: 0;text-align: center;">
-                      <tr>
-                        <td align="center">
-                          <div>
-                                <a href="+ link +" class="button button--blue" style="background-color: #8cbc40; display: inline-block;width: 200px;border-radius: 3px;color: #ffffff;font-size: 15px;line-height: 45px;text-align: center;text-decoration: none;">Verify Email</a>
-                          </div>
-                        </td>
-                      </tr>
-                    <p style="margin-top: 0;color: #555555;font-size: 16px;line-height: 1.5em;text-align: left;">EFSOL Team<br>Level 23</p>
-                    <tr>
-                        <td>
+    html : `<html style="opacity: 1;font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;box-sizing: border-box;border: solid;"><head><title>Verify your email address</title></head><body style="width: 100% !important;height: 100%;margin: 0;line-height: 1.4;background-color: #F5F7F9;color: #555555;"><div class="email-di" style=" width:480px;margin:0 auto;padding:30px;"><table class="email" width="100%" cellpadding="0" cellspacing="0" style="width: 100%;margin: 0;padding: 0;background-color: #FFFFFF;"><tr><td align="center" style="border: 1px groove;color: grey"><table class="email-content" width="100%" cellpadding="0" cellspacing="0" style="width: 100%;margin: 0;padding: 0;"><tr><td><img src="http://res.cloudinary.com/dxk0bmtei/image/upload/v1534159021/pakjazba_f3orb0.png" style="display: block;margin-left: auto;margin-right: auto;"></td> </tr> <tr><td class="email-body" width="100%" style="width: 100%;margin: 0;padding: 0;border-top: 1px solid #FFFFFF;border-bottom: 1px solid #E7EAEC;background-color: #FFFFFF;"><table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0" style="width: 570px;margin: 0 auto;padding: 0;"><tr><td class="content" style="padding: 35px;"><h1 style="margin-top: 0;color:#292E31;font-size: 19px;font-weight: bold;text-align: left;">Verify your email address</h1><p style="margin-top: 0;color: #555555;font-size: 16px;line-height: 1.5em;text-align: left;">Welcome to myEFSOLI! Just verify your email to get</p><table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" style=" width: 100%;margin: 30px auto;padding: 0;text-align: center;"><tr><td align="center"><div> <a href="+ link +" class="button button--blue" style="background-color: #8cbc40; display: inline-block;width: 200px;border-radius: 3px;color: #ffffff;font-size: 15px;line-height: 45px;text-align: center;text-decoration: none;">Verify Email</a></div></td> </tr><p style="margin-top: 0;color: #555555;font-size: 16px;line-height: 1.5em;text-align: left;">EFSOL Team<br>Level 23</p><tr><td>
                         <ul style="list-style-type: none;text-align: center;">
                             <li style="float: left;"><a href="#"><p style="align-content: left"><img class="social-icon" src="http://i.imgur.com/oyXO6zq.png" width="30" height="30"></p></a></li>
                             <li style="float: left;"><a href="#"><p class="text-center"><img class="social-icon" src="http://i.imgur.com/AJNmSZs.png" width="30" height="30"></p></a><li>
@@ -445,7 +274,32 @@ app.post('/api/reviews',function(req,res){
 
 
 app.get('/api/getreviews',function(req,res){
-})
+
+reviewdata.find({__v:0},function(err,reviews){
+    if(err){
+      res.send({
+        code:500,
+        content:'Internal Server Error',
+        msg:'API not called properly'
+      })
+    }//end if
+    else if(reviews!=''){
+      res.send({
+        code:200,
+        content:reviews,
+        msg:'all user reviews'
+      });
+    }//end else if condition
+    else{
+      res.send({
+        code:404,
+        content:'Not Found',
+        msg:'no user reviews'
+      });
+    }//end else condition
+  })
+
+});
 
 
 /*==================Review api end=================================*/
@@ -457,8 +311,7 @@ app.get('/api/getreviews',function(req,res){
  app.get('/api/usersignin',(req,res) =>{
     var Useremail = req.query.useremail,
         Password = req.query.password;
-        console.log('======'+Useremail+'========'+Password);
-
+      
        User.find({email:Useremail,password:Password},{__v:0},
         function(err,User){
             if(err){
@@ -515,7 +368,6 @@ app.get('/api/getreviews',function(req,res){
 // /*========================reset password API start=============================================*/
 app.get('/api/resetpassword',function(req,res){
   var Email = req.query.email;
-  console.log('========='+Email);
  user.find({email:Email},{__v:0},
         function(err,User){
             if(err){
@@ -596,8 +448,9 @@ app.post('/api/postbusinessdata',function(req,res){
       businesscategory = businessData.businessCategory,
       businessImages = businessData.arr_url,
       businessId = businessData.businessId;
+      businessDescription = businessData.description;
 
-
+if(businessData.objectId == '' || businessData.objectId == undefined || businessData.objectId == null){
    var yellowBusiness_info = new yellowPagesBusiness({
     user_id:user_id,
     address:address,
@@ -619,7 +472,8 @@ app.post('/api/postbusinessdata',function(req,res){
     socialFaceBook:businessData.socialFaceBook,
     socialGoogle:businessData.socialGoogle,
     socialLinkIn:businessData.socialLinkIn,
-    profileId:businessData.profileId
+    profileId:businessData.profileId,
+    description:businessDescription
    });
 
    yellowBusiness_info.save(function(err,data){
@@ -644,6 +498,47 @@ app.post('/api/postbusinessdata',function(req,res){
       });
     }//end else condition
    })
+ }//end if objectId
+
+ else if(businessData.objectId != '' || businessData.objectId != undefined || businessData.objectId != null){
+  yellowPagesBusiness.findOne({"_id":businessData.objectId},function(err,businessProfile){
+    if(err){
+      return res.status(400).json({"Unexpected Error:: ": err});
+    }//end err
+    businessProfile.user_id=businessData.user_id;
+    businessProfile.address=businessData.address;
+    businessProfile.businessname=businessData.businessname;
+    businessProfile.businessnumber=businessData.businessnumber;
+    businessProfile.firstname=businessData.firstname;
+    businessProfile.lastname=businessData.lastname;
+    businessProfile.businessemailid=businessData.businessId;
+    businessProfile.city=businessData.city;
+    businessProfile.state=businessData.state;
+    businessProfile.zipcode=businessData.zipcode;
+    businessProfile.businessaddress=businessData.businessaddress;
+    businessProfile.businessownername=businessData.businessownername;
+    businessProfile.businessemail=businessData.businessemail;
+    businessProfile.businesscategory=businessData.businesscategory;
+    businessProfile.businessImages=businessData.businessImages;
+    businessProfile.openingTime=businessData.openingTime;
+    businessProfile.closingTime=businessData.closingTime;
+    businessProfile.socialFaceBook=businessData.socialFaceBook;
+    businessProfile.socialGoogle=businessData.socialGoogle;
+    businessProfile.socialLinkIn=businessData.socialLinkIn;
+    businessProfile.profileId=businessData.profileId;
+    businessProfile.description = businessData.description;
+
+    businessProfile.save(function(err,doc){
+      if(err){
+        //console.log("profile update error::" :err);
+        return res.status(400).json({"Unexpected Error::" :err});
+      }
+      console.log('business data has been updated');
+      return res.status(200).json({message:'business data updated successfully'})
+    });
+  })
+ }//end else if businessData objectId
+
 })
 /*======================post business data end==================================================*/
 
@@ -657,7 +552,6 @@ app.post('/api/postbuyselldata',function(req,res){
 
   var buyselldata = req.body;
   //console.log(buyselldata);
-  console.log('buysellDescription:'+req.body.description);
   var userid = buyselldata.user_id,
       contactname = buyselldata.contactName,
       contactemail = buyselldata.contactEmail,
@@ -683,6 +577,8 @@ var   subcategory   = buyselldata.subCategory,
       subsubcategory = buyselldata.subSubCategory,
       profileid =      buyselldata.profileId,
       streetaddress = buyselldata.streetAddress
+
+if(buyselldata.objectId == '' || buyselldata.objectId == undefined || buyselldata.objectId == null){
 
  var classifiedBusiness_info = new classifiedBusiness({
       userid:userid,
@@ -734,8 +630,48 @@ classifiedBusiness_info.save(function(err,data){
       });
     }//end else condition
 })
-  // res.send({message:'data get on server'})
+}//end if objectId
+else if(buyselldata.objectId != '' ||  buyselldata.objectId != undefined || buyselldata.objectId != null){
+classifiedBusiness.findOne({"_id" : buyselldata.objectId},function(err,buysell){
+  if(err){
+ return res.status(400).json({"Unexpected Error:: ": err});
+  }//end if
+       buysell.userid=buyselldata.userid;
+      buysell.contactname=buyselldata.contactname;
+      buysell.contactemail=buyselldata.contactemail;
+      buysell.contactnumber=buyselldata.contactnumber;
+      buysell.modeofcontact=buyselldata.modeofcontact;
+      buysell.delivery=buyselldata.delivery;
+      buysell.address=buyselldata.address;
+      buysell.hideaddress=buyselldata.hideaddress;
+      buysell.condition=buyselldata.condition;
+      buysell.sizedimension=buyselldata.sizedimension;
+      buysell.images=buyselldata.classifiedImages;
+      buysell.city=buyselldata.city;
+      buysell.postingtype=buyselldata.postingtype;
+      buysell.category=buyselldata.category;
+      buysell.title=buyselldata.title;
+      buysell.description=req.body.description;
+      buysell.price=buyselldata.price;
+      buysell.hideprice=buyselldata.hideprice;
+      buysell.modelmake=buyselldata.modelmake;
+      buysell.modelnumber=buyselldata.modelnumber;
+      buysell.modelname=buyselldata.modelname;
+      buysell.subcategory=buyselldata.subcategory;
+      buysell.subsubcategory=buyselldata.subsubcategory;
+      buysell.profileid=buyselldata.profileid;
+      buysell.streetaddress=buyselldata.streetaddress;
+
+      buysell.save(function(err,doc){
+        if(err){
+          return res.status(400).json({"Unexpected Error:: ": err});
+        }//end if
+        return res.status(200).json({message: 'buysell data has been updated successfully.'});
+
+      });
 })
+}//end else
+});
 
 /*======================post buy & sell business end===========================================*/
 
@@ -753,7 +689,7 @@ app.get('/api/marketplace',function(req,res){
       }//end for
       }//end if
       classifiedBusiness.find({__v:0},function(err,classifiedData){
-        console.log('classified:'+classifiedData);
+        //console.log('classified:'+classifiedData);
         if(classifiedData!=''){
           var buysell = [];
           for(var j=0;j<classifiedData.length;j++){
@@ -762,7 +698,7 @@ app.get('/api/marketplace',function(req,res){
         }//end if
 
         roomrentsdata.find({__v:0},function(err,roomrents){
-          console.log('roomrents:'+roomrents);
+          //console.log('roomrents:'+roomrents);
           if(roomrents!=''){
             var roomrentsdata = [];
             for(var k=0;k<roomrents.length;k++){
@@ -843,7 +779,7 @@ User.findOne({"_id":profileData.userId},function(err,user){
 else if(profileData.profileId != ''){
   profiledata.findOne({"_id" : profileData.profileId},function(err,profile){
     if(err){
-          console.log("Profile update Error:::", err);
+          //console.log("Profile update Error:::", err);
           return res.status(400).json({"Unexpected Error:: ": err});
         }
           profile.user_id = profileData.userId;
@@ -862,10 +798,10 @@ else if(profileData.profileId != ''){
 
           profile.save(function(err, doc){
           if(err){
-            console.log("profile update Error:::", err);
+            //console.log("profile update Error:::", err);
             return res.status(400).json({"Unexpected Error:: ": err});
           }
-          console.log('profile has been updated successfully.');
+          //console.log('profile has been updated successfully.');
           return res.status(200).json({message: 'profile has been updated successfully.'} );
 
         });
@@ -880,7 +816,7 @@ app.get('/api/getprofile',function(req,res){
   var profileId = req.query.profileId;
   profiledata.findOne({"_id":profileId},function(err,specificProfile){
     if(err){
-          console.log("Profile not found Error:::", err);
+          //console.log("Profile not found Error:::", err);
           return res.status(400).json({"Unexpected Error:: ": err});
         }
      else if(specificProfile){
@@ -897,10 +833,10 @@ app.get('/api/getprofile',function(req,res){
 /*===================post change password API start==========================================================*/
 app.post('/api/changepassword',function(req,res){
   var resetPassword = req.body;
-  console.log(resetPassword);
+  //console.log(resetPassword);
   User.findOne({"_id":req.body.userId},function(err,speUser){
       if(err){
-        console.log("Profile not found Error:::", err);
+        //console.log("Profile not found Error:::", err);
          return res.status(400).json({"Unexpected Error:: ": err});
       }//end 
       else if(speUser){
@@ -911,10 +847,10 @@ app.post('/api/changepassword',function(req,res){
           speUser.password = req.body.newPassword;
           speUser.save(function(err,data){
             if(err){
-            console.log("Password update Error:::", err);
+            //console.log("Password update Error:::", err);
             return res.status(400).json({"Unexpected Error:: ": err});
           }
-          console.log('Password has been updated successfully.');
+          //console.log('Password has been updated successfully.');
           return res.status(200).json({message: 'Password has been updated successfully.'} );
           })
         }
@@ -927,6 +863,7 @@ app.post('/api/changepassword',function(req,res){
 /*===================post roommates API start================================================================*/
   app.post('/api/postroomrent',function(req,res){
     var postroomrent = req.body;
+    if(postroomrent.objectId == '' || postroomrent.objectId == undefined || postroomrent.objectId == null){
     var roommates_info = new roomrentsdata({
       user_id:postroomrent.user_id,
       city:postroomrent.city,
@@ -979,8 +916,50 @@ app.post('/api/changepassword',function(req,res){
       });
     }//end else condition
 })
+}//end if objectId
+else if(postroomrent.objectId != '' || postroomrent.objectId != undefined || postroomrent.objectId != null){
+  roomrentsdata.findOne({"_id": postroomrent.objectId},function(err,roomrentsdata){
+    if(err){
+       return res.status(400).json({"Unexpected Error:: ": err});
+    }//end iff
+      roomrentsdata.user_id=postroomrent.user_id;
+      roomrentsdata.city=postroomrent.city;
+      roomrentsdata.propertylocation=postroomrent.propertyLocation;
+      roomrentsdata.propertyzipcode=postroomrent.zipCode;
+      roomrentsdata.category=postroomrent.category;
+      roomrentsdata.housingtype=postroomrent.housingType;
+      roomrentsdata.postingtitle=postroomrent.postingTitle;
+      roomrentsdata.discription=postroomrent.description;
+      roomrentsdata.startdate=postroomrent.dateRange.from;
+      roomrentsdata.enddate=postroomrent.dateRange.to;
+      roomrentsdata.rent=postroomrent.price;
+      roomrentsdata.pricemode=postroomrent.priceMode;
+      roomrentsdata.accomodates=postroomrent.accommodates;
+      roomrentsdata.furnished=postroomrent.furnished;
+      roomrentsdata.Attachedbath=postroomrent.attachedBath;
+      roomrentsdata.amenitiesinclude=postroomrent.amenities;
+      roomrentsdata.vegetariansprefered=postroomrent.vegNoVeg;
+      roomrentsdata.smoking=postroomrent.smoking;
+      roomrentsdata.petfriendly=postroomrent.petFriendly;
+      roomrentsdata.imageurl=postroomrent.arr_url;
+      roomrentsdata.contactname=postroomrent.contactName;
+      roomrentsdata.contactemail=postroomrent.contactEmail;
+      roomrentsdata.contactnumber=postroomrent.contactNumber;
+      roomrentsdata.modeofcontact=postroomrent.contactMode;
+      roomrentsdata.profileId=postroomrent.profileId;
+      roomrentsdata.subCategory=postroomrent.subCategory;
+      roomrentsdata.subSubCategory=postroomrent.subSubCategory;
+      roomrentsdata.state=postroomrent.state;
 
+      roomrentsdata.save(function(err,doc){
+        if(err){
+          return res.status(400).json({"Unexpected Error:: ": err});
+        }//end if
+        return res.status(200).json({message: 'roomrentsdata has been updated successfully.'} );
+      });
   })
+}//else if
+});
 
 app.post('/api/sendmessage',function(req,res){
 var getuserfields = req.body;
@@ -993,7 +972,7 @@ var getuserfields = req.body;
     subject : " Pakjazba User want to talk to you",
     html : "<html><head><style>table {font-family: arial, sans-serif;border-collapse: collapse;width: 100%;}td, th {border: 1px solid #dddddd;text-align: left;padding: 8px;}tr:nth-child(even) {background-color: #dddddd;}</style></head><body><h2>User Details</h2><table> <tr><th>Name</th><th>Email</th><th>Message</th></tr><tr><td>" + username +" </td><td>"+ email +"</td><td>"+ message +"</td></tr></table></body></html>"
   }
-  console.log(mailOptions);
+  //console.log(mailOptions);
   smtpTransport.sendMail(mailOptions, function(error, response){
      if(error){
           console.log(error);

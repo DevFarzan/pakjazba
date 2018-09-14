@@ -45,7 +45,7 @@ class DetailBuySell extends Component{
         }
 
         return(
-            <div id="body">
+            <div>
                 <div className="background_listing">
                 	<App/>
                 </div>

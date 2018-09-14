@@ -46,8 +46,9 @@ class DetailRoommates extends Component{
                 <span className="background_listing">
                 	<Burgermenu/>
                 </span>
-                {!!data && <Roomrentingthreecontentarea data={data}/>}
-                DetailRoommates
+                <div className="container" style={{"width":"90%"}}>
+                    {!!data && <Roomrentingthreecontentarea data={data}/>}
+                </div>
             </div>
         )
     }

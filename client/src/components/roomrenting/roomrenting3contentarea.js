@@ -23,32 +23,34 @@ class Roomrenting3contentarea extends Component{
                         <h2 classNameName="head-space">Luxary Room Available </h2>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row" style={{"marginTop": "62px"}}>
                     <div className="col-md-12 col-sm-12 col-xs-12">
                         <div className="col-md-2 col-sm-12 col-xs-12">
                         </div>
-                        <div className="col-md-10 col-sm-12 col-xs-12">
+                        <div className="col-md-12 col-sm-12 col-xs-12">
+
                             <div className="col-md-3 col-sm-6 col-xs-12">
-                                <h4> <span className="glyphicon glyphicon-calendar"></span>{data.startdate}</h4>
-                                <h4> Available From</h4>
+                                <h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-calendar"></span>{data.startdate}</h4>
+                                <h4 style={{fontSize: "16px"}}> Available From</h4>
                             </div>
                             <div className="col-md-3 col-sm-6 col-xs-12">
-                                <h4> <span className="glyphicon glyphicon-user"></span>{data.contactname}</h4>
-                                <h4> Male/Female</h4>
+                                <h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-user"></span>{data.contactname}</h4>
+                                <h4 style={{fontSize: "16px"}}> Male/Female</h4>
                             </div>
                             <div className="col-md-3 col-sm-6 col-xs-12">
-                                <h4> Single Room</h4>
-                                <h4> Area Sq ft</h4>
+                                <h4 style={{fontSize: "16px"}}> Single Room</h4>
+                                <h4 style={{fontSize: "16px"}}> Area Sq ft</h4>
                             </div>
                             <div className="col-md-3 col-sm-6 col-xs-12">
-                                <h3> Furnished Room</h3>
-                                <h4><span className="glyphicon glyphicon-map-marker"></span>{data.propertylocation}</h4>
-                                <h3><span className="glyphicon glyphicon-usd"></span>{data.rent}</h3>
+                                <h3 style={{fontSize: "16px"}}> Furnished Room</h3>
+                                <h4 style={{fontSize: "16px"}}><span className="glyphicon glyphicon-map-marker"></span>{data.propertylocation}</h4>
+                                <div style={{"width": "50%","background": "#F1F2F2","paddingLeft": "32px","paddingTop": "2px"}}><h3 style={{fontSize: "16px"}}><span className="glyphicon glyphicon-usd"></span>{data.rent}</h3></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="col-md-10 col-sm-12 col-xs-12">
+
+                <div className="col-md-12 col-sm-12 col-xs-12">
                     <div className="row">
                         <div className="col-md-12">
                             <Carousel autoplay>
@@ -126,8 +128,8 @@ class Roomrenting3contentarea extends Component{
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-12 col-sm-12 col-xs-12 des-space auther-border ">
-                        <h3> Author </h3>
+                    <div className="col-md-12 col-sm-12 col-xs-12 des-space auther-border" style={{"border-style":"none"}}>
+                        <h3 style={{"marginTop":"14px","textAlign":"center","textDecoration": "underline"}}> Author </h3>
                         <div className="">
                             <div className="col-md-6 col-sm-12 col-xs-12">
                                 <img src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} class="img-circle" alt="" height="200" width="200"/>

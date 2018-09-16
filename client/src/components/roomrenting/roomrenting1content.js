@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import "./headerroomrenting.css";
-import { connect } from 'react-redux';
 import { Pagination } from 'antd';
 import {Link} from "react-router-dom";
 import {HttpUtils} from "../../Services/HttpUtils";
@@ -20,22 +19,23 @@ class Roomrenting1content extends Component{
     }
 
     async getAllBusiness(){
-        var res = await HttpUtils.get('marketplace')
+        let res = await HttpUtils.get('marketplace')
         this.setState({
-            roomrents: res && res.roomrentsdata,
-            showroomrents: res && res.roomrentsdata.slice(0, 6)
+            roomrents: res ? res.roomrentsdata : [],
+            showroomrents: res ? res.roomrentsdata.slice(0, 6) : []
         })
     }
 
     funcIndexes(page){
-        var to = 6 * page;
-        var from = to - 6;
+        let to = 6 * page;
+        let from = to - 6;
         return {from: page === 1 ? 0 : from, to: page === 1 ? 6 : to}
     }
 
     onChange = (page) => {
         const { roomrents, filteredArr } = this.state;
-        var indexes = this.funcIndexes(page)
+        let indexes = this.funcIndexes(page)
+
         if(!!filteredArr.length){
             this.setState({
                 current: page,
@@ -73,11 +73,11 @@ class Roomrenting1content extends Component{
                                             <div className="ibox-content product-box">
                                                 <div className="product-imitation">
                                                     <div className="card2">
-                                                        <img src={elem.imageurl[0]}/>
+                                                        <img src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'}/>
                                                         <span className="card-button">
-                                                <p className="categories-on-card">{elem.category}</p>
-                                                <i className="glyphicon glyphicon-map-marker"/><p className="text">{elem.state +" & "+ elem.city}</p>
-                                            </span>
+                                                            <p className="categories-on-card">{elem.category}</p>
+                                                            <i className="glyphicon glyphicon-map-marker"/><p className="text">{elem.state +" & "+ elem.city}</p>
+                                                        </span>
                                                     </div>
                                                 </div>
                                                 <div className="cust-margin">

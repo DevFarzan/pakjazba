@@ -49,7 +49,7 @@ class Forthfold extends Component{
     }
 
     async getAllBusiness(){
-        var res = await HttpUtils.get('marketplace')
+        let res = await HttpUtils.get('marketplace')
         this.setState({
             buySell: res.busell,
             showBuySell: res.busell.slice(0, 6)
@@ -57,14 +57,14 @@ class Forthfold extends Component{
     }
 
     funcIndexes(page){
-        var to = 6 * page;
-        var from = to - 6;
+        let to = 6 * page;
+        let from = to - 6;
         return {from: page === 1 ? 0 : from, to: page === 1 ? 6 : to}
     }
 
     onChange = (page) => {
         const { buySell, filteredArr } = this.state;
-        var indexes = this.funcIndexes(page)
+        let indexes = this.funcIndexes(page)
         if(!!filteredArr.length){
             this.setState({
                 current: page,
@@ -85,39 +85,48 @@ class Forthfold extends Component{
             <div className="secondfold">
                 <div className="row">
                     {showBuySell && showBuySell.map((elem) => {
-                        return (<Link to={{pathname: `/detail_buySell`, state: elem}}>
-                        <div className="col-md-4">
-                            <div className="ibox">
-                                <div className="ibox-content product-box">
-                                    <div className="product-imitation">
-                                        <div className="card2">
-                                            <img src={elem.images[0]}/>
-                                            <span className="card-button">
-                                                <p className="categories-on-card">{elem.category}</p>
-                                                <h4> Furniture For Sale </h4>
-                                                <i className="glyphicon glyphicon-map-marker"/><p className="text">Home & Decor</p>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className="cust-margin">
-                                        <i className="glyphicon glyphicon-home"/>
-                                        <p className="text">Home icon</p>
-                                    </div>
-                                    <div className="product-desc">
-                                        <span className="product-price">{!elem.hideprice ? elem.price : 'Hide'}</span>
-                                        <small className="text-muted">Category</small>
-                                        <a href="#" className="product-name">{elem.category}</a>
-                                        <div className="small m-t-xs">
-                                            {elem.description && elem.description}
-                                        </div>
-                                        <div className="m-t text-righ">
-                                            <Link to={{pathname: `/detail_buySell`, state: elem}} className="btn btn-xs btn-outline btn-primary">Info <i className="fa fa-long-arrow-right"></i> </Link>
+                        let str = elem.address || '';
+                        if(str.length > 25) {
+                            str = str.substring(0, 25);
+                            str = str + '...'
+                        }
+                        let des = elem.description || '';
+                        if(des.length > 100) {
+                            des = des.substring(0, 100);
+                            des = des + '...'
+                        }
+                        return (
+                            <Link to={{pathname: `/detail_buySell`, state: elem}}>
+                                <div className="col-md-4">
+                                    <div className="ibox">
+                                        <div className="ibox-content product-box">
+                                            <div className="product-imitation">
+                                                <div className="card2">
+                                                    <img src={elem.images[0]}/>
+                                                    <span className="card-button">
+                                                        <p className="categories-on-card">{elem.category}</p>
+                                                        <i className="glyphicon glyphicon-map-marker"/><p className="text">{elem.state +" & "+ elem.city}</p>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div className="cust-margin">
+                                                <i className="glyphicon glyphicon-home"/>
+                                                <p className="text">{str}</p>
+                                            </div>
+                                            <div className="product-desc">
+                                                <span className="product-price">{!elem.hideprice ? elem.price : 'Hide'}</span>
+                                                <small className="text-muted">Category</small>
+                                                <a href="#" className="product-name">{elem.category}</a>
+                                                <div className="small m-t-xs">{!elem.hideaddress ? des : ''}</div>
+                                                <div className="m-t text-righ">
+                                                    <Link to={{pathname: `/detail_buySell`, state: elem}} className="btn btn-xs btn-outline btn-primary">Info <i className="fa fa-long-arrow-right"></i> </Link>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        </Link>)
+                            </Link>
+                        )
                     })}
                 </div>
                 {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h1>Not found....</h1></span>}

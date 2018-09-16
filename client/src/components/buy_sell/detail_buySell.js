@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Burgermenu from '../header/burgermenu';
 import Buydetailfirstfold from './buydetail/buydetailfirstfold'
 import Buydetailsecondfold from './buydetail/buydetailsecondfold'
 import { Redirect } from 'react-router';
@@ -8,7 +7,6 @@ import Footer from '../footer/footer';
 import {HttpUtils} from "../../Services/HttpUtils";
 
 class DetailBuySell extends Component{
-
     constructor(props){
         super()
         this.state = {
@@ -18,7 +16,7 @@ class DetailBuySell extends Component{
     }
 
     componentDidMount(){
-        var data = this.props.location.state;
+        let data = this.props.location.state;
         if(data === undefined){
             this.setState({
                 isData: false
@@ -29,8 +27,8 @@ class DetailBuySell extends Component{
     }
 
     async getProfile(data){
-        var req = await HttpUtils.get('getprofile?profileId=' + data.profileid)
-        var allData = {...data, ...{userImage: req.content ? req.content.imageurl : ''}}
+        let req = await HttpUtils.get('getprofile?profileId=' + data.profileid)
+        let allData = {...data, ...{userImage: req.content ? req.content.imageurl : ''}}
         this.setState({
             isData : true,
             data : allData

@@ -1,36 +1,27 @@
-/* global google */
+// /* global google */
 import React, { Component } from 'react';
 import {
     Form,
     Input,
-    Tooltip,
     Icon,
     Cascader,
-    Select,
-    Row,
-    Col,
-    Checkbox,
-    Button,
-    AutoComplete,
     notification,
     Upload,
     Modal,
     TimePicker
 } from 'antd';
-import App from '../../App';
-import Geosuggest from 'react-geosuggest';
+// import Geosuggest from 'react-geosuggest';
 import Burgermenu from '../header/burgermenu';
 import Footer from '../footer/footer';
 import sha1 from "sha1";
 import superagent from "superagent";
-import axios from "axios";
+// import axios from "axios";
 import { Redirect } from 'react-router';
 import {HttpUtils} from '../../Services/HttpUtils';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 import moment from 'moment'
 
 const stateCities= require('countrycitystatejson')
-
 const { TextArea } = Input;
 const FormItem = Form.Item
 const category = [{
@@ -373,7 +364,7 @@ class Postbusiness extends Component {
         })
         AsyncStorage.getItem('user')
             .then((obj) => {
-                var userObj = JSON.parse(obj)
+                let userObj = JSON.parse(obj)
                 if(!!userObj) {
                     this.setState({
                         userId: userObj._id,
@@ -444,27 +435,27 @@ class Postbusiness extends Component {
     //--------------upload functions end ---------------------
 
     //--------------delete uploaded image start-------------------
-    deleteFile = () => {
-        const cloudName = 'dxk0bmtei'
-        const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/destroy'
-        const timestamp = Date.now()/1000
-        const publicId = "kc2i5zrbymr6dwlp9man"
-        const paramsStr = 'timestamp='+timestamp+'&public_id='+publicId+'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
-        const signature = sha1(paramsStr)
-        console.log(signature.toString(),' signatureeeeeeeeeeee')
+    // deleteFile = () => {
+    //     const cloudName = 'dxk0bmtei'
+    //     const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/destroy'
+    //     const timestamp = Date.now()/1000
+    //     const publicId = "kc2i5zrbymr6dwlp9man"
+    //     const paramsStr = 'timestamp='+timestamp+'&public_id='+publicId+'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
+    //     const signature = sha1(paramsStr)
+    //     console.log(signature.toString(),' signatureeeeeeeeeeee')
         // const signature = "f32d42d4c15b560b49ead0878aaefb71016ca04d"
-        const params = {
-            'api_key':'878178936665133',
-            'timestamp':timestamp,
-            'public_id':publicId,
-            'signature':signature.toString()
-        }
+        // const params = {
+        //     'api_key':'878178936665133',
+        //     'timestamp':timestamp,
+        //     'public_id':publicId,
+        //     'signature':signature.toString()
+        // }
 
-        axios.post('https://api.cloudinary.com/v1_1/'+cloudName+'/image/destroy?'+'public_id='+publicId+'&timestamp='+timestamp+'&api_key=878178936665133'+'&signature='+signature,{}).then((res) => {
-            console.log(res, 'resssssssssss')
-        }).catch((err) => {
-            console.log(err, 'errrrrrrrrrr')
-        })
+        // axios.post('https://api.cloudinary.com/v1_1/'+cloudName+'/image/destroy?'+'public_id='+publicId+'&timestamp='+timestamp+'&api_key=878178936665133'+'&signature='+signature,{}).then((res) => {
+        //     console.log(res, 'resssssssssss')
+        // }).catch((err) => {
+        //     console.log(err, 'errrrrrrrrrr')
+        // })
 
         // let deleteRequest = superagent.post(url)
         // console.log(deleteRequest, 'urlllllllll')
@@ -477,7 +468,7 @@ class Postbusiness extends Component {
         //     err ? rej(err) : res(resp);
         // })
 
-    }
+    // }
     //--------------delete uploaded image end-------------------
 
     //--------------function for cloudnary url ---------------
@@ -519,9 +510,6 @@ class Postbusiness extends Component {
                 if (fileList.length) {
                     this.postDataWithURL(values)
                 } else {
-                    var objectData = {
-                        key: 'value'
-                    }
                     this.postData(values)
                 }
             }
@@ -548,7 +536,6 @@ class Postbusiness extends Component {
 
     async postDataWithURL(values){
         const { fileList } = this.state;
-        var cloudURL = [];
 
         Promise.all(fileList.map((val) => {
             return this.uploadFile(val).then((result) => {
@@ -569,7 +556,7 @@ class Postbusiness extends Component {
 
     async postData(values, response){
         const { userId, socLin, socGoo, socFac, profileId, openingTime, closingTime, objectId } = this.state;
-        var obj = {
+        let obj = {
             user_id: userId,
             profileId: profileId,
             address: values.address,
@@ -594,7 +581,7 @@ class Postbusiness extends Component {
             arr_url: response ? response : [],
             objectId: objectId
         }
-        var req = await HttpUtils.post('postbusinessdata', obj)
+        let req = await HttpUtils.post('postbusinessdata', obj)
         if(req.code === 200){
             this.props.form.resetFields();
             this.openNotification()
@@ -651,6 +638,7 @@ class Postbusiness extends Component {
     render() {
         const { previewVisible, previewImage, fileList, desLength, socFac, socGoo, socLin, statesUS, citiesUS } = this.state;
         const {getFieldDecorator} = this.props.form;
+
         if (this.state.msg === true) {
             return <Redirect to='/' />
         }
@@ -679,12 +667,6 @@ class Postbusiness extends Component {
             </div>
         );
 
-        var fixtures = [
-            {label: 'New York', location: {lat: 40.7033127, lng: -73.979681}},
-            {label: 'Rio', location: {lat: -22.066452, lng: -42.9232368}},
-            {label: 'Tokyo', location: {lat: 35.673343, lng: 139.710388}}
-        ];
-
         const formItemLayout = {
             labelCol: {
             	md:{span:6},
@@ -702,8 +684,6 @@ class Postbusiness extends Component {
             <div>
                 {/*================================App component include Start===========================*/}
                 <Burgermenu/>
-                {/*================================App component include End===========================*/}
-
                 {/*================================post business form start============================*/}
                 <div className="">
                     <Form onSubmit={this.handleSubmit} className="login-form">
@@ -715,10 +695,10 @@ class Postbusiness extends Component {
                                 <div className="panel-body">
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading bold_c_text"><Icon type="info-circle"/><span
+                                    <div className="panel panel-default">
+                                        <div className="panel-heading bold_c_text"><Icon type="info-circle"/><span
                                             className="margin_font_location">Location</span></div>
-                                        <div class="panel-body">
+                                        <div className="panel-body">
 											<FormItem
                                                 {...formItemLayout}
 												label="Address"
@@ -768,10 +748,10 @@ class Postbusiness extends Component {
                                     <br/>
                                     {/*==========location panel end===========*/}
                                     {/*==========Business panel start=========*/}
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading bold_c_text"><Icon type="info-circle"/><span
+                                    <div className="panel panel-default">
+                                        <div className="panel-heading bold_c_text"><Icon type="info-circle"/><span
                                             className="margin_font_location">Business</span></div>
-                                        <div class="panel-body">
+                                        <div className="panel-body">
                                         <FormItem
                                                 {...formItemLayout}
                                                 label="First Name"
@@ -914,9 +894,9 @@ class Postbusiness extends Component {
                                                             validator: this.checkValue.bind(this)
                                                         }],
                                                 })(
-                                                    <TextArea style={{"margin-bottom": "12px"}}
+                                                    <TextArea style={{"marginBottom": "12px"}}
                                                         rows={6}
-                                                        maxlength="500"
+                                                        maxLength="500"
                                                     />
                                                 )}
                                                 <br /><br />
@@ -973,7 +953,6 @@ class Postbusiness extends Component {
                                         </div>
                                     </div>
                                     {/*==========upload panel end===========*/}
-                                    
                                 </div>
                                 <div className="row center_global">
                                     <button className="btn color_button">Submit</button>
@@ -986,14 +965,20 @@ class Postbusiness extends Component {
                     <Footer />
                 </div>
                 {/*container*/}
-
                 {/*================================post business form End==============================*/}
             </div>
         )
     }
 }
+
 const WrappedRegistrationForm = Form.create()(Postbusiness);
 export default WrappedRegistrationForm;
+
+// var fixtures = [
+//     {label: 'New York', location: {lat: 40.7033127, lng: -73.979681}},
+//     {label: 'Rio', location: {lat: -22.066452, lng: -42.9232368}},
+//     {label: 'Tokyo', location: {lat: 35.673343, lng: 139.710388}}
+// ];
 
 {/*<Geosuggest*/}
 // fixtures={fixtures}

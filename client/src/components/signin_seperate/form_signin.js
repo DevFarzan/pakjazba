@@ -1,11 +1,11 @@
 import React, { Component } from   'react';
-import { Form, Input, Icon, Button } from 'antd';
+import { Form, Input } from 'antd';
 import AsyncStorage from "@callstack/async-storage";
 import { withRouter, Redirect, } from 'react-router-dom';
 import {HttpUtils} from "../../Services/HttpUtils";
 
 const FormItem = Form.Item;
-const ip = require('ip');
+// const ip = require('ip');
 
 class Form_signin extends Component{
     constructor(props) {
@@ -83,6 +83,7 @@ class Form_signin extends Component{
         if (redirectToReferrer) {
             return <Redirect to={from} />;
         }
+
         return(
             <div>
                 <div>

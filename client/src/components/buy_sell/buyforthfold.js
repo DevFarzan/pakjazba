@@ -39,8 +39,8 @@ class Forthfold extends Component{
     searchedArr(text){
         const { buySell } = this.state;
         let filteredArr = buySell.filter((elem) => {
-            return elem.category && elem.category.toLowerCase().includes(text.toLowerCase()) ||
-                elem.subcategory && elem.subcategory.toLowerCase().includes(text.toLowerCase())
+            return (elem.category && elem.category.toLowerCase().includes(text.toLowerCase())) ||
+                (elem.subcategory && elem.subcategory.toLowerCase().includes(text.toLowerCase()))
         })
         this.setState({
             filteredArr,
@@ -81,10 +81,11 @@ class Forthfold extends Component{
     render(){
         const { buySell, showBuySell, filteredArr } = this.state;
         const { text } = this.props;
+
         return(
             <div className="secondfold">
                 <div className="row">
-                    {showBuySell && showBuySell.map((elem) => {
+                    {showBuySell && showBuySell.map((elem, key) => {
                         let str = elem.address || '';
                         if(str.length > 25) {
                             str = str.substring(0, 25);
@@ -96,13 +97,13 @@ class Forthfold extends Component{
                             des = des + '...'
                         }
                         return (
-                            <Link to={{pathname: `/detail_buySell`, state: elem}}>
+                            <Link key={key} to={{pathname: `/detail_buySell`, state: elem}}>
                                 <div className="col-md-4">
                                     <div className="ibox">
                                         <div className="ibox-content product-box">
                                             <div className="product-imitation">
                                                 <div className="card2">
-                                                    <img src={elem.images[0]}/>
+                                                    <img alt='' src={elem.images[0]}/>
                                                     <span className="card-button">
                                                         <p className="categories-on-card">{elem.category}</p>
                                                         <i className="glyphicon glyphicon-map-marker"/><p className="text">{elem.state +" & "+ elem.city}</p>
@@ -116,7 +117,7 @@ class Forthfold extends Component{
                                             <div className="product-desc">
                                                 <span className="product-price">{!elem.hideprice ? elem.price : 'Hide'}</span>
                                                 <small className="text-muted">Category</small>
-                                                <a href="#" className="product-name">{elem.category}</a>
+                                                <a className="product-name">{elem.category}</a>
                                                 <div className="small m-t-xs">{!elem.hideaddress ? des : ''}</div>
                                                 <div className="m-t text-righ">
                                                     <Link to={{pathname: `/detail_buySell`, state: elem}} className="btn btn-xs btn-outline btn-primary">Info <i className="fa fa-long-arrow-right"></i> </Link>

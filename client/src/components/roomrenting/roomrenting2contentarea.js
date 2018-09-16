@@ -182,12 +182,12 @@ class Roomrentingtwocontentarea extends Component{
     searchArr(arr, text){
         let data = arr;
         data = data.filter((elem) => {
-            return elem.category && elem.category.toLowerCase().includes(text.toLowerCase()) ||
-                elem.subCategory && elem.subCategory.toLowerCase().includes(text.toLowerCase()) ||
-                elem.subSubCategory && elem.subSubCategory.toLowerCase().includes(text.toLowerCase()) ||
-                elem.city && elem.city.toLowerCase().includes(text.toLowerCase()) ||
-                elem.pricemode && elem.pricemode.toLowerCase().includes(text.toLowerCase()) ||
-                elem.furnished && elem.furnished.toLowerCase().includes(text.toLowerCase())
+            return (elem.category && elem.category.toLowerCase().includes(text.toLowerCase())) ||
+                (elem.subCategory && elem.subCategory.toLowerCase().includes(text.toLowerCase())) ||
+                (elem.subSubCategory && elem.subSubCategory.toLowerCase().includes(text.toLowerCase())) ||
+                (elem.city && elem.city.toLowerCase().includes(text.toLowerCase())) ||
+                (elem.pricemode && elem.pricemode.toLowerCase().includes(text.toLowerCase())) ||
+                (elem.furnished && elem.furnished.toLowerCase().includes(text.toLowerCase()))
         })
         return data;
     }
@@ -199,9 +199,9 @@ class Roomrentingtwocontentarea extends Component{
     mostPopular(){
         const { dropDownVal, roomrents } = this.state;
         let data = roomrents.filter((elem) => {
-            return elem.category && elem.category.includes(dropDownVal[0]) ||
-                elem.subCategory && elem.subCategory.includes(dropDownVal[1]) ||
-                elem.subSubCategory && elem.subSubCategory.includes(dropDownVal[2])
+            return (elem.category && elem.category.includes(dropDownVal[0])) ||
+                (elem.subCategory && elem.subCategory.includes(dropDownVal[1])) ||
+                (elem.subSubCategory && elem.subSubCategory.includes(dropDownVal[2]))
         })
         this.setState({
             filteredArr: data,
@@ -243,7 +243,7 @@ class Roomrentingtwocontentarea extends Component{
     }
 
     onChangePage = (page) => {
-        const { roomrents, filteredArr } = this.state;
+        const { filteredArr } = this.state;
         let indexes = this.funcIndexes(page)
         this.setState({
             current: page,
@@ -288,7 +288,7 @@ class Roomrentingtwocontentarea extends Component{
     }
 
 	render(){
-        const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, bedArr } = this.state;
+        const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from } = this.state;
 
         if(!noText){
             return <Redirect to='/market_roommates'/>
@@ -354,7 +354,7 @@ class Roomrentingtwocontentarea extends Component{
                             width="180" height="200" frameBorder="0" style={{"border": "0"}} allowFullScreen></iframe>
                     </div>
                     <div className="col-md-10 col-sm-12 col-xs-12">
-                        {showroomrents && showroomrents.map((elem) => {
+                        {showroomrents && showroomrents.map((elem, key) => {
                             let str = elem.propertylocation || '';
                             if(str.length > 25) {
                                 str = str.substring(0, 25);
@@ -366,7 +366,7 @@ class Roomrentingtwocontentarea extends Component{
                                 des = des + '...'
                             }
                             return(
-                                <div className="col-lg-4 col-md-4 col-sm-12 space-top">
+                                <div key={key} className="col-lg-4 col-md-4 col-sm-12 space-top">
                                     <div className="secondfold" style={{backgroundColor:"#ffffff08"}}>
                                         <div className="row">
                                             <Link to={{pathname: `/detail_roomRent`, state: elem}}>
@@ -375,7 +375,7 @@ class Roomrentingtwocontentarea extends Component{
                                                         <div className="ibox-content product-box">
                                                             <div className="product-imitation">
                                                                 <div className="card2">
-                                                                    <img src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'}/>
+                                                                    <img alt='' src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'}/>
                                                                     <span className="card-button">
                                                                         <p className="categories-on-card">{elem.category}</p>
                                                                         <i className="glyphicon glyphicon-map-marker"/><p className="text">{elem.state +" & "+ elem.city}</p>
@@ -389,7 +389,7 @@ class Roomrentingtwocontentarea extends Component{
                                                             <div className="product-desc">
                                                                 <span className="product-price">{elem.rent}</span>
                                                                 <small className="text-muted">Category</small>
-                                                                <a href="#" className="product-name">{elem.category}</a>
+                                                                <a className="product-name">{elem.category}</a>
                                                                 <div className="small m-t-xs">{des}</div>
                                                                 <div className="m-t text-righ">
                                                                     <Link to={{pathname: `/detail_roomRent`, state: elem}} className="btn btn-xs btn-outline btn-primary">Info <i className="fa fa-long-arrow-right"></i> </Link>

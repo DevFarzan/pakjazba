@@ -40,10 +40,10 @@ class Secondfold extends Component{
     searchedArr(text){
         const { business } = this.state;
         let filteredArr = business.filter((elem) => {
-            return elem.businesscategory && elem.businesscategory.toLowerCase().includes(text.toLowerCase()) ||
-                elem.businessownername && elem.businessownername.toLowerCase().includes(text.toLowerCase()) ||
-                elem.businessname && elem.businessname.toLowerCase().includes(text.toLowerCase()) ||
-                elem.businessnumber && elem.businessnumber.toLowerCase().includes(text.toLowerCase())
+            return (elem.businesscategory && elem.businesscategory.toLowerCase().includes(text.toLowerCase())) ||
+                (elem.businessownername && elem.businessownername.toLowerCase().includes(text.toLowerCase())) ||
+                (elem.businessname && elem.businessname.toLowerCase().includes(text.toLowerCase())) ||
+                (elem.businessnumber && elem.businessnumber.toLowerCase().includes(text.toLowerCase()))
         })
         this.setState({
             filteredArr,
@@ -89,22 +89,24 @@ class Secondfold extends Component{
                 <h1 className="text-align"> Great Places </h1>
                 <div className="index-content" style={{marginBottom: "-225px"}}>
                     <div className="row">
-                        {showBusiness && showBusiness.map((elem) => {
+                        {showBusiness && showBusiness.map((elem, key) => {
                             let str = elem.description || '';
                             if(str.length > 100) {
                                 str = str.substring(0, 100);
                                 str = str + '...'
                             }
-                            return (<Link to={{pathname: `/detail_business`, state: elem}}>
-                            <div className="col-md-4"  style={{'marginBottom': '30px'}}>
-                                <div className="card">
-                                    <img src={elem.businessImages[0]}/>
-                                    <h4>{elem.businessname}</h4>
-                                    <p>{str}</p>
-                                    <Link to={{pathname: `/detail_business`, state: elem}} className="blue-button">Read More</Link>
-                                </div>
-                            </div>
-                        </Link>)
+                            return (
+                                <Link key={key} to={{pathname: `/detail_business`, state: elem}}>
+                                    <div className="col-md-4"  style={{'marginBottom': '30px'}}>
+                                        <div className="card">
+                                            <img alt='' src={elem.businessImages[0]}/>
+                                            <h4>{elem.businessname}</h4>
+                                            <p>{str}</p>
+                                            <Link to={{pathname: `/detail_business`, state: elem}} className="blue-button">Read More</Link>
+                                        </div>
+                                    </div>
+                                </Link>
+                            )
                         })}
                     </div>
                     <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :business.length} onChange={this.onChange} /></span>

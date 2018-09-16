@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, notification, Spin, Modal  } from 'antd';
-import Formsignup from '../formsignup';
+import { Form, Input, Icon, Checkbox, Modal  } from 'antd';
 import Dropdowns from './dropdown';
 import Facebook from '../Facebook';
 import Google from '../Google';
@@ -8,8 +7,6 @@ import AsyncStorage from "@callstack/async-storage";
 import {HttpUtils} from "../../Services/HttpUtils";
 
 const FormItem = Form.Item;
-const Option = Select.Option;
-const AutoCompleteOption = AutoComplete.Option;
 const ip = require('ip');
 
 class Signin extends Component{
@@ -21,7 +18,6 @@ class Signin extends Component{
             passwordValidator: false,
             username: null,
             confirmDirty: false,
-            autoCompleteResult: [],
             loader: false,
             dropdown: false,
             allUser: [],
@@ -34,10 +30,14 @@ class Signin extends Component{
         this.getAllUsers();
     }
 
+    componentWillUnmount(){
+        this.setState({_isMount: false})
+    }
+
     async getAllUsers(){
         console.log(ip.address(), 'ipAddressssssss')
-        var response = await HttpUtils.get('allusers')
-        this.setState({allUser: response && response.content})
+        let response = await HttpUtils.get('allusers')
+        this.setState({allUser: response && response.content, _isMount: true})
     }
 
     showModal = () => {
@@ -70,7 +70,7 @@ class Signin extends Component{
     handleLocalStorage = () =>{
         AsyncStorage.getItem('user')
             .then((obj) => {
-                var userObj = JSON.parse(obj)
+                let userObj = JSON.parse(obj)
                 if(!!userObj){
                     this.setState({
                         dropdown: true,
@@ -97,20 +97,20 @@ class Signin extends Component{
     }//end handleSubmit
 
     async funcSignUp(values){
-        var response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
+        let response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
         this.getProfileId(response)
     }
 
     async getProfileId(response){
         if(response.code === 200){
-            var obj = {
+            let obj = {
                 name: response.name,
                 email: response.email,
                 userId: response._id,
                 profileId: ''
             }
-            var req = await HttpUtils.post('profile', obj)
-            var userInfo = {...response, ...{profileId: req.content}}
+            let req = await HttpUtils.post('profile', obj)
+            let userInfo = {...response, ...{profileId: req.content}}
             AsyncStorage.setItem('user', JSON.stringify(userInfo))
                 .then(() => {
                     this.props.modalContent();
@@ -170,9 +170,9 @@ class Signin extends Component{
 
     render(){
         const { getFieldDecorator } = this.props.form;
-        const { autoCompleteResult,visible, allUser } = this.state;
+        const { visible } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
-        let {children} = this.props;
+
         const tailFormItemLayout = {
             wrapperCol: {
                 xs: {
@@ -185,6 +185,7 @@ class Signin extends Component{
                 },
             },
         };
+
         return(
             <div className="paragraph">
                 <span>
@@ -270,7 +271,7 @@ class Signin extends Component{
                             {this.state.loader ? antIcon : null} <button className="btn color_button">Sign up</button>
                         </div>{/*row*/}
                                 <div className="row term_condition">
-                        <p>(By clicking register, you agree to our <a href="#">terms</a>, our <a href="#">data policy</a> and cookies use)</p>
+                        <p>(By clicking register, you agree to our <a>terms</a>, our <a>data policy</a> and cookies use)</p>
                     </div>
                     </Form>
                   </div>{/*form div end*/}

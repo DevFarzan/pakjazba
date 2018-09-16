@@ -23,22 +23,23 @@ class DetailBusiness extends Component{
     }
 
     componentDidMount(){
-        if(this.props.location.state === undefined){
+        let data = this.props.location.state;
+        if(data === undefined){
             this.setState({
                 isData: false
             })
         }else {
             this.setState({
                 isData : true,
-                data : this.props.location.state
+                data : data
             })
+            this.getReviews(data)
         }
-        this.getReviews()
     }
 
-    async getReviews(){
+    async getReviews(data){
         let res = await HttpUtils.get('getreviews')
-        this.setState({reviews: res.content ? res.content : []})
+        this.setState({reviews: res ? res.content : []})
     }
 
     handleChange(value){
@@ -105,11 +106,7 @@ class DetailBusiness extends Component{
 
         return(
             <div>
-                <div classNameName="row">
-                    <div classNameName="col-md-12">
-                    </div>
-                </div>
-                <span classNameName="background_listing">
+                <span className="background_listing">
                 	<App/>
                 </span>
                 <div className="">
@@ -121,7 +118,7 @@ class DetailBusiness extends Component{
                                 <div className="col-lg-10 col-md-10 col-sm-12 " >
                                     {/*Start first tile */}
                                     <div className="card outset" >
-                                        <img className="card-img-top" src={images && images[0]} alt="Card image" style={{"width":"100%"}} />
+                                        <img className="card-img-top" src={images && images[0]} alt="" style={{"width":"100%"}} />
                                         <div className="card-body space" style={{padding: "17px"}}>
                                             <h5><span className="glyphicon glyphicon-home" style={{marginRight: "15px"}}></span>{data.businessaddress}</h5>
                                             <hr/>
@@ -203,7 +200,7 @@ class DetailBusiness extends Component{
                                                                         {/*Grid column*/}
                                                                         <div className="col-md-11">
                                                                             <div className="md-form mb-0">
-                                                                            <label for="name" className="">Your name</label>
+                                                                            <label className="">Your name</label>
                                                                                 <input type="text" id="name" name="name" className="form-control" value={this.state.name} onChange={this.onChangeInput.bind(this)}/>
                                                                             </div>
                                                                         </div>
@@ -211,7 +208,7 @@ class DetailBusiness extends Component{
                                                                         {/*Grid column*/}
                                                                         <div className="col-md-11">
                                                                             <div className="md-form mb-0">
-                                                                            <label for="email" className="">Your email</label>
+                                                                            <label className="">Your email</label>
                                                                                 <input type="text" id="email" name="email" className="form-control" value={this.state.email} onChange={this.onChangeInput.bind(this)}/>
                                                                             </div>
                                                                         </div>
@@ -223,7 +220,7 @@ class DetailBusiness extends Component{
                                                                         {/*Grid column*/}
                                                                         <div className="col-md-11">
                                                                             <div className="md-form">
-                                                                            <label for="message">Your message</label>
+                                                                            <label>Your message</label>
                                                                                 <textarea type="text" id="message" name="message" rows="2" value={this.state.msg} className="form-control md-textarea" onChange={this.onChangeInput.bind(this)}></textarea>
                                                                             </div>
                                                                         </div>
@@ -255,7 +252,7 @@ class DetailBusiness extends Component{
                                     <div className="card-body space">
                                         <div className="row">
                                             <div className="col-md-2 col-sm-2 col-xs-12">
-                                                <img className="card-img-top" src={images && images[0]} alt="Card image" style={{"width":"100%"}} />
+                                                <img className="card-img-top" src={images && images[0]} alt="" style={{"width":"100%"}} />
                                             </div>
                                             <div className="col-md-10 col-sm-10 col-xs-12">
                                                 <h3>{data.businessname}</h3>
@@ -317,7 +314,7 @@ class DetailBusiness extends Component{
                                         </div>
                                         <div className="row">
                                             <div className="col-md-12 col-sm-12 col-xs-12">
-                                                <img src={images && images[0]} className="responsive" width="90%" height="200" />
+                                                <img alt='' src={images && images[0]} className="responsive" width="90%" height="200" />
                                             </div>
                                         </div>
                                         <div className="row">
@@ -343,10 +340,10 @@ class DetailBusiness extends Component{
                                         <div className="row">
                                             <div className="col-md-12 col-sm-12 col-xs-12">
                                                 <Carousel autoplay>
-                                                    {images && images.map((elem) => {
+                                                    {images && images.map((elem, key) => {
                                                         return(
-                                                            <div>
-                                                                <img src={elem}/>
+                                                            <div key={key}>
+                                                                <img alt='' src={elem}/>
                                                             </div>
                                                         )
                                                     })}
@@ -360,9 +357,9 @@ class DetailBusiness extends Component{
                             <div className="row"><br/></div>
                             {/*Start 5th tile */}
                             {!!reviews.length && <div className="row">
-                                {reviews && reviews.map((elem) => {
+                                {reviews && reviews.map((elem, key) => {
                                 return(
-                                    <div className="card outset" >
+                                    <div key={key} className="card outset" >
                                         <div className="card-body space">
                                             <div className="row">
                                                 <div className="col-md-12 col-sm-12 col-xs-12">
@@ -417,7 +414,7 @@ class DetailBusiness extends Component{
                                                                     {/*Grid column*/}
                                                                     <div className="col-md-6">
                                                                         <div className="md-form mb-0">
-                                                                            <label for="name" className="">Your name</label>
+                                                                            <label className="">Your name</label>
                                                                             <input type="text" id="name1" name="name" className="form-control" value={this.state.name1} onChange={this.onChangeReview.bind(this)}/>
                                                                         </div>
                                                                     </div>
@@ -425,7 +422,7 @@ class DetailBusiness extends Component{
                                                                     {/*Grid column*/}
                                                                     <div className="col-md-6">
                                                                         <div className="md-form mb-0">
-                                                                            <label for="email" className="">Your email</label>
+                                                                            <label className="">Your email</label>
                                                                             <input type="text" id="email1" name="email" className="form-control" value={this.state.email1} onChange={this.onChangeReview.bind(this)}/>
                                                                         </div>
                                                                     </div>
@@ -437,7 +434,7 @@ class DetailBusiness extends Component{
                                                                     {/*Grid column*/}
                                                                     <div className="col-md-12">
                                                                         <div className="md-form">
-                                                                            <label for="message">Your message</label>
+                                                                            <label>Your message</label>
                                                                             <textarea type="text" id="message1" name="message" rows="2" value={this.state.msg1} className="form-control md-textarea" onChange={this.onChangeReview.bind(this)}></textarea>
                                                                         </div>
                                                                     </div>

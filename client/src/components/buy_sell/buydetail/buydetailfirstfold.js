@@ -10,10 +10,10 @@ class Buydetailfirstfold extends Component{
             <div className="">
                 <h3 className="heading-padding"> Gallery </h3>
                 <Carousel autoplay>
-                    {images && images.map((elem) => {
+                    {images && images.map((elem, key) => {
                         return(
-                            <div>
-                            <img src={elem}/>
+                            <div key={key}>
+                            <img alt='' src={elem}/>
                             </div>
                         )
                     })}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Icon, Input, Form, Upload, message, Pagination} from 'antd';
+import {Icon, Input, Form, Upload, Pagination} from 'antd';
 import Footer from '../footer/footer.js';
 import sha1 from "sha1";
 import superagent from "superagent";
@@ -582,7 +582,7 @@ class ProfileUser extends Component{
                                                 <div className="index-content" style={{marginBottom: "-225px", marginTop: '-125px'}}>
                                                     <div className="row">
                                                         {listData && listData.map((elem) => {
-                                                            let img = elem.images && elem.images[0] || elem.businessImages && elem.businessImages[0] || elem.imageurl && elem.imageurl[0] || '../images/images.jpg';
+                                                            let img = (elem.images && elem.images[0]) || (elem.businessImages && elem.businessImages[0]) || (elem.imageurl && elem.imageurl[0]) || '../images/images.jpg';
                                                             let title = elem.title || elem.businessname || elem.postingtitle || ''
                                                             let str = elem.description || elem.discription || '';
                                                             if(str.length > 100) {
@@ -593,7 +593,7 @@ class ProfileUser extends Component{
                                                                 <Link to={{pathname: elem.route === 'business' ? `/detail_business` : elem.route === 'buySell' ? `/detail_buySell` : `/detail_roomRent`, state: elem}}>
                                                                     <div className="col-md-5"  style={{'marginBottom': '30px'}}>
                                                                         <div className="card">
-                                                                            <img src={img} />
+                                                                            <img alt='' src={img} />
                                                                             <h4>{title}</h4>
                                                                             <p>{str}</p>
                                                                             <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i></a>

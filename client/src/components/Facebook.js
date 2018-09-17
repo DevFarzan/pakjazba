@@ -31,6 +31,7 @@ export default class Facebook extends Component {
 				    fields="name,email,picture"
 				    onClick={this.componentClicked}
 				    callback={this.responseFacebook}
+                    scope="email"
 				    cssClass="loginBtn loginBtn--facebook"
 				    textButton="Sign Up with Facebook"/>)
 			}

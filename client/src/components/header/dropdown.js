@@ -4,9 +4,12 @@ import AsyncStorage from '@callstack/async-storage';
 import { Redirect } from 'react-router';
 
 class Dropdowns extends Component{
-    state = {
-        toDashboard: false,
-        logout: false
+    constructor(props) {
+        super(props)
+        this.state = {
+            toDashboard: false,
+            logout: false
+        }
     }
 
     handleChangeLogout = () =>{
@@ -46,7 +49,7 @@ class Dropdowns extends Component{
 
         return(
             <Dropdown overlay={menu}>
-                <a className="ant-dropdown-link" href="#">
+                <a className="ant-dropdown-link">
                     {localStorage.getItem('name')}<Icon type="down" />
                 </a>
             </Dropdown>

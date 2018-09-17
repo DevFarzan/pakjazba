@@ -5,7 +5,6 @@ import "./roomrenting2content.css";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import { Redirect } from 'react-router';
-import {HttpUtils} from "../../Services/HttpUtils";
 
 const stateCities= require('countrycitystatejson')
 
@@ -150,7 +149,7 @@ class Roomrentingtwocontentarea extends Component{
 
     async getAllBusiness(){
         if(this.props.text){
-            var res = this.props.location.state;
+            let res = this.props.location.state;
             this.stateAndCities(res)
         }else {
             this.setState({ noText: false })
@@ -183,12 +182,12 @@ class Roomrentingtwocontentarea extends Component{
     searchArr(arr, text){
         let data = arr;
         data = data.filter((elem) => {
-            return elem.category && elem.category.toLowerCase().includes(text.toLowerCase()) ||
-                elem.subCategory && elem.subCategory.toLowerCase().includes(text.toLowerCase()) ||
-                elem.subSubCategory && elem.subSubCategory.toLowerCase().includes(text.toLowerCase()) ||
-                elem.city && elem.city.toLowerCase().includes(text.toLowerCase()) ||
-                elem.pricemode && elem.pricemode.toLowerCase().includes(text.toLowerCase()) ||
-                elem.furnished && elem.furnished.toLowerCase().includes(text.toLowerCase())
+            return (elem.category && elem.category.toLowerCase().includes(text.toLowerCase())) ||
+                (elem.subCategory && elem.subCategory.toLowerCase().includes(text.toLowerCase())) ||
+                (elem.subSubCategory && elem.subSubCategory.toLowerCase().includes(text.toLowerCase())) ||
+                (elem.city && elem.city.toLowerCase().includes(text.toLowerCase())) ||
+                (elem.pricemode && elem.pricemode.toLowerCase().includes(text.toLowerCase())) ||
+                (elem.furnished && elem.furnished.toLowerCase().includes(text.toLowerCase()))
         })
         return data;
     }
@@ -200,9 +199,9 @@ class Roomrentingtwocontentarea extends Component{
     mostPopular(){
         const { dropDownVal, roomrents } = this.state;
         let data = roomrents.filter((elem) => {
-            return elem.category && elem.category.includes(dropDownVal[0]) ||
-                elem.subCategory && elem.subCategory.includes(dropDownVal[1]) ||
-                elem.subSubCategory && elem.subSubCategory.includes(dropDownVal[2])
+            return (elem.category && elem.category.includes(dropDownVal[0])) ||
+                (elem.subCategory && elem.subCategory.includes(dropDownVal[1])) ||
+                (elem.subSubCategory && elem.subSubCategory.includes(dropDownVal[2]))
         })
         this.setState({
             filteredArr: data,
@@ -238,14 +237,14 @@ class Roomrentingtwocontentarea extends Component{
     }
 
     funcIndexes(page){
-        var to = 6 * page;
-        var from = to - 6;
+        let to = 6 * page;
+        let from = to - 6;
         return {from: page === 1 ? 0 : from, to: page === 1 ? 6 : to}
     }
 
     onChangePage = (page) => {
-        const { roomrents, filteredArr } = this.state;
-        var indexes = this.funcIndexes(page)
+        const { filteredArr } = this.state;
+        let indexes = this.funcIndexes(page)
         this.setState({
             current: page,
             showroomrents: filteredArr.slice(indexes.from, indexes.to)
@@ -270,7 +269,7 @@ class Roomrentingtwocontentarea extends Component{
     }
 
     checkedBed(e){
-        var { bedArr, roomrents } = this.state;
+        let { bedArr, roomrents } = this.state;
         let target = e.target.id;
         if(!bedArr.includes(target)){
             bedArr.push(target)
@@ -289,7 +288,8 @@ class Roomrentingtwocontentarea extends Component{
     }
 
 	render(){
-        const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, bedArr } = this.state;
+        const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from } = this.state;
+
         if(!noText){
             return <Redirect to='/market_roommates'/>
         }
@@ -347,20 +347,6 @@ class Roomrentingtwocontentarea extends Component{
                         <div className="checkbox">
                             <label><input type="checkbox" value="" id='4+ Beds' onClick={this.checkedBed.bind(this)}/>4+ Beds</label>
                         </div>
-                        {/*<br/>*/}
-                        {/*<h3><span className="glyphicon glyphicon-resize-horizontal"></span> Meters</h3>*/}
-                        {/*<div className="checkbox">*/}
-                            {/*<label><input type="checkbox" value=""/>Option 1</label>*/}
-                        {/*</div>*/}
-                        {/*<div className="checkbox">*/}
-                            {/*<label><input type="checkbox" value=""/>Option 2</label>*/}
-                        {/*</div>*/}
-                        {/*<div className="checkbox">*/}
-                            {/*<label><input type="checkbox" value=""/>Option 3</label>*/}
-                        {/*</div>*/}
-                        {/*<div className="checkbox">*/}
-                            {/*<label><input type="checkbox" value=""/>Option 4</label>*/}
-                        {/*</div>*/}
                         <br/>
                         <h3><span className="glyphicon glyphicon-map-marker"></span> On the Map</h3>
                         <iframe
@@ -368,46 +354,54 @@ class Roomrentingtwocontentarea extends Component{
                             width="180" height="200" frameBorder="0" style={{"border": "0"}} allowFullScreen></iframe>
                     </div>
                     <div className="col-md-10 col-sm-12 col-xs-12">
-                        {showroomrents && showroomrents.map((elem) => {
+                        {showroomrents && showroomrents.map((elem, key) => {
+                            let str = elem.propertylocation || '';
+                            if(str.length > 25) {
+                                str = str.substring(0, 25);
+                                str = str + '...'
+                            }
+                            let des = elem.discription || '';
+                            if(des.length > 100) {
+                                des = des.substring(0, 100);
+                                des = des + '...'
+                            }
                             return(
-                            <div className="col-lg-4 col-md-4 col-sm-12 space-top">
-                            <div className="secondfold" style={{backgroundColor:"#ffffff08"}}>
-                                <div className="row">
-                                    <Link to={{pathname: `/detail_roomRent`, state: elem}}>
-                                        <div className="">
-                                            <div className="ibox">
-                                                <div className="ibox-content product-box">
-                                                    <div className="product-imitation">
-                                                        <div className="card2">
-                                                            <img src='./images/author-09.jpg'/>
-                                                            <span className="card-button">
-                                                                <p className="categories-on-card">category</p>
-                                                                <i className="glyphicon glyphicon-map-marker"/><p className="text">Home & Decor</p>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div className="cust-margin">
-                                                        <i className="glyphicon glyphicon-home"/>
-                                                        <p className="text">Home icon</p>
-                                                    </div>
-                                                    <div className="product-desc">
-                                                        <span className="product-price">price</span>
-                                                        <small className="text-muted">Category</small>
-                                                        <a href="#" className="product-name">category</a>
-                                                        <div className="small m-t-xs">
-                                                            discription
-                                                        </div>
-                                                        <div className="m-t text-righ">
-                                                            <Link to={{pathname: `/detail_roomRent`, state: elem}} className="btn btn-xs btn-outline btn-primary">Info <i className="fa fa-long-arrow-right"></i> </Link>
+                                <div key={key} className="col-lg-4 col-md-4 col-sm-12 space-top">
+                                    <div className="secondfold" style={{backgroundColor:"#ffffff08"}}>
+                                        <div className="row">
+                                            <Link to={{pathname: `/detail_roomRent`, state: elem}}>
+                                                <div className="">
+                                                    <div className="ibox">
+                                                        <div className="ibox-content product-box">
+                                                            <div className="product-imitation">
+                                                                <div className="card2">
+                                                                    <img alt='' src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'}/>
+                                                                    <span className="card-button">
+                                                                        <p className="categories-on-card">{elem.category}</p>
+                                                                        <i className="glyphicon glyphicon-map-marker"/><p className="text">{elem.state +" & "+ elem.city}</p>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="cust-margin">
+                                                                <i className="glyphicon glyphicon-home"/>
+                                                                <p className="text">{str}</p>
+                                                            </div>
+                                                            <div className="product-desc">
+                                                                <span className="product-price">{elem.rent}</span>
+                                                                <small className="text-muted">Category</small>
+                                                                <a className="product-name">{elem.category}</a>
+                                                                <div className="small m-t-xs">{des}</div>
+                                                                <div className="m-t text-righ">
+                                                                    <Link to={{pathname: `/detail_roomRent`, state: elem}} className="btn btn-xs btn-outline btn-primary">Info <i className="fa fa-long-arrow-right"></i> </Link>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </Link>
                                         </div>
-                                    </Link>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
                             )
                         })}
                         <div className="col-md-12">
@@ -417,10 +411,9 @@ class Roomrentingtwocontentarea extends Component{
                 </div>
             </div>
             </div>
-			)
+        )
 	}
 }
-
 
 const mapStateToProps = (state) => {
     return({

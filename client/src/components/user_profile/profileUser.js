@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {Icon, Input, Form, Upload, message, Pagination} from 'antd';
-import App from '../../App';
+import {Icon, Input, Form, Upload, Pagination} from 'antd';
 import Footer from '../footer/footer.js';
 import sha1 from "sha1";
 import superagent from "superagent";
@@ -47,7 +46,7 @@ class ProfileUser extends Component{
     handleLocalStorage = () =>{
         AsyncStorage.getItem('user')
             .then((obj) => {
-                var userObj = JSON.parse(obj)
+                let userObj = JSON.parse(obj)
                 if(!!userObj) {
                     this.getprofileData(userObj.profileId, userObj._id)
                     this.setState({
@@ -59,8 +58,8 @@ class ProfileUser extends Component{
     }
 
     async getprofileData(id, userId){
-        var req = await HttpUtils.get('getprofile?profileId=' + id)
-        var user = req.content;
+        let req = await HttpUtils.get('getprofile?profileId=' + id)
+        let user = req.content;
         this.setState({
             name: user.name,
             email: user.email,
@@ -76,7 +75,7 @@ class ProfileUser extends Component{
 
     async getAllBusiness(id){
         let arr = [];
-        var req = await HttpUtils.get('marketplace')
+        let req = await HttpUtils.get('marketplace')
         req && req.busell.map((elem) => {
             if(elem.userid === id){
                 let data = {...elem, ...{route: 'buySell'}}
@@ -102,14 +101,14 @@ class ProfileUser extends Component{
     }
 
     funcIndexes(page){
-        var to = 6 * page;
-        var from = to - 6;
+        let to = 6 * page;
+        let from = to - 6;
         return {from: page === 1 ? 0 : from, to: page === 1 ? 6 : to}
     }
 
     onChange = (page) => {
         const { allData } = this.state;
-        var indexes = this.funcIndexes(page)
+        let indexes = this.funcIndexes(page)
         this.setState({
             current: page,
             listData: allData.slice(indexes.from, indexes.to)
@@ -165,7 +164,7 @@ class ProfileUser extends Component{
         if(changePass) {
             this.props.form.validateFieldsAndScroll((err, values) => {
                 if(!err) {
-                    var obj = {
+                    let obj = {
                         userId,
                         currentPassword: values.currentPass,
                         newPassword: values.password,
@@ -175,7 +174,7 @@ class ProfileUser extends Component{
                 }
             })
         }else {
-            var obj = {
+            let obj = {
                 profileId,
                 userId,
                 description,
@@ -192,11 +191,11 @@ class ProfileUser extends Component{
     }
 
     async profileData(obj){
-        var req = await HttpUtils.post('profile', obj)
+        let req = await HttpUtils.post('profile', obj)
     }
 
     async passwordData(obj){
-        var req = await HttpUtils.post('changepassword', obj)
+        let req = await HttpUtils.post('changepassword', obj)
     }
 
     handleProfile(){
@@ -583,7 +582,7 @@ class ProfileUser extends Component{
                                                 <div className="index-content" style={{marginBottom: "-225px", marginTop: '-125px'}}>
                                                     <div className="row">
                                                         {listData && listData.map((elem) => {
-                                                            let img = elem.images && elem.images[0] || elem.businessImages && elem.businessImages[0] || elem.imageurl && elem.imageurl[0] || '../images/images.jpg';
+                                                            let img = (elem.images && elem.images[0]) || (elem.businessImages && elem.businessImages[0]) || (elem.imageurl && elem.imageurl[0]) || '../images/images.jpg';
                                                             let title = elem.title || elem.businessname || elem.postingtitle || ''
                                                             let str = elem.description || elem.discription || '';
                                                             if(str.length > 100) {
@@ -591,15 +590,17 @@ class ProfileUser extends Component{
                                                                 str = str + '...'
                                                             }
                                                             return(
-                                                                <div className="col-md-5"  style={{'marginBottom': '30px'}}>
-                                                                    <div className="card">
-                                                                        <img src={img} />
-                                                                        <h4>{title}</h4>
-                                                                        <p>{str}</p>
-                                                                        <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i></a>
-                                                                        <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i>
+                                                                <Link to={{pathname: elem.route === 'business' ? `/detail_business` : elem.route === 'buySell' ? `/detail_buySell` : `/detail_roomRent`, state: elem}}>
+                                                                    <div className="col-md-5"  style={{'marginBottom': '30px'}}>
+                                                                        <div className="card">
+                                                                            <img alt='' src={img} />
+                                                                            <h4>{title}</h4>
+                                                                            <p>{str}</p>
+                                                                            <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i></a>
+                                                                            <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
+                                                                </Link>
                                                             )
                                                         })}
                                                     </div>

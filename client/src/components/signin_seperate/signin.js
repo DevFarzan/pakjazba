@@ -4,7 +4,6 @@ import Facebook from '../Facebook';
 import Google from '../Google';
 import Form_signup from './form_signup.js';
 
-
 class Signin extends Component{
 
 	render(){
@@ -14,7 +13,7 @@ class Signin extends Component{
 				<div className="row">
 					<div className="col-md-2"></div>
 					<div className="col-md-8 signin_background">
-						<span><img src="../images/logo.png"/></span>
+						<span><img alt='' src="../images/logo.png"/></span>
 					</div>
 					<div className="col-md-2"></div>
 				</div>{/*row*/}<br/>
@@ -45,4 +44,4 @@ class Signin extends Component{
 	}
 }
 
-export default Signin; 
+export default Signin;

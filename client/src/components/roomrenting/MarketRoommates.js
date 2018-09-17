@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-// import Headerroomrenting from "./headerroomrenting";
-// import Sliderroomrenting from "./roomrentingcontentarea";
 import App from "../../App";
 import Roomrenting1content from "./roomrenting1content";
-import Roomrentingtwocontentarea from "./roomrenting2contentarea";
-//import Roomrentingthreecontentarea from "./roomrenting3contentarea";
 import Footer from '../footer/footer';
-import Burgermenu from '../header/burgermenu'
-import Slider from '../header/Slider'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
-
 
 class MarketRoommates extends Component{
     constructor(props) {
@@ -26,7 +19,7 @@ class MarketRoommates extends Component{
     }
 
     async getAllBusiness(){
-        var res = await HttpUtils.get('marketplace')
+        let res = await HttpUtils.get('marketplace')
         this.setState({
             data: res && res.roomrentsdata
         })
@@ -38,6 +31,7 @@ class MarketRoommates extends Component{
                 <Redirect to={{pathname: '/filter_roomRent', state: this.state.data}}/>
             )
         }
+
         return(
             <div>
                 <App/>
@@ -45,7 +39,6 @@ class MarketRoommates extends Component{
                 <Roomrenting1content/>
                 </div>
                 <Footer />
-                MarketRoommates
             </div>
         )
     }

@@ -15,7 +15,7 @@ class DetailRoommates extends Component{
     }
 
     componentDidMount(){
-        var data = this.props.location.state;
+        let data = this.props.location.state;
         if(data === undefined){
             this.setState({
                 isData: false
@@ -26,8 +26,8 @@ class DetailRoommates extends Component{
     }
 
     async getProfile(data){
-        var req = await HttpUtils.get('getprofile?profileId=' + data.profileid)
-        var allData = {...data, ...{userImage: req.content ? req.content.imageurl : ''}}
+        let req = await HttpUtils.get('getprofile?profileId=' + data.profileid)
+        let allData = {...data, ...{userImage: req.content ? req.content.imageurl : ''}}
         this.setState({
             isData : true,
             data : allData

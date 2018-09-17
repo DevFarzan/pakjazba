@@ -10,9 +10,8 @@ class Burgermenu extends Component{
   render(){
       return(
           <div>
-              <nav className="navbar navbar-fixed-top hidden-xs" style={{position: "fixed",
-    width: "100%",
-    "z-index": "999",marginTop: "-19px"}}>
+              <nav className="navbar navbar-fixed-top hidden-xs"
+                   style={{position: "fixed", width: "100%", "zIndex": "999", marginTop: "-19px"}}>
                   <div className="container-fluid">
                       <div className="col-md-2 col-sm-6 col-xs-6">
                           <div className="navbar-header">
@@ -22,7 +21,7 @@ class Burgermenu extends Component{
                                   <span className="icon-bar"></span>
                                   <span className="icon-bar"></span>
                               </button>
-                              <Link to={`/`} className="navbar-brand"><img src="./images/mobile-logo.png" style={{"width": "100px",marginTop: "28px"}} /></Link>
+                              <Link to={`/`} className="navbar-brand"><img alt='' src="./images/mobile-logo.png" style={{"width": "100px",marginTop: "28px"}} /></Link>
                           </div>
                       </div>
                       <div className="col-md-10 col-sm-6 col-xs-6">
@@ -56,7 +55,7 @@ class Burgermenu extends Component{
                       <div className="row">
                           <div className="col-xs-9">
                               <div className="navbar-header">
-                                  <a className="navbar-brand" href="#"><img src="./images/mobile-logo.png" style={{"width": "100px", marginTop: "11px"}} /></a>
+                                  <a className="navbar-brand"><img alt='' src="./images/mobile-logo.png" style={{"width": "100px", marginTop: "11px"}} /></a>
                               </div>
                           </div>{/*col-md-12*/}
                           <div className="col-xs-3" style={{marginTop: "28px"}}><MainLogin/></div>
@@ -79,7 +78,6 @@ class Burgermenu extends Component{
                               <span ><Category/></span>
                           </div>
                       </div>{/*row*/}
-
                   </div>
               </nav>
           </div>

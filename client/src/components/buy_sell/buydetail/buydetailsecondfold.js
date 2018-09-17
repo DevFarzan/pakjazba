@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './buydetailsecondfold.css'
+import {HttpUtils} from "../../../Services/HttpUtils";
 
 class Buydetailsecondfold extends Component{
     constructor(props){
@@ -12,8 +13,8 @@ class Buydetailsecondfold extends Component{
     }
 
     onChangeValue(e){
-        var target = e.target.id;
-        var value = e.target.value;
+        let target = e.target.id;
+        let value = e.target.value;
         if(target === 'name'){
             this.setState({
                 name: value
@@ -29,7 +30,7 @@ class Buydetailsecondfold extends Component{
         }
     }
 
-    submitData(e){
+    async submitData(e){
         e.preventDefault();
         const { data } = this.props;
         const { name, userEmail, msg } = this.state;
@@ -39,19 +40,21 @@ class Buydetailsecondfold extends Component{
             usermsg: msg,
             contactemail: data.contactemail
         }
-        console.log(obj, 'objjjjjjjjjjjj')
-        this.setState({
-            name: '',
-            userEmail: '',
-            msg: ''
-        })
+        let res = await HttpUtils.post('sendmessage', obj)
+        if(res.code === 200) {
+            this.setState({
+                name: '',
+                userEmail: '',
+                msg: ''
+            })
+        }
     }
 
     render(){
         const { name, userEmail, msg } = this.state;
         const { data } = this.props;
-        var email= 'abc@gmail.com';
-        var phone = '***********';
+        let email= 'abc@gmail.com';
+        let phone = '***********';
 
         if(data.modeofcontact && data.modeofcontact.includes('email')){
             email = data.contactemail;
@@ -70,15 +73,13 @@ class Buydetailsecondfold extends Component{
                             <div className="col-md-6">
                                 <div className="col-md-3 col-sm-3 col-xs-12" style={{marginTop:"26px"}}>
                                     <div className="review-block-img">
-                                        <img src={data.userImage} className="img-circle" alt=""/>
+                                        <img src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="img-circle" alt=""/>
                                     </div>
                                 </div>
                                 <div className="col-sm-9 col-xs-12" style={{marginTop: "33px",textAlign:"left"}}>
                                     <div className="review-block-rate">
                                         <div className="review-block-name"><a href="#">{data.contactname}</a></div>
-                                        
                                     </div>
-                                    
                                 </div>
                                 <section  style={{float: "left",marginLeft: "16px"}}>
                                     <span><h4>Phone:</h4></span>

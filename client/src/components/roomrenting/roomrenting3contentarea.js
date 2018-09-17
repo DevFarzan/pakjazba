@@ -1,21 +1,58 @@
 import React, { Component } from 'react';
 import { Carousel } from 'antd';
 import "./roomrenting2content.css";
+import {HttpUtils} from "../../Services/HttpUtils";
 
 class Roomrenting3contentarea extends Component{
     constructor(props) {
         super(props)
         this.state = {
+            name: '',
+            email: '',
+            msg: '',
         }
     }
 
-    componentDidMount(){
+    onChangeValue = (e) => {
+        let target = e.target.id;
+        let value = e.target.value;
+        if(target === 'name'){
+            this.setState({name: value})
+        }else if(target === 'email'){
+            this.setState({email: value})
+        }else if(target === 'msg'){
+            this.setState({msg: value})
+        }
+    }
+
+    async submitMsg(e){
+        e.preventDefault();
+        const { name, email, msg } = this.state;
+        let obj = {
+            name,
+            email,
+            msg,
+        }
+        let res = await HttpUtils.post('sendmessage', obj)
+        if(res.code === 200) {
+            this.setState({name: '', email: '', msg: ''})
+        }
     }
 
     render(){
-        console.log(this.props.data, 'dataaaaaaaaaaaaaaaa1234567890')
         const { data } = this.props;
         let images = data.imageurl;
+        let email= 'abc@gmail.com';
+        let phone = '***********';
+
+        if(data.modeofcontact && data.modeofcontact.includes('email')){
+            email = data.contactemail;
+        }
+
+        if(data.modeofcontact && data.modeofcontact.includes('phone')){
+            phone = data.contactnumber;
+        }
+
         return(
             <div>
                 <div classNameName="head-bg" >
@@ -28,7 +65,6 @@ class Roomrenting3contentarea extends Component{
                         <div className="col-md-2 col-sm-12 col-xs-12">
                         </div>
                         <div className="col-md-12 col-sm-12 col-xs-12">
-
                             <div className="col-md-3 col-sm-6 col-xs-12">
                                 <h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-calendar"></span>{data.startdate}</h4>
                                 <h4 style={{fontSize: "16px"}}> Available From</h4>
@@ -49,7 +85,6 @@ class Roomrenting3contentarea extends Component{
                         </div>
                     </div>
                 </div>
-
                 <div className="col-md-12 col-sm-12 col-xs-12">
                     <div className="row">
                         <div className="col-md-12">
@@ -75,12 +110,12 @@ class Roomrenting3contentarea extends Component{
                     <div className="col-md-12 col-sm-12 col-xs-12 des-space">
                         <div className="col-md-4 col-sm-12 col-xs-12 des-space">
                             <h3> Details </h3>
-                            <p><b>Date Added:</b> 09-07-2018</p>
-                            <p><b>Type:</b> Offer</p>
-                            <p><b>Status:</b> Used</p>
-                            <p><b>First Owner:</b> Yes</p>
-                            <p><b>Material:</b> Wood</p>
-                            <p><b>Color:</b> White</p>
+                            <p><b>Date Added:</b>{' ' + data.startdate}</p>
+                            <p><b>Type:</b>{' ' + data.category}</p>
+                            <p><b>Status:</b>{' ' + data.furnished}</p>
+                            <p><b>Pet Friendly:</b>{' ' + data.petfriendly}</p>
+                            <p><b>Accommodates:</b>{' ' + data.accomodates}</p>
+                            <p><b>Smoking:</b>{' ' + data.smoking}</p>
                         </div>
                         <div className="col-md-4 col-sm-12 col-xs-12 des-space">
                             <h3>Location </h3>
@@ -89,43 +124,18 @@ class Roomrenting3contentarea extends Component{
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-12 col-sm-12 col-xs-12 des-space">
-                        <h3> Features </h3>
-                        <div className="col-md-3 col-sm-12 col-xs-12 ">
-                            <div className="checkbox">
-                                <h4> <label><input type="checkbox" value="" checked="checked"/>Quality Wood</label> </h4>
+                    <h3> Features </h3>
+                    {data.amenitiesinclude && data.amenitiesinclude.map((elem) => {
+                        return(
+                            <div className="col-md-3 col-sm-12 col-xs-12 des-space">
+                                <div className="col-md-12 col-sm-12 col-xs-12 ">
+                                    <div className="checkbox">
+                                        <h4> <label><input type="checkbox" value="" checked="checked"/>{elem}</label> </h4>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-md-3 col-sm-12 col-xs-12 ">
-                            <div className="checkbox">
-                                <h4> <label><input type="checkbox" value="" checked="checked"/>Form Mattres</label> </h4>
-                            </div>
-                        </div>
-                        <div className="col-md-3 col-sm-12 col-xs-12 ">
-                            <div className="checkbox">
-                                <h4> <label><input type="checkbox" value="" checked="checked"/>3 Fold Pull Out</label> </h4>
-                            </div>
-                        </div>
-                        <div className="col-md-3 col-sm-12 col-xs-12 ">
-                            <div className="checkbox">
-                                <h4> <label><input type="checkbox" value="" checked="checked"/>Almunium</label> </h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-12 col-sm-12 col-xs-12 ">
-                        <div className="col-md-3 col-sm-12 col-xs-12 ">
-                            <div className="checkbox">
-                                <h4> <label><input type="checkbox" value="" checked="checked"/>Handles</label> </h4>
-                            </div>
-                        </div>
-                        <div className="col-md-3 col-sm-12 col-xs-12 ">
-                            <div className="checkbox">
-                                <h4> <label><input type="checkbox" value="" checked="checked"/>Detachable</label> </h4>
-                            </div>
-                        </div>
-                    </div>
+                        )
+                    })}
                 </div>
                 <div className="row">
                     <div className="col-md-12 col-sm-12 col-xs-12 des-space auther-border" style={{"border-style":"none"}}>
@@ -135,28 +145,24 @@ class Roomrenting3contentarea extends Component{
                                 <img src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} class="img-circle" alt="" height="200" width="200"/>
                                 <hr/>
                                 <br/>
-                                <h4><b> Phone: </b> 830-247-0972</h4>
-                                <h4><b> Email: </b> asad@example.com</h4>
+                                <h4><b> Phone: </b>{' ' + phone}</h4>
+                                <h4><b> Email: </b>{' ' + email}</h4>
                             </div>
                             <div className="col-md-6 col-sm-12 col-xs-12">
                                 <form action="#">
                                     <div className="form-group">
                                         <label for="Name">Name:</label>
-                                        <input type="text" className="form-control" id=""/>
+                                        <input type="text" value={this.state.name} onChange={this.onChangeValue} className="form-control" id="name"/>
                                     </div>
                                     <div className="form-group">
                                         <label for="email">Email address:</label>
-                                        <input type="email" className="form-control" id=""/>
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="Phone">Phone:</label>
-                                        <input type="num" className="form-control" id=""/>
+                                        <input type="email" value={this.state.email} onChange={this.onChangeValue} className="form-control" id="email"/>
                                     </div>
                                     <div className="form-group">
                                         <label for="Massage">Massage:</label>
-                                        <textarea className="form-control"> </textarea>
+                                        <textarea className="form-control" value={this.state.msg} onChange={this.onChangeValue} id="msg"> </textarea>
                                     </div>
-                                    <button type="submit" className="btn search-btn">Submit</button>
+                                    <button type="submit" onClick={this.submitMsg.bind(this)} className="btn search-btn">Submit</button>
                                 </form>
                             </div>
                         </div>

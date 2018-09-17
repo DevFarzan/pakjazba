@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import App from '../../App';
 import {
     Form,
     Input,
     Icon,
     Cascader,
-    InputNumber,
     Checkbox,
     notification,
     Upload,
@@ -19,18 +17,11 @@ import superagent from "superagent";
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
 
-const InputGroup = Input.Group;
 const { TextArea } = Input;
 const CheckboxGroup = Checkbox.Group;
 const FormItem = Form.Item
 const stateCities= require('countrycitystatejson')
-const category = [{
-    value: 'imported',
-    label: 'imported'
-},{
-    value: 'local',
-    label: 'local',
-}];
+
 const condition = [{
     value: 'New',
     label: 'New'
@@ -101,12 +92,9 @@ class Postbuysell extends Component{
         }
     }
 
-    componentWillMount(){
-        this.handleLocalStorage();
-    }
-
     componentDidMount(){
         this.categorylist();
+        this.handleLocalStorage();
         let data = this.props.location.state;
 
         if(data){
@@ -141,9 +129,9 @@ class Postbuysell extends Component{
     }
 
     async categorylist(){
-        var res = await HttpUtils.get('categoryclassifieddata')
-        var mainCategory = res.data[1]
-        var categ = Object.keys(mainCategory)
+        let res = await HttpUtils.get('categoryclassifieddata')
+        let mainCategory = res.data[1]
+        let categ = Object.keys(mainCategory)
         categ = categ.filter((val) => val !== '_id')
         categ = categ.map((elem) => {
             return {
@@ -258,7 +246,6 @@ class Postbuysell extends Component{
 
     async funcForUpload(values){
         const { fileList } = this.state;
-        var cloudURL = [];
 
         Promise.all(fileList.map((val) => {
             return this.uploadFile(val).then((result) => {
@@ -271,7 +258,7 @@ class Postbuysell extends Component{
 
     async postData(values, response) {
         const {userId, dLength, dWidth, dHeight, profileId, objectId} = this.state;
-        var obj = {
+        let obj = {
             user_id: userId,
             profileId: profileId,
             address: values.address,
@@ -298,7 +285,7 @@ class Postbuysell extends Component{
             arr_url: response ? response : [],
             objectId: objectId
         }
-        var req = await HttpUtils.post('postbuyselldata', obj)
+        let req = await HttpUtils.post('postbuyselldata', obj)
         if(req.code === 200){
             this.props.form.resetFields();
             this.openNotification()
@@ -360,8 +347,8 @@ class Postbuysell extends Component{
     onChangeCat(value){
         if(!!value.length) {
             const {allCateg} = this.state;
-            var selected = allCateg[value[0]]
-            var selectedArr = Object.keys(selected[0])
+            let selected = allCateg[value[0]]
+            let selectedArr = Object.keys(selected[0])
             selectedArr = selectedArr.map((elem) => {
                 return {
                     label: elem,
@@ -380,7 +367,7 @@ class Postbuysell extends Component{
     onChangeSubCat(value){
         if(!!value.length) {
             const { selectedCat } = this.state;
-            var selected = selectedCat[value[0]]
+            let selected = selectedCat[value[0]]
             selected = selected.map((elem) => {
                 return {
                     label: elem,
@@ -403,6 +390,7 @@ class Postbuysell extends Component{
     render(){
         const { previewVisible, previewImage, fileList, desLength, categ, subCat, selectSubCat, secSubCat, statesUS, citiesUS } = this.state;
         const {getFieldDecorator} = this.props.form;
+
         if (this.state.msg === true) {
             return <Redirect to='/' />
         }
@@ -461,8 +449,6 @@ class Postbuysell extends Component{
             <div>
                 {/*================================App component include Start===========================*/}
                 <Burgermenu/>
-                {/*================================App component include End===========================*/}
-
                 {/*================================post business form start============================*/}
                 <div className="">
                     <Form onSubmit={this.handleSubmit} className="login-form">
@@ -472,8 +458,8 @@ class Postbuysell extends Component{
                                     Find all your Local Business in one place
                                 </div>
                                 <div className="panel-body">
-                                <div class="panel panel-default">
-                                        <div class="panel-heading bold_c_text"><Icon type="info-circle"/><span
+                                <div className="panel panel-default">
+                                        <div className="panel-heading bold_c_text"><Icon type="info-circle"/><span
                                             className="margin_font_location">Brand Detail</span></div>
                                     <FormItem
                                         {...formItemLayout}
@@ -497,7 +483,7 @@ class Postbuysell extends Component{
                                             <Cascader options={subCat} onChange={this.onChangeSubCat.bind(this)}/>
                                         )}
                                     </FormItem>
-                                    {!!this.state.dataSubSub.length || selectSubCat && <div className="row">
+                                    {(!!this.state.dataSubSub.length || selectSubCat) && <div className="row">
                                         <div className="col-md-3"></div>
                                         <div className="col-md-6" style={{padding: 0}}>
                                             <FormItem>
@@ -538,15 +524,15 @@ class Postbuysell extends Component{
                                         })(
                                             <TextArea
                                                 rows={6}
-                                                maxlength="500"
+                                                maxLength="500"
                                             />
                                         )}
                                         <br />
                                         <span>{500 - desLength}</span>
                                     </FormItem>
-                                    <div className="row" style={{'text-align': 'center'}}>
+                                    <div className="row" style={{'textAlign': 'center'}}>
                                         <div className="col-md-2"></div>
-                                        <div class="col-md-3">
+                                        <div className="col-md-3">
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Price"
@@ -559,7 +545,7 @@ class Postbuysell extends Component{
                                                 )}
                                             </FormItem>
                                         </div>
-                                        <div className="col-md-3" style={{'text-align': 'left'}}>
+                                        <div className="col-md-3" style={{'textAlign': 'left'}}>
                                             <Checkbox checked={this.state.dataHidePrice} onChange={this.onChangePrice.bind(this)}>(Hide Price)</Checkbox>
                                         </div>
                                         <div className="col-md-4"></div>
@@ -750,7 +736,7 @@ class Postbuysell extends Component{
                                                 )}
                                             </FormItem>
                                         </div>
-                                        <div className="col-md-3" style={{'text-align': 'left'}}>
+                                        <div className="col-md-3" style={{'textAlign': 'left'}}>
                                             <Checkbox checked={this.state.dataHideAddress} onChange={this.onChangeAddress.bind(this)}>(Hide Address)</Checkbox>
                                         </div>
                                         <div className="col-md-3"></div>

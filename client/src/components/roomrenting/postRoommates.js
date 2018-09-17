@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import App from '../../App';
 import {
     Form,
     Input,
     Icon,
     Cascader,
-    InputNumber,
     Checkbox,
     notification,
     Upload,
@@ -25,7 +23,6 @@ import Burgermenu from '../header/burgermenu';
 import Footer from '../footer/footer';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 const RangePicker = DatePicker.RangePicker;
-const InputGroup = Input.Group;
 const { TextArea } = Input;
 const CheckboxGroup = Checkbox.Group;
 const RadioGroup = Radio.Group;
@@ -271,7 +268,7 @@ class Postroommates extends Component{
         })
         AsyncStorage.getItem('user')
             .then((obj) => {
-                var userObj = JSON.parse(obj)
+                let userObj = JSON.parse(obj)
                 if(!!userObj) {
                     this.setState({
                         userId: userObj._id,
@@ -408,7 +405,6 @@ class Postroommates extends Component{
 
     async funcForUpload(values){
         const { fileList } = this.state;
-        var cloudURL = [];
 
         Promise.all(fileList.map((val) => {
             return this.uploadFile(val).then((result) => {
@@ -421,7 +417,7 @@ class Postroommates extends Component{
 
     async postData(values, response) {
         const {dateObj, userId, petFriendly, radio, smoking, vegNoVeg, profileId, objectId} = this.state;
-        var obj = {
+        let obj = {
             user_id: userId,
             profileId: profileId,
             accommodates : values.accommodates[0],
@@ -450,7 +446,7 @@ class Postroommates extends Component{
             arr_url: response ? response : [],
             objectId: objectId
         }
-        var req = await HttpUtils.post('postroomrent', obj)
+        let req = await HttpUtils.post('postroomrent', obj)
         if(req.code === 200) {
             this.props.form.resetFields();
             this.openNotification()
@@ -639,8 +635,8 @@ class Postroommates extends Component{
                                                 })(
                                                     <TextArea
                                                         rows={6}
-                                                        maxlength="500"
-                                                    style={{"margin-bottom": "10px"}}/>
+                                                        maxLength="500"
+                                                    style={{"marginBottom": "10px"}}/>
                                                 )}
                                                 <br />
                                                 <span style={{"float": "right"}}>{500 - desLength}</span>
@@ -659,9 +655,9 @@ class Postroommates extends Component{
                                                     />
                                                 )}
                                             </FormItem>
-                                            <div className="row" style={{'text-align': 'center'}}>
+                                            <div className="row" style={{'textAlign': 'center'}}>
                                                 <div className="col-md-2"></div>
-                                                <div class="col-md-4">
+                                                <div className="col-md-4">
                                                     <FormItem
                                                         {...formItemLayout}
                                                         label="Rent"
@@ -674,7 +670,7 @@ class Postroommates extends Component{
                                                         )}
                                                     </FormItem>
                                                 </div>
-                                                <div className="col-md-5" style={{'text-align': 'left'}}>
+                                                <div className="col-md-5" style={{'textAlign': 'left'}}>
                                                     <FormItem
                                                         {...formItemLayout}
                                                         label="Price Mode"

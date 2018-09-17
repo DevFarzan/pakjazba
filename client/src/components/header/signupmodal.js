@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Icon, Input, Button, Checkbox,Modal, Spin, Alert } from 'antd';
+import { Form, Icon, Input, Button, Checkbox,Modal } from 'antd';
 import Signin from './signinmodal';
 import Forgotpassword from '../forgotpassword';
 import AsyncStorage from '@callstack/async-storage';
@@ -26,7 +26,7 @@ class Signup extends Component{
     handleLocalStorage = () => {
         AsyncStorage.getItem('user')
             .then((obj) => {
-                var userObj = JSON.parse(obj)
+                let userObj = JSON.parse(obj)
                 if(!!userObj){
                     this.setState({
                         user: userObj.name
@@ -72,7 +72,7 @@ class Signup extends Component{
     }
 
     async funcLogin(values){
-        var response = await HttpUtils.get('usersignin?useremail='+values.userName+'&password='+values.password)
+        let response = await HttpUtils.get('usersignin?useremail='+values.userName+'&password='+values.password)
         if(response.code === 200){
             AsyncStorage.setItem('user', JSON.stringify(response))
                 .then(() => {
@@ -99,11 +99,10 @@ class Signup extends Component{
         const { user } = this.state;
         const { getFieldDecorator } = this.props.form;
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
+
         return(
             <div className="paragraph">
-
                 <span onClick={this.showModal} >Sign In</span>
-
                 {/*===================modal code start==========================*/}
                 <Modal
                     title="LOG IN"
@@ -130,9 +129,7 @@ class Signup extends Component{
                             </button>
                         </div>{/*col-md-4*/}
                     </div>{/*row*/}
-
                     <br/>
-
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <FormItem>
                             {getFieldDecorator('userName', {
@@ -174,14 +171,12 @@ class Signup extends Component{
                             </div>
                         </div>
                         Or <a><span onClick={this.handleCancel}><Signin/></span></a>
-
                     </Form>
-
                 </Modal>
             </div>
         )
     }
 }
-const WrappedNormalLoginForm = Form.create()(Signup);
 
+const WrappedNormalLoginForm = Form.create()(Signup);
 export default WrappedNormalLoginForm;

@@ -1,5 +1,5 @@
 import React, { Component } from   'react';
-import { Form, Input, Icon, Select, Row, Col, Checkbox, Button, AutoComplete, notification, Spin, Modal  } from 'antd';
+import { Form, Input, Icon, Checkbox } from 'antd';
 import AsyncStorage from "@callstack/async-storage";
 import {HttpUtils} from "../../Services/HttpUtils";
 import { withRouter, Redirect, } from 'react-router-dom';
@@ -12,11 +12,9 @@ class Form_signup extends Component{
         super(props)
         this.state = {
             loading: false,
-            visible: false,
             passwordValidator: false,
             username: null,
             confirmDirty: false,
-            autoCompleteResult: [],
             loader: false,
             dropdown: false,
             allUser: [],
@@ -27,23 +25,19 @@ class Form_signup extends Component{
 
     componentDidMount(){
         this.handleLocalStorage();
-    }
-
-    componentWillMount(){
-        this.handleLocalStorage();
         this.getAllUsers();
     }
 
     async getAllUsers(){
         console.log(ip.address(), 'ipAddressssssss')
-        var response = await HttpUtils.get('allusers')
+        let response = await HttpUtils.get('allusers')
         this.setState({allUser: response.content})
     }
 
     handleLocalStorage = () =>{
         AsyncStorage.getItem('user')
             .then((obj) => {
-                var userObj = JSON.parse(obj)
+                let userObj = JSON.parse(obj)
                 if(!!userObj){
                     this.setState({
                         dropdown: true,
@@ -70,26 +64,25 @@ class Form_signup extends Component{
     }//end handleSubmit
 
     async funcSignUp(values){
-        var response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
+        let response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
         this.getProfileId(response)
     }
 
     async getProfileId(response){
         if(response.code === 200){
-            var obj = {
+            let obj = {
                 name: response.name,
                 email: response.email,
                 userId: response._id,
                 profileId: ''
             }
-            var req = await HttpUtils.post('profile', obj)
-            var userInfo = {...response, ...{profileId: req.content}}
+            let req = await HttpUtils.post('profile', obj)
+            let userInfo = {...response, ...{profileId: req.content}}
             AsyncStorage.setItem('user', JSON.stringify(userInfo))
                 .then(() => {
                     this.props.form.resetFields();
                     this.setState({
                         loader:false,
-                        visible:false,
                         redirectToReferrer: true
                     })
                 })
@@ -122,12 +115,13 @@ class Form_signup extends Component{
     render(){
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
         const { getFieldDecorator } = this.props.form;
-        const { autoCompleteResult,visible, allUser } = this.state;
         const { from } = this.props.location.state || { from: { pathname: "/" } };
         let {redirectToReferrer} = this.state;
+
         if (redirectToReferrer) {
             return <Redirect to={from} />;
         }
+
         const tailFormItemLayout = {
             wrapperCol: {
                 xs: {
@@ -140,6 +134,7 @@ class Form_signup extends Component{
                 },
             },
         };
+
         return(
             <div>
                 <Form onSubmit={this.handleSubmit}>
@@ -203,7 +198,7 @@ class Form_signup extends Component{
                         {this.state.loader ? antIcon : null} <button className="btn color_button">Sign up</button>
                     </div>{/*row*/}
                     <div className="row term_condition">
-                        <p>(By clicking register, you agree to our <a href="#">terms</a>, our <a href="#">data policy</a> and cookies use)</p>
+                        <p>(By clicking register, you agree to our <a>terms</a>, our <a>data policy</a> and cookies use)</p>
                     </div>
                 </Form>
             </div>
@@ -214,4 +209,3 @@ class Form_signup extends Component{
 
 const WrappedRegistrationForm = Form.create()(Form_signup);
 export default withRouter(WrappedRegistrationForm);
-

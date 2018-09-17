@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Burgermenu from '../header/burgermenu';
 import App from '../../App';
 import moment from 'moment'
 import { Carousel, Rate } from 'antd';
 import { Redirect } from 'react-router';
+import {HttpUtils} from "../../Services/HttpUtils";
 
 class DetailBusiness extends Component{
     constructor(props){
@@ -23,16 +23,23 @@ class DetailBusiness extends Component{
     }
 
     componentDidMount(){
-        if(this.props.location.state === undefined){
+        let data = this.props.location.state;
+        if(data === undefined){
             this.setState({
                 isData: false
             })
         }else {
             this.setState({
                 isData : true,
-                data : this.props.location.state
+                data : data
             })
+            this.getReviews(data)
         }
+    }
+
+    async getReviews(data){
+        let res = await HttpUtils.get('getreviews')
+        this.setState({reviews: res ? res.content : []})
     }
 
     handleChange(value){
@@ -50,27 +57,32 @@ class DetailBusiness extends Component{
         }
     }
 
-    submitReview(){
-        var { name1, email1, msg1, star, reviews } = this.state;
+    async submitReview(){
+        let { name1, email1, msg1, star, reviews, data } = this.state;
         let obj = {
-            name1,
-            email1,
-            msg1,
+            objId: data._id,
+            name : name1,
+            email: email1,
+            message: msg1,
             star,
             written: moment().format('LL')
         }
+        let res = await HttpUtils.post('reviews', obj)
         reviews.push(obj)
         this.setState({name1: '', email1: '', msg1: '', star: 0, reviews})
     }
 
-    submitMessage(){
+    async submitMessage(){
         const { name, email, msg } = this.state;
         let obj = {
             name,
             email,
             msg,
         }
-        this.setState({name: '', email: '', msg: ''})
+        let res = await HttpUtils.post('sendmessage', obj)
+        if(res.code === 200) {
+            this.setState({name: '', email: '', msg: ''})
+        }
     }
 
     onChangeInput(e){
@@ -86,20 +98,15 @@ class DetailBusiness extends Component{
 
     render(){
         const { isData, data, reviews } = this.state;
-        console.log(data, 'dataaaaaaaaaaaaa')
         let images = data.businessImages;
+
         if(!isData){
             return <Redirect to='/' />
         }
 
         return(
             <div>
-                <div classNameName="row">
-                    <div classNameName="col-md-12">
-                        {/*<span><img src="../images/business_detail.jpg" style={{"width": "100%","height": "260px","margin-top": "-38px"}} /></span>*/}
-                    </div>
-                </div>
-                <span classNameName="background_listing">
+                <span className="background_listing">
                 	<App/>
                 </span>
                 <div className="">
@@ -111,7 +118,7 @@ class DetailBusiness extends Component{
                                 <div className="col-lg-10 col-md-10 col-sm-12 " >
                                     {/*Start first tile */}
                                     <div className="card outset" >
-                                        <img className="card-img-top" src={images && images[0]} alt="Card image" style={{"width":"100%"}} />
+                                        <img className="card-img-top" src={images && images[0]} alt="" style={{"width":"100%"}} />
                                         <div className="card-body space" style={{padding: "17px"}}>
                                             <h5><span className="glyphicon glyphicon-home" style={{marginRight: "15px"}}></span>{data.businessaddress}</h5>
                                             <hr/>
@@ -124,7 +131,6 @@ class DetailBusiness extends Component{
                                             <a href={data.socialLinkIn} target="_blank" style={{marginRight: "12px"}}><button type="button" className="btn btn-linkedin"><i className="fa fa-linkedin"></i></button></a>
                                             <a href={data.socialGoogle} target="_blank" style={{marginRight: "12px"}}><button type="button" className="btn btn-gplus"><i className="fa fa-google-plus"></i></button></a>
                                             <br/><br/>
-                                            {/*<a href="#" className="btn btn-primary">Make A Reservation</a>*/}
                                         </div>
                                     </div>
                                     {/*End first tile */}
@@ -133,38 +139,6 @@ class DetailBusiness extends Component{
                             <div className="row"> <br/></div>
                             <div className="col-lg-2 col-md-2 col-sm-12 ">
                             </div>
-                            {/*<div className="row">*/}
-                                {/*<div className="col-lg-10 col-md-10 col-sm-12 ">*/}
-                                    {/*/!*Start second tile *!/*/}
-                                    {/*<div className="card outset" >*/}
-                                        {/*<div className="card-body space">*/}
-                                            {/*<div className="row">*/}
-                                                {/*<div className="col-md-12">*/}
-                                                    {/*<div className="col-md-6">*/}
-                                                        {/*<br/>*/}
-                                                        {/*<img src={images && images[0]} className="img-circle" alt="" width="100" height="100" />*/}
-                                                    {/*</div>*/}
-                                                    {/*<div className="col-md-6">*/}
-                                                        {/*<br/><br/>*/}
-                                                        {/*<h5><b> Loram Ipsum </b> </h5>*/}
-                                                        {/*<p> Loram Ipsum Loram  </p>*/}
-                                                    {/*</div>*/}
-                                                {/*</div>*/}
-                                            {/*</div>*/}
-                                            {/*<div className="row">*/}
-                                                {/*<div className="col-md-12">*/}
-                                                    {/*<div className="col-md-6">*/}
-                                                    {/*</div>*/}
-                                                    {/*<div className="col-md-6">*/}
-                                                        {/*<button><span className="glyphicon glyphicon-road"></span> Follow Us</button>*/}
-                                                    {/*</div>*/}
-                                                {/*</div>*/}
-                                            {/*</div>*/}
-                                        {/*</div>*/}
-                                    {/*</div>*/}
-                                    {/*/!*End secind tile *!/*/}
-                                {/*</div>*/}
-                            {/*</div>*/}
                             <div className="row"> <br/></div>
                             <div className="col-lg-2 col-md-2 col-sm-12 " >
                             </div>
@@ -226,18 +200,16 @@ class DetailBusiness extends Component{
                                                                         {/*Grid column*/}
                                                                         <div className="col-md-11">
                                                                             <div className="md-form mb-0">
-                                                                            <label for="name" className="">Your name</label>
+                                                                            <label className="">Your name</label>
                                                                                 <input type="text" id="name" name="name" className="form-control" value={this.state.name} onChange={this.onChangeInput.bind(this)}/>
-                                                                                
                                                                             </div>
                                                                         </div>
                                                                         {/*Grid column*/}
                                                                         {/*Grid column*/}
                                                                         <div className="col-md-11">
                                                                             <div className="md-form mb-0">
-                                                                            <label for="email" className="">Your email</label>
+                                                                            <label className="">Your email</label>
                                                                                 <input type="text" id="email" name="email" className="form-control" value={this.state.email} onChange={this.onChangeInput.bind(this)}/>
-                                                                                
                                                                             </div>
                                                                         </div>
                                                                         {/*Grid column*/}
@@ -248,9 +220,8 @@ class DetailBusiness extends Component{
                                                                         {/*Grid column*/}
                                                                         <div className="col-md-11">
                                                                             <div className="md-form">
-                                                                            <label for="message">Your message</label>
+                                                                            <label>Your message</label>
                                                                                 <textarea type="text" id="message" name="message" rows="2" value={this.state.msg} className="form-control md-textarea" onChange={this.onChangeInput.bind(this)}></textarea>
-                                                                                
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -281,7 +252,7 @@ class DetailBusiness extends Component{
                                     <div className="card-body space">
                                         <div className="row">
                                             <div className="col-md-2 col-sm-2 col-xs-12">
-                                                <img className="card-img-top" src={images && images[0]} alt="Card image" style={{"width":"100%"}} />
+                                                <img className="card-img-top" src={images && images[0]} alt="" style={{"width":"100%"}} />
                                             </div>
                                             <div className="col-md-10 col-sm-10 col-xs-12">
                                                 <h3>{data.businessname}</h3>
@@ -292,7 +263,6 @@ class DetailBusiness extends Component{
                                             <div className="col-md-2 col-sm-2 col-xs-12">
                                             </div>
                                             <div className="col-md-10 col-sm-10 col-xs-12">
-                
                                             </div>
                                         </div>
                                     </div>
@@ -344,7 +314,7 @@ class DetailBusiness extends Component{
                                         </div>
                                         <div className="row">
                                             <div className="col-md-12 col-sm-12 col-xs-12">
-                                                <img src={images && images[0]} className="responsive" width="90%" height="200" />
+                                                <img alt='' src={images && images[0]} className="responsive" width="90%" height="200" />
                                             </div>
                                         </div>
                                         <div className="row">
@@ -369,31 +339,17 @@ class DetailBusiness extends Component{
                                         </div>
                                         <div className="row">
                                             <div className="col-md-12 col-sm-12 col-xs-12">
-                                                {/*<img src="./images/black.jpg" className="responsive" width="95%" height="300" />*/}
                                                 <Carousel autoplay>
-                                                    {images && images.map((elem) => {
+                                                    {images && images.map((elem, key) => {
                                                         return(
-                                                            <div>
-                                                                <img src={elem}/>
+                                                            <div key={key}>
+                                                                <img alt='' src={elem}/>
                                                             </div>
                                                         )
                                                     })}
                                                 </Carousel>
                                             </div>
                                         </div>
-                                        {/*<div className="row">*/}
-                                            {/*<div className="col-md-12 col-sm-12 col-xs-12">*/}
-                                                {/*<div className="col-lg-4 col-md-4 col-sm-12 space-top" >*/}
-                                                    {/*<img src="./images/black.jpg" alt="" className="responsive img-rounded" height="100" width="200" />*/}
-                                                {/*</div>*/}
-                                                {/*<div className="col-lg-4 col-md-4 col-sm-12 space-top" >*/}
-                                                    {/*<img src="./images/black.jpg" alt="" className="responsive img-rounded" height="100" width="200" />*/}
-                                                {/*</div>*/}
-                                                {/*<div className="col-lg-4 col-md-4 col-sm-12 space-top" >*/}
-                                                    {/*<img src="./images/black.jpg" alt="" className="responsive img-rounded"  height="100" width="200" />*/}
-                                                {/*</div>*/}
-                                            {/*</div>*/}
-                                        {/*</div>*/}
                                     </div>
                                 </div>
                             </div>
@@ -401,9 +357,9 @@ class DetailBusiness extends Component{
                             <div className="row"><br/></div>
                             {/*Start 5th tile */}
                             {!!reviews.length && <div className="row">
-                                {reviews && reviews.map((elem) => {
+                                {reviews && reviews.map((elem, key) => {
                                 return(
-                                    <div className="card outset" >
+                                    <div key={key} className="card outset" >
                                         <div className="card-body space">
                                             <div className="row">
                                                 <div className="col-md-12 col-sm-12 col-xs-12">
@@ -421,7 +377,7 @@ class DetailBusiness extends Component{
                                                     <div className="col-md-2 col-sm-12 col-xs-12">
                                                     </div>
                                                     <div className="col-md-10 col-sm-12 col-xs-12">
-                                                        <p>{elem.msg1}.</p>
+                                                        <p>{elem.message}.</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -458,18 +414,16 @@ class DetailBusiness extends Component{
                                                                     {/*Grid column*/}
                                                                     <div className="col-md-6">
                                                                         <div className="md-form mb-0">
-                                                                            <label for="name" className="">Your name</label>
+                                                                            <label className="">Your name</label>
                                                                             <input type="text" id="name1" name="name" className="form-control" value={this.state.name1} onChange={this.onChangeReview.bind(this)}/>
-                                                                            
                                                                         </div>
                                                                     </div>
                                                                     {/*Grid column*/}
                                                                     {/*Grid column*/}
                                                                     <div className="col-md-6">
                                                                         <div className="md-form mb-0">
-                                                                            <label for="email" className="">Your email</label>
+                                                                            <label className="">Your email</label>
                                                                             <input type="text" id="email1" name="email" className="form-control" value={this.state.email1} onChange={this.onChangeReview.bind(this)}/>
-                                                                            
                                                                         </div>
                                                                     </div>
                                                                     {/*Grid column*/}
@@ -480,9 +434,8 @@ class DetailBusiness extends Component{
                                                                     {/*Grid column*/}
                                                                     <div className="col-md-12">
                                                                         <div className="md-form">
-                                                                            <label for="message">Your message</label>
+                                                                            <label>Your message</label>
                                                                             <textarea type="text" id="message1" name="message" rows="2" value={this.state.msg1} className="form-control md-textarea" onChange={this.onChangeReview.bind(this)}></textarea>
-                                                                            
                                                                         </div>
                                                                     </div>
                                                                 </div>

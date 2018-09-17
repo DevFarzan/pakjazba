@@ -106,7 +106,7 @@ var smtpTransport = nodemailer.createTransport({
     service: "Gmail",
     auth: {
         user: "caream224@gmail.com",
-        pass: "farzi1234"
+        pass: "farzi1234efsol"
     },
     tls: {
         rejectUnauthorized: false
@@ -254,7 +254,8 @@ app.post('/api/reviews',function(req,res){
     name:reviews.name,
     email:reviews.email,
     message:reviews.message,
-    star:reviews.star
+    star:reviews.star,
+    written:reviews.written
   })
 
   review_info.save(function(err,data){
@@ -977,7 +978,7 @@ var getuserfields = req.body;
       var message = getuserfields.message;
 
       mailOptions={
-    to : 'farzanhanif123@gmail.com',
+    to : getuserfields.email,
     subject : " Pakjazba User want to talk to you",
     html : "<html><head><style>table {font-family: arial, sans-serif;border-collapse: collapse;width: 100%;}td, th {border: 1px solid #dddddd;text-align: left;padding: 8px;}tr:nth-child(even) {background-color: #dddddd;}</style></head><body><h2>User Details</h2><table> <tr><th>Name</th><th>Email</th><th>Message</th></tr><tr><td>" + username +" </td><td>"+ email +"</td><td>"+ message +"</td></tr></table></body></html>"
   }

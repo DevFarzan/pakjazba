@@ -7,5 +7,6 @@ var reviewSchema = new mongoose.Schema({
 	email:{type:String},
 	message:{type:String},
 	star:{type:String},
+	written:{type:String},
 });
 mongoose.model('reviewschema',reviewSchema);

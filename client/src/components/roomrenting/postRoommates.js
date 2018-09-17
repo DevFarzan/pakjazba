@@ -22,6 +22,7 @@ import sha1 from "sha1";
 import Burgermenu from '../header/burgermenu';
 import Footer from '../footer/footer';
 import AsyncStorage from "@callstack/async-storage/lib/index";
+//import stateCities from "../../lib/countrycitystatejson"
 const RangePicker = DatePicker.RangePicker;
 const { TextArea } = Input;
 const CheckboxGroup = Checkbox.Group;

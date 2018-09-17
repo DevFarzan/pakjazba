@@ -28,7 +28,8 @@ require('./models/posttoclassified');
 require('./models/profile');
 require('./models/roommatesSchema');
 require('./models/categoryclassified');
-require('./models/reviews.js');
+require('./models/reviews');
+require('./models/sendmessage');
 
 require('./config/passport');
 
@@ -40,6 +41,7 @@ var profiledata = mongoose.model('profiledatabase');
 var roomrentsdata = mongoose.model('roomdata');
 var categoryclassified = mongoose.model('categoryclassified');
 var reviewdata = mongoose.model('reviewschema');
+var sendMessage = mongoose.model('sendmessage');
 
 app.use(passport.initialize());
 
@@ -989,7 +991,10 @@ var getuserfields = req.body;
     res.end("error");
    }else{
           console.log("Message sent: " + response.message);
-    res.end("sent");
+    res.send({
+      code:200,
+      msg:'Message sent'
+    })
        }
      })
 })

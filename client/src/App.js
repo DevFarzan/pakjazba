@@ -26,8 +26,12 @@ class App extends Component {
     }
 
     // callApi = async () => {
-    //     const response = await fetch('/api/hello');
-    //     const body = await response.json();
+        // const response = await fetch('/api/hello');
+        // const sports = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-sport&apiKey=6e7e6a696773424187f9bdb80954ded7');
+        // console.log(sports, 'sportssssssssss')
+        // const news = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=6e7e6a696773424187f9bdb80954ded7');
+        // console.log(news, 'newssssssssssssssss')
+        // const body = await response.json();
     //
     //     if (response.status !== 200) throw Error(body.message);
     //     return body;

@@ -5,7 +5,6 @@ import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
 
 class DetailRoommates extends Component{
-
     constructor(props){
         super()
         this.state = {

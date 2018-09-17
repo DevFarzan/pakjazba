@@ -714,3 +714,55 @@ color: #fff;
   background-color: #100c0c85 !important;
   transition: background-color 200ms linear;
 }
+
+/* new codeeeeeeeeeeeeeeeeeeeee*/
+
+.line-space{
+    margin-top: 10px;
+    line-height: 5px;
+}
+
+.tag{
+
+    background-color: black;
+    color: white;
+    width: 150px;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 15px;
+}
+
+.b-sec{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #0000004a;
+    background-color:#ededed05;
+    padding-left: 5px;
+}
+
+
+.tag1{
+
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.blog-bg{
+    /*background: #fff url("images/black.jpg") no-repeat center center;
+       */
+}
+
+.white{
+    color: white;
+}
+
+/*::-webkit-scrollbar {*/
+    /*width: 25px;*/
+/*}*/
+
+.marg{
+    margin-left: 100px;
+}
+

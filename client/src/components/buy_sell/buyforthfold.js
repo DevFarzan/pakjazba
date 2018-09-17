@@ -103,7 +103,7 @@ class Forthfold extends Component{
                                         <div className="ibox-content product-box">
                                             <div className="product-imitation">
                                                 <div className="card2">
-                                                    <img alt='' src={elem.images[0]}/>
+                                                    <img alt='' src={elem.images.length ? elem.images[0] : './images/def_card_img.jpg'}/>
                                                     <span className="card-button">
                                                         <p className="categories-on-card">{elem.category}</p>
                                                         <i className="glyphicon glyphicon-map-marker"/><p className="text">{elem.state +" & "+ elem.city}</p>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './buydetailsecondfold.css'
 import {HttpUtils} from "../../../Services/HttpUtils";
+import {notification} from "antd";
+import moment from 'moment'
 
 class Buydetailsecondfold extends Component{
     constructor(props){
@@ -35,12 +37,15 @@ class Buydetailsecondfold extends Component{
         const { data } = this.props;
         const { name, userEmail, msg } = this.state;
         let obj = {
-            username: name,
-            useremail: userEmail,
-            usermsg: msg,
-            contactemail: data.contactemail
+            name,
+            sender: userEmail,
+            msg,
+            receiver: data.contactemail,
+            written: moment().format('LL')
         }
         let res = await HttpUtils.post('sendmessage', obj)
+        let message1 = 'Your message sent successfully'
+        this.openNotification(message1)
         if(res.code === 200) {
             this.setState({
                 name: '',
@@ -49,6 +54,13 @@ class Buydetailsecondfold extends Component{
             })
         }
     }
+
+    openNotification(msg) {
+        notification.open({
+            message: 'Success ',
+            description: msg,
+        });
+    };
 
     render(){
         const { name, userEmail, msg } = this.state;

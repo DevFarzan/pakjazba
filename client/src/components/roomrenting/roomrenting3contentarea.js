@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Carousel } from 'antd';
+import { Carousel, notification } from 'antd';
 import "./roomrenting2content.css";
+import moment from 'moment'
 import {HttpUtils} from "../../Services/HttpUtils";
 
 class Roomrenting3contentarea extends Component{
@@ -10,6 +11,14 @@ class Roomrenting3contentarea extends Component{
             name: '',
             email: '',
             msg: '',
+            receiver: ''
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        let email = this.props.data.contactemail;
+        if(prevState.receiver !== email) {
+            this.setState({receiver: email})
         }
     }
 
@@ -27,17 +36,28 @@ class Roomrenting3contentarea extends Component{
 
     async submitMsg(e){
         e.preventDefault();
-        const { name, email, msg } = this.state;
+        const { name, email, msg, receiver } = this.state;
         let obj = {
             name,
-            email,
+            sender: email,
             msg,
+            receiver,
+            written: moment().format('LL')
         }
         let res = await HttpUtils.post('sendmessage', obj)
         if(res.code === 200) {
+            let message1 = 'Your message sent successfully'
+            this.openNotification(message1)
             this.setState({name: '', email: '', msg: ''})
         }
     }
+
+    openNotification(msg) {
+        notification.open({
+            message: 'Success ',
+            description: msg,
+        });
+    };
 
     render(){
         const { data } = this.props;
@@ -55,9 +75,9 @@ class Roomrenting3contentarea extends Component{
 
         return(
             <div>
-                <div classNameName="head-bg" >
-                    <div classNameName="col-md-12">
-                        <h2 classNameName="head-space">Luxary Room Available </h2>
+                <div className="head-bg" >
+                    <div className="col-md-12">
+                        <h2 className="head-space">Luxary Room Available </h2>
                     </div>
                 </div>
                 <div className="row" style={{"marginTop": "62px"}}>

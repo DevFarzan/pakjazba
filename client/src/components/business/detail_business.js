@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import App from '../../App';
 import moment from 'moment'
-import { Carousel, Rate } from 'antd';
+import { Carousel, Rate, notification } from 'antd';
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
 
@@ -39,7 +39,10 @@ class DetailBusiness extends Component{
 
     async getReviews(data){
         let res = await HttpUtils.get('getreviews')
-        this.setState({reviews: res ? res.content : []})
+        if(res.code === 200) {
+            let filteredReviews = res.content.filter((elem) => elem.objid === data._id)
+            this.setState({reviews: filteredReviews})
+        }
     }
 
     handleChange(value){
@@ -69,21 +72,37 @@ class DetailBusiness extends Component{
         }
         let res = await HttpUtils.post('reviews', obj)
         reviews.push(obj)
-        this.setState({name1: '', email1: '', msg1: '', star: 0, reviews})
+        if(res.code === 200) {
+            let message1 = 'Your review sent successfully'
+            this.openNotification(message1)
+            this.setState({name1: '', email1: '', msg1: '', star: 0, reviews})
+        }
     }
 
     async submitMessage(){
-        const { name, email, msg } = this.state;
+        const { name, email, msg, data } = this.state;
         let obj = {
             name,
-            email,
+            sender: email,
             msg,
+            receiver: data.businessemail,
+            written: moment().format('LL')
         }
+
         let res = await HttpUtils.post('sendmessage', obj)
         if(res.code === 200) {
+            let message1 = 'Your message sent successfully'
+            this.openNotification(message1)
             this.setState({name: '', email: '', msg: ''})
         }
     }
+
+    openNotification(msg) {
+        notification.open({
+            message: 'Success ',
+            description: msg,
+        });
+    };
 
     onChangeInput(e){
         let target = e.target.id;
@@ -356,36 +375,36 @@ class DetailBusiness extends Component{
                             {/*End 4th tile */}
                             <div className="row"><br/></div>
                             {/*Start 5th tile */}
-                            {!!reviews.length && <div className="row">
-                                {reviews && reviews.map((elem, key) => {
-                                return(
-                                    <div key={key} className="card outset" >
-                                        <div className="card-body space">
-                                            <div className="row">
-                                                <div className="col-md-12 col-sm-12 col-xs-12">
-                                                    <div className="col-md-6 col-sm-12 col-xs-12"><br/>
-                                                        <img src="./images/black.jpg" className="img-circle" alt="" width="100" height="100" />
-                                                        <Rate style={{paddingLeft: '10px'}} allowHalf value={elem.star} />
+                            <div className="card outset" >
+                                {!!reviews.length && <div className="row">
+                                    {reviews && reviews.map((elem, key) => {
+                                        return(
+                                            <div  key={key} className="card-body space">
+                                                <div className="row">
+                                                    <div className="col-md-12 col-sm-12 col-xs-12">
+                                                        <div className="col-md-6 col-sm-12 col-xs-12"><br/>
+                                                            <img src="./images/black.jpg" className="img-circle" alt="" width="100" height="100" />
+                                                            <Rate style={{paddingLeft: '10px'}} allowHalf value={elem.star} />
+                                                        </div>
+                                                        <div className="col-md-2 col-sm-12 col-xs-12">
+                                                        </div>
+                                                        <div className="col-md-4 col-sm-12 col-xs-12">
+                                                            <a name="linkReview"><p className="star-space1">Writen On {elem.written}</p></a>
+                                                        </div>
                                                     </div>
-                                                    <div className="col-md-2 col-sm-12 col-xs-12">
-                                                    </div>
-                                                    <div className="col-md-4 col-sm-12 col-xs-12">
-                                                        <a name="linkReview"><p className="star-space1">Writen On {elem.written}</p></a>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-12 col-sm-12 col-xs-12"><br/>
-                                                    <div className="col-md-2 col-sm-12 col-xs-12">
-                                                    </div>
-                                                    <div className="col-md-10 col-sm-12 col-xs-12">
-                                                        <p>{elem.message}.</p>
+                                                    <div className="col-md-12 col-sm-12 col-xs-12"><br/>
+                                                        <div className="col-md-2 col-sm-12 col-xs-12">
+                                                        </div>
+                                                        <div className="col-md-10 col-sm-12 col-xs-12">
+                                                            <p>{elem.message}.</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                )
-                                })}
-                            </div>}
+                                        )
+                                    })}
+                                </div>}
+                            </div>
                             {/*End 5th tile */}
                             <div className="row"><br/></div>
                             {/*Start scond tile */}

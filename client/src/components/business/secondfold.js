@@ -99,7 +99,7 @@ class Secondfold extends Component{
                                 <Link key={key} to={{pathname: `/detail_business`, state: elem}}>
                                     <div className="col-md-4"  style={{'marginBottom': '30px'}}>
                                         <div className="card">
-                                            <img alt='' src={elem.businessImages[0]}/>
+                                            <img alt='' src={elem.businessImages.length ? elem.businessImages[0] : './images/def_card_img.jpg'}/>
                                             <h4>{elem.businessname}</h4>
                                             <p>{str}</p>
                                             <Link to={{pathname: `/detail_business`, state: elem}} className="blue-button">Read More</Link>

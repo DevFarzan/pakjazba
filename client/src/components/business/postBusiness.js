@@ -19,9 +19,10 @@ import superagent from "superagent";
 import { Redirect } from 'react-router';
 import {HttpUtils} from '../../Services/HttpUtils';
 import AsyncStorage from "@callstack/async-storage/lib/index";
-import moment from 'moment'
+import moment from 'moment';
+import stateCities from "../../lib/countrycitystatejson";
 
-const stateCities= require('countrycitystatejson')
+//const stateCities= require('countrycitystatejson')
 const { TextArea } = Input;
 const FormItem = Form.Item
 const category = [{

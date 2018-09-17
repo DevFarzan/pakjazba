@@ -16,11 +16,12 @@ import sha1 from "sha1";
 import superagent from "superagent";
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
+import stateCities from "../../lib/countrycitystatejson";
 
 const { TextArea } = Input;
 const CheckboxGroup = Checkbox.Group;
 const FormItem = Form.Item
-const stateCities= require('countrycitystatejson')
+//const stateCities= require('countrycitystatejson')
 
 const condition = [{
     value: 'New',

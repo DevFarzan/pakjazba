@@ -5,8 +5,10 @@ import "./roomrenting2content.css";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import { Redirect } from 'react-router';
+import stateCities from "../../lib/countrycitystatejson";
 
-const stateCities= require('countrycitystatejson')
+
+//const stateCities= require('countrycitystatejson')
 
 const category = [{
     value: 'Property to rent',

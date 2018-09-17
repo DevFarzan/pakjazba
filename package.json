@@ -1,6 +1,9 @@
 {
   "name": "pakjazba",
   "version": "1.0.0",
+  "engines": {
+    "node": "8.11.3"
+  },
   "scripts": {
     "client": "cd client && npm run start",
     "server": "nodemon server.js",
@@ -10,7 +13,6 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
-    "countrycitystatejson": "^0.2.9",
     "express": "^4.16.2",
     "ip": "^1.1.5",
     "jsonwebtoken": "^8.3.0",

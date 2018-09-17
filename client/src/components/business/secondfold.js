@@ -90,6 +90,7 @@ class Secondfold extends Component{
                 <div className="index-content" style={{marginBottom: "-225px"}}>
                     <div className="row">
                         {showBusiness && showBusiness.map((elem, key) => {
+                            console.log(elem,'for locationnnnnn');
                             let str = elem.description || '';
                             if(str.length > 100) {
                                 str = str.substring(0, 100);
@@ -100,8 +101,8 @@ class Secondfold extends Component{
                                     <div className="col-md-4"  style={{'marginBottom': '30px'}}>
                                         <div className="card">
                                             <img alt='' src={elem.businessImages[0]}/>
-                                            <h4>{elem.businessname}</h4>
-                                            <p>{str}</p>
+                                            <h4><b>{elem.businessname}</b></h4>
+                                            <p style={{marginTop:"-15px",marginLeft:"11px"}}><span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}></span><span style={{color:"black"}}>{elem.businessaddress}</span></p>
                                             <Link to={{pathname: `/detail_business`, state: elem}} className="blue-button">Read More</Link>
                                         </div>
                                     </div>

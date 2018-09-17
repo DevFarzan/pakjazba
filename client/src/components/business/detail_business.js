@@ -120,11 +120,11 @@ class DetailBusiness extends Component{
                                     <div className="card outset" >
                                         <img className="card-img-top" src={images && images[0]} alt="" style={{"width":"100%"}} />
                                         <div className="card-body space" style={{padding: "17px"}}>
-                                            <h5><span className="glyphicon glyphicon-home" style={{marginRight: "15px"}}></span>{data.businessaddress}</h5>
+                                            <h5><span className="glyphicon glyphicon-home" style={{marginRight: "15px"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{data.businessaddress}</span></h5>
                                             <hr/>
-                                            <h5><span className="glyphicon glyphicon-phone" style={{marginRight: "15px"}}></span>{data.businessnumber}</h5>
+                                            <h5><span className="glyphicon glyphicon-phone" style={{marginRight: "15px"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{data.businessnumber}</span></h5>
                                             <hr/>
-                                            <h5><span className="glyphicon glyphicon-globe" style={{marginRight: "15px"}}></span>{data.businessemail}</h5>
+                                            <h5><span className="glyphicon glyphicon-globe" style={{marginRight: "15px"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{data.businessemail}</span></h5>
                                             <br/>
                                             <h4>Our Social</h4>
                                             <a href={data.socialFaceBook} target="_blank" style={{marginRight: "12px"}}><button type="button" className="btn btn-fb"><i className="fa fa-facebook"></i></button></a>
@@ -228,7 +228,7 @@ class DetailBusiness extends Component{
                                                                     {/*Grid row*/}
                                                                 </form>
                                                                 <div className="text-center text-md-left">
-                                                                    <a className="btn btn-primary" onClick={this.submitMessage.bind(this)}>Send</a>
+                                                                    <a className="btn button_custom" onClick={this.submitMessage.bind(this)} style={{width:"65%"}}>Send</a>
                                                                 </div>
                                                                 <div className="status"></div>
                                                             </div>
@@ -279,15 +279,15 @@ class DetailBusiness extends Component{
                                         <div className="row">
                                             <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>
                                                 <div className="col-md-4 col-sm-3 col-xs-12">
-                                                    <a href="#linkAbout" className="a"><h3> About </h3>
+                                                    <a href="#linkAbout" className="a"><h3><b>About</b></h3>
                                                         <div className="hr1">...</div> </a>
                                                 </div>
                                                 <div className="col-md-4 col-sm-3 col-xs-12">
-                                                    <a href="#linkGallery" className="a"> <h3> Gallery </h3>
+                                                    <a href="#linkGallery" className="a"> <h3 style={{color: "rgba(0, 0, 0, 0.65)"}}><b>Gallery</b></h3>
                                                         <div className="hr1">...</div> </a>
                                                 </div>
                                                 <div className="col-md-4 col-sm-3 col-xs-12">
-                                                    <a href="#linkReview" className="a"><h3> Reviews </h3>
+                                                    <a href="#linkReview" className="a"><h3><b>Reviews</b></h3>
                                                         <div className="hr1">...</div></a>
                                                 </div>
                                             </div>
@@ -303,7 +303,7 @@ class DetailBusiness extends Component{
                                     <div className="card-body space">
                                         <div className="row">
                                             <div className="col-md-12 col-sm-12 col-xs-12">
-                                                <h3><b><a name="linkAbout">About</a></b></h3>
+                                                <h3 style={{color: "rgba(0, 0, 0, 0.65)"}}><b><a name="linkAbout">About</a></b></h3>
                                                 <hr/>
                                             </div>
                                         </div>
@@ -442,7 +442,7 @@ class DetailBusiness extends Component{
                                                                 {/*Grid row*/}
                                                             </form>
                                                             <div className="text-center text-md-left">
-                                                                <a className="btn btn-primary" onClick={this.submitReview.bind(this)}>Send</a>
+                                                                <a className="btn button_custom" onClick={this.submitReview.bind(this)} style={{width: "35%"}}>Send</a>
                                                             </div>
                                                             <div className="status"></div>
                                                         </div>

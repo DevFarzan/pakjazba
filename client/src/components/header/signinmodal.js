@@ -187,9 +187,9 @@ class Signin extends Component{
         };
 
         return(
-            <div className="paragraph">
+            <div className="">
                 <span>
-                    {this.state.dropdown ? <span><Dropdowns modalContent={this.props.modalContent}/></span> : <span onClick={this.showModal}>Sign Up</span>}
+                    {this.state.dropdown ? <span style={{color: "white"}}><Dropdowns modalContent={this.props.modalContent}/></span> : <span onClick={this.showModal}>Sign Up</span>}
                     <Modal
                         visible={visible}
                         title="Title"

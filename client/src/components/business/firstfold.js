@@ -6,33 +6,33 @@ class Firstfold extends Component{
     render(){
         return(
             <div className="container">
-                <h1 className="text-align">  What Do You Need To find? </h1>
+                <h1 className="text-align" style={{fontWeight:"bold"}}>  What Do You Need To find? </h1>
                 <div className="index-content">
                     <a href="blog-ici.html">
                         <div className="col-lg-3">
-                            <div className="card">
-                                <img alt='' src="http://cevirdikce.com/proje/hasem-2/images/finance-2.jpg"/>
+                            <div className="">
+                                <img alt='' src="../images/icons/cafi.png" style={{width: "142%"}} />
                             </div>
                         </div>
                     </a>
                     <a href="blog-ici.html">
                         <div className="col-lg-3">
-                            <div className="card">
-                                <img alt='' src="http://cevirdikce.com/proje/hasem-2/images/finance-2.jpg"/>
+                            <div className="">
+                                <img alt='' src="../images/icons/business.png" style={{width: "142%"}} />
                             </div>
                         </div>
                     </a>
                     <a href="blog-ici.html">
                         <div className="col-lg-3">
-                            <div className="card">
-                                <img alt='' src="http://cevirdikce.com/proje/hasem-2/images/finance-3.jpg"/>
+                            <div className="">
+                                <img alt='' src="../images/icons/hospital.png" style={{width: "142%"}} />
                             </div>
                         </div>
                     </a>
                     <a href="blog-ici.html">
                         <div className="col-lg-3">
-                            <div className="card">
-                                <img alt='' src="http://cevirdikce.com/proje/hasem-2/images/finance-1.jpg"/>
+                            <div className="">
+                                <img alt='' src="../images/icons/market.png" style={{width: "142%"}} />
                             </div>
                         </div>
                     </a>
@@ -40,29 +40,29 @@ class Firstfold extends Component{
                 <div className="index-content">
                     <a href="blog-ici.html">
                         <div className="col-lg-3">
-                            <div className="card">
-                                <img alt='' src="http://cevirdikce.com/proje/hasem-2/images/finance-3.jpg"/>
+                            <div className="">
+                                <img alt='' src="../images/icons/restuarant.png" style={{width: "142%"}} />
                             </div>
                         </div>
                     </a>
                     <a href="blog-ici.html">
                         <div className="col-lg-3">
-                            <div className="card">
-                                <img alt='' src="http://cevirdikce.com/proje/hasem-2/images/finance-1.jpg"/>
+                            <div className="">
+                                <img alt='' src="../images/icons/park.png" style={{width: "142%"}} />
                             </div>
                         </div>
                     </a>
                     <a href="blog-ici.html">
                         <div className="col-lg-3">
-                            <div className="card">
-                                <img alt='' src="http://cevirdikce.com/proje/hasem-2/images/finance-2.jpg"/>
+                            <div className="">
+                                <img alt='' src="../images/icons/hatel.png " style={{width: "142%"}} />
                             </div>
                         </div>
                     </a>
                     <a href="blog-ici.html">
                         <div className="col-lg-3">
-                            <div className="card">
-                                <img alt='' src="http://cevirdikce.com/proje/hasem-2/images/finance-2.jpg"/>
+                            <div className="">
+                                <img alt='' src="../images/icons/animal.png"  style={{width: "142%"}} />
                             </div>
                         </div>
                     </a>

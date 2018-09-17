@@ -28,13 +28,13 @@ class Burgermenu extends Component{
                           <div className="row">
                               <div className="col-md-7">
                                   <div style={{ padding: '22px 16px 10px',"float": "right"}}>
-                                      <Button type="primary" name='room' ghost>
+                                      <Button type="button_globalclass" name='room' ghost className="button_globalclass">
                                           <Link rel="noopener noreferrer" to={`/market_roommates`}>Room Renting</Link>
                                       </Button>
-                                      <Button type="primary" name='bussiness' ghost style={{marginRight: "10px", marginLeft: "10px"}}>
+                                      <Button type="button_globalclass" name='bussiness' ghost style={{marginRight: "10px", marginLeft: "10px"}} className="button_globalclass">
                                           <Link rel="noopener noreferrer" to={`/market_business`}>Bussiness Listing</Link>
                                       </Button>
-                                      <Button type="primary" name='buySell' ghost>
+                                      <Button type="button_globalclass" name='buySell' ghost className="button_globalclass">
                                           <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
                                       </Button>
                                   </div>

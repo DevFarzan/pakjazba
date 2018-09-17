@@ -36,7 +36,7 @@ class App extends Component {
     render() {
         return (
             <span>
-                <div className ="" style={{"backgroundImage":"url('https://images.alphacoders.com/633/633643.jpg')","height": "407px",marginTop: "-19px"}}>
+                <div className ="" style={{"backgroundImage":"url('http://res.cloudinary.com/dxk0bmtei/image/upload/v1537167325/bg-image-for-farzan-bhai_xjp7q7.png')","height": "407px",marginTop: "-65px",marginLeft:"-66px"}}>
                     <div className="background-image">
                         <Burgermenu/>
                         <Slider/>

@@ -102,7 +102,7 @@ class Signup extends Component{
 
         return(
             <div className="paragraph">
-                <span onClick={this.showModal} >Sign In</span>
+                <span onClick={this.showModal} style={{color: "white"}}>Sign In</span>
                 {/*===================modal code start==========================*/}
                 <Modal
                     title="LOG IN"

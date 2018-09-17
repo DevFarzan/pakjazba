@@ -396,3 +396,13 @@ Version:3.3.3  ▾    / assets / stylesheets / bootstrap / _navbar.scss
     }
   }
 }
+
+
+.button_globalclass{
+  color:#f2fff;
+  border-color:#e2eaea;
+}
+.button_globalclass > a:hover{
+color:#008080;
+border-color:#F7F7F7;
+}

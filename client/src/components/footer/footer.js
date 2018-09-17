@@ -38,7 +38,7 @@ class Footer extends Component{
                         </div>
                     </div>
                 </div>
-                <div className="second-bar">
+                {/*<div className="second-bar">
                     <div className="container">
                         <h2 className="logo"><a href=""> LOGO </a></h2>
                         <div className="social-icons">
@@ -47,7 +47,7 @@ class Footer extends Component{
                             <a href="" className="google"><i className="fa fa-google-plus"></i></a>
                         </div>
                     </div>
-                </div>
+                </div>*/}
             </footer>
         )
     }

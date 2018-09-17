@@ -976,13 +976,15 @@ else if(postroomrent.objectId != '' || postroomrent.objectId != undefined || pos
 app.post('/api/sendmessage',function(req,res){
 var getuserfields = req.body;
       var username = getuserfields.name;
-      var email = getuserfields.email;
-      var message = getuserfields.message;
+      var receiver = getuserfields.receiver;
+      var message = getuserfields.msg;
+      var sender = getuserfields.sender;
+      var written = getuserfields.written;
 
       mailOptions={
-    to : getuserfields.email,
+    to : getuserfields.receiver,
     subject : " Pakjazba User want to talk to you",
-    html : "<html><head><style>table {font-family: arial, sans-serif;border-collapse: collapse;width: 100%;}td, th {border: 1px solid #dddddd;text-align: left;padding: 8px;}tr:nth-child(even) {background-color: #dddddd;}</style></head><body><h2>User Details</h2><table> <tr><th>Name</th><th>Email</th><th>Message</th></tr><tr><td>" + username +" </td><td>"+ email +"</td><td>"+ message +"</td></tr></table></body></html>"
+    html : "<html><head><style>table {font-family: arial, sans-serif;border-collapse: collapse;width: 100%;}td, th {border: 1px solid #dddddd;text-align: left;padding: 8px;}tr:nth-child(even) {background-color: #dddddd;}</style></head><body><h2>User Details</h2><table> <tr><th>Name</th><th>Email</th><th>Message</th></tr><tr><td>" + username +" </td><td>"+ sender +"</td><td>"+ message +"</td></tr></table></body></html>"
   }
   //console.log(mailOptions);
   smtpTransport.sendMail(mailOptions, function(error, response){
@@ -997,6 +999,7 @@ var getuserfields = req.body;
     })
        }
      })
+  
 })
 
 /*===================post roommates API end =================================================================*/

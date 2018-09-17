@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-// import App from "../../App";
+ import App from "../../App";
 import axios from "axios/index";
 import { Tabs, Icon } from 'antd';
 import Burgermenu from '../header/burgermenu';
@@ -35,13 +35,10 @@ class Home1 extends Component{
         const { news, sports } = this.state;
 
         return(
-            <div>
-                <div className ="" style={{"backgroundImage":"url('https://images.alphacoders.com/633/633643.jpg')","height": "407px",marginTop: "-19px"}}>
-                    <div className="background-image">
-                        <Burgermenu/>
-                        <Slider/>
-                    </div>
-                </div>
+            <div> 
+                
+                    <App/>
+                
                 <div className="row" style={{marginTop: "125px"}}>
                     <div className="col-md-10">
                         <div className="col-md-4 col-sm-4">

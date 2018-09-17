@@ -34,7 +34,6 @@ export default class Facebook extends Component {
                     scope="email"
 				    cssClass="loginBtn loginBtn--facebook"
 				    textButton="Sign Up with Facebook"/>)
-				
 			}
 			return(
 				<div>

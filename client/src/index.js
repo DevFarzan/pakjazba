@@ -7,7 +7,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 // import reducers from './reducers';
 
 //component
-import App from './App';
+import Home from './components/home/home1';
 import Signin from './components/signin_seperate/signin';
 import Postbusiness from './components/business/postBusiness';
 import Postroommates from './components/roomrenting/postRoommates';
@@ -51,7 +51,7 @@ ReactDOM.render(
 		<Provider store={createStoreWithMiddleware(reducer)}>
 			<BrowserRouter>
 				<div>
-					<Route exact path="/" component={App}></Route>
+					<Route exact path="/" component={Home}></Route>
 					<Route path="/sigin" component={Signin}></Route>
 					<PrivateRoute path="/postad_business" component={Postbusiness}></PrivateRoute>
 					<PrivateRoute path="/postad_Roommates" component={Postroommates}></PrivateRoute>

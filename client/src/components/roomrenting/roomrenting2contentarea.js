@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import { Redirect } from 'react-router';
 import stateCities from "../../lib/countrycitystatejson";
 
+
 //const stateCities= require('countrycitystatejson')
 
 const category = [{

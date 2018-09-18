@@ -15,6 +15,7 @@ class MarketClassified extends Component{
                 <BuyThirdFold />
                 <Footer />
             </div>
+            
         )
     }
 }

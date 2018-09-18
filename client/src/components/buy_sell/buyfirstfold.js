@@ -22,7 +22,7 @@ class Firstfold extends Component{
                         <div className="media">
                             <div className="media-left">
                                 <a onClick={this.category}>
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Furniture"/>
+                                    <img className="media-object" src="../images/icons for buy sell/furniture.png" alt="Furniture" style={{width:"100px"}} />
                                 </a>
                             </div>
                             <div className="media-body">
@@ -36,7 +36,7 @@ class Firstfold extends Component{
                         <div className="media">
                             <div className="media-left">
                                 <a onClick={this.category}>
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Pets"/>
+                                    <img className="media-object" src="../images/icons for buy sell/pets.png" alt="Pets" style={{width:"100px"}}/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -50,7 +50,7 @@ class Firstfold extends Component{
                         <div className="media">
                             <div className="media-left">
                                 <a onClick={this.category}>
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Real Estate"/>
+                                    <img className="media-object" src="../images/icons for buy sell/reak-estate.png" alt="Real Estate" style={{width:"100px"}}/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -64,7 +64,7 @@ class Firstfold extends Component{
                         <div className="media">
                             <div className="media-left">
                                 <a onClick={this.category}>
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Jobs"/>
+                                    <img className="media-object" src="../images/icons for buy sell/reak-estate.png" alt="Jobs" style={{width:"100px"}}/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -80,7 +80,7 @@ class Firstfold extends Component{
                         <div className="media">
                             <div className="media-left">
                                 <a onClick={this.category}>
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Cars"/>
+                                    <img className="media-object" src="../images/icons for buy sell/cars.png" alt="Cars" style={{width:"100px"}}/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -94,7 +94,7 @@ class Firstfold extends Component{
                         <div className="media">
                             <div className="media-left">
                                 <a onClick={this.category}>
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Mobile"/>
+                                    <img className="media-object" src="../images/icons for buy sell/mobile.png" alt="Mobile" style={{width:"100px"}}/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -108,7 +108,7 @@ class Firstfold extends Component{
                         <div className="media">
                             <div className="media-left">
                                 <a onClick={this.category}>
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Cameras"/>
+                                    <img className="media-object" src="../images/icons for buy sell/cameras.png" alt="Cameras" style={{width:"100px"}}/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -122,7 +122,7 @@ class Firstfold extends Component{
                         <div className="media">
                             <div className="media-left">
                                 <a onClick={this.category}>
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Sports"/>
+                                    <img className="media-object" src="../images/icons for buy sell/sports.png" alt="Sports" style={{width:"100px"}}/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -138,7 +138,7 @@ class Firstfold extends Component{
                         <div className="media">
                             <div className="media-left">
                                 <a onClick={this.category}>
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Electro"/>
+                                    <img className="media-object" src="../images/icons for buy sell/electro.png" alt="Electro" style={{width:"100px"}}/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -152,7 +152,7 @@ class Firstfold extends Component{
                         <div className="media">
                             <div className="media-left">
                                 <a onClick={this.category}>
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Clothing"/>
+                                    <img className="media-object" src="../images/icons for buy sell/cloting.png" alt="Clothing" style={{width:"100px"}}/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -166,7 +166,7 @@ class Firstfold extends Component{
                         <div className="media">
                             <div className="media-left">
                                 <a onClick={this.category}>
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Books"/>
+                                    <img className="media-object" src="../images/icons for buy sell/books.png" alt="Books" style={{width:"100px"}}/>
                                 </a>
                             </div>
                             <div className="media-body">
@@ -180,7 +180,7 @@ class Firstfold extends Component{
                         <div className="media">
                             <div className="media-left">
                                 <a onClick={this.category}>
-                                    <img className="media-object" src="./images/the-right-to-e-read-your-library_110x100.png" alt="Music"/>
+                                    <img className="media-object" src="../images/icons for buy sell/music.png" alt="Music" style={{width:"100px"}}/>
                                 </a>
                             </div>
                             <div className="media-body">

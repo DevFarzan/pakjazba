@@ -37,10 +37,12 @@ class Signin extends Component{
         const { data } = this.props;
         if(prevProps.data !== data){
             if(data && data.email === undefined){
+                console.log('didUpdateeeeeeeeeeeeee')
                 this.setState({visible: false, secModal: true})
             }
             else {
                 if(data) {
+                    console.log('else didUpdateeeeeeeee')
                     let obj = {
                         nickname: data.name,
                         email: data.email,
@@ -94,6 +96,7 @@ class Signin extends Component{
         AsyncStorage.getItem('user')
             .then((obj) => {
                 let userObj = JSON.parse(obj)
+                console.log(userObj, 'userObjjjjjjjjjjjjjj')
                 if(!!userObj){
                     this.setState({
                         dropdown: true,
@@ -143,7 +146,8 @@ class Signin extends Component{
                     this.setState({
                         loader:false,
                         visible:false,
-                        secModal: false
+                        secModal: false,
+                        dropdown: true
                     })
                 })
         }//end if
@@ -213,7 +217,7 @@ class Signin extends Component{
             password: data.id,
             notrobot: true
         }
-        // console.log(obj, 'valuessssssssss')
+        console.log(obj, 'valuessssssssss')
         this.setState({email2: '', secModal: false, dropdown: true})
         this.funcSignUp(obj)
     }

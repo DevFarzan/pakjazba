@@ -17,12 +17,12 @@ class Facebook extends Component {
 			console.log(response);
 			// let data = {
 			// 	accessToken: 'sdjhfalskjfhajhflakjflkahfja',
-			// 	// email: 'hello23@brother.com',
-			// 	expiresIn: '7500',
-			// 	id: '9182736450',
-			// 	name: 'brother2',
-			// 	picture: 'skdjfkals',
-			// 	userId: '1029384756'
+			// 	email: 'hello2330@brother.com',
+				// expiresIn: '7500',
+				// id: '9182736450',
+				// name: 'brother2',
+				// picture: 'skdjfkals',
+				// userId: '1029384756'
 			// }
 			dispatch({type: 'FACEBOOKSIGNUP', response})
 		}

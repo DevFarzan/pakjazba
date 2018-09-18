@@ -30,6 +30,7 @@ require('./models/roommatesSchema');
 require('./models/categoryclassified');
 require('./models/reviews');
 require('./models/sendmessage');
+require('./models/facebookLoginSchema');
 
 require('./config/passport');
 
@@ -42,6 +43,7 @@ var roomrentsdata = mongoose.model('roomdata');
 var categoryclassified = mongoose.model('categoryclassified');
 var reviewdata = mongoose.model('reviewschema');
 var sendMessage = mongoose.model('sendmessage');
+var facebookLogin = mongoose.model('facebookdatabase');
 
 app.use(passport.initialize());
 
@@ -119,7 +121,18 @@ var rand,mailOptions,host,link;
 /*------------------SMTP Over-----------------------------*/
 
 /*------------------Routing Started ------------------------*/
+/*==================facebooklogin data get start==================*/
 
+app.get('/api/facebookdata',function(req,res){
+  facebookLogin.find(function(err,data){
+    res.send({
+      err:err,
+      data:data
+    })
+  })
+})
+
+/*==================facebooklogin data get end==================*/
 /*=================================user register start==================================*/
 app.get('/api/userregister',(req,res) =>{
 
@@ -142,6 +155,15 @@ app.get('/api/userregister',(req,res) =>{
     status:false,
     blocked:false
   });
+  var facebookLogindata = new facebookLogin({
+    email:email,
+    name:nickname,
+    password:password
+  })
+  facebookLogindata.save(function(err,data){
+    console.log(data);
+  })
+
 rand=Math.floor((Math.random() * 100) + 54);
   host=req.get('host');
   link="http://"+req.get('host')+"/verify?id="+rand;

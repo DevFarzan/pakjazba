@@ -118,8 +118,7 @@ class Forthfold extends Component{
                                             </div>
                                             <div className="product-desc">
                                                 <span className="product-price">{!elem.hideprice ? elem.price : 'Hide'}</span>
-                                                
-                                                <p className="product-name">{elem.description}</p>
+                                                <p className="product-name">{des}</p>
                                                 <div className="small m-t-xs">{!elem.hideaddress ? des : ''}</div>
                                                 <div className="m-t text-righ" style={{marginTop:"58px",fontSize: "18px",textDecoration:"underline"}}>
                                                     <Link to={{pathname: `/detail_buySell`, state: elem}} className="" style={{color:"red"}}>Detail</Link>

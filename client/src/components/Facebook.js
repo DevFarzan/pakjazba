@@ -15,16 +15,16 @@ class Facebook extends Component {
 		responseFacebook = response =>{
 			const { dispatch } = this.props;
 			console.log(response);
-			// let data = response
-			let data = {
-				accessToken: 'sdjhfalskjfhajhflakjflkahfja',
-				email: 'hello30@brother.com',
-				expiresIn: '7500',
-				id: '9182736450',
-				name: 'brother2',
-				picture: 'skdjfkals',
-				userId: '1029384756'
-			}
+			let data = response
+			// let data = {
+			// 	accessToken: 'sdjhfalskjfhajhflakjflkahfja',
+			// 	email: 'hello30@brother.com',
+			// 	expiresIn: '7500',
+			// 	id: '9182736450',
+			// 	name: 'brother2',
+			// 	picture: 'skdjfkals',
+			// 	userId: '1029384756'
+			// }
 			dispatch({type: 'FACEBOOKSIGNUP', data})
 		}
 

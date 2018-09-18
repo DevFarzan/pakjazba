@@ -30,6 +30,7 @@ require('./models/roommatesSchema');
 require('./models/categoryclassified');
 require('./models/reviews');
 require('./models/sendmessage');
+require('./models/facebookLoginSchema');
 
 require('./config/passport');
 
@@ -42,6 +43,7 @@ var roomrentsdata = mongoose.model('roomdata');
 var categoryclassified = mongoose.model('categoryclassified');
 var reviewdata = mongoose.model('reviewschema');
 var sendMessage = mongoose.model('sendmessage');
+var facebookLogin = mongoose.model('facebookdatabase');
 
 app.use(passport.initialize());
 
@@ -142,6 +144,15 @@ app.get('/api/userregister',(req,res) =>{
     status:false,
     blocked:false
   });
+  var facebookLogindata = new facebookLogin({
+    email:email,
+    name:nickname,
+    password:password
+  })
+  facebookLogindata.save(function(err,data){
+    console.log(data);
+  })
+
 rand=Math.floor((Math.random() * 100) + 54);
   host=req.get('host');
   link="http://"+req.get('host')+"/verify?id="+rand;

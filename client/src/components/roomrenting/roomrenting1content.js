@@ -54,7 +54,7 @@ class Roomrenting1content extends Component{
 
         return(
             <section id="about">
-                <div className="secondfold">
+                <div className="">
                     <div className="row">
                         {showroomrents && showroomrents.map((elem, key) => {
                             let str = elem.propertylocation || '';
@@ -75,23 +75,23 @@ class Roomrenting1content extends Component{
                                                 <div className="product-imitation">
                                                     <div className="card2">
                                                         <img alt='' src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'}/>
-                                                        <span className="card-button">
-                                                            <p className="categories-on-card">{elem.category}</p>
-                                                            <i className="glyphicon glyphicon-map-marker"/><p className="text">{elem.state +" & "+ elem.city}</p>
+                                                        <span className="card-button" style={{width: "200px"}}>
+                                                            <p className="categories-on-card" style={{backgroundColor:"#008080",textAlign: "center",width: "190px",marginBottom: "6px"}}>{elem.category}</p>
+                                                            <i className="glyphicon glyphicon-map-marker" style={{color: "#008080",marginLeft: "-2px"}} /><p className="text" style={{color: "white",marginLeft: "14px"}}>{elem.state +" & "+ elem.city}</p>
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div className="cust-margin">
-                                                    <i className="glyphicon glyphicon-home"/>
-                                                    <p className="text">{str}</p>
+                                                <div className="cust-margin" style={{marginTop: "36px"}}>
+                                                    <i className="glyphicon glyphicon-calendar" style={{color:"#008080"}} />
+                                                <span className="text" style={{color: "#000000c7"}}>{elem.Date}</span>
+                                                <i className="glyphicon glyphicon-user" style={{color:"#008080",marginLeft: "71px"}} />
+                                                <span className="text" style={{color: "#000000c7"}}>{elem.contactname}</span>
                                                 </div>
                                                 <div className="product-desc">
                                                     <span className="product-price">{elem.rent}</span>
-                                                    <small className="text-muted">Category</small>
-                                                    <a className="product-name">{elem.category}</a>
-                                                    <div className="small m-t-xs">{des}</div>
-                                                    <div className="m-t text-righ">
-                                                        <Link to={{pathname: `/detail_roomRent`, state: elem}} className="btn btn-xs btn-outline btn-primary">Info <i className="fa fa-long-arrow-right"></i> </Link>
+                                                    <div className="product-name" style={{"fontSize": "14px"}}>{des}</div>
+                                                    <div className="m-t text-righ" style={{marginTop:"58px",fontSize: "18px",textDecoration:"underline"}}>
+                                                        <Link to={{pathname: `/detail_roomRent`, state: elem}} className="" style={{color:"red"}}>Detail</Link>
                                                     </div>
                                                 </div>
                                             </div>

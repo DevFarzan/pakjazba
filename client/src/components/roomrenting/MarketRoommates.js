@@ -35,7 +35,7 @@ class MarketRoommates extends Component{
         return(
             <div>
                 <App/>
-                <div className="container" style={{width:"87%"}}>
+                <div className="container" style={{width:"94%"}}>
                 <Roomrenting1content/>
                 </div>
                 <Footer />

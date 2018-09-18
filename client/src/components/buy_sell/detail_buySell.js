@@ -28,8 +28,10 @@ class DetailBuySell extends Component{
 
     async getProfile(data){
         let _id = data.profileid ? data.profileid : '';
-        let req = await HttpUtils.get('getprofile?profileId=' + _id)
-        let allData = {...data, ...{userImage: req.content ? req.content.imageurl : ''}}
+        console.log(data,'dataaaaaaaaaaaaaaaaaaaaaaaa');
+        let req = await HttpUtils.get('getprofile?profileId=' + _id);
+        console.log(req,'reqqqqqqqqqqqqqqqqqqqqqq');
+        let allData = {...data, ...{userImage: req ? req.content.imageurl : ''}}
         this.setState({
             isData : true,
             data : allData

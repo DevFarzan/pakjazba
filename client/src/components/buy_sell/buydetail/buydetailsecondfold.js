@@ -114,7 +114,7 @@ class Buydetailsecondfold extends Component{
                                     <div className="form-group">
                                         <textarea type="text" className="form-control" id='msg' value={msg} onChange={this.onChangeValue.bind(this)}></textarea>
                                     </div>
-                                    <button type="submit" className="btn btn-default" onClick={this.submitData.bind(this)}>Submit</button>
+                                    <button type="submit" className="btn" onClick={this.submitData.bind(this)} style={{backgroundColor: "#008080",color: "white"}}>Submit</button>
                                 </form>
                             </div>
                         </div>

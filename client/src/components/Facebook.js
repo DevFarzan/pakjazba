@@ -15,6 +15,7 @@ class Facebook extends Component {
 		responseFacebook = response =>{
 			const { dispatch } = this.props;
 			console.log(response);
+			let data = response
 			// let data = {
 			// 	accessToken: 'sdjhfalskjfhajhflakjflkahfja',
 			// 	email: 'hello2330@brother.com',
@@ -24,7 +25,7 @@ class Facebook extends Component {
 				// picture: 'skdjfkals',
 				// userId: '1029384756'
 			// }
-			dispatch({type: 'FACEBOOKSIGNUP', response})
+			dispatch({type: 'FACEBOOKSIGNUP', data})
 		}
 
 		componentClicked = () =>{

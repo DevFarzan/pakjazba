@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
+import {connect} from "react-redux";
 
-export default class Facebook extends Component {
+class Facebook extends Component {
 		state={
 			isloggedIn:false,
 			userId:'',
@@ -12,7 +13,18 @@ export default class Facebook extends Component {
 		}
 
 		responseFacebook = response =>{
+			const { dispatch } = this.props;
 			console.log(response);
+			// let data = {
+			// 	accessToken: 'sdjhfalskjfhajhflakjflkahfja',
+			// 	// email: 'hello23@brother.com',
+			// 	expiresIn: '7500',
+			// 	id: '9182736450',
+			// 	name: 'brother2',
+			// 	picture: 'skdjfkals',
+			// 	userId: '1029384756'
+			// }
+			dispatch({type: 'FACEBOOKSIGNUP', response})
 		}
 
 		componentClicked = () =>{
@@ -41,5 +53,6 @@ export default class Facebook extends Component {
 				</div>
 				)
 		}
-
 }
+
+export default connect()(Facebook);

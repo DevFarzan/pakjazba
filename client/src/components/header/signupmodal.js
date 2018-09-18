@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox,Modal } from 'antd';
 import Signin from './signinmodal';
 import Forgotpassword from '../forgotpassword';
+import Facebook from '../Facebook';
 import AsyncStorage from '@callstack/async-storage';
 import {HttpUtils} from "../../Services/HttpUtils";
+import {connect} from "react-redux";
 
 const FormItem = Form.Item;
 
@@ -15,12 +17,50 @@ class Signup extends Component{
             showloader: false,
             email: '',
             user: '',
-            msg: ''
+            msg: '',
+            route: 'signIn',
+            obj: []
         }
     }
 
     componentDidMount(){
         this.handleLocalStorage();
+        this.getSignData()
+    }
+
+    async getSignData(){
+        let res = await HttpUtils.get('facebookdata')
+        if(res){
+            this.setState({obj: res})
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        const { data } = this.props;
+        const { route, obj } = this.state;
+        // console.log(prevProps.data, '11111111111')
+        // console.log(data, '11111111111')
+        if(prevProps.data !== data){
+            if(data && data.route === route){
+                console.log('kkkkkkkkkkkkkkkkkkk')
+            }
+        //     if(data && data.email === undefined){
+        //         console.log('didUpdateeeeeeeeeeeeee')
+        //         this.setState({visible: false, secModal: true})
+        //     }
+        //     else {
+        //         if(data) {
+        //             console.log('else didUpdateeeeeeeee')
+        //             let obj = {
+        //                 nickname: data.name,
+        //                 email: data.email,
+        //                 password: data.id,
+        //                 notrobot: true
+        //             }
+        //             this.funcSignUp(obj)
+        //         }
+        //     }
+        }
     }
 
     handleLocalStorage = () => {
@@ -119,7 +159,7 @@ class Signup extends Component{
                     <div className="row">
                         <div className="col-md-5">
                             <button className="loginBtn loginBtn--facebook">
-                                Login with Facebook
+                                <Facebook inRup={'signIn'}/>
                             </button>
                         </div>{/*col-md-4*/}
                         <div className="col-md-1"></div>{/*col-md-4*/}
@@ -178,5 +218,11 @@ class Signup extends Component{
     }
 }
 
+const mapStateToProps = (state) => {
+    return({
+        data: state.data
+    })
+}
+
 const WrappedNormalLoginForm = Form.create()(Signup);
-export default WrappedNormalLoginForm;
+export default connect(mapStateToProps)(WrappedNormalLoginForm);

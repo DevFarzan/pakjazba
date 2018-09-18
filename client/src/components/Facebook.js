@@ -13,18 +13,20 @@ class Facebook extends Component {
 		}
 
 		responseFacebook = response =>{
-			const { dispatch } = this.props;
+			const { dispatch, inRup } = this.props;
 			console.log(response);
-			let data = response
-			// let data = {
-			// 	accessToken: 'sdjhfalskjfhajhflakjflkahfja',
+			console.log(inRup);
+			// let data = response
+			let data = {
+				accessToken: 'sdjhfalskjfhajhflakjflkahfja',
 			// 	email: 'hello30@brother.com',
-			// 	expiresIn: '7500',
-			// 	id: '9182736450',
-			// 	name: 'brother2',
-			// 	picture: 'skdjfkals',
-			// 	userId: '1029384756'
-			// }
+				expiresIn: '7500',
+				id: '9182736450',
+				name: 'brother2',
+				picture: 'skdjfkals',
+				userId: '1029384756'
+			}
+			data = {...data, ...{route: inRup}}
 			dispatch({type: 'FACEBOOKSIGNUP', data})
 		}
 
@@ -46,7 +48,8 @@ class Facebook extends Component {
 				    callback={this.responseFacebook}
                     scope="email"
 				    cssClass="loginBtn loginBtn--facebook"
-				    textButton="Sign Up with Facebook"/>)
+				    textButton="Sign Up with Facebook"
+				/>)
 			}
 			return(
 				<div data={data}>

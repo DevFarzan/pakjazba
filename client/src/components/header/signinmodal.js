@@ -24,7 +24,8 @@ class Signin extends Component{
             dropdown: false,
             allUser: [],
             msg: '',
-            email2: ''
+            email2: '',
+            route: 'signUp'
         }
     }
 
@@ -35,21 +36,24 @@ class Signin extends Component{
 
     componentDidUpdate(prevProps, prevState){
         const { data } = this.props;
+        const { route } = this.state;
         if(prevProps.data !== data){
-            if(data && data.email === undefined){
-                console.log('didUpdateeeeeeeeeeeeee')
-                this.setState({visible: false, secModal: true})
-            }
-            else {
-                if(data) {
-                    console.log('else didUpdateeeeeeeee')
-                    let obj = {
-                        nickname: data.name,
-                        email: data.email,
-                        password: data.id,
-                        notrobot: true
+            if(data && data.route === route) {
+                if (data && data.email === undefined) {
+                    console.log('didUpdateeeeeeeeeeeeee')
+                    this.setState({visible: false, secModal: true})
+                }
+                else {
+                    if (data) {
+                        console.log('else didUpdateeeeeeeee')
+                        let obj = {
+                            nickname: data.name,
+                            email: data.email,
+                            password: data.id,
+                            notrobot: true
+                        }
+                        this.funcSignUp(obj)
                     }
-                    this.funcSignUp(obj)
                 }
             }
         }
@@ -255,7 +259,7 @@ class Signin extends Component{
                         </div>}
                         <div className="row">
                             <div className="col-md-5">
-                                <Facebook/>
+                                <Facebook inRup={'signUp'}/>
                             </div>{/*col-md-4*/}
                             <div className="col-md-1"></div>{/*col-md-4*/}
                             <div className="col-md-5">

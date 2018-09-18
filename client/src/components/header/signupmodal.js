@@ -30,8 +30,9 @@ class Signup extends Component{
 
     async getSignData(){
         let res = await HttpUtils.get('facebookdata')
+        console.log(res.data, 'pppppppppppppp')
         if(res){
-            this.setState({obj: res})
+            this.setState({obj: res.data})
         }
     }
 
@@ -42,7 +43,12 @@ class Signup extends Component{
         // console.log(data, '11111111111')
         if(prevProps.data !== data){
             if(data && data.route === route){
-                console.log('kkkkkkkkkkkkkkkkkkk')
+                console.log(obj, 'kkkkkkkkkkkkkkkkkk')
+                obj.map((elem) => {
+                    if(elem.password === data.id){
+                        this.funcLogin({userName: elem.email, password: elem.password})
+                    }
+                })
             }
         //     if(data && data.email === undefined){
         //         console.log('didUpdateeeeeeeeeeeeee')

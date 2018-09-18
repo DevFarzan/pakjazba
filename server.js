@@ -218,13 +218,20 @@ rand=Math.floor((Math.random() * 100) + 54);
   //res.send({message:user_info,code:200});
       //res.json({token: jwt.sign({ email: user_info.Useremail, _id: user_info._id}, 'RESTFULAPIs')})
       user_info.save(function(err,data) {
-         res.send({
-        _id:user_info._id,
-        name:user_info.username,
-        email:user_info.email,
-        token:jwt.sign({ email: user_info.email, _id: user_info._id}, 'RESTFULAPIs'),
-        code:200
-      })
+          if(err){
+              res.send({
+                  err:err
+              })
+          }
+          else {
+              res.send({
+                  _id: user_info._id,
+                  name: user_info.username,
+                  email: user_info.email,
+                  token: jwt.sign({email: user_info.email, _id: user_info._id}, 'RESTFULAPIs'),
+                  code: 200
+              })
+          }
        })
       
   

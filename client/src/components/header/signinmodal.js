@@ -5,6 +5,7 @@ import Facebook from '../Facebook';
 import Google from '../Google';
 import AsyncStorage from "@callstack/async-storage";
 import {HttpUtils} from "../../Services/HttpUtils";
+import {connect} from "react-redux";
 
 const FormItem = Form.Item;
 const ip = require('ip');
@@ -15,19 +16,43 @@ class Signin extends Component{
         this.state = {
             loading: false,
             visible: false,
+            secModal: false,
             passwordValidator: false,
             username: null,
             confirmDirty: false,
             loader: false,
             dropdown: false,
             allUser: [],
-            msg: ''
+            msg: '',
+            email2: ''
         }
     }
 
     componentDidMount(){
         this.handleLocalStorage();
         this.getAllUsers();
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        const { data } = this.props;
+        if(prevProps.data !== data){
+            if(data && data.email === undefined){
+                console.log('didUpdateeeeeeeeeeeeee')
+                this.setState({visible: false, secModal: true})
+            }
+            else {
+                if(data) {
+                    console.log('else didUpdateeeeeeeee')
+                    let obj = {
+                        nickname: data.name,
+                        email: data.email,
+                        password: data.id,
+                        notrobot: true
+                    }
+                    this.funcSignUp(obj)
+                }
+            }
+        }
     }
 
     componentWillUnmount(){
@@ -58,7 +83,7 @@ class Signin extends Component{
     }
 
     handleCancel = () => {
-        this.setState({ visible: false });
+        this.setState({ visible: false, secModal: false });
     }
     renderPasswordConfirmError = (e) => {
         this.setState({
@@ -71,6 +96,7 @@ class Signin extends Component{
         AsyncStorage.getItem('user')
             .then((obj) => {
                 let userObj = JSON.parse(obj)
+                console.log(userObj, 'userObjjjjjjjjjjjjjj')
                 if(!!userObj){
                     this.setState({
                         dropdown: true,
@@ -97,7 +123,9 @@ class Signin extends Component{
     }//end handleSubmit
 
     async funcSignUp(values){
+        console.log(values, 'hhhhhhhhhh')
         let response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
+        console.log(response, 'responseeeeeeeeeee')
         this.getProfileId(response)
     }
 
@@ -117,13 +145,15 @@ class Signin extends Component{
                     this.props.form.resetFields();
                     this.setState({
                         loader:false,
-                        visible:false
+                        visible:false,
+                        secModal: false,
+                        dropdown: true
                     })
                 })
         }//end if
         else{
             this.setState({
-                msg: response.msg,
+                msg: response.msg ? response.msg : response.err._message,
             })
         }
     }
@@ -150,6 +180,16 @@ class Signin extends Component{
         callback();
     }
 
+    checkEmail(rule, value, callback){
+        if(this.state.allUser.includes(value)){
+            callback('This email is already been used')
+            return;
+        }else {
+            this.setState({email2: value})
+            callback()
+        }
+    }
+
     checkValue(rule, value, callback){
         if(this.state.allUser.includes(value)){
             callback('This email is already been used')
@@ -168,11 +208,25 @@ class Signin extends Component{
         }
     }
 
+    socialSignUp(){
+        const { email2 } = this.state;
+        const { data } = this.props;
+        let obj = {
+            nickname: data.name,
+            email: email2,
+            password: data.id,
+            notrobot: true
+        }
+        console.log(obj, 'valuessssssssss')
+        this.setState({email2: '', secModal: false})
+        this.funcSignUp(obj)
+    }
+
     render(){
         const { getFieldDecorator } = this.props.form;
-        const { visible } = this.state;
+        const { visible, secModal, email2, dropdown, msg } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
-
+        console.log(dropdown, 'msggggggggggggg')
         const tailFormItemLayout = {
             wrapperCol: {
                 xs: {
@@ -185,18 +239,20 @@ class Signin extends Component{
                 },
             },
         };
-        console.log(this.props, 'propssssssssssss')
 
         return(
             <div className="">
                 <span>
-                    {this.state.dropdown ? <span style={{color: "white"}}><Dropdowns modalContent={this.props.modalContent}/></span> : <span onClick={this.showModal}>Sign Up</span>}
+                    {dropdown ? <span style={{color: "white"}}><Dropdowns modalContent={this.props.modalContent}/></span> : <span onClick={this.showModal}>Sign Up</span>}
                     <Modal
                         visible={visible}
                         title="Title"
                         onOk={this.handleOk}
                         onCancel={this.handleCancel}
                     >
+                        {!!this.state.msg && <div style={{marginBottom: '10px'}}>
+                            <span style={{ color: 'red', fontWeight: 'bold'}}>{this.state.msg}</span>
+                        </div>}
                         <div className="row">
                             <div className="col-md-5">
                                 <Facebook/>
@@ -265,9 +321,6 @@ class Signin extends Component{
                                   <Checkbox>I'm not a Robot</Checkbox>
                               )}
                         </FormItem>
-                        {this.state.msg.length > 0 && <div style={{marginBottom: '10px'}}>
-                            <span style={{ color: 'red', fontWeight: 'bold'}}>{this.state.msg}</span>
-                        </div>}
                         <div className="row center_global">
                             {this.state.loader ? antIcon : null} <button className="btn color_button">Sign up</button>
                         </div>{/*row*/}
@@ -277,11 +330,43 @@ class Signin extends Component{
                     </Form>
                   </div>{/*form div end*/}
                      </Modal>
+                    {!dropdown && secModal && <Modal
+                        visible={secModal}
+                        title="Enter your email"
+                        onOk={this.handleOk}
+                        onCancel={this.handleCancel}
+                        >
+                        <div>
+                            <Form>
+                                <p>to finish you sign up kindly share your email</p>
+                                <FormItem label="E-mail">
+                                    {getFieldDecorator('email2', {
+                                        rules: [{
+                                            type: 'email', message: 'The input is not valid E-mail!',
+                                        }, {
+                                            required: true, message: 'Please input your E-mail!',
+                                        }, {
+                                            validator: this.checkEmail.bind(this)
+                                        }],
+                                    })(
+                                        <Input  />
+                                    )}
+                                </FormItem>
+                                <button className="btn color_button" disabled={!email2} onClick={this.socialSignUp.bind(this)}>Sign up</button>
+                            </Form>
+                        </div>
+                     </Modal>}
                 </span>
             </div>
         )
     }
 }
 
+const mapStateToProps = (state) => {
+    return({
+        data: state.data
+    })
+}
+
 const WrappedRegistrationForm = Form.create()(Signin);
-export default WrappedRegistrationForm;
+export default connect(mapStateToProps)(WrappedRegistrationForm);

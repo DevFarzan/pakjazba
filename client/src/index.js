@@ -27,10 +27,12 @@ import {PrivateRoute} from './components/signin_seperate'
 import './app.css';
 
 const initialState = {
-    text: ''
+    text: '',
+	data: {}
 }
 
 function reducer(state = initialState, action){
+	console.log(action, 'actionnnnnnnnnnnnn')
     switch (action.type) {
         case 'SEARCHON':
             return {
@@ -40,6 +42,10 @@ function reducer(state = initialState, action){
             return {
                 text: initialState.text
             }
+		case 'FACEBOOKSIGNUP':
+			return {
+				data: action.data
+			}
         default:
             return state;
     }

@@ -218,7 +218,7 @@ class Signin extends Component{
             notrobot: true
         }
         console.log(obj, 'valuessssssssss')
-        this.setState({email2: '', secModal: false, dropdown: true})
+        this.setState({email2: '', secModal: false})
         this.funcSignUp(obj)
     }
 
@@ -226,7 +226,7 @@ class Signin extends Component{
         const { getFieldDecorator } = this.props.form;
         const { visible, secModal, email2, dropdown, msg } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
-        // console.log(dropdown, 'msggggggggggggg')
+        console.log(dropdown, 'msggggggggggggg')
         const tailFormItemLayout = {
             wrapperCol: {
                 xs: {
@@ -330,7 +330,7 @@ class Signin extends Component{
                     </Form>
                   </div>{/*form div end*/}
                      </Modal>
-                    {secModal && !dropdown && <Modal
+                    {!dropdown && secModal && <Modal
                         visible={secModal}
                         title="Enter your email"
                         onOk={this.handleOk}

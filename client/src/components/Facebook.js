@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
 
-
-
 export default class Facebook extends Component {
 		state={
 			isloggedIn:false,
@@ -16,12 +14,14 @@ export default class Facebook extends Component {
 		responseFacebook = response =>{
 			console.log(response);
 		}
+
 		componentClicked = () =>{
 			console.log('clicked');
 		}
 
 		render(){
 			let fbContent;
+			let data = 'abc'
 			if(this.state.isloggedIn){
 				fbContent = null;
 			}else{
@@ -36,7 +36,7 @@ export default class Facebook extends Component {
 				    textButton="Sign Up with Facebook"/>)
 			}
 			return(
-				<div>
+				<div data={data}>
 				   {fbContent}
 				</div>
 				)

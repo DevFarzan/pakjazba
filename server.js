@@ -121,7 +121,18 @@ var rand,mailOptions,host,link;
 /*------------------SMTP Over-----------------------------*/
 
 /*------------------Routing Started ------------------------*/
+/*==================facebooklogin data get start==================*/
 
+app.get('/api/facebookdata',function(req,res){
+  facebookLogin.find(function(err,data){
+    res.send({
+      err:err,
+      data:data
+    })
+  })
+})
+
+/*==================facebooklogin data get end==================*/
 /*=================================user register start==================================*/
 app.get('/api/userregister',(req,res) =>{
 

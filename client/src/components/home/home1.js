@@ -45,7 +45,7 @@ class Home1 extends Component{
                             <div className="card outset" >
                                 <div className="card-body space tag1">
                                     <Link to={`/postad_Roommates`}>
-                                        <img alt='' src="./images/black.jpg" height="60" width="80" /><b className="tag1"> Room Renting</b>
+                                        <img alt='' src="./images/Rent room stockholm.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b className="tag1"> Room Renting</b>
                                     </Link>
                                 </div>
                             </div>
@@ -53,14 +53,14 @@ class Home1 extends Component{
                         <div className="col-md-4 col-sm-4">
                             <div className="card outset" >
                                 <div className="card-body space tag1">
-                                    <img alt='' src="./images/blog.jpg" height="60" width="80" /><b className="tag1"> Business Listing</b>
+                                    <img alt='' src="./images/busioness-listing.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b className="tag1"> Business Listing</b>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-4 col-sm-4">
                             <div className="card outset" >
                                 <div className="card-body space tag1">
-                                    <img alt='' src="./images/blog.jpg" height="60" width="80" /><b className="tag1"> Buy & Sell </b>
+                                    <img alt='' src="./images/Where to Buy Hero Image.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b className="tag1"> Buy & Sell </b>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +86,7 @@ class Home1 extends Component{
                 <div className="row"> <br/></div>
                 <div className="row">
                     <div className="col-md-5">
-                        <img alt='' src="./images/blog.jpg" width="540" height="350" />
+                        <img alt='' src="./images/shutterstock_1094843246.jpg" width="540" height="350" />
                         <h4> </h4>
                         <h4 className="tag"><b>Loram Ipsum </b></h4>
                         <h4><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h4>
@@ -95,7 +95,7 @@ class Home1 extends Component{
                     </div>
                     <div className="col-md-4">
                         <div className="col-md-4">
-                            <img alt='' src="./images/blog.jpg" width="130" height="120" />
+                            <img alt='' src="./images/shutterstock_536667610.jpg" width="130" height="120" />
                         </div>
                         <div className="col-md-8">
                             <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
@@ -109,7 +109,7 @@ class Home1 extends Component{
                             <p>By Hills Estate    13.09.2018 <br/><br/></p>
                         </div>
                         <div className="col-md-4">
-                            <img alt='' src="./images/blog1.jpg" width="130" height="120" />
+                            <img alt='' src="./images/shutterstock_536667610.jpg" width="130" height="120" />
                         </div>
                         <div className="col-md-8">
                             <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>

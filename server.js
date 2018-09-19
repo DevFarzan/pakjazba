@@ -31,6 +31,7 @@ require('./models/categoryclassified');
 require('./models/reviews');
 require('./models/sendmessage');
 require('./models/facebookLoginSchema');
+require('./models/blog');
 
 require('./config/passport');
 
@@ -44,6 +45,7 @@ var categoryclassified = mongoose.model('categoryclassified');
 var reviewdata = mongoose.model('reviewschema');
 var sendMessage = mongoose.model('sendmessage');
 var facebookLogin = mongoose.model('facebookdatabase');
+var blog = mongoose.model('blogdata');
 
 app.use(passport.initialize());
 
@@ -81,6 +83,32 @@ app.get('/api/categoryPost',(req,res) =>{
     res.send({err:err,data:data});
   })
   //res.send({message:category});
+});
+
+app.post('/api/blogpost',(req,res) => {
+  var maintitle = 'GOLD BUT NEVER OLD PAKISTANI DRAMAS',
+      subtitle = 'Khuda Ki Basti (1969)';
+      image = 'https://res.cloudinary.com/dxk0bmtei/image/upload/v1537355391/Khuda-ki-basti-d_m7jv89.jpg';
+      discription = 'This drama is included in the syllabus of drama academies in Pune, India, and Europe It is one of the greatest dramas of all time Pakistan has produced. The drama was focused on the social issues and had a very compelling storyline.';
+  var blog_info = new blog({
+    maintitle:maintitle,
+    subtitle:subtitle,
+    image:image,
+    description:discription
+  });
+  blog_info.save(function(err,data){
+    if(data){
+      res.send('blog data inserted');
+    }
+  })
+});
+
+app.get('/api/getblog',(req,res) =>{
+blog.find(function(err,data){
+  res.send({
+    blog:data
+  })
+})
 });
 
 app.get('/api/categoryclassifieddata',function(req,res){

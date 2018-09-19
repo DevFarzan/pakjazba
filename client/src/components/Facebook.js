@@ -8,30 +8,34 @@ class Facebook extends Component {
         userId:'',
         name:'',
         email:'',
-        picture:''
-
+        picture:'',
+        clicked: false
     }
 
     responseFacebook = response =>{
+        const { clicked } = this.state;
         const { dispatch, inRup } = this.props;
         console.log(response);
         console.log(inRup);
-        let data = response
-        // let data = {
-        // 	accessToken: 'sdjhfalskjfhajhflakjflkahfja',
-        	// email: 'zb@brother.com',
-        	// expiresIn: '7500',
-        	// id: '918273364509',
-        	// name: 'brother2',
-        	// picture: 'skdjfkals',
-        	// userId: '1029384756'
-        // }
-        data = {...data, ...{route: inRup}}
-        dispatch({type: 'FACEBOOKSIGNUP', data})
+        if(clicked) {
+            let data = response
+            // let data = {
+            // 	accessToken: 'sdjhfalskjfhajhflakjflkahfja',
+            // email: 'zb@brother.com',
+            // expiresIn: '7500',
+            // id: '918273364509',
+            // name: 'brother2',
+            // picture: 'skdjfkals',
+            // userId: '1029384756'
+            // }
+            data = {...data, ...{route: inRup}}
+            dispatch({type: 'FACEBOOKSIGNUP', data})
+        }
     }
 
     componentClicked = () =>{
         console.log('clicked');
+        this.setState({clicked: true})
     }
 
     render(){

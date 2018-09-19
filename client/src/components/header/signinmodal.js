@@ -40,12 +40,10 @@ class Signin extends Component{
         if(prevProps.data !== data){
             if(data && data.route === route) {
                 if (data && data.email === undefined) {
-                    console.log('didUpdateeeeeeeeeeeeee')
                     this.setState({visible: false, secModal: true})
                 }
                 else {
                     if (data) {
-                        console.log('else didUpdateeeeeeeee')
                         let obj = {
                             nickname: data.name,
                             email: data.email,
@@ -66,7 +64,9 @@ class Signin extends Component{
     async getAllUsers(){
         console.log(ip.address(), 'ipAddressssssss')
         let response = await HttpUtils.get('allusers')
-        this.setState({allUser: response && response.content, _isMount: true})
+        if(response){
+            this.setState({allUser: response && response.content, _isMount: true})
+        }
     }
 
     showModal = () => {
@@ -100,7 +100,6 @@ class Signin extends Component{
         AsyncStorage.getItem('user')
             .then((obj) => {
                 let userObj = JSON.parse(obj)
-                console.log(userObj, 'userObjjjjjjjjjjjjjj')
                 if(!!userObj){
                     this.setState({
                         dropdown: true,
@@ -127,9 +126,7 @@ class Signin extends Component{
     }//end handleSubmit
 
     async funcSignUp(values){
-        console.log(values, 'hhhhhhhhhh')
         let response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
-        console.log(response, 'responseeeeeeeeeee')
         this.getProfileId(response)
     }
 
@@ -221,7 +218,6 @@ class Signin extends Component{
             password: data.id,
             notrobot: true
         }
-        console.log(obj, 'valuessssssssss')
         this.setState({email2: '', secModal: false})
         this.funcSignUp(obj)
     }
@@ -230,7 +226,7 @@ class Signin extends Component{
         const { getFieldDecorator } = this.props.form;
         const { visible, secModal, email2, dropdown, msg } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
-        console.log(dropdown, 'msggggggggggggg')
+
         const tailFormItemLayout = {
             wrapperCol: {
                 xs: {

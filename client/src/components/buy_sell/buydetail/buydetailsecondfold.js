@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './buydetailsecondfold.css'
 import {HttpUtils} from "../../../Services/HttpUtils";
-import {notification} from "antd";
+import {notification, Spin, Icon} from "antd";
 import moment from 'moment'
 
 class Buydetailsecondfold extends Component{
@@ -10,7 +10,8 @@ class Buydetailsecondfold extends Component{
         this.state = {
             name: '',
             userEmail: '',
-            msg: ''
+            msg: '',
+            loader: true
         }
     }
 
@@ -34,6 +35,7 @@ class Buydetailsecondfold extends Component{
 
     async submitData(e){
         e.preventDefault();
+        this.setState({loader: true})
         const { data } = this.props;
         const { name, userEmail, msg } = this.state;
         let obj = {
@@ -50,7 +52,8 @@ class Buydetailsecondfold extends Component{
             this.setState({
                 name: '',
                 userEmail: '',
-                msg: ''
+                msg: '',
+                loader: false
             })
         }
     }
@@ -67,6 +70,7 @@ class Buydetailsecondfold extends Component{
         const { data } = this.props;
         let email= 'abc@gmail.com';
         let phone = '***********';
+        const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
         if(data.modeofcontact && data.modeofcontact.includes('email')){
             email = data.contactemail;
@@ -114,7 +118,8 @@ class Buydetailsecondfold extends Component{
                                     <div className="form-group">
                                         <textarea type="text" className="form-control" id='msg' value={msg} onChange={this.onChangeValue.bind(this)}></textarea>
                                     </div>
-                                    <button type="submit" className="btn" onClick={this.submitData.bind(this)} style={{backgroundColor: "#008080",color: "white"}}>Submit</button>
+                                    {this.state.loader && <Spin indicator={antIcon} />}
+                                    <button disabled={!!this.state.loader} type="submit" className="btn" onClick={this.submitData.bind(this)} style={{backgroundColor: "#008080",color: "white"}}>Submit</button>
                                 </form>
                             </div>
                         </div>

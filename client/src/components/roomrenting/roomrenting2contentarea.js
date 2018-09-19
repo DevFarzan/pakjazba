@@ -141,7 +141,8 @@ class Roomrentingtwocontentarea extends Component{
             noText: true,
             to: 0,
             from: 6000,
-            bedArr: []
+            bedArr: [],
+            loader: true
         }
     }
 
@@ -154,7 +155,7 @@ class Roomrentingtwocontentarea extends Component{
             let res = this.props.location.state;
             this.stateAndCities(res)
         }else {
-            this.setState({ noText: false })
+            this.setState({ noText: false, loader: false })
         }
     }
 
@@ -172,7 +173,8 @@ class Roomrentingtwocontentarea extends Component{
             roomrents: res && res,
             states: states,
             showroomrents: filter.slice(0, 6),
-            filteredArr: filter
+            filteredArr: filter,
+            loader: false
         })
         let inputValue = '';
         if(this.props.text.length){
@@ -290,7 +292,7 @@ class Roomrentingtwocontentarea extends Component{
     }
 
 	render(){
-        const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from } = this.state;
+        const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader } = this.state;
 
         if(!noText){
             return <Redirect to='/market_roommates'/>
@@ -406,6 +408,9 @@ class Roomrentingtwocontentarea extends Component{
                                 </div>
                             )
                         })}
+                        {loader && <div className="col-md-12" style={{textAlign: 'center'}}>
+                            <img alt='' src={'./images/defLoader.apng'}/>
+                        </div>}
                         <div className="col-md-12">
                             <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :roomrents.length} onChange={this.onChangePage} /></span>
                         </div>

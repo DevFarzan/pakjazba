@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Carousel, notification } from 'antd';
+import { Carousel, notification, Icon, Spin } from 'antd';
 import "./roomrenting2content.css";
 import moment from 'moment'
 import {HttpUtils} from "../../Services/HttpUtils";
@@ -11,7 +11,8 @@ class Roomrenting3contentarea extends Component{
             name: '',
             email: '',
             msg: '',
-            receiver: ''
+            receiver: '',
+            loader: false
         }
     }
 
@@ -36,6 +37,7 @@ class Roomrenting3contentarea extends Component{
 
     async submitMsg(e){
         e.preventDefault();
+        this.setState({loader: true})
         const { name, email, msg, receiver } = this.state;
         let obj = {
             name,
@@ -48,7 +50,7 @@ class Roomrenting3contentarea extends Component{
         if(res.code === 200) {
             let message1 = 'Your message sent successfully'
             this.openNotification(message1)
-            this.setState({name: '', email: '', msg: ''})
+            this.setState({name: '', email: '', msg: '', loader: false})
         }
     }
 
@@ -64,6 +66,7 @@ class Roomrenting3contentarea extends Component{
         let images = data.imageurl;
         let email= 'abc@gmail.com';
         let phone = '***********';
+        const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
         if(data.modeofcontact && data.modeofcontact.includes('email')){
             email = data.contactemail;
@@ -182,7 +185,8 @@ class Roomrenting3contentarea extends Component{
                                         <label for="Massage">Massage:</label>
                                         <textarea className="form-control" value={this.state.msg} onChange={this.onChangeValue} id="msg"> </textarea>
                                     </div>
-                                    <button type="submit" onClick={this.submitMsg.bind(this)} className="btn search-btn">Submit</button>
+                                    {this.state.loader && <Spin indicator={antIcon} />}
+                                    <button disabled={!!this.state.loader} type="submit" onClick={this.submitMsg.bind(this)} className="btn search-btn">Submit</button>
                                 </form>
                             </div>
                         </div>

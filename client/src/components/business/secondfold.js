@@ -14,7 +14,8 @@ class Secondfold extends Component{
             business: [],
             showBusiness: [],
             filteredArr: [],
-            searchValue: ''
+            searchValue: '',
+            loader: true
         }
     }
 
@@ -55,7 +56,8 @@ class Secondfold extends Component{
         var res = await HttpUtils.get('marketplace')
         this.setState({
             business: res && res.business,
-            showBusiness: res && res.business.slice(0, 6)
+            showBusiness: res && res.business.slice(0, 6),
+            loader: false
         })
     }
 
@@ -83,6 +85,7 @@ class Secondfold extends Component{
 
     render(){
         const { business, showBusiness, filteredArr } = this.state;
+        const { text } = this.props;
 
         return(
             <div className="secondfold">
@@ -110,7 +113,12 @@ class Secondfold extends Component{
                             )
                         })}
                     </div>
-                    <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :business.length} onChange={this.onChange} /></span>
+                    {this.state.loader && <div className="col-md-12" style={{textAlign: 'center'}}>
+                        <img alt='' src={'./images/defLoader.apng'}/>
+                    </div>}
+                    {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
+                    {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
+                    {!!showBusiness.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :business.length} onChange={this.onChange} /></span>}
                 </div>
             </div>
         )

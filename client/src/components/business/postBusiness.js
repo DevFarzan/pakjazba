@@ -5,6 +5,7 @@ import {
     Input,
     Icon,
     Cascader,
+    Spin,
     notification,
     Upload,
     Modal,
@@ -316,6 +317,7 @@ class Postbusiness extends Component {
             objectId: '',
             statesUS: [],
             citiesUS: [],
+            loader: false
         };
     }
 
@@ -508,6 +510,7 @@ class Postbusiness extends Component {
         const { fileList } = this.state;
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
+                this.setState({loader: true})
                 if (fileList.length) {
                     this.postDataWithURL(values)
                 } else {
@@ -592,7 +595,8 @@ class Postbusiness extends Component {
                 socGoo: '',
                 socLin: '',
                 openingTime: '',
-                closingTime: ''
+                closingTime: '',
+                loader: false
             })
         }
     }
@@ -632,8 +636,14 @@ class Postbusiness extends Component {
     }
 
     checkValue(rule, value, callback) {
-        this.setState({desLength: value.length && value.length})
-        callback();
+        if(value){
+            this.setState({desLength: value.length && value.length})
+            callback();
+        }
+        else {
+            callback('Please input your Description!')
+        }
+
     }
 
     render() {
@@ -667,6 +677,8 @@ class Postbusiness extends Component {
                 <div className="ant-upload-text">Upload</div>
             </div>
         );
+
+        const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
         const formItemLayout = {
             labelCol: {
@@ -956,7 +968,8 @@ class Postbusiness extends Component {
                                     {/*==========upload panel end===========*/}
                                 </div>
                                 <div className="row center_global">
-                                    <button className="btn color_button">Submit</button>
+                                    {this.state.loader && <Spin indicator={antIcon} />}
+                                    <button disabled={!!this.state.loader} className="btn color_button">Submit</button>
                                 </div>
                                 {/*main panel content*/}
                             </div>

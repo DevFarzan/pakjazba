@@ -40,7 +40,7 @@ class Signin extends Component{
         if(prevProps.data !== data){
             if(data && data.route === route) {
                 if (data && data.email === undefined) {
-                    this.setState({visible: false, secModal: true})
+                    this.setState({secModal: true})
                 }
                 else {
                     if (data) {
@@ -218,7 +218,7 @@ class Signin extends Component{
             password: data.id,
             notrobot: true
         }
-        this.setState({email2: '', secModal: false})
+        this.setState({email2: ''})
         this.funcSignUp(obj)
     }
 
@@ -253,90 +253,83 @@ class Signin extends Component{
                         {!!this.state.msg && <div style={{marginBottom: '10px'}}>
                             <span style={{ color: 'red', fontWeight: 'bold'}}>{this.state.msg}</span>
                         </div>}
-                        <div className="row">
+                        {!secModal && <div className="row">
                             <div className="col-md-5">
                                 <Facebook inRup={'signUp'}/>
-                            </div>{/*col-md-4*/}
-                            <div className="col-md-1"></div>{/*col-md-4*/}
+                            </div>
+                            <div className="col-md-1"></div>
                             <div className="col-md-5">
                                 <button className="loginBtn loginBtn--google">
                                   Sign Up with Google
                                 </button>
                                 <Google/>
-                            </div>{/*col-md-4*/}
-                        </div>{/*row*/}
+                            </div>
+                        </div>}
                         <br/>
-                        <div className="">{/*form div start*/}
+                        {!secModal && <div className="">
                             <Form onSubmit={this.handleSubmit}>
-                        <FormItem label="Name">
-                              {getFieldDecorator('nickname', {
-                                  rules: [{
-                                      required: true, message: 'Please input your Name!', whitespace: true
-                                  }, {
-                                      validator: this.checkName.bind(this)
-                                  }],
-                              })(
-                                  <Input  />
-                              )}
-                    </FormItem>
-                        <FormItem label="E-mail">
-                              {getFieldDecorator('email', {
-                                  rules: [{
-                                      type: 'email', message: 'The input is not valid E-mail!',
-                                  }, {
-                                      required: true, message: 'Please input your E-mail!',
-                                  }, {
-                                      validator: this.checkValue.bind(this)
-                                  }],
-                              })(
-                                  <Input  />
-                              )}
-                        </FormItem>
-                         <FormItem label="Password">
-                              {getFieldDecorator('password', {
-                                  rules: [{
-                                      required: true, message: 'Please input your password!',
-                                  }, {
-                                      validator: this.validateToNextPassword,
-                                  }],
-                              })(
-                                  <Input type="password"  />
-                              )}
-                        </FormItem>
-                        <FormItem label="Confirm Password" >
-                              {getFieldDecorator('confirm', {
-                                  rules: [{
-                                      required: true, message: 'Please confirm your password!',
-                                  }, {
-                                      validator: this.compareToFirstPassword,
-                                  }],
-                              })(
-                                  <Input type="password"  onBlur={this.handleConfirmBlur} />
-                              )}
-                        </FormItem>
-                         <FormItem {...tailFormItemLayout}>
-                              {getFieldDecorator('notrobot', {
-                                  valuePropName: 'checked',
-                              })(
-                                  <Checkbox>I'm not a Robot</Checkbox>
-                              )}
-                        </FormItem>
-                        <div className="row center_global">
-                            {this.state.loader ? antIcon : null} <button className="btn color_button">Sign up</button>
-                        </div>{/*row*/}
+                                <FormItem label="Name">
+                                    {getFieldDecorator('nickname', {
+                                        rules: [{
+                                            required: true, message: 'Please input your Name!', whitespace: true
+                                        }, {
+                                            validator: this.checkName.bind(this)
+                                        }],
+                                    })(
+                                        <Input  />
+                                    )}
+                                </FormItem>
+                                <FormItem label="E-mail">
+                                    {getFieldDecorator('email', {
+                                        rules: [{
+                                            type: 'email', message: 'The input is not valid E-mail!',
+                                        }, {
+                                            required: true, message: 'Please input your E-mail!',
+                                        }, {
+                                            validator: this.checkValue.bind(this)
+                                        }],
+                                    })(
+                                        <Input  />
+                                    )}
+                                </FormItem>
+                                <FormItem label="Password">
+                                    {getFieldDecorator('password', {
+                                        rules: [{
+                                            required: true, message: 'Please input your password!',
+                                        }, {
+                                            validator: this.validateToNextPassword,
+                                        }],
+                                    })(
+                                        <Input type="password"  />
+                                    )}
+                                </FormItem>
+                                <FormItem label="Confirm Password" >
+                                    {getFieldDecorator('confirm', {
+                                        rules: [{
+                                            required: true, message: 'Please confirm your password!',
+                                        }, {
+                                            validator: this.compareToFirstPassword,
+                                        }],
+                                    })(
+                                        <Input type="password"  onBlur={this.handleConfirmBlur} />
+                                    )}
+                                </FormItem>
+                                <FormItem {...tailFormItemLayout}>
+                                    {getFieldDecorator('notrobot', {
+                                        valuePropName: 'checked',
+                                    })(
+                                        <Checkbox>I'm not a Robot</Checkbox>
+                                    )}
+                                </FormItem>
+                                <div className="row center_global">
+                                    {this.state.loader ? antIcon : null} <button className="btn color_button">Sign up</button>
+                                </div>{/*row*/}
                                 <div className="row term_condition">
-                        <p>(By clicking register, you agree to our <a>terms</a>, our <a>data policy</a> and cookies use)</p>
-                    </div>
-                    </Form>
-                  </div>{/*form div end*/}
-                     </Modal>
-                    {!dropdown && secModal && <Modal
-                        visible={secModal}
-                        title="Enter your email"
-                        onOk={this.handleOk}
-                        onCancel={this.handleCancel}
-                        >
-                        <div>
+                                    <p>(By clicking register, you agree to our <a>terms</a>, our <a>data policy</a> and cookies use)</p>
+                                </div>
+                            </Form>
+                        </div>}
+                        {secModal && <div>
                             <Form>
                                 <p>to finish you sign up kindly share your email</p>
                                 <FormItem label="E-mail">
@@ -354,8 +347,8 @@ class Signin extends Component{
                                 </FormItem>
                                 <button className="btn color_button" disabled={!email2} onClick={this.socialSignUp.bind(this)}>Sign up</button>
                             </Form>
-                        </div>
-                     </Modal>}
+                        </div>}
+                     </Modal>
                 </span>
             </div>
         )

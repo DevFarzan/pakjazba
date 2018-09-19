@@ -10,7 +10,8 @@ class Roomrenting1content extends Component{
         this.state = {
             roomrents: [],
             showroomrents: [],
-            filteredArr: []
+            filteredArr: [],
+            loader: true
         }
     }
 
@@ -22,7 +23,8 @@ class Roomrenting1content extends Component{
         let res = await HttpUtils.get('marketplace')
         this.setState({
             roomrents: res ? res.roomrentsdata : [],
-            showroomrents: res ? res.roomrentsdata.slice(0, 6) : []
+            showroomrents: res ? res.roomrentsdata.slice(0, 6) : [],
+            loader: false
         })
     }
 
@@ -102,6 +104,9 @@ class Roomrenting1content extends Component{
                         })
                         }
                     </div>
+                    {this.state.loader && <div className="col-md-12" style={{textAlign: 'center'}}>
+                        <img alt='' src={'./images/defLoader.apng'}/>
+                    </div>}
                     {!!showroomrents.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length : roomrents.length} onChange={this.onChange} /></span>}
                 </div>
             </section>

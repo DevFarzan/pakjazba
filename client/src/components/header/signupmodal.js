@@ -14,12 +14,15 @@ class Signup extends Component{
         super(props)
         this.state = {
             visible: false,
+            secModal: false,
             showloader: false,
             email: '',
             user: '',
             msg: '',
             route: 'signIn',
-            obj: []
+            obj: [],
+            email2: '',
+            allUser: [],
         }
     }
 
@@ -30,42 +33,82 @@ class Signup extends Component{
 
     async getSignData(){
         let res = await HttpUtils.get('facebookdata')
-        console.log(res.data, 'pppppppppppppp')
         if(res){
             this.setState({obj: res.data})
+        }
+        this.getAllUsers()
+    }
+
+    async getAllUsers(){
+        let response = await HttpUtils.get('allusers')
+        if(response){
+            this.setState({allUser: response && response.content, _isMount: true})
         }
     }
 
     componentDidUpdate(prevProps, prevState){
         const { data } = this.props;
         const { route, obj } = this.state;
-        // console.log(prevProps.data, '11111111111')
-        // console.log(data, '11111111111')
+        let arr = obj.map((elem) => elem.password)
         if(prevProps.data !== data){
             if(data && data.route === route){
-                console.log(obj, 'kkkkkkkkkkkkkkkkkk')
-                obj.map((elem) => {
-                    if(elem.password === data.id){
-                        this.funcLogin({userName: elem.email, password: elem.password})
+                if(arr.includes(data.id)){
+                    obj.map((elem) => {
+                        if(elem.password === data.id){
+                            this.funcLogin({userName: elem.email, password: elem.password})
+                        }
+                    })
+                }else {
+                    if (data && data.email === undefined) {
+                        this.setState({ secModal: true})
+                    }else {
+                        if (data) {
+                            let obj = {
+                                nickname: data.name,
+                                email: data.email,
+                                password: data.id,
+                                notrobot: true
+                            }
+                            this.funcSignUp(obj)
+                        }
                     }
-                })
+                }
             }
-        //     if(data && data.email === undefined){
-        //         console.log('didUpdateeeeeeeeeeeeee')
-        //         this.setState({visible: false, secModal: true})
-        //     }
-        //     else {
-        //         if(data) {
-        //             console.log('else didUpdateeeeeeeee')
-        //             let obj = {
-        //                 nickname: data.name,
-        //                 email: data.email,
-        //                 password: data.id,
-        //                 notrobot: true
-        //             }
-        //             this.funcSignUp(obj)
-        //         }
-        //     }
+        }
+    }
+
+    async funcSignUp(values){
+        let response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
+        this.getProfileId(response)
+    }
+
+    async getProfileId(response){
+        if(response.code === 200){
+            let obj = {
+                name: response.name,
+                email: response.email,
+                userId: response._id,
+                profileId: ''
+            }
+            let req = await HttpUtils.post('profile', obj)
+            let userInfo = {...response, ...{profileId: req.content}}
+            AsyncStorage.setItem('user', JSON.stringify(userInfo))
+                .then(() => {
+                    this.props.form.resetFields();
+                    this.setState({
+                        loader:false,
+                        visible:false,
+                        secModal: false,
+                        dropdown: true
+                    }, () => {
+                        this.props.modalContent();
+                    })
+                })
+        }//end if
+        else{
+            this.setState({
+                msg: response.msg ? response.msg : response.err._message,
+            })
         }
     }
 
@@ -103,9 +146,7 @@ class Signup extends Component{
     }
 
     handleCancel = (e) => {
-        this.setState({
-            visible: false
-        });
+        this.setState({visible: false, secModal: false});
     }
 
     handleSubmit = (e) => {
@@ -137,12 +178,35 @@ class Signup extends Component{
         }
     }
 
+    checkEmail(rule, value, callback){
+        if(this.state.allUser.includes(value)){
+            callback('This email is already been used')
+            return;
+        }else {
+            this.setState({email2: value})
+            callback()
+        }
+    }
+
+    socialSignUp(){
+        const { email2 } = this.state;
+        const { data } = this.props;
+        let obj = {
+            nickname: data.name,
+            email: email2,
+            password: data.id,
+            notrobot: true
+        }
+        this.setState({email2: ''})
+        this.funcSignUp(obj)
+    }
+
     reset = () => {
         this.props.form.resetFields()
     }
 
     render(){
-        const { user } = this.state;
+        const { user, secModal, email2 } = this.state;
         const { getFieldDecorator } = this.props.form;
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 
@@ -162,21 +226,21 @@ class Signup extends Component{
                         </Button>,
                     ]}
                 >
-                    <div className="row">
+                    {!secModal && <div className="row">
                         <div className="col-md-5">
                             <button className="loginBtn loginBtn--facebook">
                                 <Facebook inRup={'signIn'}/>
                             </button>
-                        </div>{/*col-md-4*/}
+                        </div>
                         <div className="col-md-1"></div>{/*col-md-4*/}
                         <div className="col-md-5">
                             <button className="loginBtn loginBtn--google">
                                 Login with Google
                             </button>
-                        </div>{/*col-md-4*/}
-                    </div>{/*row*/}
+                        </div>
+                    </div>}
                     <br/>
-                    <Form onSubmit={this.handleSubmit} className="login-form">
+                    {!secModal && <Form onSubmit={this.handleSubmit} className="login-form">
                         <FormItem>
                             {getFieldDecorator('userName', {
                                 rules: [{ required: true, message: 'Please input your username!' }],
@@ -217,7 +281,26 @@ class Signup extends Component{
                             </div>
                         </div>
                         Or <a><span onClick={this.handleCancel}><Signin/></span></a>
-                    </Form>
+                    </Form>}
+                    {secModal && <div>
+                        <Form>
+                            <p>to finish you sign up kindly share your email</p>
+                            <FormItem label="E-mail">
+                                {getFieldDecorator('email2', {
+                                    rules: [{
+                                        type: 'email', message: 'The input is not valid E-mail!',
+                                    }, {
+                                        required: true, message: 'Please input your E-mail!',
+                                    }, {
+                                        validator: this.checkEmail.bind(this)
+                                    }],
+                                })(
+                                    <Input  />
+                                )}
+                            </FormItem>
+                            <button className="btn color_button" disabled={!email2} onClick={this.socialSignUp.bind(this)}>Sign up</button>
+                        </Form>
+                    </div>}
                 </Modal>
             </div>
         )

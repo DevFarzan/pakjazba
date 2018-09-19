@@ -301,8 +301,11 @@ class ProfileUser extends Component{
 
         return(
             <div>
-                <Burgermenu/>
+                
+                    <Burgermenu/>
+                <div style={{backgroundColor:"#0000006b",width:"100%",height:"67px",marginTop:"-20px"}}></div>
                 <div className="content" style={{"paddingTop": "106px"}}>
+
                     <div className="container" style={{width:"87%"}}>
                         <div className="hero">
                             <div className="row">

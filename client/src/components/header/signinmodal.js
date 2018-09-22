@@ -127,7 +127,12 @@ class Signin extends Component{
 
     async funcSignUp(values){
         let response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
-        this.getProfileId(response)
+        console.log(response, 'signUpp responseeeeeeeeeeeee')
+        if(response) {
+            this.getProfileId(response)
+        }else {
+            this.setState({msg: 'network error'})
+        }
     }
 
     async getProfileId(response){
@@ -262,7 +267,7 @@ class Signin extends Component{
                                 <button className="loginBtn loginBtn--google">
                                   Sign Up with Google
                                 </button>
-                                <Google/>
+                                <Google inRup={'signUp'}/>
                             </div>
                         </div>}
                         <br/>

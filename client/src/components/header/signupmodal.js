@@ -3,6 +3,7 @@ import { Form, Icon, Input, Button, Checkbox,Modal } from 'antd';
 import Signin from './signinmodal';
 import Forgotpassword from '../forgotpassword';
 import Facebook from '../Facebook';
+import Google from '../Google';
 import AsyncStorage from '@callstack/async-storage';
 import {HttpUtils} from "../../Services/HttpUtils";
 import {connect} from "react-redux";
@@ -79,7 +80,12 @@ class Signup extends Component{
 
     async funcSignUp(values){
         let response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
-        this.getProfileId(response)
+        console.log(response, 'signup In responseeeeeeeeeeeee')
+        if(response) {
+            this.getProfileId(response)
+        }else {
+            this.setState({msg: 'network error'})
+        }
     }
 
     async getProfileId(response){
@@ -160,6 +166,7 @@ class Signup extends Component{
 
     async funcLogin(values){
         let response = await HttpUtils.get('usersignin?useremail='+values.userName+'&password='+values.password)
+        console.log(response, 'loginnnnnnnnnnnnnnnn')
         if(response.code === 200){
             AsyncStorage.setItem('user', JSON.stringify(response))
                 .then(() => {
@@ -237,6 +244,7 @@ class Signup extends Component{
                             <button className="loginBtn loginBtn--google">
                                 Login with Google
                             </button>
+                            <Google inRup={'signIn'}/>
                         </div>
                     </div>}
                     <br/>

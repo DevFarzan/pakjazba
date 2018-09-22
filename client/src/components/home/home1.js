@@ -5,6 +5,7 @@ import axios from "axios/index";
 import { Tabs, Icon } from 'antd';
 import Burgermenu from '../header/burgermenu';
 import Slider from '../header/Slider';
+import {HttpUtils} from "../../Services/HttpUtils";
 
 const TabPane = Tabs.TabPane;
 
@@ -19,7 +20,12 @@ class Home1 extends Component{
 
     componentDidMount() {
         this.callApi()
+        this.getAllBlogs()
+    }
 
+    async getAllBlogs(){
+        let req = await HttpUtils.get('getblog');
+        console.log(req, 'zzzzzzzzzzzzzzzzzzzzzz')
     }
 
     async callApi(){

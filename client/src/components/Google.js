@@ -11,7 +11,9 @@ export default class Google extends Component {
         var googleId = googleUser.getId();
 
         console.log({ googleId });
-        console.log(googleUser.w3);
+        console.log(googleUser.w3.Eea, 'iddddddddddd');
+        console.log(googleUser.w3.U3, 'maillllllll');
+        console.log(googleUser.w3.ig, 'nameeeeeeeeeeee');
         console.log({accessToken: id_token});
         //anything else you want to do(save to localStorage)...
     }

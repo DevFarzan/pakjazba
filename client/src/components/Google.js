@@ -39,9 +39,9 @@ class Google extends Component {
         const { dispatch, inRup } = this.props;
         console.log(inRup);
         let data = {
-            id: 'googleUser.w3.Eea',
-            name: 'googleUser.w3.ig',
-            email: 'googleUser.w3.U3'
+            id: googleUser.w3.Eea,
+            name: googleUser.w3.ig,
+            email: googleUser.w3.U3
         }
         data = {...data, ...{route: inRup}}
         dispatch({type: 'FACEBOOKSIGNUP', data})

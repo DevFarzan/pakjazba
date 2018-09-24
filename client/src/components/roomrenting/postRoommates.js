@@ -450,7 +450,9 @@ class Postroommates extends Component{
             arr_url: response ? response : [],
             objectId: objectId
         }
+        console.log(obj, '000000000000')
         let req = await HttpUtils.post('postroomrent', obj)
+        console.log(obj, 'nnnnnnnnnnnnnnnn')
         if(req.code === 200) {
             this.props.form.resetFields();
             this.openNotification()

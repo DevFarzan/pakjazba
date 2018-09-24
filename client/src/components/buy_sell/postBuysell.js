@@ -289,7 +289,9 @@ class Postbuysell extends Component{
             arr_url: response ? response : [],
             objectId: objectId
         }
+        console.log(obj, 'kkkkkkkkkkkkkkk')
         let req = await HttpUtils.post('postbuyselldata', obj)
+        console.log(req, 'lllllllllllllll')
         if(req.code === 200){
             this.props.form.resetFields();
             this.openNotification()

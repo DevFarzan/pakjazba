@@ -11,7 +11,7 @@ class Buydetailsecondfold extends Component{
             name: '',
             userEmail: '',
             msg: '',
-            loader: true
+            loader: false
         }
     }
 

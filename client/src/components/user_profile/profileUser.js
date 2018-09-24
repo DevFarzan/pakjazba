@@ -76,6 +76,7 @@ class ProfileUser extends Component{
     async getAllBusiness(id){
         let arr = [];
         let req = await HttpUtils.get('marketplace')
+        console.log(req, 'mmmmmmmmmmmmmmmmmmmmmmm')
         req.busell && req.busell.map((elem) => {
             if(elem.userid === id){
                 let data = {...elem, ...{route: 'buySell'}}

@@ -585,7 +585,9 @@ class Postbusiness extends Component {
             arr_url: response ? response : [],
             objectId: objectId
         }
+        console.log(obj, 'objjjjjjjjjjjj')
         let req = await HttpUtils.post('postbusinessdata', obj)
+        console.log(req, '11111111111111111')
         if(req.code === 200){
             this.props.form.resetFields();
             this.openNotification()

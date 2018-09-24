@@ -749,7 +749,7 @@ classifiedBusiness.findOne({"_id" : buyselldata.objectId},function(err,buysell){
 app.get('/api/marketplace',function(req,res){
   var session = req.query.session;
   
-    yellowPagesBusiness.find({__v:0},function(err,yellowPages){
+    yellowPagesBusiness.find(function(err,yellowPages){
       //console.log(yellowPages);
      if(yellowPages!=''){
       var businesses  = [];
@@ -758,7 +758,7 @@ app.get('/api/marketplace',function(req,res){
         businesses.push(yellowPages[i]);
       }//end for
       }//end if
-      classifiedBusiness.find({__v:0},function(err,classifiedData){
+      classifiedBusiness.find(function(err,classifiedData){
         //console.log('classified:'+classifiedData);
         if(classifiedData!=''){
           var buysell = [];
@@ -767,7 +767,7 @@ app.get('/api/marketplace',function(req,res){
           }
         }//end if
 
-        roomrentsdata.find({__v:0},function(err,roomrents){
+        roomrentsdata.find(function(err,roomrents){
           //console.log('roomrents:'+roomrents);
           if(roomrents!=''){
             var roomrentsdata = [];

@@ -41,10 +41,8 @@ class Home1 extends Component{
         const { news, sports } = this.state;
 
         return(
-            <div> 
-                
-                    <App/>
-                
+            <div>
+                <App/>
                 <div className="row" style={{marginTop: "125px"}}>
                     <div className="col-md-10">
                         <div className="col-md-4 col-sm-4">
@@ -92,7 +90,9 @@ class Home1 extends Component{
                 <div className="row"> <br/></div>
                 <div className="row">
                     <div className="col-md-5">
-                        <img alt='' src="./images/shutterstock_1094843246.jpg" width="540" height="350" />
+                        <Link to={`/detail_blog`}>
+                            <img alt='' src="./images/shutterstock_1094843246.jpg" width="540" height="350" />
+                        </Link>
                         <h4> </h4>
                         <h4 className="tag"><b>Loram Ipsum </b></h4>
                         <h4><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h4>
@@ -101,28 +101,36 @@ class Home1 extends Component{
                     </div>
                     <div className="col-md-4">
                         <div className="col-md-4">
-                            <img alt='' src="./images/shutterstock_536667610.jpg" width="130" height="120" />
+                            <Link to={`/detail_blog`}>
+                                <img alt='' src="./images/shutterstock_536667610.jpg" width="130" height="120" />
+                            </Link>
                         </div>
                         <div className="col-md-8">
                             <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                             <p>By Hills Estate    13.09.2018 <br/><br/></p>
                         </div>
                         <div className="col-md-4">
-                            <img alt='' src="./images/blog1.jpg" width="130" height="120" />
+                            <Link to={`/detail_blog`}>
+                                <img alt='' src="./images/blog1.jpg" width="130" height="120" />
+                            </Link>
                         </div>
                         <div className="col-md-8">
                             <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                             <p>By Hills Estate    13.09.2018 <br/><br/></p>
                         </div>
                         <div className="col-md-4">
-                            <img alt='' src="./images/shutterstock_536667610.jpg" width="130" height="120" />
+                            <Link to={`/detail_blog`}>
+                                <img alt='' src="./images/shutterstock_536667610.jpg" width="130" height="120" />
+                            </Link>
                         </div>
                         <div className="col-md-8">
                             <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                             <p>By Hills Estate    13.09.2018 <br/><br/></p>
                         </div>
                         <div className="col-md-4">
-                            <img alt='' src="./images/black.jpg" width="130" height="120" />
+                            <Link to={`/detail_blog`}>
+                                <img alt='' src="./images/black.jpg" width="130" height="120" />
+                            </Link>
                         </div>
                         <div className="col-md-8">
                             <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>

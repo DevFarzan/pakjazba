@@ -51,10 +51,11 @@ class Google extends Component {
         return(
             <div>
                 <GoogleLogin socialId="873832275515-3oclgfb5n1ie7inhfa16a6uu7crbab2a.apps.googleusercontent.com"
-                             className="google-login"
+                             
                              scope="profile"
                              fetchBasicProfile={true}
                              responseHandler={this.responseGoogle}
+                             className = "loginBtn loginBtn--google"
                              buttonText="Login With Google"/>
             </div>
         )

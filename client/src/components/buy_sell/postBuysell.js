@@ -454,6 +454,7 @@ class Postbuysell extends Component{
             <div>
                 {/*================================App component include Start===========================*/}
                 <Burgermenu/>
+                <div style={{backgroundColor:"#0000006b",width:"100%",height:"67px",marginTop:"-20px"}}></div>
                 {/*================================post business form start============================*/}
                 <div className="">
                     <Form onSubmit={this.handleSubmit} className="login-form">

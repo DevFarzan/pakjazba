@@ -264,10 +264,9 @@ class Signin extends Component{
                             </div>
                             <div className="col-md-1"></div>
                             <div className="col-md-5">
-                                <button className="loginBtn loginBtn--google">
-                                  Sign Up with Google
-                                </button>
-                                <Google inRup={'signUp'}/>
+                                
+                                 <Google inRup={'signUp'}/>
+                                
                             </div>
                         </div>}
                         <br/>

@@ -388,7 +388,7 @@ class DetailBusiness extends Component{
                                                 <div className="row">
                                                     <div className="col-md-12 col-sm-12 col-xs-12">
                                                         <div className="col-md-6 col-sm-12 col-xs-12"><br/>
-                                                            <img src="./images/black.jpg" className="img-circle" alt="" width="100" height="100" />
+                                                            <img src="../images/images.jpg" className="img-circle" alt="" width="100" height="100" />
                                                             <Rate style={{paddingLeft: '10px'}} allowHalf value={elem.star} />
                                                         </div>
                                                         <div className="col-md-2 col-sm-12 col-xs-12">

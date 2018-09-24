@@ -93,20 +93,20 @@ class Secondfold extends Component{
                 <div className="index-content" style={{marginBottom: "-225px"}}>
                     <div className="row">
                         {showBusiness && showBusiness.map((elem, key) => {
-                            console.log(elem,'for locationnnnnn');
+                            let boo = elem.businessname && elem.businessname.length;
                             let str = elem.description || '';
                             if(str.length > 100) {
                                 str = str.substring(0, 100);
                                 str = str + '...'
                             }
                             return (
-                                <Link key={key} to={{pathname: `/detail_business`, state: elem}}>
+                                <Link key={key} to={boo ? {pathname: `/detail_business`, state: elem} : {pathname: `/postad_business`}}>
                                     <div className="col-md-4"  style={{'marginBottom': '30px'}}>
                                         <div className="card">
                                             <img alt='' src={elem.businessImages.length ? elem.businessImages[0] : './images/def_card_img.jpg'}/>
                                             <h4><b>{elem.businessname}</b></h4>
-                                            <p style={{marginTop:"-15px",marginLeft:"11px"}}><span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}></span><span style={{color:"black"}}>{elem.businessaddress}</span></p>
-                                            <Link to={{pathname: `/detail_business`, state: elem}} className="blue-button">Read More</Link>
+                                            {elem.businessaddress && <p style={{marginTop:"-15px",marginLeft:"11px"}}><span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}></span><span style={{color:"black"}}>{elem.businessaddress}</span></p>}
+                                            {elem.businessaddress && <Link to={{pathname: `/detail_business`, state: elem}} className="blue-button">Read More</Link>}
                                         </div>
                                     </div>
                                 </Link>

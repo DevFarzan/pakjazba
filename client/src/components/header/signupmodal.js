@@ -166,16 +166,18 @@ class Signup extends Component{
 
     async funcLogin(values){
         let response = await HttpUtils.get('usersignin?useremail='+values.userName+'&password='+values.password)
-        console.log(response, 'loginnnnnnnnnnnnnnnn')
         if(response.code === 200){
-            AsyncStorage.setItem('user', JSON.stringify(response))
-                .then(() => {
-                    this.props.modalContent();
-                    this.setState({
-                        loader:false,
-                        visible:false,
-                        showloader:false
-                    })
+            this.getProfile(response)
+                .then((data) => {
+                    AsyncStorage.setItem('user', JSON.stringify(data))
+                        .then(() => {
+                            this.props.modalContent();
+                            this.setState({
+                                loader:false,
+                                visible:false,
+                                showloader:false
+                            })
+                        })
                 })
         }//end if
         else{
@@ -183,6 +185,13 @@ class Signup extends Component{
                 msg: response.msg,
             })
         }
+    }
+
+    async getProfile(data){
+        let _id = data.profileId ? data.profileId : '';
+        let req = await HttpUtils.get('getprofile?profileId=' + _id);
+        let allData = {...data, ...{userImage: req ? req.content.imageurl : ''}}
+        return allData;
     }
 
     checkEmail(rule, value, callback){

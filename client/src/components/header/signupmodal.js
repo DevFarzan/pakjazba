@@ -228,9 +228,9 @@ class Signup extends Component{
                 >
                     {!secModal && <div className="row">
                         <div className="col-md-5">
-                            <button className="loginBtn loginBtn--facebook">
+                           
                                 <Facebook inRup={'signIn'}/>
-                            </button>
+                           
                         </div>
                         <div className="col-md-1"></div>{/*col-md-4*/}
                         <div className="col-md-5">

@@ -52,7 +52,7 @@ class Facebook extends Component {
                 callback={this.responseFacebook}
                 scope="email"
                 cssClass="loginBtn loginBtn--facebook"
-                textButton="Sign Up with Facebook"
+                textButton="Login with Facebook"
             />)
         }
         return(

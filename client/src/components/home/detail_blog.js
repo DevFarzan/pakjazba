@@ -186,9 +186,9 @@ class DetailBlog extends Component {
                         <div className="card outset">
                             <div className="card-body space tag1 bspace">
                                 <br/><br/>
-                                <textarea cols="80" rows="5" value={this.state.comment} placeholder="Enter Your Comment..." onChange={this.changeVal.bind(this)}> </textarea>
+                                <textarea cols="80" rows="5" value={this.state.comment} placeholder="Enter Your Comment..." onChange={this.changeVal.bind(this)} style={{marginLeft: "21px",paddingLeft: "13px"}}> </textarea>
                                 <br/><br/>
-                                <button onClick={this.publishComment.bind(this)}>Publish</button>
+                                <button className="btn" onClick={this.publishComment.bind(this)} style={{marginLeft: "21px",backgroundColor:"#008080",color: "white"}}>Publish</button>
                                 <br/><br/>
                             </div>
                         </div>

@@ -236,12 +236,14 @@ rand=Math.floor((Math.random() * 100) + 54);
             </td>
           </tr>
         </table>
+
       </td>
     </tr>
   </table>
 </div>
 </body>
 </html>`
+
   }
   console.log(mailOptions);
   smtpTransport.sendMail(mailOptions, function(error, response){
@@ -250,6 +252,8 @@ rand=Math.floor((Math.random() * 100) + 54);
     res.end("error");
    }else{
           console.log("Message sent: " + response.message);
+          console.log("Message sent: " + response.message);
+
     res.end("sent");
        }
 });
@@ -567,19 +571,19 @@ if(businessData.objectId == '' || businessData.objectId == undefined || business
     }//end err
     businessProfile.user_id=businessData.user_id;
     businessProfile.address=businessData.address;
-    businessProfile.businessname=businessData.businessname;
-    businessProfile.businessnumber=businessData.businessnumber;
-    businessProfile.firstname=businessData.firstname;
-    businessProfile.lastname=businessData.lastname;
+    businessProfile.businessname=businessData.businessName;
+    businessProfile.businessnumber=businessData.businessNumber;
+    businessProfile.firstname=businessData.firstName;
+    businessProfile.lastname=businessData.lastName;
     businessProfile.businessemailid=businessData.businessId;
     businessProfile.city=businessData.city;
     businessProfile.state=businessData.state;
-    businessProfile.zipcode=businessData.zipcode;
-    businessProfile.businessaddress=businessData.businessaddress;
-    businessProfile.businessownername=businessData.businessownername;
-    businessProfile.businessemail=businessData.businessemail;
-    businessProfile.businesscategory=businessData.businesscategory;
-    businessProfile.businessImages=businessData.businessImages;
+    businessProfile.zipcode=businessData.zip;
+    businessProfile.businessaddress=businessData.businessAddress;
+    businessProfile.businessownername=businessData.businessOwner;
+    businessProfile.businessemail=businessData.businessEmail;
+    businessProfile.businesscategory=businessData.businessCategory;
+    businessProfile.businessImages=businessData.arr_url;
     businessProfile.openingTime=businessData.openingTime;
     businessProfile.closingTime=businessData.closingTime;
     businessProfile.socialFaceBook=businessData.socialFaceBook;
@@ -699,30 +703,30 @@ classifiedBusiness.findOne({"_id" : buyselldata.objectId},function(err,buysell){
   if(err){
  return res.status(400).json({"Unexpected Error:: ": err});
   }//end if
-       buysell.userid=buyselldata.userid;
-      buysell.contactname=buyselldata.contactname;
-      buysell.contactemail=buyselldata.contactemail;
-      buysell.contactnumber=buyselldata.contactnumber;
-      buysell.modeofcontact=buyselldata.modeofcontact;
+       buysell.userid=buyselldata.user_id;
+      buysell.contactname=buyselldata.contactName;
+      buysell.contactemail=buyselldata.contactEmail;
+      buysell.contactnumber=buyselldata.contactNumber;
+      buysell.modeofcontact=buyselldata.contactMode;
       buysell.delivery=buyselldata.delivery;
       buysell.address=buyselldata.address;
-      buysell.hideaddress=buyselldata.hideaddress;
+      buysell.hideaddress=buyselldata.hideAddress;
       buysell.condition=buyselldata.condition;
       buysell.sizedimension=buyselldata.sizedimension;
-      buysell.images=buyselldata.classifiedImages;
+      buysell.images=buyselldata.arr_url;
       buysell.city=buyselldata.city;
       buysell.postingtype=buyselldata.postingtype;
       buysell.category=buyselldata.category;
-      buysell.title=buyselldata.title;
+      buysell.title=buyselldata.postingTitle;
       buysell.description=req.body.description;
       buysell.price=buyselldata.price;
-      buysell.hideprice=buyselldata.hideprice;
-      buysell.modelmake=buyselldata.modelmake;
-      buysell.modelnumber=buyselldata.modelnumber;
-      buysell.modelname=buyselldata.modelname;
-      buysell.subcategory=buyselldata.subcategory;
-      buysell.subsubcategory=buyselldata.subsubcategory;
-      buysell.profileid=buyselldata.profileid;
+      buysell.hideprice=buyselldata.hidePrice;
+      buysell.modelmake=buyselldata.make;
+      buysell.modelnumber=buyselldata.number;
+      buysell.modelname=buyselldata.modelName;
+      buysell.subcategory=buyselldata.subCategory;
+      buysell.subsubcategory=buyselldata.subSubCategory;
+      buysell.profileid=buyselldata.profileId;
       buysell.streetaddress=buyselldata.streetaddress;
 
       buysell.save(function(err,doc){
@@ -1037,6 +1041,12 @@ var getuserfields = req.body;
       var message = getuserfields.msg;
       var sender = getuserfields.sender;
       var written = getuserfields.written;
+
+      /*var username = 'farzan';
+      var receiver = 'farzanhanif123@gmail.com';
+      var message = 'asdasdsadsd';
+      var sender = 'sdsadsadsadsad';
+      var written = 'sadasdsadsad';*/
 
       mailOptions={
     to : getuserfields.receiver,

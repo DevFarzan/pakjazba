@@ -94,10 +94,10 @@ class Home1 extends Component{
                             <img alt='' src="./images/shutterstock_1094843246.jpg" width="540" height="350" />
                         </Link>
                         <h4> </h4>
-                        <h4 className="tag"><b>Loram Ipsum </b></h4>
+                        <h4 className="tag" style={{backgroundColor: "#008080",textAlign:"center"}}><b>Loram Ipsum </b></h4>
                         <h4><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h4>
                         <p>Loram Ipsum Loram Ipsum Loram Ipsum, Loram Ipsum Loram Ipsum Loram Ipsum. Loram Ipsum Loram Ipsum</p>
-                        <p><b>By Hills Estate</b>  13.09.2018 </p>
+                        <p style={{paddingTop: "21px"}}><b><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span></b></p>
                     </div>
                     <div className="col-md-4">
                         <div className="col-md-4">
@@ -107,7 +107,7 @@ class Home1 extends Component{
                         </div>
                         <div className="col-md-8">
                             <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
-                            <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                            <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
                         </div>
                         <div className="col-md-4">
                             <Link to={`/detail_blog`}>
@@ -116,7 +116,7 @@ class Home1 extends Component{
                         </div>
                         <div className="col-md-8">
                             <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
-                            <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                            <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
                         </div>
                         <div className="col-md-4">
                             <Link to={`/detail_blog`}>
@@ -125,7 +125,7 @@ class Home1 extends Component{
                         </div>
                         <div className="col-md-8">
                             <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
-                            <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                            <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
                         </div>
                         <div className="col-md-4">
                             <Link to={`/detail_blog`}>
@@ -134,7 +134,7 @@ class Home1 extends Component{
                         </div>
                         <div className="col-md-8">
                             <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
-                            <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                            <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
                         </div>
                     </div>
                     <div className="col-md-3">
@@ -205,7 +205,7 @@ class Home1 extends Component{
                                 <div className="col-md-8">
                                     <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                     <br/>
-                                    <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                                    <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -215,7 +215,7 @@ class Home1 extends Component{
                                 <div className="col-md-8">
                                     <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                     <br/>
-                                    <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                                    <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -225,7 +225,7 @@ class Home1 extends Component{
                                 <div className="col-md-8">
                                     <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                     <br/>
-                                    <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                                    <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -235,7 +235,7 @@ class Home1 extends Component{
                                 <div className="col-md-8">
                                     <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                     <br/>
-                                    <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                                    <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -245,7 +245,7 @@ class Home1 extends Component{
                                 <div className="col-md-8">
                                     <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                     <br/>
-                                    <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                                    <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -255,7 +255,7 @@ class Home1 extends Component{
                                 <div className="col-md-8">
                                     <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                     <br/>
-                                    <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                                    <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
                                 </div>
                             </div>
                         </div>
@@ -353,7 +353,7 @@ class Home1 extends Component{
                                 <div className="col-md-8">
                                     <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                     <br/>
-                                    <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                                    <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -363,7 +363,7 @@ class Home1 extends Component{
                                 <div className="col-md-8">
                                     <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                     <br/>
-                                    <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                                    <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -373,7 +373,7 @@ class Home1 extends Component{
                                 <div className="col-md-8">
                                     <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                     <br/>
-                                    <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                                    <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -383,7 +383,7 @@ class Home1 extends Component{
                                 <div className="col-md-8">
                                     <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                     <br/>
-                                    <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                                    <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -393,7 +393,7 @@ class Home1 extends Component{
                                 <div className="col-md-8">
                                     <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                     <br/>
-                                    <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                                    <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -403,7 +403,7 @@ class Home1 extends Component{
                                 <div className="col-md-8">
                                     <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                     <br/>
-                                    <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                                    <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
                                 </div>
                             </div>
                         </div>

@@ -4,6 +4,7 @@ import {
     Input,
     Icon,
     Cascader,
+    Spin,
     Checkbox,
     notification,
     Upload,
@@ -216,7 +217,8 @@ class Postroommates extends Component{
             profileId: '',
             msg: false,
             imageList: [],
-            objectId: ''
+            objectId: '',
+            loader: false
         }
     }
 
@@ -399,6 +401,7 @@ class Postroommates extends Component{
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if(!err) {
+                this.setState({loader: true})
                 this.funcForUpload(values)
             }
         })
@@ -451,7 +454,7 @@ class Postroommates extends Component{
         if(req.code === 200) {
             this.props.form.resetFields();
             this.openNotification()
-            this.setState({msg: true})
+            this.setState({msg: true, loader: false})
         }
     }
 
@@ -481,6 +484,7 @@ class Postroommates extends Component{
         const { desLength, fileList, previewVisible, previewImage, statesUS, citiesUS } = this.state;
         const {getFieldDecorator} = this.props.form;
         const dateFormat = 'YYYY-MM-DD';
+        const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
         if (this.state.msg === true) {
             return <Redirect to='/' />
@@ -855,7 +859,8 @@ class Postroommates extends Component{
                                     </div>
                                 </div>
                                 <div className="row center_global">
-                                    <button className="btn color_button">Submit</button>
+                                    {this.state.loader && <Spin indicator={antIcon} />}
+                                    <button disabled={!!this.state.loader} className="btn color_button">Submit</button>
                                 </div>
                             </div>
                         </div>

@@ -4,6 +4,7 @@ import {
     Input,
     Icon,
     Cascader,
+    Spin,
     Checkbox,
     notification,
     Upload,
@@ -90,6 +91,7 @@ class Postbuysell extends Component{
             objectId: '',
             statesUS: [],
             citiesUS: [],
+            loader: false
         }
     }
 
@@ -240,6 +242,7 @@ class Postbuysell extends Component{
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if(!err) {
+                this.setState({loader: true})
                 this.funcForUpload(values)
             }
         })
@@ -290,7 +293,7 @@ class Postbuysell extends Component{
         if(req.code === 200){
             this.props.form.resetFields();
             this.openNotification()
-            this.setState({msg: true, dLength: '', dWidth: '', dHeight: ''})
+            this.setState({msg: true, dLength: '', dWidth: '', dHeight: '', loader: false})
         }
     }
 
@@ -391,6 +394,7 @@ class Postbuysell extends Component{
     render(){
         const { previewVisible, previewImage, fileList, desLength, categ, subCat, selectSubCat, secSubCat, statesUS, citiesUS } = this.state;
         const {getFieldDecorator} = this.props.form;
+        const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
         if (this.state.msg === true) {
             return <Redirect to='/' />
@@ -745,7 +749,8 @@ class Postbuysell extends Component{
                                 </div>
                             </div>
                             <div className="row center_global">
-                                <button className="btn color_button" style={{"width": "20%"}}>Submit</button>
+                                {this.state.loader && <Spin indicator={antIcon} />}
+                                <button disabled={!!this.state.loader} className="btn color_button" style={{"width": "20%"}}>Submit</button>
                             </div>
                         </div>
                     </Form>

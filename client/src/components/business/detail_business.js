@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import App from '../../App';
 import moment from 'moment'
-import { Carousel, Rate, notification } from 'antd';
+import { Carousel, Rate, notification, Icon, Spin } from 'antd';
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
 
@@ -18,7 +18,8 @@ class DetailBusiness extends Component{
             name1: '',
             email1: '',
             msg1: '',
-            reviews: []
+            reviews: [],
+            loader: false
         }
     }
 
@@ -61,6 +62,7 @@ class DetailBusiness extends Component{
     }
 
     async submitReview(){
+        this.setState({loader: true})
         let { name1, email1, msg1, star, reviews, data } = this.state;
         let obj = {
             objId: data._id,
@@ -75,11 +77,12 @@ class DetailBusiness extends Component{
         if(res.code === 200) {
             let message1 = 'Your review sent successfully'
             this.openNotification(message1)
-            this.setState({name1: '', email1: '', msg1: '', star: 0, reviews})
+            this.setState({name1: '', email1: '', msg1: '', star: 0, reviews, loader: false})
         }
     }
 
     async submitMessage(){
+        this.setState({loader: true})
         const { name, email, msg, data } = this.state;
         let obj = {
             name,
@@ -93,7 +96,7 @@ class DetailBusiness extends Component{
         if(res.code === 200) {
             let message1 = 'Your message sent successfully'
             this.openNotification(message1)
-            this.setState({name: '', email: '', msg: ''})
+            this.setState({name: '', email: '', msg: '', loader: false})
         }
     }
 
@@ -118,6 +121,7 @@ class DetailBusiness extends Component{
     render(){
         const { isData, data, reviews } = this.state;
         let images = data.businessImages;
+        const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
         if(!isData){
             return <Redirect to='/' />
@@ -247,7 +251,8 @@ class DetailBusiness extends Component{
                                                                     {/*Grid row*/}
                                                                 </form>
                                                                 <div className="text-center text-md-left">
-                                                                    <a className="btn button_custom" onClick={this.submitMessage.bind(this)} style={{width:"65%"}}>Send</a>
+                                                                    {this.state.loader && <Spin indicator={antIcon} />}
+                                                                    <a disabled={!!this.state.loader} className="btn button_custom" onClick={this.submitMessage.bind(this)} style={{width:"65%"}}>Send</a>
                                                                 </div>
                                                                 <div className="status"></div>
                                                             </div>
@@ -461,7 +466,8 @@ class DetailBusiness extends Component{
                                                                 {/*Grid row*/}
                                                             </form>
                                                             <div className="text-center text-md-left">
-                                                                <a className="btn button_custom" onClick={this.submitReview.bind(this)} style={{width: "35%"}}>Send</a>
+                                                                {this.state.loader && <Spin indicator={antIcon} />}
+                                                                <a disabled={!!this.state.loader} className="btn button_custom" onClick={this.submitReview.bind(this)} style={{width: "35%"}}>Send</a>
                                                             </div>
                                                             <div className="status"></div>
                                                         </div>

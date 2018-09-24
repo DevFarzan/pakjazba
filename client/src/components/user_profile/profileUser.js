@@ -76,19 +76,19 @@ class ProfileUser extends Component{
     async getAllBusiness(id){
         let arr = [];
         let req = await HttpUtils.get('marketplace')
-        req && req.busell.map((elem) => {
+        req.busell && req.busell.map((elem) => {
             if(elem.userid === id){
                 let data = {...elem, ...{route: 'buySell'}}
                 arr.push(data)
             }
         })
-        req && req.business.map((elem) => {
+        req.business && req.business.map((elem) => {
             if(elem.user_id === id){
                 let data = {...elem, ...{route: 'business'}}
                 arr.push(data)
             }
         })
-        req && req.roomrentsdata.map((elem) => {
+        req.roomrentsdata && req.roomrentsdata.map((elem) => {
             if(elem.user_id === id){
                 let data = {...elem, ...{route: 'rooms'}}
                 arr.push(data)
@@ -584,7 +584,7 @@ class ProfileUser extends Component{
                                             {listing && <div className="secondfold" style={{backgroundColor: '#FBFAFA'}}>
                                                 <div className="index-content" style={{marginBottom: "-225px", marginTop: '-125px'}}>
                                                     <div className="row">
-                                                        {listData && listData.map((elem) => {
+                                                        {listData.length ? listData.map((elem) => {
                                                             let img = (elem.images && elem.images[0]) || (elem.businessImages && elem.businessImages[0]) || (elem.imageurl && elem.imageurl[0]) || '../images/images.jpg';
                                                             let title = elem.title || elem.businessname || elem.postingtitle || ''
                                                             let str = elem.description || elem.discription || '';
@@ -593,21 +593,27 @@ class ProfileUser extends Component{
                                                                 str = str + '...'
                                                             }
                                                             return(
-                                                                <Link to={{pathname: elem.route === 'business' ? `/detail_business` : elem.route === 'buySell' ? `/detail_buySell` : `/detail_roomRent`, state: elem}}>
-                                                                    <div className="col-md-5"  style={{'marginBottom': '30px'}}>
-                                                                        <div className="card">
+                                                                <div className="col-md-5"  style={{'marginBottom': '30px'}}>
+                                                                    <div className="card">
+                                                                        <Link to={{pathname: elem.route === 'business' ? `/detail_business` : elem.route === 'buySell' ? `/detail_buySell` : `/detail_roomRent`, state: elem}}>
                                                                             <img alt='' src={img} />
                                                                             <h4>{title}</h4>
                                                                             <p>{str}</p>
-                                                                            <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i></a>
-                                                                            <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i>
-                                                                        </div>
+                                                                        </Link>
+                                                                        <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i></a>
+                                                                        <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i>
                                                                     </div>
-                                                                </Link>
+                                                                </div>
+
                                                             )
-                                                        })}
+                                                        }) :
+                                                        <div>
+                                                            <h1>
+                                                                you dont have data to show...
+                                                            </h1>
+                                                        </div>}
                                                     </div>
-                                                    <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={allData.length} onChange={this.onChange} /></span>
+                                                    {!!listData.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={allData.length} onChange={this.onChange} /></span>}
                                                 </div>
                                              </div>}
                                         {/*===============Ad listing end=============*/}

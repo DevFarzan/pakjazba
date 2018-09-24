@@ -261,7 +261,7 @@ class Postbuysell extends Component{
     }
 
     async postData(values, response) {
-        const {userId, dLength, dWidth, dHeight, profileId, objectId} = this.state;
+        const {userId, dLength, dWidth, dHeight, profileId, objectId, imageList} = this.state;
         let obj = {
             user_id: userId,
             profileId: profileId,
@@ -286,7 +286,7 @@ class Postbuysell extends Component{
             postingTitle: values.postingTitle,
             subSubCategory: values.subsubcategory ? values.subsubcategory[0] : '',
             price: values.price,
-            arr_url: response ? response : [],
+            arr_url: [...response, ...imageList],
             objectId: objectId
         }
         console.log(obj, 'kkkkkkkkkkkkkkk')

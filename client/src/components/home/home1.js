@@ -78,7 +78,7 @@ class Home1 extends Component{
                             <br/>
                             <hr/>
                         </div>
-                        <div className="col-md-1">
+                        <div className="col-md-1" style={{marginTop: "25px"}}>
                             <h3><b>Blog</b></h3>
                         </div>
                         <div className="col-md-5">
@@ -275,7 +275,7 @@ class Home1 extends Component{
                             <br/>
                             <hr/>
                         </div>
-                        <div className="col-md-1">
+                        <div className="col-md-1" style={{marginTop: "27px"}}>
                             <h3><b>Blog</b></h3>
                         </div>
                         <div className="col-md-5">
@@ -330,7 +330,7 @@ class Home1 extends Component{
                             <br/>
                             <hr/>
                         </div>
-                        <div className="col-md-1">
+                        <div className="col-md-1" style={{marginTop: "25px"}}>
                             <h3><b>Blog</b></h3>
                         </div>
                         <div className="col-md-5">
@@ -423,7 +423,7 @@ class Home1 extends Component{
                             <br/>
                             <hr/>
                         </div>
-                        <div className="col-md-1">
+                        <div className="col-md-1" style={{marginTop: "25px"}}>
                             <h3><b>Blog</b></h3>
                         </div>
                         <div className="col-md-5">
@@ -482,7 +482,7 @@ class Home1 extends Component{
                             <br/>
                             <hr/>
                         </div>
-                        <div className="col-md-1">
+                        <div className="col-md-1" style={{marginTop: "25px"}}>
                             <h3><b>Blog</b></h3>
                         </div>
                         <div className="col-md-5">

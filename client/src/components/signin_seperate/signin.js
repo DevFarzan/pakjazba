@@ -6,8 +6,11 @@ import Form_signup from './form_signup.js';
 import {HttpUtils} from "../../Services/HttpUtils";
 import AsyncStorage from "@callstack/async-storage/lib/index";
 import {connect} from "react-redux";
-import {Form} from "antd/lib/index";
+// import {Form} from "antd/lib/index";
+import { Modal, Form, Input } from 'antd'
 import { withRouter, Redirect, } from 'react-router-dom';
+
+const FormItem = Form.Item;
 
 class Signin extends Component{
     constructor(props) {
@@ -15,7 +18,9 @@ class Signin extends Component{
         this.state = {
             obj: [],
             route: 'seperate',
-            redirectToReferrer: false
+            redirectToReferrer: false,
+            visible: false,
+            email2: '',
         }
     }
 
@@ -28,20 +33,26 @@ class Signin extends Component{
         const { data } = this.props;
         const { route, obj } = this.state;
         let arr = obj.map((elem) => elem.password)
+        console.log(arr, 'arrrrrrrrrrrrr')
         if(prevProps.data !== data){
             if(data && data.route === route) {
                 if(arr.includes(data.id)){
+                    console.log('aaaaaaaaaaaaaaa')
                     obj.map((elem) => {
                         if(elem.password === data.id){
+                            console.log(elem, '1111111111111111')
                             this.funcLogin({userName: elem.email, password: elem.password})
                         }
                     })
                 }else {
+                    console.log('bbbbbbbbbbbbbbb')
                     if (data && data.email === undefined) {
-                        this.setState({secModal: true})
+                        console.log('2222222222222222')
+                        this.setState({visible: true})
                     }
                     else {
                         if (data) {
+                            console.log('333333333333333')
                             let obj = {
                                 nickname: data.name,
                                 email: data.email,
@@ -90,6 +101,7 @@ class Signin extends Component{
 
     async funcLogin(values){
         let response = await HttpUtils.get('usersignin?useremail='+values.userName+'&password='+values.password)
+        console.log(response, 'hhhhhhhhhhhhhhhhhhhhhh')
         if(response.code === 200){
             this.getProfile(response)
                 .then((data) => {
@@ -129,6 +141,7 @@ class Signin extends Component{
     }
 
     async getProfileId(response){
+        console.log(response, 'responseeeeeeeeeeeeeee')
         if(response.code === 200){
             let obj = {
                 name: response.name,
@@ -143,7 +156,6 @@ class Signin extends Component{
                     this.setState({
                         loader:false,
                         visible:false,
-                        secModal: false,
                         dropdown: true,
                         redirectToReferrer: true
                     })
@@ -156,9 +168,44 @@ class Signin extends Component{
         }
     }
 
+    handleOk = (e) => {
+        this.setState({
+            email:this.refs.email,
+            visible: false,
+        });
+    }
+
+    handleCancel = (e) => {
+        this.setState({visible: false});
+    }
+
+    socialSignUp(){
+        const { email2 } = this.state;
+        const { data } = this.props;
+        let obj = {
+            nickname: data.name,
+            email: email2,
+            password: data.id,
+            notrobot: true
+        }
+        this.setState({email2: ''})
+        this.funcSignUp(obj)
+    }
+
+    checkEmail(rule, value, callback){
+        if(this.state.allUser.includes(value)){
+            callback('This email is already been used')
+            return;
+        }else {
+            this.setState({email2: value})
+            callback()
+        }
+    }
+
     render(){
         const { from } = this.props.location.state || { from: { pathname: "/" } };
-        let {redirectToReferrer} = this.state;
+        const { getFieldDecorator } = this.props.form;
+        let {redirectToReferrer, email2} = this.state;
         if (redirectToReferrer) {
             return <Redirect to={from} />;
         }
@@ -187,6 +234,31 @@ class Signin extends Component{
 							<span><Facebook inRup={'seperate'}/></span><br/>
 							<span><Google inRup={'seperate'}/></span>
 						</div>
+                        <Modal
+                            title="Email"
+                            visible={this.state.visible}
+                            onOk={this.handleOk}
+                            onCancel={this.handleCancel}>
+                            <div>
+                                <Form>
+                                    <p>to finish you sign up kindly share your email</p>
+                                    <FormItem label="E-mail">
+                                        {getFieldDecorator('email2', {
+                                            rules: [{
+                                                type: 'email', message: 'The input is not valid E-mail!',
+                                            }, {
+                                                required: true, message: 'Please input your E-mail!',
+                                            }, {
+                                                validator: this.checkEmail.bind(this)
+                                            }],
+                                        })(
+                                            <Input  />
+                                        )}
+                                    </FormItem>
+                                    <button className="btn color_button" disabled={!email2} onClick={this.socialSignUp.bind(this)}>Sign up</button>
+                                </Form>
+                            </div>
+                        </Modal>
 					</div>
 					<div className="col-md-3">
 						<span className="font_weight_signin_seperate_he">Create a new Pakjazba account</span><br/><br/>
@@ -206,4 +278,5 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps)(Signin);
+const seperateSign = Form.create()(Signin);
+export default connect(mapStateToProps)(seperateSign);

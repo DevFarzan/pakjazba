@@ -39,6 +39,7 @@ class Signin extends Component{
         const { data } = this.props;
         const { route, obj } = this.state;
         let arr = obj.map((elem) => elem.password)
+        console.log(arr, 'arrrrrrrrrrrrrrrrr')
         if(prevProps.data !== data){
             if(data && data.route === route) {
                 console.log('signIn aaaaaaaaaaaaaaaa')

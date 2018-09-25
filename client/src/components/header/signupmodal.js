@@ -36,6 +36,7 @@ class Signup extends Component{
         const { data } = this.props;
         const { route, obj } = this.state;
         let arr = obj.map((elem) => elem.password)
+        console.log(arr, 'arrrrrrrrr')
         if(prevProps.data !== data){
             if(data && data.route === route){
                 console.log('signUp aaaaaaaaaaaaaaaa')

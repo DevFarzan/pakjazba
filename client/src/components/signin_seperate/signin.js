@@ -33,6 +33,7 @@ class Signin extends Component{
         const { data } = this.props;
         const { route, obj } = this.state;
         let arr = obj.map((elem) => elem.password)
+        console.log(arr, 'arrrrrrrrrrrrr')
         if(prevProps.data !== data){
             if(data && data.route === route) {
                 if(arr.includes(data.id)){
@@ -99,8 +100,8 @@ class Signin extends Component{
     }
 
     async funcLogin(values){
-        console.log('hhhhhhhhhhhhhhhhhhhhhh')
         let response = await HttpUtils.get('usersignin?useremail='+values.userName+'&password='+values.password)
+        console.log(response, 'hhhhhhhhhhhhhhhhhhhhhh')
         if(response.code === 200){
             this.getProfile(response)
                 .then((data) => {

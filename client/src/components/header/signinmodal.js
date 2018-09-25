@@ -25,32 +25,42 @@ class Signin extends Component{
             allUser: [],
             msg: '',
             email2: '',
-            route: 'signUp'
+            route: 'signUp',
+            obj: [],
         }
     }
 
     componentDidMount(){
         this.handleLocalStorage();
-        this.getAllUsers();
+        this.getSignData();
     }
 
     componentDidUpdate(prevProps, prevState){
         const { data } = this.props;
-        const { route } = this.state;
+        const { route, obj } = this.state;
+        let arr = obj.map((elem) => elem.password)
         if(prevProps.data !== data){
             if(data && data.route === route) {
-                if (data && data.email === undefined) {
-                    this.setState({secModal: true})
-                }
-                else {
-                    if (data) {
-                        let obj = {
-                            nickname: data.name,
-                            email: data.email,
-                            password: data.id,
-                            notrobot: true
+                if(arr.includes(data.id)){
+                    obj.map((elem) => {
+                        if(elem.password === data.id){
+                            this.funcLogin({userName: elem.email, password: elem.password})
                         }
-                        this.funcSignUp(obj)
+                    })
+                }else {
+                    if (data && data.email === undefined) {
+                        this.setState({secModal: true})
+                    }
+                    else {
+                        if (data) {
+                            let obj = {
+                                nickname: data.name,
+                                email: data.email,
+                                password: data.id,
+                                notrobot: true
+                            }
+                            this.funcSignUp(obj)
+                        }
                     }
                 }
             }
@@ -61,12 +71,50 @@ class Signin extends Component{
         this.setState({_isMount: false})
     }
 
+    async getSignData(){
+        let res = await HttpUtils.get('facebookdata')
+        if(res){
+            this.setState({obj: res.data})
+        }
+        this.getAllUsers()
+    }
+
     async getAllUsers(){
-        console.log(ip.address(), 'ipAddressssssss')
+        // console.log(ip.address(), 'ipAddressssssss')
         let response = await HttpUtils.get('allusers')
         if(response){
             this.setState({allUser: response && response.content, _isMount: true})
         }
+    }
+
+    async funcLogin(values){
+        let response = await HttpUtils.get('usersignin?useremail='+values.userName+'&password='+values.password)
+        if(response.code === 200){
+            this.getProfile(response)
+                .then((data) => {
+                    AsyncStorage.setItem('user', JSON.stringify(data))
+                        .then(() => {
+                            this.props.modalContent();
+                            this.setState({
+                                loader:false,
+                                visible:false,
+                                showloader:false
+                            })
+                        })
+                })
+        }//end if
+        else{
+            this.setState({
+                msg: response.msg,
+            })
+        }
+    }
+
+    async getProfile(data){
+        let _id = data.profileId ? data.profileId : '';
+        let req = await HttpUtils.get('getprofile?profileId=' + _id);
+        let allData = {...data, ...{userImage: req ? req.content.imageurl : ''}}
+        return allData;
     }
 
     showModal = () => {
@@ -127,7 +175,6 @@ class Signin extends Component{
 
     async funcSignUp(values){
         let response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
-        console.log(response, 'signUpp responseeeeeeeeeeeee')
         if(response) {
             this.getProfileId(response)
         }else {
@@ -264,9 +311,7 @@ class Signin extends Component{
                             </div>
                             <div className="col-md-1"></div>
                             <div className="col-md-5">
-                                
-                                 <Google inRup={'signUp'}/>
-                                
+                                <Google inRup={'signUp'}/>
                             </div>
                         </div>}
                         <br/>

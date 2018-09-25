@@ -187,7 +187,7 @@ class Home1 extends Component{
                             <br/>
                             <hr/>
                         </div>
-                        <div className="col-md-1">
+                        <div className="col-md-1" style={{marginTop: "25px"}}>
                             <h3><b>Blog</b></h3>
                         </div>
                         <div className="col-md-5">
@@ -297,7 +297,7 @@ class Home1 extends Component{
                                     <br/><br/>
                                     <div className="text-center">
                                         <div className="marg">
-                                            <h4 className="tag"><b>Loram Ipsum </b></h4>
+                                            <h4 className="tag" style={{backgroundColor: "#008080",textAlign:"center"}}><b>Loram Ipsum </b></h4>
                                         </div>
                                         <h5 className="white"><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                         <br/>
@@ -311,7 +311,7 @@ class Home1 extends Component{
                                     <br/><br/>
                                     <div className="text-center">
                                         <div className="marg">
-                                            <h4 className="tag"><b>Loram Ipsum </b></h4>
+                                            <h4 className="tag" style={{backgroundColor: "#008080",textAlign:"center"}}><b>Loram Ipsum </b></h4>
                                         </div>
                                         <h5 className="white"><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                         <br/>
@@ -502,7 +502,7 @@ class Home1 extends Component{
                             <img alt='' src="./images/black.jpg" width="100%" height="200" />
                         </div>
                         <div className="col-md-6">
-                            <h4 className="tag"><b>Loram Ipsum </b></h4>
+                            <h4 className="tag" style={{backgroundColor: "#008080",textAlign:"center"}}><b>Loram Ipsum </b></h4>
                             <h4><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h4>
                             <p>Loram Ipsum Loram Ipsum Loram Ipsum, Loram Ipsum Loram Ipsum Loram Ipsum. Loram Ipsum Loram Ipsum</p>
                             <p><b>By Hills Estate</b>  13.09.2018 <br/><br/><br/><br/></p>
@@ -511,7 +511,7 @@ class Home1 extends Component{
                             <img alt='' src="./images/black.jpg" width="100%" height="200" />
                         </div>
                         <div className="col-md-6">
-                            <h4 className="tag"><b>Loram Ipsum </b></h4>
+                            <h4 className="tag" style={{backgroundColor: "#008080",textAlign:"center"}}><b>Loram Ipsum </b></h4>
                             <h4><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h4>
                             <p>Loram Ipsum Loram Ipsum Loram Ipsum, Loram Ipsum Loram Ipsum Loram Ipsum. Loram Ipsum Loram Ipsum</p>
                             <p><b>By Hills Estate</b>  13.09.2018 <br/><br/><br/><br/></p>
@@ -520,7 +520,7 @@ class Home1 extends Component{
                             <img alt='' src="./images/black.jpg" width="100%" height="200" />
                         </div>
                         <div className="col-md-6">
-                            <h4 className="tag"><b>Loram Ipsum </b></h4>
+                            <h4 className="tag" style={{backgroundColor: "#008080",textAlign:"center"}}><b>Loram Ipsum </b></h4>
                             <h4><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h4>
                             <p>Loram Ipsum Loram Ipsum Loram Ipsum, Loram Ipsum Loram Ipsum Loram Ipsum. Loram Ipsum Loram Ipsum</p>
                             <p><b>By Hills Estate</b>  13.09.2018 </p>

@@ -712,7 +712,7 @@ color: #fff;
 }
 
 .navbar-fixed-top.scrolled {
-  background-color: #100c0c85 !important;
+  background-color: black !important;
   transition: background-color 200ms linear;
 }
 

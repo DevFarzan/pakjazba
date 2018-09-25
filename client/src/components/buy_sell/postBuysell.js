@@ -113,9 +113,9 @@ class Postbuysell extends Component{
                 dataMake: data.modelmake,
                 dataModelName: data.modelname,
                 dataModelNumber: data.modelnumber,
-                dLength: data.sizedimension[0].length,
-                dWidth: data.sizedimension[0].width,
-                dHeight: data.sizedimension[0].height,
+                dLength: data.sizedimension[0] ? data.sizedimension[0].length : this.state.dLength,
+                dWidth: data.sizedimension[0] ? data.sizedimension[0].width : this.state.dWidth,
+                dHeight: data.sizedimension[0] ? data.sizedimension[0].height : this.state.dHeight,
                 dataContact: data.contactname,
                 dataEmail: data.contactemail,
                 dataNumber: data.contactnumber,
@@ -261,7 +261,7 @@ class Postbuysell extends Component{
     }
 
     async postData(values, response) {
-        const {userId, dLength, dWidth, dHeight, profileId, objectId} = this.state;
+        const {userId, dLength, dWidth, dHeight, profileId, objectId, imageList} = this.state;
         let obj = {
             user_id: userId,
             profileId: profileId,
@@ -286,7 +286,7 @@ class Postbuysell extends Component{
             postingTitle: values.postingTitle,
             subSubCategory: values.subsubcategory ? values.subsubcategory[0] : '',
             price: values.price,
-            arr_url: response ? response : [],
+            arr_url: [...response, ...imageList],
             objectId: objectId
         }
         console.log(obj, 'kkkkkkkkkkkkkkk')

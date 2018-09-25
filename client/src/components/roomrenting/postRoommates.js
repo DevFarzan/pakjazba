@@ -420,7 +420,7 @@ class Postroommates extends Component{
     }
 
     async postData(values, response) {
-        const {dateObj, userId, petFriendly, radio, smoking, vegNoVeg, profileId, objectId} = this.state;
+        const {dateObj, userId, petFriendly, radio, smoking, vegNoVeg, profileId, objectId, imageList} = this.state;
         let obj = {
             user_id: userId,
             profileId: profileId,
@@ -447,7 +447,7 @@ class Postroommates extends Component{
             petFriendly: petFriendly,
             smoking: smoking,
             vegNoVeg: vegNoVeg,
-            arr_url: response ? response : [],
+            arr_url: [...response, ...imageList],
             objectId: objectId
         }
         console.log(obj, '000000000000')

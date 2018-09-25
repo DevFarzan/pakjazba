@@ -559,7 +559,7 @@ class Postbusiness extends Component {
     }
 
     async postData(values, response){
-        const { userId, socLin, socGoo, socFac, profileId, openingTime, closingTime, objectId } = this.state;
+        const { userId, socLin, socGoo, socFac, profileId, openingTime, closingTime, objectId, imageList } = this.state;
         let obj = {
             user_id: userId,
             profileId: profileId,
@@ -582,7 +582,7 @@ class Postbusiness extends Component {
             socialFaceBook: socFac,
             socialGoogle: socGoo,
             socialLinkIn: socLin,
-            arr_url: response ? response : [],
+            arr_url: response ? [...response, ...imageList] : imageList,
             objectId: objectId
         }
         console.log(obj, 'objjjjjjjjjjjj')

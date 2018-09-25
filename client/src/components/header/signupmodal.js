@@ -32,21 +32,6 @@ class Signup extends Component{
         this.getSignData()
     }
 
-    async getSignData(){
-        let res = await HttpUtils.get('facebookdata')
-        if(res){
-            this.setState({obj: res.data})
-        }
-        this.getAllUsers()
-    }
-
-    async getAllUsers(){
-        let response = await HttpUtils.get('allusers')
-        if(response){
-            this.setState({allUser: response && response.content, _isMount: true})
-        }
-    }
-
     componentDidUpdate(prevProps, prevState){
         const { data } = this.props;
         const { route, obj } = this.state;
@@ -78,9 +63,23 @@ class Signup extends Component{
         }
     }
 
+    async getSignData(){
+        let res = await HttpUtils.get('facebookdata')
+        if(res){
+            this.setState({obj: res.data})
+        }
+        this.getAllUsers()
+    }
+
+    async getAllUsers(){
+        let response = await HttpUtils.get('allusers')
+        if(response){
+            this.setState({allUser: response && response.content, _isMount: true})
+        }
+    }
+
     async funcSignUp(values){
         let response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
-        console.log(response, 'signup In responseeeeeeeeeeeee')
         if(response) {
             this.getProfileId(response)
         }else {
@@ -244,13 +243,11 @@ class Signup extends Component{
                 >
                     {!secModal && <div className="row">
                         <div className="col-md-5">
-                           
-                                <Facebook inRup={'signIn'}/>
-                           
+                            <Facebook inRup={'signIn'}/>
                         </div>
                         <div className="col-md-1"></div>{/*col-md-4*/}
                         <div className="col-md-5">
-                                <Google inRup={'signIn'}/>
+                            <Google inRup={'signIn'}/>
                         </div>
                     </div>}
                     <br/>

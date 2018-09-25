@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
- import App from "../../App";
+import App from "../../App";
+import Footer from '../footer/footer'
 import axios from "axios/index";
 import { Tabs, Icon } from 'antd';
 import Burgermenu from '../header/burgermenu';
@@ -48,7 +49,7 @@ class Home1 extends Component{
                         <div className="col-md-4 col-sm-4">
                             <div className="card outset" >
                                 <div className="card-body space tag1">
-                                    <Link to={`/postad_Roommates`}>
+                                    <Link to={`/postad_Roommates`} style={{color: 'black'}}>
                                         <img alt='' src="./images/Rent room stockholm.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b className="tag1"> Room Renting</b>
                                     </Link>
                                 </div>
@@ -57,14 +58,18 @@ class Home1 extends Component{
                         <div className="col-md-4 col-sm-4">
                             <div className="card outset" >
                                 <div className="card-body space tag1">
-                                    <img alt='' src="./images/busioness-listing.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b className="tag1"> Business Listing</b>
+                                    <Link to={`/postad_business`} style={{color: 'black'}}>
+                                        <img alt='' src="./images/busioness-listing.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b className="tag1"> Business Listing</b>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-4 col-sm-4">
                             <div className="card outset" >
                                 <div className="card-body space tag1">
-                                    <img alt='' src="./images/Where to Buy Hero Image.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b className="tag1"> Buy & Sell </b>
+                                    <Link to={`/postad_buysell`} style={{color: 'black'}}>
+                                        <img alt='' src="./images/Where to Buy Hero Image.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b className="tag1"> Buy & Sell </b>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -522,6 +527,7 @@ class Home1 extends Component{
                         </div>
                     </div>
                 </div>
+                <Footer />
             </div>
         )
     }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Burgermenu from '../header/burgermenu';
 import Slider from '../header/Slider';
+import Footer from '../footer/footer'
 import { Tabs, Icon } from 'antd';
 import axios from "axios/index";
 import {HttpUtils} from "../../Services/HttpUtils";
@@ -88,184 +89,187 @@ class DetailBlog extends Component {
                     </div>
                 </div>
                 <div style={{height: '50px'}}></div>
-                <div style={{marginTop: '20px'}} className="col-md-9 col-sm-12 col-xs-12">
-                    <h3><b>Loram Ipsum Koram Posam, Loram Ipsum Koram Posam Loram Ipsum Koram Posam </b></h3>
-                    <div className="col-md-6">
-                        <p>Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram
-                            Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum
-                            Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam. Loram
-                            Ipsum Koram Posam Loram Ipsum Koram Posam. </p>
-                    </div>
-                    <div className="col-md-6">
-                        <img src="./images/shutterstock_1094843246.jpg" width="350" height="200"/>
-                    </div>
-                    <div className="col-md-12">
-                        <br/>
-                        <div className="b-head">
-                            <h3><b>" Loram Ipsum Koram Poram, Loram Ipsum Koram Poram, Loram Ipsum Koram Poram "</b>
-                            </h3>
+                <div className='row'>
+                    <div style={{marginTop: '20px'}} className="col-md-9 col-sm-12 col-xs-12">
+                        <h3><b>Loram Ipsum Koram Posam, Loram Ipsum Koram Posam Loram Ipsum Koram Posam </b></h3>
+                        <div className="col-md-6">
+                            <p>Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram
+                                Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum
+                                Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam. Loram
+                                Ipsum Koram Posam Loram Ipsum Koram Posam. </p>
                         </div>
-                    </div>
-                    <div className="col-md-12">
-                        <br/> <br/>
-                        <h4>Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram
-                            Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum
-                            Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam. Loram
-                            Ipsum Koram Posam Loram Ipsum Koram Posam. </h4>
-                    </div>
-                    <div className="col-md-12">
-                        <br/> <br/>
-                        <div className="col-md-2">
-                            <img src="../images/images.jpg" className="img-circle" width="100" height="100"/>
+                        <div className="col-md-6">
+                            <img src="./images/shutterstock_1094843246.jpg" width="350" height="200"/>
                         </div>
-                        <div className="col-md-10">
-                            <p>Written By</p>
-                            <h3>Hills Estate</h3>
-                            <hr/>
-                            <p>Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam
-                                Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam. Loram Ipsum
-                                Koram Posam Loram Ipsum Koram Posam.</p>
-                        </div>
-                    </div>
-                    <div className="col-md-12">
-                        <br/> <br/>
-                        <div className="col-md-2">
-                            <img src="../images/images.jpg" className="img-circle" width="100" height="100"/>
-                        </div>
-                        <div className="col-md-10">
-                            <h3>Hills Estate</h3>
-                            <p>14.09.2018</p>
-                            <p>Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam
-                                Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam. Loram Ipsum
-                                Koram Posam Loram Ipsum Koram Posam.</p>
-                        </div>
-                    </div>
-                    <div className="col-md-12">
-                        <br/>
-                        <hr/>
-                    </div>
-                    <div className="col-md-12">
-                        <br/> <br/>
-                        <div className="col-md-2">
-                            <img src="../images/images.jpg" className="img-circle" width="100" height="100"/>
-                        </div>
-                        <div className="col-md-10">
-                            <h3>Hills Estate</h3>
-                            <p>14.09.2018</p>
-                            <p>Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam
-                                Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam. Loram Ipsum
-                                Koram Posam Loram Ipsum Koram Posam.</p>
-                        </div>
-                    </div>
-                    {review && review.map((elem) => {
-                        return(
-                            <div className="col-md-12">
-                                <br/> <br/>
-                                <div className="col-md-2">
-                                    <img src={elem.userImg ? elem.userImg : "../images/images.jpg"} className="img-circle" width="100" height="100"/>
-                                </div>
-                                <div className="col-md-10">
-                                    <h3>{elem.user}</h3>
-                                    <p>{elem.written}</p>
-                                    <p>{elem.comm}</p>
-                                </div>
-                            </div>
-                        )
-                    })}
-                    <div className="col-md-12">
-                        <br/><br/>
-                        <div className="col-md-4">
-                            <hr/>
-                        </div>
-                        <div className="col-md-3 text-center"><h4><b>Leave A Reply</b></h4></div>
-                        <div className="col-md-5">
-                            <hr/>
-                        </div>
-                    </div>
-                    <div className="col-md-12">
-                        <div className="card outset">
-                            <div className="card-body space tag1 bspace">
-                                <br/><br/>
-                                <textarea cols="80" rows="5" value={this.state.comment} placeholder="Enter Your Comment..." onChange={this.changeVal.bind(this)} style={{marginLeft: "21px",paddingLeft: "13px"}}> </textarea>
-                                <br/><br/>
-                                <button className="btn" onClick={this.publishComment.bind(this)} style={{marginLeft: "21px",backgroundColor:"#008080",color: "white"}}>Publish</button>
-                                <br/><br/>
+                        <div className="col-md-12">
+                            <br/>
+                            <div className="b-head">
+                                <h3><b>" Loram Ipsum Koram Poram, Loram Ipsum Koram Poram, Loram Ipsum Koram Poram "</b>
+                                </h3>
                             </div>
                         </div>
+                        <div className="col-md-12">
+                            <br/> <br/>
+                            <h4>Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram
+                                Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum
+                                Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam. Loram
+                                Ipsum Koram Posam Loram Ipsum Koram Posam. </h4>
+                        </div>
+                        <div className="col-md-12">
+                            <br/> <br/>
+                            <div className="col-md-2">
+                                <img src="../images/images.jpg" className="img-circle" width="100" height="100"/>
+                            </div>
+                            <div className="col-md-10">
+                                <p>Written By</p>
+                                <h3>Hills Estate</h3>
+                                <hr/>
+                                <p>Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam
+                                    Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam. Loram Ipsum
+                                    Koram Posam Loram Ipsum Koram Posam.</p>
+                            </div>
+                        </div>
+                        <div className="col-md-12">
+                            <br/> <br/>
+                            <div className="col-md-2">
+                                <img src="../images/images.jpg" className="img-circle" width="100" height="100"/>
+                            </div>
+                            <div className="col-md-10">
+                                <h3>Hills Estate</h3>
+                                <p>14.09.2018</p>
+                                <p>Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam
+                                    Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam. Loram Ipsum
+                                    Koram Posam Loram Ipsum Koram Posam.</p>
+                            </div>
+                        </div>
+                        <div className="col-md-12">
+                            <br/>
+                            <hr/>
+                        </div>
+                        <div className="col-md-12">
+                            <br/> <br/>
+                            <div className="col-md-2">
+                                <img src="../images/images.jpg" className="img-circle" width="100" height="100"/>
+                            </div>
+                            <div className="col-md-10">
+                                <h3>Hills Estate</h3>
+                                <p>14.09.2018</p>
+                                <p>Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam
+                                    Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam. Loram Ipsum
+                                    Koram Posam Loram Ipsum Koram Posam.</p>
+                            </div>
+                        </div>
+                        {review && review.map((elem) => {
+                            return(
+                                <div className="col-md-12">
+                                    <br/> <br/>
+                                    <div className="col-md-2">
+                                        <img src={elem.userImg ? elem.userImg : "../images/images.jpg"} className="img-circle" width="100" height="100"/>
+                                    </div>
+                                    <div className="col-md-10">
+                                        <h3>{elem.user}</h3>
+                                        <p>{elem.written}</p>
+                                        <p>{elem.comm}</p>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                        <div className="col-md-12">
+                            <br/><br/>
+                            <div className="col-md-4">
+                                <hr/>
+                            </div>
+                            <div className="col-md-3 text-center"><h4><b>Leave A Reply</b></h4></div>
+                            <div className="col-md-5">
+                                <hr/>
+                            </div>
+                        </div>
+                        <div className="col-md-12">
+                            <div className="card outset">
+                                <div className="card-body space tag1 bspace">
+                                    <br/><br/>
+                                    <textarea cols="80" rows="5" value={this.state.comment} placeholder="Enter Your Comment..." onChange={this.changeVal.bind(this)} style={{marginLeft: "21px",paddingLeft: "13px"}}> </textarea>
+                                    <br/><br/>
+                                    <button className="btn" onClick={this.publishComment.bind(this)} style={{marginLeft: "21px",backgroundColor:"#008080",color: "white"}}>Publish</button>
+                                    <br/><br/>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-12">
+                            <br/><br/>
+                            <div className="col-md-4">
+                                <hr/>
+                            </div>
+                            <div className="col-md-3 text-center"><h4><b>More Blog</b></h4></div>
+                            <div className="col-md-5">
+                                <hr/>
+                            </div>
+                        </div>
+                        <div className="col-md-12">
+                            <div className="col-md-4">
+                                <img src="./images/shutterstock_536667610.jpg" width="250px" height="200"/>
+                                <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
+                                <p>By Hills Estate 13.09.2018 <br/><br/></p>
+                            </div>
+                            <div className="col-md-4">
+                                <img src="./images/blog1.jpg" width="250px" height="200"/>
+                                <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
+                                <p>By Hills Estate 13.09.2018 <br/><br/></p>
+                            </div>
+                            <div className="col-md-4">
+                                <img src="./images/black.jpg" width="250px" height="200"/>
+                                <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
+                                <p>By Hills Estate 13.09.2018 <br/><br/></p>
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-md-12">
+                    <div className="col-md-3 col-sm-12 col-xs-12">
+                        <Tabs defaultActiveKey="2">
+                            <TabPane style={{height: '450px', 'overflow-y': 'overlay'}} tab='SPORTS' key="1">
+                                {sports.map((elem) => {
+                                    return(
+                                        <div className="b-sec">
+                                            <a href={elem.url} target="_blank">
+                                                <img style={{width: '100%'}} src={elem.urlToImage} alt=""/>
+                                                <p><b>{elem.title}</b></p>
+                                            </a>
+                                        </div>
+                                    )
+                                })}
+                            </TabPane>
+                            <TabPane style={{height: '450px', 'overflow-y': 'overlay'}} tab='NEWS' key="2">
+                                {news.map((elem) => {
+                                    return(
+                                        <div className="b-sec">
+                                            <a href={elem.url} target="_blank">
+                                                <img style={{width: '100%'}} src={elem.urlToImage} alt=""/>
+                                                <p><b>{elem.title}</b></p>
+                                            </a>
+                                        </div>
+                                    )
+                                })}
+                            </TabPane>
+                        </Tabs>
                         <br/><br/>
-                        <div className="col-md-4">
-                            <hr/>
-                        </div>
-                        <div className="col-md-3 text-center"><h4><b>More Blog</b></h4></div>
-                        <div className="col-md-5">
-                            <hr/>
-                        </div>
-                    </div>
-                    <div className="col-md-12">
-                        <div className="col-md-4">
-                            <img src="./images/shutterstock_536667610.jpg" width="250px" height="200"/>
-                            <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
-                            <p>By Hills Estate 13.09.2018 <br/><br/></p>
-                        </div>
-                        <div className="col-md-4">
-                            <img src="./images/blog1.jpg" width="250px" height="200"/>
-                            <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
-                            <p>By Hills Estate 13.09.2018 <br/><br/></p>
-                        </div>
-                        <div className="col-md-4">
-                            <img src="./images/black.jpg" width="250px" height="200"/>
-                            <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
-                            <p>By Hills Estate 13.09.2018 <br/><br/></p>
-                        </div>
+                        <h3><b>Popular</b></h3>
+                        <br/><br/><br/>
+                        <img src="./images/shutterstock_536667610.jpg" width="300" height="250"/>
+                        <br/><br/><br/>
+                        <img src="./images/blog1.jpg" width="300" height="250"/>
+                        <br/><br/><br/>
+                        <img src="./images/black.jpg" width="300" height="250"/>
+                        <br/><br/>
+                        <h3><b> MostPopular</b></h3>
+                        <br/><br/><br/>
+                        <img src="./images/black.jpg" width="300" height="250"/>
+                        <br/><br/><br/>
+                        <img src="./images/shutterstock_536667610.jpg" width="300" height="250"/>
+                        <br/><br/>
                     </div>
                 </div>
-                <div className="col-md-3 col-sm-12 col-xs-12">
-                    <Tabs defaultActiveKey="2">
-                        <TabPane style={{height: '450px', 'overflow-y': 'overlay'}} tab='SPORTS' key="1">
-                            {sports.map((elem) => {
-                                return(
-                                    <div className="b-sec">
-                                        <a href={elem.url} target="_blank">
-                                            <img style={{width: '100%'}} src={elem.urlToImage} alt=""/>
-                                            <p><b>{elem.title}</b></p>
-                                        </a>
-                                    </div>
-                                )
-                            })}
-                        </TabPane>
-                        <TabPane style={{height: '450px', 'overflow-y': 'overlay'}} tab='NEWS' key="2">
-                            {news.map((elem) => {
-                                return(
-                                    <div className="b-sec">
-                                        <a href={elem.url} target="_blank">
-                                            <img style={{width: '100%'}} src={elem.urlToImage} alt=""/>
-                                            <p><b>{elem.title}</b></p>
-                                        </a>
-                                    </div>
-                                )
-                            })}
-                        </TabPane>
-                    </Tabs>
-                    <br/><br/>
-                    <h3><b>Popular</b></h3>
-                    <br/><br/><br/>
-                    <img src="./images/shutterstock_536667610.jpg" width="300" height="250"/>
-                    <br/><br/><br/>
-                    <img src="./images/blog1.jpg" width="300" height="250"/>
-                    <br/><br/><br/>
-                    <img src="./images/black.jpg" width="300" height="250"/>
-                    <br/><br/>
-                    <h3><b> MostPopular</b></h3>
-                    <br/><br/><br/>
-                    <img src="./images/black.jpg" width="300" height="250"/>
-                    <br/><br/><br/>
-                    <img src="./images/shutterstock_536667610.jpg" width="300" height="250"/>
-                    <br/><br/>
-                </div>
+                <Footer />
             </div>
-            )
+        )
     }
 }
 

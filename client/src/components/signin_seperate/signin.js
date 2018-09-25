@@ -40,7 +40,7 @@ class Signin extends Component{
                     console.log('aaaaaaaaaaaaaaa')
                     obj.map((elem) => {
                         if(elem.password === data.id){
-                            console.log('1111111111111111')
+                            console.log(elem, '1111111111111111')
                             this.funcLogin({userName: elem.email, password: elem.password})
                         }
                     })

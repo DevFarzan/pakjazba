@@ -21,12 +21,12 @@ class Facebook extends Component {
             let data = response
             // let data = {
             // 	accessToken: 'sdjhfalskjfhajhflakjflkahfja',
-            //     email: 'zb@brother.com',
-            //     expiresIn: '7500',
-            //     id: '918273364509',
-            //     name: 'brother2',
-            //     picture: 'skdjfkals',
-            //     userId: '1029384756'
+                // email: 'zb@brother.com',
+                // expiresIn: '7500',
+                // id: '918273364508',
+                // name: 'brother2',
+                // picture: 'skdjfkals',
+                // userId: '1029384756'
             // }
             data = {...data, ...{route: inRup}}
             dispatch({type: 'FACEBOOKSIGNUP', data})

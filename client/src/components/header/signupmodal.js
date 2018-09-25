@@ -38,17 +38,22 @@ class Signup extends Component{
         let arr = obj.map((elem) => elem.password)
         if(prevProps.data !== data){
             if(data && data.route === route){
+                console.log('signUp aaaaaaaaaaaaaaaa')
                 if(arr.includes(data.id)){
                     obj.map((elem) => {
+                        console.log('signUp 11111111111111111')
                         if(elem.password === data.id){
                             this.funcLogin({userName: elem.email, password: elem.password})
                         }
                     })
                 }else {
+                    console.log('signUp bbbbbbbbbbbbbbbbb')
                     if (data && data.email === undefined) {
+                        console.log('signUp 222222222222222')
                         this.setState({ secModal: true})
                     }else {
                         if (data) {
+                            console.log('signUp 33333333333333333')
                             let obj = {
                                 nickname: data.name,
                                 email: data.email,
@@ -88,6 +93,7 @@ class Signup extends Component{
     }
 
     async getProfileId(response){
+        console.log(response, 'signUp responseeeeeeeeeeeeeee')
         if(response.code === 200){
             let obj = {
                 name: response.name,
@@ -164,6 +170,7 @@ class Signup extends Component{
     }
 
     async funcLogin(values){
+        console.log('signUp mmmmmmmmmmmmmmmmm')
         let response = await HttpUtils.get('usersignin?useremail='+values.userName+'&password='+values.password)
         if(response.code === 200){
             this.getProfile(response)

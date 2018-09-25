@@ -36,7 +36,16 @@ class Dropdowns extends Component{
         }
 
         const onClick = function ({ key }) {
-            message.info(`Click on item ${key}`);
+            console.log(key)
+            let msg = '';
+            if(key == 1){
+                msg = 'Profile'
+            }else if(key == 2){
+                msg = 'Settings'
+            }else {
+                msg = "User Logout"
+            }
+            message.info(msg);
         };
 
         const menu = (

@@ -15,6 +15,7 @@ var UserSchema = new mongoose.Schema({
   subscribe: {type: Boolean ,  default: false },
   status:   {type: Boolean ,  default: false },
   blocked: {type:Boolean , default:false},
+  randomno: {type: String},
   loginvia:{type: String},
   profileId:{type:String},
 

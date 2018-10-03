@@ -299,7 +299,7 @@ app.get('/verify',async function(req,res){
         {
             console.log(response.randomno +'randdddddddddddddd');
             console.log("email is verified");
-            res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
+            res.end("<h1>Email "+ req.query.email +" is been Successfully verified");
         }
         else
         {

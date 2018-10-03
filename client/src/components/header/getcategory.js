@@ -30,6 +30,9 @@ class getCategory extends Component{
                 <Menu.Item>
                     <Link  rel="noopener noreferrer" to={`/postad_buysell`}>Buy & Sell</Link>
                 </Menu.Item>
+                <Menu.Item>
+                    <Link  rel="noopener noreferrer" to={`/postad_jobPortal`}>Job Portal</Link>
+                </Menu.Item>
             </Menu>
         );
 

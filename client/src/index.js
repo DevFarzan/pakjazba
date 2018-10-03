@@ -11,6 +11,7 @@ import Favicon from 'react-favicon';
 import Home from './components/home/home1';
 import Signin from './components/signin_seperate/signin';
 import Postbusiness from './components/business/postBusiness';
+import JobPortal from './components/job_portal/postJob';
 import Postroommates from './components/roomrenting/postRoommates';
 import Postbuysell from './components/buy_sell/postBuysell';
 import ProfileUser from './components/user_profile/profileUser';
@@ -65,6 +66,7 @@ ReactDOM.render(
 					<PrivateRoute path="/postad_business" component={Postbusiness}></PrivateRoute>
 					<PrivateRoute path="/postad_Roommates" component={Postroommates}></PrivateRoute>
 					<PrivateRoute path="/postad_buysell" component={Postbuysell}></PrivateRoute>
+					<PrivateRoute path="/postad_jobPortal" component={JobPortal}></PrivateRoute>
 					<PrivateRoute path="/profile_user" component={ProfileUser}></PrivateRoute>
 					<Route path="/detail_buySell" component={DetailBuySell}></Route>
 					<Route path="/detail_business" component={DetailBusiness}></Route>

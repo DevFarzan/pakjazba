@@ -10,8 +10,9 @@ import {
     Modal,
     TimePicker
 } from 'antd';
+import App from '../../App';
 
-class JobPortal extends Component {
+class JobClassified extends Component {
     constructor(props) {
         super(props)
         this.state = {}
@@ -20,12 +21,11 @@ class JobPortal extends Component {
     render(){
         return (
             <div>
-                <h1>hello job portal</h1>
+                <App/>
             </div>
         )
     }
 
 }
 
-const WrappedJobPortalForm = Form.create()(JobPortal);
-export default WrappedJobPortalForm;
+export default JobClassified;

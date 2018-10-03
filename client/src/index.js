@@ -23,6 +23,7 @@ import DetailRoommates from './components/roomrenting/detail_roomRent';
 import MarketBusiness from './components/business/marketBusiness';
 import MarketClassified from './components/buy_sell/marketClassified';
 import MarketRoommates from './components/roomrenting/MarketRoommates';
+import JobClassified from './components/job_portal/jobClassified';
 import {PrivateRoute} from './components/signin_seperate'
 
 
@@ -76,6 +77,7 @@ ReactDOM.render(
 					<Route path="/market_business" component={MarketBusiness}></Route>
 					<Route path="/market_classified" component={MarketClassified}></Route>
 					<Route path="/market_roommates" component={MarketRoommates}></Route>
+          <Route path="/market_jobPortal" component={JobClassified}></Route>
 				</div>
 			</BrowserRouter>
 		</Provider>

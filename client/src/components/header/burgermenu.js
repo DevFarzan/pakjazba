@@ -38,7 +38,7 @@ class Burgermenu extends Component{
                                           <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
                                       </Button>
                                       <Button type="button_globalclass" name='buySell' ghost className="button_globalclass">
-                                          <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
+                                          <Link rel="noopener noreferrer" to={`/market_jobPortal`}>Job Portal</Link>
                                       </Button>
                                   </div>
                               </div>{/*col-md-4*/}

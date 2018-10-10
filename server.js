@@ -32,6 +32,7 @@ require('./models/reviews');
 require('./models/sendmessage');
 require('./models/facebookLoginSchema');
 require('./models/blog');
+require('./models/jobPortalSchema');
 
 require('./config/passport');
 
@@ -46,6 +47,7 @@ var reviewdata = mongoose.model('reviewschema');
 var sendMessage = mongoose.model('sendmessage');
 var facebookLogin = mongoose.model('facebookdatabase');
 var blog = mongoose.model('blogdata');
+var jobPortal = mongoose.model('jobschema');
 
 app.use(passport.initialize());
 
@@ -1040,6 +1042,91 @@ else if(postroomrent.objectId != '' || postroomrent.objectId != undefined || pos
   })
 }//else if
 });
+
+/*===================post Job API start================================================================*/
+app.post('/api/postJobPortal', (req, res) => {
+    let postJobPortal = req.body;
+    if(postJobPortal.objectId === ''){
+        let jobDataa = new jobPortal({
+            user_id: postJobPortal.user_id,
+            profileId: postJobPortal.profileId,
+            compDescription: postJobPortal.compDescription,
+            compEmail: postJobPortal.compEmail,
+            compName: postJobPortal.compName,
+            email: postJobPortal.email,
+            experience: postJobPortal.experience,
+            jobCat: postJobPortal.jobCat,
+            jobDescription: postJobPortal.jobDescription,
+            jobTitle: postJobPortal.jobTitle,
+            jobType: postJobPortal.jobType[0],
+            location: postJobPortal.location,
+            salary: postJobPortal.salary,
+            faceBook: postJobPortal.faceBook,
+            LinkdIn: postJobPortal.LinkdIn,
+            Google: postJobPortal.Google,
+            Website: postJobPortal.Website,
+            Tagline: postJobPortal.Tagline,
+            arr_url: postJobPortal.arr_url,
+        });
+
+        jobDataa.save((error, response) => {
+            if(error){
+                res.send({
+                    code:500,
+                    content:'Internal Server Error',
+                    msg:'API not called properly'
+                });
+            }else if(response !== ''){
+                res.send({
+                    code:200,
+                    msg:'Data inserted successfully'
+                });
+            }else{
+                res.send({
+                    code:404,
+                    content:'Not Found',
+                    msg:'no data inserted'
+                });
+            }
+        });
+    }else {
+        jobPortal.findOne({objectId: postJobPortal.objectId}, (err, jobData) => {
+            if(err){
+                return res.status(400).json({"Unexpected Error:: ": err});
+            }
+            jobData.user_id = postJobPortal.user_id;
+            jobData.profileId = postJobPortal.profileId;
+            jobData.compDescription = postJobPortal.compDescription;
+            jobData.compEmail = postJobPortal.compEmail;
+            jobData.compName = postJobPortal.compName;
+            jobData.email = postJobPortal.email;
+            jobData.experience = postJobPortal.experience;
+            jobData.jobCat = postJobPortal.jobCat;
+            jobData.jobDescription = postJobPortal.jobDescription;
+            jobData.jobTitle = postJobPortal.jobTitle;
+            jobData.jobType = postJobPortal.jobType[0];
+            jobData.location = postJobPortal.location;
+            jobData.salary = postJobPortal.salary;
+            jobData.faceBook = postJobPortal.faceBook;
+            jobData.LinkdIn = postJobPortal.LinkdIn;
+            jobData.Google = postJobPortal.Google;
+            jobData.Website = postJobPortal.Website;
+            jobData.Tagline = postJobPortal.Tagline;
+            jobData.arr_url = postJobPortal.arr_url;
+        });
+        jobData.save((error, doc) => {
+            if(error){
+                return res.status(400).json({"Unexpected Error:: ": error});
+            }
+            return res.send({
+                code:200,
+                msg:'Add job data updated successfully'
+            });
+        });
+    }
+});
+
+/*===================post Job API end================================================================*/
 
 app.post('/api/sendmessage',function(req,res){
 var getuserfields = req.body;

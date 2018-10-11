@@ -759,7 +759,7 @@ app.get('/api/marketplace',function(req,res){
   var session = req.query.session;
   
     yellowPagesBusiness.find(function(err,yellowPages){
-      //console.log(yellowPages);
+      // console.log(yellowPages);
      if(yellowPages!=''){
       var businesses  = [];
           //buysell = [];
@@ -784,15 +784,24 @@ app.get('/api/marketplace',function(req,res){
               roomrentsdata.push(roomrents[k]);
             }
           }//end if
+
+        jobPortal.find(function(err, jobData) {
+          if(jobData != ''){
+            var jobPortalData = [];
+            for(var l=0; l<jobData.length; l++){
+              jobPortalData.push(jobData[l])
+            }
+          }
+          res.send({
+                  code:200,
+                  business:businesses,
+                  busell:buysell,
+                  roomrentsdata:roomrentsdata,
+                  jobPortalData: jobPortalData,
+                  msg:'data recieve successfully'
+                });
+          });  
         
-      
-      res.send({
-        code:200,
-        business:businesses,
-        busell:buysell,
-        roomrentsdata:roomrentsdata,
-        msg:'data recieve successfully'
-      });
     });
    })
   })

@@ -26,6 +26,7 @@ class JobPortal extends Component {
         super(props)
         this.state = {
             fileList: [],
+            imageList: [],
             loader: false,
             faceBook: '',
             LinkdIn: '',
@@ -41,6 +42,28 @@ class JobPortal extends Component {
 
     componentDidMount() {
         this.handleLocalStorage();
+        let data = this.props.location.state;
+        if(data) {
+            this.setState({
+                faceBook: data.faceBook,
+                LinkdIn: data.LinkdIn,
+                Google: data.Google,
+                Website: data.Website,
+                Tagline: data.Tagline,
+                compDescription: data.compDescription,
+                compEmail: data.compEmail,
+                email: data.email,
+                experience: data.experience,
+                jobCat: data.jobCat,
+                jobDescription: data.jobDescription,
+                jobTitle: data.jobTitle,
+                jobType: [data.jobType],
+                location: data.location,
+                salary: data.salary,
+                imageList: data.arr_url,
+                objectId: data._id
+            })
+        }
     }
 
     handleLocalStorage = () =>{
@@ -68,7 +91,7 @@ class JobPortal extends Component {
 
     handlePreview = (file) => {
         this.setState({
-            previewImage: file.url || file.thumbUrl,
+            previewImage: file.url || file.thumbUrl || file,
             previewVisible: true,
         });
     }
@@ -199,6 +222,12 @@ class JobPortal extends Component {
         }
     }
 
+    deleteImage(e){
+        let { imageList } = this.state;
+        imageList = imageList.filter((elem) => elem !== e)
+        this.setState({imageList: imageList})
+    }
+
     render(){
         const {getFieldDecorator} = this.props.form;
         const { email, jobTitle, jobType, jobCat, salary, compDescription, jobDescription, experience, compEmail, jobBanner, location, previewVisible, previewImage, fileList } = this.state;
@@ -206,6 +235,24 @@ class JobPortal extends Component {
         if (this.state.msg === true) {
             return <Redirect to='/' />
         }
+
+        const uploadedImages = (
+            <div style={{display: 'flex'}}>
+                {this.state.imageList.map((elem) => {
+                    return(
+                        <div className='insideDiv'>
+                            <a>
+                            <img alt='img1' src={elem} />
+                            <span>
+                                <a><Icon title='Preview file' onClick={() => this.handlePreview(elem)} type="eye" theme="outlined" style={{zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'}} /></a>
+                                <Icon title='Remove file' type='delete' onClick={this.deleteImage.bind(this, elem)} style={{zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'}}/>
+                            </span>
+                            </a>
+                        </div>
+                    )
+                })}
+            </div>
+        )
 
         const categ = [
             {
@@ -417,11 +464,12 @@ class JobPortal extends Component {
                                                                 onPreview={this.handlePreview}
                                                                 onChange={this.handleChange}
                                                             >
-                                                                {fileList.length >= 3 ? null : uploadButton}
+                                                                {this.state.imageList.length + fileList.length >= 3 ? null : uploadButton}
                                                             </Upload>
                                                             <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
                                                                 <img alt="example" style={{ width: '100%' }} src={previewImage} />
                                                             </Modal>
+                                                            {uploadedImages}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -459,7 +507,9 @@ class JobPortal extends Component {
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Website</label>
                                                         <FormItem>
-                                                            <input type="text" id='Website' className="form-control" onChange={this.onChangeValue.bind(this)}/>
+                                                            <input type="text" id='Website'
+                                                                value={this.state.Website}
+                                                                className="form-control" onChange={this.onChangeValue.bind(this)}/>
                                                         </FormItem>
                                                     </div>
                                                 </div>
@@ -467,7 +517,9 @@ class JobPortal extends Component {
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Tagline</label>
                                                         <FormItem>
-                                                            <input type="text" id='Tagline' className="form-control" onChange={this.onChangeValue.bind(this)}/>
+                                                            <input type="text" id='Tagline'
+                                                                value={this.state.Tagline}
+                                                                className="form-control" onChange={this.onChangeValue.bind(this)}/>
                                                         </FormItem>
                                                     </div>
                                                 </div>
@@ -506,6 +558,7 @@ class JobPortal extends Component {
                                                                 </button>
                                                                 <input type="text"
                                                                        id='faceBook'
+                                                                       value={this.state.faceBook}
                                                                        className="form-control"
                                                                        style={{width: '90%', display: 'inline-block', borderRadius: '0px'}}
                                                                        onChange={this.onChangeValue.bind(this)}/>
@@ -521,6 +574,7 @@ class JobPortal extends Component {
                                                                 <input
                                                                     type="text"
                                                                     id='LinkdIn'
+                                                                    value={this.state.LinkdIn}
                                                                     className="form-control"
                                                                     style={{width: '90%', display: 'inline-block', borderRadius: '0px'}}
                                                                     onChange={this.onChangeValue.bind(this)}/>
@@ -536,6 +590,7 @@ class JobPortal extends Component {
                                                                 <input
                                                                     type="text"
                                                                     id='Google'
+                                                                    value={this.state.Google}
                                                                     className="form-control"
                                                                     style={{width: '90%', display: 'inline-block', borderRadius: '0px'}}
                                                                     onChange={this.onChangeValue.bind(this)}/>

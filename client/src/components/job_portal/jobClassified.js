@@ -12,6 +12,8 @@ import {
 } from 'antd';
 import App from '../../App';
 import ClassifiedIcons from './jobClassifiedicon';
+import FeaturedBox from './featuredJob';
+
 class JobClassified extends Component {
     constructor(props) {
         super(props)
@@ -23,6 +25,7 @@ class JobClassified extends Component {
             <div>
                 <App/>
                 <ClassifiedIcons/>
+                <FeaturedBox/>
             </div>
         )
     }

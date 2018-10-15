@@ -11,7 +11,7 @@ import {
     TimePicker
 } from 'antd';
 import App from '../../App';
-
+import ClassifiedIcons from './jobClassifiedicon';
 class JobClassified extends Component {
     constructor(props) {
         super(props)
@@ -22,6 +22,7 @@ class JobClassified extends Component {
         return (
             <div>
                 <App/>
+                <ClassifiedIcons/>
             </div>
         )
     }

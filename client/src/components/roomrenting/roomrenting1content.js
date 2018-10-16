@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./headerroomrenting.css";
-import { Pagination } from 'antd';
+import { Pagination, Spin, Icon } from 'antd';
 import {Link} from "react-router-dom";
 import {HttpUtils} from "../../Services/HttpUtils";
 
@@ -53,6 +53,7 @@ class Roomrenting1content extends Component{
 
     render(){
         const { showroomrents, filteredArr, roomrents } = this.state;
+        const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
         return(
             <section id="about">
@@ -105,7 +106,7 @@ class Roomrenting1content extends Component{
                         }
                     </div>
                     {this.state.loader && <div className="col-md-12" style={{textAlign: 'center'}}>
-                        <img alt='' src={'./images/defLoader.apng'}/>
+                        <Spin indicator={antIcon} />
                     </div>}
                     {!!showroomrents.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length : roomrents.length} onChange={this.onChange} /></span>}
                 </div>

@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
-import {
-    Form,
-    Input,
-    Icon,
-    Cascader,
-    Spin,
-    notification,
-    Upload,
-    Modal,
-    TimePicker
-} from 'antd';
 import App from '../../App';
 import ClassifiedIcons from './jobClassifiedicon';
 import FeaturedBox from './featuredJob';
+import Footer from '../footer/footer';
+import { connect } from 'react-redux';
 
 class JobClassified extends Component {
     constructor(props) {
@@ -24,12 +15,19 @@ class JobClassified extends Component {
         return (
             <div>
                 <App/>
-                <ClassifiedIcons/>
+                {!this.props.text && <ClassifiedIcons/>}
                 <FeaturedBox/>
+                <Footer/>
             </div>
         )
     }
 
 }
 
-export default JobClassified;
+const mapStateToProps = (state) => {
+    return({
+        text: state.text
+    })
+}
+
+export default connect(mapStateToProps)(JobClassified);

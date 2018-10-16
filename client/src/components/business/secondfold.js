@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
+import { Spin, Icon, Pagination } from 'antd';
 import './secondfold.css'
-import { Pagination } from 'antd';
 import {HttpUtils} from "../../Services/HttpUtils";
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 
 class Secondfold extends Component{
@@ -86,6 +86,7 @@ class Secondfold extends Component{
     render(){
         const { business, showBusiness, filteredArr } = this.state;
         const { text } = this.props;
+        const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
         return(
             <div className="secondfold">
@@ -113,8 +114,8 @@ class Secondfold extends Component{
                             )
                         })}
                     </div>
-                    {this.state.loader && <div className="col-md-12" style={{textAlign: 'center'}}>
-                        <img alt='' src={'./images/defLoader.apng'}/>
+                    {this.state.loader &&  <div  style={{textAlign: 'center'}}>
+                        <Spin indicator={antIcon} />
                     </div>}
                     {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
                     {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}

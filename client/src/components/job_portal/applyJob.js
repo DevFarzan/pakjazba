@@ -12,7 +12,7 @@ import {
 } from 'antd';
 import App from '../../App';
 
-class JobDetail extends Component {
+class ApplyJob extends Component {
     constructor(props) {
         super(props)
         this.state = {}
@@ -22,12 +22,11 @@ class JobDetail extends Component {
         return (
             <div>
                 <App/>
-                <h1>Job Detail</h1>
-                <
+                <h1>ApplyJob</h1>
             </div>
         )
     }
 
 }
 
-export default JobDetail;
+export default ApplyJob;

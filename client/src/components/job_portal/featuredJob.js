@@ -31,9 +31,9 @@ class FeaturedBox extends Component{
                               Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                           </div>
                           <div className="m-t text-righ">
-                              <button type="button" className="btn btn-success">Veiw More</button>
+                              <button type="button" className="btn2 btn-success">Veiw More</button>
                             <div className="button2">
-                              <button type="button" className="btn btn-success">Apply Now</button>
+                              <button type="button" className="btn2 btn-success">Apply Now</button>
                             </div>
                           </div>
                       </div>
@@ -65,9 +65,9 @@ class FeaturedBox extends Component{
                               Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                           </div>
                           <div className="m-t text-righ">
-                              <button type="button" className="btn btn-success">Veiw More</button>
+                              <button type="button" className="btn2 btn-success">Veiw More</button>
                             <div className="button2">
-                              <button type="button" className="btn btn-success">Apply Now</button>
+                              <button type="button" className="btn2 btn-success">Apply Now</button>
                             </div>
                           </div>
                       </div>
@@ -99,9 +99,9 @@ class FeaturedBox extends Component{
                               Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                           </div>
                           <div className="m-t text-righ">
-                              <button type="button" className="btn btn-success">Veiw More</button>
+                              <button type="button" className="btn2 btn-success">Veiw More</button>
                             <div className="button2">
-                              <button type="button" className="btn btn-success">Apply Now</button>
+                              <button type="button" className="btn2 btn-success">Apply Now</button>
                             </div>
                           </div>
                       </div>

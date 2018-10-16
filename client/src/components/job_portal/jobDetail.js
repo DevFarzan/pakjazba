@@ -23,6 +23,7 @@ class JobDetail extends Component {
             <div>
                 <App/>
                 <h1>Job Detail</h1>
+                <
             </div>
         )
     }

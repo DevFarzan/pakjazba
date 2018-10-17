@@ -262,12 +262,12 @@ rand=Math.floor((Math.random() * 100) + 54);
           else {
             var facebookLogindata = new facebookLogin({
             email:email,
-            name:nickname,
+           name:nickname,
            password:password
-              })
-        facebookLogindata.save(function(err,data){
-        console.log(data);
-          })
+  })
+  facebookLogindata.save(function(err,data){
+    console.log(data);
+  })
               res.send({
                   _id: user_info._id,
                   name: user_info.username,

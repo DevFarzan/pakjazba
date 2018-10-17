@@ -12,58 +12,58 @@ class Firstfold extends Component{
                     <a href="blog-ici.html">
                         <div className="col-lg-3">
                             <div className="">
-                                <img alt='' src="../images/icons/cafi.png" style={{width: "142%"}} />
+                                <img alt='' src="../images/icons/cafi.png" style={{width: '103%'}} />
                             </div>
                         </div>
                     </a>
                     <a href="blog-ici.html">
                         <div className="col-lg-3">
                             <div className="">
-                                <img alt='' src="../images/icons/business.png" style={{width: "142%"}} />
+                                <img alt='' src="../images/icons/business.png" style={{width: "103%"}} />
                             </div>
                         </div>
                     </a>
                     <a href="blog-ici.html">
                         <div className="col-lg-3">
                             <div className="">
-                                <img alt='' src="../images/icons/hospital.png" style={{width: "142%"}} />
+                                <img alt='' src="../images/icons/hospital.png" style={{width: "103%"}} />
                             </div>
                         </div>
                     </a>
                     <a href="blog-ici.html">
                         <div className="col-lg-3">
                             <div className="">
-                                <img alt='' src="../images/icons/market.png" style={{width: "142%"}} />
+                                <img alt='' src="../images/icons/market.png" style={{width: "103%"}} />
                             </div>
                         </div>
                     </a>
                 </div>
                 <div className="index-content">
                     <a href="blog-ici.html">
-                        <div className="col-lg-3">
+                        <div className="col-lg-3" style={{marginTop:'36px'}}>
                             <div className="">
-                                <img alt='' src="../images/icons/restuarant.png" style={{width: "142%"}} />
+                                <img alt='' src="../images/icons/restuarant.png" style={{width: "103%"}} />
                             </div>
                         </div>
                     </a>
                     <a href="blog-ici.html">
-                        <div className="col-lg-3">
+                        <div className="col-lg-3" style={{marginTop:'36px'}}>
                             <div className="">
-                                <img alt='' src="../images/icons/park.png" style={{width: "142%"}} />
+                                <img alt='' src="../images/icons/park.png" style={{width: "103%"}} />
                             </div>
                         </div>
                     </a>
                     <a href="blog-ici.html">
-                        <div className="col-lg-3">
+                        <div className="col-lg-3" style={{marginTop:'36px'}}>
                             <div className="">
-                                <img alt='' src="../images/icons/hatel.png " style={{width: "142%"}} />
+                                <img alt='' src="../images/icons/hatel.png " style={{width: "103%"}} />
                             </div>
                         </div>
                     </a>
                     <a href="blog-ici.html">
-                        <div className="col-lg-3">
+                        <div className="col-lg-3" style={{marginTop:'36px'}}>
                             <div className="">
-                                <img alt='' src="../images/icons/animal.png"  style={{width: "142%"}} />
+                                <img alt='' src="../images/icons/animal.png"  style={{width: "103%"}} />
                             </div>
                         </div>
                     </a>

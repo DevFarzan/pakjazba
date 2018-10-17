@@ -35,16 +35,17 @@ class Slider extends Component{
     render(){
         return (
             <div>
-                <div style={{marginTop: "58px"}}>
+                <div>
                     <p className="paragragh-text"></p>
-                    <h1 className="text-h1">Lorem Forem</h1>
+                    <h1 className="text-h1" style={{fontSize:'58px',fontWeight:'bold'}}>{this.props.mainH1}</h1>
+                    <h2 style={{textAlign:'center',color: 'white'}}>{this.props.mainH2}</h2>
                     <section className="home-newsletter">
                         <div className="container">
                             <div className="row">
                                 <div className="col-md-12 col-sm-12 col-xs-12">
                                     <div className="single">
                                         <div className="input-group">
-                                            <input type="email" className="form-control" placeholder="Enter your email" onChange={this.onChange.bind(this)}/>
+                                            <input type="text" className="form-control" placeholder="Search" onChange={this.onChange.bind(this)}/>
                                             <span className="input-group-btn">
                                 <button className="btn btn-theme" type="submit" onClick={this.searchText.bind(this)}>Search</button>
                                 </span>

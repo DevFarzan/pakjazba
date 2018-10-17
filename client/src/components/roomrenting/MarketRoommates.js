@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import App from "../../App";
+import Burgermenu from "../header/burgermenu";
+import Slider from "../header/Slider";
 import Roomrenting1content from "./roomrenting1content";
 import Footer from '../footer/footer';
 import { connect } from 'react-redux'
@@ -34,7 +35,14 @@ class MarketRoommates extends Component{
 
         return(
             <div>
-                <App/>
+                <span>
+                <div className ="" style={{"backgroundImage":"url('http://res.cloudinary.com/dxk0bmtei/image/upload/v1537167325/bg-image-for-farzan-bhai_xjp7q7.png')","height": "407px",marginTop: "-65px",marginLeft:"-66px"}}>
+                    <div className="background-image">
+                        <Burgermenu/>
+                        <Slider mainH1="Room Renting" mainH2="connecting communities"/>
+                    </div>
+                </div>
+            </span>
                 <div className="container" style={{width:"94%"}}>
                 <Roomrenting1content/>
                 </div>

@@ -1,4 +1,4 @@
-import React, { Component } from   'react';
+    import React, { Component } from   'react';
 import 'antd/dist/antd.css';
 import Burgermenu from './components/header/burgermenu';
 import Slider from './components/header/Slider';
@@ -43,7 +43,7 @@ class App extends Component {
                 <div className ="" style={{"backgroundImage":"url('http://res.cloudinary.com/dxk0bmtei/image/upload/v1537167325/bg-image-for-farzan-bhai_xjp7q7.png')","height": "407px",marginTop: "-65px",marginLeft:"-66px"}}>
                     <div className="background-image">
                         <Burgermenu/>
-                        <Slider/>
+                        <Slider mainH1="Pak Jazba" mainH2="connecting communities"/>
                     </div>
                 </div>
             </span>

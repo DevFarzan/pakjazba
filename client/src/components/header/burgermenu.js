@@ -32,7 +32,7 @@ class Burgermenu extends Component{
                                           <Link rel="noopener noreferrer" to={`/market_roommates`}>Room Renting</Link>
                                       </Button>
                                       <Button type="button_globalclass" name='bussiness' ghost style={{marginRight: "10px", marginLeft: "10px"}} className="button_globalclass">
-                                          <Link rel="noopener noreferrer" to={`/market_business`}>Bussiness Listing</Link>
+                                          <Link rel="noopener noreferrer" to={`/market_business`}>Business Listing</Link>
                                       </Button>
                                       <Button type="button_globalclass" name='buySell' ghost className="button_globalclass" style={{marginRight: '10px'}}>
                                           <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
@@ -63,6 +63,7 @@ class Burgermenu extends Component{
                           </div>{/*col-md-12*/}
                           <div className="col-xs-3" style={{marginTop: "28px"}}><MainLogin/></div>
                       </div>{/*row*/}
+
                       <div className="row" style={{marginTop: "22px",marginBottom: "11px"}}>
                           <div className="col-xs-6">
                               <div style={{"float": "right"}}>
@@ -70,7 +71,7 @@ class Burgermenu extends Component{
                                       <Link rel="noopener noreferrer" to={`/market_roommates`}>Room Renting</Link>
                                   </Button>
                                   <Button type="primary" ghost style={{marginTop: "8px"}}>
-                                      <Link rel="noopener noreferrer" to={`/market_business`}>Bussiness Listing</Link>
+                                      <Link rel="noopener noreferrer" to={`/market_business`}>Business Listing</Link>
                                   </Button>
                               </div>
                           </div>

@@ -6,9 +6,9 @@ class Footer extends Component{
         return(
             <footer id="myFooter">
 
-                <div className="container">
+                <div className="">
                     <div className="row">
-                        <div className="col-sm-3">
+                        <div className="col-sm-3" style={{textAlign:'center'}}>
                             <h5>Get started</h5>
                             <ul>
                                 <li><a href="">Home</a></li>
@@ -16,7 +16,7 @@ class Footer extends Component{
                                 <li><a href="">Downloads</a></li>
                             </ul>
                         </div>
-                        <div className="col-sm-3">
+                        <div className="col-sm-2">
                             <h5>About us</h5>
                             <ul>
                                 <li><a href="">Company Information</a></li>
@@ -24,7 +24,7 @@ class Footer extends Component{
                                 <li><a href="">Reviews</a></li>
                             </ul>
                         </div>
-                        <div className="col-sm-3">
+                        <div className="col-sm-2">
                             <h5>Support</h5>
                             <ul>
                                 <li><a href="">FAQ</a></li>
@@ -32,9 +32,12 @@ class Footer extends Component{
                                 <li><a href="">Forums</a></li>
                             </ul>
                         </div>
-                        <div className="col-sm-3 info">
+                        <div className="col-sm-2 info">
                             <h5>Information</h5>
                             <p> Lorem ipsum dolor amet, consectetur adipiscing elit. Etiam consectetur aliquet aliquet. Interdum et malesuada fames ac ante ipsum primis in faucibus. </p>
+                        </div>
+                        <div className="col-md-3 col-sm-3 col-xs-12" style={{marginTop: '27px'}}>
+                            <img src="../images/logo.png" style={{width:'74%'}} />
                         </div>
                     </div>
                 </div>

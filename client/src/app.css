@@ -1,6 +1,8 @@
 .body{
   margin:0px;
-  font-family: 'Roboto', sans-serif;
+  /*font-family: 'Roboto', sans-serif;*/
+    /*font-family: 'Roboto Slab', serif;*/
+    font-family: 'Notable', sans-serif;
 }
 
 .logoWidth_main img{
@@ -24,6 +26,41 @@
     color: white;
     width: 100px;
     border-radius: 5px; 
+}
+.insideDiv{
+  border-radius:4px; 
+  margin-right:8px; 
+  width: 104px; 
+  height: 104px;
+  padding: 8px;
+  border: 1px solid #d9d9d9;
+}
+.insideDiv a img{
+  width:100%; 
+  position:relative; 
+  overflow: hidden;
+}
+.insideDiv a span{
+  position: absolute;
+  opacity: 0;
+  margin-left: -65px;
+  margin-top: 35px;
+
+}
+.insideDiv:hover {
+  cursor: pointer;
+}
+.insideDiv:hover > a {
+  width:100%;
+  height: 100%;
+  opacity: 1;
+  background-color: black;
+}
+.ant-upload-list-picture-card .ant-upload-list-item-info:before {
+  background-color: transparent;
+}
+.insideDiv:hover a span {
+  opacity: 15;
 }
 .ant-modal-title{
 	color:white;

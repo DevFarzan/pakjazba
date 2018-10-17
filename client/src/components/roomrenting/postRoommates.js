@@ -289,7 +289,7 @@ class Postroommates extends Component{
 
     handlePreview = (file) => {
         this.setState({
-            previewImage: file.url || file.thumbUrl,
+            previewImage: file.url || file.thumbUrl || file,
             previewVisible: true,
         });
     }
@@ -515,13 +515,14 @@ class Postroommates extends Component{
             <div style={{display: 'flex'}}>
                 {this.state.imageList.map((elem) => {
                     return(
-                        <div>
-                            <img alt='img1' style={{width: '100px', height: '100px'}} src={elem} />
-                            <span
-                                onClick={this.deleteImage.bind(this, elem)}
-                                style={{position: 'absolute', marginTop: '10px', marginLeft: '-14px', cursor: 'pointer', color: 'white'}}>
-                                X
+                        <div className='insideDiv'>
+                            <a>
+                            <img alt='img1' src={elem} />
+                            <span>
+                                <a><Icon title='Preview file' onClick={() => this.handlePreview(elem)} type="eye" theme="outlined" style={{zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'}} /></a>
+                                <Icon title='Remove file' type='delete' onClick={this.deleteImage.bind(this, elem)} style={{zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'}}/>
                             </span>
+                            </a>
                         </div>
                     )
                 })}
@@ -795,7 +796,7 @@ class Postroommates extends Component{
                                                             onPreview={this.handlePreview}
                                                             onChange={this.handleChange}
                                                         >
-                                                            {this.state.imageList.length + fileList.length >= 4 ? null : uploadButton}
+                                                            {this.state.imageList.length + fileList.length >= 3 ? null : uploadButton}
                                                         </Upload>
                                                         <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
                                                             <img alt="example" style={{ width: '100%' }} src={previewImage} />

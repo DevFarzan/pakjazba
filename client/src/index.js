@@ -11,6 +11,7 @@ import Favicon from 'react-favicon';
 import Home from './components/home/home1';
 import Signin from './components/signin_seperate/signin';
 import Postbusiness from './components/business/postBusiness';
+import JobPortal from './components/job_portal/postJob';
 import Postroommates from './components/roomrenting/postRoommates';
 import Postbuysell from './components/buy_sell/postBuysell';
 import ProfileUser from './components/user_profile/profileUser';
@@ -22,6 +23,9 @@ import DetailRoommates from './components/roomrenting/detail_roomRent';
 import MarketBusiness from './components/business/marketBusiness';
 import MarketClassified from './components/buy_sell/marketClassified';
 import MarketRoommates from './components/roomrenting/MarketRoommates';
+import JobClassified from './components/job_portal/jobClassified';
+import ApplyJob from './components/job_portal/applyJob';
+import JobDetail from './components/job_portal/jobDetail';
 import {PrivateRoute} from './components/signin_seperate'
 
 
@@ -65,8 +69,11 @@ ReactDOM.render(
 					<PrivateRoute path="/postad_business" component={Postbusiness}></PrivateRoute>
 					<PrivateRoute path="/postad_Roommates" component={Postroommates}></PrivateRoute>
 					<PrivateRoute path="/postad_buysell" component={Postbuysell}></PrivateRoute>
+					<PrivateRoute path="/postad_jobPortal" component={JobPortal}></PrivateRoute>
 					<PrivateRoute path="/profile_user" component={ProfileUser}></PrivateRoute>
 					<Route path="/detail_buySell" component={DetailBuySell}></Route>
+					<Route path="/detail_jobPortal" component={JobDetail}></Route>
+					<Route path="/apply_forJob" component={ApplyJob}></Route>
 					<Route path="/detail_business" component={DetailBusiness}></Route>
 					<Route path="/detail_blog" component={DetailBlog}></Route>
 					<Route path="/filter_roomRent" component={Roomrentingtwocontentarea}></Route>
@@ -74,6 +81,7 @@ ReactDOM.render(
 					<Route path="/market_business" component={MarketBusiness}></Route>
 					<Route path="/market_classified" component={MarketClassified}></Route>
 					<Route path="/market_roommates" component={MarketRoommates}></Route>
+    				<Route path="/market_jobPortal" component={JobClassified}></Route>
 				</div>
 			</BrowserRouter>
 		</Provider>

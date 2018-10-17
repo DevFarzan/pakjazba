@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Cascader, Pagination, Slider } from 'antd';
+import { Cascader, Pagination, Slider, Spin, Icon } from 'antd';
 import Burgermenu from '../header/burgermenu'
 import "./roomrenting2content.css";
 import {Link} from "react-router-dom";
@@ -293,6 +293,7 @@ class Roomrentingtwocontentarea extends Component{
 
 	render(){
         const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader } = this.state;
+        const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
         if(!noText){
             return <Redirect to='/market_roommates'/>
@@ -409,7 +410,7 @@ class Roomrentingtwocontentarea extends Component{
                             )
                         })}
                         {loader && <div className="col-md-12" style={{textAlign: 'center'}}>
-                            <img alt='' src={'./images/defLoader.apng'}/>
+                            <Spin indicator={antIcon} />
                         </div>}
                         <div className="col-md-12">
                             <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :roomrents.length} onChange={this.onChangePage} /></span>

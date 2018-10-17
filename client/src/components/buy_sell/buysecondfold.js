@@ -12,9 +12,12 @@ class Secondfold extends Component{
                         <div className="ibox">
                             <div className="ibox-content product-box">
                                 <div className="product-imitation">
+                                  <div className="card2">
+                                    <img alt='' src='./images/job-category.jpeg'/>
                                     <span className="card-button">Home & Decor</span>
                                     <h4> Furniture For Sale </h4>
                                     <i className="glyphicon glyphicon-map-marker"/><p className="text">Home & Decor</p>
+                                  </div>
                                 </div>
                                 <div className="cust-margin">
                                     <i className="glyphicon glyphicon-home"/>

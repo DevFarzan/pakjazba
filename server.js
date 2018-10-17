@@ -32,6 +32,7 @@ require('./models/reviews');
 require('./models/sendmessage');
 require('./models/facebookLoginSchema');
 require('./models/blog');
+require('./models/jobPortalSchema');
 
 require('./config/passport');
 
@@ -46,6 +47,7 @@ var reviewdata = mongoose.model('reviewschema');
 var sendMessage = mongoose.model('sendmessage');
 var facebookLogin = mongoose.model('facebookdatabase');
 var blog = mongoose.model('blogdata');
+var jobPortal = mongoose.model('jobschema');
 
 app.use(passport.initialize());
 
@@ -174,20 +176,10 @@ app.get('/api/userregister',(req,res) =>{
   var ip = req.ip;
   console.log(ip);
 
-  var user_info = new User({
-    username: nickname,
-    email: email,
-    password: password,
-    InsertedDate:date,
-    subscribe:false,
-    status:false,
-    blocked:false
-  });
-  
 
 rand=Math.floor((Math.random() * 100) + 54);
   host=req.get('host');
-  link="http://"+req.get('host')+"/verify?id="+rand;
+  link="http://"+req.get('host')+"/verify?email="+email+"&&id="+rand;
   mailOptions={
     to : req.query.email,
     subject : "Please confirm your Email account",
@@ -250,6 +242,19 @@ rand=Math.floor((Math.random() * 100) + 54);
     res.end("sent");
        }
 });
+  console.log(rand)
+
+    var user_info = new User({
+        username: nickname,
+        email: email,
+        password: password,
+        InsertedDate:date,
+        randomno: rand,
+        subscribe:false,
+        status:false,
+        blocked:false
+
+    });
 
   //res.send({message:user_info,code:200});
       //res.json({token: jwt.sign({ email: user_info.Useremail, _id: user_info._id}, 'RESTFULAPIs')})
@@ -285,26 +290,29 @@ rand=Math.floor((Math.random() * 100) + 54);
      });
 // /*============================user register end===========================================*/
 
-app.get('/verify',function(req,res){
-console.log(req.protocol+":/"+req.get('host'));
-if((req.protocol+"://"+req.get('host'))==("http://"+host))
-{
-  console.log("Domain is matched. Information is from Authentic email");
-  if(req.query.id==rand)
-  {
-    console.log("email is verified");
-    res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
-  } 
-  else
-  {
-    console.log("email is not verified");
-    res.end("<h1>Bad Request</h1>");
-  }
-}
-else
-{
-  res.end("<h1>Request is from unknown source");
-}
+app.get('/verify',async function(req,res){
+    let response = await User.findOne({email: req.query.email});
+    console.log(req.protocol+":/"+req.get('host'));
+    if((req.protocol+"://"+req.get('host'))==("http://"+host))
+    {
+
+        console.log("Domain is matched. Information is from Authentic email");
+        if(req.query.id==response.randomno)
+        {
+            console.log(response.randomno +'randdddddddddddddd');
+            console.log("email is verified");
+            res.end("<h1>Email "+ req.query.email +" is been Successfully verified");
+        }
+        else
+        {
+            console.log("email is not verified");
+            res.end("<h1>Bad Request</h1>");
+        }
+    }
+    else
+    {
+        res.end("<h1>Request is from unknown source");
+    }
 });
 
 /*--------------------Routing Over----------------------------*/
@@ -751,7 +759,7 @@ app.get('/api/marketplace',function(req,res){
   var session = req.query.session;
   
     yellowPagesBusiness.find(function(err,yellowPages){
-      //console.log(yellowPages);
+      // console.log(yellowPages);
      if(yellowPages!=''){
       var businesses  = [];
           //buysell = [];
@@ -776,15 +784,24 @@ app.get('/api/marketplace',function(req,res){
               roomrentsdata.push(roomrents[k]);
             }
           }//end if
+
+        jobPortal.find(function(err, jobData) {
+          if(jobData != ''){
+            var jobPortalData = [];
+            for(var l=0; l<jobData.length; l++){
+              jobPortalData.push(jobData[l])
+            }
+          }
+          res.send({
+                  code:200,
+                  business:businesses,
+                  busell:buysell,
+                  roomrentsdata:roomrentsdata,
+                  jobPortalData: jobPortalData,
+                  msg:'data recieve successfully'
+                });
+          });  
         
-      
-      res.send({
-        code:200,
-        business:businesses,
-        busell:buysell,
-        roomrentsdata:roomrentsdata,
-        msg:'data recieve successfully'
-      });
     });
    })
   })
@@ -1034,6 +1051,91 @@ else if(postroomrent.objectId != '' || postroomrent.objectId != undefined || pos
   })
 }//else if
 });
+
+/*===================post Job API start================================================================*/
+app.post('/api/postJobPortal', (req, res) => {
+    let postJobPortal = req.body;
+    if(postJobPortal.objectId === ''){
+        let jobDataa = new jobPortal({
+            user_id: postJobPortal.user_id,
+            profileId: postJobPortal.profileId,
+            compDescription: postJobPortal.compDescription,
+            compEmail: postJobPortal.compEmail,
+            compName: postJobPortal.compName,
+            email: postJobPortal.email,
+            experience: postJobPortal.experience,
+            jobCat: postJobPortal.jobCat,
+            jobDescription: postJobPortal.jobDescription,
+            jobTitle: postJobPortal.jobTitle,
+            jobType: postJobPortal.jobType[0],
+            location: postJobPortal.location,
+            salary: postJobPortal.salary,
+            faceBook: postJobPortal.faceBook,
+            LinkdIn: postJobPortal.LinkdIn,
+            Google: postJobPortal.Google,
+            Website: postJobPortal.Website,
+            Tagline: postJobPortal.Tagline,
+            arr_url: postJobPortal.arr_url,
+        });
+
+        jobDataa.save((error, response) => {
+            if(error){
+                res.send({
+                    code:500,
+                    content:'Internal Server Error',
+                    msg:'API not called properly'
+                });
+            }else if(response !== ''){
+                res.send({
+                    code:200,
+                    msg:'Data inserted successfully'
+                });
+            }else{
+                res.send({
+                    code:404,
+                    content:'Not Found',
+                    msg:'no data inserted'
+                });
+            }
+        });
+    }else {
+        jobPortal.findOne({objectId: postJobPortal.objectId}, (err, jobData) => {
+            if(err){
+                return res.status(400).json({"Unexpected Error:: ": err});
+            }
+            jobData.user_id = postJobPortal.user_id;
+            jobData.profileId = postJobPortal.profileId;
+            jobData.compDescription = postJobPortal.compDescription;
+            jobData.compEmail = postJobPortal.compEmail;
+            jobData.compName = postJobPortal.compName;
+            jobData.email = postJobPortal.email;
+            jobData.experience = postJobPortal.experience;
+            jobData.jobCat = postJobPortal.jobCat;
+            jobData.jobDescription = postJobPortal.jobDescription;
+            jobData.jobTitle = postJobPortal.jobTitle;
+            jobData.jobType = postJobPortal.jobType[0];
+            jobData.location = postJobPortal.location;
+            jobData.salary = postJobPortal.salary;
+            jobData.faceBook = postJobPortal.faceBook;
+            jobData.LinkdIn = postJobPortal.LinkdIn;
+            jobData.Google = postJobPortal.Google;
+            jobData.Website = postJobPortal.Website;
+            jobData.Tagline = postJobPortal.Tagline;
+            jobData.arr_url = postJobPortal.arr_url;
+        });
+        jobData.save((error, doc) => {
+            if(error){
+                return res.status(400).json({"Unexpected Error:: ": error});
+            }
+            return res.send({
+                code:200,
+                msg:'Add job data updated successfully'
+            });
+        });
+    }
+});
+
+/*===================post Job API end================================================================*/
 
 app.post('/api/sendmessage',function(req,res){
 var getuserfields = req.body;

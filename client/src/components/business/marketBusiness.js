@@ -3,7 +3,7 @@ import App from '../../App';
 import Firstfold from "./firstfold";
 import Secondfold from './secondfold'
 import Footer from '../footer/footer';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 class MarketBusiness extends Component{
     render(){

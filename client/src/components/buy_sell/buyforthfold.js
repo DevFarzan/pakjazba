@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './buysecondfold.css'
 import {HttpUtils} from "../../Services/HttpUtils";
-import { Pagination } from 'antd';
+import { Pagination, Spin, Icon } from 'antd';
 import { connect } from 'react-redux'
 import {Link} from "react-router-dom";
 
@@ -83,6 +83,7 @@ class Forthfold extends Component{
     render(){
         const { buySell, showBuySell, filteredArr } = this.state;
         const { text } = this.props;
+        const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
         return(
             <div className="secondfold">
@@ -134,7 +135,7 @@ class Forthfold extends Component{
                     })}
                 </div>
                 {this.state.loader && <div className="col-md-12" style={{textAlign: 'center'}}>
-                    <img alt='' src={'./images/defLoader.apng'}/>
+                    <Spin indicator={antIcon} />
                 </div>}
                 {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
                 {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}

@@ -11,7 +11,8 @@ class Roomrenting1content extends Component{
             roomrents: [],
             showroomrents: [],
             filteredArr: [],
-            loader: true
+            loader: true,
+            add: 6
         }
     }
 
@@ -47,6 +48,21 @@ class Roomrenting1content extends Component{
             this.setState({
                 current: page,
                 showroomrents: roomrents.slice(indexes.from, indexes.to)
+            });
+        }
+    }
+
+    onAddMore = () => {
+        const { add, roomrents, filteredArr } = this.state;
+        if(!!filteredArr.length){
+            this.setState({
+                showroomrents: filteredArr.slice(0, add + 6),
+                add: add + 6
+            });
+        }else {
+            this.setState({
+                showroomrents: roomrents.slice(0, add + 6),
+                add: add + 6
             });
         }
     }
@@ -105,10 +121,11 @@ class Roomrenting1content extends Component{
                         })
                         }
                     </div>
-                    {this.state.loader && <div className="col-md-12" style={{textAlign: 'center'}}>
+                    {this.state.loader && <div className="col-md-12" style={{textAlign: 'center', marginBottom: '20px', marginLeft: '-50px'}}>
                         <Spin indicator={antIcon} />
                     </div>}
-                    {!!showroomrents.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length : roomrents.length} onChange={this.onChange} /></span>}
+                    <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>
+                    {/*!!showroomrents.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length : roomrents.length} onChange={this.onChange} /></span>*/}
                 </div>
             </section>
         )

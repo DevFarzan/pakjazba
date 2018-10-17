@@ -14,7 +14,8 @@ class Forthfold extends Component{
             showBuySell: [],
             filteredArr: [],
             searchValue: '',
-            loader: true
+            loader: true,
+            add: 6
         }
     }
 
@@ -31,7 +32,8 @@ class Forthfold extends Component{
             }else {
                 this.setState({
                     showBuySell: buySell.slice(0, 6),
-                    filteredArr: []
+                    filteredArr: [],
+                    add: 6
                 })
             }
         }
@@ -45,7 +47,8 @@ class Forthfold extends Component{
         })
         this.setState({
             filteredArr,
-            showBuySell: filteredArr.slice(0, 6)
+            showBuySell: filteredArr.slice(0, 6),
+            add: 6
         })
     }
 
@@ -76,6 +79,21 @@ class Forthfold extends Component{
             this.setState({
                 current: page,
                 showBuySell: buySell.slice(indexes.from, indexes.to)
+            });
+        }
+    }
+
+    onAddMore = () => {
+        const { add, buySell, filteredArr } = this.state;
+        if(!!filteredArr.length){
+            this.setState({
+                showBuySell: filteredArr.slice(0, add + 6),
+                add: add + 6
+            });
+        }else {
+            this.setState({
+                showBuySell: buySell.slice(0, add + 6),
+                add: add + 6
             });
         }
     }
@@ -134,12 +152,13 @@ class Forthfold extends Component{
                         )
                     })}
                 </div>
-                {this.state.loader && <div className="col-md-12" style={{textAlign: 'center'}}>
+                {this.state.loader && <div className="col-md-12" style={{textAlign: 'center', marginLeft: '-50px', marginBottom: '20px'}}>
                     <Spin indicator={antIcon} />
                 </div>}
                 {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
                 {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
-                {!!showBuySell.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :buySell.length} onChange={this.onChange} /></span>}
+                <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>
+                {/*!!showBuySell.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :buySell.length} onChange={this.onChange} /></span>*/}
             </div>
         )
     }

@@ -123,14 +123,12 @@ class Secondfold extends Component{
                             return (
                                 <Link key={key} to={boo ? {pathname: `/detail_business`, state: elem} : {pathname: `/postad_business`}}>
                                     <div className="col-md-4"  style={{'marginBottom': '30px'}}>
-
-                                        <div className="card">
+                                        <div className="card" style={{border: '1px solid #3a252542',boxShadow: 'none',borderRadius:'13px',width:'89%'}}>
                                             <img alt='' src={elem.businessImages.length ? elem.businessImages[0] : './images/def_card_img.jpg'}/>
                                             <h4 style={{marginTop:'53px'}}><b>{elem.businessname}</b></h4>
                                             {elem.businessaddress && <p style={{marginTop:"-15px",marginLeft:"11px",paddingBottom: '108px'}}><span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}></span><span style={{color:"black"}}>{elem.businessaddress}</span></p>}
                                             {elem.businessaddress && <Link to={{pathname: `/detail_business`, state: elem}} className="blue-button" style={{paddingBottom: '61px',display:'none'}}>Read More</Link>}
                                         </div>
-
                                     </div>
                                 </Link>
                             )
@@ -147,7 +145,7 @@ class Secondfold extends Component{
                 </div>
                 <div className="row">
                     <div className="col-md-12">
-                        <img src="../images/businesslistingimage.png"/>
+                        <img src="../images/businesslistingimage.png" style={{width:'100%'}} />
                     </div>
                 </div>
             </div>

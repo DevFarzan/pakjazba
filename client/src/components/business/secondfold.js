@@ -15,7 +15,8 @@ class Secondfold extends Component{
             showBusiness: [],
             filteredArr: [],
             searchValue: '',
-            loader: true
+            loader: true,
+            add: 6
         }
     }
 
@@ -32,7 +33,8 @@ class Secondfold extends Component{
             }else {
                 this.setState({
                     showBusiness: business.slice(0, 6),
-                    filteredArr: []
+                    filteredArr: [],
+                    add: 6
                 })
             }
         }
@@ -48,7 +50,8 @@ class Secondfold extends Component{
         })
         this.setState({
             filteredArr,
-            showBusiness: filteredArr.slice(0, 6)
+            showBusiness: filteredArr.slice(0, 6),
+            add: 6
         })
     }
 
@@ -83,8 +86,24 @@ class Secondfold extends Component{
         }
     }
 
+    onAddMore = () => {
+        const { add, business, filteredArr } = this.state;
+        console.log(add + 6, 'View Add bitton clickedddddd')
+        if(!!filteredArr.length){
+            this.setState({
+                showJob: filteredArr.slice(0, add + 6),
+                add: add + 6
+            });
+        }else {
+            this.setState({
+                showJob: business.slice(0, add + 6),
+                add: add + 6
+            });
+        }
+    }
+
     render(){
-        const { business, showBusiness, filteredArr } = this.state;
+        const { business, showBusiness, filteredArr, add } = this.state;
         const { text } = this.props;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
@@ -104,26 +123,27 @@ class Secondfold extends Component{
                             return (
                                 <Link key={key} to={boo ? {pathname: `/detail_business`, state: elem} : {pathname: `/postad_business`}}>
                                     <div className="col-md-4"  style={{'marginBottom': '30px'}}>
-                                        
+
                                         <div className="card">
                                             <img alt='' src={elem.businessImages.length ? elem.businessImages[0] : './images/def_card_img.jpg'}/>
                                             <h4 style={{marginTop:'53px'}}><b>{elem.businessname}</b></h4>
                                             {elem.businessaddress && <p style={{marginTop:"-15px",marginLeft:"11px",paddingBottom: '108px'}}><span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}></span><span style={{color:"black"}}>{elem.businessaddress}</span></p>}
                                             {elem.businessaddress && <Link to={{pathname: `/detail_business`, state: elem}} className="blue-button" style={{paddingBottom: '61px',display:'none'}}>Read More</Link>}
                                         </div>
-                                        
+
                                     </div>
                                 </Link>
                             )
                         })}
                     </div>
                     </div>
-                    {this.state.loader &&  <div style={{textAlign: 'center'}}>
+                    {this.state.loader &&  <div  style={{textAlign: 'center', marginLeft:'-100px', marginBottom: '15px'}}>
                         <Spin indicator={antIcon} />
                     </div>}
                     {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
                     {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
-                    {!!showBusiness.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :business.length} onChange={this.onChange} /></span>}
+                    {/*!!showBusiness.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :business.length} onChange={this.onChange} /></span>*/}
+                    <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>
                 </div>
                 <div className="row">
                     <div className="col-md-12">

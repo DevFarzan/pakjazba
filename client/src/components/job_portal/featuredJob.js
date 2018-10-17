@@ -13,7 +13,8 @@ class FeaturedBox extends Component{
             job: [],
             showJob: [],
             filteredArr: [],
-            loader: true
+            loader: true,
+            add: 6
         };
     }
 
@@ -30,7 +31,8 @@ class FeaturedBox extends Component{
             }else {
                 this.setState({
                     showJob: job.slice(0, 6),
-                    filteredArr: []
+                    filteredArr: [],
+                    add : 6
                 })
             }
         }
@@ -44,7 +46,8 @@ class FeaturedBox extends Component{
         })
         this.setState({
             filteredArr,
-            showJob: filteredArr.slice(0, 6)
+            showJob: filteredArr.slice(0, 6),
+            add: 6
         })
     }
 
@@ -76,6 +79,22 @@ class FeaturedBox extends Component{
             this.setState({
                 current: page,
                 showJob: job.slice(indexes.from, indexes.to)
+            });
+        }
+    }
+
+    onAddMore = () => {
+        const { add, job, filteredArr } = this.state;
+        console.log(add + 6, 'View Add bitton clickedddddd')
+        if(!!filteredArr.length){
+            this.setState({
+                showJob: filteredArr.slice(0, add + 6),
+                add: add + 6
+            });
+        }else {
+            this.setState({
+                showJob: job.slice(0, add + 6),
+                add: add + 6
             });
         }
     }
@@ -129,10 +148,15 @@ class FeaturedBox extends Component{
                         )
                     })}
                 </div>
-                {this.state.loader && <div className="col-md-12" style={{textAlign: 'center'}}>
-                    <Spin indicator={antIcon} />
+                {this.state.loader && <div className="row">
+                    <div className="col-md-4"></div>
+                    <div className="col-md-4" style={{textAlign: 'center',marginLeft:'-53px'}}>
+                        <Spin indicator={antIcon} />
+                    </div>
+                    <div className="col-md-4"></div>
                 </div>}
-                {!!showJob && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :job.length} onChange={this.onChange} /></span>}
+                {/*!!showJob && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :job.length} onChange={this.onChange} /></span>*/}
+                <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>
             </div>
 
         )

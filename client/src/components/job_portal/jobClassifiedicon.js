@@ -5,9 +5,6 @@ import { connect } from 'react-redux'
 class ClassifiedIcons extends Component{
     constructor(props){
         super(props);
-        this.state = {
-
-        };
         this.clickItem = this.clickItem.bind(this);
     }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import App from '../../App';
+import "./detail_business.css";
 import moment from 'moment'
 import { Carousel, Rate, notification, Icon, Spin } from 'antd';
 import { Redirect } from 'react-router';
@@ -140,7 +141,7 @@ class DetailBusiness extends Component{
                             <div className="row">
                                 <div className="col-lg-10 col-md-10 col-sm-12 " >
                                     {/*Start first tile */}
-                                    <div className="card outset" >
+                                    <div className="card outset" style={{ boxShadow: "none", border:"1px solid #80808042", background: "white"}}>
                                         <img className="card-img-top" src={images && images[0]} alt="" style={{"width":"100%"}} />
                                         <div className="card-body space" style={{padding: "17px"}}>
                                             <h5><span className="glyphicon glyphicon-home" style={{marginRight: "15px"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{data.businessaddress}</span></h5>
@@ -150,9 +151,9 @@ class DetailBusiness extends Component{
                                             <h5><span className="glyphicon glyphicon-globe" style={{marginRight: "15px"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{data.businessemail}</span></h5>
                                             <br/>
                                             <h4>Our Social</h4>
-                                            <a href={data.socialFaceBook} target="_blank" style={{marginRight: "12px"}}><button type="button" className="btn btn-fb"><i className="fa fa-facebook"></i></button></a>
-                                            <a href={data.socialLinkIn} target="_blank" style={{marginRight: "12px"}}><button type="button" className="btn btn-linkedin"><i className="fa fa-linkedin"></i></button></a>
-                                            <a href={data.socialGoogle} target="_blank" style={{marginRight: "12px"}}><button type="button" className="btn btn-gplus"><i className="fa fa-google-plus"></i></button></a>
+                                            <a href={data.socialFaceBook} target="_blank" style={{marginRight: "12px"}}><button type="button" className="btn btn-fb"><i className="fa fa-facebook black"></i></button></a>
+                                            <a href={data.socialLinkIn} target="_blank" style={{marginRight: "12px"}}><button type="button" className="btn btn-linkedin"><i className="fa fa-linkedin black"></i></button></a>
+                                            <a href={data.socialGoogle} target="_blank" style={{marginRight: "12px"}}><button type="button" className="btn btn-gplus"><i className="fa fa-google-plus black"></i></button></a>
                                             <br/><br/>
                                         </div>
                                     </div>
@@ -168,13 +169,13 @@ class DetailBusiness extends Component{
                             <div className="row">
                                 <div className="col-lg-10 col-md-10 col-sm-12 " >
                                     {/*Start 3rd tile */}
-                                    <div className="card outset" >
+                                    <div className="card outset" style={{ boxShadow: "none", border:"1px solid #80808042", background: "white"}}>
                                         <div className="card-body space" style={{padding: "17px"}}>
                                             <div className="row">
                                                 <div className="col-md-12">
-                                                    <h3><b>Contact Time</b></h3>
+                                                    <h3><b>Opening Time</b></h3>
                                                     <p>You can contact between these timings</p>
-                                                    <hr/>
+                                                    <hr size="3"/>
                                                 </div>
                                             </div>
                                             <div className="row">
@@ -202,7 +203,7 @@ class DetailBusiness extends Component{
                                     {/*End 3rd tile */}
                                     <div className="row"><br/></div>
                                     {/*Start 4th tile */}
-                                    <div className="card outset" >
+                                    <div className="card outset" style={{ boxShadow: "none", border:"1px solid #80808042", background: "white"}}>
                                         <div className="card-body space">
                                             <div className="row">
                                                 <div className="col-md-12">
@@ -272,7 +273,7 @@ class DetailBusiness extends Component{
                         <div className="col-md-8 col-sm-8 col-xs-12">
                             {/*Start first tile */}
                             <div className="row">
-                                <div className="card outset" >
+                                <div className="card outset" style={{ boxShadow: "none", border:"1px solid #80808042", background: "white"}}>
                                     <div className="card-body space">
                                         <div className="row">
                                             <div className="col-md-2 col-sm-2 col-xs-12">
@@ -298,20 +299,20 @@ class DetailBusiness extends Component{
                             </div>
                             {/*Start scond tile */}
                             <div className="row">
-                                <div className="card outset" >
+                                <div className="card outset" style={{ boxShadow: "none", border:"1px solid #80808042", background: "white"}}>
                                     <div className="card-body space">
                                         <div className="row">
                                             <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>
                                                 <div className="col-md-4 col-sm-3 col-xs-12">
-                                                    <a href="#linkAbout" className="a"><h3><b>About</b></h3>
+                                                    <a href="#linkAbout" className="a"><h4 className="black"><b>About</b></h4>
                                                         <div className="hr1">...</div> </a>
                                                 </div>
                                                 <div className="col-md-4 col-sm-3 col-xs-12">
-                                                    <a href="#linkGallery" className="a"> <h3 style={{color: "rgba(0, 0, 0, 0.65)"}}><b>Gallery</b></h3>
+                                                    <a href="#linkGallery" className="a"> <h4 style={{color: "rgba(0, 0, 0, 0.65)"}}><b>Gallery</b></h4>
                                                         <div className="hr1">...</div> </a>
                                                 </div>
                                                 <div className="col-md-4 col-sm-3 col-xs-12">
-                                                    <a href="#linkReview" className="a"><h3><b>Reviews</b></h3>
+                                                    <a href="#linkReview" className="a"><h4 className="black"><b>Reviews</b></h4>
                                                         <div className="hr1">...</div></a>
                                                 </div>
                                             </div>
@@ -323,11 +324,11 @@ class DetailBusiness extends Component{
                             <div className="row"><br/></div>
                             {/*Start third tile */}
                             <div className="row">
-                                <div className="card outset" >
+                                <div className="card outset" style={{ boxShadow: "none", border:"1px solid #80808042", background: "white"}}>
                                     <div className="card-body space">
                                         <div className="row">
                                             <div className="col-md-12 col-sm-12 col-xs-12">
-                                                <h3 style={{color: "rgba(0, 0, 0, 0.65)"}}><b><a name="linkAbout">About</a></b></h3>
+                                                <h3 style={{color: "rgba(0, 0, 0, 0.65)"}}><b><a name="linkAbout" className="black">About</a></b></h3>
                                                 <hr/>
                                             </div>
                                         </div>
@@ -353,11 +354,11 @@ class DetailBusiness extends Component{
                             <div className="row"><br/></div>
                             {/*Start 4th tile */}
                             <div className="row">
-                                <div className="card outset" >
+                                <div className="card outset" style={{ boxShadow: "none", border:"1px solid #80808042", background: "white"}}>
                                     <div className="card-body space">
                                         <div className="row">
                                             <div className="col-md-12 col-sm-12 col-xs-12">
-                                                <h3><b><a name="linkGallery">Gallery</a></b></h3>
+                                                <h3><b><a name="linkGallery" className="black" >Gallery</a></b></h3>
                                                 <hr/>
                                             </div>
                                         </div>
@@ -380,16 +381,17 @@ class DetailBusiness extends Component{
                             {/*End 4th tile */}
                             <div className="row"><br/></div>
                             {/*Start 5th tile */}
-                            <div className="card outset" >
+                            <div className="card outset" style={{ boxShadow: "none", border:"1px solid #80808042", background: "white"}}>
                                 {!!reviews.length && <div className="row">
                                     {reviews && reviews.map((elem, key) => {
                                         return(
                                             <div  key={key} className="card-body space">
                                                 <div className="row">
                                                     <div className="col-md-12 col-sm-12 col-xs-12">
-                                                        <div className="col-md-6 col-sm-12 col-xs-12"><br/>
+                                                        <div className="col-md-6 col-sm-12 col-xs-12 " style={{paddingLeft:"0px" ,  paddingRight:"0px"}}><br/>
                                                             <img src="../images/images.jpg" className="img-circle" alt="" width="100" height="100" />
-                                                            <Rate style={{paddingLeft: '10px'}} allowHalf value={elem.star} />
+                                                              <h5 className="mon-timing"> NAME Of a Person </h5>
+                                                            <Rate style={{paddingLeft: '125px'}} allowHalf value={elem.star} />
                                                         </div>
                                                         <div className="col-md-2 col-sm-12 col-xs-12">
                                                         </div>
@@ -414,11 +416,11 @@ class DetailBusiness extends Component{
                             <div className="row"><br/></div>
                             {/*Start scond tile */}
                             <div className="row">
-                                <div className="card outset" >
+                                <div className="card outset" style={{ boxShadow: "none", border:"1px solid #80808042", background: "white"}}>
                                     <div className="card-body space">
                                         <div className="row">
                                             <div className="col-md-12 col-sm-12 col-xs-12">
-                                                <h3><b><a name="linkReview">Add Review</a></b></h3>
+                                                <h3><b><a name="linkReview" className="black">Add Review</a></b></h3>
                                                 <hr/>
                                             </div>
                                         </div>
@@ -490,4 +492,3 @@ class DetailBusiness extends Component{
 }
 
 export default DetailBusiness;
-

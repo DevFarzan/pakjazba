@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Carousel, notification, Icon, Spin } from 'antd';
+import axios from "axios/index";
+import { Carousel, notification, Icon, Spin, Tabs} from 'antd';
 import "./roomrenting2content.css";
 import moment from 'moment'
 import {HttpUtils} from "../../Services/HttpUtils";
 
+
+const TabPane = Tabs.TabPane;
 class Roomrenting3contentarea extends Component{
     constructor(props) {
         super(props)
@@ -12,8 +15,15 @@ class Roomrenting3contentarea extends Component{
             email: '',
             msg: '',
             receiver: '',
-            loader: false
+            loader: false,
+            news: [],
+            sports: []
         }
+    }
+
+    componentDidMount() {
+        this.callApi()
+        //this.getAllBlogs()
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -61,8 +71,18 @@ class Roomrenting3contentarea extends Component{
         });
     };
 
+     async callApi(){
+        const sports = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-sport&apiKey=6e7e6a696773424187f9bdb80954ded7');
+        console.log(sports.data.articles, 'sportssssssssss')
+        const news = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=6e7e6a696773424187f9bdb80954ded7');
+        console.log(news.data.articles, 'newssssssssssssssss')
+        this.setState({news: news.data.articles, sports: sports.data.articles})
+
+    }
+
     render(){
         const { data } = this.props;
+        const { news, sports } = this.state;
         let images = data.imageurl;
         let email= 'abc@gmail.com';
         let phone = '***********';
@@ -78,12 +98,12 @@ class Roomrenting3contentarea extends Component{
 
         return(
             <div>
-                <div className="head-bg" >
+                <div className="head-bg" style={{marginTop:'65px'}}>
                     <div className="col-md-12">
                         <h2 className="head-space">Luxary Room Available </h2>
                     </div>
                 </div>
-                <div className="row" style={{"marginTop": "62px"}}>
+                {/*<div className="row" style={{"marginTop": "62px"}}>
                     <div className="col-md-12 col-sm-12 col-xs-12">
                         <div className="col-md-2 col-sm-12 col-xs-12">
                         </div>
@@ -107,26 +127,72 @@ class Roomrenting3contentarea extends Component{
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>*/}
                 <div className="col-md-12 col-sm-12 col-xs-12">
                     <div className="row">
-                        <div className="col-md-12">
+                        <div className="col-lg-9 col-md-6 col-sm-6 col-xs-12">
                             <Carousel autoplay>
                                 {images && images.map((elem) => {
                                     return(
                                         <div>
-                                            <img src={elem}/>
+                                            <img src={elem} style={{height: '400px'}} />
                                         </div>
                                     )
                                 })}
                             </Carousel>
                         </div>
+                        <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        
+                         <Tabs defaultActiveKey="2" style={{border:'1px solid gray',backgroundColor:'rgba(119, 136, 153, 0.05)',padding: '10px',marginTop:'16px'}}>
+                            <TabPane style={{height: '258px', 'overflow-y': 'overlay'}} tab='SPORTS' key="1">
+                                {sports.map((elem) => {
+                                    return(
+                                        <div className="b-sec">
+                                            <a href={elem.url} target="_blank">
+                                                <img style={{width: '100%'}} src={elem.urlToImage} alt=""/>
+                                                <p><b>{elem.title}</b></p>
+                                            </a>
+                                        </div>
+                                    )
+                                })}
+                            </TabPane>
+                            <TabPane style={{height: '259px', 'overflow-y': 'overlay'}} tab='NEWS' key="2">
+                                {news.map((elem) => {
+                                    return(
+                                        <div className="b-sec">
+                                            <a href={elem.url} target="_blank">
+                                                <img style={{width: '100%'}} src={elem.urlToImage} alt=""/>
+                                                <p><b>{elem.title}</b></p>
+                                            </a>
+                                        </div>
+                                    )
+                                })}
+                            </TabPane>
+                        </Tabs> 
+                        </div>
+
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-12 col-sm-12 col-xs-12 des-space">
+                    <div className="col-lg-9 col-md-6 col-sm-12 col-xs-12 des-space">
                         <h3> Description </h3>
                         <p>{data.discription}</p>
+                    </div>
+                    <div className="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <ul class="list-group" style={{marginTop:'15px',border:'1px solid #80808040'}}>
+                            <div className="row">
+                                <div className="col-md-6"><h4 style={{fontSize: "16px",fontWeight:'bold',color: 'dimgray'}}> Available From</h4></div>
+                                <div className="col-md-6"><h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-calendar"></span>{data.startdate}</h4></div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6"><h4 style={{fontSize: "16px",fontWeight:'bold',color: 'dimgray'}}>Posted On</h4></div>
+                                <div className="col-md-6"><h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-user"></span>{data.date || '10-18-2018'}</h4></div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6"><h4 style={{fontSize: "16px",fontWeight:'bold',color: 'dimgray'}}>Posted By</h4></div>
+                                <div className="col-md-6"><h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-user"></span>{data.contactname}</h4></div>
+                            </div>
+                         </ul>  
                     </div>
                 </div>
                 <div className="row">
@@ -161,7 +227,7 @@ class Roomrenting3contentarea extends Component{
                     })}
                 </div>
                 <div className="row">
-                    <div className="col-md-12 col-sm-12 col-xs-12 des-space auther-border" style={{"border-style":"none"}}>
+                    <div className="col-md-12 col-sm-12 col-xs-12 des-space auther-border" style={{"border-style": 'none',boxShadow:'none',border: '1px solid #8080804f',background: 'white'}}>
                         <h3 style={{"marginTop":"14px","textAlign":"center","textDecoration": "underline"}}> Author </h3>
                         <div className="">
                             <div className="col-md-6 col-sm-12 col-xs-12">

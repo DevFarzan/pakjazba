@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "./headerroomrenting.css";
 import { Pagination, Spin, Icon } from 'antd';
+
 import {Link} from "react-router-dom";
 import {HttpUtils} from "../../Services/HttpUtils";
 
@@ -104,13 +105,13 @@ class Roomrenting1content extends Component{
                                                 <div>
                                                     <span className="product-price" style={{top: '-40px',position:'relative'}}>{elem.rent}</span>
                                                 </div>
-                                                <div className="row" style={{textAlign:'center'}}>
+                                                {/*<div className="row" style={{textAlign:'center'}}>
                                                     <span className="col-md-6" style={{color: "#000000c7"}}>Posted By</span>
                                                     <div className="col-md-6">
                                                         <i className="glyphicon glyphicon-user" style={{color:"#008080"}} />
                                                         <span className="" style={{color: "#000000c7"}}>{elem.contactname}</span>
                                                     </div>
-                                                </div>
+                                                </div>*/}
                                                 <div className="row" style={{textAlign:'center',marginTop:'-15px'}}>
                                                 <span className="col-md-6" style={{color: "#000000c7"}}>Posted On</span>
                                                 <div className="col-md-6">
@@ -153,7 +154,7 @@ class Roomrenting1content extends Component{
                     {/*!!showroomrents.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length : roomrents.length} onChange={this.onChange} /></span>*/}
                 </div>
 
-                <div className="thirdfold" style={{backgroundColor:"#008080",marginTop: '22px'}}>
+                <div className="thirdfold" style={{backgroundColor:"#008080",marginTop: '68px'}}>
                 <h3 style={{color:"white"}}> Selling With Us Is Easy </h3>
                 <div className="row">
                     <div className="col-md-3">

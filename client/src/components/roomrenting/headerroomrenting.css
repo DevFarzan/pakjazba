@@ -1000,3 +1000,9 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-size: 13px;
   color: #ccc;
 }
+.ant-carousel .slick-slider .slick-list{
+  height:431px !important;
+}
+.slick-slide .slick-active .slick-current{
+  height:430px !important;
+}

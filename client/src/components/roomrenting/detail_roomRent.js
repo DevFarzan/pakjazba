@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Burgermenu from '../header/burgermenu';
+import Footer from '../footer/footer'
 import Roomrentingthreecontentarea from "./roomrenting3contentarea";
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
@@ -47,6 +48,9 @@ class DetailRoommates extends Component{
                 </span>
                 <div className="container" style={{"width":"90%"}}>
                     {!!data && <Roomrentingthreecontentarea data={data}/>}
+                </div>
+                <div>
+                    <Footer/>
                 </div>
             </div>
         )

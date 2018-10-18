@@ -127,22 +127,26 @@ class Forthfold extends Component{
                                                     <img alt='' src={elem.images.length ? elem.images[0] : './images/def_card_img.jpg'}/>
                                                     <span className="card-button">
                                                         <p className="categories-on-card" style={{backgroundColor:"#008080",textAlign: "center"}}>{elem.category}</p>
-                                                        <i className="glyphicon glyphicon-map-marker" style={{color: "#008080",marginLeft: "-16px"}} /><p className="text" style={{color: "white",marginLeft: "1px"}}>{elem.state +" & "+ elem.city}</p>
+
                                                     </span>
                                                 </div>
                                             </div>
                                             <div className="cust-margin">
-                                                <i className="glyphicon glyphicon-calendar" style={{color:"#008080"}} />
+                                                {/*<i className="glyphicon glyphicon-calendar" style={{color:"#008080"}} />
                                                 <span className="text" style={{color: "#000000c7"}}>{elem.Date}</span>
                                                 <i className="glyphicon glyphicon-user" style={{color:"#008080",marginLeft: "71px"}} />
-                                                <span className="text" style={{color: "#000000c7"}}>{elem.contactname}</span>
+                                                <span className="text" style={{color: "#000000c7"}}>{elem.contactname}</span>*/}
                                             </div>
                                             <div className="product-desc">
                                                 <span className="product-price">{!elem.hideprice ? elem.price : 'Hide'}</span>
                                                 <p className="product-name">{des}</p>
-                                                <div className="small m-t-xs">{!elem.hideaddress ? des : ''}</div>
+                                                <div className="small m-t-xs">{!elem.hideaddress ? des : ''}
+                                                </div>
                                                 <div className="m-t text-righ" style={{marginTop:"58px",fontSize: "18px",textDecoration:"underline"}}>
                                                     <Link to={{pathname: `/detail_buySell`, state: elem}} className="" style={{color:"red"}}>Detail</Link>
+                                                    <div className="location-padding">
+                                                    <i className="buyicon glyphicon-map-marker" style={{color: "#008080",marginLeft: "0", left:"0"}} /><p className="text" style={{color: "black",marginLeft: "27", marginTop:"-30"}}>{elem.state +" & "+ elem.city}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

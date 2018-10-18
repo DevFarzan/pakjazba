@@ -4,7 +4,7 @@
   margin-top: 0;
   padding: 0;
   background-color: whitesmoke;
-  border-radius: 10px;
+  width: 89%;
 }
 
 .featuredbox-content {
@@ -15,6 +15,7 @@
   border-image: none;
   border-style: solid solid none;
   border-width: 1px 0;
+  border-radius: 10px;
 }
 
 .featuredjob-box {
@@ -36,10 +37,9 @@
 
 .featuredjob-imitation .card2{
 
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius:4px;
-  box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius:2px;
 
 }
 
@@ -48,8 +48,10 @@
    bottom: 22%;
    right: 8%;
    width: 100%;
-   height: 200px;
    z-index: 8;
+   padding: 6px 6px 0 6px;
+   border-radius: 5px;
+
 }
 .jobcard-button{
   font-size: 14px;
@@ -92,18 +94,38 @@
   position: relative;
   background-color: #ffff;
   margin-top: 5px;
+  border-radius: 20px;
 }
 .glyphicom{
-  margin-left: 120px;
+  margin-left: 75px;
   display: inline;
 }
 
 .btn2{
   margin-top: 15px;
   display: inline;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 18px;
+  padding-right: 18px;
+  border-radius: 8px;
+  color:#ffff;
+  border-color: #008080;
+
 }
+
+.btn2-success{
+  background-color: #008080;
+}
+
 .button2{
   margin-top: 15px;
   display: inline;
-  margin-left: 15px;
+  margin-left: -10px;
+}
+.heading-wight{
+  font-family: "Poppins", sans-serif;
+font-weight: 600;
+margin: 0 0 20px 0;
+padding: 0;
 }

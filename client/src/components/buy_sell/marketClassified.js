@@ -4,13 +4,14 @@ import BuyFirstFold from './buyfirstfold'
 import BuyThirdFold from './buythirdfold'
 import BuyFourthFold from './buyforthfold'
 import Footer from '../footer/footer';
+import { connect } from 'react-redux';
 
 class MarketClassified extends Component{
     render(){
         return(
             <div>
                 <App/>
-                <BuyFirstFold />
+                {!this.props.text && <BuyFirstFold />}
                 <BuyFourthFold />
                 <BuyThirdFold />
                 <Footer />
@@ -20,4 +21,10 @@ class MarketClassified extends Component{
     }
 }
 
-export default MarketClassified;
+const mapStateToProps = (state) => {
+    return({
+        text: state.text
+    })
+}
+
+export default connect(mapStateToProps)(MarketClassified);

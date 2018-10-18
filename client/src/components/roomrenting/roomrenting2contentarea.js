@@ -142,7 +142,8 @@ class Roomrentingtwocontentarea extends Component{
             to: 0,
             from: 6000,
             bedArr: [],
-            loader: true
+            loader: true,
+            add: 6
         }
     }
 
@@ -174,7 +175,8 @@ class Roomrentingtwocontentarea extends Component{
             states: states,
             showroomrents: filter.slice(0, 6),
             filteredArr: filter,
-            loader: false
+            loader: false,
+            add: 6
         })
         let inputValue = '';
         if(this.props.text.length){
@@ -209,7 +211,8 @@ class Roomrentingtwocontentarea extends Component{
         })
         this.setState({
             filteredArr: data,
-            showroomrents: data.slice(0, 6)
+            showroomrents: data.slice(0, 6),
+            add: 6
         })
     }
 
@@ -236,7 +239,8 @@ class Roomrentingtwocontentarea extends Component{
         })
         this.setState({
             filteredArr: data,
-            showroomrents: data.slice(0, 6)
+            showroomrents: data.slice(0, 6),
+            add: 6
         })
     }
 
@@ -259,6 +263,14 @@ class Roomrentingtwocontentarea extends Component{
         return `${'$ ' + value}`;
     }
 
+    onAddMore = () => {
+        const { add, filteredArr } = this.state;
+        this.setState({
+            showroomrents: filteredArr.slice(0, add + 6),
+            add: add + 6
+        });
+    }
+
     onChangeSlider(value){
         const { roomrents } = this.state;
         let data = roomrents.filter((elem) => {
@@ -268,7 +280,8 @@ class Roomrentingtwocontentarea extends Component{
             to: value[0],
             from: value[1],
             filteredArr: data,
-            showroomrents: data.slice(0, 6)
+            showroomrents: data.slice(0, 6),
+            add: 6
         })
     }
 
@@ -287,7 +300,8 @@ class Roomrentingtwocontentarea extends Component{
         })
         this.setState({
             filteredArr: data,
-            showroomrents: data.slice(0, 6)
+            showroomrents: data.slice(0, 6),
+            add: 6
         })
     }
 
@@ -412,9 +426,10 @@ class Roomrentingtwocontentarea extends Component{
                         {loader && <div className="col-md-12" style={{textAlign: 'center'}}>
                             <Spin indicator={antIcon} />
                         </div>}
-                        <div className="col-md-12">
+                        <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>
+                        {/*<div className="col-md-12">
                             <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :roomrents.length} onChange={this.onChangePage} /></span>
-                        </div>
+                        </div>*/}
                     </div>
                 </div>
             </div>

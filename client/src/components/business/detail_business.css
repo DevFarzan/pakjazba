@@ -1,0 +1,13 @@
+
+.black{
+  color: #000000;
+}
+
+.mon-timing{
+  margin-top: -60px;
+  margin-left: 125px;
+}
+
+.outset {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
+}

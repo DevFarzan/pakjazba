@@ -15,7 +15,7 @@ class MarketBusiness extends Component{
                     <div className ="" style={{"backgroundImage":"url('http://res.cloudinary.com/dxk0bmtei/image/upload/v1537167325/bg-image-for-farzan-bhai_xjp7q7.png')","height": "407px",marginTop: "-65px",marginLeft:"-66px"}}>
                         <div className="background-image">
                             <Burgermenu/>
-                            <Slider mainH1="Business Listing" mainH2="businesses near you"/>
+                            <Slider mainH1="Business Listing" mainH2="Businesses Near You"/>
                         </div>
                     </div>
                 </span>

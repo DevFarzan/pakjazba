@@ -39,7 +39,7 @@ class MarketRoommates extends Component{
                 <div className ="" style={{"backgroundImage":"url('http://res.cloudinary.com/dxk0bmtei/image/upload/v1537167325/bg-image-for-farzan-bhai_xjp7q7.png')","height": "407px",marginTop: "-65px",marginLeft:"-66px"}}>
                     <div className="background-image">
                         <Burgermenu/>
-                        <Slider mainH1="Room Renting" mainH2="connecting communities"/>
+                        <Slider mainH1="Explore Home" mainH2="Find Your Perfect Match"/>
                     </div>
                 </div>
             </span>

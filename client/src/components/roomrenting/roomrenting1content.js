@@ -66,8 +66,8 @@ class Roomrenting1content extends Component{
                                 str = str + '...'
                             }
                             let des = elem.discription || '';
-                            if(des.length > 100) {
-                                des = des.substring(0, 100);
+                            if(des.length > 30) {
+                                des = des.substring(0, 30);
                                 des = des + '...'
                             }
                             return(
@@ -82,16 +82,41 @@ class Roomrenting1content extends Component{
                                                             <p className="categories-on-card" style={{backgroundColor:"#008080",textAlign: "center",width: "190px",marginBottom: "6px"}}>{elem.category}</p>
                                                             <i className="glyphicon glyphicon-map-marker" style={{color: "#008080",marginLeft: "-2px"}} /><p className="text" style={{color: "white",marginLeft: "14px"}}>{elem.state +" & "+ elem.city}</p>
                                                         </span>
+
                                                     </div>
                                                 </div>
-                                                <div className="cust-margin" style={{marginTop: "36px"}}>
+                                                <div>
+                                                    <span className="product-price" style={{top: '-40px',position:'relative'}}>{elem.rent}</span>
+                                                </div>
+                                                <div className="row" style={{textAlign:'center'}}>
+                                                    <span className="col-md-6" style={{color: "#000000c7"}}>Posted By</span>
+                                                    <div className="col-md-6">
+                                                        <i className="glyphicon glyphicon-user" style={{color:"#008080"}} />
+                                                        <span className="" style={{color: "#000000c7"}}>{elem.contactname}</span>
+                                                    </div>
+                                                </div>
+                                                <div className="row" style={{textAlign:'center',marginTop:'-15px'}}>
+                                                <span className="col-md-6" style={{color: "#000000c7"}}>Posted On</span>
+                                                <div className="col-md-6">
+                                                    <i className="glyphicon glyphicon-calendar" style={{color:"#008080"}} />
+                                                    <span className="" style={{color: "#000000c7"}}>10-17-2018</span>
+                                                 </div>   
+                                                </div>
+                                                <div className="row" style={{textAlign:'center',marginTop:'-15px'}}>
+                                                <span className="col-md-6" style={{color: "#000000c7"}}>Availible From</span>
+                                                <div className="col-md-6">
+                                                    <i className="glyphicon glyphicon-calendar" style={{color:"#008080"}} />
+                                                    <span className="" style={{color: "#000000c7"}}>{elem.startdate ? elem.startdate : '10-17-2018'}</span>
+                                                 </div>   
+                                                </div>
+                                                {/*<div className="cust-margin" style={{marginTop: "36px"}}>
                                                     <i className="glyphicon glyphicon-calendar" style={{color:"#008080"}} />
                                                 <span className="text" style={{color: "#000000c7"}}>{elem.Date}</span>
                                                 <i className="glyphicon glyphicon-user" style={{color:"#008080",marginLeft: "71px"}} />
                                                 <span className="text" style={{color: "#000000c7"}}>{elem.contactname}</span>
-                                                </div>
+                                                </div>*/}
                                                 <div className="product-desc">
-                                                    <span className="product-price">{elem.rent}</span>
+                                                    
                                                     <div className="product-name" style={{"fontSize": "14px"}}>{des}</div>
                                                     <div className="m-t text-righ" style={{marginTop:"58px",fontSize: "18px",textDecoration:"underline"}}>
                                                         <Link to={{pathname: `/detail_roomRent`, state: elem}} className="" style={{color:"red"}}>Detail</Link>
@@ -108,8 +133,66 @@ class Roomrenting1content extends Component{
                     {this.state.loader && <div className="col-md-12" style={{textAlign: 'center'}}>
                         <Spin indicator={antIcon} />
                     </div>}
-                    {!!showroomrents.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length : roomrents.length} onChange={this.onChange} /></span>}
+                    {!!showroomrents.length && <span style={{textAlign:"center",marginBottom:'18px'}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length : roomrents.length} onChange={this.onChange} /></span>}
                 </div>
+
+                <div className="thirdfold" style={{backgroundColor:"#008080",marginTop: '22px'}}>
+                <h3 style={{color:"white"}}> Selling With Us Is Easy </h3>
+                <div className="row">
+                    <div className="col-md-3">
+                        <div className="media">
+                            <div className="media-left">
+                                <a>
+                                    <img alt='' className="media-object" src="../images/how to upload/profile.png" alt="..." style={{width:"100px"}}/>
+                                </a>
+                            </div>
+                            <div className="media-body col-md-3" style={{marginLeft: "-15px"}}>
+                                <h4 className="text-white">Create an Account</h4>
+                            </div>
+                        </div>
+                    </div>
+                    {/*second card*/}
+                    <div className="col-md-3">
+                        <div className="media">
+                            <div className="media-left">
+                                <a>
+                                    <img  alt='' className="media-object-2" src="../images/how to upload/upload.png" alt="..." style={{width:"100px"}}/>
+                                </a>
+                            </div>
+                            <div className="media-body col-md-3" style={{marginLeft: "-15px"}}>
+                                <h4 className="text-white">Submit Your Add</h4>
+                            </div>
+                        </div>
+                    </div>
+                    {/*third card*/}
+                    <div className="col-md-3">
+                        <div className="media">
+                            <div className="media-left">
+                                <a>
+                                    <img alt='' className="media-object-2" src="../images/how to upload/deal-done.png" alt="..." style={{width:"100px"}}/>
+                                </a>
+                            </div>
+                            <div className="media-body col-md-3">
+                                <h4 className="text-white">Make A Deal</h4>
+                            </div>
+                        </div>
+                    </div>
+                    {/*forth card*/}
+                    <div className="col-md-3">
+                        <div className="media">
+                            <div className="media-left">
+                                <a>
+                                    <img alt='' className="media-object-2" src="../images/how to upload/payment.png" alt="..." style={{width:"100px"}} />
+                                </a>
+                            </div>
+                            <div className="media-body col-md-3">
+                                <h4 className="text-white">Enjoy The Money</h4>
+                                {/*<p className="text-white">Bed, Sofa, Garden..</p>*/}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </section>
         )
     }

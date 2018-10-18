@@ -110,7 +110,7 @@ class Secondfold extends Component{
         return(
             <div className="secondfold">
                 <h1 className="text-align"> Great Places </h1>
-                <div className="index-content" style={{marginBottom: '235px'}}>
+                <div className="index-content">
                     <div className="container" style={{width: '93%'}}>
                     <div className="row">
                         {showBusiness && showBusiness.map((elem, key) => {

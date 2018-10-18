@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import App from '../../App';
 import ClassifiedIcons from './jobClassifiedicon';
 import FeaturedBox from './featuredJob';
+import JobBlog from './jobBlogs';
 import Footer from '../footer/footer';
 import { connect } from 'react-redux';
 
@@ -17,6 +18,7 @@ class JobClassified extends Component {
                 <App/>
                 {!this.props.text && <ClassifiedIcons/>}
                 <FeaturedBox/>
+                <JobBlog/>
                 <Footer/>
             </div>
         )

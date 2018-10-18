@@ -13,10 +13,20 @@ class MarketClassified extends Component{
                 <App/>
                 {!this.props.text && <BuyFirstFold />}
                 <BuyFourthFold />
-                <BuyThirdFold />
+                <div className="row" style={{marginTop:"40px"}}>
+                  <div className="col-md-12">
+                    <BuyThirdFold />
+                  </div>
+                </div>
+
+                <div className="row">
+                    <div className="col-md-12">
+                        <img src="../images/businesslistingimage.png" style={{width:'100%'}} />
+                    </div>
+                </div>
                 <Footer />
             </div>
-            
+
         )
     }
 }

@@ -41,7 +41,7 @@ class FeaturedBox extends Component{
     searchedArr(text){
         const { job } = this.state;
         let filteredArr = job.filter((elem) => {
-            return (elem.jobCat.toLowerCase().includes(text.toLowerCase())) || 
+            return (elem.jobCat.toLowerCase().includes(text.toLowerCase())) ||
             (elem.jobType.toLowerCase().includes(text.toLowerCase()))
         })
         this.setState({
@@ -104,21 +104,21 @@ class FeaturedBox extends Component{
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
         return(
-            <div>
+            <div className="container" style={{width:"98%"}}>
                 <h2 style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}>Featured Jobs </h2>
                 <div className="row">
                     {showJob && showJob.map((elem) => {
                         return (
                             <div className="col-md-4">
                                 <div className="featuredbox">
-                                    <div className="featuredbox-content featuredjob-box">
+                                    <div className="featuredbox-content featuredjob-box ">
                                         <div className="featuredjob-imitation">
                                             <div className="card2">
                                                 <img alt='' src={elem.arr_url[0]}/>
                                             </div>
                                         </div>
                                         <div className="customjob-margin">
-                                            <h4>{elem.jobCat}</h4>
+                                            <h4 className="heading-wight">{elem.jobCat}</h4>
                                             <i className="glyphicon glyphicon-star"/>
                                             <p className="textforjob">{elem.jobType}</p>
                                             <div className="glyphicom">
@@ -131,20 +131,24 @@ class FeaturedBox extends Component{
                                             <div className="small m-t-xs">
                                                 {elem.jobDescription}
                                             </div>
-                                            <div className="m-t text-righ">
-                                                <Link to={{pathname: `/detail_jobPortal`, state: elem}}>
-                                                    <button type="button" className="btn btn-success">View Detail</button>
-                                                </Link>
-                                                <div className="button2">
-                                                    <Link to={{pathname: `/apply_forJob`, state: elem}}>
-                                                        <button type="button" className="btn btn-success">Apply Now</button>
-                                                    </Link>
-                                                </div>
+                                            <div className="row">
+                                              <div className="col-md-6">
+                                                  <Link to={{pathname: `/detail_jobPortal`, state: elem}}>
+                                                      <button type="button" className="btn2 btn2-success">View Detail</button>
+                                                  </Link>
+                                              </div>
+                                              <div className="col-md-6">
+                                                      <Link to={{pathname: `/apply_forJob`, state: elem}}>
+                                                          <button type="button" className="btn2 btn2-success">Apply Now</button>
+                                                      </Link>
+                                              </div>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         )
                     })}
                 </div>
@@ -156,8 +160,9 @@ class FeaturedBox extends Component{
                     <div className="col-md-4"></div>
                 </div>}
                 {/*!!showJob && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :job.length} onChange={this.onChange} /></span>*/}
-                <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>
+                <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn-success" onClick={this.onAddMore}>View More ...</button></div>
             </div>
+
 
         )
     }

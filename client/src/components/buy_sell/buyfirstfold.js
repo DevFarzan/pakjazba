@@ -64,7 +64,7 @@ class Firstfold extends Component{
                         <div className="media">
                             <div className="media-left">
                                 <a onClick={this.category}>
-                                    <img className="media-object" src="../images/icons for buy sell/reak-estate.png" alt="Jobs" style={{width:"100px"}}/>
+                                    <img className="media-object" src="../images/icons for buy sell/jobs.png" alt="Jobs" style={{width:"100px"}}/>
                                 </a>
                             </div>
                             <div className="media-body">

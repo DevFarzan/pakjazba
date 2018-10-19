@@ -160,7 +160,7 @@ class FeaturedBox extends Component{
                     <div className="col-md-4"></div>
                 </div>}
                 {/*!!showJob && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :job.length} onChange={this.onChange} /></span>*/}
-                <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn-success" onClick={this.onAddMore}>View More ...</button></div>
+                <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>View More ...</button></div>
             </div>
 
 

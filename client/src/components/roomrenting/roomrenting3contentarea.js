@@ -130,7 +130,7 @@ class Roomrenting3contentarea extends Component{
                 </div>*/}
                 <div className="col-md-12 col-sm-12 col-xs-12">
                     <div className="row">
-                        <div className="col-lg-9 col-md-6 col-sm-6 col-xs-12">
+                        <div className="col-lg-7 col-md-6 col-sm-6 col-xs-12">
                             <Carousel autoplay>
                                 {images && images.map((elem) => {
                                     return(
@@ -141,9 +141,9 @@ class Roomrenting3contentarea extends Component{
                                 })}
                             </Carousel>
                         </div>
-                        <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div className="col-lg-5 col-md-6 col-sm-6 col-xs-12">
                         
-                         <Tabs defaultActiveKey="2" style={{border:'1px solid gray',backgroundColor:'rgba(119, 136, 153, 0.05)',padding: '10px',marginTop:'16px'}}>
+                         <Tabs defaultActiveKey="2" style={{border:'1px solid gray',backgroundColor:'rgba(119, 136, 153, 0.05)',padding: '10px',marginTop:'16px',height:'393px'}}>
                             <TabPane style={{height: '258px', 'overflow-y': 'overlay'}} tab='SPORTS' key="1">
                                 {sports.map((elem) => {
                                     return(

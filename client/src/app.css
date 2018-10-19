@@ -795,7 +795,9 @@ color: #fff;
 .white{
     color: white;
 }
-
+.slick-slide .slick-active slick-current{
+  height:400px !important;
+}
 /*::-webkit-scrollbar {*/
     /*width: 25px;*/
 /*}*/

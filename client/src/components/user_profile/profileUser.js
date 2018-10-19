@@ -8,6 +8,7 @@ import {HttpUtils} from "../../Services/HttpUtils";
 import Burgermenu from '../header/burgermenu';
 import { Link } from "react-router-dom";
 import { Redirect } from 'react-router';
+import Showpuclicprofile from './showpublicProfile';
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -40,7 +41,8 @@ class ProfileUser extends Component{
             business: false,
             rooms: false,
             jobPortal: false,
-            data: []
+            data: [],
+            publicSection: true
         };
     }
 
@@ -299,7 +301,7 @@ class ProfileUser extends Component{
 
     render(){
         const {getFieldDecorator} = this.props.form;
-        const { imageUrl, profileSec, changePass, name, email, description, phone, twitter, facebook, location, listing, listData1, listData2, listData3, listData4, buySell, business, rooms, jobPortal, data, allData } = this.state;
+        const { imageUrl, profileSec, changePass, name, email, description, phone, twitter, facebook, location, listing, listData1, listData2, listData3, listData4, buySell, business, rooms, jobPortal, data, allData, publicSection } = this.state;
 
         if(buySell){
             return(
@@ -326,12 +328,13 @@ class ProfileUser extends Component{
 
         return(
             <div>
-                
-                    <Burgermenu/>
+                    <Burgermenu/>  
                 <div style={{backgroundColor:"#0000006b",width:"100%",height:"67px",marginTop:"-20px"}}></div>
-                <div className="content" style={{"paddingTop": "106px"}}>
-
-                    <div className="container" style={{width:"87%"}}>
+                <div className="content" style={{"paddingTop": "3px"}}>
+                    {publicSection && <div>
+                        <Showpuclicprofile />
+                    </div>}
+                    {!publicSection && <div className="container" style={{width:"87%"}}>
                         <div className="hero">
                             <div className="row">
                                 {/*=======================col-md-3============================*/}
@@ -762,7 +765,7 @@ class ProfileUser extends Component{
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>}
                 </div>
                 <Footer/>
             </div>

@@ -142,7 +142,7 @@ class Roomrenting3contentarea extends Component{
                             </Carousel>
                         </div>
                         <div className="col-lg-5 col-md-6 col-sm-6 col-xs-12">
-                        
+
                          <Tabs defaultActiveKey="2" style={{border:'1px solid gray',backgroundColor:'rgba(119, 136, 153, 0.05)',padding: '10px',marginTop:'16px',height:'393px'}}>
                             <TabPane style={{height: '258px', 'overflow-y': 'overlay'}} tab='SPORTS' key="1">
                                 {sports.map((elem) => {
@@ -168,7 +168,7 @@ class Roomrenting3contentarea extends Component{
                                     )
                                 })}
                             </TabPane>
-                        </Tabs> 
+                        </Tabs>
                         </div>
 
                     </div>
@@ -192,7 +192,7 @@ class Roomrenting3contentarea extends Component{
                                 <div className="col-md-6"><h4 style={{fontSize: "16px",fontWeight:'bold',color: 'dimgray'}}>Posted By</h4></div>
                                 <div className="col-md-6"><h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-user"></span>{data.contactname}</h4></div>
                             </div>
-                         </ul>  
+                         </ul>
                     </div>
                 </div>
                 <div className="row">
@@ -208,7 +208,7 @@ class Roomrenting3contentarea extends Component{
                         </div>
                         <div className="col-md-4 col-sm-12 col-xs-12 des-space">
                             <h3>Location </h3>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.6337348509687!2d67.03749541472551!3d24.807992284078704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33da992be1aa7%3A0x7646411a2d8e6ac5!2sKRL+Creatives!5e0!3m2!1sen!2s!4v1536302761580" width="600" height="400" frameborder="0" style={{"border":"0"}} allowfullscreen></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.6337348509687!2d67.03749541472551!3d24.807992284078704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33da992be1aa7%3A0x7646411a2d8e6ac5!2sKRL+Creatives!5e0!3m2!1sen!2s!4v1536302761580" width="100%" height="400" frameborder="0" style={{"border":"0"}} allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -264,4 +264,3 @@ class Roomrenting3contentarea extends Component{
 }
 
 export default Roomrenting3contentarea;
-

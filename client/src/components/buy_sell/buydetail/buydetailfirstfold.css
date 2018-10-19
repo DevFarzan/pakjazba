@@ -124,3 +124,13 @@ margin-left: 5px;
   text-align: left;
   width:180px;
 }
+
+.textforparagraph{
+    margin-left: 20px;
+    overflow: hidden;
+    margin-top: -13px;
+}
+
+.No-padding{
+  padding: 0px;
+}

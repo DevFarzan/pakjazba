@@ -7,7 +7,6 @@ import AsyncStorage from "@callstack/async-storage";
 import {HttpUtils} from "../../Services/HttpUtils";
 import { Link } from "react-router-dom";
 
-
 const TabPane = Tabs.TabPane;
 
 class ShowProfilepublic extends Component{
@@ -19,11 +18,28 @@ class ShowProfilepublic extends Component{
             listData2: [],
             listData3: [],
             listData4: [],
-        }
+            setState: false
+        };
+        this.onGoBack = this.onGoBack.bind(this);
     }
 
 	componentDidMount(){
-        this.handleLocalStorage();
+        let data = this.props.allArr;
+        if(!data.arr1.length && !data.arr2.length && !data.arr3.length && !data.arr4.length){
+            this.handleLocalStorage();
+        }else {
+            this.setState({
+                listData1: data.arr3,
+                listData2: data.arr2,
+                listData3: data.arr1,
+                listData4: data.arr4,
+                name: data.arr5.name,
+                description: data.arr5.description,
+                facebook: data.arr5.facebook,
+                twitter: data.arr5.twitter,
+                imageUrl: data.arr5.imageUrl
+            })
+        }
     }
 
     handleLocalStorage = () =>{
@@ -56,7 +72,7 @@ class ShowProfilepublic extends Component{
         this.getAllBusiness(userId)
     }
 
-     async getAllBusiness(id){
+    async getAllBusiness(id){
         let arr1 = [];
         let arr2 = [];
         let arr3 = [];
@@ -93,6 +109,7 @@ class ShowProfilepublic extends Component{
             listData4: arr4,
         })
     }
+
 	editBusiness = (e) => {
         if(e.route === "buySell"){
             this.setState({
@@ -117,182 +134,184 @@ class ShowProfilepublic extends Component{
         }
     }	
 
+    onGoBack(){
+        this.props.callPublicSection();
+    }
+
 	render(){
-		const {listing, listData1, listData2, listData3, listData4} = this.state
+		const {listing, listData1, listData2, listData3, listData4, callMain} = this.state;
+
 		return(
 			<span>
 			<div className="row">
 				<div className="col-md-6">
-					<span className="name_style margin-left_13">Farzan Hanif</span><br/>
-                    <Icon type="facebook" size={18} style={{marginLeft:'13%'}}></Icon>
-                    <Icon type="twitter" size={18} style={{marginLeft:'2%'}}></Icon>
-                    <Icon type="google" size={18} style={{marginLeft:'1%'}}></Icon>
-                    <p style={{fontFamily:'Work Sans,sans-serif',marginLeft:'13%'}}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+					<span className="name_style margin-left_13">{this.state.name}</span><br/>
+                    <a href={this.state.facebook} target="_blank"><Icon type="facebook" size={18} style={{marginLeft:'13%'}}></Icon></a>
+                    <a href={this.state.twitter} target="_blank" style={{marginRight: "12px"}}><Icon type="twitter" size={18} style={{marginLeft:'2%'}}></Icon></a>
+                    <p style={{fontFamily:'Work Sans,sans-serif',marginLeft:'13%'}}>{this.state.description}</p>
 				</div>
 				<div className="col-md-6" style={{textAlign:'right'}}>
-					
-					<img className="img-circle" style={{width:'22%',marginRight:'22px'}} src="https://i.pinimg.com/280x280_RS/c0/f5/06/c0f5060f106a7e3e4afcc8e463f9ba8c.jpg" />
-					<Button className="btn btn-sm" style={{border:'1px solid gray'}}>Edit Profile</Button>
+					<img className="img-circle" style={{width:'22%',marginRight:'22px'}} src={this.state.imageUrl} />
+					<Button className="btn btn-sm" style={{border:'1px solid gray'}} onClick={() => {this.onGoBack()}}>Edit Profile</Button>
 				</div>
 			</div>
 			<div className="row">
 				<div className="col-md-12">
 				<div className="container" style={{width:'90%'}}>
-					 {/*===============Ad Listing start=================*/}
-                                            {listing && <Tabs defaultActiveKey="2">
-                                                <TabPane tab='Room Renting' key="1" style={{background:'#8080801a'}}>
-                                                    <div className="secondfold">
-                                                        <div className="index-content" style={{marginTop: '-125px'}}>
-                                                            <div className="row">
-                                                                {listData1.length ? listData1.map((elem) => {
-                                                                    let img = elem.imageurl && elem.imageurl[0] || '../images/images.jpg';
-                                                                    let title = elem.postingtitle || ''
-                                                                    let str = elem.discription || '';
-                                                                    if(str.length > 100) {
-                                                                        str = str.substring(0, 100);
-                                                                        str = str + '...'
-                                                                    }
-                                                                    return(
-                                                                        <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
-                                                                            <div className="card">
-                                                                                <Link to={{pathname: `/detail_roomRent`, state: elem}}>
-                                                                                    <img alt='' src={img} />
-                                                                                    <h4>{title}</h4>
-                                                                                    <p>{str}</p>
-                                                                                </Link>
-                                                                                <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i></a>
-                                                                                <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    )
-                                                                }) :
-                                                                <div style={{marginTop: '25px'}}>
-                                                                    <h1>
-                                                                        you dont have data to show...
-                                                                    </h1>
-                                                                </div>}
-                                                            </div>
-                                                            {/*!!listData.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={allData.length} onChange={this.onChange} /></span>*/}
-                                                        </div>
+				{/*===============Ad Listing start=================*/}
+                    {listing && <Tabs defaultActiveKey="2">
+                        <TabPane tab='Room Renting' key="1" style={{background:'#8080801a'}}>
+                            <div className="secondfold">
+                                <div className="index-content" style={{marginTop: '-125px'}}>
+                                    <div className="row">
+                                        {listData1.length ? listData1.map((elem) => {
+                                            let img = elem.imageurl && elem.imageurl[0] || '../images/images.jpg';
+                                            let title = elem.postingtitle || ''
+                                            let str = elem.discription || '';
+                                            if(str.length > 100) {
+                                                str = str.substring(0, 100);
+                                                str = str + '...'
+                                            }
+                                            return(
+                                                <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
+                                                    <div className="card">
+                                                        <Link to={{pathname: `/detail_roomRent`, state: elem}}>
+                                                            <img alt='' src={img} />
+                                                            <h4>{title}</h4>
+                                                            <p>{str}</p>
+                                                        </Link>
+                                                        <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i></a>
+                                                        <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i>
                                                     </div>
-                                                </TabPane>
-                                                <TabPane tab='Bussiness Listing' key="2" style={{background:'#8080801a'}}>
-                                                    <div className="secondfold">
-                                                        <div className="index-content" style={{marginTop: '-125px'}}>
-                                                            <div className="row">
-                                                                {listData2.length ? listData2.map((elem) => {
-                                                                    let img = elem.businessImages && elem.businessImages[0] || '../images/images.jpg';
-                                                                    let title = elem.businessname || ''
-                                                                    let str = elem.description || '';
-                                                                    if(str.length > 100) {
-                                                                        str = str.substring(0, 100);
-                                                                        str = str + '...'
-                                                                    }
-                                                                    return(
-                                                                        <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
-                                                                            <div className="card">
-                                                                                <Link to={{pathname: `/detail_business`, state: elem}}>
-                                                                                    <img alt='' src={img} />
-                                                                                    <h4>{title}</h4>
-                                                                                    <p>{str}</p>
-                                                                                </Link>
-                                                                                <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i></a>
-                                                                                <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i>
-                                                                            </div>
-                                                                        </div>
+                                                </div>
 
-                                                                    )
-                                                                }) :
-                                                                <div style={{marginTop: '25px'}}>
-                                                                    <h1>
-                                                                        you dont have data to show...
-                                                                    </h1>
-                                                                </div>}
-                                                            </div>
-                                                            {/*!!listData.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={allData.length} onChange={this.onChange} /></span>*/}
-                                                        </div>
+                                            )
+                                        }) :
+                                        <div style={{marginTop: '25px'}}>
+                                            <h1>
+                                                you dont have data to show...
+                                            </h1>
+                                        </div>}
+                                    </div>
+                                    {/*!!listData.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={allData.length} onChange={this.onChange} /></span>*/}
+                                </div>
+                            </div>
+                        </TabPane>
+                        <TabPane tab='Bussiness Listing' key="2" style={{background:'#8080801a'}}>
+                            <div className="secondfold">
+                                <div className="index-content" style={{marginTop: '-125px'}}>
+                                    <div className="row">
+                                        {listData2.length ? listData2.map((elem) => {
+                                            let img = elem.businessImages && elem.businessImages[0] || '../images/images.jpg';
+                                            let title = elem.businessname || ''
+                                            let str = elem.description || '';
+                                            if(str.length > 100) {
+                                                str = str.substring(0, 100);
+                                                str = str + '...'
+                                            }
+                                            return(
+                                                <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
+                                                    <div className="card">
+                                                        <Link to={{pathname: `/detail_business`, state: elem}}>
+                                                            <img alt='' src={img} />
+                                                            <h4>{title}</h4>
+                                                            <p>{str}</p>
+                                                        </Link>
+                                                        <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i></a>
+                                                        <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i>
                                                     </div>
-                                                </TabPane>
-                                                <TabPane tab='Buy & Sell' key="3" style={{background:'#8080801a'}}>
-                                                    <div className="secondfold">
-                                                        <div className="index-content" style={{marginTop: '-125px'}}>
-                                                            <div className="row">
-                                                                {listData3.length ? listData3.map((elem) => {
-                                                                    let img = elem.images && elem.images[0] || '../images/images.jpg';
-                                                                    let title = elem.title || ''
-                                                                    let str = elem.description || '';
-                                                                    if(str.length > 100) {
-                                                                        str = str.substring(0, 100);
-                                                                        str = str + '...'
-                                                                    }
-                                                                    return(
-                                                                        <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
-                                                                            <div className="card">
-                                                                                <Link to={{pathname: `/detail_buySell`, state: elem}}>
-                                                                                    <img alt='' src={img} />
-                                                                                    <h4>{title}</h4>
-                                                                                    <p>{str}</p>
-                                                                                </Link>
-                                                                                <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i></a>
-                                                                                <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i>
-                                                                            </div>
-                                                                        </div>
+                                                </div>
 
-                                                                    )
-                                                                }) :
-                                                                <div style={{marginTop: '25px'}}>
-                                                                    <h1>
-                                                                        you dont have data to show...
-                                                                    </h1>
-                                                                </div>}
-                                                            </div>
-                                                            {/*!!listData.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={allData.length} onChange={this.onChange} /></span>*/}
-                                                        </div>
+                                            )
+                                        }) :
+                                        <div style={{marginTop: '25px'}}>
+                                            <h1>
+                                                you dont have data to show...
+                                            </h1>
+                                        </div>}
+                                    </div>
+                                    {/*!!listData.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={allData.length} onChange={this.onChange} /></span>*/}
+                                </div>
+                            </div>
+                        </TabPane>
+                        <TabPane tab='Buy & Sell' key="3" style={{background:'#8080801a'}}>
+                            <div className="secondfold">
+                                <div className="index-content" style={{marginTop: '-125px'}}>
+                                    <div className="row">
+                                        {listData3.length ? listData3.map((elem) => {
+                                            let img = elem.images && elem.images[0] || '../images/images.jpg';
+                                            let title = elem.title || ''
+                                            let str = elem.description || '';
+                                            if(str.length > 100) {
+                                                str = str.substring(0, 100);
+                                                str = str + '...'
+                                            }
+                                            return(
+                                                <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
+                                                    <div className="card">
+                                                        <Link to={{pathname: `/detail_buySell`, state: elem}}>
+                                                            <img alt='' src={img} />
+                                                            <h4>{title}</h4>
+                                                            <p>{str}</p>
+                                                        </Link>
+                                                        <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i></a>
+                                                        <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i>
                                                     </div>
-                                                </TabPane>
-                                                <TabPane tab='Job Portal' key="4">
-                                                    <div className="secondfold">
-                                                        <div className="index-content" style={{marginTop: '-125px'}}>
-                                                            <div className="row">
-                                                                {listData4.length ? listData4.map((elem) => {
-                                                                    let img = elem.arr_url && elem.arr_url[0] || '../images/images.jpg';
-                                                                    let title = elem.compName || ''
-                                                                    let str = elem.compDescription || '';
-                                                                    if(str.length > 100) {
-                                                                        str = str.substring(0, 100);
-                                                                        str = str + '...'
-                                                                    }
-                                                                    return(
-                                                                        <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
-                                                                            <div className="card">
-                                                                                <Link to={{pathname: `/detail_jobPortal`, state: elem}}>
-                                                                                    <img alt='' src={img} />
-                                                                                    <h4>{title}</h4>
-                                                                                    <p>{str}</p>
-                                                                                </Link>
-                                                                                <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i></a>
-                                                                                <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i>
-                                                                            </div>
-                                                                        </div>
+                                                </div>
 
-                                                                    )
-                                                                }) :
-                                                                <div style={{marginTop: '25px'}}>
-                                                                    <h1>
-                                                                        you dont have data to show...
-                                                                    </h1>
-                                                                </div>}
-                                                            </div>
-                                                            {/*!!listData.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={allData.length} onChange={this.onChange} /></span>*/}
-                                                        </div>
+                                            )
+                                        }) :
+                                        <div style={{marginTop: '25px'}}>
+                                            <h1>
+                                                you dont have data to show...
+                                            </h1>
+                                        </div>}
+                                    </div>
+                                    {/*!!listData.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={allData.length} onChange={this.onChange} /></span>*/}
+                                </div>
+                            </div>
+                        </TabPane>
+                        <TabPane tab='Job Portal' key="4">
+                            <div className="secondfold">
+                                <div className="index-content" style={{marginTop: '-125px'}}>
+                                    <div className="row">
+                                        {listData4.length ? listData4.map((elem) => {
+                                            let img = elem.arr_url && elem.arr_url[0] || '../images/images.jpg';
+                                            let title = elem.compName || ''
+                                            let str = elem.compDescription || '';
+                                            if(str.length > 100) {
+                                                str = str.substring(0, 100);
+                                                str = str + '...'
+                                            }
+                                            return(
+                                                <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
+                                                    <div className="card">
+                                                        <Link to={{pathname: `/detail_jobPortal`, state: elem}}>
+                                                            <img alt='' src={img} />
+                                                            <h4>{title}</h4>
+                                                            <p>{str}</p>
+                                                        </Link>
+                                                        <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i></a>
+                                                        <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i>
                                                     </div>
-                                                </TabPane>
-                                            </Tabs>}
-                                        {/*===============Ad listing end=============*/}
-                                        </div>
+                                                </div>
+
+                                            )
+                                        }) :
+                                        <div style={{marginTop: '25px'}}>
+                                            <h1>
+                                                you dont have data to show...
+                                            </h1>
+                                        </div>}
+                                    </div>
+                                    {/*!!listData.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={allData.length} onChange={this.onChange} /></span>*/}
+                                </div>
+                            </div>
+                        </TabPane>
+                    </Tabs>}
+                {/*===============Ad listing end=============*/}
+                </div>
 				</div>
-
 			</div>
 			</span>
 			)

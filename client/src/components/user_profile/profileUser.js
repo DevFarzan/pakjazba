@@ -42,7 +42,7 @@ class ProfileUser extends Component{
             rooms: false,
             jobPortal: false,
             data: [],
-            publicSection: true
+            publicSection: false
         };
     }
 
@@ -299,6 +299,10 @@ class ProfileUser extends Component{
         }
     }
 
+    callPublicSection(){
+        this.setState({publicSection: false})
+    }
+
     render(){
         const {getFieldDecorator} = this.props.form;
         const { imageUrl, profileSec, changePass, name, email, description, phone, twitter, facebook, location, listing, listData1, listData2, listData3, listData4, buySell, business, rooms, jobPortal, data, allData, publicSection } = this.state;
@@ -326,19 +330,27 @@ class ProfileUser extends Component{
             onChange: this.handleChange,
         };
 
+        let passObj = {
+            arr1: listData3,
+            arr2: listData2,
+            arr3: listData1,
+            arr4: listData4,
+            arr5: {imageUrl, name, description, twitter, facebook}
+        }
+
         return(
             <div>
-                    <Burgermenu/>  
+                <Burgermenu/>  
                 <div style={{backgroundColor:"black",width:"100%",height:"67px",marginTop:"-20px"}}></div>
                 <div className="content" style={{"paddingTop": "3px"}}>
                     {publicSection && <div>
-                        <Showpuclicprofile />
+                        <Showpuclicprofile callPublicSection={this.callPublicSection.bind(this)} allArr={passObj}/>
                     </div>}
-                    <div className="row">
+                    {!publicSection && <div className="row">
                         <div className="col-md-12" style={{textAlign:'right'}}>
-                            <Button style={{border:'1px solid gray'}}>View As public profile</Button>
+                            <Button style={{border:'1px solid gray'}} onClick={() => {this.setState({publicSection: true})}}>View As public profile</Button>
                         </div>
-                    </div>
+                    </div>}
                     {!publicSection && <div className="container" style={{width:"87%"}}>
                         <div className="hero">
                             <div className="row">

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Icon, Input, Form, Upload, Pagination, Tabs} from 'antd';
+import {Icon, Input, Form, Upload, Pagination, Tabs,Button} from 'antd';
 import Footer from '../footer/footer.js';
 import sha1 from "sha1";
 import superagent from "superagent";
@@ -42,7 +42,7 @@ class ProfileUser extends Component{
             rooms: false,
             jobPortal: false,
             data: [],
-            publicSection: true
+            publicSection: false
         };
     }
 
@@ -329,11 +329,16 @@ class ProfileUser extends Component{
         return(
             <div>
                     <Burgermenu/>  
-                <div style={{backgroundColor:"#0000006b",width:"100%",height:"67px",marginTop:"-20px"}}></div>
+                <div style={{backgroundColor:"black",width:"100%",height:"67px",marginTop:"-20px"}}></div>
                 <div className="content" style={{"paddingTop": "3px"}}>
                     {publicSection && <div>
                         <Showpuclicprofile />
                     </div>}
+                    <div className="row">
+                        <div className="col-md-12" style={{textAlign:'right'}}>
+                            <Button style={{border:'1px solid gray'}}>View As public profile</Button>
+                        </div>
+                    </div>
                     {!publicSection && <div className="container" style={{width:"87%"}}>
                         <div className="hero">
                             <div className="row">

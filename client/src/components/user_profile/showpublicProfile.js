@@ -123,13 +123,12 @@ class ShowProfilepublic extends Component{
 			<span>
 			<div className="row">
 				<div className="col-md-6">
-					<span className="name_style margin-left_52">Farzan Hanif</span>
+					<span className="name_style margin-left_13">Farzan Hanif</span>
 				</div>
-				<div className="col-md-3">
-					<img className="img-circle" style={{width:'16%',marginLeft: '27%'}} src="https://i.pinimg.com/280x280_RS/c0/f5/06/c0f5060f106a7e3e4afcc8e463f9ba8c.jpg" />
-				</div>
-				<div className="col-md-3">
-					<Button className="btn btn-sm" style={{width:'42%',border:'1px solid gray'}}>Edit Profile</Button>
+				<div className="col-md-6" style={{textAlign:'right'}}>
+					
+					<img className="img-circle" style={{width:'16%',marginRight:'22px'}} src="https://i.pinimg.com/280x280_RS/c0/f5/06/c0f5060f106a7e3e4afcc8e463f9ba8c.jpg" />
+					<Button className="btn btn-sm" style={{width:'19%',border:'1px solid gray'}}>Edit Profile</Button>
 				</div>
 			</div>
 			<div className="row">

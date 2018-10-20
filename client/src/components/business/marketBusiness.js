@@ -7,6 +7,13 @@ import Footer from '../footer/footer';
 import { connect } from 'react-redux';
 
 class MarketBusiness extends Component{
+    componentWillUnmount(){
+        let inputValue = '';
+        if(this.props.text.length){
+            const { dispatch } = this.props;
+            dispatch({type: 'SEARCHON', inputValue})
+        }
+    }
 
     render(){
         return(

@@ -76,6 +76,11 @@ class Roomrenting1content extends Component{
             <section id="about">
                 <div className="">
                     <div className="row">
+                    <Link to={{pathname: `/postad_Roommates`}}>
+                        <div className="col-md-4"  style={{height: '530px' }}>
+                            <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '100%', width: '100%'}}/>
+                        </div>
+                    </Link>
                         {showroomrents && showroomrents.map((elem, key) => {
                             let str = elem.propertylocation || '';
                             if(str.length > 25) {

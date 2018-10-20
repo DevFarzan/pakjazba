@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Cascader, Pagination, Slider, Spin, Icon } from 'antd';
 import Burgermenu from '../header/burgermenu'
 import "./roomrenting2content.css";
-import {Link} from "react-router-dom";
+import {Link, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import { Redirect } from 'react-router';
+import { Redirect, withRouter } from 'react-router';
 import stateCities from "../../lib/countrycitystatejson";
 
 
@@ -149,6 +149,10 @@ class Roomrentingtwocontentarea extends Component{
 
     componentDidMount(){
         this.getAllBusiness();
+    }
+
+    componentWillUnmount() {
+        this.props.history.push('/market_roommates');
     }
 
     async getAllBusiness(){

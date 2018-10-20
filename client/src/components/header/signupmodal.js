@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Icon, Input, Button, Checkbox,Modal } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Modal, Spin } from 'antd';
 import Signin from './signinmodal';
 import Forgotpassword from '../forgotpassword';
 import Facebook from '../Facebook';
@@ -16,7 +16,7 @@ class Signup extends Component{
         this.state = {
             visible: false,
             secModal: false,
-            showloader: false,
+            Spin: true,
             email: '',
             user: '',
             msg: '',
@@ -24,6 +24,7 @@ class Signup extends Component{
             obj: [],
             email2: '',
             allUser: [],
+            showloader: false
         }
     }
 
@@ -36,25 +37,19 @@ class Signup extends Component{
         const { data } = this.props;
         const { route, obj } = this.state;
         let arr = obj.map((elem) => elem.password)
-        console.log(arr, 'arrrrrrrrr')
         if(prevProps.data !== data){
             if(data && data.route === route){
-                console.log('signUp aaaaaaaaaaaaaaaa')
                 if(arr.includes(data.id)){
                     obj.map((elem) => {
-                        console.log('signUp 11111111111111111')
                         if(elem.password === data.id){
                             this.funcLogin({userName: elem.email, password: elem.password})
                         }
                     })
                 }else {
-                    console.log('signUp bbbbbbbbbbbbbbbbb')
                     if (data && data.email === undefined) {
-                        console.log('signUp 222222222222222')
                         this.setState({ secModal: true})
                     }else {
                         if (data) {
-                            console.log('signUp 33333333333333333')
                             let obj = {
                                 nickname: data.name,
                                 email: data.email,
@@ -94,7 +89,6 @@ class Signup extends Component{
     }
 
     async getProfileId(response){
-        console.log(response, 'signUp responseeeeeeeeeeeeeee')
         if(response.code === 200){
             let obj = {
                 name: response.name,
@@ -146,7 +140,7 @@ class Signup extends Component{
     showModal = () => {
         this.setState({
             visible: true,
-            showloader:false
+            // showloader:false
         });
     }
 
@@ -165,13 +159,13 @@ class Signup extends Component{
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                this.setState({showloader: true})
                 this.funcLogin(values)
             }
         });
     }
 
     async funcLogin(values){
-        console.log('signUp mmmmmmmmmmmmmmmmm')
         let response = await HttpUtils.get('usersignin?useremail='+values.userName+'&password='+values.password)
         if(response.code === 200){
             this.getProfile(response)
@@ -229,9 +223,9 @@ class Signup extends Component{
     }
 
     render(){
-        const { user, secModal, email2 } = this.state;
+        const { user, secModal, email2, showloader } = this.state;
         const { getFieldDecorator } = this.props.form;
-        const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
+        const antIcon = <Icon type="loading" style={{ fontSize: 24, color: 'black' }} spin />;
 
         return(
             <div className="paragraph">
@@ -293,11 +287,14 @@ class Signup extends Component{
                             <span style={{ color: 'red', fontWeight: 'bold'}}>{this.state.msg}</span>
                         </div>}
                         <div className="row">
-                            <div className="col-md-12">
-                                <Button type="primary" htmlType="submit" className="login-form-button width_class">
+                            <div className="col-md-3"></div>
+                            {this.state.showloader && <Spin indicator={antIcon} />}
+                            <div className="col-md-6">
+                                <Button type="primary" htmlType="submit" disabled={this.state.showloader} className="login-form-button width_class">
                                     Log in
                                 </Button>
                             </div>
+                            <div className="col-md-3"></div>
                         </div>
                         Or <a><span onClick={this.handleCancel}><Signin/></span></a>
                     </Form>}

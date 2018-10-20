@@ -97,16 +97,27 @@ class FeaturedBox extends Component{
                 add: add + 6
             });
         }
+        if(this.props.text.length){
+            let inputValue = '';
+            const { dispatch } = this.props;
+            dispatch({type: 'SEARCHON', inputValue})
+        }
     }
 
     render(){
         const { showJob, filteredArr, job } = this.state;
+        const { text } = this.props;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
         return(
             <div className="container" style={{width:"98%"}}>
                 <h2 style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}>Featured Jobs </h2>
                 <div className="row">
+                    <Link to={{pathname: `/postad_jobPortal`}}>
+                        <div className="col-md-4"  style={{height: '475px' }}>
+                            <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '100%', width: '90%'}}/>
+                        </div>
+                    </Link>
                     {showJob && showJob.map((elem) => {
                         return (
                             <div className="col-md-4">
@@ -159,6 +170,8 @@ class FeaturedBox extends Component{
                     </div>
                     <div className="col-md-4"></div>
                 </div>}
+                {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
+                {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
                 {/*!!showJob && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :job.length} onChange={this.onChange} /></span>*/}
                 <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>View More ...</button></div>
             </div>

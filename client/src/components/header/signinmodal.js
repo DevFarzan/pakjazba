@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Icon, Checkbox, Modal  } from 'antd';
+import { Form, Input, Icon, Checkbox, Modal, Spin  } from 'antd';
 import Dropdowns from './dropdown';
 import Facebook from '../Facebook';
 import Google from '../Google';
@@ -39,26 +39,20 @@ class Signin extends Component{
         const { data } = this.props;
         const { route, obj } = this.state;
         let arr = obj.map((elem) => elem.password)
-        console.log(arr, 'arrrrrrrrrrrrrrrrr')
         if(prevProps.data !== data){
             if(data && data.route === route) {
-                console.log('signIn aaaaaaaaaaaaaaaa')
                 if(arr.includes(data.id)){
-                    console.log('signIn 11111111111111')
                     obj.map((elem) => {
                         if(elem.password === data.id){
                             this.funcLogin({userName: elem.email, password: elem.password})
                         }
                     })
                 }else {
-                    console.log('signIn bbbbbbbbbbbbbbbb')
                     if (data && data.email === undefined) {
-                        console.log('signIn 2222222222222222')
                         this.setState({secModal: true})
                     }
                     else {
                         if (data) {
-                            console.log('signIn 3333333333333333')
                             let obj = {
                                 nickname: data.name,
                                 email: data.email,
@@ -94,7 +88,6 @@ class Signin extends Component{
     }
 
     async funcLogin(values){
-        console.log('signIn kkkkkkkkkkkkkkkkkkk')
         let response = await HttpUtils.get('usersignin?useremail='+values.userName+'&password='+values.password)
         if(response.code === 200){
             this.getProfile(response)
@@ -190,7 +183,6 @@ class Signin extends Component{
     }
 
     async getProfileId(response){
-        console.log(response, 'signIn responseeeeeeeeeeeeeeeee')
         if(response.code === 200){
             let obj = {
                 name: response.name,
@@ -402,7 +394,7 @@ class Signin extends Component{
                                         <Input  />
                                     )}
                                 </FormItem>
-                                <button className="btn color_button" disabled={!email2} onClick={this.socialSignUp.bind(this)}>Sign up</button>
+                                <button className="btn color_button" disabled={!email2} onClick={this.socialSignUp.bind(this)}><Spin indicator={antIcon} />Sign up</button>
                             </Form>
                         </div>}
                      </Modal>

@@ -76,6 +76,7 @@ class Forthfold extends Component{
                 showBuySell: filteredArr.slice(indexes.from, indexes.to)
             });
         }else {
+
             this.setState({
                 current: page,
                 showBuySell: buySell.slice(indexes.from, indexes.to)
@@ -91,10 +92,17 @@ class Forthfold extends Component{
                 add: add + 6
             });
         }else {
+
             this.setState({
                 showBuySell: buySell.slice(0, add + 6),
                 add: add + 6
             });
+        }
+        console.log(this.props.text, 'mmmmmmmmmmmmmmmmmm')
+        if(this.props.text.length){
+            let inputValue = '';
+            const { dispatch } = this.props;
+            dispatch({type: 'SEARCHON', inputValue})
         }
     }
 
@@ -105,6 +113,11 @@ class Forthfold extends Component{
 
         return(
             <div className="secondfold">
+                <Link to={{pathname: `/postad_buysell`}}>
+                    <div className="col-md-4"  style={{'marginTop': '21px', height: '455px' }}>
+                        <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '100%', width: '90%', borderRadius: '13px'}}/>
+                    </div>
+                </Link>
                 <div className="row">
                     {showBuySell && showBuySell.map((elem, key) => {
                         let str = elem.address || '';

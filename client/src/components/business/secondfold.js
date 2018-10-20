@@ -100,6 +100,11 @@ class Secondfold extends Component{
                 add: add + 6
             });
         }
+        if(this.props.text.length){
+            let inputValue = '';
+            const { dispatch } = this.props;
+            dispatch({type: 'SEARCHON', inputValue})
+        }
     }
 
     render(){
@@ -113,6 +118,11 @@ class Secondfold extends Component{
                 <div className="index-content">
                     <div className="container" style={{width: '93%'}}>
                     <div className="row">
+                        <Link to={{pathname: `/postad_business`}}>
+                            <div className="col-md-4"  style={{'marginBottom': '30px', height: '440px' }}>
+                                <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '100%', width: '90%', borderRadius: '13px'}}/>
+                            </div>
+                        </Link>
                         {showBusiness && showBusiness.map((elem, key) => {
                             let boo = elem.businessname && elem.businessname.length;
                             let str = elem.description || '';
@@ -121,7 +131,7 @@ class Secondfold extends Component{
                                 str = str + '...'
                             }
                             return (
-                                <Link key={key} to={boo ? {pathname: `/detail_business`, state: elem} : {pathname: `/postad_business`}}>
+                                <Link key={key} to={{pathname: `/detail_business`, state: elem}}>
                                     <div className="col-md-4"  style={{'marginBottom': '30px'}}>
                                         <div className="card" style={{border: '1px solid #3a252542',boxShadow: 'none',borderRadius:'13px',width:'89%'}}>
                                             <img alt='' src={elem.businessImages.length ? elem.businessImages[0] : './images/def_card_img.jpg'}/>

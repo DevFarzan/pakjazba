@@ -52,7 +52,7 @@ class Home1 extends Component{
                 <div className="row" style={{marginTop:'-23px'}}>
                     <div className="col-md-10">
                         <div className="col-md-4 col-sm-4">
-                            <div className="card outset" style={{boxShadow:'none',border: '1px solid #80808038',background: 'white'}}>
+                            <div className="card outset" style={{boxShadow:'none',border: '1px solid rgba(128, 128, 128, 0.56)',background: 'white'}}>
                                 <div className="card-body space tag1">
                                     <Link to={`/market_roommates`} style={{color: 'black'}}>
                                         <img alt='' src="./images/Rent room stockholm.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b className="tag1"> Room Renting</b>
@@ -61,7 +61,7 @@ class Home1 extends Component{
                             </div>
                         </div>
                         <div className="col-md-4 col-sm-4">
-                            <div className="card outset" style={{boxShadow:'none',border: '1px solid #80808038',background: 'white'}}>
+                            <div className="card outset" style={{boxShadow:'none',border: '1px solid rgba(128, 128, 128, 0.56)',background: 'white'}}>
                                 <div className="card-body space tag1">
                                     <Link to={`/market_business`} style={{color: 'black'}}>
                                         <img alt='' src="./images/busioness-listing.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b className="tag1"> Business Listing</b>
@@ -70,7 +70,7 @@ class Home1 extends Component{
                             </div>
                         </div>
                         <div className="col-md-4 col-sm-4">
-                            <div className="card outset" style={{boxShadow:'none',border: '1px solid #80808038',background: 'white'}}>
+                            <div className="card outset" style={{boxShadow:'none',border: '1px solid rgba(128, 128, 128, 0.56)',background: 'white'}}>
                                 <div className="card-body space tag1">
                                     <Link to={`/market_classified`} style={{color: 'black'}}>
                                         <img alt='' src="./images/Where to Buy Hero Image.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b className="tag1"> Buy & Sell </b>
@@ -287,7 +287,7 @@ class Home1 extends Component{
                             <hr style={{border: '1px solid #80808080'}} />
                         </div>
                         <div className="col-md-1" style={{marginTop: "25px"}}>
-                            <h3><b>Blog3</b></h3>
+                            <h3><b>Blog</b></h3>
                         </div>
                         <div className="col-md-5">
                             <br/>

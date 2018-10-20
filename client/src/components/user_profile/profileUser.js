@@ -42,7 +42,7 @@ class ProfileUser extends Component{
             rooms: false,
             jobPortal: false,
             data: [],
-            publicSection: false
+            publicSection: true
         };
     }
 

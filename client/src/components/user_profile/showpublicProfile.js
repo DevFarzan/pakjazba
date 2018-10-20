@@ -123,12 +123,16 @@ class ShowProfilepublic extends Component{
 			<span>
 			<div className="row">
 				<div className="col-md-6">
-					<span className="name_style margin-left_13">Farzan Hanif</span>
+					<span className="name_style margin-left_13">Farzan Hanif</span><br/>
+                    <Icon type="facebook" size={18} style={{marginLeft:'13%'}}></Icon>
+                    <Icon type="twitter" size={18} style={{marginLeft:'2%'}}></Icon>
+                    <Icon type="google" size={18} style={{marginLeft:'1%'}}></Icon>
+                    <p style={{fontFamily:'Work Sans,sans-serif',marginLeft:'13%'}}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
 				</div>
 				<div className="col-md-6" style={{textAlign:'right'}}>
 					
-					<img className="img-circle" style={{width:'16%',marginRight:'22px'}} src="https://i.pinimg.com/280x280_RS/c0/f5/06/c0f5060f106a7e3e4afcc8e463f9ba8c.jpg" />
-					<Button className="btn btn-sm" style={{width:'19%',border:'1px solid gray'}}>Edit Profile</Button>
+					<img className="img-circle" style={{width:'22%',marginRight:'22px'}} src="https://i.pinimg.com/280x280_RS/c0/f5/06/c0f5060f106a7e3e4afcc8e463f9ba8c.jpg" />
+					<Button className="btn btn-sm" style={{border:'1px solid gray'}}>Edit Profile</Button>
 				</div>
 			</div>
 			<div className="row">

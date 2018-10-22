@@ -7,6 +7,10 @@ import Footer from '../footer/footer';
 import { connect } from 'react-redux';
 
 class MarketBusiness extends Component{
+    componentDidMount() {
+        window.scrollTo(0,0);
+    }
+    
     componentWillUnmount(){
         let inputValue = '';
         if(this.props.text.length){

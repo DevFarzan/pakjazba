@@ -24,6 +24,7 @@ class ShowProfilepublic extends Component{
     }
 
 	componentDidMount(){
+        window.scrollTo(0,0);
         let data = this.props.allArr;
         if(!data.arr1.length && !data.arr2.length && !data.arr3.length && !data.arr4.length){
             this.handleLocalStorage();

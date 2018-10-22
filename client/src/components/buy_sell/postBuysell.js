@@ -96,6 +96,7 @@ class Postbuysell extends Component{
     }
 
     componentDidMount(){
+        window.scrollTo(0,0);
         this.categorylist();
         this.handleLocalStorage();
         let data = this.props.location.state;

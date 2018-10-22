@@ -12,6 +12,10 @@ class JobClassified extends Component {
         this.state = {}
     }
 
+    componentDidMount() {
+        window.scrollTo(0,0);
+    }
+
     componentWillUnmount(){
         let inputValue = '';
         if(this.props.text.length){

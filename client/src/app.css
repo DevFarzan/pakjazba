@@ -817,6 +817,11 @@ color: #fff;
   margin-left: 13%;
 }
 
+/*****************************dropDown UI changes**************************/
+:root .ant-dropdown-trigger .anticon-down, :root .ant-dropdown-link .anticon-down {
+    font-size: 14px;
+    color: white;
+}
 .font-style{
   font-family: 'Work Sans', sans-serif;
 }

@@ -1,43 +1,31 @@
 import React, { Component } from 'react';
+import './DetailjobUi.css';
 
 class JobDetailpage extends Component{
   render(){
     return(
-      <div>
-          <span className="background_listing">
-            <App/>
-          </span>
-          <div className="">
-              <div className="col-md-12 col-sm-12 col-xs-12">
-                  <div className="col-md-4 col-sm-4 col-xs-12">
-                    <div className="col-lg-2 col-md-2 col-sm-12 " >
-                      <div className="row">
-                        <div className="col-lg-10 col-md-10 col-sm-12 " >
-                          {/*Start first tile */}
-                          <div className="card outset" >
-                              <img className="card-img-top" src='./images/shutterstock_310512815.jpg' alt="" style={{"width":"100%"}} />
-                              <div className="card-body space" style={{padding: "17px"}}>
-                                  <h5><span className="glyphicon glyphicon-home" style={{marginRight: "15px"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}></span></h5>
-                                  <hr/>
-                                  <h5><span className="glyphicon glyphicon-phone" style={{marginRight: "15px"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}></span></h5>
-                                  <hr/>
-                                  <h5><span className="glyphicon glyphicon-globe" style={{marginRight: "15px"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}></span></h5>
-                                  <br/>
-                                  <h4>Our Social</h4>
-                                  <a href target="_blank" style={{marginRight: "12px"}}><button type="button" className="btn btn-fb"><i className="fa fa-facebook"></i></button></a>
-                                  <a href target="_blank" style={{marginRight: "12px"}}><button type="button" className="btn btn-linkedin"><i className="fa fa-linkedin"></i></button></a>
-                                  <a href target="_blank" style={{marginRight: "12px"}}><button type="button" className="btn btn-gplus"><i className="fa fa-google-plus"></i></button></a>
-                                  <br/><br/>
-                              </div>
-                          </div>
-                          {/*End first tile */}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+    <div className="container" style={{width:"90%"}}>
+      <div className="row">
+          <div className="col-md-12" style={{paddingTop:"4px", paddingBottom:"10px"}}>
+              <div className="col-md-4 col-sm-12 col-xs-12 des-space">
+                  <img alt='' src="./images/data/589b2d33280000c63a997990.jpeg" width="350" />
+              </div>
+              <div className="col-md-8 col-sm-12 col-xs-12 des-space">
+                  <h3 style={{fontWeight:"bold"}}>IT Person Needed</h3>
+                  <span >
+                  <p className="job-time">Full Time</p>
+                  </span>
+
+                  <br/>
+                  <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys
+                  standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
+                  survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
+                  including versions of Lorem Ipsum.</p>
+
               </div>
           </div>
       </div>
+    </div>
     )
   }
 }

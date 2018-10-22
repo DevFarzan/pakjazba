@@ -11,6 +11,8 @@ import {
     TimePicker
 } from 'antd';
 import App from '../../App';
+import JobDetailpage from './DetailjobUi';
+import JobSecondrow from './secondRow';
 
 class JobDetail extends Component {
     constructor(props) {
@@ -23,6 +25,8 @@ class JobDetail extends Component {
             <div>
                 <App/>
                 <h1>Job Detail</h1>
+                <JobDetailpage/>
+                <JobSecondrow/>
 
             </div>
         )

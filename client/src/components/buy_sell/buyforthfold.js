@@ -15,7 +15,7 @@ class Forthfold extends Component{
             filteredArr: [],
             searchValue: '',
             loader: true,
-            add: 6
+            add: 5
         }
     }
 
@@ -31,9 +31,9 @@ class Forthfold extends Component{
                 this.searchedArr(text)
             }else {
                 this.setState({
-                    showBuySell: buySell.slice(0, 6),
+                    showBuySell: buySell.slice(0, 5),
                     filteredArr: [],
-                    add: 6
+                    add: 5
                 })
             }
         }
@@ -47,8 +47,8 @@ class Forthfold extends Component{
         })
         this.setState({
             filteredArr,
-            showBuySell: filteredArr.slice(0, 6),
-            add: 6
+            showBuySell: filteredArr.slice(0, 5),
+            add: 5
         })
     }
 
@@ -98,7 +98,6 @@ class Forthfold extends Component{
                 add: add + 6
             });
         }
-        console.log(this.props.text, 'mmmmmmmmmmmmmmmmmm')
         if(this.props.text.length){
             let inputValue = '';
             const { dispatch } = this.props;
@@ -114,8 +113,8 @@ class Forthfold extends Component{
         return(
             <div className="secondfold">
                 <Link to={{pathname: `/postad_buysell`}}>
-                    <div className="col-md-4"  style={{'marginTop': '21px', height: '455px' }}>
-                        <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '100%', width: '90%', borderRadius: '13px'}}/>
+                    <div className="col-md-4"  style={{'marginTop': '21px', height: '520px' }}>
+                        <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '100%', width: '100%', borderRadius: '13px'}}/>
                     </div>
                 </Link>
                 <div className="row">
@@ -126,8 +125,8 @@ class Forthfold extends Component{
                             str = str + '...'
                         }
                         let des = elem.description || '';
-                        if(des.length > 100) {
-                            des = des.substring(0, 100);
+                        if(des.length > 45) {
+                            des = des.substring(0, 45);
                             des = des + '...'
                         }
                         return (
@@ -140,7 +139,6 @@ class Forthfold extends Component{
                                                     <img alt='' src={elem.images.length ? elem.images[0] : './images/def_card_img.jpg'}/>
                                                     <span className="card-button">
                                                         <p className="categories-on-card" style={{backgroundColor:"#008080",textAlign: "center"}}>{elem.category}</p>
-
                                                     </span>
                                                 </div>
                                             </div>
@@ -152,7 +150,7 @@ class Forthfold extends Component{
                                             </div>
                                             <div className="product-desc">
                                                 <span className="product-price">{!elem.hideprice ? elem.price : 'Hide'}</span>
-                                                <p className="product-name">{des}</p>
+                                                <p className="product-name">{elem.contactname}</p>
                                                 <div className="small m-t-xs">{!elem.hideaddress ? des : ''}
                                                 </div>
                                                 <div className="m-t text-righ" style={{marginTop:"58px",fontSize: "18px",textDecoration:"underline"}}>

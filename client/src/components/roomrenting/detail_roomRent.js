@@ -15,6 +15,7 @@ class DetailRoommates extends Component{
     }
 
     componentDidMount(){
+        window.scrollTo(0,0);
         let data = this.props.location.state;
         if(data === undefined){
             this.setState({

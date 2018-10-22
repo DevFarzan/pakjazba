@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
-import { Spin, Icon, Pagination } from 'antd';
+import { Spin, Icon, Pagination, Rate } from 'antd';
 import './secondfold.css'
 import {HttpUtils} from "../../Services/HttpUtils";
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
+import _ from 'underscore'
 
 class Secondfold extends Component{
     constructor(props){
@@ -16,7 +17,7 @@ class Secondfold extends Component{
             filteredArr: [],
             searchValue: '',
             loader: true,
-            add: 6
+            add: 5
         }
     }
 
@@ -57,11 +58,27 @@ class Secondfold extends Component{
 
     async getAllBusiness(){
         var res = await HttpUtils.get('marketplace')
-        this.setState({
-            business: res && res.business,
-            showBusiness: res && res.business.slice(0, 6),
-            loader: false
-        })
+        this.getReviews(res.business);
+    }
+
+    async getReviews(data){
+        let res = await HttpUtils.get('getreviews');
+        if(res.code === 200) {
+            data = data.map((el) => {
+                let filteredReviews = res.content.map((elem) => {
+                    if(elem.objid === el._id){
+                        return elem.star;
+                    }
+                })
+                let star = (_.reduce(_.compact(filteredReviews), (a, b) => {return +a + +b}, 0))/_.compact(filteredReviews).length
+                return {...el, star}
+            })
+            this.setState({
+                business: data,
+                showBusiness: data.slice(0, 5),
+                loader: false
+            });
+        }
     }
 
     funcIndexes(page){
@@ -119,15 +136,14 @@ class Secondfold extends Component{
                     <div className="container" style={{width: '93%'}}>
                     <div className="row">
                         <Link to={{pathname: `/postad_business`}}>
-                            <div className="col-md-4"  style={{'marginBottom': '30px', height: '440px' }}>
+                            <div className="col-md-4"  style={{'marginBottom': '30px', height: '460px' }}>
                                 <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '100%', width: '90%', borderRadius: '13px'}}/>
                             </div>
                         </Link>
                         {showBusiness && showBusiness.map((elem, key) => {
-                            let boo = elem.businessname && elem.businessname.length;
-                            let str = elem.description || '';
-                            if(str.length > 100) {
-                                str = str.substring(0, 100);
+                            let str = elem.businessaddress || '';
+                            if(str.length > 45) {
+                                str = str.substring(0, 45);
                                 str = str + '...'
                             }
                             return (
@@ -136,8 +152,8 @@ class Secondfold extends Component{
                                         <div className="card" style={{border: '1px solid #3a252542',boxShadow: 'none',borderRadius:'13px',width:'89%'}}>
                                             <img alt='' src={elem.businessImages.length ? elem.businessImages[0] : './images/def_card_img.jpg'}/>
                                             <h4 style={{marginTop:'53px'}}><b>{elem.businessname}</b></h4>
-                                            {elem.businessaddress && <p style={{marginTop:"-15px",marginLeft:"11px",paddingBottom: '108px'}}><span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}></span><span style={{color:"black"}}>{elem.businessaddress}</span></p>}
-                                            {elem.businessaddress && <Link to={{pathname: `/detail_business`, state: elem}} className="blue-button" style={{paddingBottom: '61px',display:'none'}}>Read More</Link>}
+                                            {elem.businessaddress && <p style={{marginTop:"-15px",marginLeft:"11px"}}><span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}></span><span style={{color:"black"}}>{elem.businessaddress}</span></p>}
+                                            <Rate  disabled style={{paddingLeft: '20px', paddingBottom: '10px'}} allowHalf value={elem.star} />
                                         </div>
                                     </div>
                                 </Link>

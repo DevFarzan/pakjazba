@@ -40,9 +40,10 @@ class Slider extends Component{
                     <h1 className="text-h1" style={{fontSize:'58px',fontWeight:'bold'}}>{this.props.mainH1}</h1>
                     <h2 style={{textAlign:'center',color: 'white'}}>{this.props.mainH2}</h2>
                     <section className="home-newsletter">
-                        <div className="container">
+                        <div className="">
                             <div className="row">
-                                <div className="col-md-12 col-sm-12 col-xs-12">
+                                <div className="col-md-2"></div>
+                                <div className="col-md-8 col-sm-12 col-xs-12" style={{textAlign: 'center !important'}}>
                                     <div className="single">
                                         <div className="input-group">
                                             <input type="text" className="form-control" placeholder="Search" onChange={this.onChange.bind(this)}/>
@@ -52,6 +53,7 @@ class Slider extends Component{
                                         </div>
                                     </div>
                                 </div>
+                                <div className="col-md-2"></div>
                             </div>
                         </div>
                     </section>

@@ -111,7 +111,7 @@ class FeaturedBox extends Component{
 
         return(
             <div className="container" style={{width:"98%"}}>
-                <h2 style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}>Featured Jobs </h2>
+                <h2 className="font-style" style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}>Featured Jobs </h2>
                 <div className="row">
                     <Link to={{pathname: `/postad_jobPortal`}}>
                         <div className="col-md-4"  style={{height: '475px' }}>
@@ -129,28 +129,28 @@ class FeaturedBox extends Component{
                                             </div>
                                         </div>
                                         <div className="customjob-margin">
-                                            <h4 className="heading-wight">{elem.jobCat}</h4>
+                                            <h4 className="heading-wight font-style">{elem.jobCat}</h4>
                                             <i className="glyphicon glyphicon-star"/>
-                                            <p className="textforjob">{elem.jobType}</p>
+                                            <p className="textforjob font-style">{elem.jobType}</p>
                                             <div className="glyphicom">
                                                 <i className="glyphicon glyphicon-map-marker"/>
-                                                <p className="textforjob">{elem.location}</p>
+                                                <p className="textforjob font-style ">{elem.location}</p>
                                             </div>
                                         </div>
                                         <div className="jobdetail-desc">
                                             <div> </div>
-                                            <div className="small m-t-xs">
+                                            <div className="small m-t-xs font-style">
                                                 {elem.jobDescription}
                                             </div>
                                             <div className="row">
                                               <div className="col-md-6">
                                                   <Link to={{pathname: `/detail_jobPortal`, state: elem}}>
-                                                      <button type="button" className="btn2 btn2-success">View Detail</button>
+                                                      <button type="button" className="btn2 btn2-success font-style">View Detail</button>
                                                   </Link>
                                               </div>
                                               <div className="col-md-6">
                                                       <Link to={{pathname: `/apply_forJob`, state: elem}}>
-                                                          <button type="button" className="btn2 btn2-success">Apply Now</button>
+                                                          <button type="button" className="btn2 btn2-success font-style">Apply Now</button>
                                                       </Link>
                                               </div>
 
@@ -170,10 +170,10 @@ class FeaturedBox extends Component{
                     </div>
                     <div className="col-md-4"></div>
                 </div>}
-                {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
-                {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
+                {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h1 className="font-style">Not found....</h1></span>}
+                {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h5 className="font-style">you can find your search by type</h5></span>}
                 {/*!!showJob && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :job.length} onChange={this.onChange} /></span>*/}
-                <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>View More ...</button></div>
+                <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success font-style" onClick={this.onAddMore}>View More ...</button></div>
             </div>
 
 

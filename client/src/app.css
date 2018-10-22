@@ -25,19 +25,19 @@
 	background: #8cbc40;
     color: white;
     width: 100px;
-    border-radius: 5px; 
+    border-radius: 5px;
 }
 .insideDiv{
-  border-radius:4px; 
-  margin-right:8px; 
-  width: 104px; 
+  border-radius:4px;
+  margin-right:8px;
+  width: 104px;
   height: 104px;
   padding: 8px;
   border: 1px solid #d9d9d9;
 }
 .insideDiv a img{
-  width:100%; 
-  position:relative; 
+  width:100%;
+  position:relative;
   overflow: hidden;
 }
 .insideDiv a span{
@@ -815,4 +815,8 @@ color: #fff;
 }*/
 .margin-left_13{
   margin-left: 13%;
+}
+
+.font-style{
+  font-family: 'Work Sans', sans-serif;
 }

@@ -51,7 +51,7 @@
    z-index: 8;
    padding: 6px 6px 0 6px;
    border-radius: 5px;
-
+   height: 300px;
 }
 .jobcard-button{
   font-size: 14px;

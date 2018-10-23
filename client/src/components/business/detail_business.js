@@ -5,6 +5,7 @@ import moment from 'moment'
 import { Carousel, Rate, notification, Icon, Spin } from 'antd';
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
+import FbImageLibrary from 'react-fb-image-grid'
 
 class DetailBusiness extends Component{
     constructor(props){
@@ -25,6 +26,7 @@ class DetailBusiness extends Component{
     }
 
     componentDidMount(){
+        window.scrollTo(0,0);
         let data = this.props.location.state;
         if(data === undefined){
             this.setState({
@@ -304,13 +306,10 @@ class DetailBusiness extends Component{
                                         <div className="row">
                                             <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>
                                                 <div className="col-md-4 col-sm-3 col-xs-12">
-                                                    <a href="#linkAbout" className="a"><h4 className="black"><b>About</b></h4>
+                                                    <a href="#linkAbout" className="a"><h4 className="black"><b>Gallery</b></h4>
                                                         <div className="hr1">...</div> </a>
                                                 </div>
-                                                <div className="col-md-4 col-sm-3 col-xs-12">
-                                                    <a href="#linkGallery" className="a"> <h4 style={{color: "rgba(0, 0, 0, 0.65)"}}><b>Gallery</b></h4>
-                                                        <div className="hr1">...</div> </a>
-                                                </div>
+                                                
                                                 <div className="col-md-4 col-sm-3 col-xs-12">
                                                     <a href="#linkReview" className="a"><h4 className="black"><b>Reviews</b></h4>
                                                         <div className="hr1">...</div></a>
@@ -328,7 +327,7 @@ class DetailBusiness extends Component{
                                     <div className="card-body space">
                                         <div className="row">
                                             <div className="col-md-12 col-sm-12 col-xs-12">
-                                                <h3 style={{color: "rgba(0, 0, 0, 0.65)"}}><b><a name="linkAbout" className="black">About</a></b></h3>
+                                                <h3 style={{color: "rgba(0, 0, 0, 0.65)"}}><b><a name="linkAbout" className="black">Gallery</a></b></h3>
                                                 <hr/>
                                             </div>
                                         </div>
@@ -338,9 +337,7 @@ class DetailBusiness extends Component{
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <div className="col-md-12 col-sm-12 col-xs-12">
-                                                <img alt='' src={images && images[0]} className="responsive" width="90%" height="200" />
-                                            </div>
+                                            <FbImageLibrary images={images} width={50} countFrom={2}/>
                                         </div>
                                         <div className="row">
                                             <div className="col-md-12 col-sm-12 col-xs-12">
@@ -353,7 +350,7 @@ class DetailBusiness extends Component{
                             {/*End third tile */}
                             <div className="row"><br/></div>
                             {/*Start 4th tile */}
-                            <div className="row">
+                            {/*<div className="row">
                                 <div className="card outset" style={{ boxShadow: "none", border:"1px solid #80808042", background: "white"}}>
                                     <div className="card-body space">
                                         <div className="row">
@@ -377,7 +374,7 @@ class DetailBusiness extends Component{
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>*/}
                             {/*End 4th tile */}
                             <div className="row"><br/></div>
                             {/*Start 5th tile */}
@@ -390,7 +387,7 @@ class DetailBusiness extends Component{
                                                     <div className="col-md-12 col-sm-12 col-xs-12">
                                                         <div className="col-md-6 col-sm-12 col-xs-12 " style={{paddingLeft:"0px" ,  paddingRight:"0px"}}><br/>
                                                             <img src="../images/images.jpg" className="img-circle" alt="" width="100" height="100" />
-                                                              <h5 className="mon-timing"> NAME Of a Person </h5>
+                                                              <h5 className="mon-timing">{elem.name}</h5>
                                                             <Rate style={{paddingLeft: '125px'}} allowHalf value={elem.star} />
                                                         </div>
                                                         <div className="col-md-2 col-sm-12 col-xs-12">

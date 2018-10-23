@@ -13,7 +13,7 @@ class Roomrenting1content extends Component{
             showroomrents: [],
             filteredArr: [],
             loader: true,
-            add: 6
+            add: 5
         }
     }
 
@@ -77,8 +77,8 @@ class Roomrenting1content extends Component{
                 <div className="">
                     <div className="row">
                     <Link to={{pathname: `/postad_Roommates`}}>
-                        <div className="col-md-4"  style={{height: '530px' }}>
-                            <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '100%', width: '100%'}}/>
+                        <div className="col-md-4"  style={{height: '585px' }}>
+                            <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '100%', width: '100%', borderRadius: '10px'}}/>
                         </div>
                     </Link>
                         {showroomrents && showroomrents.map((elem, key) => {

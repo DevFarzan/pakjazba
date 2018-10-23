@@ -47,6 +47,7 @@ class ProfileUser extends Component{
     }
 
     componentDidMount(){
+        window.scrollTo(0,0);
         this.handleLocalStorage();
     }
 
@@ -635,8 +636,8 @@ class ProfileUser extends Component{
                                                                     let img = elem.imageurl && elem.imageurl[0] || '../images/images.jpg';
                                                                     let title = elem.postingtitle || ''
                                                                     let str = elem.discription || '';
-                                                                    if(str.length > 100) {
-                                                                        str = str.substring(0, 100);
+                                                                    if(str.length > 45) {
+                                                                        str = str.substring(0, 45);
                                                                         str = str + '...'
                                                                     }
                                                                     return(
@@ -672,8 +673,8 @@ class ProfileUser extends Component{
                                                                     let img = elem.businessImages && elem.businessImages[0] || '../images/images.jpg';
                                                                     let title = elem.businessname || ''
                                                                     let str = elem.description || '';
-                                                                    if(str.length > 100) {
-                                                                        str = str.substring(0, 100);
+                                                                    if(str.length > 45) {
+                                                                        str = str.substring(0, 45);
                                                                         str = str + '...'
                                                                     }
                                                                     return(
@@ -709,8 +710,8 @@ class ProfileUser extends Component{
                                                                     let img = elem.images && elem.images[0] || '../images/images.jpg';
                                                                     let title = elem.title || ''
                                                                     let str = elem.description || '';
-                                                                    if(str.length > 100) {
-                                                                        str = str.substring(0, 100);
+                                                                    if(str.length > 45) {
+                                                                        str = str.substring(0, 45);
                                                                         str = str + '...'
                                                                     }
                                                                     return(
@@ -746,8 +747,8 @@ class ProfileUser extends Component{
                                                                     let img = elem.arr_url && elem.arr_url[0] || '../images/images.jpg';
                                                                     let title = elem.compName || ''
                                                                     let str = elem.compDescription || '';
-                                                                    if(str.length > 100) {
-                                                                        str = str.substring(0, 100);
+                                                                    if(str.length > 45) {
+                                                                        str = str.substring(0, 45);
                                                                         str = str + '...'
                                                                     }
                                                                     return(

@@ -816,3 +816,9 @@ color: #fff;
 .margin-left_13{
   margin-left: 13%;
 }
+
+/*****************************dropDown UI changes**************************/
+:root .ant-dropdown-trigger .anticon-down, :root .ant-dropdown-link .anticon-down {
+    font-size: 14px;
+    color: white;
+}

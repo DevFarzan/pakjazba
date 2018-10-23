@@ -24,6 +24,7 @@ class ShowProfilepublic extends Component{
     }
 
 	componentDidMount(){
+        window.scrollTo(0,0);
         let data = this.props.allArr;
         if(!data.arr1.length && !data.arr2.length && !data.arr3.length && !data.arr4.length){
             this.handleLocalStorage();
@@ -168,23 +169,20 @@ class ShowProfilepublic extends Component{
                                             let img = elem.imageurl && elem.imageurl[0] || '../images/images.jpg';
                                             let title = elem.postingtitle || ''
                                             let str = elem.discription || '';
-                                            if(str.length > 100) {
-                                                str = str.substring(0, 100);
+                                            if(str.length > 45) {
+                                                str = str.substring(0, 45);
                                                 str = str + '...'
                                             }
                                             return(
-                                                <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
-                                                    <div className="card">
+                                                <div className="col-md-4"  style={{'marginBottom': '30px', marginTop: '30px'}}>
+                                                    <div className="card" style={{paddingBottom: '10px'}}>
                                                         <Link to={{pathname: `/detail_roomRent`, state: elem}}>
                                                             <img alt='' src={img} />
                                                             <h4>{title}</h4>
                                                             <p>{str}</p>
                                                         </Link>
-                                                        <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i></a>
-                                                        <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i>
                                                     </div>
                                                 </div>
-
                                             )
                                         }) :
                                         <div style={{marginTop: '25px'}}>
@@ -205,23 +203,20 @@ class ShowProfilepublic extends Component{
                                             let img = elem.businessImages && elem.businessImages[0] || '../images/images.jpg';
                                             let title = elem.businessname || ''
                                             let str = elem.description || '';
-                                            if(str.length > 100) {
-                                                str = str.substring(0, 100);
+                                            if(str.length > 45) {
+                                                str = str.substring(0, 45);
                                                 str = str + '...'
                                             }
                                             return(
-                                                <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
-                                                    <div className="card">
+                                                <div className="col-md-4"  style={{'marginBottom': '30px', marginTop: '30px'}}>
+                                                    <div className="card"  style={{paddingBottom: '10px'}}>
                                                         <Link to={{pathname: `/detail_business`, state: elem}}>
                                                             <img alt='' src={img} />
                                                             <h4>{title}</h4>
                                                             <p>{str}</p>
                                                         </Link>
-                                                        <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i></a>
-                                                        <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i>
                                                     </div>
                                                 </div>
-
                                             )
                                         }) :
                                         <div style={{marginTop: '25px'}}>
@@ -242,23 +237,20 @@ class ShowProfilepublic extends Component{
                                             let img = elem.images && elem.images[0] || '../images/images.jpg';
                                             let title = elem.title || ''
                                             let str = elem.description || '';
-                                            if(str.length > 100) {
-                                                str = str.substring(0, 100);
+                                            if(str.length > 45) {
+                                                str = str.substring(0, 45);
                                                 str = str + '...'
                                             }
                                             return(
-                                                <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
-                                                    <div className="card">
+                                                <div className="col-md-4"  style={{'marginBottom': '30px', marginTop: '30px'}}>
+                                                    <div className="card" style={{paddingBottom: '10px'}}>
                                                         <Link to={{pathname: `/detail_buySell`, state: elem}}>
                                                             <img alt='' src={img} />
                                                             <h4>{title}</h4>
                                                             <p>{str}</p>
                                                         </Link>
-                                                        <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i></a>
-                                                        <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i>
                                                     </div>
                                                 </div>
-
                                             )
                                         }) :
                                         <div style={{marginTop: '25px'}}>
@@ -279,23 +271,20 @@ class ShowProfilepublic extends Component{
                                             let img = elem.arr_url && elem.arr_url[0] || '../images/images.jpg';
                                             let title = elem.compName || ''
                                             let str = elem.compDescription || '';
-                                            if(str.length > 100) {
-                                                str = str.substring(0, 100);
+                                            if(str.length > 45) {
+                                                str = str.substring(0, 45);
                                                 str = str + '...'
                                             }
                                             return(
-                                                <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
-                                                    <div className="card">
+                                                <div className="col-md-4"  style={{'marginBottom': '30px', marginTop: '30px'}}>
+                                                    <div className="card" style={{paddingBottom: '10px'}}>
                                                         <Link to={{pathname: `/detail_jobPortal`, state: elem}}>
                                                             <img alt='' src={img} />
                                                             <h4>{title}</h4>
                                                             <p>{str}</p>
                                                         </Link>
-                                                        <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{padding: "16px",marginTop: "8px",color:"gray"}}><span style={{margin:"7px"}}>Edit</span></i></a>
-                                                        <i className="glyphicon glyphicon-trash" style={{padding: "16px",marginTop: "8px",float:"right",color:"gray"}}><span style={{margin:"7px"}}>Remove</span></i>
                                                     </div>
                                                 </div>
-
                                             )
                                         }) :
                                         <div style={{marginTop: '25px'}}>

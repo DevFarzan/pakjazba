@@ -40,6 +40,7 @@ class App extends Component {
     render() {
         return (
             <span>
+            {/*<img src={'../images/shutterstock_99225698.jpg'} style={{height: '40%', width: '100%', position: 'relative'}}/>*/}
                 <div className ="" style={{"backgroundImage":"url('http://res.cloudinary.com/dxk0bmtei/image/upload/v1537167325/bg-image-for-farzan-bhai_xjp7q7.png')","height": "407px",marginTop: "-65px",marginLeft:"-66px"}}>
                     <div className="background-image">
                         <Burgermenu/>

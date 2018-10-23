@@ -16,6 +16,7 @@ class MarketRoommates extends Component{
     }
 
     componentDidMount(){
+        window.scrollTo(0,0);
         this.getAllBusiness()
     }
 
@@ -43,7 +44,7 @@ class MarketRoommates extends Component{
                     </div>
                 </div>
             </span>
-                <div className="container" style={{width:"94%"}}>
+                <div  style={{width:"99%"}}>
                 <Roomrenting1content/>
                 </div>
                 <Footer />

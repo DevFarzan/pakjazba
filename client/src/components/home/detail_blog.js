@@ -25,6 +25,7 @@ class DetailBlog extends Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0,0);
         this.callApi()
         this.getAllBlogs()
         this.handleLocalStorage()

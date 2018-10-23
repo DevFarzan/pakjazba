@@ -41,6 +41,7 @@ class JobPortal extends Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0,0);
         this.handleLocalStorage();
         let data = this.props.location.state;
         if(data) {

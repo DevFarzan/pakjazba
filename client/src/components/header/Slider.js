@@ -36,9 +36,13 @@ class Slider extends Component{
         return (
             <div>
                 <div>
-                    <p className="paragragh-text"></p>
-                    <h1 className="text-h1" style={{fontSize:'58px',fontWeight:'bold'}}>{this.props.mainH1}</h1>
-                    <h2 style={{textAlign:'center',color: 'white'}}>{this.props.mainH2}</h2>
+                    <div className="row">
+                        <div className="col-md-12 col-sm-12 col-xs-12">
+                        <p className="paragragh-text"></p>
+                        <h1 className="text-h1" style={{fontSize:'58px',fontWeight:'bold'}}>{this.props.mainH1}</h1>
+                        <h2 style={{textAlign:'center',color: 'white'}}>{this.props.mainH2}</h2>
+                    </div>
+                    </div>
                     <section className="home-newsletter">
                         <div className="">
                             <div className="row">

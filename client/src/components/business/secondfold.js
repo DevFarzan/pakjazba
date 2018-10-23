@@ -17,7 +17,7 @@ class Secondfold extends Component{
             filteredArr: [],
             searchValue: '',
             loader: true,
-            add: 5
+            add: 6
         }
     }
 

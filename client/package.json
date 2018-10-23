@@ -14,7 +14,6 @@
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.2",
     "react-facebook-login": "^4.0.1",
-    "react-fb-image-grid": "^0.1.4",
     "react-geosuggest": "^2.8.0",
     "react-google-map": "^3.1.1",
     "react-google-maps": "^9.4.5",

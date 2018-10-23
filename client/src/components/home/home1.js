@@ -116,7 +116,7 @@ class Home1 extends Component{
                                 <img alt='' src="./images/shutterstock_536667610.jpg" width="130" height="120" />
                             </Link>
                         </div>
-                        <div className="col-md-8">
+                        <div className="col-md-8" style={{paddingLeft: '30px'}}>
                             <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                             <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
                         </div>
@@ -125,7 +125,7 @@ class Home1 extends Component{
                                 <img alt='' src="./images/blog1.jpg" width="130" height="120" />
                             </Link>
                         </div>
-                        <div className="col-md-8">
+                        <div className="col-md-8" style={{paddingLeft: '30px'}}>
                             <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                             <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
                         </div>
@@ -134,7 +134,7 @@ class Home1 extends Component{
                                 <img alt='' src="./images/shutterstock_536667610.jpg" width="130" height="120" />
                             </Link>
                         </div>
-                        <div className="col-md-8">
+                        <div className="col-md-8" style={{paddingLeft: '30px'}}>
                             <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                             <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
                         </div>
@@ -143,14 +143,14 @@ class Home1 extends Component{
                                 <img alt='' src="./images/black.jpg" width="130" height="120" />
                             </Link>
                         </div>
-                        <div className="col-md-8">
+                        <div className="col-md-8" style={{paddingLeft: '30px'}}>
                             <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                             <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
                         </div>
                     </div>
                     <div className="col-md-3" style={{marginTop:'-34px'}}>
                         <Tabs defaultActiveKey="2" style={{border:'1px solid gray',backgroundColor:'rgba(119, 136, 153, 0.05)',padding: '10px'}}>
-                            <TabPane style={{height: '450px', 'overflow-y': 'overlay'}} tab='SPORTS' key="1">
+                            <TabPane style={{height: '450px', 'overflow-y': 'overlay', fontColor: 'black'}} tab='SPORTS' key="1">
                                 {sports.map((elem) => {
                                     return(
                                         <div className="b-sec">
@@ -213,7 +213,7 @@ class Home1 extends Component{
                                 <div className="col-md-4">
                                     <img alt='' src="./images/black.jpg" width="120" height="110" />
                                 </div>
-                                <div className="col-md-8">
+                                <div className="col-md-8" style={{paddingLeft: '30px'}}>
                                     <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsums</b></h5>
                                     <br/>
                                     <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
@@ -223,7 +223,7 @@ class Home1 extends Component{
                                 <div className="col-md-4">
                                     <img alt='' src="./images/black.jpg" width="120" height="110" />
                                 </div>
-                                <div className="col-md-8">
+                                <div className="col-md-8" style={{paddingLeft: '30px'}}>
                                     <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                     <br/>
                                     <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
@@ -233,7 +233,7 @@ class Home1 extends Component{
                                 <div className="col-md-4">
                                     <img alt='' src="./images/black.jpg" width="120" height="110" />
                                 </div>
-                                <div className="col-md-8">
+                                <div className="col-md-8" style={{paddingLeft: '30px'}}>
                                     <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                     <br/>
                                     <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
@@ -243,7 +243,7 @@ class Home1 extends Component{
                                 <div className="col-md-4">
                                     <img alt='' src="./images/black.jpg" width="120" height="110" />
                                 </div>
-                                <div className="col-md-8">
+                                <div className="col-md-8" style={{paddingLeft: '30px'}}>
                                     <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                     <br/>
                                     <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
@@ -253,7 +253,7 @@ class Home1 extends Component{
                                 <div className="col-md-4">
                                     <img alt='' src="./images/black.jpg" width="120" height="110" />
                                 </div>
-                                <div className="col-md-8">
+                                <div className="col-md-8" style={{paddingLeft: '30px'}}>
                                     <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                     <br/>
                                     <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
@@ -263,7 +263,7 @@ class Home1 extends Component{
                                 <div className="col-md-4">
                                     <img alt='' src="./images/black.jpg" width="120" height="110" />
                                 </div>
-                                <div className="col-md-8">
+                                <div className="col-md-8" style={{paddingLeft: '30px'}}>
                                     <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
                                     <br/>
                                     <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>

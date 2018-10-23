@@ -17,7 +17,7 @@ class Secondfold extends Component{
             filteredArr: [],
             searchValue: '',
             loader: true,
-            add: 5
+            add: 6
         }
     }
 
@@ -136,7 +136,7 @@ class Secondfold extends Component{
                     <div className="container" style={{width: '93%'}}>
                     <div className="row">
                         <Link to={{pathname: `/postad_business`}}>
-                            <div className="col-md-4"  style={{'marginBottom': '30px', height: '460px' }}>
+                            <div className="col-md-4"  style={{'marginBottom': '30px', height: '455px' }}>
                                 <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '100%', width: '90%', borderRadius: '13px'}}/>
                             </div>
                         </Link>

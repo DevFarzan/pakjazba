@@ -5,7 +5,7 @@ import moment from 'moment'
 import { Carousel, Rate, notification, Icon, Spin } from 'antd';
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
-import FbImageLibrary from 'react-fb-image-grid'
+// import FbImageLibrary from '../../lib/react-fb-image-grid'
 
 class DetailBusiness extends Component{
     constructor(props){
@@ -337,7 +337,7 @@ class DetailBusiness extends Component{
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <FbImageLibrary images={images} width={50} countFrom={2}/>
+                                            {/*<FbImageLibrary images={images} width={50} countFrom={2}/>*/}
                                         </div>
                                         <div className="row">
                                             <div className="col-md-12 col-sm-12 col-xs-12">

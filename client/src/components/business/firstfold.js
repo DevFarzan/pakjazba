@@ -17,52 +17,56 @@ class Firstfold extends Component{
 
     render(){
         return(
-            <div className="container">
+            <div className="row">
                 <h1 className="text-align" style={{fontWeight:"bold"}}>  What Do You Need To find? </h1>
-                <div className="index-content">
-                    <div className="col-lg-3" onClick={() => {this.clickItem('coffee shop')}}>
-                        <div className="">
-                            <img alt='' src="../images/icons/cafi.png" style={{width: "103%"}} />
+                <div className="col-md-2"></div>
+                <div className='col-md-8'>
+                    <div className="index-content">
+                        <div className="col-lg-3" onClick={() => {this.clickItem('coffee shop')}}>
+                            <div className="">
+                                <img alt='' src="../images/icons/cafi.png" style={{width: "103%"}} />
+                            </div>
+                        </div>
+                        <div className="col-lg-3" onClick={() => {this.clickItem('business')}}>
+                            <div className="">
+                                <img alt='' src="../images/icons/business.png" style={{width: "103%"}} />
+                            </div>
+                        </div>
+                        <div className="col-lg-3" onClick={() => {this.clickItem('hospital')}}>
+                            <div className="">
+                                <img alt='' src="../images/icons/hospital.png" style={{width: "103%"}} />
+                            </div>
+                        </div>
+                        <div className="col-lg-3" onClick={() => {this.clickItem('market')}}>
+                            <div className="">
+                                <img alt='' src="../images/icons/market.png" style={{width: "103%"}} />
+                            </div>
                         </div>
                     </div>
-                    <div className="col-lg-3" onClick={() => {this.clickItem('business')}}>
-                        <div className="">
-                            <img alt='' src="../images/icons/business.png" style={{width: "103%"}} />
+                    <div className="index-content">
+                        <div className="col-lg-3" onClick={() => {this.clickItem('restaurant')}}>
+                            <div className="">
+                                <img alt='' src="../images/icons/restuarant.png" style={{width: "103%"}} />
+                            </div>
                         </div>
-                    </div>
-                    <div className="col-lg-3" onClick={() => {this.clickItem('hospital')}}>
-                        <div className="">
-                            <img alt='' src="../images/icons/hospital.png" style={{width: "103%"}} />
+                        <div className="col-lg-3" onClick={() => {this.clickItem('park')}}>
+                            <div className="">
+                                <img alt='' src="../images/icons/park.png" style={{width: "103%"}} />
+                            </div>
                         </div>
-                    </div>
-                    <div className="col-lg-3" onClick={() => {this.clickItem('market')}}>
-                        <div className="">
-                            <img alt='' src="../images/icons/market.png" style={{width: "103%"}} />
+                        <div className="col-lg-3" onClick={() => {this.clickItem('hostel')}}>
+                            <div className="">
+                                <img alt='' src="../images/icons/hatel.png " style={{width: "103%"}} />
+                            </div>
+                        </div>
+                        <div className="col-lg-3" onClick={() => {this.clickItem('animal hospital')}}>
+                            <div className="">
+                                <img alt='' src="../images/icons/animal.png"  style={{width: "103%"}} />
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="index-content">
-                    <div className="col-lg-3" onClick={() => {this.clickItem('restaurant')}}>
-                        <div className="">
-                            <img alt='' src="../images/icons/restuarant.png" style={{width: "103%"}} />
-                        </div>
-                    </div>
-                    <div className="col-lg-3" onClick={() => {this.clickItem('park')}}>
-                        <div className="">
-                            <img alt='' src="../images/icons/park.png" style={{width: "103%"}} />
-                        </div>
-                    </div>
-                    <div className="col-lg-3" onClick={() => {this.clickItem('hostel')}}>
-                        <div className="">
-                            <img alt='' src="../images/icons/hatel.png " style={{width: "103%"}} />
-                        </div>
-                    </div>
-                    <div className="col-lg-3" onClick={() => {this.clickItem('animal hospital')}}>
-                        <div className="">
-                            <img alt='' src="../images/icons/animal.png"  style={{width: "103%"}} />
-                        </div>
-                    </div>
-                </div>
+                <div className="col-md-2"></div>
             </div>
 
         )

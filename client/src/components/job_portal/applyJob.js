@@ -11,6 +11,7 @@ import {
     TimePicker
 } from 'antd';
 import App from '../../App';
+import Secondscreencard from './Secondscreenjob';
 
 class ApplyJob extends Component {
     constructor(props) {
@@ -23,6 +24,7 @@ class ApplyJob extends Component {
             <div>
                 <App/>
                 <h1>ApplyJob</h1>
+                <Secondscreencard/>
             </div>
         )
     }

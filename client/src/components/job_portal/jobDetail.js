@@ -35,6 +35,7 @@ class JobDetail extends Component {
                     </div>
                   </div>
                 </div>
+                
                 <JobDetailpage/>
                 <JobSecondrow/>
                 <Thirdrow/>

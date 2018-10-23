@@ -40,9 +40,9 @@ class App extends Component {
     render() {
         return (
             <span>
-            {/*<img src={'../images/shutterstock_99225698.jpg'} style={{height: '40%', width: '100%', position: 'relative'}}/>*/}
-                <div className ="" style={{"backgroundImage":"url('../images/home.png')", "marginTop" : "-20px" }}>
-                    <div className="background-image">
+            {/*<img src={'../images/home.png'} style={{width: '100%', position: 'relative', marginTop: '-20px'}}/>*/}
+                <div className ="" style={{"backgroundImage":"url('../images/home-f.png')", marginTop : "-20px",backgroundSize: 'cover' }}>
+                    <div className="background-image" >
                         <Burgermenu/>
                         <Slider mainH1="Pak Jazba" mainH2="connecting communities"/>
                     </div>

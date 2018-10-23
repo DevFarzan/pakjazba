@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Buydetailfirstfold from './buydetail/buydetailfirstfold'
 import Buydetailsecondfold from './buydetail/buydetailsecondfold'
 import { Redirect } from 'react-router';
-import App from "../../App";
+import Burgermenu from '../header/burgermenu';
+import Slider from '../header/Slider';
 import Footer from '../footer/footer';
 import {HttpUtils} from "../../Services/HttpUtils";
 
@@ -46,10 +47,14 @@ class DetailBuySell extends Component{
 
         return(
             <div>
-                <div className="background_listing">
-                	<App/>
-                </div>
-                <div className='container' style={{width:"80%"}}>
+                <span>
+                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/buy-sell.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
+                        <div className="background-image">
+                            <Burgermenu/>
+                            <Slider mainH1="Buy & Sell" mainH2="Find what you need"/>
+                        </div>
+                    </div>
+                </span>                <div className='container' style={{width:"80%"}}>
                     <Buydetailfirstfold data={data}/>
                     <Buydetailsecondfold data={data}/>
                 </div>

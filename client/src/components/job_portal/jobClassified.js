@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import App from '../../App';
+import Burgermenu from '../header/burgermenu';
+import Slider from '../header/Slider';
 import ClassifiedIcons from './jobClassifiedicon';
 import FeaturedBox from './featuredJob';
 import JobBlog from './jobBlogs';
@@ -27,7 +28,14 @@ class JobClassified extends Component {
     render(){
         return (
             <div>
-                <App/>
+                <span>
+                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/job-portal.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
+                        <div className="background-image">
+                            <Burgermenu/>
+                            <Slider mainH1="Job Portal" mainH2="Find your jobs here"/>
+                        </div>
+                    </div>
+                </span>
                 {!this.props.text && <ClassifiedIcons/>}
                 <FeaturedBox/>
                 <JobBlog/>

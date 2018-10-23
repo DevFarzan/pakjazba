@@ -41,7 +41,7 @@ class App extends Component {
         return (
             <span>
             {/*<img src={'../images/home.png'} style={{width: '100%', position: 'relative', marginTop: '-20px'}}/>*/}
-                <div className ="" style={{"backgroundImage":"url('../images/home-f.png')", marginTop : "-20px",backgroundSize: 'cover' }}>
+                <div className ="" style={{"backgroundImage":"url('../images/bgc-images/home-f.png')", marginTop : "-20px",backgroundSize: 'cover' }}>
                     <div className="background-image" >
                         <Burgermenu/>
                         <Slider mainH1="Pak Jazba" mainH2="connecting communities"/>

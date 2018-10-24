@@ -12,6 +12,8 @@ import {
 } from 'antd';
 import App from '../../App';
 import Secondscreencard from './Secondscreenjob';
+import JobNews from './Rssforjob';
+import CategoriesjobMarket from './CategoriesJobs';
 
 class ApplyJob extends Component {
     constructor(props) {
@@ -23,8 +25,17 @@ class ApplyJob extends Component {
         return (
             <div>
                 <App/>
-                <h1>ApplyJob</h1>
+                <div className="row jobdetail-page">
+                  <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>
+                    <div className="">
+                      <h1 style={{fontFamily: 'Work Sans, sans-serif', fontWeight:"bold"}}>JOBS</h1>
+                    </div>
+                  </div>
+                </div>
+                <CategoriesjobMarket/>
                 <Secondscreencard/>
+                {/*<JobNews/>*/}
+
             </div>
         )
     }

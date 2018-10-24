@@ -280,7 +280,7 @@ class Home1 extends Component{
                         </div>
                     </div>
                 </div>
-                
+
                 <div className="row">
                     <div className="col-md-10">
                         <div className="col-md-4">
@@ -340,7 +340,7 @@ class Home1 extends Component{
                         </div>
                     </div>
                 </div>
-                
+
                 <Footer />
             </div>
         )

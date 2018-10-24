@@ -110,7 +110,7 @@ class FeaturedBox extends Component{
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
         return(
-            <div className="container" style={{width:"98%"}}>
+            <div className="container" style={{width:"94%"}}>
                 <h2 className="font-style" style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}>Featured Jobs </h2>
                 <div className="row">
                     <Link to={{pathname: `/postad_jobPortal`}}>
@@ -143,17 +143,16 @@ class FeaturedBox extends Component{
                                                 {elem.jobDescription}
                                             </div>
                                             <div className="row">
-                                              <div className="col-md-6">
+                                              <div className="col-md-6 col-sm-12 col-xs-12">
                                                   <Link to={{pathname: `/detail_jobPortal`, state: elem}}>
-                                                      <button type="button" className="btn2 btn2-success font-style">View Detail</button>
+                                                    <button type="button" className="btn btn-sm btn2-success font-style" style={{width:"100%"}}>View Detail</button>
                                                   </Link>
                                               </div>
-                                              <div className="col-md-6">
-                                                      <Link to={{pathname: `/apply_forJob`, state: elem}}>
-                                                          <button type="button" className="btn2 btn2-success font-style">Apply Now</button>
-                                                      </Link>
+                                              <div className="col-md-6 col-sm-12 col-xs-12">
+                                                  <Link to={{pathname: `/apply_forJob`, state: elem}}>
+                                                    <button type="button" className="btn btn-sm btn2-success font-style" style={{width:"100%"}}>Apply Now</button>
+                                                  </Link>
                                               </div>
-
                                             </div>
                                         </div>
                                     </div>

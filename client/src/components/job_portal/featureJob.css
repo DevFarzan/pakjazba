@@ -4,7 +4,9 @@
   margin-top: 0;
   padding: 0;
   background-color: whitesmoke;
+  border: 2px solid whitesmoke;
   width: 89%;
+  border-radius: 10px;
 }
 
 .featuredbox-content {
@@ -19,15 +21,14 @@
 }
 
 .featuredjob-box {
-  padding: 0;
-  border: 1px solid #e7eaec;
+
 }
 .featuredjob-box:hover,
 .featuredjob-box.active {
-  border: 1px solid transparent;
+  /*border: 1px solid transparent;
   -webkit-box-shadow: 0 3px 7px 0 #a8a8a8;
   -moz-box-shadow: 0 3px 7px 0 #a8a8a8;
-  box-shadow: 0 3px 7px 0 #a8a8a8;
+  box-shadow: 0 3px 7px 0 #a8a8a8;*/
 }
 
 .featuredjob-imitation {
@@ -44,14 +45,14 @@
 }
 
 .featuredjob-imitation .card2 img {
-  position: static;
+    position: static;
    bottom: 22%;
    right: 8%;
    width: 100%;
    z-index: 8;
    padding: 6px 6px 0 6px;
    border-radius: 5px;
-   height: 300px;
+   height:300px;
 }
 .jobcard-button{
   font-size: 14px;
@@ -94,10 +95,10 @@
   position: relative;
   background-color: #ffff;
   margin-top: 5px;
-  border-radius: 20px;
+  border-radius: 0;
 }
 .glyphicom{
-  margin-left: 75px;
+  margin-left: 15px;
   display: inline;
 }
 
@@ -116,6 +117,8 @@
 
 .btn2-success{
   background-color: #008080;
+  color: white;
+  margin: 2px 0 2px 0;
 }
 
 .button2{

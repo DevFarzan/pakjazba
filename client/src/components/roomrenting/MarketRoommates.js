@@ -44,7 +44,7 @@ class MarketRoommates extends Component{
                     </div>
                 </div>
             </span>
-                <div  style={{width:"99%"}}>
+                <div className="container" style={{width:"94%"}}>
                 <Roomrenting1content/>
                 </div>
                 <Footer />

@@ -120,6 +120,11 @@
   color: white;
   margin: 2px 0 2px 0;
 }
+.btn2-success:hover{
+  background-color: #008080;
+  color: white;
+  margin: 2px 0 2px 0;
+}
 
 .button2{
   margin-top: 15px;

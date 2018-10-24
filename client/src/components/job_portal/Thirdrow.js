@@ -120,7 +120,7 @@ class Thirdrow extends Component{
                                   <div className="md-form mb-0">
                                       <label className="font-style">Add Your CV</label>
                                       <div className="form-background">
-                                          <a className="btn button_custom"  style={{width: "45%"}}>Choose File</a>
+                                          <a className="btn btn2-success"  style={{width: "45%"}}>Choose File</a>
                                       </div>
                                       <p className="font-style">Your CV must be a doc, pdf, docx and no bigger than 1 MB</p>
                                   </div>
@@ -134,7 +134,7 @@ class Thirdrow extends Component{
                                       </div>
 
                                       <div className="form-background">
-                                          <a className="btn button_custom"  style={{width: "45%"}}>Submit Now</a>
+                                          <a className="btn btn2-success"  style={{width: "45%"}}>Submit Now</a>
                                       </div>
                                   </div>
                               </div>

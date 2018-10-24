@@ -85,7 +85,6 @@ class FeaturedBox extends Component{
 
     onAddMore = () => {
         const { add, job, filteredArr } = this.state;
-        console.log(add + 6, 'View Add bitton clickedddddd')
         if(!!filteredArr.length){
             this.setState({
                 showJob: filteredArr.slice(0, add + 6),
@@ -114,7 +113,7 @@ class FeaturedBox extends Component{
                 <h2 className="font-style" style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}>Featured Jobs </h2>
                 <div className="row">
                     <Link to={{pathname: `/postad_jobPortal`}}>
-                        <div className="col-md-4"  style={{height: '475px' }}>
+                        <div className="col-md-4"  style={{height: '530px' }}>
                             <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '100%', width: '90%'}}/>
                         </div>
                     </Link>
@@ -143,23 +142,21 @@ class FeaturedBox extends Component{
                                                 {elem.jobDescription}
                                             </div>
                                             <div className="row">
-                                              <div className="col-md-6">
-                                                  <Link to={{pathname: `/detail_jobPortal`, state: elem}}>
-                                                      <button type="button" className="btn2 btn2-success font-style">View Detail</button>
-                                                  </Link>
-                                              </div>
-                                              <div className="col-md-6">
-                                                      <Link to={{pathname: `/apply_forJob`, state: elem}}>
-                                                          <button type="button" className="btn2 btn2-success font-style">Apply Now</button>
-                                                      </Link>
-                                              </div>
-
+                                                <div className="col-md-6">
+                                                    <Link to={{pathname: `/detail_jobPortal`, state: {...elem, sec: 'mainPart'}}}>
+                                                        <button type="button" className="btn2 btn2-success font-style">View Detail</button>
+                                                    </Link>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <Link to={{pathname: `/detail_jobPortal`, state: {...elem, sec: 'jobPart'}}}>
+                                                        <button type="button" className="btn2 btn2-success font-style">Apply Now</button>
+                                                    </Link>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         )
                     })}
                 </div>
@@ -175,8 +172,6 @@ class FeaturedBox extends Component{
                 {/*!!showJob && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :job.length} onChange={this.onChange} /></span>*/}
                 <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success font-style" onClick={this.onAddMore}>View More ...</button></div>
             </div>
-
-
         )
     }
 }

@@ -10,7 +10,8 @@ import {
     Modal,
     TimePicker
 } from 'antd';
-import App from '../../App';
+import Burgermenu from '../header/burgermenu';
+import Slider from '../header/Slider';
 import Footer from '../footer/footer';
 import JobDetailpage from './DetailjobUi';
 import JobSecondrow from './secondRow';
@@ -27,7 +28,14 @@ class JobDetail extends Component {
     render(){
         return (
             <div>
-                <App/>
+                <span>
+                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/job-portal.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
+                        <div className="background-image">
+                            <Burgermenu/>
+                            <Slider mainH1="Job Portal" mainH2="Find your jobs here"/>
+                        </div>
+                    </div>
+                </span>
                 <div className="row jobdetail-page">
                   <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>
                     <div className="">

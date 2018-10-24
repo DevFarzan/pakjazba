@@ -111,7 +111,7 @@ class Thirdrow extends Component{
             this.setState({err2: 'Please fill all fields'})
         }
     }
-    
+
     render(){
         const { file } = this.state;
         return(

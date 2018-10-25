@@ -15,6 +15,7 @@ import AsyncStorage from "@callstack/async-storage/lib/index";
 import Burgermenu from '../header/burgermenu';
 import Footer from '../footer/footer';
 import sha1 from "sha1";
+import moment from 'moment';
 import superagent from "superagent";
 import {HttpUtils} from "../../Services/HttpUtils";
 
@@ -171,7 +172,7 @@ class JobPortal extends Component {
             jobCat: values.jobCat,
             jobDescription: values.jobDescription,
             jobTitle: values.jobTitle,
-            jobType: values.jobType[0],
+            jobType: values.jobType,
             location: values.location,
             salary: values.salary,
             faceBook,
@@ -181,6 +182,7 @@ class JobPortal extends Component {
             Tagline,
             arr_url: response ? response : [],
             objectId,
+            posted: moment().format('LL')
         }
         let req = await HttpUtils.post('postJobPortal', obj)
         if(req.code === 200){
@@ -528,7 +530,7 @@ class JobPortal extends Component {
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <label htmlFor="sel1">Company Email/URL</label>
+                                                        <label htmlFor="sel1">Description</label>
                                                         <FormItem>
                                                             {getFieldDecorator('compDescription', {
                                                                 initialValue: compDescription,

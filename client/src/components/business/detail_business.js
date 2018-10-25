@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Burgermenu from '../header/burgermenu';
 import Slider from '../header/Slider';
 import "./detail_business.css";
-import moment from 'moment'
+import moment from 'moment';
 import { Carousel, Rate, notification, Icon, Spin } from 'antd';
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";

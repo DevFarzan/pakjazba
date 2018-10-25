@@ -40,6 +40,9 @@ class Burgermenu extends Component{
                                       <Button type="button_globalclass" name='buySell' ghost className="button_globalclass">
                                           <Link rel="noopener noreferrer" to={`/market_jobPortal`}>Job Portal</Link>
                                       </Button>
+                                      <Button type="button_globalclass" name='events' ghost className="button_globalclass">
+                                          <Link rel="noopener noreferrer" to={`/market_eventPortal`}>Events</Link>
+                                      </Button>
                                   </div>
                               </div>{/*col-md-4*/}
                               <div className="col-md-2" style={{marginTop: "26px"}}>

@@ -18,8 +18,21 @@ class Thirdrow extends Component{
             msg: 'brother',
             err: 'Your CV must be a pdf, docx and no bigger than 3 MB',
             file: {},
-            err2: ''
+            err2: '',
+            job: []
         }
+    }
+
+    componentDidMount(){
+        // window.scrollTo(0,0);
+        this.getAllBusiness();
+    }
+
+    async getAllBusiness(){
+        var res = await HttpUtils.get('marketplace');
+        this.setState({
+            job: res && res.jobPortalData,
+        });
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -113,83 +126,47 @@ class Thirdrow extends Component{
     }
 
     render(){
-        const { file } = this.state;
+        const { file, job } = this.state;
         return(
             <div className="container" style={{width:"90%"}}>
                 <div className="row">
                     <div className="col-md-4 col-sm-12 col-xs-12 des-space">
                         <span className="featurejob-box">
                             <h4 className="margin-thirdrow font-style"> Featured Jobs </h4>
-                            <div className="col-md-12" style={{paddingTop:"4px", paddingBottom:"10px"}}>
-                                <div className="col-md-4">
-                                    <img alt='' src="./images/data/589b2d33280000c63a997990.jpeg" width="100%" />
-                                </div>
-                                <div className="col-md-8">
-                                    <h5 className="font-style"><b>IT Person Needed</b></h5>
-                                    <br/>
-                                    <div className="jobfeature-margin">
-                                        <h4 className="heading-wight"></h4>
-                                        <i className="glyphicon glyphicon-star"/>
-                                        <p className="textforjob font-style">Full Time</p>
-                                        <div className="glyphicom" style={{marginLeft:"11px"}}>
-                                            <i className="glyphicon glyphicon-map-marker"/>
-                                            <p className="textforjob font-style">California</p>
+                                {job && job.map((elem) => {
+                                    let str = elem.location || '';
+                                    if(str.length > 8) {
+                                        str = str.substring(0, 8);
+                                        str = str + '...'
+                                    }
+                                    let des = elem.jobDescription || '';
+                                    if(des.length > 50) {
+                                        des = des.substring(0, 50);
+                                        des = des + '...'
+                                    }
+                                    return(
+                                        <div className="col-md-12" style={{paddingTop:"4px", paddingBottom:"10px"}}>
+                                            <div className="col-md-4">
+                                                <img alt='' src={elem.arr_url[0]} width="100%" />
+                                            </div>
+                                            <div className="col-md-8">
+                                                <h5 className="font-style"><b>{elem.jobCat}</b></h5>
+                                                <br/>
+                                                <div className="jobfeature-margin">
+                                                    <h4 className="heading-wight"></h4>
+                                                    <i className="glyphicon glyphicon-star"/>
+                                                    <p className="textforjob font-style">{elem.jobType}</p>
+                                                    <div className="glyphicom" style={{marginLeft:"11px"}}>
+                                                        <i className="glyphicon glyphicon-map-marker"/>
+                                                        <p className="textforjob font-style">{str}</p>
+                                                    </div>
+                                                </div>
+                                                <p className="font-style">{des}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <p className="font-style"> Lorem Ipsum has been the industrys standard dummy </p>
-                                </div>
-                                <div className="col-md-4">
-                                    <img alt='' src="./images/data/589b2d33280000c63a997990.jpeg" width="100%" />
-                                </div>
-                                <div className="col-md-8">
-                                    <h5 className="font-style"><b>IT Person Needed</b></h5>
-                                    <br/>
-                                    <div className="jobfeature-margin">
-                                        <h4 className="heading-wight"></h4>
-                                        <i className="glyphicon glyphicon-star"/>
-                                        <p className="textforjob font-style">Full Time</p>
-                                        <div className="glyphicom" style={{marginLeft:"11px"}}>
-                                            <i className="glyphicon glyphicon-map-marker"/>
-                                            <p className="textforjob font-style">California</p>
-                                        </div>
-                                    </div>
-                                    <p className="font-style"> Lorem Ipsum has been the industrys standard dummy </p>
-                                </div>
-                                <div className="col-md-4">
-                                    <img alt='' src="./images/data/589b2d33280000c63a997990.jpeg" width="100%" />
-                                </div>
-                                <div className="col-md-8">
-                                    <h5 className="font-style"><b>IT Person Needed</b></h5>
-                                    <br/>
-                                    <div className="jobfeature-margin">
-                                        <h4 className="heading-wight"></h4>
-                                        <i className="glyphicon glyphicon-star"/>
-                                        <p className="textforjob font-style">Full Time</p>
-                                        <div className="glyphicom" style={{marginLeft:"11px"}}>
-                                            <i className="glyphicon glyphicon-map-marker"/>
-                                            <p className="textforjob font-style">California</p>
-                                        </div>
-                                    </div>
-                                    <p className="font-style"> Lorem Ipsum has been the industrys standard dummy </p>
-                                </div>
-                                <div className="col-md-4">
-                                    <img alt='' src="./images/data/589b2d33280000c63a997990.jpeg" width="100%" />
-                                </div>
-                                <div className="col-md-8">
-                                    <h5 className="font-style"><b>IT Person Needed</b></h5>
-                                    <br/>
-                                    <div className="jobfeature-margin">
-                                        <h4 className="heading-wight"></h4>
-                                        <i className="glyphicon glyphicon-star"/>
-                                        <p className="textforjob font-style">Full Time</p>
-                                        <div className="glyphicom" style={{marginLeft:"11px"}}>
-                                            <i className="glyphicon glyphicon-map-marker"/>
-                                            <p className="textforjob font-style">California</p>
-                                        </div>
-                                    </div>
-                                    <p className="font-style"> Lorem Ipsum has been the industrys standard dummy </p>
-                                </div>
-                            </div>
+                                    )
+                                })}
+                                
                         </span>
                     </div>
                     <div className="col-md-8 col-sm-12 col-xs-12 des-space">
@@ -215,7 +192,6 @@ class Thirdrow extends Component{
                                         <div className="col-md-6">
                                             <div className="md-form mb-0">
                                                 <label className="font-style">Your Email</label>
-
                                                 <input type="text" id="email1" name="email" className="form-background1" value={this.state.email1} onChange={this.onChangeInput.bind(this)}/>
                                             </div>
                                         </div>

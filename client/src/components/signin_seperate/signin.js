@@ -25,6 +25,7 @@ class Signin extends Component{
     }
 
     componentDidMount(){
+        console.log(this.props.location.state, 'pppppppppppppppppppppppp1111111111111')
         this.handleLocalStorage();
         this.getSignData();
     }
@@ -47,7 +48,7 @@ class Signin extends Component{
                 }else {
                     console.log('bbbbbbbbbbbbbbb')
                     if (data && data.email === undefined) {
-                        console.log('2222222222222222')
+                        // console.log('2222222222222222')
                         this.setState({visible: true})
                     }
                     else {

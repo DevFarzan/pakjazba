@@ -39,7 +39,7 @@ class JobDetail extends Component {
             if(data.sec === 'mainPart'){
                 window.scrollTo(0,0);
             }else {
-                window.scrollTo(0,1350);
+                window.scrollTo(0,1150);
             }
             this.setState({data});
         }

@@ -4,28 +4,43 @@ import Slider from '../header/Slider';
 import ClassifiedIcons from './jobClassifiedicon';
 import FeaturedBox from './featuredJob';
 import JobBlog from './jobBlogs';
+import { Redirect } from 'react-router';
 import Footer from '../footer/footer';
 import { connect } from 'react-redux';
+import {HttpUtils} from "../../Services/HttpUtils";
 
 class JobClassified extends Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            data: []
+        }
     }
 
     componentDidMount() {
         window.scrollTo(0,0);
+        this.getAllBusiness();
     }
 
-    componentWillUnmount(){
-        let inputValue = '';
-        if(this.props.text.length){
-            const { dispatch } = this.props;
-            dispatch({type: 'SEARCHON', inputValue})
-        }
+    async getAllBusiness(){
+        let res = await HttpUtils.get('marketplace')
+        this.setState({
+            data: res && res.jobPortalData
+        })
     }
+
+    // componentWillUnmount(){
+    //     let inputValue = '';
+    //     if(this.props.text.length){
+    //         const { dispatch } = this.props;
+    //         dispatch({type: 'SEARCHON', inputValue})
+    //     }
+    // }
 
     render(){
+        if(this.props.text){
+            return <Redirect to={{pathname: '/apply_forJob', state: this.state.data}}/>
+        }
         return (
             <div>
                 <span>

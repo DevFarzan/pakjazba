@@ -42,7 +42,7 @@ class ProfileUser extends Component{
             rooms: false,
             jobPortal: false,
             data: [],
-            publicSection: false
+            publicSection: true
         };
     }
 
@@ -221,7 +221,8 @@ class ProfileUser extends Component{
         this.setState({
             profileSec: true,
             changePass: false,
-            listing: false
+            listing: false,
+            publicSection: false
         })
     }
 
@@ -229,7 +230,8 @@ class ProfileUser extends Component{
         this.setState({
             profileSec: false,
             changePass: false,
-            listing: true
+            listing: true,
+            publicSection: false
         })
     }
 
@@ -237,7 +239,17 @@ class ProfileUser extends Component{
         this.setState({
             profileSec: false,
             changePass: true,
-            listing: false
+            listing: false,
+            publicSection: false
+        })
+    }
+
+    handleProfSec(){
+        this.setState({
+            profileSec: false,
+            changePass: false,
+            listing: false,
+            publicSection: true
         })
     }
 
@@ -301,7 +313,10 @@ class ProfileUser extends Component{
     }
 
     callPublicSection(){
-        this.setState({publicSection: false})
+        this.setState({
+            publicSection: false,
+            profileSec: true,
+        })
     }
 
     render(){
@@ -347,11 +362,6 @@ class ProfileUser extends Component{
                     {publicSection && <div>
                         <Showpuclicprofile callPublicSection={this.callPublicSection.bind(this)} allArr={passObj}/>
                     </div>}
-                    {!publicSection && <div className="row">
-                        <div className="col-md-12" style={{textAlign:'right'}}>
-                            <Button style={{border:'1px solid gray'}} onClick={() => {this.setState({publicSection: true})}}>View As public profile</Button>
-                        </div>
-                    </div>}
                     {!publicSection && <div className="container" style={{width:"87%"}}>
                         <div className="hero">
                             <div className="row">
@@ -369,6 +379,10 @@ class ProfileUser extends Component{
                                         <a className="nav-link active icon border_sidenav"
                                            onClick={this.handlePassSec.bind(this)}>
                                             <Icon type="key"/><span className="linktext_margin">Change Password</span>
+                                        </a><br/><br/>
+                                        <a className="nav-link active icon border_sidenav"
+                                           onClick={this.handleProfSec.bind(this)}>
+                                            <Icon type="profile"/><span className="linktext_margin">View As public profile</span>
                                         </a>
                                     </nav>
                                 </div>

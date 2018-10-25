@@ -12,6 +12,7 @@ import Home from './components/home/home1';
 import Signin from './components/signin_seperate/signin';
 import Postbusiness from './components/business/postBusiness';
 import JobPortal from './components/job_portal/postJob';
+import EventPortal from './components/events/eventPortal';
 import Postroommates from './components/roomrenting/postRoommates';
 import Postbuysell from './components/buy_sell/postBuysell';
 import ProfileUser from './components/user_profile/profileUser';
@@ -26,7 +27,8 @@ import MarketRoommates from './components/roomrenting/MarketRoommates';
 import JobClassified from './components/job_portal/jobClassified';
 import ApplyJob from './components/job_portal/applyJob';
 import JobDetail from './components/job_portal/jobDetail';
-import {PrivateRoute} from './components/signin_seperate'
+import {PrivateRoute} from './components/signin_seperate';
+
 
 
 //css
@@ -70,6 +72,7 @@ ReactDOM.render(
 					<PrivateRoute path="/postad_Roommates" component={Postroommates}></PrivateRoute>
 					<PrivateRoute path="/postad_buysell" component={Postbuysell}></PrivateRoute>
 					<PrivateRoute path="/postad_jobPortal" component={JobPortal}></PrivateRoute>
+          <PrivateRoute path="/postad_eventPortal" component={EventPortal}></PrivateRoute>
 					<PrivateRoute path="/profile_user" component={ProfileUser}></PrivateRoute>
 					<Route path="/detail_buySell" component={DetailBuySell}></Route>
 					<Route path="/detail_jobPortal" component={JobDetail}></Route>

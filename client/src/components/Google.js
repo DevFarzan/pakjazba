@@ -56,7 +56,7 @@ class Google extends Component {
                              fetchBasicProfile={true}
                              responseHandler={this.responseGoogle}
                              className = "loginBtn loginBtn--google"
-                             buttonText="Login With Google"/>
+                             buttonText="Signup With Google"/>
             </div>
         )
     }

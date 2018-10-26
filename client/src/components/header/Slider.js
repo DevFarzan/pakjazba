@@ -48,6 +48,7 @@ class Slider extends Component{
                             <div className="row">
                                 <div className="col-md-2"></div>
                                 {!this.props.hide && <div className="col-md-8 col-sm-12 col-xs-12" style={{textAlign: 'center !important'}}>
+                                    <form>
                                     <div className="single">
                                         <div className="input-group">
                                             <input type="text" className="form-control" placeholder="Search" onChange={this.onChange.bind(this)}/>
@@ -56,6 +57,7 @@ class Slider extends Component{
                                             </span>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>}
                                 <div className="col-md-2"></div>
                             </div>

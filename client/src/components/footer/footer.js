@@ -11,9 +11,9 @@ class Footer extends Component{
                         <div className="col-sm-3" style={{textAlign:'center'}}>
                             <h5>Get started</h5>
                             <ul>
-                                <li><a href="">Home</a></li>
-                                <li><a href="">Sign up</a></li>
-                                <li><a href="">Downloads</a></li>
+                                <li style={{marginLeft: '-50px'}}><a href="">Home</a></li>
+                                <li style={{marginLeft: '-40px'}}><a href="">Sign up</a></li>
+                                <li style={{marginLeft: '-19px'}}><a href="">Downloads</a></li>
                             </ul>
                         </div>
                         <div className="col-sm-2">

@@ -33,10 +33,10 @@ class Secondscreencard extends Component{
                     </div>
                     <div className="row">
                       <div className="col-md-6">
-                          <button type="button" className="btn2 btn2-success font-style">View Detail</button>
+                          <button type="button" className="btn btn-sm font-style">View Detail</button>
                       </div>
                       <div className="col-md-6">
-                          <button type="button" className="btn2 btn2-success font-style">Apply Now</button>
+                          <button type="button" className="btn btn-sm font-style">Apply Now</button>
                       </div>
                     </div>
                 </div>

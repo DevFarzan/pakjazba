@@ -17,7 +17,7 @@ class RoomrentingIcon extends Component{
     render(){
         return(
             <div>
-                <h2 style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}> Browse Job </h2>
+                <h2 style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}> Categories </h2>
                 <div className="row">
                     <div className="col-md-2 col-sm-3">
                         <div className="wrimagecard wrimagecard-topimage">

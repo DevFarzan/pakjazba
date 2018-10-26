@@ -132,27 +132,27 @@ class Secondfold extends Component{
         return(
             <div className="secondfold">
                 <h1 className="text-align"> Great Places </h1>
-                <div className="index-content">
+                <div className="index-content" style={{marginTop:'-77px'}}>
                     <div className="container" style={{width: '93%'}}>
                     <div className="row">
                         <Link to={{pathname: `/postad_business`}}>
-                            <div className="col-md-4"  style={{'marginBottom': '30px', height: '455px' }}>
-                                <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '100%', width: '90%', borderRadius: '13px'}}/>
+                            <div className="col-md-3"  style={{'marginBottom': '30px'}}>
+                                <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '360px', width: '100%', borderRadius: '13px'}}/>
                             </div>
                         </Link>
                         {showBusiness && showBusiness.map((elem, key) => {
                             let str = elem.businessaddress || '';
-                            if(str.length > 45) {
-                                str = str.substring(0, 45);
+                            if(str.length > 25) {
+                                str = str.substring(0, 25);
                                 str = str + '...'
                             }
                             return (
                                 <Link key={key} to={{pathname: `/detail_business`, state: elem}}>
-                                    <div className="col-md-4"  style={{'marginBottom': '30px'}}>
-                                        <div className="card" style={{border: '1px solid #3a252542',boxShadow: 'none',borderRadius:'13px',width:'89%'}}>
-                                            <img alt='' src={elem.businessImages.length ? elem.businessImages[0] : './images/def_card_img.jpg'}/>
+                                    <div className="col-md-3"  style={{'marginBottom': '30px'}}>
+                                        <div className="card" style={{border: '1px solid #3a252542',boxShadow: 'none',borderRadius:'13px',width:'100%'}}>
+                                            <img alt='' src={elem.businessImages.length ? elem.businessImages[0] : './images/def_card_img.jpg'} style={{height:'200px'}} />
                                             <h4 style={{marginTop:'53px'}}><b>{elem.businessname}</b></h4>
-                                            {elem.businessaddress && <p style={{marginTop:"-15px",marginLeft:"11px"}}><span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}></span><span style={{color:"black"}}>{elem.businessaddress}</span></p>}
+                                            {elem.businessaddress && <p style={{marginTop:"-15px",marginLeft:"11px"}}><span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}></span><span style={{color:"black"}}>{str}</span></p>}
                                             <Rate  disabled style={{paddingLeft: '20px', paddingBottom: '10px'}} allowHalf value={elem.star} />
                                         </div>
                                     </div>

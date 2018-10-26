@@ -168,12 +168,11 @@ class Roomrenting1content extends Component{
                         <div className="media">
                             <div className="media-left">
                                 <a>
-                                    <img alt='' className="media-object" src="../images/how to upload/profile.png" alt="..." style={{width:"100px"}}/><br/>
-                                     <span style={{color:'white'}}>Create an Account</span>
-                                </a>
+                                    <img alt='' className="media-object" src="../images/how to upload/profile (1).png" alt="..." style={{width: '100%',marginTop: '6px'}}/>
+                                </a>     
                             </div>
                             <div className="media-body col-md-3" style={{marginLeft: "-15px"}}>
-                                <h4 className="text-white">Create an Account</h4>
+                                {/*<h4 className="text-white">Create an Account</h4>*/}
                             </div>
                         </div>
                     </div>
@@ -182,12 +181,13 @@ class Roomrenting1content extends Component{
                         <div className="media">
                             <div className="media-left">
                                 <a>
-                                    <img  alt='' className="media-object-2" src="../images/how to upload/upload.png" alt="..." style={{width:"100px"}}/>
+                                    <img  alt='' className="media-object-2" src="../images/how to upload/submityourad.png" alt="..." style={{width:"100%",marginTop: '11px'}}/>
+                                    
                                 </a>
                             </div>
-                            <div className="media-body col-md-3" style={{marginLeft: "-15px"}}>
+                            {/*<div className="media-body col-md-3" style={{marginLeft: "-15px"}}>
                                 <h4 className="text-white">Submit Your Add</h4>
-                            </div>
+                            </div>*/}
                         </div>
                     </div>
                     {/*third card*/}
@@ -195,12 +195,13 @@ class Roomrenting1content extends Component{
                         <div className="media">
                             <div className="media-left">
                                 <a>
-                                    <img alt='' className="media-object-2" src="../images/how to upload/deal-done.png" alt="..." style={{width:"100px"}}/>
+                                    <img alt='' className="media-object-2" src="../images/how to upload/deal-done.png" alt="..." style={{width:"100%",marginTop:'18px'}}/>
+                                    
                                 </a>
                             </div>
-                            <div className="media-body col-md-3">
+                            {/*<div className="media-body col-md-3">
                                 <h4 className="text-white">Make A Deal</h4>
-                            </div>
+                            </div>*/}
                         </div>
                     </div>
                     {/*forth card*/}
@@ -208,16 +209,19 @@ class Roomrenting1content extends Component{
                         <div className="media">
                             <div className="media-left">
                                 <a>
-                                    <img alt='' className="media-object-2" src="../images/how to upload/payment.png" alt="..." style={{width:"100px"}} />
+                                    <img alt='' className="media-object-2" src="../images/how to upload/payment.png" alt="..." style={{width:"100%"}} />
+                                    
                                 </a>
                             </div>
-                            <div className="media-body col-md-3">
+                            {/*<div className="media-body col-md-3">
                                 <h4 className="text-white">Enjoy The Money</h4>
-                                {/*<p className="text-white">Bed, Sofa, Garden..</p>*/}
-                            </div>
+                                {/*<p className="text-white">Bed, Sofa, Garden..</p>
+                            </div>*/}
                         </div>
                     </div>
+
                     </div>
+                    
                 </div>
             </div>
             </section>

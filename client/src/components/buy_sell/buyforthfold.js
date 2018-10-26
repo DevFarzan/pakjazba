@@ -113,8 +113,8 @@ class Forthfold extends Component{
         return(
             <div className="secondfold">
                 <Link to={{pathname: `/postad_buysell`}}>
-                    <div className="col-md-4"  style={{'marginTop': '21px', height: '520px' }}>
-                        <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '100%', width: '100%', borderRadius: '13px'}}/>
+                    <div className="col-md-3"  style={{'marginTop': '21px'}}>
+                        <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '385px', width: '100%', borderRadius: '13px'}}/>
                     </div>
                 </Link>
                 <div className="row">
@@ -125,13 +125,13 @@ class Forthfold extends Component{
                             str = str + '...'
                         }
                         let des = elem.description || '';
-                        if(des.length > 45) {
-                            des = des.substring(0, 45);
+                        if(des.length > 25) {
+                            des = des.substring(0, 25);
                             des = des + '...'
                         }
                         return (
                             <Link key={key} to={{pathname: `/detail_buySell`, state: elem}}>
-                                <div className="col-md-4">
+                                <div className="col-md-3">
                                     <div className="ibox">
                                         <div className="ibox-content product-box">
                                             <div className="product-imitation">
@@ -139,6 +139,7 @@ class Forthfold extends Component{
                                                     <img alt='' src={elem.images.length ? elem.images[0] : './images/def_card_img.jpg'}/>
                                                     <span className="card-button">
                                                         <p className="categories-on-card" style={{backgroundColor:"#008080",textAlign: "center"}}>{elem.category}</p>
+                                                        <i className="buyicon glyphicon-map-marker" style={{color: "white",marginLeft: "0", left:"0"}} /><p className="text" style={{color: "white",marginLeft: "27", marginTop:"-30"}}>{elem.state +" & "+ elem.city}</p>
                                                     </span>
                                                 </div>
                                             </div>
@@ -153,12 +154,12 @@ class Forthfold extends Component{
                                                 <p className="product-name">{elem.contactname}</p>
                                                 <div className="small m-t-xs">{!elem.hideaddress ? des : ''}
                                                 </div>
-                                                <div className="m-t text-righ" style={{marginTop:"58px",fontSize: "18px",textDecoration:"underline"}}>
+                                                {/*<div className="m-t text-righ" style={{marginTop:"58px",fontSize: "18px",textDecoration:"underline"}}>
                                                     <Link to={{pathname: `/detail_buySell`, state: elem}} className="" style={{color:"red"}}>Detail</Link>
                                                     <div className="location-padding">
-                                                    <i className="buyicon glyphicon-map-marker" style={{color: "#008080",marginLeft: "0", left:"0"}} /><p className="text" style={{color: "black",marginLeft: "27", marginTop:"-30"}}>{elem.state +" & "+ elem.city}</p>
+                                                    
                                                     </div>
-                                                </div>
+                                                </div>*/}
                                             </div>
                                         </div>
                                     </div>

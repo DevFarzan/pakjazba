@@ -4,6 +4,7 @@ import { Spin, Icon, Pagination, Modal, Button } from 'antd';
 import {HttpUtils} from "../../Services/HttpUtils";
 import { Redirect } from 'react-router';
 import { Link } from "react-router-dom";
+import AsyncStorage from "@callstack/async-storage/lib/index";
 import { connect } from 'react-redux';
 
 class FeaturedBox extends Component{
@@ -18,12 +19,15 @@ class FeaturedBox extends Component{
             noText: true,
             visible: false,
             goForLogin: false,
-            objData : {}
+            objData : {},
+            user: false,
+            goDetail: false
         };
     }
 
     componentDidMount() {
         this.getAllBusiness();
+        this.handleLocalStorage();
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -41,6 +45,23 @@ class FeaturedBox extends Component{
                 })
             }
         }
+    }
+
+    handleLocalStorage = () =>{
+        AsyncStorage.getItem('user')
+            .then((obj) => {
+                let userObj = JSON.parse(obj)
+                if(!!userObj){
+                    this.setState({
+                        user: true,
+                    })
+                }
+                else {
+                    this.setState({
+                        user: false
+                    })
+                }
+            })
     }
 
     searchedArr(text){
@@ -108,7 +129,12 @@ class FeaturedBox extends Component{
     }
 
     clickItem(item){
-        this.setState({visible: true, objData: item})
+        const { user } = this.state;
+        if(user){
+            this.setState({goDetail: true, objData: item})
+        }else {
+            this.setState({visible: true, objData: item})
+        }
     }
 
     handleCancel = (e) => {
@@ -117,19 +143,22 @@ class FeaturedBox extends Component{
 
     handleLogin = (e) => {
         const { dispatch } = this.props;
-        const { objData } = this.state;
-        let otherData = objData;
+        const { objData, user } = this.state;
+        let otherData = {...objData, user: true};
         dispatch({type: 'ANOTHERDATA', otherData})
         this.setState({goForLogin: true, visible: false})
     }
 
     render(){
-        const { showJob, filteredArr, job, noText, goForLogin, objData } = this.state;
+        const { showJob, filteredArr, job, noText, goForLogin, objData, goDetail, user } = this.state;
         const { text } = this.props;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
         if (goForLogin) {
             return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/detail_jobPortal" }, state: objData}}}/>;
+        }
+        if(goDetail){
+            return <Redirect to={{pathname: `/detail_jobPortal`, state: {...objData, user: user}}} />
         }
 
         return(
@@ -167,14 +196,12 @@ class FeaturedBox extends Component{
                                             </div>
                                             <div className="row">
                                                 <div className="col-md-6 col-sm-12 col-xs-12">
-                                                    <Link to={{pathname: `/detail_jobPortal`, state: {...elem, sec: 'mainPart'}}}>
+                                                    <Link to={{pathname: `/detail_jobPortal`, state: {...elem, sec: 'mainPart', user: user}}}>
                                                         <button type="button" className="btn btn-sm btn2-success font-style" style={{width:"100%"}}>View Detail</button>
                                                     </Link>
                                                 </div>
                                                 <div className="col-md-6 col-sm-12 col-xs-12">
-                                                    {/*<Link to={{pathname: `/detail_jobPortal`, state: {...elem, sec: 'jobPart'}}}>*/}
-                                                        <button type="button" className="btn btn-sm btn2-success font-style" style={{width:"100%"}} onClick={() => {this.clickItem(elem)}}>Apply Now</button>
-                                                    {/*</Link>*/}
+                                                    <button type="button" className="btn btn-sm btn2-success font-style" style={{width:"100%"}} onClick={() => {this.clickItem(elem)}}>Apply Now</button>
                                                 </div>
                                             </div>
                                         </div>

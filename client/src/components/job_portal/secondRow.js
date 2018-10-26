@@ -1,9 +1,43 @@
 import React, { Component } from 'react';
+import { Modal } from 'antd';
+import { Redirect } from 'react-router';
+import { connect } from 'react-redux';
 import './JobSecondrow.css';
 
 class JobSecondrow extends Component{
+    constructor(props) {
+        super(props)
+        this.state = {
+            objData: {},
+            visible: false,
+            goForLogin: false
+        }
+    }
+
+    clickItem(item){
+        this.setState({visible: true, objData: item})
+    }
+
+    handleCancel = (e) => {
+        this.setState({visible: false});
+    }
+
+    handleLogin = (e) => {
+        const { dispatch } = this.props;
+        const { objData, user } = this.state;
+        let otherData = {...objData, user: true};
+        dispatch({type: 'ANOTHERDATA', otherData})
+        this.setState({goForLogin: true, visible: false})
+    }
+
     render(){
         const { data } = this.props;
+        const { goForLogin, objData } = this.state;
+
+        if (goForLogin) {
+            return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/detail_jobPortal" }, state: objData}}}/>;
+        }
+
         return(
             <div className="container" style={{width:"90%"}}>
                 <div className="row">
@@ -34,12 +68,29 @@ class JobSecondrow extends Component{
                         <h3 className="font-style"> Description </h3>
                         <hr className="hr-class" style={{width:"100%"}}/>
                         <p className="font-style" style={{marginTop:"40px"}}>{data.compDescription}</p>
-                        <button type="button" className="btn2 btn2-success" style={{marginTop:"70px", padding:"5px"}}>Apply This Job</button>
+                        {!data.user && <button type="button" className="btn2 btn2-success" style={{marginTop:"70px", padding:"5px"}} onClick={() => {this.clickItem(data)}}>Apply This Job</button>}
                     </div>
               </div>
+              {this.state.visible && <Modal
+                    title="Kindly Login first"
+                    visible={this.state.visible}
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
+                >
+                <div className="row">
+                    <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleLogin}>Login</button></div>
+                    <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleCancel}>Cancel</button></div>
+                </div>
+                </Modal>}
           </div>
         )
     }
 }
 
-export default JobSecondrow;
+const mapStateToProps = (state) => {
+    return({
+        text: state.text
+    })
+}
+
+export default connect(mapStateToProps)(JobSecondrow);

@@ -121,6 +121,7 @@ Version:3.3.3  ▾    / assets / stylesheets / bootstrap / _navbar.scss
     @media (min-width: $grid-float-breakpoint) {
       margin-right: 0;
       margin-left:  0;
+      background-color: #032a30;
     }
   }
 }

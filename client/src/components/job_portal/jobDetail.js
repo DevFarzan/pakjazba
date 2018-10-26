@@ -18,6 +18,7 @@ import JobSecondrow from './secondRow';
 import Thirdrow from './Thirdrow';
 import { Redirect } from 'react-router';
 import './jobDetail.css';
+import {connect} from "react-redux";
 
 
 class JobDetail extends Component {
@@ -25,12 +26,13 @@ class JobDetail extends Component {
         super(props)
         this.state = {
             isData: true,
-            data: {}
+            data: {},
+            user: false
         }
     }
 
     componentDidMount() {
-        let data = this.props.location.state;
+        let data = this.props.location.state || this.props.otherData;
         if(data === undefined){
             this.setState({
                 isData: false
@@ -39,14 +41,14 @@ class JobDetail extends Component {
             if(data.sec === 'mainPart'){
                 window.scrollTo(0,0);
             }else {
-                window.scrollTo(0,1350);
+                window.scrollTo(0,1150);
             }
-            this.setState({data});
+            this.setState({data, user: data.user});
         }
     }
 
     render(){
-        const { data, isData } = this.state;
+        const { data, isData, user } = this.state;
         if(!isData){
             return <Redirect to='/' />
         }
@@ -70,11 +72,17 @@ class JobDetail extends Component {
                 </div>
                 <JobDetailpage data={data}/>
                 <JobSecondrow data={data}/>
-                <Thirdrow data={data}/>
+                {user && <Thirdrow data={data}/>}
                 <Footer/>
             </div>
         )
     }
 }
 
-export default JobDetail;
+const mapStateToProps = (state) => {
+    return({
+        otherData: state.otherData
+    })
+}
+
+export default connect(mapStateToProps)(JobDetail);

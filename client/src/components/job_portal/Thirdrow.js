@@ -4,22 +4,37 @@ import sha1 from "sha1";
 import superagent from "superagent";
 import moment from 'moment';
 import {HttpUtils} from '../../Services/HttpUtils';
+import { Icon, Spin, notification } from 'antd';
 import './Thirdrow.css';
 
 class Thirdrow extends Component{
     constructor(props){
         super()
         this.state = {
-            name1: 'first',
-            name2: 'last',
-            email1: 'email',
+            name1: '',
+            name2: '',
+            email1: '',
             email2: '',
             objId: '',
-            msg: 'brother',
+            msg: '',
             err: 'Your CV must be a pdf, docx and no bigger than 3 MB',
             file: {},
-            err2: ''
+            err2: '',
+            job: [],
+            loader: false,
+            loader2: false,
         }
+    }
+
+    componentDidMount(){
+        this.getAllBusiness();
+    }
+
+    async getAllBusiness(){
+        var res = await HttpUtils.get('marketplace');
+        this.setState({
+            job: res && res.jobPortalData,
+        });
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -43,17 +58,18 @@ class Thirdrow extends Component{
     }
 
     uploadFile = (files) =>{
+        this.setState({loader2: true})
         const file = files[0];
         let name = file.name;
         let ext = name.substring(name.indexOf('.'), name.length)
         if((file.name.split('.').length-1 === 1) && (ext === '.pdf' || ext === '.docx')){
             if(file.size <= 3000000){
-                this.setState({file, err: name + ' is uploaded.'});
+                this.setState({file, err: name + ' is uploaded.', loader2: false});
             }else {
-                this.setState({err: 'File size is to big'});
+                this.setState({err: 'File size is to big', loader2: false});
             }
         }else {
-            this.setState({err: 'File type is not valid'});
+            this.setState({err: 'File type is not valid', loader2: false});
         }
     }
 
@@ -87,24 +103,29 @@ class Thirdrow extends Component{
     handleSubmit = async () => {
         const { name1, name2, email1, msg, file, email2, objId } = this.state;
         if(!!name1 && !!name2 && !!email1 && !!msg && !!file){
-            this.setState({err2: ''})
+            this.setState({err2: '', loader: true})
             let res = await this.uploadToCloud(file)
             let obj = {
                 senFirName: name1,
                 senLastName: name2,
                 senEmail: email1,
-                // senCV: 'hello',
                 senCV: res.body.url,
                 senMsg: msg,
                 resEmail: email2,
                 appliedOn: moment().format('LL'),
                 jobId: objId
             }
-            console.log(obj, 'objjjjjjjjjjjjjj')
             let req = await HttpUtils.post('AppliedForJob', obj)
-            console.log(req, 'reqqqqqqqqqqqqqqq')
             if(req.code === 200){
                 console.log(req.msg)
+                this.openNotification()
+                this.setState({
+                    loader: false,
+                    name1: '',
+                    name2: '',
+                    email1: '',
+                    msg: ''
+                })
             }
 
         }else {
@@ -112,84 +133,57 @@ class Thirdrow extends Component{
         }
     }
 
+    openNotification() {
+        notification.open({
+            message: 'Success ',
+            description: 'Your job is submited successfully, Kindly visit your profile',
+        });
+    };
+
     render(){
-        const { file } = this.state;
+        const { file, job, loader, loader2 } = this.state;
+        const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
+
         return(
             <div className="container" style={{width:"90%"}}>
                 <div className="row">
                     <div className="col-md-4 col-sm-12 col-xs-12 des-space">
                         <span className="featurejob-box">
                             <h4 className="margin-thirdrow font-style"> Featured Jobs </h4>
-                            <div className="col-md-12" style={{paddingTop:"4px", paddingBottom:"10px"}}>
-                                <div className="col-md-4">
-                                    <img alt='' src="./images/data/589b2d33280000c63a997990.jpeg" width="100%" />
-                                </div>
-                                <div className="col-md-8">
-                                    <h5 className="font-style"><b>IT Person Needed</b></h5>
-                                    <br/>
-                                    <div className="jobfeature-margin">
-                                        <h4 className="heading-wight"></h4>
-                                        <i className="glyphicon glyphicon-star"/>
-                                        <p className="textforjob font-style">Full Time</p>
-                                        <div className="glyphicom" style={{marginLeft:"11px"}}>
-                                            <i className="glyphicon glyphicon-map-marker"/>
-                                            <p className="textforjob font-style">California</p>
+                                {job && job.map((elem) => {
+                                    let str = elem.location || '';
+                                    if(str.length > 8) {
+                                        str = str.substring(0, 8);
+                                        str = str + '...'
+                                    }
+                                    let des = elem.jobDescription || '';
+                                    if(des.length > 50) {
+                                        des = des.substring(0, 50);
+                                        des = des + '...'
+                                    }
+                                    return(
+                                        <div className="col-md-12" style={{paddingTop:"4px", paddingBottom:"10px"}}>
+                                            <div className="col-md-4">
+                                                <img alt='' src={elem.arr_url[0]} width="100%" />
+                                            </div>
+                                            <div className="col-md-8">
+                                                <h5 className="font-style"><b>{elem.jobCat}</b></h5>
+                                                <br/>
+                                                <div className="jobfeature-margin">
+                                                    <h4 className="heading-wight"></h4>
+                                                    <i className="glyphicon glyphicon-star"/>
+                                                    <p className="textforjob font-style">{elem.jobType}</p>
+                                                    <div className="glyphicom" style={{marginLeft:"11px"}}>
+                                                        <i className="glyphicon glyphicon-map-marker"/>
+                                                        <p className="textforjob font-style">{str}</p>
+                                                    </div>
+                                                </div>
+                                                <p className="font-style">{des}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <p className="font-style"> Lorem Ipsum has been the industrys standard dummy </p>
-                                </div>
-                                <div className="col-md-4">
-                                    <img alt='' src="./images/data/589b2d33280000c63a997990.jpeg" width="100%" />
-                                </div>
-                                <div className="col-md-8">
-                                    <h5 className="font-style"><b>IT Person Needed</b></h5>
-                                    <br/>
-                                    <div className="jobfeature-margin">
-                                        <h4 className="heading-wight"></h4>
-                                        <i className="glyphicon glyphicon-star"/>
-                                        <p className="textforjob font-style">Full Time</p>
-                                        <div className="glyphicom" style={{marginLeft:"11px"}}>
-                                            <i className="glyphicon glyphicon-map-marker"/>
-                                            <p className="textforjob font-style">California</p>
-                                        </div>
-                                    </div>
-                                    <p className="font-style"> Lorem Ipsum has been the industrys standard dummy </p>
-                                </div>
-                                <div className="col-md-4">
-                                    <img alt='' src="./images/data/589b2d33280000c63a997990.jpeg" width="100%" />
-                                </div>
-                                <div className="col-md-8">
-                                    <h5 className="font-style"><b>IT Person Needed</b></h5>
-                                    <br/>
-                                    <div className="jobfeature-margin">
-                                        <h4 className="heading-wight"></h4>
-                                        <i className="glyphicon glyphicon-star"/>
-                                        <p className="textforjob font-style">Full Time</p>
-                                        <div className="glyphicom" style={{marginLeft:"11px"}}>
-                                            <i className="glyphicon glyphicon-map-marker"/>
-                                            <p className="textforjob font-style">California</p>
-                                        </div>
-                                    </div>
-                                    <p className="font-style"> Lorem Ipsum has been the industrys standard dummy </p>
-                                </div>
-                                <div className="col-md-4">
-                                    <img alt='' src="./images/data/589b2d33280000c63a997990.jpeg" width="100%" />
-                                </div>
-                                <div className="col-md-8">
-                                    <h5 className="font-style"><b>IT Person Needed</b></h5>
-                                    <br/>
-                                    <div className="jobfeature-margin">
-                                        <h4 className="heading-wight"></h4>
-                                        <i className="glyphicon glyphicon-star"/>
-                                        <p className="textforjob font-style">Full Time</p>
-                                        <div className="glyphicom" style={{marginLeft:"11px"}}>
-                                            <i className="glyphicon glyphicon-map-marker"/>
-                                            <p className="textforjob font-style">California</p>
-                                        </div>
-                                    </div>
-                                    <p className="font-style"> Lorem Ipsum has been the industrys standard dummy </p>
-                                </div>
-                            </div>
+                                    )
+                                })}
+                                
                         </span>
                     </div>
                     <div className="col-md-8 col-sm-12 col-xs-12 des-space">
@@ -215,7 +209,6 @@ class Thirdrow extends Component{
                                         <div className="col-md-6">
                                             <div className="md-form mb-0">
                                                 <label className="font-style">Your Email</label>
-
                                                 <input type="text" id="email1" name="email" className="form-background1" value={this.state.email1} onChange={this.onChangeInput.bind(this)}/>
                                             </div>
                                         </div>
@@ -229,6 +222,7 @@ class Thirdrow extends Component{
                                                         <button className="btn button_custom"  style={{width: "45%"}}>Choose File</button>
                                                     </Dropzone>
                                                 </div>
+                                                 {loader2 && <Spin className="col-xs-2 col-md-1" indicator={antIcon} />}
                                                 <p className="font-style">{this.state.err}</p>
                                             </div>
                                         </div>
@@ -240,7 +234,8 @@ class Thirdrow extends Component{
                                                     <textarea type="text" id="message" name="message" className="form-background1" style={{height:"235px"}} value={this.state.msg} onChange={this.onChangeInput.bind(this)}></textarea>
                                                 </div>
                                                 <div className="form-background">
-                                                    <a className="btn button_custom" style={{width: "45%"}} onClick={this.handleSubmit}>Submit Now</a>
+                                                    {loader && <Spin className="col-xs-2 col-md-1" indicator={antIcon} />}
+                                                    <button className="btn button_custom" disabled={!!loader} style={{width: "45%"}} onClick={this.handleSubmit}>Submit Now</button>
                                                     <p className="font-style">{this.state.err2}</p>
                                                 </div>
                                             </div>

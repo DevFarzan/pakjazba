@@ -113,9 +113,10 @@ class Form_signup extends Component{
     }
 
     render(){
+        const { to } = this.props;
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
         const { getFieldDecorator } = this.props.form;
-        const { from } = this.props.location.state || { from: { pathname: "/" } };
+        const { from } = this.props.location.state ? this.props.location.state : to ? to : { from: { pathname: "/" }};
         let {redirectToReferrer} = this.state;
 
         if (redirectToReferrer) {

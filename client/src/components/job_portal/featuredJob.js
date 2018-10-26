@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './featureJob.css';
-import { Spin, Icon, Pagination } from 'antd';
+import { Spin, Icon, Pagination, Modal, Button } from 'antd';
 import {HttpUtils} from "../../Services/HttpUtils";
 import { Redirect } from 'react-router';
 import { Link } from "react-router-dom";
+import AsyncStorage from "@callstack/async-storage/lib/index";
 import { connect } from 'react-redux';
 
 class FeaturedBox extends Component{
@@ -14,12 +15,19 @@ class FeaturedBox extends Component{
             showJob: [],
             filteredArr: [],
             loader: true,
-            add: 6
+            add: 6,
+            noText: true,
+            visible: false,
+            goForLogin: false,
+            objData : {},
+            user: false,
+            goDetail: false
         };
     }
 
     componentDidMount() {
         this.getAllBusiness();
+        this.handleLocalStorage();
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -28,6 +36,7 @@ class FeaturedBox extends Component{
         if(prevProps.text !== text){
             if(!!text){
                 this.searchedArr(text)
+                // this.setState({ noText: false, loader: false })
             }else {
                 this.setState({
                     showJob: job.slice(0, 6),
@@ -36,6 +45,23 @@ class FeaturedBox extends Component{
                 })
             }
         }
+    }
+
+    handleLocalStorage = () =>{
+        AsyncStorage.getItem('user')
+            .then((obj) => {
+                let userObj = JSON.parse(obj)
+                if(!!userObj){
+                    this.setState({
+                        user: true,
+                    })
+                }
+                else {
+                    this.setState({
+                        user: false
+                    })
+                }
+            })
     }
 
     searchedArr(text){
@@ -53,7 +79,6 @@ class FeaturedBox extends Component{
 
     async getAllBusiness(){
         var res = await HttpUtils.get('marketplace');
-        this.setState({response: res.jobPortalData});
         this.setState({
             job: res && res.jobPortalData,
             showJob: res && res.jobPortalData.slice(0, 6),
@@ -103,10 +128,38 @@ class FeaturedBox extends Component{
         }
     }
 
+    clickItem(item){
+        const { user } = this.state;
+        if(user){
+            this.setState({goDetail: true, objData: item})
+        }else {
+            this.setState({visible: true, objData: item})
+        }
+    }
+
+    handleCancel = (e) => {
+        this.setState({visible: false});
+    }
+
+    handleLogin = (e) => {
+        const { dispatch } = this.props;
+        const { objData, user } = this.state;
+        let otherData = {...objData, user: true};
+        dispatch({type: 'ANOTHERDATA', otherData})
+        this.setState({goForLogin: true, visible: false})
+    }
+
     render(){
-        const { showJob, filteredArr, job } = this.state;
+        const { showJob, filteredArr, job, noText, goForLogin, objData, goDetail, user } = this.state;
         const { text } = this.props;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
+
+        if (goForLogin) {
+            return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/detail_jobPortal" }, state: objData}}}/>;
+        }
+        if(goDetail){
+            return <Redirect to={{pathname: `/detail_jobPortal`, state: {...objData, user: user}}} />
+        }
 
         return(
             <div className="container" style={{width:"94%"}}>
@@ -143,14 +196,12 @@ class FeaturedBox extends Component{
                                             </div>
                                             <div className="row">
                                                 <div className="col-md-6 col-sm-12 col-xs-12">
-                                                    <Link to={{pathname: `/detail_jobPortal`, state: {...elem, sec: 'mainPart'}}}>
+                                                    <Link to={{pathname: `/detail_jobPortal`, state: {...elem, sec: 'mainPart', user: user}}}>
                                                         <button type="button" className="btn btn-sm btn2-success font-style" style={{width:"100%"}}>View Detail</button>
                                                     </Link>
                                                 </div>
                                                 <div className="col-md-6 col-sm-12 col-xs-12">
-                                                    <Link to={{pathname: `/detail_jobPortal`, state: {...elem, sec: 'jobPart'}}}>
-                                                        <button type="button" className="btn btn-sm btn2-success font-style" style={{width:"100%"}}>Apply Now</button>
-                                                    </Link>
+                                                    <button type="button" className="btn btn-sm btn2-success font-style" style={{width:"100%"}} onClick={() => {this.clickItem(elem)}}>Apply Now</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -171,6 +222,17 @@ class FeaturedBox extends Component{
                 {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h5 className="font-style">you can find your search by type</h5></span>}
                 {/*!!showJob && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :job.length} onChange={this.onChange} /></span>*/}
                 <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success font-style" onClick={this.onAddMore}>View More ...</button></div>
+                {this.state.visible && <Modal
+                    title="Kindly Login first"
+                    visible={this.state.visible}
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
+                >
+                <div className="row">
+                    <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleLogin}>Login</button></div>
+                    <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleCancel}>Cancel</button></div>
+                </div>
+                </Modal>}
             </div>
         )
     }

@@ -14,11 +14,41 @@ import App from '../../App';
 import Secondscreencard from './Secondscreenjob';
 import JobNews from './Rssforjob';
 import CategoriesjobMarket from './CategoriesJobs';
+import { connect } from 'react-redux';
 
 class ApplyJob extends Component {
     constructor(props) {
         super(props)
         this.state = {}
+    }
+
+    componentDidMount(){
+        window.scrollTo(0,0);
+        this.getAllBusiness();
+    }
+
+    async getAllBusiness(){
+        let res = this.props.location.state;
+        console.log(this.props.text)
+        console.log(res, 'DDDDDDDDDDDDDDDDDDDDd')
+        this.setState({
+            job: res && res,
+            showJob: res && res.slice(0, 6),
+            loader: false
+        });
+    }
+
+    filteringData(e){
+        const { job } = this.state;
+        console.log(job, 'jobbbbbbbbb')
+        let data = job.filter((elem) => {
+            return (elem.jobCat.toLowerCase().includes(e.toLowerCase()))
+        })
+        console.log(e, 'filtering functionnnnnnnn')
+        this.setState({
+            filteredData: data,
+            showJob: data.slice(0, 6)
+        })
     }
 
     render(){
@@ -32,8 +62,8 @@ class ApplyJob extends Component {
                     </div>
                   </div>
                 </div>
-                <CategoriesjobMarket/>
-                <Secondscreencard/>
+                <CategoriesjobMarket filteringData={this.filteringData.bind(this)}/>
+                <Secondscreencard data={this.state.showJob} allData={this.getAllBusiness.bind(this)}/>
                 {/*<JobNews/>*/}
 
             </div>
@@ -42,4 +72,10 @@ class ApplyJob extends Component {
 
 }
 
-export default ApplyJob;
+const mapStateToProps = (state) => {
+    return({
+        text: state.text
+    })
+}
+
+export default connect(mapStateToProps)(ApplyJob);

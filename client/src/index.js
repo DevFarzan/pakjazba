@@ -36,7 +36,8 @@ import './app.css';
 
 const initialState = {
     text: '',
-	data: {}
+	data: {},
+	otherData: {}
 }
 
 function reducer(state = initialState, action){
@@ -51,9 +52,9 @@ function reducer(state = initialState, action){
                 text: initialState.text
             }
 		case 'FACEBOOKSIGNUP':
-			return {
-				data: action.data
-			}
+			return {...state, data: action.data}
+		case 'ANOTHERDATA':
+			return {...state, otherData: action.otherData}	
         default:
             return state;
     }
@@ -72,7 +73,7 @@ ReactDOM.render(
 					<PrivateRoute path="/postad_Roommates" component={Postroommates}></PrivateRoute>
 					<PrivateRoute path="/postad_buysell" component={Postbuysell}></PrivateRoute>
 					<PrivateRoute path="/postad_jobPortal" component={JobPortal}></PrivateRoute>
-          <PrivateRoute path="/postad_eventPortal" component={EventPortal}></PrivateRoute>
+          			<PrivateRoute path="/postad_eventPortal" component={EventPortal}></PrivateRoute>
 					<PrivateRoute path="/profile_user" component={ProfileUser}></PrivateRoute>
 					<Route path="/detail_buySell" component={DetailBuySell}></Route>
 					<Route path="/detail_jobPortal" component={JobDetail}></Route>

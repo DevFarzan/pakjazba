@@ -28,19 +28,19 @@ class Burgermenu extends Component{
                           <div className="row">
                               <div className="col-md-7">
                                   <div style={{ padding: '22px 16px 10px',"float": "right"}}>
-                                      <Button type="button_globalclass" name='room' ghost className="button_globalclass">
+                                      <Button type="button_globalclassName" name='room' ghost className="button_globalclassName">
                                           <Link rel="noopener noreferrer" to={`/market_roommates`}>Room Renting</Link>
                                       </Button>
-                                      <Button type="button_globalclass" name='bussiness' ghost style={{marginRight: "10px", marginLeft: "10px"}} className="button_globalclass">
+                                      <Button type="button_globalclassName" name='bussiness' ghost style={{marginRight: "10px", marginLeft: "10px"}} className="button_globalclassName">
                                           <Link rel="noopener noreferrer" to={`/market_business`}>Business Listing</Link>
                                       </Button>
-                                      <Button type="button_globalclass" name='buySell' ghost className="button_globalclass" style={{marginRight: '10px'}}>
+                                      <Button type="button_globalclassName" name='buySell' ghost className="button_globalclassName" style={{marginRight: '10px'}}>
                                           <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
                                       </Button>
-                                      <Button type="button_globalclass" name='buySell' ghost className="button_globalclass">
+                                      <Button type="button_globalclassName" name='buySell' ghost className="button_globalclassName">
                                           <Link rel="noopener noreferrer" to={`/market_jobPortal`}>Job Portal</Link>
                                       </Button>
-                                      {/*}<Button type="button_globalclass" name='events' ghost className="button_globalclass">
+                                      {/*<Button type="button_globalclass" name='events' ghost className="button_globalclass">
                                           <Link rel="noopener noreferrer" to={`/market_eventPortal`}>Events</Link>
                                       </Button>*/}
                                   </div>
@@ -63,9 +63,9 @@ class Burgermenu extends Component{
                               <div className="navbar-header">
                                   <a className="navbar-brand"><img alt='' src="./images/mobile-logo.png" style={{"width": "100px", marginTop: "11px"}} /></a>
                               </div>
-                          </div>{/*col-md-12*/}
+                          </div>
                           <div className="col-xs-3" style={{marginTop: "28px"}}><MainLogin/></div>
-                      </div>{/*row*/}
+                      </div>
 
                       <div className="row" style={{marginTop: "22px",marginBottom: "11px"}}>
                           <div className="col-xs-6">
@@ -84,9 +84,10 @@ class Burgermenu extends Component{
                               </Button>
                               <span ><Category/></span>
                           </div>
-                      </div>{/*row*/}
+                      </div>
                   </div>
               </nav>
+              
           </div>
       )
   }

@@ -9,7 +9,6 @@ var bodyParser = require('body-parser')
 var jwt = require('jsonwebtoken');
 var ip = require('ip');
 
-
 const port = process.env.PORT || 5000;
 
 app.use(function(req, res, next) {
@@ -524,6 +523,7 @@ app.post('/api/postbusinessdata',function(req,res){
       businessImages = businessData.arr_url,
       businessId = businessData.businessId;
       businessDescription = businessData.description;
+      posted = business.posted;
 
 if(businessData.objectId == '' || businessData.objectId == undefined || businessData.objectId == null){
    var yellowBusiness_info = new yellowPagesBusiness({
@@ -548,7 +548,8 @@ if(businessData.objectId == '' || businessData.objectId == undefined || business
     socialGoogle:businessData.socialGoogle,
     socialLinkIn:businessData.socialLinkIn,
     profileId:businessData.profileId,
-    description:businessDescription
+    description:businessDescription,
+    posted:posted
    });
 
    yellowBusiness_info.save(function(err,data){
@@ -602,6 +603,7 @@ if(businessData.objectId == '' || businessData.objectId == undefined || business
     businessProfile.socialLinkIn=businessData.socialLinkIn;
     businessProfile.profileId=businessData.profileId;
     businessProfile.description = businessData.description;
+    businessProfile.description = businessData.posted;
 
     businessProfile.save(function(err,doc){
       if(err){
@@ -654,7 +656,8 @@ app.post('/api/postbuyselldata',function(req,res){
 var   subcategory   = buyselldata.subCategory,
       subsubcategory = buyselldata.subSubCategory,
       profileid =      buyselldata.profileId,
-      streetaddress = buyselldata.streetAddress
+      streetaddress = buyselldata.streetAddress,
+      posted = buyselldata.posted
 
 if(buyselldata.objectId == '' || buyselldata.objectId == undefined || buyselldata.objectId == null){
 
@@ -683,7 +686,8 @@ if(buyselldata.objectId == '' || buyselldata.objectId == undefined || buyselldat
       subcategory:subcategory,
       subsubcategory:subsubcategory,
       profileid:profileid,
-      streetaddress:streetaddress
+      streetaddress:streetaddress,
+      posted:posted
  });
 
 classifiedBusiness_info.save(function(err,data){
@@ -739,6 +743,7 @@ classifiedBusiness.findOne({"_id" : buyselldata.objectId},function(err,buysell){
       buysell.subsubcategory=buyselldata.subSubCategory;
       buysell.profileid=buyselldata.profileId;
       buysell.streetaddress=buyselldata.streetaddress;
+      buysell.posted = buyselldata.posted;
 
       buysell.save(function(err,doc){
         if(err){
@@ -982,7 +987,8 @@ app.post('/api/changepassword',function(req,res){
       profileId:postroomrent.profileId,
       subCategory:postroomrent.subCategory,
       subSubCategory:postroomrent.subSubCategory,
-      state:postroomrent.state
+      state:postroomrent.state,
+      posted:postroomrent.posted
     })
     roommates_info.save(function(err,data){
   if(err){
@@ -1040,6 +1046,7 @@ else if(postroomrent.objectId != '' || postroomrent.objectId != undefined || pos
       roomrentsdata.subCategory=postroomrent.subCategory;
       roomrentsdata.subSubCategory=postroomrent.subSubCategory;
       roomrentsdata.state=postroomrent.state;
+      roomrentsdata.posted = postroomrent.posted;
 
       roomrentsdata.save(function(err,doc){
         if(err){

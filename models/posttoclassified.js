@@ -29,6 +29,7 @@ var postclassifiedSchema = new mongoose.Schema({
 	subsubcategory:{type:String},
 	streetaddress:{type:String},
 	profileid:{type:String},
+	posted:{type:String},
 
 });
 

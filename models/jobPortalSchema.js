@@ -20,7 +20,7 @@ var JobSchema = new mongoose.Schema({
     Website:{type:String},
     Tagline:{type:String},
     arr_url:{type:Array},
-    posted:{type:String}
+    posted:{type:String},
 });
 
 mongoose.model('jobschema',JobSchema);

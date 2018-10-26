@@ -95,7 +95,7 @@ class Roomrenting1content extends Component{
                             return(
                                 <Link key={key} to={{pathname: `/detail_roomRent`, state: elem}}>
                                     <div className="col-md-4">
-                                        <div className="ibox">
+                                        <div className="ibox" style={{width: "89%"}}>
                                             <div className="ibox-content product-box">
                                                 <div className="product-imitation">
                                                     <div className="card2">
@@ -122,14 +122,14 @@ class Roomrenting1content extends Component{
                                                 <div className="col-md-6">
                                                     <i className="glyphicon glyphicon-calendar" style={{color:"#008080"}} />
                                                     <span className="" style={{color: "#000000c7"}}>10-17-2018</span>
-                                                 </div>   
+                                                 </div>
                                                 </div>
                                                 <div className="row" style={{textAlign:'center',marginTop:'-15px'}}>
                                                 <span className="col-md-6" style={{color: "#000000c7"}}>Availible From</span>
                                                 <div className="col-md-6">
                                                     <i className="glyphicon glyphicon-calendar" style={{color:"#008080"}} />
                                                     <span className="" style={{color: "#000000c7"}}>{elem.startdate ? elem.startdate : '10-17-2018'}</span>
-                                                 </div>   
+                                                 </div>
                                                 </div>
                                                 {/*<div className="cust-margin" style={{marginTop: "36px"}}>
                                                     <i className="glyphicon glyphicon-calendar" style={{color:"#008080"}} />
@@ -138,7 +138,7 @@ class Roomrenting1content extends Component{
                                                 <span className="text" style={{color: "#000000c7"}}>{elem.contactname}</span>
                                                 </div>*/}
                                                 <div className="product-desc">
-                                                    
+
                                                     <div className="product-name" style={{"fontSize": "14px"}}>{des}</div>
                                                     <div className="m-t text-righ" style={{marginTop:"58px",fontSize: "18px",textDecoration:"underline"}}>
                                                         <Link to={{pathname: `/detail_roomRent`, state: elem}} className="" style={{color:"red"}}>Detail</Link>
@@ -214,7 +214,7 @@ class Roomrenting1content extends Component{
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
             </section>

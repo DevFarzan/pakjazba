@@ -33,6 +33,7 @@ require('./models/sendmessage');
 require('./models/facebookLoginSchema');
 require('./models/blog');
 require('./models/jobPortalSchema');
+require('./models/jobAppliedSchema');
 
 require('./config/passport');
 
@@ -48,6 +49,7 @@ var sendMessage = mongoose.model('sendmessage');
 var facebookLogin = mongoose.model('facebookdatabase');
 var blog = mongoose.model('blogdata');
 var jobPortal = mongoose.model('jobschema');
+var jobApplied = mongoose.model('jobApplied');
 
 app.use(passport.initialize());
 
@@ -1076,6 +1078,7 @@ app.post('/api/postJobPortal', (req, res) => {
             Website: postJobPortal.Website,
             Tagline: postJobPortal.Tagline,
             arr_url: postJobPortal.arr_url,
+            posted: postJobPortal.posted
         });
 
         jobDataa.save((error, response) => {
@@ -1122,6 +1125,7 @@ app.post('/api/postJobPortal', (req, res) => {
             jobData.Website = postJobPortal.Website;
             jobData.Tagline = postJobPortal.Tagline;
             jobData.arr_url = postJobPortal.arr_url;
+            jobData.posted = postJobPortal.posted;
         });
         jobData.save((error, doc) => {
             if(error){
@@ -1136,6 +1140,44 @@ app.post('/api/postJobPortal', (req, res) => {
 });
 
 /*===================post Job API end================================================================*/
+
+/*===================Applied for Job start===========================================================*/
+
+app.post('/api/AppliedForJob', (req, res) => {
+    let appliedData = req.body;
+    let applyData = new jobApplied({
+        senFirName: appliedData.senFirName,
+        senLastName: appliedData.senLastName,
+        senEmail: appliedData.senEmail,
+        senCV: appliedData.senCV,
+        senMsg: appliedData.senMsg,
+        resEmail: appliedData.resEmail,
+        appliedOn: appliedData.appliedOn,
+        jobId: appliedData.jobId
+    })
+    applyData.save((error, response) => {
+        if(error){
+            res.send({
+                code:500,
+                content:'Internal Server Error',
+                msg:'API not called properly'
+            });
+        }else if(response !== ''){
+            res.send({
+                code:200,
+                msg:'yor request submitted successfully'
+            });
+        }else{
+            res.send({
+                code:404,
+                content:'Not Found',
+                msg:'no data inserted'
+            });
+        }
+    });
+})
+
+/*===================Applied for Job end===========================================================*/
 
 app.post('/api/sendmessage',function(req,res){
 var getuserfields = req.body;

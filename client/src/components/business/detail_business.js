@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import App from '../../App';
+import Burgermenu from '../header/burgermenu';
+import Slider from '../header/Slider';
 import "./detail_business.css";
-import moment from 'moment'
+import moment from 'moment';
 import { Carousel, Rate, notification, Icon, Spin } from 'antd';
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
@@ -132,10 +133,14 @@ class DetailBusiness extends Component{
 
         return(
             <div>
-                <span className="background_listing">
-                	<App/>
-                </span>
-                <div className="">
+                <span>
+                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/busnes-listing.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
+                        <div className="background-image">
+                            <Burgermenu/>
+                            <Slider mainH1="Business Listing" mainH2="Businesses Near You"/>
+                        </div>
+                    </div>
+                </span>                <div className="">
                     <div className="col-md-12 col-sm-12 col-xs-12">
                         <div className="col-md-4 col-sm-4 col-xs-12">
                             <div className="col-lg-2 col-md-2 col-sm-12 " >

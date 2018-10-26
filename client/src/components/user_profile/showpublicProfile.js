@@ -146,14 +146,13 @@ class ShowProfilepublic extends Component{
 			<span>
 			<div className="row">
 				<div className="col-md-6">
-					<span className="name_style margin-left_13">{this.state.name}</span><br/>
+					<span className="name_style margin-left_13">{this.state.name}<Icon type="edit" size={16} style={{marginLeft:'13%', cursor: 'pointer'}} onClick={() => {this.onGoBack()}}></Icon></span><br/>
                     <a href={this.state.facebook} target="_blank"><Icon type="facebook" size={18} style={{marginLeft:'13%'}}></Icon></a>
                     <a href={this.state.twitter} target="_blank" style={{marginRight: "12px"}}><Icon type="twitter" size={18} style={{marginLeft:'2%'}}></Icon></a>
                     <p style={{fontFamily:'Work Sans,sans-serif',marginLeft:'13%'}}>{this.state.description}</p>
 				</div>
 				<div className="col-md-6" style={{textAlign:'right'}}>
 					<img className="img-circle" style={{width:'22%',marginRight:'22px'}} src={this.state.imageUrl} />
-					<Button className="btn btn-sm" style={{border:'1px solid gray'}} onClick={() => {this.onGoBack()}}>Edit Profile</Button>
 				</div>
 			</div>
 			<div className="row">

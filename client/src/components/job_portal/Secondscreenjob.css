@@ -1,0 +1,21 @@
+.marketjob-content {
+  background-color: #whitesmoke;
+  color: inherit;
+  padding: 0;
+  border-color: #e7eaec;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 1px 0;
+  border-radius: 10px;
+}
+
+.width100{
+  width: 100%;
+}
+
+.btn3-success{
+  background-color: #008080;
+  color: white;
+  margin: 2px 0 2px 0;
+  margin-right: 2px;
+}

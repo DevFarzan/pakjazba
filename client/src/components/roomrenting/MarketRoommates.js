@@ -37,14 +37,14 @@ class MarketRoommates extends Component{
         return(
             <div>
                 <span>
-                <div className ="" style={{"backgroundImage":"url('http://res.cloudinary.com/dxk0bmtei/image/upload/v1537167325/bg-image-for-farzan-bhai_xjp7q7.png')","height": "407px",marginTop: "-65px",marginLeft:"-66px"}}>
+                <div className ="" style={{"backgroundImage":"url('../images/bgc-images/room-renting.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
                     <div className="background-image">
                         <Burgermenu/>
                         <Slider mainH1="Explore Home" mainH2="Find Your Perfect Match"/>
                     </div>
                 </div>
             </span>
-                <div  style={{width:"99%"}}>
+                <div className="container" style={{width:"94%"}}>
                 <Roomrenting1content/>
                 </div>
                 <Footer />

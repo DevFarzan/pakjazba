@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import App from '../../App';
+import Burgermenu from '../header/burgermenu';
+import Slider from '../header/Slider';
 import BuyFirstFold from './buyfirstfold'
 import BuyThirdFold from './buythirdfold'
 import BuyFourthFold from './buyforthfold'
@@ -22,7 +23,14 @@ class MarketClassified extends Component{
     render(){
         return(
             <div>
-                <App/>
+                <span>
+                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/buy-sell.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
+                        <div className="background-image">
+                            <Burgermenu/>
+                            <Slider mainH1="Buy & Sell" mainH2="Find what you need"/>
+                        </div>
+                    </div>
+                </span>
                 {!this.props.text && <BuyFirstFold />}
                 <BuyFourthFold />
                 <div className="row" style={{marginTop:"40px"}}>

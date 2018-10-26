@@ -19,7 +19,8 @@ var JobSchema = new mongoose.Schema({
     Google:{type:String},
     Website:{type:String},
     Tagline:{type:String},
-    arr_url:{type:Array}
+    arr_url:{type:Array},
+    posted:{type:String}
 });
 
 mongoose.model('jobschema',JobSchema);

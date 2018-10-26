@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './featureJob.css';
-import { Spin, Icon, Pagination } from 'antd';
+import { Spin, Icon, Pagination, Modal, Button } from 'antd';
 import {HttpUtils} from "../../Services/HttpUtils";
 import { Redirect } from 'react-router';
 import { Link } from "react-router-dom";
@@ -14,7 +14,10 @@ class FeaturedBox extends Component{
             showJob: [],
             filteredArr: [],
             loader: true,
-            add: 6
+            add: 6,
+            noText: true,
+            visible: false,
+            goForLogin: false
         };
     }
 
@@ -28,6 +31,7 @@ class FeaturedBox extends Component{
         if(prevProps.text !== text){
             if(!!text){
                 this.searchedArr(text)
+                // this.setState({ noText: false, loader: false })
             }else {
                 this.setState({
                     showJob: job.slice(0, 6),
@@ -53,7 +57,6 @@ class FeaturedBox extends Component{
 
     async getAllBusiness(){
         var res = await HttpUtils.get('marketplace');
-        this.setState({response: res.jobPortalData});
         this.setState({
             job: res && res.jobPortalData,
             showJob: res && res.jobPortalData.slice(0, 6),
@@ -85,7 +88,6 @@ class FeaturedBox extends Component{
 
     onAddMore = () => {
         const { add, job, filteredArr } = this.state;
-        console.log(add + 6, 'View Add bitton clickedddddd')
         if(!!filteredArr.length){
             this.setState({
                 showJob: filteredArr.slice(0, add + 6),
@@ -104,17 +106,33 @@ class FeaturedBox extends Component{
         }
     }
 
+    clickItem(item){
+        this.setState({visible: true})
+    }
+
+    handleCancel = (e) => {
+        this.setState({visible: false});
+    }
+
+    handleLogin = (e) => {
+        this.setState({goForLogin: true, visible: false})
+    }
+
     render(){
-        const { showJob, filteredArr, job } = this.state;
+        const { showJob, filteredArr, job, noText, goForLogin } = this.state;
         const { text } = this.props;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
+        if (goForLogin) {
+            return <Redirect to={{pathname: '/sigin', state: {confirm: true}}}/>;
+        }
+
         return(
-            <div className="container" style={{width:"98%"}}>
+            <div className="container" style={{width:"94%"}}>
                 <h2 className="font-style" style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}>Featured Jobs </h2>
                 <div className="row">
                     <Link to={{pathname: `/postad_jobPortal`}}>
-                        <div className="col-md-4"  style={{height: '475px' }}>
+                        <div className="col-md-4"  style={{height: '530px' }}>
                             <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '100%', width: '90%'}}/>
                         </div>
                     </Link>
@@ -143,23 +161,21 @@ class FeaturedBox extends Component{
                                                 {elem.jobDescription}
                                             </div>
                                             <div className="row">
-                                              <div className="col-md-6">
-                                                  <Link to={{pathname: `/detail_jobPortal`, state: elem}}>
-                                                      <button type="button" className="btn2 btn2-success font-style">View Detail</button>
-                                                  </Link>
-                                              </div>
-                                              <div className="col-md-6">
-                                                      <Link to={{pathname: `/apply_forJob`, state: elem}}>
-                                                          <button type="button" className="btn2 btn2-success font-style">Apply Now</button>
-                                                      </Link>
-                                              </div>
-
+                                                <div className="col-md-6 col-sm-12 col-xs-12">
+                                                    <Link to={{pathname: `/detail_jobPortal`, state: {...elem, sec: 'mainPart'}}}>
+                                                        <button type="button" className="btn btn-sm btn2-success font-style" style={{width:"100%"}}>View Detail</button>
+                                                    </Link>
+                                                </div>
+                                                <div className="col-md-6 col-sm-12 col-xs-12">
+                                                    {/*<Link to={{pathname: `/detail_jobPortal`, state: {...elem, sec: 'jobPart'}}}>*/}
+                                                        <button type="button" className="btn btn-sm btn2-success font-style" style={{width:"100%"}} onClick={() => {this.clickItem(elem)}}>Apply Now</button>
+                                                    {/*</Link>*/}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         )
                     })}
                 </div>
@@ -174,9 +190,18 @@ class FeaturedBox extends Component{
                 {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h5 className="font-style">you can find your search by type</h5></span>}
                 {/*!!showJob && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :job.length} onChange={this.onChange} /></span>*/}
                 <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success font-style" onClick={this.onAddMore}>View More ...</button></div>
+                {this.state.visible && <Modal
+                    title="Kindly Login first"
+                    visible={this.state.visible}
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
+                >
+                <div className="row">
+                    <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleLogin}>Login</button></div>
+                    <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleCancel}>Cancel</button></div>
+                </div>
+                </Modal>}
             </div>
-
-
         )
     }
 }

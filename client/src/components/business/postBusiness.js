@@ -317,7 +317,10 @@ class Postbusiness extends Component {
             objectId: '',
             statesUS: [],
             citiesUS: [],
-            loader: false
+            loader: false,
+            dataOtime: '00:00:00',
+            dataCtime: '00:00:00',
+            objData: {}
         };
     }
 
@@ -559,6 +562,14 @@ class Postbusiness extends Component {
         }
     }
 
+    validateNumber(rule, value, callback){
+        if(isNaN(value)){
+            callback('Please type Numbers');
+        }else {
+            callback()    
+        }
+    }
+
     async postData(values, response){
         const { userId, socLin, socGoo, socFac, profileId, openingTime, closingTime, objectId, imageList } = this.state;
         let obj = {
@@ -591,6 +602,7 @@ class Postbusiness extends Component {
             this.props.form.resetFields();
             this.openNotification()
             this.setState({
+                objData: obj,
                 msg: true,
                 socFac: '',
                 socGoo: '',
@@ -617,7 +629,7 @@ class Postbusiness extends Component {
     openNotification() {
         notification.open({
             message: 'Success ',
-            description: 'Your need is submited successfully, Kindly visit your profile',
+            description: 'You have successfully submitted your ad',
         });
     };
 
@@ -648,11 +660,11 @@ class Postbusiness extends Component {
     }
 
     render() {
-        const { previewVisible, previewImage, fileList, desLength, socFac, socGoo, socLin, statesUS, citiesUS } = this.state;
+        const { previewVisible, previewImage, fileList, desLength, socFac, socGoo, socLin, statesUS, citiesUS, objData } = this.state;
         const {getFieldDecorator} = this.props.form;
 
         if (this.state.msg === true) {
-            return <Redirect to='/' />
+            return <Redirect to={{pathname: '/detail_business', state: objData}} />
         }
 
         const uploadedImages = (
@@ -681,6 +693,10 @@ class Postbusiness extends Component {
         );
 
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
+
+        function filter(inputValue, path) {
+            return (path.some(option => (option.label).toLowerCase().indexOf(inputValue.toLowerCase()) > -1));
+        }
 
         const formItemLayout = {
             labelCol: {
@@ -734,7 +750,7 @@ class Postbusiness extends Component {
                                                     initialValue: this.state.dataState,
                                                     rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
                                                 })(
-                                                    <Cascader options={statesUS} onChange={this.onChangeCat.bind(this)}/>
+                                                    <Cascader options={statesUS} onChange={this.onChangeCat.bind(this)} showSearch={{ filter }}/>
                                                 )}
                                             </FormItem>
                                             <FormItem
@@ -745,7 +761,7 @@ class Postbusiness extends Component {
                                                     initialValue: this.state.dataCity,
                                                     rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
                                                 })(
-                                                    <Cascader options={citiesUS} />
+                                                    <Cascader options={citiesUS} showSearch={{ filter }}/>
                                                 )}
                                             </FormItem>
 											<FormItem
@@ -796,7 +812,9 @@ class Postbusiness extends Component {
                                             >
                                                 {getFieldDecorator('businessName', {
                                                     initialValue: this.state.dataBname,
-                                                    rules: [{ required: true, message: 'Please input your Business Name!', whitespace: true }],
+                                                    rules: [
+                                                    { required: true, message: 'Please input your Business Name!', whitespace: true },
+                                                    ],
                                                 })(
                                                     <Input  />
                                                 )}
@@ -811,7 +829,7 @@ class Postbusiness extends Component {
                                                             initialValue: moment(this.state.dataOtime, 'HH:mm:ss'),
                                                             rules: [{ validator: this.validateTime.bind(this) }],
                                                         })(
-                                                            <TimePicker placeholder="Opening Time" use12Hours format="h:mm:ss A" onChange={this.onOpeningTime.bind(this)} />
+                                                            <TimePicker placeholder="Opening Time"  onChange={this.onOpeningTime.bind(this)} />
                                                         )}
                                                     </FormItem>
                                                 </div>
@@ -821,7 +839,7 @@ class Postbusiness extends Component {
                                                             initialValue: moment(this.state.dataCtime, 'HH:mm:ss'),
                                                             rules: [{ validator: this.validateTime.bind(this) }],
                                                         })(
-                                                            <TimePicker placeholder="Closing Time" use12Hours format="h:mm:ss A" onChange={this.onClosingTime.bind(this)} />
+                                                            <TimePicker placeholder="Closing Time" onChange={this.onClosingTime.bind(this)} />
                                                         )}
                                                     </FormItem>
                                                 </div>
@@ -833,7 +851,8 @@ class Postbusiness extends Component {
                                             >
                                                 {getFieldDecorator('businessNumber', {
                                                     initialValue: this.state.dataBnumber,
-                                                    rules: [{ required: true, message: 'Please input your Business Number!', whitespace: true }],
+                                                    rules: [{ required: true, message: 'Please input your Business Number!', whitespace: true },
+                                                            { validator: this.validateNumber.bind(this) }]
                                                 })(
                                                     <Input  />
                                                 )}
@@ -844,7 +863,8 @@ class Postbusiness extends Component {
                                             >
                                                 {getFieldDecorator('businessId', {
                                                     initialValue: this.state.dataBemailId,
-                                                    rules: [{ required: true, message: 'Please input your Business Email id!', whitespace: true }],
+                                                    rules: [{ required: true, message: 'Please input your Business Email id!', whitespace: true },
+                                                            {type: 'email', message: 'The input is not valid E-mail!'}]
                                                 })(
                                                     <Input  />
                                                 )}
@@ -893,7 +913,7 @@ class Postbusiness extends Component {
                                                     initialValue: this.state.dataCategory,
                                                     rules: [{ type: 'array', required: true, message: 'Please select your Business Category!' }],
                                                 })(
-                                                    <Cascader options={category} />
+                                                    <Cascader options={category} showSearch={{ filter }}/>
                                                 )}
                                             </FormItem>
                                             <FormItem

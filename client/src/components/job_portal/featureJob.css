@@ -111,17 +111,17 @@
   padding-right: 18px;
   border-radius: 8px;
   color:#ffff;
-  border-color: #008080;
+  
 
 }
 
 .btn2-success{
-  background-color: #008080;
+  background-color: #37a99b;
   color: white;
   margin: 2px 0 2px 0;
 }
 .btn2-success:hover{
-  background-color: #008080;
+  background-color: #37a99b;
   color: white;
   margin: 2px 0 2px 0;
 }
@@ -132,7 +132,7 @@
   margin-left: -10px;
 }
 .heading-wight{
-  font-family: "Poppins", sans-serif;
+  font-family: "Source-bold" ;
 font-weight: 600;
 margin: 0 0 20px 0;
 padding: 0;

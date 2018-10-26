@@ -124,6 +124,7 @@ class DetailBusiness extends Component{
 
     render(){
         const { isData, data, reviews } = this.state;
+        const hide = true;
         let images = data.businessImages;
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
@@ -137,7 +138,7 @@ class DetailBusiness extends Component{
                     <div className ="" style={{"backgroundImage":"url('../images/bgc-images/busnes-listing.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
                         <div className="background-image">
                             <Burgermenu/>
-                            <Slider mainH1="Business Listing" mainH2="Businesses Near You"/>
+                            <Slider mainH1="Business Listing" mainH2="Businesses Near You" hide={hide}/>
                         </div>
                     </div>
                 </span>                <div className="">
@@ -151,11 +152,11 @@ class DetailBusiness extends Component{
                                     <div className="card outset" style={{ boxShadow: "none", border:"1px solid #80808042", background: "white"}}>
                                         <img className="card-img-top" src={images && images[0]} alt="" style={{"width":"100%"}} />
                                         <div className="card-body space" style={{padding: "17px"}}>
-                                            <h5><span className="glyphicon glyphicon-home" style={{marginRight: "15px"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{data.businessaddress}</span></h5>
+                                            <h5><span className="glyphicon glyphicon-home" style={{marginRight: "15px"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{data.businessaddres || data.businessAddress}</span></h5>
                                             <hr/>
-                                            <h5><span className="glyphicon glyphicon-phone" style={{marginRight: "15px"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{data.businessnumber}</span></h5>
+                                            <h5><span className="glyphicon glyphicon-phone" style={{marginRight: "15px"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{data.businessnumber || data.businessNumber}</span></h5>
                                             <hr/>
-                                            <h5><span className="glyphicon glyphicon-globe" style={{marginRight: "15px"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{data.businessemail}</span></h5>
+                                            <h5><span className="glyphicon glyphicon-globe" style={{marginRight: "15px"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{data.businessemail || data.businessEmail}</span></h5>
                                             <br/>
                                             <h4>Our Social</h4>
                                             <a href={data.socialFaceBook} target="_blank" style={{marginRight: "12px"}}><button type="button" className="btn btn-fb"><i className="fa fa-facebook black"></i></button></a>
@@ -284,10 +285,10 @@ class DetailBusiness extends Component{
                                     <div className="card-body space">
                                         <div className="row">
                                             <div className="col-md-2 col-sm-2 col-xs-12">
-                                                <img className="card-img-top" src={images && images[0]} alt="" style={{"width":"100%"}} />
+                                                <img className="card-img-top" src={(images && images[0]) || (data.arr_url && data.arr_url[0])} alt="" style={{"width":"100%"}} />
                                             </div>
                                             <div className="col-md-10 col-sm-10 col-xs-12">
-                                                <h3>{data.businessname}</h3>
+                                                <h3>{data.businessName}</h3>
                                                 <hr/>
                                             </div>
                                         </div>

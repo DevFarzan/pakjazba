@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Burgermenu from "../header/burgermenu";
 import Slider from "../header/Slider";
 import Roomrenting1content from "./roomrenting1content";
+import RoomrentingIcon from "./roomrentinficon";
 import Footer from '../footer/footer';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router';
@@ -40,11 +41,12 @@ class MarketRoommates extends Component{
                 <div className ="" style={{"backgroundImage":"url('../images/bgc-images/room-renting.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
                     <div className="background-image">
                         <Burgermenu/>
-                        <Slider mainH1="Explore Home" mainH2="Find Your Perfect Match"/>
+                        <Slider mainH1="Explore Homes" mainH2="Find Your Perfect Match"/>
                     </div>
                 </div>
             </span>
                 <div className="container" style={{width:"94%"}}>
+                <RoomrentingIcon/>
                 <Roomrenting1content/>
                 </div>
                 <Footer />

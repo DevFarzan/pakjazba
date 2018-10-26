@@ -777,6 +777,7 @@ color: #fff;
     border-color: #0000004a;
     background-color:#ededed05;
     padding-left: 5px;
+    color:#34414c;
 }
 
 
@@ -834,4 +835,13 @@ color: #fff;
     color: white;
     width: 100px;
     border-radius: 5px;
+}
+.ant-tabs-nav .ant-tabs-tab:active{
+  color:#34414c !important;
+}
+.ant-tabs-nav .ant-tabs-tab{
+  color:#34414c !important;
+}
+.b-sec>p{
+  color:#34414c !important;
 }

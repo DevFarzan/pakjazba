@@ -13,7 +13,7 @@ class Roomrenting1content extends Component{
             showroomrents: [],
             filteredArr: [],
             loader: true,
-            add: 5
+            add: 7
         }
     }
 
@@ -25,7 +25,7 @@ class Roomrenting1content extends Component{
         let res = await HttpUtils.get('marketplace')
         this.setState({
             roomrents: res ? res.roomrentsdata : [],
-            showroomrents: res ? res.roomrentsdata.slice(0, 6) : [],
+            showroomrents: res ? res.roomrentsdata.slice(0, 7) : [],
             loader: false
         })
     }
@@ -57,13 +57,13 @@ class Roomrenting1content extends Component{
         const { add, roomrents, filteredArr } = this.state;
         if(!!filteredArr.length){
             this.setState({
-                showroomrents: filteredArr.slice(0, add + 6),
-                add: add + 6
+                showroomrents: filteredArr.slice(0, add + 8),
+                add: add + 8
             });
         }else {
             this.setState({
-                showroomrents: roomrents.slice(0, add + 6),
-                add: add + 6
+                showroomrents: roomrents.slice(0, add + 8),
+                add: add + 8
             });
         }
     }
@@ -74,11 +74,12 @@ class Roomrenting1content extends Component{
 
         return(
             <section id="about">
+                
                 <div className="">
                     <div className="row">
                     <Link to={{pathname: `/postad_Roommates`}}>
-                        <div className="col-md-4"  style={{height: '585px' }}>
-                            <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '100%', width: '100%', borderRadius: '10px'}}/>
+                        <div className="col-md-3">
+                            <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '387px', width: '100%', borderRadius: '17px'}}/>
                         </div>
                     </Link>
                         {showroomrents && showroomrents.map((elem, key) => {
@@ -94,14 +95,14 @@ class Roomrenting1content extends Component{
                             }
                             return(
                                 <Link key={key} to={{pathname: `/detail_roomRent`, state: elem}}>
-                                    <div className="col-md-4">
-                                        <div className="ibox" style={{width: "89%"}}>
-                                            <div className="ibox-content product-box">
+                                    <div className="col-md-3">
+                                        <div className="ibox" style={{width: "100%"}}>
+                                            <div className="ibox-content product-box" style={{backgroundColor:'white',border:'1px solid #80808038',borderRadius:'17px'}}>
                                                 <div className="product-imitation">
                                                     <div className="card2">
                                                         <img alt='' src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'}/>
                                                         <span className="card-button" style={{width: "200px"}}>
-                                                            <p className="categories-on-card" style={{backgroundColor:"#008080",textAlign: "center",width: "190px",marginBottom: "6px"}}>{elem.category}</p>
+                                                            <p className="categories-on-card" style={{backgroundColor:"#008080",textAlign: "center",width: "159px",marginBottom: "6px"}}>{elem.category}</p>
                                                             <i className="glyphicon glyphicon-map-marker" style={{color: "#008080",marginLeft: "-2px"}} /><p className="text" style={{color: "white",marginLeft: "14px"}}>{elem.state +" & "+ elem.city}</p>
                                                         </span>
 
@@ -118,17 +119,17 @@ class Roomrenting1content extends Component{
                                                     </div>
                                                 </div>*/}
                                                 <div className="row" style={{textAlign:'center',marginTop:'-15px'}}>
-                                                <span className="col-md-6" style={{color: "#000000c7"}}>Posted On</span>
+                                                <span className="col-md-6" style={{color: "#000000c7",fontSize:'13px'}}>Posted On</span>
                                                 <div className="col-md-6">
                                                     <i className="glyphicon glyphicon-calendar" style={{color:"#008080"}} />
-                                                    <span className="" style={{color: "#000000c7"}}>10-17-2018</span>
+                                                    <span className="" style={{color: "#000000c7",fontSize:'13px'}}>10-17-2018</span>
                                                  </div>
                                                 </div>
                                                 <div className="row" style={{textAlign:'center',marginTop:'-15px'}}>
-                                                <span className="col-md-6" style={{color: "#000000c7"}}>Availible From</span>
+                                                <span className="col-md-6" style={{color: "#000000c7",fontSize:'13px'}}>Availible From</span>
                                                 <div className="col-md-6">
                                                     <i className="glyphicon glyphicon-calendar" style={{color:"#008080"}} />
-                                                    <span className="" style={{color: "#000000c7"}}>{elem.startdate ? elem.startdate : '10-17-2018'}</span>
+                                                    <span className="" style={{color: "#000000c7",fontSize:'13px'}}>{elem.startdate ? elem.startdate : '10-17-2018'}</span>
                                                  </div>
                                                 </div>
                                                 {/*<div className="cust-margin" style={{marginTop: "36px"}}>
@@ -137,13 +138,13 @@ class Roomrenting1content extends Component{
                                                 <i className="glyphicon glyphicon-user" style={{color:"#008080",marginLeft: "71px"}} />
                                                 <span className="text" style={{color: "#000000c7"}}>{elem.contactname}</span>
                                                 </div>*/}
-                                                <div className="product-desc">
+                                                {/*<div className="product-desc">
 
                                                     <div className="product-name" style={{"fontSize": "14px"}}>{des}</div>
                                                     <div className="m-t text-righ" style={{marginTop:"58px",fontSize: "18px",textDecoration:"underline"}}>
                                                         <Link to={{pathname: `/detail_roomRent`, state: elem}} className="" style={{color:"red"}}>Detail</Link>
                                                     </div>
-                                                </div>
+                                                </div>*/}
                                             </div>
                                         </div>
                                     </div>
@@ -155,18 +156,20 @@ class Roomrenting1content extends Component{
                     {this.state.loader && <div className="col-md-12" style={{textAlign: 'center', marginBottom: '20px', marginLeft: '-50px'}}>
                         <Spin indicator={antIcon} />
                     </div>}
-                    <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>
+                    {(filteredArr.length > showroomrents.length) || (roomrents.length > showroomrents.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>}
                     {/*!!showroomrents.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length : roomrents.length} onChange={this.onChange} /></span>*/}
                 </div>
 
-                <div className="thirdfold" style={{backgroundColor:"#008080",marginTop: '68px'}}>
+                <div className="thirdfold" style={{backgroundColor:"#008080",marginTop: '68px',textAlign:'center'}}>
                 <h3 style={{color:"white"}}> Selling With Us Is Easy </h3>
                 <div className="row">
+                    <div className="container">
                     <div className="col-md-3">
                         <div className="media">
                             <div className="media-left">
                                 <a>
-                                    <img alt='' className="media-object" src="../images/how to upload/profile.png" alt="..." style={{width:"100px"}}/>
+                                    <img alt='' className="media-object" src="../images/how to upload/profile.png" alt="..." style={{width:"100px"}}/><br/>
+                                     <span style={{color:'white'}}>Create an Account</span>
                                 </a>
                             </div>
                             <div className="media-body col-md-3" style={{marginLeft: "-15px"}}>
@@ -214,7 +217,7 @@ class Roomrenting1content extends Component{
                             </div>
                         </div>
                     </div>
-
+                    </div>
                 </div>
             </div>
             </section>

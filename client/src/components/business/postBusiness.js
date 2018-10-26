@@ -595,7 +595,8 @@ class Postbusiness extends Component {
             socialGoogle: socGoo,
             socialLinkIn: socLin,
             arr_url: response ? [...response, ...imageList] : imageList,
-            objectId: objectId
+            objectId: objectId,
+            posted: moment().format('LL')
         }
         let req = await HttpUtils.post('postbusinessdata', obj)
         if(req.code === 200){

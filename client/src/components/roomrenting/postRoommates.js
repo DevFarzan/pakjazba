@@ -442,7 +442,8 @@ class Postroommates extends Component{
             smoking: smoking,
             vegNoVeg: vegNoVeg,
             arr_url: [...response, ...imageList],
-            objectId: objectId
+            objectId: objectId,
+            posted: moment().format('LL')
         }
         let req = await HttpUtils.post('postroomrent', obj)
         if(req.code === 200) {

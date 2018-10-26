@@ -37,7 +37,8 @@ class JobPortal extends Component {
             userId: '',
             profileId: '',
             msg: false,
-            objectId: ''
+            objectId: '',
+            objData: {}
         }
     }
 
@@ -188,6 +189,7 @@ class JobPortal extends Component {
         if(req.code === 200){
             this.openNotification()
             this.setState({
+                objData: obj,
                 msg: true,
                 loader: false
             })
@@ -231,12 +233,20 @@ class JobPortal extends Component {
         this.setState({imageList: imageList})
     }
 
+    validateNumber(rule, value, callback){
+        if(isNaN(value)){
+            callback('Please type Numbers');
+        }else {
+            callback()    
+        }
+    }
+
     render(){
         const {getFieldDecorator} = this.props.form;
-        const { email, jobTitle, jobType, jobCat, salary, compDescription, jobDescription, experience, compEmail, jobBanner, location, previewVisible, previewImage, fileList } = this.state;
+        const { email, jobTitle, jobType, jobCat, salary, compDescription, jobDescription, experience, compEmail, jobBanner, location, previewVisible, previewImage, fileList, objData } = this.state;
 
         if (this.state.msg === true) {
-            return <Redirect to='/' />
+            return <Redirect to={{pathname: '/detail_jobPortal', state: {...objData, user: true}}} />
         }
 
         const uploadedImages = (
@@ -269,6 +279,11 @@ class JobPortal extends Component {
                 value: 'Night Shift',
             }
         ];
+
+        function filter(inputValue, path) {
+            return (path.some(option => (option.label).toLowerCase().indexOf(inputValue.toLowerCase()) > -1));
+        }
+
         const uploadButton = (
             <div>
                 <Icon type="plus" />
@@ -303,7 +318,7 @@ class JobPortal extends Component {
                                                         <FormItem>
                                                             {getFieldDecorator('email', {
                                                                 initialValue: email,
-                                                                rules: [{
+                                                                rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true },{
                                                                     required: true,
                                                                     message: 'Please input your Email!',
                                                                     whitespace: true
@@ -358,7 +373,7 @@ class JobPortal extends Component {
                                                                 initialValue: jobType,
                                                                 rules: [{ validator: this.onChangeState }],
                                                             })(
-                                                                <Cascader options={categ} />
+                                                                <Cascader options={categ} showSearch={{ filter }}/>
                                                             )}
                                                         </FormItem>
                                                     </div>
@@ -392,7 +407,8 @@ class JobPortal extends Component {
                                                                     required: true,
                                                                     message: 'Please input your Job Salary!',
                                                                     whitespace: true
-                                                                }],
+                                                                },
+                                                                { validator: this.validateNumber.bind(this) }],
                                                             })(
                                                                 <input type="text" className="form-control"/>
                                                             )}
@@ -441,7 +457,7 @@ class JobPortal extends Component {
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <label htmlFor="sel1">Company Email/URL</label>
+                                                        <label htmlFor="sel1">Receiving CV/Resume Email</label>
                                                         <FormItem>
                                                             {getFieldDecorator('compEmail', {
                                                                 initialValue: compEmail,

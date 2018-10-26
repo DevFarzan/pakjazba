@@ -18,6 +18,7 @@ import JobSecondrow from './secondRow';
 import Thirdrow from './Thirdrow';
 import { Redirect } from 'react-router';
 import './jobDetail.css';
+import {connect} from "react-redux";
 
 
 class JobDetail extends Component {
@@ -30,7 +31,7 @@ class JobDetail extends Component {
     }
 
     componentDidMount() {
-        let data = this.props.location.state;
+        let data = this.props.location.state || this.props.otherData;
         if(data === undefined){
             this.setState({
                 isData: false
@@ -77,4 +78,10 @@ class JobDetail extends Component {
     }
 }
 
-export default JobDetail;
+const mapStateToProps = (state) => {
+    return({
+        otherData: state.otherData
+    })
+}
+
+export default connect(mapStateToProps)(JobDetail);

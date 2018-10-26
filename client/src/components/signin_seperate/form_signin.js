@@ -20,7 +20,7 @@ class Form_signin extends Component{
         }
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.handleLocalStorage();
     }
 
@@ -77,8 +77,9 @@ class Form_signin extends Component{
     }
 
     render(){
+        const { to } = this.props;
         const { getFieldDecorator } = this.props.form;
-        const { from } = this.props.location.state || { from: { pathname: "/" } };
+        const { from } = this.props.location.state ? this.props.location.state : to ? to : { from: { pathname: "/" }};
         let {redirectToReferrer} = this.state;
         if (redirectToReferrer) {
             return <Redirect to={from} />;

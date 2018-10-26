@@ -17,7 +17,8 @@ class FeaturedBox extends Component{
             add: 6,
             noText: true,
             visible: false,
-            goForLogin: false
+            goForLogin: false,
+            objData : {}
         };
     }
 
@@ -107,7 +108,7 @@ class FeaturedBox extends Component{
     }
 
     clickItem(item){
-        this.setState({visible: true})
+        this.setState({visible: true, objData: item})
     }
 
     handleCancel = (e) => {
@@ -115,16 +116,20 @@ class FeaturedBox extends Component{
     }
 
     handleLogin = (e) => {
+        const { dispatch } = this.props;
+        const { objData } = this.state;
+        let otherData = objData;
+        dispatch({type: 'ANOTHERDATA', otherData})
         this.setState({goForLogin: true, visible: false})
     }
 
     render(){
-        const { showJob, filteredArr, job, noText, goForLogin } = this.state;
+        const { showJob, filteredArr, job, noText, goForLogin, objData } = this.state;
         const { text } = this.props;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
         if (goForLogin) {
-            return <Redirect to={{pathname: '/sigin', state: {confirm: true}}}/>;
+            return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/detail_jobPortal" }, state: objData}}}/>;
         }
 
         return(

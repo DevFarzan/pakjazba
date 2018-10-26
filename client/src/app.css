@@ -24,7 +24,7 @@
 	cursor:pointer;
 	background: #8cbc40;
     color: white;
-    width: 100px;
+    width: 50px;
     border-radius: 5px;
 }
 .insideDiv{
@@ -824,4 +824,14 @@ color: #fff;
 }
 .font-style{
   font-family: 'Work Sans', sans-serif;
+}
+.signuphover{
+
+}
+.signuphover:hover{
+  cursor:pointer;
+  background: #8cbc40;
+    color: white;
+    width: 100px;
+    border-radius: 5px;
 }

@@ -5,19 +5,20 @@ import './buydetailfirstfold.css'
 class Buydetailfirstfold extends Component{
     render(){
         let data = this.props.data;
+        console.log(data, 'lllllllllllllllll');
         let images = this.props.data.images;
         return(
             <div className="">
               <div className="row" style={{padding:"10px"}}>
                 <div className="col-md-6" style={{paddingLeft:"0px"}}>
-                  <h2 className=""> Furniture For Sale  </h2>
+                  <h2 className="">{data.subcategory || data.category} For Sale  </h2>
                   <div className="location-padding" style={{marginTop:"-26px", marginLeft:"-4px"}}>
-                  <i className="buyicon glyphicon-map-marker" style={{color: "#008080",marginLeft: "0", left:"0"}} /><p className="textforparagraph" style={{color: "black",marginLeft: "27", marginTop:"-30"}}>Shalimar</p>
+                  <i className="buyicon glyphicon-map-marker" style={{color: "#008080",marginLeft: "0", left:"0"}} /><p className="textforparagraph" style={{color: "black",marginLeft: "27", marginTop:"-30"}}>{data.city}</p>
                   </div>
                 </div>
 
                 <div className="col-md-6" style={{textAlign:"right"}}>
-                  <h3> $400 </h3>
+                  <h3> ${data.price} </h3>
                 </div>
               </div>
                 <h3 className="heading-padding"> Gallery </h3>
@@ -38,12 +39,11 @@ class Buydetailfirstfold extends Component{
 
                         <div className="col-md-4 col-sm-12 col-xs-12 des-space">
                             <h3> Details </h3>
-                            <p><b>Date Added:</b></p>
-                            <p><b>Type:</b></p>
-                            <p><b>Status:</b></p>
-                            <p><b>First Owner:</b></p>
-                            <p><b>Material:</b></p>
-                            <p><b>Color:</b></p>
+                            <p><b>Condition:</b>{data.condition}</p>
+                            <p><b>Model Make:</b>{data.modelmake}</p>
+                            <p><b>Model Name:</b>{data.modelname}</p>
+                            <p><b>Model Number:</b>{data.modelnumber}</p>
+                            <p><b>Type:</b>{data.subcategory}</p>
                         </div>
                         <div className="col-md-8 col-sm-12 col-xs-12 des-space">
                             <h3>Location </h3>

@@ -26,7 +26,8 @@ class JobDetail extends Component {
         super(props)
         this.state = {
             isData: true,
-            data: {}
+            data: {},
+            user: false
         }
     }
 
@@ -42,12 +43,12 @@ class JobDetail extends Component {
             }else {
                 window.scrollTo(0,1150);
             }
-            this.setState({data});
+            this.setState({data, user: data.user});
         }
     }
 
     render(){
-        const { data, isData } = this.state;
+        const { data, isData, user } = this.state;
         if(!isData){
             return <Redirect to='/' />
         }
@@ -71,7 +72,7 @@ class JobDetail extends Component {
                 </div>
                 <JobDetailpage data={data}/>
                 <JobSecondrow data={data}/>
-                <Thirdrow data={data}/>
+                {user && <Thirdrow data={data}/>}
                 <Footer/>
             </div>
         )

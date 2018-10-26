@@ -52,7 +52,7 @@ class Home1 extends Component{
                       </div>
                 <div className="row" style={{marginTop:'-23px'}}>
                     <div className="col-md-10">
-                        <div className="col-md-4 col-sm-4">
+                        <div className="col-md-3 col-sm-4">
                             <div className="card outset" style={{boxShadow:'none',border: '1px solid rgba(128, 128, 128, 0.56)',background: 'white'}}>
                                 <div className="card-body space tag1">
                                     <Link to={`/market_roommates`} style={{color: 'black'}}>
@@ -61,7 +61,7 @@ class Home1 extends Component{
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 col-sm-4">
+                        <div className="col-md-3 col-sm-4">
                             <div className="card outset" style={{boxShadow:'none',border: '1px solid rgba(128, 128, 128, 0.56)',background: 'white'}}>
                                 <div className="card-body space tag1">
                                     <Link to={`/market_business`} style={{color: 'black'}}>
@@ -70,12 +70,20 @@ class Home1 extends Component{
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 col-sm-4">
+                        <div className="col-md-3 col-sm-4">
                             <div className="card outset" style={{boxShadow:'none',border: '1px solid rgba(128, 128, 128, 0.56)',background: 'white'}}>
                                 <div className="card-body space tag1">
                                     <Link to={`/market_classified`} style={{color: 'black'}}>
                                         <img alt='' src="./images/Where to Buy Hero Image.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b className="tag1"> Buy & Sell </b>
                                     </Link>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3 col-sm-4">
+                            <div className="card outset" style={{boxShadow:'none',border: '1px solid rgba(128, 128, 128, 0.56)',background: 'white'}}>
+                                <div className="card-body space tag1">
+                                    <Link to={`/market_classified`} style={{color: 'black'}}>
+                                    <img alt='' src="./images/bg.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b style={{paddingLeft:'9px'}}>JOBS</b></Link>
                                 </div>
                             </div>
                         </div>

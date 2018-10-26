@@ -21,11 +21,12 @@ class Signin extends Component{
             redirectToReferrer: false,
             visible: false,
             email2: '',
+            to: {}
         }
     }
 
     componentDidMount(){
-        console.log(this.props.location.state, 'pppppppppppppppppppppppp1111111111111')
+        this.setState({to: this.props.location.state})
         this.handleLocalStorage();
         this.getSignData();
     }
@@ -34,26 +35,20 @@ class Signin extends Component{
         const { data } = this.props;
         const { route, obj } = this.state;
         let arr = obj.map((elem) => elem.password)
-        console.log(arr, 'arrrrrrrrrrrrr')
         if(prevProps.data !== data){
             if(data && data.route === route) {
                 if(arr.includes(data.id)){
-                    console.log('aaaaaaaaaaaaaaa')
                     obj.map((elem) => {
                         if(elem.password === data.id){
-                            console.log(elem, '1111111111111111')
                             this.funcLogin({userName: elem.email, password: elem.password})
                         }
                     })
                 }else {
-                    console.log('bbbbbbbbbbbbbbb')
                     if (data && data.email === undefined) {
-                        // console.log('2222222222222222')
                         this.setState({visible: true})
                     }
                     else {
                         if (data) {
-                            console.log('333333333333333')
                             let obj = {
                                 nickname: data.name,
                                 email: data.email,
@@ -102,7 +97,6 @@ class Signin extends Component{
 
     async funcLogin(values){
         let response = await HttpUtils.get('usersignin?useremail='+values.userName+'&password='+values.password)
-        console.log(response, 'hhhhhhhhhhhhhhhhhhhhhh')
         if(response.code === 200){
             this.getProfile(response)
                 .then((data) => {
@@ -142,7 +136,6 @@ class Signin extends Component{
     }
 
     async getProfileId(response){
-        console.log(response, 'responseeeeeeeeeeeeeee')
         if(response.code === 200){
             let obj = {
                 name: response.name,
@@ -206,7 +199,7 @@ class Signin extends Component{
     render(){
         const { from } = this.props.location.state || { from: { pathname: "/" } };
         const { getFieldDecorator } = this.props.form;
-        let {redirectToReferrer, email2} = this.state;
+        let {redirectToReferrer, email2, to} = this.state;
         if (redirectToReferrer) {
             return <Redirect to={from} />;
         }
@@ -226,7 +219,7 @@ class Signin extends Component{
 					<div className="col-md-3">
 							<span className="font_weight_signin_seperate_he">Sign in to your Pakjazba account</span><br/><br/>
 							<div className="main_seperate_div">
-								<Formsignin/>
+								<Formsignin to={to}/>
 							</div>
 					</div>
 					<div className="col-md-3">
@@ -264,7 +257,7 @@ class Signin extends Component{
 					<div className="col-md-3">
 						<span className="font_weight_signin_seperate_he">Create a new Pakjazba account</span><br/><br/>
 						<div className="main_seperate_div">
-							<Form_signup/>
+							<Form_signup to={to}/>
 						</div>
 					</div>
 				</div>

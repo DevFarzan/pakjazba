@@ -15,18 +15,16 @@ class Facebook extends Component {
     responseFacebook = response =>{
         const { clicked } = this.state;
         const { dispatch, inRup } = this.props;
-        console.log(response);
-        console.log(inRup);
         if(clicked) {
             let data = response
             // let data = {
             // 	accessToken: 'sdjhfalskjfhajhflakjflkahfja',
-                // email: 'zb@brother.com',
-                // expiresIn: '7500',
-                // id: '918273364508',
-                // name: 'brother2',
-                // picture: 'skdjfkals',
-                // userId: '1029384756'
+            //     email: 'zab@brother.com',
+            //     expiresIn: '7500',
+            //     id: '9182733645908',
+            //     name: 'brother2',
+            //     picture: 'skdjfkals',
+            //     userId: '10293847596'
             // }
             data = {...data, ...{route: inRup}}
             dispatch({type: 'FACEBOOKSIGNUP', data})
@@ -34,7 +32,6 @@ class Facebook extends Component {
     }
 
     componentClicked = () =>{
-        console.log('clicked');
         this.setState({clicked: true})
     }
 

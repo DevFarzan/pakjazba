@@ -47,7 +47,7 @@ class Home1 extends Component{
                 <App/>
                 <div className="row">
                         <div className="col-md-12">
-                          <h4 style={{color:'black',marginLeft:'15px',fontSize:'22px',fontWeight:'bold',marginTop: '13px'}}>Find what you need…</h4>
+                          <h4 style={{color:'black',marginLeft:'15px',fontSize:'22px',fontWeight:'bold',marginTop: '13px', fontFamily:'crimson'}}>Find what you need…</h4>
                         </div>
                       </div>
                 <div className="row" style={{marginTop:'-23px'}}>
@@ -245,7 +245,7 @@ class Home1 extends Component{
                                 <div className="col-md-4">
                                 <Link to={`/detail_blog`}>
                                     <img alt='' src="./images/default/shutterstock_332684105.png" width="120" height="110" />
-                                </Link>    
+                                </Link>
                                 </div>
                                 <div className="col-md-8" style={{paddingLeft: '30px'}}>
                                     <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
@@ -257,7 +257,7 @@ class Home1 extends Component{
                                 <div className="col-md-4">
                                     <Link to={`/detail_blog`}>
                                         <img alt='' src="./images/default/shutterstock_416673679.png" width="120" height="110" />
-                                    </Link>    
+                                    </Link>
                                 </div>
                                 <div className="col-md-8" style={{paddingLeft: '30px'}}>
                                     <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
@@ -281,7 +281,7 @@ class Home1 extends Component{
                                 <div className="col-md-4">
                                 <Link to={`/detail_blog`}>
                                     <img alt='' src="./images/default/shutterstock_500151964.png" width="120" height="110" />
-                                </Link>    
+                                </Link>
                                 </div>
                                 <div className="col-md-8" style={{paddingLeft: '30px'}}>
                                     <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>

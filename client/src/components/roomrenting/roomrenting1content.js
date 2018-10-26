@@ -74,7 +74,7 @@ class Roomrenting1content extends Component{
 
         return(
             <section id="about">
-                
+
                 <div className="">
                     <div className="row">
                     <Link to={{pathname: `/postad_Roommates`}}>
@@ -160,7 +160,7 @@ class Roomrenting1content extends Component{
                     {/*!!showroomrents.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length : roomrents.length} onChange={this.onChange} /></span>*/}
                 </div>
 
-                <div className="thirdfold" style={{backgroundColor:"#008080",marginTop: '68px',textAlign:'center'}}>
+                <div className="thirdfold" style={{backgroundColor:"#032a30",marginTop: '68px',textAlign:'center'}}>
                 <h3 style={{color:"white"}}> Selling With Us Is Easy </h3>
                 <div className="row">
                     <div className="container">

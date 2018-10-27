@@ -166,19 +166,21 @@ class FeaturedBox extends Component{
                 <h2 className="font-style" style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}>Featured Jobs </h2>
                 <div className="row">
                     <Link to={{pathname: `/postad_jobPortal`}}>
-                        <div className="col-md-4"  style={{height: '530px' }}>
-                            <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '100%', width: '90%'}}/>
+                        <div className="col-md-3">
+                            <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '380px', width: '90%',borderRadius:'16px'}}/>
                         </div>
                     </Link>
                     {showJob && showJob.map((elem) => {
                         return (
-                            <div className="col-md-4">
+                            <div className="col-md-3">
                                 <div className="featuredbox">
                                     <div className="featuredbox-content featuredjob-box ">
                                         <div className="featuredjob-imitation">
+                                        <Link to={{pathname: `/detail_jobPortal`, state: {...elem, sec: 'mainPart', user: user}}}>
                                             <div className="card2">
-                                                <img alt='' src={elem.arr_url[0]}/>
+                                                <img alt='' src={elem.arr_url[0]} style={{height:'200px'}} />
                                             </div>
+                                            </Link>
                                         </div>
                                         <div className="customjob-margin">
                                             <h4 className="heading-wight font-style">{elem.jobCat}</h4>
@@ -191,17 +193,17 @@ class FeaturedBox extends Component{
                                         </div>
                                         <div className="jobdetail-desc">
                                             <div> </div>
-                                            <div className="small m-t-xs font-style">
+                                            {/*<div className="small m-t-xs font-style">
                                                 {elem.jobDescription}
-                                            </div>
-                                            <div className="row">
+                                            </div>*/}
+                                            <div className="row" style={{padding:'0px'}}>
                                                 <div className="col-md-6 col-sm-12 col-xs-12">
                                                     <Link to={{pathname: `/detail_jobPortal`, state: {...elem, sec: 'mainPart', user: user}}}>
-                                                        <button type="button" className="btn btn-sm btn2-success font-style" style={{width:"100%"}}>View Detail</button>
+                                                        <button type="button" className="btn btn-sm btn2-success font-style">View Detail</button>
                                                     </Link>
                                                 </div>
                                                 <div className="col-md-6 col-sm-12 col-xs-12">
-                                                    <button type="button" className="btn btn-sm btn2-success font-style" style={{width:"100%"}} onClick={() => {this.clickItem(elem)}}>Apply Now</button>
+                                                    <button type="button" className="btn btn-sm btn2-success font-style"  onClick={() => {this.clickItem(elem)}}>Apply Now</button>
                                                 </div>
                                             </div>
                                         </div>

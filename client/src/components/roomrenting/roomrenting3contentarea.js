@@ -99,9 +99,9 @@ class Roomrenting3contentarea extends Component{
 
         return(
             <div>
-                <div className="head-bg" style={{marginTop:'65px'}}>
+                <div className="head-bg">
                     <div className="col-md-12">
-                        <h2 className="head-space">Luxary Room Available </h2>
+                       <h2 className="head-space">Luxary Room Available </h2>
                     </div>
                 </div>
                 {/*<div className="row" style={{"marginTop": "62px"}}>
@@ -136,7 +136,7 @@ class Roomrenting3contentarea extends Component{
                                 {images && images.map((elem) => {
                                     return(
                                         <div>
-                                            <img src={elem} style={{height: '400px'}} />
+                                            <img src={elem}/>
                                         </div>
                                     )
                                 })}
@@ -144,7 +144,7 @@ class Roomrenting3contentarea extends Component{
                         </div>
                         <div className="col-lg-5 col-md-6 col-sm-6 col-xs-12">
 
-                         <Tabs defaultActiveKey="2" style={{border:'1px solid gray',backgroundColor:'rgba(119, 136, 153, 0.05)',padding: '10px',marginTop:'16px',height:'393px'}}>
+                         <Tabs defaultActiveKey="2" style={{border:'1px solid gray',backgroundColor:'rgba(119, 136, 153, 0.05)',padding: '10px',marginTop:'16px',height:'298px'}}>
                             <TabPane style={{height: '258px', 'overflow-y': 'overlay'}} tab='SPORTS' key="1">
                                 {sports.map((elem) => {
                                     return(
@@ -175,7 +175,7 @@ class Roomrenting3contentarea extends Component{
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-lg-9 col-md-6 col-sm-12 col-xs-12 des-space">
+                    <div className="col-lg-9 col-md-6 col-sm-12 col-xs-12">
                         <h3> Description </h3>
                         <p>{data.discription || data.description}</p>
                     </div>
@@ -207,7 +207,7 @@ class Roomrenting3contentarea extends Component{
                             <p><b>Accommodates:</b>{' ' + data.accomodates || data.accommodates}</p>
                             <p><b>Smoking:</b>{' ' + data.smoking}</p>
                         </div>
-                        <div className="col-md-4 col-sm-12 col-xs-12 des-space">
+                        <div className="col-md-8 col-sm-12 col-xs-12">
                             <h3>Location </h3>
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.6337348509687!2d67.03749541472551!3d24.807992284078704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33da992be1aa7%3A0x7646411a2d8e6ac5!2sKRL+Creatives!5e0!3m2!1sen!2s!4v1536302761580" width="100%" height="400" frameborder="0" style={{"border":"0"}} allowfullscreen></iframe>
                         </div>
@@ -253,7 +253,7 @@ class Roomrenting3contentarea extends Component{
                                         <textarea className="form-control" value={this.state.msg} onChange={this.onChangeValue} id="msg"> </textarea>
                                     </div>
                                     {this.state.loader && <Spin indicator={antIcon} />}
-                                    <button disabled={!!this.state.loader} type="submit" onClick={this.submitMsg.bind(this)} className="btn search-btn">Submit</button>
+                                    <button disabled={!!this.state.loader} type="submit" onClick={this.submitMsg.bind(this)} className="btn btn2-success">Submit</button>
                                 </form>
                             </div>
                         </div>

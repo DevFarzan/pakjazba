@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Burgermenu from '../header/burgermenu';
+import Slider from '../header/Slider';
 import Footer from '../footer/footer'
 import Roomrentingthreecontentarea from "./roomrenting3contentarea";
 import { Redirect } from 'react-router';
@@ -37,6 +38,7 @@ class DetailRoommates extends Component{
 
     render(){
         const { isData, data } = this.state;
+        const hide = true;
 
         if(!isData){
             return <Redirect to='/' />
@@ -44,9 +46,14 @@ class DetailRoommates extends Component{
 
         return(
             <div>
-                <span className="background_listing">
-                	<Burgermenu/>
-                </span>
+                <span>
+                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/busnes-listing.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
+                        <div className="background-image">
+                            <Burgermenu/>
+                            <Slider mainH1="Explore Homes" mainH2="Find Your Perfect Match" hide={hide}/>
+                        </div>
+                    </div>
+                </span> 
                 <div className="container" style={{"width":"90%"}}>
                     {!!data && <Roomrentingthreecontentarea data={data}/>}
                 </div>

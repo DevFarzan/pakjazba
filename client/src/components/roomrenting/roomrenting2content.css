@@ -8,7 +8,9 @@
 	padding-top: 10px; 
 }
 
-
+.ant-carousel .slick-slider .slick-list{
+    height:15px !important;
+}
 /* Head End */
 
 /* Search Bar */

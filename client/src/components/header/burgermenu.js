@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './burgermenu.css';
-import { Button } from 'antd';
 import MainLogin from '../header/mainLogin';
 import Category from '../header/getcategory';
 import { Link } from "react-router-dom";
@@ -112,17 +111,9 @@ state = {
                               <div style={{backgroundColor:'#37a99b'}}><MainLogin/></div>
                           </div>
                       </div>}
-                      <label className="mobile-left mobmenu-toggle" for="mobile-menu-toggle">+</label>
-                      <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle mobile-menu-toggle-button" />
-                      <ul id="plain-menu" className="mobile-toggleable-menu mobile-left">
-                          <li><a href="#">Home</a></li>
-                          <li><a href="#">About</a></li>
-                          <li><a href="#">Contact</a></li>
-                          <li><a href="#">Portfolio</a></li>
-                      </ul>
+        
                   </div>
               </nav>
-
           </div>
       )
   }

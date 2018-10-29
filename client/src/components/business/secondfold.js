@@ -87,7 +87,7 @@ class Secondfold extends Component{
     async getReviews(data){
         let res = await HttpUtils.get('getreviews');
         if(res.code === 200) {
-            data = data.map((el) => {
+            data =  data && data.map((el) => {
                 let filteredReviews = res.content.map((elem) => {
                     if(elem.objid === el._id){
                         return elem.star;
@@ -96,10 +96,16 @@ class Secondfold extends Component{
                 let star = (_.reduce(_.compact(filteredReviews), (a, b) => {return +a + +b}, 0))/_.compact(filteredReviews).length
                 return {...el, star}
             })
-            console.log(data, 'dataaaaaaaaaaaa')
             this.setState({
                 business: data,
                 showBusiness: data.slice(0, 7),
+                loader: false
+            });
+        }
+        else {
+            this.setState({
+                business: data ? data : [],
+                showBusiness: data ? data.slice(0, 7) : [],
                 loader: false
             });
         }

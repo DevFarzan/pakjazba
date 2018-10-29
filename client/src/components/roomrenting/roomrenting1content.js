@@ -45,8 +45,8 @@ class Roomrenting1content extends Component{
     async getAllBusiness(){
         let res = await HttpUtils.get('marketplace')
         this.setState({
-            roomrents: res ? res.roomrentsdata : [],
-            showroomrents: res ? res.roomrentsdata.slice(0, 7) : [],
+            roomrents: res.roomrentsdata ? res.roomrentsdata : [],
+            showroomrents: res.roomrentsdata ? res.roomrentsdata.slice(0, 7) : [],
             loader: false
         })
     }
@@ -147,7 +147,6 @@ class Roomrenting1content extends Component{
                                                             <p className="categories-on-card" style={{backgroundColor:"#008080",textAlign: "center",width: "159px",marginBottom: "6px"}}>{elem.category}</p>
                                                             <i className="glyphicon glyphicon-map-marker" style={{color: "#008080",marginLeft: "-2px"}} /><p className="text" style={{color: "white",marginLeft: "14px"}}>{elem.state +" & "+ elem.city}</p>
                                                         </span>
-
                                                     </div>
                                                 </div>
                                                 <div>
@@ -181,7 +180,6 @@ class Roomrenting1content extends Component{
                                                 <span className="text" style={{color: "#000000c7"}}>{elem.contactname}</span>
                                                 </div>*/}
                                                 {/*<div className="product-desc">
-
                                                     <div className="product-name" style={{"fontSize": "14px"}}>{des}</div>
                                                     <div className="m-t text-righ" style={{marginTop:"58px",fontSize: "18px",textDecoration:"underline"}}>
                                                         <Link to={{pathname: `/detail_roomRent`, state: elem}} className="" style={{color:"red"}}>Detail</Link>
@@ -198,7 +196,7 @@ class Roomrenting1content extends Component{
                     {this.state.loader && <div className="col-md-12" style={{textAlign: 'center', marginBottom: '20px', marginLeft: '-50px'}}>
                         <Spin indicator={antIcon} />
                     </div>}
-                    {(filteredArr.length > showroomrents.length) || (roomrents.length > showroomrents.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>}
+                    {(showroomrents.length >= 7) && !(showroomrents.length === roomrents.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>}
                     {/*!!showroomrents.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length : roomrents.length} onChange={this.onChange} /></span>*/}
                     {this.state.visible && <Modal
                         title="Kindly Login first"

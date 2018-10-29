@@ -22,6 +22,74 @@ import {HttpUtils} from "../../Services/HttpUtils";
 const FormItem = Form.Item;
 const { TextArea } = Input;
 
+const category = [{
+    value: 'Accounting',
+    label: 'Accounting'
+},{
+    value: 'Admin & Clerical',
+    label: 'Admin & Clerical',
+},{
+    value: 'Banking & Finance',
+    label: 'Banking & Finance',
+},{
+    value:'Business Opportunities',
+    label:'Business Opportunities'
+},{
+    value:'Contract & Freelance',
+    label:'Contract & Freelance',
+},{
+    value:'Customer Service',
+    label:'Customer Service',
+},{
+    label:'Diversity Opportunities',
+    value:'Diversity Opportunities',
+},{
+    label:'Engineering',
+    value:'Engineering',
+},{
+    value:'Executive',
+    label:'Executive',
+},{
+    value:'Franchise',
+    label:'Franchise',
+},{
+    value:'Government',
+    label:'Government',
+},{
+    value:'Health Care',
+    label:'Health Care',
+},{
+    value:'Hospitality',
+    label:'Hospitality',
+},{
+    value:'Human Resources',
+    label:'Human Resources',
+},{
+    value:'Information Technology',
+    label:'Information Technology',
+},{
+    value:'Internships & College',
+    label:'Internships & College',
+},{
+    value:'Manufacturing',
+    label:'Manufacturing',
+},{
+    value:'Nonprofit',
+    label:'Nonprofit',
+},{
+    value:'Retail',
+    label:'Retail',
+},{
+    value:'Sales & Marketing',
+    label:'Sales & Marketing',
+},{
+    value:'Science & Biotech',
+    label:'Science & Biotech',
+},{
+    value:'Transportation',
+    label:'Transportation',
+}];
+
 class JobPortal extends Component {
     constructor(props) {
         super(props)
@@ -170,7 +238,7 @@ class JobPortal extends Component {
             compName: values.compName,
             email: values.email,
             experience: values.experience,
-            jobCat: values.jobCat,
+            jobCat: values.jobCat[0],
             jobDescription: values.jobDescription,
             jobTitle: values.jobTitle,
             jobType: values.jobType,
@@ -386,13 +454,8 @@ class JobPortal extends Component {
                                                         <FormItem>
                                                             {getFieldDecorator('jobCat', {
                                                                 initialValue: jobCat,
-                                                                rules: [{
-                                                                    required: true,
-                                                                    message: 'Please input your Job Category!',
-                                                                    whitespace: true
-                                                                }],
-                                                            })(
-                                                                <input type="text" className="form-control"/>
+                                                                rules: [{ validator: this.onChangeState }],                                                            })(
+                                                                <Cascader options={category} showSearch={{ filter }}/>
                                                             )}
                                                         </FormItem>
                                                     </div>

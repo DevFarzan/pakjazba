@@ -79,8 +79,8 @@ class FeaturedBox extends Component{
     async getAllBusiness(){
         var res = await HttpUtils.get('marketplace');
         this.setState({
-            job: res && res.jobPortalData,
-            showJob: res && res.jobPortalData.slice(0, 7),
+            job: res.jobPortalData && res.jobPortalData,
+            showJob: res.jobPortalData ? res.jobPortalData.slice(0, 7) : [],
             loader: false
         });
     }

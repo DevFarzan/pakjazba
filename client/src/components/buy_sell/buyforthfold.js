@@ -59,8 +59,8 @@ class Forthfold extends Component{
     async getAllBusiness(){
         let res = await HttpUtils.get('marketplace')
         this.setState({
-            buySell: res.busell,
-            showBuySell: res.busell.slice(0, 7),
+            buySell: res.busell ? res.busell : [],
+            showBuySell: res.busell ? res.busell.slice(0, 7) : [],
             loader: false
         })
         this.handleLocalStorage();

@@ -46,24 +46,6 @@ class JobDetail extends Component {
             }
             this.setState({data, user: data.user});
         }
-        this.handleLocalStorage(data);
-    }
-
-    handleLocalStorage = (data) =>{
-        AsyncStorage.getItem('user')
-            .then((obj) => {
-                let userObj = JSON.parse(obj)
-                if(!!userObj){
-                    if(userObj._id === data.user_id){
-                        this.setState({
-                            user: false
-                        })
-                    }
-                }
-                else {
-                    
-                }
-            })
     }
 
     render(){

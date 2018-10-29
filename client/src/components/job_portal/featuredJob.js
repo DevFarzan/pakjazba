@@ -36,7 +36,6 @@ class FeaturedBox extends Component{
         if(prevProps.text !== text){
             if(!!text){
                 this.searchedArr(text)
-                // this.setState({ noText: false, loader: false })
             }else {
                 this.setState({
                     showJob: job.slice(0, 6),
@@ -72,8 +71,8 @@ class FeaturedBox extends Component{
         })
         this.setState({
             filteredArr,
-            showJob: filteredArr.slice(0, 6),
-            add: 6
+            showJob: filteredArr.slice(0, 7),
+            add: 7
         })
     }
 
@@ -81,7 +80,7 @@ class FeaturedBox extends Component{
         var res = await HttpUtils.get('marketplace');
         this.setState({
             job: res && res.jobPortalData,
-            showJob: res && res.jobPortalData.slice(0, 6),
+            showJob: res && res.jobPortalData.slice(0, 7),
             loader: false
         });
     }
@@ -112,13 +111,13 @@ class FeaturedBox extends Component{
         const { add, job, filteredArr } = this.state;
         if(!!filteredArr.length){
             this.setState({
-                showJob: filteredArr.slice(0, add + 6),
-                add: add + 6
+                showJob: filteredArr.slice(0, add + 8),
+                add: add + 8
             });
         }else {
             this.setState({
-                showJob: job.slice(0, add + 6),
-                add: add + 6
+                showJob: job.slice(0, add + 8),
+                add: add + 8
             });
         }
         if(this.props.text.length){
@@ -185,6 +184,11 @@ class FeaturedBox extends Component{
                         <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '380px', width: '90%',borderRadius:'16px'}}/>
                     </div>
                     {showJob && showJob.map((elem) => {
+                        let str = elem.location || '';
+                        if(str.length > 8) {
+                            str = str.substring(0, 8);
+                            str = str + '...'
+                        }
                         return (
                             <div className="col-md-3">
                                 <div className="featuredbox">
@@ -202,14 +206,11 @@ class FeaturedBox extends Component{
                                             <p className="textforjob font-style">{elem.jobType}</p>
                                             <div className="glyphicom">
                                                 <i className="glyphicon glyphicon-map-marker"/>
-                                                <p className="textforjob font-style ">{elem.location}</p>
+                                                <p className="textforjob font-style ">{str}</p>
                                             </div>
                                         </div>
                                         <div className="jobdetail-desc">
                                             <div> </div>
-                                            {/*<div className="small m-t-xs font-style">
-                                                {elem.jobDescription}
-                                            </div>*/}
                                             <div className="row" style={{padding:'0px'}}>
                                                 <div className="col-md-6 col-sm-12 col-xs-12">
                                                     <Link to={{pathname: `/detail_jobPortal`, state: {...elem, sec: 'mainPart', user: user}}}>
@@ -217,7 +218,7 @@ class FeaturedBox extends Component{
                                                     </Link>
                                                 </div>
                                                 <div className="col-md-6 col-sm-12 col-xs-12">
-                                                    <button type="button" className="btn btn-sm btn2-success font-style"  onClick={() => {this.clickItem(elem)}}>Apply Now</button>
+                                                    <button type="button" className="btn btn-sm btn2-success font-style" onClick={() => {this.clickItem(elem)}}>Apply Now</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -236,8 +237,7 @@ class FeaturedBox extends Component{
                 </div>}
                 {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h1 className="font-style">Not found....</h1></span>}
                 {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h5 className="font-style">you can find your search by type</h5></span>}
-                {/*!!showJob && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :job.length} onChange={this.onChange} /></span>*/}
-                <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success font-style" onClick={this.onAddMore}>View More ...</button></div>
+                {(showJob.length >= 7) && !(showJob.length === job.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success font-style" onClick={this.onAddMore}>View More ...</button></div>}
                 {this.state.visible && <Modal
                     title="Kindly Login first"
                     visible={this.state.visible}

@@ -246,7 +246,7 @@ class JobPortal extends Component {
         const { email, jobTitle, jobType, jobCat, salary, compDescription, jobDescription, experience, compEmail, jobBanner, location, previewVisible, previewImage, fileList, objData } = this.state;
 
         if (this.state.msg === true) {
-            return <Redirect to={{pathname: '/detail_jobPortal', state: {...objData, user: true}}} />
+            return <Redirect to={{pathname: '/detail_jobPortal', state: {...objData, user: false}}} />
         }
 
         const uploadedImages = (

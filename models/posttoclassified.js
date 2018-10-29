@@ -16,6 +16,7 @@ var postclassifiedSchema = new mongoose.Schema({
 	sizedimension:{type:Array},
 	images:{type:Array},
 	city:{type:String},
+	state:{type:String},
 	postingtype:{type:String},
 	category:{type:String},
 	title:{type:String},

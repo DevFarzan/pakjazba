@@ -44,7 +44,7 @@ class ApplyJob extends Component {
         let data = job.filter((elem) => {
             return (elem.jobCat.toLowerCase().includes(e.toLowerCase()))
         })
-        console.log(e, 'filtering functionnnnnnnn')
+        console.log(data, 'filtering functionnnnnnnn')
         this.setState({
             filteredData: data,
             showJob: data.slice(0, 6)

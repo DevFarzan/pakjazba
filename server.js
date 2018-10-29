@@ -638,6 +638,7 @@ app.post('/api/postbuyselldata',function(req,res){
       contactnumber = buyselldata.contactNumber;
       modeofcontact = buyselldata.contactMode;
   var address = buyselldata.address,
+      state = buyselldata.state,
       category = buyselldata.category,
       city = buyselldata.city,
       condition = buyselldata.condition;
@@ -674,6 +675,7 @@ if(buyselldata.objectId == '' || buyselldata.objectId == undefined || buyselldat
       sizedimension:sizedimension,
       images:classifiedImages,
       city:city,
+      state: state,
       postingtype:postingtype,
       category:category,
       title:title,

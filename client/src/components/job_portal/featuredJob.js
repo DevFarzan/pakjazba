@@ -137,8 +137,17 @@ class FeaturedBox extends Component{
         }
     }
 
+    addJob(){
+        const { user } = this.state;
+        if(user){
+            this.setState({goForward: true})
+        }else {
+            this.setState({visible: true, objData: {}})
+        }
+    }
+
     handleCancel = (e) => {
-        this.setState({visible: false});
+        this.setState({visible: false, objData: {}});
     }
 
     handleLogin = (e) => {
@@ -150,26 +159,31 @@ class FeaturedBox extends Component{
     }
 
     render(){
-        const { showJob, filteredArr, job, noText, goForLogin, objData, goDetail, user } = this.state;
+        const { showJob, filteredArr, job, noText, goForLogin, objData, goDetail, user, goForward } = this.state;
         const { text } = this.props;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
         if (goForLogin) {
-            return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/detail_jobPortal" }, state: objData}}}/>;
+            if(Object.keys(objData). length > 0){
+                return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/detail_jobPortal" }, state: objData}}}/>;
+            }else {
+                return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/postad_jobPortal" }}}}/>;
+            }
         }
         if(goDetail){
             return <Redirect to={{pathname: `/detail_jobPortal`, state: {...objData, user: user}}} />
+        }
+        if(goForward){
+            return <Redirect to={{pathname: `/postad_jobPortal`}} />
         }
 
         return(
             <div className="container" style={{width:"94%"}}>
                 <h2 className="font-style" style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}>Featured Jobs </h2>
                 <div className="row">
-                    <Link to={{pathname: `/postad_jobPortal`}}>
-                        <div className="col-md-3">
-                            <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '380px', width: '90%',borderRadius:'16px'}}/>
-                        </div>
-                    </Link>
+                    <div className="col-md-3" onClick={() => {this.addJob()}}>
+                        <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '380px', width: '90%',borderRadius:'16px'}}/>
+                    </div>
                     {showJob && showJob.map((elem) => {
                         return (
                             <div className="col-md-3">

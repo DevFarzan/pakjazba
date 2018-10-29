@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
-import { Spin, Icon, Pagination, Rate } from 'antd';
+import { Spin, Icon, Pagination, Rate, Modal } from 'antd';
 import './secondfold.css'
 import {HttpUtils} from "../../Services/HttpUtils";
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
+import AsyncStorage from "@callstack/async-storage/lib/index";
+import { Redirect } from 'react-router';
 import _ from 'underscore'
 
 class Secondfold extends Component{
@@ -17,7 +19,9 @@ class Secondfold extends Component{
             filteredArr: [],
             searchValue: '',
             loader: true,
-            add: 6
+            add: 6,
+            user: false,
+            visible: false
         }
     }
 
@@ -31,11 +35,12 @@ class Secondfold extends Component{
         if(prevProps.text !== text){
             if(!!text){
                 this.searchedArr(text)
+                this.setState({showBusiness: []})
             }else {
                 this.setState({
-                    showBusiness: business.slice(0, 6),
+                    showBusiness: business.slice(0, 7),
                     filteredArr: [],
-                    add: 6
+                    add: 7
                 })
             }
         }
@@ -51,14 +56,32 @@ class Secondfold extends Component{
         })
         this.setState({
             filteredArr,
-            showBusiness: filteredArr.slice(0, 6),
-            add: 6
+            showBusiness: filteredArr.slice(0, 7),
+            add: 7
         })
     }
 
     async getAllBusiness(){
         var res = await HttpUtils.get('marketplace')
         this.getReviews(res.business);
+        this.handleLocalStorage();
+    }
+
+    handleLocalStorage = () =>{
+        AsyncStorage.getItem('user')
+            .then((obj) => {
+                let userObj = JSON.parse(obj)
+                if(!!userObj){
+                    this.setState({
+                        user: true,
+                    })
+                }
+                else {
+                    this.setState({
+                        user: false
+                    })
+                }
+            })
     }
 
     async getReviews(data){
@@ -73,9 +96,10 @@ class Secondfold extends Component{
                 let star = (_.reduce(_.compact(filteredReviews), (a, b) => {return +a + +b}, 0))/_.compact(filteredReviews).length
                 return {...el, star}
             })
+            console.log(data, 'dataaaaaaaaaaaa')
             this.setState({
                 business: data,
-                showBusiness: data.slice(0, 5),
+                showBusiness: data.slice(0, 7),
                 loader: false
             });
         }
@@ -105,16 +129,15 @@ class Secondfold extends Component{
 
     onAddMore = () => {
         const { add, business, filteredArr } = this.state;
-        console.log(add + 6, 'View Add bitton clickedddddd')
         if(!!filteredArr.length){
             this.setState({
-                showJob: filteredArr.slice(0, add + 6),
-                add: add + 6
+                showBusiness: filteredArr.slice(0, add + 7),
+                add: add + 7
             });
         }else {
             this.setState({
-                showJob: business.slice(0, add + 6),
-                add: add + 6
+                showBusiness: business.slice(0, add + 7),
+                add: add + 7
             });
         }
         if(this.props.text.length){
@@ -124,22 +147,48 @@ class Secondfold extends Component{
         }
     }
 
+    clickItem(){
+        const { user } = this.state;
+        if(user){
+            this.setState({goDetail: true})
+        }else {
+            this.setState({visible: true})
+        }
+    }
+
+    handleCancel = (e) => {
+        this.setState({visible: false});
+    }
+
+    handleLogin = (e) => {
+        this.setState({goForLogin: true, visible: false})
+    }
+
+
     render(){
-        const { business, showBusiness, filteredArr, add } = this.state;
+        const { business, showBusiness, filteredArr, add, goForLogin, goDetail } = this.state;
         const { text } = this.props;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
+        if (goForLogin) {
+            return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/postad_business" }}}}/>;
+        }
+        if(goDetail){
+            return <Redirect to={{pathname: `/postad_business`}} />
+        }
+
         return(
             <div className="secondfold">
-                <h1 className="text-align"> Great Places </h1>
+                {!text && <h1 className="text-align"> Great Places </h1>}
+                    {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
+                    {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
+                    {text && !!filteredArr.length === false && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
                 <div className="index-content" style={{marginTop:'-77px'}}>
                     <div className="container" style={{width: '93%'}}>
                     <div className="row">
-                        <Link to={{pathname: `/postad_business`}}>
-                            <div className="col-md-3"  style={{'marginBottom': '30px'}}>
-                                <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '360px', width: '100%', borderRadius: '13px'}}/>
-                            </div>
-                        </Link>
+                        <div className="col-md-3"  style={{'marginBottom': '30px'}} onClick={() => {this.clickItem()}}>
+                            <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '360px', width: '100%', borderRadius: '13px'}}/>
+                        </div>
                         {showBusiness && showBusiness.map((elem, key) => {
                             let str = elem.businessaddress || '';
                             if(str.length > 25) {
@@ -164,10 +213,19 @@ class Secondfold extends Component{
                     {this.state.loader &&  <div  style={{textAlign: 'center', marginLeft:'-100px', marginBottom: '15px'}}>
                         <Spin indicator={antIcon} />
                     </div>}
-                    {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
-                    {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
                     {/*!!showBusiness.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :business.length} onChange={this.onChange} /></span>*/}
-                    <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>View More ...</button></div>
+                    {this.state.visible && <Modal
+                        title="Kindly Login first"
+                        visible={this.state.visible}
+                        onOk={this.handleOk}
+                        onCancel={this.handleCancel}
+                    >
+                        <div className="row">
+                            <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleLogin}>Login</button></div>
+                            <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleCancel}>Cancel</button></div>
+                        </div>
+                    </Modal>}
+                    {(showBusiness.length >= 7) && !(showBusiness.length === business.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>View More ...</button></div>}
                 </div>
                 <div className="row">
                     <div className="col-md-12">

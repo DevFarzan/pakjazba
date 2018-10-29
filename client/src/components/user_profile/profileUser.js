@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Icon, Input, Form, Upload, Pagination, Tabs,Button} from 'antd';
+import {Icon, Input, Form, Upload, Pagination, Tabs,Button, notification } from 'antd';
 import Footer from '../footer/footer.js';
 import sha1 from "sha1";
 import superagent from "superagent";
@@ -73,6 +73,7 @@ class ProfileUser extends Component{
             email: user.email,
             location:user.location,
             description:user.description,
+            desLen: 500 - user.description.length,
             phone:user.phone,
             twitter:user.twitterlink,
             facebook:user.facebooklink,
@@ -211,11 +212,19 @@ class ProfileUser extends Component{
 
     async profileData(obj){
         let req = await HttpUtils.post('profile', obj)
+        this.openNotification()
     }
 
     async passwordData(obj){
         let req = await HttpUtils.post('changepassword', obj)
     }
+
+    openNotification() {
+        notification.open({
+            message: 'Success ',
+            description: 'Changes saved.',
+        });
+    };
 
     handleProfile(){
         this.setState({
@@ -259,7 +268,7 @@ class ProfileUser extends Component{
         }else if(e.target.id === 'location'){
             this.setState({location: e.target.value})
         }else if(e.target.id === 'description'){
-            this.setState({description: e.target.value})
+            this.setState({description: e.target.value, desLen: 500 - this.state.description.length})
         }else if(e.target.id === 'phone'){
             this.setState({phone: e.target.value})
         }else if(e.target.id === 'email'){
@@ -317,6 +326,14 @@ class ProfileUser extends Component{
             publicSection: false,
             profileSec: true,
         })
+    }
+
+    validateNumber(rule, value, callback){
+        if(isNaN(value)){
+            callback('Please type Numbers');
+        }else {
+            callback()    
+        }
     }
 
     render(){
@@ -400,8 +417,10 @@ class ProfileUser extends Component{
                                                             <div className="form-group">
                                                                 <label htmlFor="sel1">Title:</label>
                                                                 <select className="form-control" id="sel1">
-                                                                    <option>Mr</option>
-                                                                    <option>Mrs</option>
+                                                                    <option>Mr.</option>
+                                                                    <option>Ms.</option>
+                                                                    <option>Mrs.</option>
+                                                                    <option></option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -449,7 +468,7 @@ class ProfileUser extends Component{
                                                         <div className="col-md-12">
                                                             <div className="form-group">
                                                                 <label htmlFor="usr">More About You:</label>
-                                                                <FormItem>
+                                                                <FormItem style={{marginBottom: '0px'}}>
                                                                     {getFieldDecorator('description', {
                                                                         initialValue: description,
                                                                         rules: [
@@ -465,6 +484,7 @@ class ProfileUser extends Component{
                                                                                   maxlength="500"/>
                                                                     )}
                                                                 </FormItem>
+                                                                <span>{this.state.desLen}Words</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -480,7 +500,8 @@ class ProfileUser extends Component{
                                                                     required: true,
                                                                     message: 'Please input your Phone!',
                                                                     whitespace: true
-                                                                }],
+                                                                },
+                                                                { validator: this.validateNumber.bind(this) }],
                                                             })(
                                                                 <Input name="phone" type="text" className="form-control"
                                                                        onChange={this.onChangeValue.bind(this)}

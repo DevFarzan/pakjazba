@@ -173,10 +173,10 @@ class ShowProfilepublic extends Component{
                                                 str = str + '...'
                                             }
                                             return(
-                                                <div className="col-md-4"  style={{'marginBottom': '30px', marginTop: '30px'}}>
-                                                    <div className="card" style={{paddingBottom: '10px'}}>
+                                                <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
+                                                    <div className="card" style={{border: '1px solid #3a252542',boxShadow: 'none',borderRadius:'13px',width:'100%'}}>
                                                         <Link to={{pathname: `/detail_roomRent`, state: elem}}>
-                                                            <img alt='' src={img} />
+                                                            <img alt='' src={img} style={{height:'200px'}} />
                                                             <h4>{title}</h4>
                                                             <p>{str}</p>
                                                         </Link>
@@ -207,10 +207,10 @@ class ShowProfilepublic extends Component{
                                                 str = str + '...'
                                             }
                                             return(
-                                                <div className="col-md-4"  style={{'marginBottom': '30px', marginTop: '30px'}}>
-                                                    <div className="card"  style={{paddingBottom: '10px'}}>
+                                                <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
+                                                    <div className="card"  style={{border: '1px solid #3a252542',boxShadow: 'none',borderRadius:'13px',width:'100%'}}>
                                                         <Link to={{pathname: `/detail_business`, state: elem}}>
-                                                            <img alt='' src={img} />
+                                                            <img alt='' src={img} style={{height:'200px'}} />
                                                             <h4>{title}</h4>
                                                             <p>{str}</p>
                                                         </Link>
@@ -241,10 +241,10 @@ class ShowProfilepublic extends Component{
                                                 str = str + '...'
                                             }
                                             return(
-                                                <div className="col-md-4"  style={{'marginBottom': '30px', marginTop: '30px'}}>
-                                                    <div className="card" style={{paddingBottom: '10px'}}>
+                                                <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
+                                                    <div className="card" style={{border: '1px solid #3a252542',boxShadow: 'none',borderRadius:'13px',width:'100%'}}>
                                                         <Link to={{pathname: `/detail_buySell`, state: elem}}>
-                                                            <img alt='' src={img} />
+                                                            <img alt='' src={img} style={{height:'200px'}} />
                                                             <h4>{title}</h4>
                                                             <p>{str}</p>
                                                         </Link>
@@ -275,10 +275,10 @@ class ShowProfilepublic extends Component{
                                                 str = str + '...'
                                             }
                                             return(
-                                                <div className="col-md-4"  style={{'marginBottom': '30px', marginTop: '30px'}}>
-                                                    <div className="card" style={{paddingBottom: '10px'}}>
+                                                <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
+                                                    <div className="card" style={{border: '1px solid #3a252542',boxShadow: 'none',borderRadius:'13px',width:'100%'}}>
                                                         <Link to={{pathname: `/detail_jobPortal`, state: elem}}>
-                                                            <img alt='' src={img} />
+                                                            <img alt='' src={img} style={{height:'200px'}} />
                                                             <h4>{title}</h4>
                                                             <p>{str}</p>
                                                         </Link>

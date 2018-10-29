@@ -69,7 +69,7 @@ class RoomrentingIcon extends Component{
                         </div>
                     </div>
 
-                    <div className="col-md-2 col-sm-3">
+                    {/*<div className="col-md-2 col-sm-3">
                         <div className="wrimagecard wrimagecard-topimage">
                             <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('sales and marketing')}}>
                                 <center>
@@ -77,7 +77,7 @@ class RoomrentingIcon extends Component{
                                 </center>
                             </div>
                         </div>
-                    </div>
+                    </div>*/}
                 </div>
             </div>
         )

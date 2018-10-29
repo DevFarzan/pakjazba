@@ -124,7 +124,7 @@ class Home1 extends Component{
                                 <img alt='' src="./images/default/shutterstock_67891210.png" width="130" height="120" />
                             </Link>
                         </div>
-                        <div className="col-md-7" style={{paddingLeft: '30px'}}>
+                        <div className="col-md-7" style={{paddingLeft: '15px'}}>
                             <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
                             <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px",color:'Black'}}>By Hills Estate</span>    <span style={{color:'black'}}>13.09.2018</span> <br/><br/></p>
                         </div>
@@ -133,7 +133,7 @@ class Home1 extends Component{
                                 <img alt='' src="./images/default/shutterstock_88612780.png" width="130" height="120" />
                             </Link>
                         </div>
-                        <div className="col-md-7" style={{paddingLeft: '30px'}}>
+                        <div className="col-md-7" style={{paddingLeft: '15px'}}>
                             <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum</b></h5></Link>
                             <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
                         </div>
@@ -142,7 +142,7 @@ class Home1 extends Component{
                                 <img alt='' src="./images/default/shutterstock_103383050.png" width="130" height="120" />
                             </Link>
                         </div>
-                        <div className="col-md-7" style={{paddingLeft: '30px'}}>
+                        <div className="col-md-7" style={{paddingLeft: '15px'}}>
                             <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum</b></h5></Link>
                             <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
                         </div>
@@ -151,7 +151,7 @@ class Home1 extends Component{
                                 <img alt='' src="./images/default/shutterstock_167474171.png" width="130" height="120" />
                             </Link>
                         </div>
-                        <div className="col-md-7" style={{paddingLeft: '30px'}}>
+                        <div className="col-md-7" style={{paddingLeft: '15px'}}>
                             <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum</b></h5></Link>
                             <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
                         </div>
@@ -223,7 +223,7 @@ class Home1 extends Component{
                                     <img alt='' src="./images/default/shutterstock_283141730.png" width="120" height="110" />
                                 </Link>
                                 </div>
-                                <div className="col-md-8" style={{paddingLeft: '30px'}}>
+                                <div className="col-md-8" style={{paddingLeft: '15px'}}>
                                     <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsums</b></h5></Link>
                                     <br/>
                                     <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
@@ -235,7 +235,7 @@ class Home1 extends Component{
                                         <img alt='' src="./images/default/shutterstock_287171087.png" width="120" height="110" />
                                         </Link>
                                 </div>
-                                <div className="col-md-8" style={{paddingLeft: '30px'}}>
+                                <div className="col-md-8" style={{paddingLeft: '15px'}}>
                                     <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
                                     <br/>
                                     <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
@@ -247,7 +247,7 @@ class Home1 extends Component{
                                     <img alt='' src="./images/default/shutterstock_332684105.png" width="120" height="110" />
                                 </Link>
                                 </div>
-                                <div className="col-md-8" style={{paddingLeft: '30px'}}>
+                                <div className="col-md-8" style={{paddingLeft: '15px'}}>
                                     <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
                                     <br/>
                                     <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
@@ -259,7 +259,7 @@ class Home1 extends Component{
                                         <img alt='' src="./images/default/shutterstock_416673679.png" width="120" height="110" />
                                     </Link>
                                 </div>
-                                <div className="col-md-8" style={{paddingLeft: '30px'}}>
+                                <div className="col-md-8" style={{paddingLeft: '15px'}}>
                                     <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
                                     <br/>
                                     <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
@@ -271,7 +271,7 @@ class Home1 extends Component{
                                     <img alt='' src="./images/default/shutterstock_458805415.png" width="120" height="110" />
                                     </Link>
                                 </div>
-                                <div className="col-md-8" style={{paddingLeft: '30px'}}>
+                                <div className="col-md-8" style={{paddingLeft: '15px'}}>
                                     <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
                                     <br/>
                                     <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
@@ -283,7 +283,7 @@ class Home1 extends Component{
                                     <img alt='' src="./images/default/shutterstock_500151964.png" width="120" height="110" />
                                 </Link>
                                 </div>
-                                <div className="col-md-8" style={{paddingLeft: '30px'}}>
+                                <div className="col-md-8" style={{paddingLeft: '15px'}}>
                                     <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
                                     <br/>
                                     <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>

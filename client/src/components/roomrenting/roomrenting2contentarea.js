@@ -321,6 +321,7 @@ class Roomrentingtwocontentarea extends Component{
 		return(
             <div>
 		    <Burgermenu/>
+            <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}></div>
             <div className="countainer">
                 <div className="head-bg">
                     <div className="col-md-12">
@@ -337,7 +338,7 @@ class Roomrentingtwocontentarea extends Component{
                         <Cascader style={{width: '100%'}} options={category} onChange={this.onChange.bind(this)} placeholder="Please select" />
                     </div>
                     <div className="col-md-2 col-sm-2 search-space1">
-                        <button className="btn search-btn" onClick={this.mostPopular.bind(this)}> Most Popular</button>
+                        <button className="btn search-btn" onClick={this.mostPopular.bind(this)}>Search</button>
                     </div>
                 </div>
                 <div className="col-md-1 col-sm-1">
@@ -401,8 +402,8 @@ class Roomrentingtwocontentarea extends Component{
                                                                 <div className="card2">
                                                                     <img alt='' src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'}/>
                                                                     <span className="card-button">
-                                                                        <p className="categories-on-card">{elem.category}</p>
-                                                                        <i className="glyphicon glyphicon-map-marker"/><p className="text">{elem.state +" & "+ elem.city}</p>
+                                                                        <p className="categories-on-card" style={{backgroundColor: 'rgb(0, 128, 128)',textAlign:'center'}}>{elem.category}</p>
+                                                                        <i style={{color:'rgb(0, 128, 128)'}} className="glyphicon glyphicon-map-marker"/><p className="text" style={{color:'white',marginTop:'-23px'}}>{elem.state +" & "+ elem.city}</p>
                                                                     </span>
                                                                 </div>
                                                             </div>
@@ -411,13 +412,13 @@ class Roomrentingtwocontentarea extends Component{
                                                                 <p className="text">{str}</p>
                                                             </div>
                                                             <div className="product-desc">
-                                                                <span className="product-price">{elem.rent}</span>
+                                                                <span className="product-price">${elem.rent}</span>
                                                                 <small className="text-muted">Category</small>
                                                                 <a className="product-name">{elem.category}</a>
-                                                                <div className="small m-t-xs">{des}</div>
+                                                                {/*<div className="small m-t-xs">{des}</div>
                                                                 <div className="m-t text-righ">
                                                                     <Link to={{pathname: `/detail_roomRent`, state: elem}} className="btn btn-xs btn-outline btn-primary">Info <i className="fa fa-long-arrow-right"></i> </Link>
-                                                                </div>
+                                                                </div>*/}
                                                             </div>
                                                         </div>
                                                     </div>

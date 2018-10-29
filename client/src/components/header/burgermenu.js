@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './burgermenu.css';
-import { Button } from 'antd';
 import MainLogin from '../header/mainLogin';
 import Category from '../header/getcategory';
 import { Link } from "react-router-dom";
@@ -57,7 +56,7 @@ class Burgermenu extends Component{
                   </div>
               </nav>
               {/*=============================================visible xs============================================*/}
-              {/*<nav className="navbar navbar-default visible-xs">
+              <nav className="navbar navbar-default visible-xs">
                   <div className="container-fluid">
                       <div className="row">
                           <div className="col-xs-9">
@@ -87,7 +86,7 @@ class Burgermenu extends Component{
                           </div>
                       </div>
                   </div>
-              </nav>*/}
+              </nav>
               
           </div>
       )

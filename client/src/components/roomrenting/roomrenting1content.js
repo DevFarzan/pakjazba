@@ -121,7 +121,7 @@ class Roomrenting1content extends Component{
             <section id="about">
                 <div className="">
                     <div className="row">
-                        <div className="col-md-3" onClick={() => {this.clickItem()}}>>
+                        <div className="col-md-3" onClick={() => {this.clickItem()}}>
                             <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '387px', width: '100%', borderRadius: '17px'}}/>
                         </div>
                         {showroomrents && showroomrents.map((elem, key) => {

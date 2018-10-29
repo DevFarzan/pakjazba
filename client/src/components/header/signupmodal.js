@@ -184,6 +184,9 @@ class Signup extends Component{
         else{
             this.setState({
                 msg: response.msg,
+                loader:false,
+                // visible:false,
+                showloader:false
             })
         }
     }

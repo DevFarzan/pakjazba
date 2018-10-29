@@ -30,7 +30,7 @@ class Firstfold extends Component{
                             <div className="media-body">
                                 <a onClick={this.category}>
                                 <h4 className="media-heading">Furniture</h4>
-                                Bed, Sofa, Garden..
+                                <span style={{color:'black'}}>Bed, Sofa, Garden..</span>
                                 </a>
                             </div>
                         </div>

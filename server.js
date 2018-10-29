@@ -523,7 +523,7 @@ app.post('/api/postbusinessdata',function(req,res){
       businessImages = businessData.arr_url,
       businessId = businessData.businessId;
       businessDescription = businessData.description;
-      posted = business.posted;
+      posted = businessData.posted;
 
 if(businessData.objectId == '' || businessData.objectId == undefined || businessData.objectId == null){
    var yellowBusiness_info = new yellowPagesBusiness({
@@ -561,6 +561,7 @@ if(businessData.objectId == '' || businessData.objectId == undefined || business
       })
     }//end if
     else if(data!=''){
+      console.log(data);
       res.send({
         code:200,
         msg:'Data inserted successfully'

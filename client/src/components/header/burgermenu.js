@@ -4,11 +4,25 @@ import { Button } from 'antd';
 import MainLogin from '../header/mainLogin';
 import Category from '../header/getcategory';
 import { Link } from "react-router-dom";
-import { Menu, Icon, Button } from 'antd';
+import { Menu, Icon } from 'antd';
+
+
+const SubMenu = Menu.SubMenu;
 
 class Burgermenu extends Component{
+state = {
+    collapsed: false,
+    hidemenu:false
+  }
+
+  toggleCollapsed = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
+  }
 
   render(){
+    //const hidemenu = false;
       return(
           <div>
               <nav className="navbar navbar-fixed-top hidden-xs"
@@ -16,7 +30,7 @@ class Burgermenu extends Component{
                   <div className="container-fluid">
                       <div className="col-md-2 col-sm-6 col-xs-6">
                           <div className="navbar-header">
-                              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" >
                                   <span className="sr-only">Toggle navigation</span>
                                   <span className="icon-bar"></span>
                                   <span className="icon-bar"></span>
@@ -36,12 +50,12 @@ class Burgermenu extends Component{
                                           <Link rel="noopener noreferrer" to={`/market_business`}>Business Listing</Link>
                                       </Button>
                                       <Button type="button_globalclassName" name='buySell' ghost className="button_globalclassName" style={{marginRight: '10px'}}>
-                                          <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
+                                          <Link rel="noopener noreferrer" to={`/market_classNameified`}>Buy & Sell</Link>
                                       </Button>
                                       <Button type="button_globalclassName" name='buySell' ghost className="button_globalclassName">
                                           <Link rel="noopener noreferrer" to={`/market_jobPortal`}>Job Portal</Link>
                                       </Button>
-                                      {/*<Button type="button_globalclass" name='events' ghost className="button_globalclass">
+                                      {/*<Button type="button_globalclassName" name='events' ghost className="button_globalclassName">
                                           <Link rel="noopener noreferrer" to={`/market_eventPortal`}>Events</Link>
                                       </Button>*/}
                                   </div>
@@ -57,38 +71,58 @@ class Burgermenu extends Component{
                   </div>
               </nav>
               {/*=============================================visible xs============================================*/}
-              {/*<nav className="navbar navbar-default visible-xs">
+              <nav className="navbar navbar-default visible-xs">
                   <div className="container-fluid">
                       <div className="row">
                           <div className="col-xs-9">
                               <div className="navbar-header">
-                                  <a className="navbar-brand"><img alt='' src="./images/mobile-logo.png" style={{"width": "100px", marginTop: "11px"}} /></a>
+                                  <a  className="navbar-brand"><img alt='' src="./images/mobile-logo.png" style={{"width": "100px", marginTop: "11px"}} /></a>
+                                  <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="true" onClick={()=>this.setState({hidemenu:!this.state.hidemenu})}>
+                                      <span class="sr-only">Toggle navigation</span>
+                                      <span class="icon-bar"></span>
+                                      <span class="icon-bar"></span>
+                                      <span class="icon-bar"></span>
+                                  </button>
                               </div>
                           </div>
-                          <div className="col-xs-3" style={{marginTop: "28px"}}><MainLogin/></div>
+        
                       </div>
 
-                      <div className="row" style={{marginTop: "22px",marginBottom: "11px"}}>
-                          <div className="col-xs-6">
-                              <div style={{"float": "right"}}>
+                      {this.state.hidemenu && <div className="" style={{marginTop: "22px",marginBottom: "11px"}} >
+                          <div className="col-xs-12">
                                   <Button type="primary" ghost>
                                       <Link rel="noopener noreferrer" to={`/market_roommates`}>Room Renting</Link>
                                   </Button>
+                           </div>       
+                              <div className="col-xs-12">    
                                   <Button type="primary" ghost style={{marginTop: "8px"}}>
                                       <Link rel="noopener noreferrer" to={`/market_business`}>Business Listing</Link>
                                   </Button>
                               </div>
-                          </div>
-                          <div className="col-xs-6">
-                              <Button type="primary" ghost style={{marginBottom: "8px"}}>
-                                  <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
+                        
+                          <div className="col-xs-12">
+                              <Button type="primary" ghost style={{marginTop: "8px"}}>
+                                  <Link rel="noopener noreferrer" to={`/market_classNameified`}>Buy & Sell</Link>
                               </Button>
+                          </div>
+                          <div className="col-xs-12" style={{marginTop: "8px"}}>    
                               <span ><Category/></span>
                           </div>
-                      </div>
+                          <div className="col-xs-12" style={{marginTop: "8px"}}>
+                              <div style={{backgroundColor:'#37a99b'}}><MainLogin/></div>
+                          </div>
+                      </div>}
+                      <label className="mobile-left mobmenu-toggle" for="mobile-menu-toggle">+</label>
+                      <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle mobile-menu-toggle-button" />
+                      <ul id="plain-menu" className="mobile-toggleable-menu mobile-left">
+                          <li><a href="#">Home</a></li>
+                          <li><a href="#">About</a></li>
+                          <li><a href="#">Contact</a></li>
+                          <li><a href="#">Portfolio</a></li>
+                      </ul>
                   </div>
-              </nav>*/}
-              
+              </nav>
+
           </div>
       )
   }

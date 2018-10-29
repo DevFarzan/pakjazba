@@ -546,7 +546,7 @@ class Postbuysell extends Component{
                                             <TextArea
                                                 rows={6}
                                                 maxLength="500"
-                                            />
+                                           style={{"marginBottom": "10px",float:'right'}} />
                                         )}
                                         <br />
                                         <span>{500 - desLength} Words</span>

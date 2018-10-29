@@ -181,8 +181,8 @@ class Roomrentingtwocontentarea extends Component{
         this.setState({
             roomrents: res && res,
             states: states,
-            showroomrents: filter.slice(0, 6),
-            filteredArr: filter,
+            showroomrents: filter ? filter.slice(0, 6) : [],
+            filteredArr: filter ? filter : [],
             loader: false,
             add: 6
         })
@@ -195,7 +195,7 @@ class Roomrentingtwocontentarea extends Component{
 
     searchArr(arr, text){
         let data = arr;
-        data = data.filter((elem) => {
+        data = data && data.filter((elem) => {
             return (elem.category && elem.category.toLowerCase().includes(text.toLowerCase())) ||
                 (elem.subCategory && elem.subCategory.toLowerCase().includes(text.toLowerCase())) ||
                 (elem.subSubCategory && elem.subSubCategory.toLowerCase().includes(text.toLowerCase())) ||

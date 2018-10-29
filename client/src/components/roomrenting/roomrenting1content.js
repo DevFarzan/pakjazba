@@ -45,8 +45,8 @@ class Roomrenting1content extends Component{
     async getAllBusiness(){
         let res = await HttpUtils.get('marketplace')
         this.setState({
-            roomrents: res ? res.roomrentsdata : [],
-            showroomrents: res ? res.roomrentsdata.slice(0, 7) : [],
+            roomrents: res.roomrentsdata ? res.roomrentsdata : [],
+            showroomrents: res.roomrentsdata ? res.roomrentsdata.slice(0, 7) : [],
             loader: false
         })
     }

@@ -14,7 +14,7 @@ class MarketClassified extends Component{
 
     componentWillUnmount(){
         let inputValue = '';
-        if(this.props.text.length){
+        if(this.props.text){
             const { dispatch } = this.props;
             dispatch({type: 'SEARCHON', inputValue})
         }
@@ -38,7 +38,6 @@ class MarketClassified extends Component{
                     <BuyThirdFold />
                   </div>
                 </div>
-
                 <div className="row">
                     <div className="col-md-12">
                         <img src="../images/businesslistingimage.png" style={{width:'100%'}} />

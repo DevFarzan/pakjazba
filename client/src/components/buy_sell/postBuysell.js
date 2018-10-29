@@ -476,7 +476,7 @@ class Postbuysell extends Component{
                         <div className="panel-group" style={{paddingTop:"104px"}}>
                             <div className="panel panel-default">
                             <div className="main_c_panel">Add Business<br/>
-                                    Find all your Local Business in one place
+                                    Add your items to sell
                                 </div>
                                 <div className="panel-body">
                                 <div className="panel panel-default">

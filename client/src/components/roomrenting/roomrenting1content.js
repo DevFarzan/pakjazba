@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import "./headerroomrenting.css";
-import { Pagination, Spin, Icon } from 'antd';
-
+import { Pagination, Spin, Icon, Modal } from 'antd';
+import AsyncStorage from "@callstack/async-storage/lib/index";
 import {Link} from "react-router-dom";
+import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
 
 class Roomrenting1content extends Component{
@@ -13,12 +14,32 @@ class Roomrenting1content extends Component{
             showroomrents: [],
             filteredArr: [],
             loader: true,
-            add: 7
+            add: 7,
+            user: false,
+            visible: false
         }
     }
 
     componentDidMount(){
         this.getAllBusiness()
+        this.handleLocalStorage();
+    }
+
+    handleLocalStorage = () =>{
+        AsyncStorage.getItem('user')
+            .then((obj) => {
+                let userObj = JSON.parse(obj)
+                if(!!userObj){
+                    this.setState({
+                        user: true,
+                    })
+                }
+                else {
+                    this.setState({
+                        user: false
+                    })
+                }
+            })
     }
 
     async getAllBusiness(){
@@ -68,20 +89,41 @@ class Roomrenting1content extends Component{
         }
     }
 
+    clickItem(){
+        const { user } = this.state;
+        if(user){
+            this.setState({goDetail: true})
+        }else {
+            this.setState({visible: true})
+        }
+    }
+
+    handleCancel = (e) => {
+        this.setState({visible: false});
+    }
+
+    handleLogin = (e) => {
+        this.setState({goForLogin: true, visible: false})
+    }
+
     render(){
-        const { showroomrents, filteredArr, roomrents } = this.state;
+        const { showroomrents, filteredArr, roomrents, goForLogin, goDetail } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
+
+        if (goForLogin) {
+            return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/postad_Roommates" }}}}/>;
+        }
+        if(goDetail){
+            return <Redirect to={{pathname: `/postad_Roommates`}} />
+        }
 
         return(
             <section id="about">
-                
                 <div className="">
                     <div className="row">
-                    <Link to={{pathname: `/postad_Roommates`}}>
-                        <div className="col-md-3">
+                        <div className="col-md-3" onClick={() => {this.clickItem()}}>>
                             <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '387px', width: '100%', borderRadius: '17px'}}/>
                         </div>
-                    </Link>
                         {showroomrents && showroomrents.map((elem, key) => {
                             let str = elem.propertylocation || '';
                             if(str.length > 25) {
@@ -158,8 +200,18 @@ class Roomrenting1content extends Component{
                     </div>}
                     {(filteredArr.length > showroomrents.length) || (roomrents.length > showroomrents.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>}
                     {/*!!showroomrents.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length : roomrents.length} onChange={this.onChange} /></span>*/}
+                    {this.state.visible && <Modal
+                        title="Kindly Login first"
+                        visible={this.state.visible}
+                        onOk={this.handleOk}
+                        onCancel={this.handleCancel}
+                    >
+                    <div className="row">
+                        <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleLogin}>Login</button></div>
+                        <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleCancel}>Cancel</button></div>
+                    </div>
+                    </Modal>}
                 </div>
-
                 <div className="thirdfold" style={{backgroundColor:"#008080",marginTop: '68px',textAlign:'center'}}>
                 <h3 style={{color:"white"}}> Selling With Us Is Easy </h3>
                 <div className="row">

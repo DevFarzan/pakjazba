@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './buysecondfold.css'
 import {HttpUtils} from "../../Services/HttpUtils";
-import { Pagination, Spin, Icon } from 'antd';
-import { connect } from 'react-redux'
+import { Pagination, Spin, Icon, Modal } from 'antd';
+import { connect } from 'react-redux';
+import AsyncStorage from "@callstack/async-storage/lib/index";
+import { Redirect } from 'react-router';
 import {Link} from "react-router-dom";
 
 class Forthfold extends Component{
@@ -15,7 +17,9 @@ class Forthfold extends Component{
             filteredArr: [],
             searchValue: '',
             loader: true,
-            add: 5
+            add: 5,
+            user: false,
+            visible: false
         }
     }
 
@@ -31,9 +35,9 @@ class Forthfold extends Component{
                 this.searchedArr(text)
             }else {
                 this.setState({
-                    showBuySell: buySell.slice(0, 5),
+                    showBuySell: buySell.slice(0, 7),
                     filteredArr: [],
-                    add: 5
+                    add: 7
                 })
             }
         }
@@ -47,8 +51,8 @@ class Forthfold extends Component{
         })
         this.setState({
             filteredArr,
-            showBuySell: filteredArr.slice(0, 5),
-            add: 5
+            showBuySell: filteredArr.slice(0, 7),
+            add: 7
         })
     }
 
@@ -56,9 +60,27 @@ class Forthfold extends Component{
         let res = await HttpUtils.get('marketplace')
         this.setState({
             buySell: res.busell,
-            showBuySell: res.busell.slice(0, 5),
+            showBuySell: res.busell.slice(0, 7),
             loader: false
         })
+        this.handleLocalStorage();
+    }
+
+    handleLocalStorage = () =>{
+        AsyncStorage.getItem('user')
+            .then((obj) => {
+                let userObj = JSON.parse(obj)
+                if(!!userObj){
+                    this.setState({
+                        user: true,
+                    })
+                }
+                else {
+                    this.setState({
+                        user: false
+                    })
+                }
+            })
     }
 
     funcIndexes(page){
@@ -88,14 +110,14 @@ class Forthfold extends Component{
         const { add, buySell, filteredArr } = this.state;
         if(!!filteredArr.length){
             this.setState({
-                showBuySell: filteredArr.slice(0, add + 6),
-                add: add + 6
+                showBuySell: filteredArr.slice(0, add + 7),
+                add: add + 7
             });
         }else {
 
             this.setState({
-                showBuySell: buySell.slice(0, add + 6),
-                add: add + 6
+                showBuySell: buySell.slice(0, add + 7),
+                add: add + 7
             });
         }
         if(this.props.text.length){
@@ -105,18 +127,43 @@ class Forthfold extends Component{
         }
     }
 
+    clickItem(){
+        const { user } = this.state;
+        if(user){
+            this.setState({goDetail: true})
+        }else {
+            this.setState({visible: true})
+        }
+    }
+
+    handleCancel = (e) => {
+        this.setState({visible: false});
+    }
+
+    handleLogin = (e) => {
+        this.setState({goForLogin: true, visible: false})
+    }
+
     render(){
-        const { buySell, showBuySell, filteredArr } = this.state;
+        const { buySell, showBuySell, filteredArr, goForLogin, goDetail } = this.state;
         const { text } = this.props;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
+        if (goForLogin) {
+            return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/postad_buysell" }}}}/>;
+        }
+        if(goDetail){
+            return <Redirect to={{pathname: `/postad_buysell`}} />
+        }
+
         return(
             <div className="secondfold">
-                <Link to={{pathname: `/postad_buysell`}}>
-                    <div className="col-md-3"  style={{'marginTop': '21px'}}>
-                        <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '385px', width: '100%', borderRadius: '13px'}}/>
-                    </div>
-                </Link>
+                {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
+                {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
+                {text && !!filteredArr.length === false && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
+                <div className="col-md-3"  style={{'marginTop': '21px'}} onClick={() => {this.clickItem()}}>
+                    <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '385px', width: '100%', borderRadius: '13px'}}/>
+                </div>
                 <div className="row">
                     {showBuySell && showBuySell.map((elem, key) => {
                         let str = elem.address || '';
@@ -171,10 +218,20 @@ class Forthfold extends Component{
                 {this.state.loader && <div className="col-md-12" style={{textAlign: 'center', marginLeft: '-50px', marginBottom: '20px'}}>
                     <Spin indicator={antIcon} />
                 </div>}
-                {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
-                {text && !!filteredArr.length === false &&<span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
-                <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>
+                
+                {(showBuySell.length >= 7) && !(showBuySell.length === buySell.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>}
                 {/*!!showBuySell.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :buySell.length} onChange={this.onChange} /></span>*/}
+                {this.state.visible && <Modal
+                    title="Kindly Login first"
+                    visible={this.state.visible}
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
+                >
+                    <div className="row">
+                        <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleLogin}>Login</button></div>
+                        <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleCancel}>Cancel</button></div>
+                    </div>
+                </Modal>}
             </div>
         )
     }

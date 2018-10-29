@@ -84,7 +84,7 @@ class Buydetailsecondfold extends Component{
             <div className="">
                 <div className="">
                     <h3 className="heading-padding"> Authors </h3>
-                    <div className="shadowbox">
+                    <div className="shadowbox" style={{border:'1px solid #8080804d',boxShadow: 'none'}}>
                         <div className="row">
                             <div className="col-md-6">
                                 <div className="col-md-3 col-sm-3 col-xs-12" style={{marginTop:"26px"}}>
@@ -92,16 +92,16 @@ class Buydetailsecondfold extends Component{
                                         <img src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="img-circle" alt=""/>
                                     </div>
                                 </div>
-                                <div className="col-sm-9 col-xs-12" style={{marginTop: "33px",textAlign:"left"}}>
+                                <div className="col-sm-9 col-xs-12" style={{marginTop: "33px"}}>
                                     <div className="review-block-rate">
                                         <div className="review-block-name"><a href="#">{data.contactname}</a></div>
                                     </div>
                                 </div>
-                                <section  style={{float: "left",marginLeft: "16px"}}>
+                                <section  style={{float: "left",marginLeft: "67px"}}>
                                     <span><h4>Phone:</h4></span>
                                 </section>
                                 <section>{phone}</section><br/>
-                                <section style={{float: "left",marginLeft: "17px"}}><h4>Email</h4></section>
+                                <section style={{float: "left",marginLeft: "66px"}}><h4>Email</h4></section>
                                 <section>{email}</section>
                             </div>{/*col-md-6*/}
                             <div className="col-md-6 col-sm-6 col-xs-12" style={{marginTop: "15px"}}>

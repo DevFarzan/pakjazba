@@ -49,7 +49,7 @@ state = {
                                           <Link rel="noopener noreferrer" to={`/market_business`}>Business Listing</Link>
                                       </Button>
                                       <Button type="button_globalclassName" name='buySell' ghost className="button_globalclassName" style={{marginRight: '10px'}}>
-                                          <Link rel="noopener noreferrer" to={`/market_classNameified`}>Buy & Sell</Link>
+                                          <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
                                       </Button>
                                       <Button type="button_globalclassName" name='buySell' ghost className="button_globalclassName">
                                           <Link rel="noopener noreferrer" to={`/market_jobPortal`}>Job Portal</Link>
@@ -101,7 +101,7 @@ state = {
                         
                           <div className="col-xs-12">
                               <Button type="primary" ghost style={{marginTop: "8px"}}>
-                                  <Link rel="noopener noreferrer" to={`/market_classNameified`}>Buy & Sell</Link>
+                                  <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
                               </Button>
                           </div>
                           <div className="col-xs-12" style={{marginTop: "8px"}}>    

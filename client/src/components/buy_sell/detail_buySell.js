@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Buydetailfirstfold from './buydetail/buydetailfirstfold'
-import Buydetailsecondfold from './buydetail/buydetailsecondfold'
+
 import { Redirect } from 'react-router';
 import Burgermenu from '../header/burgermenu';
 import Slider from '../header/Slider';
@@ -56,7 +56,7 @@ class DetailBuySell extends Component{
                     </div>
                 </span>                <div className='container' style={{width:"80%"}}>
                     <Buydetailfirstfold data={data}/>
-                    <Buydetailsecondfold data={data}/>
+                    
                 </div>
                 <Footer />
             </div>

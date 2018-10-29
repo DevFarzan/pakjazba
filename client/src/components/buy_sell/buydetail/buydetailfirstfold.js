@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Carousel } from 'antd';
+import Buydetailsecondfold from './buydetailsecondfold';
 import './buydetailfirstfold.css'
 
 class Buydetailfirstfold extends Component{
@@ -9,7 +10,7 @@ class Buydetailfirstfold extends Component{
         let images = data.images || data.arr_url;
         return(
             <div className="">
-              <div className="row" style={{padding:"10px"}}>
+              <div className="row" style={{padding:"10px",border:'1px solid #80808030'}}>
                 <div className="col-md-6" style={{paddingLeft:"0px"}}>
                   <h2 className="">{data.subcategory || data.category} For Sale  </h2>
                   <div className="location-padding" style={{marginTop:"-26px", marginLeft:"-4px"}}>
@@ -21,7 +22,9 @@ class Buydetailfirstfold extends Component{
                   <h3> ${data.price} </h3>
                 </div>
               </div>
-                <h3 className="heading-padding"> Gallery </h3>
+              <div className="row" style={{marginTop:'11px',border:'1px solid #80808030'}}>
+                <div className="col-md-4">
+                    <h3 className="heading-padding"> Gallery </h3>
                 <Carousel autoplay>
                     {images && images.map((elem, key) => {
                         return(
@@ -31,11 +34,19 @@ class Buydetailfirstfold extends Component{
                         )
                     })}
                 </Carousel>
-                <div>
-                    <h3 className="heading-padding"> Description </h3>
-                    <p>{data.description}</p>
                 </div>
-                <div className="row" style={{padding:"0px"}}>
+                <div className="col-md-8">
+                    <Buydetailsecondfold data={data}/>
+                </div>
+              </div>
+                
+                <div className="row" style={{marginTop:'11px',border:'1px solid #80808030'}}>
+                    <div className="col-md-12">
+                        <h3 className="heading-padding"> Description </h3>
+                        <p>{data.description}</p>
+                    </div>
+                </div>
+                <div className="row" style={{padding:"0px",marginTop:'11px',border:'1px solid #80808030'}}>
 
                         <div className="col-md-4 col-sm-12 col-xs-12 des-space">
                             <h3> Details </h3>

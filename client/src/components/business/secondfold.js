@@ -34,8 +34,8 @@ class Secondfold extends Component{
         const { text } = this.props;
         if(prevProps.text !== text){
             if(!!text){
-                this.searchedArr(text)
                 this.setState({showBusiness: []})
+                this.searchedArr(text)
             }else {
                 this.setState({
                     showBusiness: business.slice(0, 7),

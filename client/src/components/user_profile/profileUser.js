@@ -73,7 +73,7 @@ class ProfileUser extends Component{
             email: user.email,
             location:user.location,
             description:user.description,
-            desLen: 500 - user.description.length,
+            desLen: user.description ? 500 - user.description.length : 500,
             phone:user.phone,
             twitter:user.twitterlink,
             facebook:user.facebooklink,

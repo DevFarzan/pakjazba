@@ -194,7 +194,7 @@ class ShowProfilepublic extends Component{
                                 </div>
                             </div>
                         </TabPane>
-                        <TabPane tab='Bussiness Listing' key="2" style={{background:'#8080801a'}}>
+                        <TabPane tab='Business Listing' key="2" style={{background:'#8080801a'}}>
                             <div className="secondfold">
                                 <div className="index-content" style={{marginTop: '-125px'}}>
                                     <div className="row">

@@ -83,6 +83,9 @@ class Roomrenting3contentarea extends Component{
     render(){
         const { data } = this.props;
         const { news, sports } = this.state;
+        let dateRange = data.startdate || data.dateRange && data.dateRange.from;
+        let petFriendly = data.petfriendly || data.petFriendly;
+        let accommodates = data.accomodates || data.accommodates;
         let images = data.imageurl || data.arr_url;
         let AIncludes = data.amenitiesinclude || data.amenities;
         let email= data.contactMode && data.contactMode.includes('email') ? data.contactEmail : 'abc@gmail.com';
@@ -183,15 +186,15 @@ class Roomrenting3contentarea extends Component{
                         <ul class="list-group" style={{marginTop:'15px',border:'1px solid #80808040'}}>
                             <div className="row">
                                 <div className="col-md-6"><h4 style={{fontSize: "16px",fontWeight:'bold',color: 'dimgray'}}> Available From</h4></div>
-                                <div className="col-md-6"><h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-calendar"></span>{data.startdate}</h4></div>
+                                <div className="col-md-6"><h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-calendar"></span>{dateRange}</h4></div>
                             </div>
                             <div className="row">
                                 <div className="col-md-6"><h4 style={{fontSize: "16px",fontWeight:'bold',color: 'dimgray'}}>Posted On</h4></div>
-                                <div className="col-md-6"><h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-user"></span>{data.date || '10-18-2018'}</h4></div>
+                                <div className="col-md-6"><h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-user"></span>{data.posted || '10-18-2018'}</h4></div>
                             </div>
                             <div className="row">
                                 <div className="col-md-6"><h4 style={{fontSize: "16px",fontWeight:'bold',color: 'dimgray'}}>Posted By</h4></div>
-                                <div className="col-md-6"><h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-user"></span>{data.contactname}</h4></div>
+                                <div className="col-md-6"><h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-user"></span>{data.contactname || data.contactName}</h4></div>
                             </div>
                          </ul>
                     </div>
@@ -200,11 +203,11 @@ class Roomrenting3contentarea extends Component{
                     <div className="col-md-12 col-sm-12 col-xs-12 des-space">
                         <div className="col-md-4 col-sm-12 col-xs-12 des-space">
                             <h3> Details </h3>
-                            <p><b>Date Added:</b>{' ' + data.startdate || data.dateRange.from}</p>
+                            <p><b>Date Added:</b>{' ' + dateRange}</p>
                             <p><b>Type:</b>{' ' + data.category}</p>
                             <p><b>Status:</b>{' ' + data.furnished}</p>
-                            <p><b>Pet Friendly:</b>{' ' + data.petfriendly || data.petFriendly}</p>
-                            <p><b>Accommodates:</b>{' ' + data.accomodates || data.accommodates}</p>
+                            <p><b>Pet Friendly:</b>{' ' + petFriendly}</p>
+                            <p><b>Accommodates:</b>{' ' + accommodates}</p>
                             <p><b>Smoking:</b>{' ' + data.smoking}</p>
                         </div>
                         <div className="col-md-8 col-sm-12 col-xs-12">

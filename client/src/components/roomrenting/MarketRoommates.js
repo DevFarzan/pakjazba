@@ -44,10 +44,10 @@ class MarketRoommates extends Component{
                         <Slider mainH1="Explore Homes" mainH2="Find Your Perfect Match"/>
                     </div>
                 </div>
-            </span>
+                </span>
                 <div className="container" style={{width:"94%"}}>
-                <RoomrentingIcon/>
-                <Roomrenting1content/>
+                    <RoomrentingIcon/>
+                    <Roomrenting1content/>
                 </div>
                 <Footer />
             </div>

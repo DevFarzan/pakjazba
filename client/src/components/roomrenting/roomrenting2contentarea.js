@@ -153,7 +153,10 @@ class Roomrentingtwocontentarea extends Component{
     }
 
     componentWillUnmount() {
-        this.props.history.push('/market_roommates');
+        const { objData, goDetail } = this.state;
+        if(!(objData && Object.keys(objData).length <= 0) && !goDetail){
+            this.props.history.push('/market_roommates');
+        }
     }
 
     async getAllBusiness(){
@@ -269,11 +272,18 @@ class Roomrentingtwocontentarea extends Component{
     }
 
     onAddMore = () => {
-        const { add, filteredArr } = this.state;
-        this.setState({
-            showroomrents: filteredArr.slice(0, add + 6),
-            add: add + 6
-        });
+        const { add, filteredArr, roomrents } = this.state;
+        if(!!filteredArr.length){
+            this.setState({
+                showroomrents: filteredArr.slice(0, add + 6),
+                add: add + 6
+            });
+        }else {
+            this.setState({
+                showroomrents: roomrents.slice(0, add + 6),
+                add: add + 6
+            });
+        }
     }
 
     onChangeSlider(value){
@@ -310,12 +320,19 @@ class Roomrentingtwocontentarea extends Component{
         })
     }
 
+    clickItem(item){
+        this.setState({goDetail: true, objData: item})
+    }
+
 	render(){
-        const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader } = this.state;
+        const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader, objData, goDetail } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
         if(!noText){
             return <Redirect to='/market_roommates'/>
+        }
+        if(goDetail){
+            return <Redirect to={{pathname: `/detail_roomRent`, state: objData}} />
         }
 
 		return(
@@ -379,6 +396,9 @@ class Roomrentingtwocontentarea extends Component{
                             width="180" height="200" frameBorder="0" style={{"border": "0"}} allowFullScreen></iframe>
                     </div>
                     <div className="col-md-10 col-sm-12 col-xs-12">
+                        {!!showroomrents.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
+                        {!!showroomrents.length === false && <span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
+                        {!!showroomrents.length === false && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
                         {showroomrents && showroomrents.map((elem, key) => {
                             let str = elem.propertylocation || '';
                             if(str.length > 25) {
@@ -394,8 +414,8 @@ class Roomrentingtwocontentarea extends Component{
                                 <div key={key} className="col-lg-4 col-md-4 col-sm-12 space-top">
                                     <div className="secondfold" style={{backgroundColor:"#ffffff08"}}>
                                         <div className="row">
-                                            <Link to={{pathname: `/detail_roomRent`, state: elem}}>
-                                                <div className="">
+                                            {/*<Link to={{pathname: `/detail_roomRent`, state: elem}}>*/}
+                                                <div className="" onClick={() => {this.clickItem(elem)}}>
                                                     <div className="ibox">
                                                         <div className="ibox-content product-box">
                                                             <div className="product-imitation">
@@ -423,7 +443,7 @@ class Roomrentingtwocontentarea extends Component{
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </Link>
+                                            {/*</Link>*/}
                                         </div>
                                     </div>
                                 </div>
@@ -432,7 +452,7 @@ class Roomrentingtwocontentarea extends Component{
                         {loader && <div className="col-md-12" style={{textAlign: 'center'}}>
                             <Spin indicator={antIcon} />
                         </div>}
-                        <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>
+                        {(showroomrents.length >= 6) && !(showroomrents.length === roomrents.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>}
                         {/*<div className="col-md-12">
                             <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :roomrents.length} onChange={this.onChangePage} /></span>
                         </div>*/}

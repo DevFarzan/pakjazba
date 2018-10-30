@@ -160,7 +160,7 @@ class Roomrenting3contentarea extends Component{
                         <h3 style={{"marginTop":"14px","textAlign":"center","textDecoration": "underline"}}> Author </h3>
                         <div className="">
                             <div className="col-md-6 col-sm-12 col-xs-12">
-                                <img src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} class="img-circle" alt="" height="200" width="200" cursor='pointer' onClick={() => {this.goToProfile()}}/>
+                                <img src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} class="img-circle" alt="" height="200" width="200" style={{cursor:'pointer'}} onClick={() => {this.goToProfile()}}/>
                                 <hr/>
                                 <br/>
                                 <h4><b> Phone: </b>{' ' + phone}</h4>

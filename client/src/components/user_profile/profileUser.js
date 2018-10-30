@@ -77,7 +77,8 @@ class ProfileUser extends Component{
             phone:user.phone,
             twitter:user.twitterlink,
             facebook:user.facebooklink,
-            imageUrl: user.imageurl
+            imageUrl: user.imageurl,
+            url: user.imageurl
         })
         this.getAllBusiness(userId)
     }
@@ -268,7 +269,7 @@ class ProfileUser extends Component{
         }else if(e.target.id === 'location'){
             this.setState({location: e.target.value})
         }else if(e.target.id === 'description'){
-            this.setState({description: e.target.value, desLen: 500 - this.state.description.length})
+            this.setState({description: e.target.value, desLen: 500 - e.target.value.length})
         }else if(e.target.id === 'phone'){
             this.setState({phone: e.target.value})
         }else if(e.target.id === 'email'){

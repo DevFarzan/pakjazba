@@ -75,6 +75,7 @@ ReactDOM.render(
 					<PrivateRoute path="/postad_jobPortal" component={JobPortal}></PrivateRoute>
           			<PrivateRoute path="/postad_eventPortal" component={EventPortal}></PrivateRoute>
 					<PrivateRoute path="/profile_user" component={ProfileUser}></PrivateRoute>
+					<Route path="/profile_userDetail" component={ProfileUser}></Route>
 					<Route path="/detail_buySell" component={DetailBuySell}></Route>
 					<Route path="/detail_jobPortal" component={JobDetail}></Route>
 					<Route path="/apply_forJob" component={ApplyJob}></Route>

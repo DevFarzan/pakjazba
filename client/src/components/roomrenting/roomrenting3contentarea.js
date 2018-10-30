@@ -98,7 +98,7 @@ class Roomrenting3contentarea extends Component{
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
         if(goProfile){
-            return <Redirect to={{pathname: '/profile_user', state: {userId: data.user_id, profileId: data.profileId}}}/>
+            return <Redirect to={{pathname: '/profile_userDetail', state: {userId: data.user_id, profileId: data.profileId}}}/>
         }
 
         if(data.modeofcontact && data.modeofcontact.includes('email')){

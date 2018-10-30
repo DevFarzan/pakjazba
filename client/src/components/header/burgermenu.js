@@ -73,9 +73,9 @@ state = {
               <nav className="navbar navbar-default visible-xs">
                   <div className="container-fluid">
                       <div className="row">
-                          <div className="col-xs-9">
+                          <div className="col-xs-12">
                               <div className="navbar-header">
-                                  <a  className="navbar-brand"><img alt='' src="./images/mobile-logo.png" style={{"width": "100px", marginTop: "11px"}} /></a>
+                                  <a  className="navbar-brand"><Link to={`/`}><img alt='' src="./images/mobile-logo.png" style={{"width": "100px", marginTop: "11px"}} /></Link></a>
                                   <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="true" onClick={()=>this.setState({hidemenu:!this.state.hidemenu})}>
                                       <span class="sr-only">Toggle navigation</span>
                                       <span class="icon-bar"></span>
@@ -86,32 +86,41 @@ state = {
                           </div>
         
                       </div>
-
+                      <ul className="list-group">
                       {this.state.hidemenu && <div className="" style={{marginTop: "22px",marginBottom: "11px"}} >
-                          <div className="col-xs-12">
-                                  <Button type="primary" ghost>
+                         <li className="list-group-item" style={{padding:'19px'}}> 
+                            <div className="col-xs-12" style={{marginTop:'-12px'}}>
+                                  <span>
                                       <Link rel="noopener noreferrer" to={`/market_roommates`}>Room Renting</Link>
-                                  </Button>
-                           </div>       
-                              <div className="col-xs-12">    
-                                  <Button type="primary" ghost style={{marginTop: "8px"}}>
+                                  </span>
+                            </div> 
+                          </li> 
+                          <li className="list-group-item" style={{padding:'19px'}}>     
+                              <div className="col-xs-12" style={{marginTop:'-12px'}}>    
+                                  <span style={{marginTop: "8px"}}>
                                       <Link rel="noopener noreferrer" to={`/market_business`}>Business Listing</Link>
-                                  </Button>
+                                  </span>
                               </div>
-                        
-                          <div className="col-xs-12">
-                              <Button type="primary" ghost style={{marginTop: "8px"}}>
-                                  <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
-                              </Button>
-                          </div>
-                          <div className="col-xs-12" style={{marginTop: "8px"}}>    
+                          </li>
+                           <li className="list-group-item" style={{padding:'19px'}} >
+                              <div className="col-xs-12" style={{marginTop:'-12px'}}>
+                                  <span style={{marginTop: "8px"}}>
+                                      <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
+                                  </span>
+                              </div>
+                          </li>  
+                          <li className="list-group-item" style={{padding:'19px'}}>  
+                          <div className="col-xs-12" style={{marginTop: "-15px"}}>    
                               <span ><Category/></span>
                           </div>
-                          <div className="col-xs-12" style={{marginTop: "8px"}}>
-                              <div style={{backgroundColor:'#37a99b'}}><MainLogin/></div>
+                          </li>
+                          <li className="list-group-item" style={{padding:'19px'}}>
+                          <div className="col-xs-12" style={{marginTop: "-12px"}}>
+                              <div style={{backgroundColor:'#37a99b',width: '37%'}}><MainLogin/></div>
                           </div>
+                          </li>
                       </div>}
-        
+                    </ul>
                   </div>
               </nav>
           </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './buydetailsecondfold.css'
 import {HttpUtils} from "../../../Services/HttpUtils";
 import {notification, Spin, Icon} from "antd";
+import { Redirect } from 'react-router';
 import moment from 'moment'
 
 class Buydetailsecondfold extends Component{
@@ -65,12 +66,20 @@ class Buydetailsecondfold extends Component{
         });
     };
 
+    goToProfile(){
+        this.setState({goProfile : true})
+    }
+
     render(){
-        const { name, userEmail, msg } = this.state;
+        const { name, userEmail, msg, goProfile } = this.state;
         const { data } = this.props;
         let email= data.contactMode && data.contactMode.includes('email') ? data.contactEmail : 'abc@gmail.com';
         let phone = data.contactMode && data.contactMode.includes('phone') ? data.contactNumber : '***********';
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
+
+        if(goProfile){
+            return <Redirect to={{pathname: '/profile_userDetail', state: {userId: data.userid, profileId: data.profileid}}}/>
+        }
 
         if(data.modeofcontact && data.modeofcontact.includes('email')){
             email = data.contactemail;
@@ -89,12 +98,12 @@ class Buydetailsecondfold extends Component{
                             <div className="col-md-6">
                                 <div className="col-md-3 col-sm-3 col-xs-12" style={{marginTop:"26px"}}>
                                     <div className="review-block-img">
-                                        <img src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="img-circle" alt=""/>
+                                        <img  onClick={() => {this.goToProfile()}} src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="img-circle" alt=""/>
                                     </div>
                                 </div>
                                 <div className="col-sm-9 col-xs-12" style={{marginTop: "33px"}}>
                                     <div className="review-block-rate">
-                                        <div className="review-block-name"><a href="#">{data.contactname}</a></div>
+                                        <div className="review-block-name" style={{cursor: 'pointer'}} onClick={() => {this.goToProfile()}}>{data.contactname}</div>
                                     </div>
                                 </div>
                                 <section  style={{float: "left",marginLeft: "67px"}}>

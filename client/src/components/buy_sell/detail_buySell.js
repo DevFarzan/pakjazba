@@ -56,7 +56,6 @@ class DetailBuySell extends Component{
                     </div>
                 </span>                <div className='container' style={{width:"80%"}}>
                     <Buydetailfirstfold data={data}/>
-                    
                 </div>
                 <Footer />
             </div>

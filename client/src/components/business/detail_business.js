@@ -22,7 +22,8 @@ class DetailBusiness extends Component{
             email1: '',
             msg1: '',
             reviews: [],
-            loader: false
+            loader: false,
+            goProfile: false
         }
     }
 
@@ -122,14 +123,22 @@ class DetailBusiness extends Component{
         }
     }
 
+    goToProfile(){
+        this.setState({goProfile : true})
+    }
+
     render(){
-        const { isData, data, reviews } = this.state;
+        const { isData, data, reviews, goProfile } = this.state;
         const hide = true;
         let images = data.businessImages;
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
         if(!isData){
             return <Redirect to='/' />
+        }
+
+        if(goProfile){
+            return <Redirect to={{pathname: '/profile_userDetail', state: {userId: data.user_id, profileId: data.profileId}}}/>
         }
 
         return(
@@ -288,8 +297,9 @@ class DetailBusiness extends Component{
                                                 <img className="card-img-top" src={(images && images[0]) || (data.arr_url && data.arr_url[0])} alt="" style={{"width":"100%"}} />
                                             </div>
                                             <div className="col-md-10 col-sm-10 col-xs-12">
-                                                <h3>{data.businessName}</h3>
+                                                <h3>{data.businessName || data.businessname}</h3>
                                                 <hr/>
+                                                <h4 style={{cursor: 'pointer'}} onClick={() => {this.goToProfile()}}>Posted by: {" " + (data.firstName || data.firstname)}</h4>
                                             </div>
                                         </div>
                                         <div className="row">

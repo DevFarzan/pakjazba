@@ -3,6 +3,7 @@ import axios from "axios/index";
 import { Carousel, notification, Icon, Spin, Tabs} from 'antd';
 import "./roomrenting2content.css";
 import moment from 'moment'
+import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
 
 
@@ -17,7 +18,8 @@ class Roomrenting3contentarea extends Component{
             receiver: '',
             loader: false,
             news: [],
-            sports: []
+            sports: [],
+            goProfile: false
         }
     }
 
@@ -77,12 +79,15 @@ class Roomrenting3contentarea extends Component{
         const news = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=6e7e6a696773424187f9bdb80954ded7');
         console.log(news.data.articles, 'newssssssssssssssss')
         this.setState({news: news.data.articles, sports: sports.data.articles})
+    }
 
+    goToProfile(){
+        this.setState({goProfile : true})
     }
 
     render(){
         const { data } = this.props;
-        const { news, sports } = this.state;
+        const { news, sports, goProfile } = this.state;
         let dateRange = data.startdate || data.dateRange && data.dateRange.from;
         let petFriendly = data.petfriendly || data.petFriendly;
         let accommodates = data.accomodates || data.accommodates;
@@ -91,6 +96,10 @@ class Roomrenting3contentarea extends Component{
         let email= data.contactMode && data.contactMode.includes('email') ? data.contactEmail : 'abc@gmail.com';
         let phone = data.contactMode && data.contactMode.includes('phone') ? data.contactNumber : '***********';
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
+
+        if(goProfile){
+            return <Redirect to={{pathname: '/profile_user', state: {userId: data.user_id, profileId: data.profileId}}}/>
+        }
 
         if(data.modeofcontact && data.modeofcontact.includes('email')){
             email = data.contactemail;
@@ -151,7 +160,7 @@ class Roomrenting3contentarea extends Component{
                         <h3 style={{"marginTop":"14px","textAlign":"center","textDecoration": "underline"}}> Author </h3>
                         <div className="">
                             <div className="col-md-6 col-sm-12 col-xs-12">
-                                <img src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} class="img-circle" alt="" height="200" width="200"/>
+                                <img src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} class="img-circle" alt="" height="200" width="200" cursor='pointer' onClick={() => {this.goToProfile()}}/>
                                 <hr/>
                                 <br/>
                                 <h4><b> Phone: </b>{' ' + phone}</h4>
@@ -178,7 +187,6 @@ class Roomrenting3contentarea extends Component{
                         </div>
                     </div>
                         </div>
-
                     </div>
                 </div>
                 
@@ -198,7 +206,7 @@ class Roomrenting3contentarea extends Component{
                             </div>
                             <div className="row">
                                 <div className="col-md-6"><h4 style={{fontSize: "16px",fontWeight:'bold',color: 'dimgray'}}>Posted By</h4></div>
-                                <div className="col-md-6"><h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-user"></span>{data.contactname || data.contactName}</h4></div>
+                                <div className="col-md-6" onClick={() => {this.goToProfile()}}><h4 style={{fontSize: "16px", cursor: 'pointer'}}> <span className="glyphicon glyphicon-user"></span>{data.contactname || data.contactName}</h4></div>
                             </div>
                          </ul>
                     

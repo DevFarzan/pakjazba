@@ -363,12 +363,15 @@ class ProfileUser extends Component{
             onChange: this.handleChange,
         };
 
+        let detail = this.props.location.state ? this.props.location.state : '';
+
         let passObj = {
             arr1: listData3,
             arr2: listData2,
             arr3: listData1,
             arr4: listData4,
-            arr5: {imageUrl, name, description, twitter, facebook}
+            arr5: {imageUrl, name, description, twitter, facebook},
+            userDetail: detail
         }
 
         return(

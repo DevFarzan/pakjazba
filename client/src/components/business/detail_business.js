@@ -152,7 +152,7 @@ class DetailBusiness extends Component{
                                     <div className="card outset" style={{ boxShadow: "none", border:"1px solid #80808042", background: "white"}}>
                                         <img className="card-img-top" src={images && images[0]} alt="" style={{"width":"100%"}} />
                                         <div className="card-body space" style={{padding: "17px"}}>
-                                            <h5><span className="glyphicon glyphicon-home" style={{marginRight: "15px"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{data.businessaddres || data.businessAddress}</span></h5>
+                                            <h5><span className="glyphicon glyphicon-home" style={{marginRight: "15px"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{data.address || data.businessAddress}</span></h5>
                                             <hr/>
                                             <h5><span className="glyphicon glyphicon-phone" style={{marginRight: "15px"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{data.businessnumber || data.businessNumber}</span></h5>
                                             <hr/>

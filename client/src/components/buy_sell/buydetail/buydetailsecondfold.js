@@ -73,7 +73,7 @@ class Buydetailsecondfold extends Component{
     render(){
         const { name, userEmail, msg, goProfile } = this.state;
         const { data } = this.props;
-        let email= data.contactMode && data.contactMode.includes('email') ? data.contactEmail : 'abc@gmail.com';
+        let email= data.contactMode && data.contactMode.includes('email') ? data.contactEmail : '*****@gmail.com';
         let phone = data.contactMode && data.contactMode.includes('phone') ? data.contactNumber : '***********';
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
@@ -98,12 +98,13 @@ class Buydetailsecondfold extends Component{
                             <div className="col-md-6">
                                 <div className="col-md-3 col-sm-3 col-xs-12" style={{marginTop:"26px"}}>
                                     <div className="review-block-img">
-                                        <img  onClick={() => {this.goToProfile()}} src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="img-circle" alt=""/>
+                                        <img onClick={() => {this.goToProfile()}} src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="img-circle" alt=""/>
                                     </div>
                                 </div>
                                 <div className="col-sm-9 col-xs-12" style={{marginTop: "33px"}}>
                                     <div className="review-block-rate">
-                                        <div className="review-block-name" style={{cursor: 'pointer'}} onClick={() => {this.goToProfile()}}>{data.contactname}</div>
+                                        <div className="review-block-name hidden-xs" style={{cursor: 'pointer',marginLeft:'-35px'}} onClick={() => {this.goToProfile()}}>{data.contactname}</div>
+                                        <div className="review-block-name visible-xs" style={{cursor: 'pointer'}} onClick={() => {this.goToProfile()}}>{data.contactname}</div>
                                     </div>
                                 </div>
                                 <section  style={{float: "left",marginLeft: "67px"}}>

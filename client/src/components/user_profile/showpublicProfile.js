@@ -122,15 +122,17 @@ class ShowProfilepublic extends Component{
     }
 
 	render(){
-		const {listing, listData1, listData2, listData3, listData4, callMain, userDetail} = this.state;
-
+		const {listing, listData1, listData2, listData3, listData4, callMain, userDetail, facebook, twitter} = this.state;
+        let fb = facebook === undefined ? false : true;
+        let twit = twitter === undefined ? false : true;
+        
 		return(
 			<span>
 			<div className="row">
 				<div className="col-md-6">
 					<span className="name_style margin-left_13">{this.state.name}{!userDetail && <Icon type="edit" size={16} style={{marginLeft:'13%', cursor: 'pointer'}} onClick={() => {this.onGoBack()}}></Icon>}</span><br/>
-                    <a href={this.state.facebook} target="_blank"><Icon type="facebook" size={18} style={{marginLeft:'13%'}}></Icon></a>
-                    <a href={this.state.twitter} target="_blank" style={{marginRight: "12px"}}><Icon type="twitter" size={18} style={{marginLeft:'2%'}}></Icon></a>
+                    {fb && <a href={facebook} target="_blank"><Icon type="facebook" size={18} style={{marginLeft:'13%'}}></Icon></a>}
+                    {twit && <a href={twitter} target="_blank" style={{marginRight: "12px"}}><Icon type="twitter" size={18} style={{marginLeft:'2%'}}></Icon></a>}
                     <p style={{fontFamily:'Work Sans,sans-serif',marginLeft:'13%'}}>{this.state.description}</p>
 				</div>
 				<div className="col-md-6" style={{textAlign:'right'}}>

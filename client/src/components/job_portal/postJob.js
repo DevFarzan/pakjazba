@@ -369,13 +369,13 @@ class JobPortal extends Component {
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="panel-group" style={{paddingTop:"50px"}}>
                             <div className="panel panel-default">
-                                <div className="main_c_panel" style={{fontFamily: 'Work Sans'}}>Add Job<br/>
+                                <div className="main_c_panel" style={{backgroundColor:'#37a99b',color:'white'}}>Add Job<br/>
                                     Find all your Jobs in one place
                                 </div>
                                 <div className="panel-body row">
                                     <div className="col-md-2"/>
                                     <div className="panel panel-default col-md-8" style={{paddingLeft: '0px', paddingRight: '0px'}}>
-                                        <div className="panel-heading bold_c_text"><Icon type="info-circle"/><span
+                                        <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px'}}><Icon type="info-circle"/><span
                                             className="margin_font_location">Job Details</span>
                                         </div>
                                         <section style={{backgroundColor: '#F1F2F2'}}>
@@ -563,7 +563,7 @@ class JobPortal extends Component {
                                 <div className="panel-body row">
                                     <div className="col-md-2"/>
                                     <div className="panel panel-default col-md-8" style={{paddingLeft: '0px', paddingRight: '0px'}}>
-                                        <div className="panel-heading bold_c_text"><Icon type="info-circle"/><span
+                                        <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px'}}><Icon type="info-circle"/><span
                                             className="margin_font_location">Company Details</span>
                                         </div>
                                         <section style={{backgroundColor: '#F1F2F2'}}>
@@ -686,9 +686,10 @@ class JobPortal extends Component {
                                     <div className="col-md-2" />
                                 </div>
                                 <div className="row center_global row">
-                                    {this.state.loader && <Spin className="col-xs-2 col-md-6" indicator={antIcon} />}
-                                    <div className="col-xs-10 col-md-6">
-                                        <button style={{textAlign: 'left'}} disabled={!!this.state.loader} className="btn color_button">Submit</button>
+                                    
+                                    <div className="col-md-12 col-sm-12 col-xs-12">
+                                        {this.state.loader && <Spin className="col-xs-2 col-md-6" indicator={antIcon} />}
+                                        <button style={{textAlign: 'center',width:'19%'}} disabled={!!this.state.loader} className="btn color_button">Submit</button>
                                     </div>
                                 </div>
                             </div>

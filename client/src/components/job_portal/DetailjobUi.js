@@ -7,17 +7,17 @@ class JobDetailpage extends Component{
         console.log(data, 'arrrrrrrrrrrryyyyyyyyyyyyyyyyyyyy bhaiiiiiiiiiiiiiiiiiiiii')
         return(
             <div className="container" style={{width:"90%"}}>
-                <div className="row">
+                <div className="row" style={{border:'1px solid #80808059'}}>
                     <div className="col-md-12" style={{paddingTop:"4px", paddingBottom:"10px"}}>
                         <div className="col-md-4 col-sm-12 col-xs-12 des-space">
                             <img alt='' src={data.arr_url && data.arr_url[0]} width="100%" />
                         </div>
                         <div className="col-md-8 col-sm-12 col-xs-12 des-space">
-                            <h3 style={{fontWeight:"bold",fontFamily: 'Work Sans, sans-serif'}}>{data.jobTitle && data.jobTitle}</h3>
+                            <h3 style={{fontWeight:"bold",fontFamily: 'Crimson Text, sans-serif',marginTop:'11px'}}>{data.jobTitle && data.jobTitle}</h3>
                             <span >
                             <p className="job-time" style={{fontFamily: 'Work Sans, sans-serif'}}>{data.jobType && data.jobType}</p>
                             </span>
-                            <br/>
+                            
                             <p style={{fontFamily: 'Work Sans, sans-serif'}}>{data.jobDescription && data.jobDescription}</p>
                         </div>
                     </div>

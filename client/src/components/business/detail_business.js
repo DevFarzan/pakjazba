@@ -3,7 +3,7 @@ import Burgermenu from '../header/burgermenu';
 import Slider from '../header/Slider';
 import "./detail_business.css";
 import moment from 'moment';
-import { Carousel, Rate, notification, Icon, Spin } from 'antd';
+import { Carousel, Rate, notification, Icon, Spin, Modal } from 'antd';
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
 // import FbImageLibrary from '../../lib/react-fb-image-grid'
@@ -23,7 +23,8 @@ class DetailBusiness extends Component{
             msg1: '',
             reviews: [],
             loader: false,
-            goProfile: false
+            goProfile: false,
+            previewVisible: false
         }
     }
 
@@ -127,10 +128,14 @@ class DetailBusiness extends Component{
         this.setState({goProfile : true})
     }
 
+    handleCancel = () => {
+        this.setState({ previewVisible: false })
+    }
+
     render(){
-        const { isData, data, reviews, goProfile } = this.state;
+        const { isData, data, reviews, goProfile, previewVisible, previewImage } = this.state;
         const hide = true;
-        let images = data.businessImages;
+        let images = data.businessImages || data.arr_url;
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
         if(!isData){
@@ -354,7 +359,19 @@ class DetailBusiness extends Component{
                                         </div>
                                         <div className="row">
                                             {/*<FbImageLibrary images={images} width={50} countFrom={2}/>*/}
+                                            <div className="col-md-4 col-sm-4 col-xs-12" style={{cursor: 'pointer'}} onClick={() => {this.setState({previewVisible: true, previewImage:images[0]})}}>
+                                                <img src={images && images[0]} style={{width: '100%'}}/>
+                                            </div>
+                                            <div className="col-md-4 col-sm-4 col-xs-12" style={{cursor: 'pointer'}} onClick={() => {this.setState({previewVisible: true, previewImage:images[1]})}}>
+                                                <img src={images && images[1]} style={{width: '100%'}}/>
+                                            </div>
+                                            <div className="col-md-4 col-sm-4 col-xs-12" style={{cursor: 'pointer'}} onClick={() => {this.setState({previewVisible: true, previewImage:images[1]})}}>
+                                                <img src={images && images[2]} style={{width: '100%'}}/>
+                                            </div>
                                         </div>
+                                        <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+                                                <img alt="example" style={{ width: '100%' }} src={previewImage} />
+                                        </Modal>
                                         <div className="row">
                                             <div className="col-md-12 col-sm-12 col-xs-12">
                                                 <h5> <b>Tage:</b> loram, Ipsum, Ioram  </h5>
@@ -404,7 +421,7 @@ class DetailBusiness extends Component{
                                                         <div className="col-md-6 col-sm-12 col-xs-12 " style={{paddingLeft:"0px" ,  paddingRight:"0px"}}><br/>
                                                             <img src="../images/images.jpg" className="img-circle" alt="" width="100" height="100" />
                                                               <h5 className="mon-timing">{elem.name}</h5>
-                                                            <Rate style={{paddingLeft: '125px'}} allowHalf value={elem.star} />
+                                                            <Rate disabled style={{paddingLeft: '125px'}} allowHalf value={elem.star} />
                                                         </div>
                                                         <div className="col-md-2 col-sm-12 col-xs-12">
                                                         </div>

@@ -41,35 +41,50 @@ class JobSecondrow extends Component{
 
         return(
             <div className="container" style={{width:"90%"}}>
-                <div className="row">
-                    <div className="col-md-4 col-sm-12 col-xs-12 des-space">
-                        <div className="box-for">
-                            <span className="paddingTop">
-                                <h3 className="margin-left font-style"> Location </h3>
-                                <hr className="hr-class"/>
-                                <p className="marginleft-paragraph font-style">{data.location}</p>
-                            </span>
-                            <span>
-                                <h3 className="margin-left font-style"> Salary </h3>
-                                <hr className="hr-class"/>
-                                <p className="marginleft-paragraph font-style">{data.salary}</p>
-                                {/*<p  className="marginleft-paragraph font-style"> ......... (if Sallary not mentioned)</p>*/}
-
-                                <h3 className="margin-left font-style"> Experience</h3>
-                                  <hr className="hr-class"/>
-                                  <p className="marginleft-paragraph font-style">{data.experience}</p>
-
-                                <h3 className="margin-left font-style"> Posted </h3>
-                                <hr className="hr-class"/>
-                                <p className="marginleft-paragraph font-style"> 32 Minutes Ago <br/> <br/></p>
-                            </span>
-                        </div>
+                <div className="row" style={{border:'1px solid #80808059'}}>
+                    <div className="col-md-4 col-sm-12 col-xs-12 " style={{border:'1px solid #80808059'}}>
+                            <div className="row">
+                                <div className="col-md-6 col-sm-6 col-xs-12">
+                                    <h3 className="font-style"> Posted By: </h3>
+                                </div>
+                                <div className="col-md-6 col-sm-6 col-xs-12">
+                                    <span className="font-style">{data.compName}</span>
+                                </div>
+                            </div>
+                            <div className="row" style={{marginTop:'-29px'}}>
+                                <div className="col-md-6 col-sm-6 col-xs-12">
+                                    <h3 className="font-style"> Location: </h3>
+                                </div>
+                                <div className="col-md-6 col-sm-6 col-xs-12">
+                                    <span className="font-style">{data.location}</span>
+                                </div>
+                            </div>
+                            
+                            <div className="row" style={{marginTop:'-29px'}}>
+                                <div className="col-md-6 col-sm-6 col-xs-12">
+                                    <h3 className="font-style"> Salary: </h3>
+                                </div>
+                                <div className="col-md-6 col-sm-6 col-xs-12">
+                                    <p className="font-style">${data.salary}</p>
+                                </div>
+                            </div>
+                            <div className="row" style={{marginTop:'-29px'}}>
+                                <div className="col-md-6 col-sm-6 col-xs-12">
+                                    <h3 className="font-style"> Experience: </h3>
+                                </div>
+                                <div className="col-md-6 col-sm-6 col-xs-12">
+                                    <p className="font-style">{data.experience}</p>
+                                </div>
+                            </div>
                     </div>
-                    <div className="col-md-8 col-sm-12 col-xs-12 des-space" style={{marginTop:"-15px"}}>
-                        <h3 className="font-style"> Description </h3>
+                    
+                    <div className="col-md-8 col-sm-12 col-xs-12">
+                        <div style={{border:'1px solid #80808059',padding:'13px'}}>
+                        <h3 className="font-style" style={{marginTop:'2px'}}> About {data.compName} </h3>
                         <hr className="hr-class" style={{width:"100%"}}/>
                         <p className="font-style" style={{marginTop:"40px"}}>{data.compDescription}</p>
                         {!data.user && <button type="button" className="btn2 btn2-success" style={{marginTop:"70px", padding:"5px"}} onClick={() => {this.clickItem(data)}}>Apply This Job</button>}
+                        </div>
                     </div>
               </div>
               {this.state.visible && <Modal

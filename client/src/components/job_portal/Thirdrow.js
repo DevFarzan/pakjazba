@@ -147,7 +147,7 @@ class Thirdrow extends Component{
         return(
             <div className="container" style={{width:"90%"}}>
                 <div className="row">
-                    <div className="col-md-4 col-sm-12 col-xs-12 des-space">
+                    <div className="col-md-4 col-sm-12 col-xs-12 des-space" style={{border:'1px solid #80808059',marginTop:'-4px'}}>
                         <span className="featurejob-box">
                             <h4 className="margin-thirdrow font-style"> Featured Jobs </h4>
                                 {job && job.map((elem) => {

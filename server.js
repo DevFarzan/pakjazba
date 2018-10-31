@@ -604,7 +604,7 @@ if(businessData.objectId == '' || businessData.objectId == undefined || business
     businessProfile.socialLinkIn=businessData.socialLinkIn;
     businessProfile.profileId=businessData.profileId;
     businessProfile.description = businessData.description;
-    businessProfile.description = businessData.posted;
+    businessProfile.posted = businessData.posted;
 
     businessProfile.save(function(err,doc){
       if(err){

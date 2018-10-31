@@ -6,7 +6,6 @@ import moment from 'moment'
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
 
-
 const TabPane = Tabs.TabPane;
 class Roomrenting3contentarea extends Component{
     constructor(props) {
@@ -75,9 +74,7 @@ class Roomrenting3contentarea extends Component{
 
      async callApi(){
         const sports = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-sport&apiKey=6e7e6a696773424187f9bdb80954ded7');
-        console.log(sports.data.articles, 'sportssssssssss')
         const news = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=6e7e6a696773424187f9bdb80954ded7');
-        console.log(news.data.articles, 'newssssssssssssssss')
         this.setState({news: news.data.articles, sports: sports.data.articles})
     }
 
@@ -93,7 +90,7 @@ class Roomrenting3contentarea extends Component{
         let accommodates = data.accomodates || data.accommodates;
         let images = data.imageurl || data.arr_url;
         let AIncludes = data.amenitiesinclude || data.amenities;
-        let email= data.contactMode && data.contactMode.includes('email') ? data.contactEmail : 'abc@gmail.com';
+        let email= data.contactMode && data.contactMode.includes('email') ? data.contactEmail : '*****@gmail.com';
         let phone = data.contactMode && data.contactMode.includes('phone') ? data.contactNumber : '***********';
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
@@ -108,6 +105,7 @@ class Roomrenting3contentarea extends Component{
         if(data.modeofcontact && data.modeofcontact.includes('phone')){
             phone = data.contactnumber;
         }
+        let postedOn = moment(data.posted, "LL").format('YYYY-MM-DD');
 
         return(
             <div>
@@ -202,7 +200,7 @@ class Roomrenting3contentarea extends Component{
                             </div>
                             <div className="row">
                                 <div className="col-md-6"><h4 style={{fontSize: "16px",fontWeight:'bold',color: 'dimgray'}}>Posted On</h4></div>
-                                <div className="col-md-6"><h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-user"></span>{data.posted || '10-18-2018'}</h4></div>
+                                <div className="col-md-6"><h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-user"></span>{postedOn || ''}</h4></div>
                             </div>
                             <div className="row">
                                 <div className="col-md-6"><h4 style={{fontSize: "16px",fontWeight:'bold',color: 'dimgray'}}>Posted By</h4></div>

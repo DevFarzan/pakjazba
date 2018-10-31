@@ -6,7 +6,6 @@ import moment from 'moment'
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
 
-
 const TabPane = Tabs.TabPane;
 class Roomrenting3contentarea extends Component{
     constructor(props) {
@@ -108,6 +107,7 @@ class Roomrenting3contentarea extends Component{
         if(data.modeofcontact && data.modeofcontact.includes('phone')){
             phone = data.contactnumber;
         }
+        let postedOn = moment(data.posted, "LL").format('YYYY-MM-DD');
 
         return(
             <div>
@@ -202,7 +202,7 @@ class Roomrenting3contentarea extends Component{
                             </div>
                             <div className="row">
                                 <div className="col-md-6"><h4 style={{fontSize: "16px",fontWeight:'bold',color: 'dimgray'}}>Posted On</h4></div>
-                                <div className="col-md-6"><h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-user"></span>{data.posted || '10-18-2018'}</h4></div>
+                                <div className="col-md-6"><h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-user"></span>{postedOn || ''}</h4></div>
                             </div>
                             <div className="row">
                                 <div className="col-md-6"><h4 style={{fontSize: "16px",fontWeight:'bold',color: 'dimgray'}}>Posted By</h4></div>

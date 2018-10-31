@@ -98,7 +98,7 @@ class Buydetailsecondfold extends Component{
                             <div className="col-md-6">
                                 <div className="col-md-3 col-sm-3 col-xs-12" style={{marginTop:"26px"}}>
                                     <div className="review-block-img">
-                                        <img  onClick={() => {this.goToProfile()}} src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="img-circle" alt=""/>
+                                        <img onClick={() => {this.goToProfile()}} src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="img-circle" alt=""/>
                                     </div>
                                 </div>
                                 <div className="col-sm-9 col-xs-12" style={{marginTop: "33px"}}>

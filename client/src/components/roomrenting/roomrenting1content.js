@@ -5,6 +5,7 @@ import AsyncStorage from "@callstack/async-storage/lib/index";
 import {Link} from "react-router-dom";
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
+import moment from 'moment';
 
 class Roomrenting1content extends Component{
     constructor(props) {
@@ -135,6 +136,7 @@ class Roomrenting1content extends Component{
                                 des = des.substring(0, 30);
                                 des = des + '...'
                             }
+                            let postedOn = moment(elem.posted, "LL").format('YYYY-MM-DD');
                             return(
                                 <Link key={key} to={{pathname: `/detail_roomRent`, state: elem}}>
                                     <div className="col-md-3">
@@ -150,7 +152,7 @@ class Roomrenting1content extends Component{
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <span className="product-price" style={{top: '-40px',position:'relative'}}>{elem.rent}</span>
+                                                    <span className="product-price" style={{top: '-40px',position:'relative'}}>{"$" + elem.rent}</span>
                                                 </div>
                                                 {/*<div className="row" style={{textAlign:'center'}}>
                                                     <span className="col-md-6" style={{color: "#000000c7"}}>Posted By</span>
@@ -163,7 +165,7 @@ class Roomrenting1content extends Component{
                                                 <span className="col-md-6" style={{color: "#000000c7",fontSize:'13px'}}>Posted On</span>
                                                 <div className="col-md-6">
                                                     <i className="glyphicon glyphicon-calendar" style={{color:"#008080"}} />
-                                                    <span className="" style={{color: "#000000c7",fontSize:'13px'}}>10-17-2018</span>
+                                                    <span className="" style={{color: "#000000c7",fontSize:'13px'}}>{postedOn}</span>
                                                  </div>
                                                 </div>
                                                 <div className="row" style={{textAlign:'center',marginTop:'-15px'}}>

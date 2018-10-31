@@ -103,7 +103,8 @@ class Buydetailsecondfold extends Component{
                                 </div>
                                 <div className="col-sm-9 col-xs-12" style={{marginTop: "33px"}}>
                                     <div className="review-block-rate">
-                                        <div className="review-block-name" style={{cursor: 'pointer'}} onClick={() => {this.goToProfile()}}>{data.contactname}</div>
+                                        <div className="review-block-name hidden-xs" style={{cursor: 'pointer',marginLeft:'-35px'}} onClick={() => {this.goToProfile()}}>{data.contactname}</div>
+                                        <div className="review-block-name visible-xs" style={{cursor: 'pointer'}} onClick={() => {this.goToProfile()}}>{data.contactname}</div>
                                     </div>
                                 </div>
                                 <section  style={{float: "left",marginLeft: "67px"}}>

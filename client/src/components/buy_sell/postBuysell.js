@@ -469,18 +469,18 @@ class Postbuysell extends Component{
             <div>
                 {/*================================App component include Start===========================*/}
                 <Burgermenu/>
-                <div style={{backgroundColor:"#0000006b",width:"100%",height:"67px",marginTop:"-20px"}}></div>
+                <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}></div>
                 {/*================================post business form start============================*/}
                 <div className="">
                     <Form onSubmit={this.handleSubmit} className="login-form">
-                        <div className="panel-group" style={{paddingTop:"104px"}}>
+                        <div className="panel-group" style={{paddingTop:"34px"}}>
                             <div className="panel panel-default">
-                            <div className="main_c_panel">Add Business<br/>
-                                    Add your items to sell
+                            <div className="main_c_panel" style={{backgroundColor:'#37a99b',color:'white',textAlign:'center'}}><br/>
+                                    Submit your Items
                                 </div>
                                 <div className="panel-body">
                                 <div className="panel panel-default">
-                                        <div className="panel-heading bold_c_text"><Icon type="info-circle"/><span
+                                        <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}><Icon type="info-circle"/><span
                                             className="margin_font_location">Brand Detail</span></div>
                                     <FormItem
                                         {...formItemLayout}

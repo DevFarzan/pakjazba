@@ -317,7 +317,7 @@ class Postbusiness extends Component {
             objectId: '',
             statesUS: [],
             citiesUS: [],
-            loader: false,
+            loader: true,
             dataOtime: '00:00:00',
             dataCtime: '00:00:00',
             objData: {}
@@ -611,7 +611,7 @@ class Postbusiness extends Component {
                 socLin: '',
                 openingTime: '',
                 closingTime: '',
-                loader: false
+                loader: true
             })
         }
     }
@@ -723,14 +723,14 @@ class Postbusiness extends Component {
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="panel-group" style={{paddingTop:"37px"}}>
                             <div className="panel panel-default">
-                                <div className="main_c_panel">Add Business<br/>
-                                    Find all your Local Business in one place
+                                <div className="main_c_panel" style={{backgroundColor:'#37a99b',color:'white',textAlign:'center'}}>Submit your Business<br/>
+                                    
                                 </div>
                                 <div className="panel-body">
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
-                                    <div className="panel panel-default">
-                                        <div className="panel-heading bold_c_text"><Icon type="info-circle"/><span
+                                    <div className="panel panel-default" >
+                                        <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}><Icon type="info-circle"/><span
                                             className="margin_font_location">Location</span></div>
                                         <div className="panel-body">
 											<FormItem
@@ -783,7 +783,7 @@ class Postbusiness extends Component {
                                     {/*==========location panel end===========*/}
                                     {/*==========Business panel start=========*/}
                                     <div className="panel panel-default">
-                                        <div className="panel-heading bold_c_text"><Icon type="info-circle"/><span
+                                        <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}><Icon type="info-circle"/><span
                                             className="margin_font_location">Business</span></div>
                                         <div className="panel-body">
                                         <FormItem
@@ -946,7 +946,7 @@ class Postbusiness extends Component {
                                     {/*==========Business panel end===========*/}
                                     {/*==========social links box start===========*/}
                                         <div className="panel panel-default">
-                                        <div className="panel-heading bold_c_text"><Icon type="info-circle"/><span
+                                        <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}><Icon type="info-circle"/><span
                                             className="margin_font_location">Social Links</span></div>
                                         <div className="panel-body">
                                             <FormItem
@@ -972,7 +972,7 @@ class Postbusiness extends Component {
                                     {/*==========social links box end===========*/}
                                     {/*==========upload panel start=========*/}
                                     <div className="panel panel-default">
-                                        <div className="panel-heading bold_c_text"><Icon type="info-circle"/><span
+                                        <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px'}}><Icon type="info-circle"/><span
                                             className="margin_font_location">Upload</span></div>
                                         <div className="panel-body">
                                             <Upload
@@ -994,7 +994,7 @@ class Postbusiness extends Component {
                                 </div>
                                 <div className="row center_global">
                                     {this.state.loader && <Spin indicator={antIcon} />}
-                                    <button disabled={!!this.state.loader} className="btn color_button">Submit</button>
+                                    <button disabled={!!this.state.loader} className="btn color_button" style={{width:'19%'}}>Submit</button>
                                 </div>
                                 {/*main panel content*/}
                             </div>

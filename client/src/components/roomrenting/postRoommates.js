@@ -549,14 +549,14 @@ class Postroommates extends Component{
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="panel-group" style={{paddingTop:"32px"}}>
                             <div className="panel panel-default">
-                                <div className="main_c_panel">Roommates / Rentals<br/>
+                                <div className="main_c_panel" style={{backgroundColor:'#37a99b',color:'white',textAlign:'center'}}>Roommates / Rentals<br/>
                                     Find all your Local Rentals in one place
                                 </div>
                                 <div className="panel-body">
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
                                     <div className="panel panel-default">
-                                        <div className="panel-heading bold_c_text"><Icon type="info-circle"/><span
+                                        <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px'}}><Icon type="info-circle"/><span
                                             className="margin_font_location">Location</span></div>
                                         <div className="panel-body">
                                             <FormItem
@@ -818,7 +818,7 @@ class Postroommates extends Component{
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
                                     <div className="panel panel-default">
-                                        <div className="panel-heading bold_c_text"><Icon type="info-circle"/><span
+                                        <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px'}}><Icon type="info-circle"/><span
                                             className="margin_font_location">About</span></div>
                                         <div className="panel-body">
                                             <FormItem
@@ -872,7 +872,7 @@ class Postroommates extends Component{
                                 </div>
                                 <div className="row center_global">
                                     {this.state.loader && <Spin indicator={antIcon} />}
-                                    <button disabled={!!this.state.loader} className="btn color_button">Submit</button>
+                                    <button disabled={!!this.state.loader} className="btn color_button" style={{width:'19%'}}>Submit</button>
                                 </div>
                             </div>
                         </div>

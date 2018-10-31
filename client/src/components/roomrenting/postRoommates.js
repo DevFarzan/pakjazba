@@ -495,8 +495,7 @@ class Postroommates extends Component{
 
         const optionsContact = [
             { label: 'email', value: 'email' },
-            { label: 'phone', value: 'phone' },
-            { label: 'text', value: 'text' },
+            { label: 'phone', value: 'phone' }
         ];
 
         const formItemLayout = {

@@ -317,7 +317,7 @@ class Postbusiness extends Component {
             objectId: '',
             statesUS: [],
             citiesUS: [],
-            loader: true,
+            loader: false,
             dataOtime: '00:00:00',
             dataCtime: '00:00:00',
             objData: {}
@@ -611,7 +611,7 @@ class Postbusiness extends Component {
                 socLin: '',
                 openingTime: '',
                 closingTime: '',
-                loader: true
+                loader: false
             })
         }
     }

@@ -29,22 +29,20 @@ class ApplyJob extends Component {
 
     async getAllBusiness(){
         let res = this.props.location.state;
-        console.log(this.props.text)
-        console.log(res, 'DDDDDDDDDDDDDDDDDDDDd')
+        let text = this.props.text;
         this.setState({
             job: res && res,
-            showJob: res && res.slice(0, 6),
             loader: false
+        }, () => {
+            this.filteringData(text)
         });
     }
 
     filteringData(e){
         const { job } = this.state;
-        console.log(job, 'jobbbbbbbbb')
         let data = job.filter((elem) => {
             return (elem.jobCat.toLowerCase().includes(e.toLowerCase()))
         })
-        console.log(e, 'filtering functionnnnnnnn')
         this.setState({
             filteredData: data,
             showJob: data.slice(0, 6)
@@ -64,8 +62,6 @@ class ApplyJob extends Component {
                 </div>
                 <CategoriesjobMarket filteringData={this.filteringData.bind(this)}/>
                 <Secondscreencard data={this.state.showJob} allData={this.getAllBusiness.bind(this)}/>
-                {/*<JobNews/>*/}
-
             </div>
         )
     }

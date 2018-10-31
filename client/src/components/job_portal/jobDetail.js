@@ -18,6 +18,7 @@ import JobSecondrow from './secondRow';
 import Thirdrow from './Thirdrow';
 import { Redirect } from 'react-router';
 import './jobDetail.css';
+import AsyncStorage from "@callstack/async-storage";
 import {connect} from "react-redux";
 
 

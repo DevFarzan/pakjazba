@@ -25,6 +25,7 @@ var businessSchema = new mongoose.Schema({
     socialGoogle:{type:String},
     socialLinkIn:{type:String},
     profileId:{type:String},
+    posted:{type:String}
 });
 //businessSchema.plugin(uniqueValidator);
 mongoose.model('business',businessSchema);

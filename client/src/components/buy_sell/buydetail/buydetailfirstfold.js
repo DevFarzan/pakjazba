@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { Carousel } from 'antd';
+import Buydetailsecondfold from './buydetailsecondfold';
 import './buydetailfirstfold.css'
 
 class Buydetailfirstfold extends Component{
     render(){
         let data = this.props.data;
         console.log(data, 'lllllllllllllllll');
-        let images = this.props.data.images;
+        let images = data.images || data.arr_url;
         return(
             <div className="">
-              <div className="row" style={{padding:"10px"}}>
+              <div className="row" style={{padding:"10px",border:'1px solid #80808030'}}>
                 <div className="col-md-6" style={{paddingLeft:"0px"}}>
                   <h2 className="">{data.subcategory || data.category} For Sale  </h2>
                   <div className="location-padding" style={{marginTop:"-26px", marginLeft:"-4px"}}>
@@ -21,7 +22,9 @@ class Buydetailfirstfold extends Component{
                   <h3> ${data.price} </h3>
                 </div>
               </div>
-                <h3 className="heading-padding"> Gallery </h3>
+              <div className="row" style={{marginTop:'11px',border:'1px solid #80808030'}}>
+                <div className="col-md-4">
+                    <h3 className="heading-padding"> Gallery </h3>
                 <Carousel autoplay>
                     {images && images.map((elem, key) => {
                         return(
@@ -31,25 +34,32 @@ class Buydetailfirstfold extends Component{
                         )
                     })}
                 </Carousel>
-                <div>
-                    <h3 className="heading-padding"> Description </h3>
-                    <p>{data.description}</p>
                 </div>
-                <div className="row" style={{padding:"0px"}}>
+                <div className="col-md-8">
+                    <Buydetailsecondfold data={data}/>
+                </div>
+              </div>
+                
+                <div className="row" style={{marginTop:'11px',border:'1px solid #80808030'}}>
+                    <div className="col-md-12">
+                        <h3 className="heading-padding"> Description </h3>
+                        <p>{data.description}</p>
+                    </div>
+                </div>
+                <div className="row" style={{padding:"0px",marginTop:'11px',border:'1px solid #80808030'}}>
 
                         <div className="col-md-4 col-sm-12 col-xs-12 des-space">
                             <h3> Details </h3>
                             <p><b>Condition:</b>{data.condition}</p>
-                            <p><b>Model Make:</b>{data.modelmake}</p>
-                            <p><b>Model Name:</b>{data.modelname}</p>
-                            <p><b>Model Number:</b>{data.modelnumber}</p>
-                            <p><b>Type:</b>{data.subcategory}</p>
+                            <p><b>Model Make:</b>{data.modelmake || data.make}</p>
+                            <p><b>Model Name:</b>{data.modelname || data.modelName}</p>
+                            <p><b>Model Number:</b>{data.modelnumber || data.number}</p>
+                            <p><b>Type:</b>{data.subcategory || data.subCategory}</p>
                         </div>
                         <div className="col-md-8 col-sm-12 col-xs-12 des-space">
                             <h3>Location </h3>
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.6337348509687!2d67.03749541472551!3d24.807992284078704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33da992be1aa7%3A0x7646411a2d8e6ac5!2sKRL+Creatives!5e0!3m2!1sen!2s!4v1536302761580" width="100%" height="400" frameborder="0" style={{"border":"0"}} allowfullscreen></iframe>
                         </div>
-
                 </div>
             </div>
         )

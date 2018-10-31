@@ -9,7 +9,6 @@ var bodyParser = require('body-parser')
 var jwt = require('jsonwebtoken');
 var ip = require('ip');
 
-
 const port = process.env.PORT || 5000;
 
 app.use(function(req, res, next) {
@@ -185,7 +184,7 @@ rand=Math.floor((Math.random() * 100) + 54);
   mailOptions={
     to : req.query.email,
     subject : "Please confirm your Email account",
-    html : `<html style="opacity: 1;font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;box-sizing: border-box;border: solid;"><head><title>Verify your email address</title></head><body style="width: 100% !important;height: 100%;margin: 0;line-height: 1.4;background-color: #F5F7F9;color: #555555;"><div class="email-di" style=" width:480px;margin:0 auto;padding:30px;"><table class="email" width="100%" cellpadding="0" cellspacing="0" style="width: 100%;margin: 0;padding: 0;background-color: #FFFFFF;"><tr><td align="center" style="border: 1px groove;color: grey"><table class="email-content" width="100%" cellpadding="0" cellspacing="0" style="width: 100%;margin: 0;padding: 0;"><tr><td><img src="http://res.cloudinary.com/dxk0bmtei/image/upload/v1534159021/pakjazba_f3orb0.png" style="display: block;margin-left: auto;margin-right: auto;"></td> </tr> <tr><td class="email-body" width="100%" style="width: 100%;margin: 0;padding: 0;border-top: 1px solid #FFFFFF;border-bottom: 1px solid #E7EAEC;background-color: #FFFFFF;"><table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0" style="width: 570px;margin: 0 auto;padding: 0;"><tr><td class="content" style="padding: 35px;"><h1 style="margin-top: 0;color:#292E31;font-size: 19px;font-weight: bold;text-align: left;">Verify your email address</h1><p style="margin-top: 0;color: #555555;font-size: 16px;line-height: 1.5em;text-align: left;">Welcome to Pakjazba! Just verify your email to get</p><table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" style=" width: 100%;margin: 30px auto;padding: 0;text-align: center;"><tr><td align="center"><div> <a href="${link}" class="button button--blue" style="background-color: #8cbc40; display: inline-block;width: 200px;border-radius: 3px;color: #ffffff;font-size: 15px;line-height: 45px;text-align: center;text-decoration: underline;cursor:pointer;">Verify Email</a></div></td> </tr><p style="margin-top: 0;color: #555555;font-size: 16px;line-height: 1.5em;text-align: left;">PAKJAZBA Team<br>Level 23</p><tr><td>
+    html : `<html style="opacity: 1;font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;box-sizing: border-box;border: solid;"><head><title>Verify your Email Address</title></head><body style="width: 100% !important;height: 100%;margin: 0;line-height: 1.4;background-color: #F5F7F9;color: #555555;"><div class="email-di" style=" width:480px;margin:0 auto;padding:30px;"><table class="email" width="100%" cellpadding="0" cellspacing="0" style="width: 100%;margin: 0;padding: 0;background-color: #FFFFFF;"><tr><td align="center" style="border: 1px groove;color: grey"><table class="email-content" width="100%" cellpadding="0" cellspacing="0" style="width: 100%;margin: 0;padding: 0;"><tr><td><img src="http://res.cloudinary.com/dxk0bmtei/image/upload/v1534159021/pakjazba_f3orb0.png" style="display: block;margin-left: auto;margin-right: auto;"></td> </tr> <tr><td class="email-body" width="100%" style="width: 100%;margin: 0;padding: 0;border-top: 1px solid #FFFFFF;border-bottom: 1px solid #E7EAEC;background-color: #FFFFFF;"><table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0" style="width: 570px;margin: 0 auto;padding: 0;"><tr><td class="content" style="padding: 35px;"><h1 style="margin-top: 0;color:#292E31;font-size: 19px;font-weight: bold;text-align: left;">Verify your email address</h1><p style="margin-top: 0;color: #555555;font-size: 16px;line-height: 1.5em;text-align: left;">Welcome to PakJazba! Please confirm your email account by clicking the button below</p><table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" style=" width: 100%;margin: 30px auto;padding: 0;text-align: center;"><tr><td align="center"><div> <a href="${link}" class="button button--blue" style="background-color: #8cbc40; display: inline-block;width: 200px;border-radius: 3px;color: #ffffff;font-size: 15px;line-height: 45px;text-align: center;text-decoration: underline;cursor:pointer;">Verify Email</a></div></td> </tr><p style="margin-top: 0;color: #555555;font-size: 16px;line-height: 1.5em;text-align: left;">Team PakJazba<br>Level 23</p><tr><td>
                         <ul style="list-style-type: none;text-align: center;">
                             <li style="float: left;"><a href="#"><p style="align-content: left"><img class="social-icon" src="http://i.imgur.com/oyXO6zq.png" width="30" height="30"></p></a></li>
                             <li style="float: left;"><a href="#"><p class="text-center"><img class="social-icon" src="http://i.imgur.com/AJNmSZs.png" width="30" height="30"></p></a><li>
@@ -198,7 +197,7 @@ rand=Math.floor((Math.random() * 100) + 54);
                      <table class="body-sub" style="margin-top: 25px;padding-top: 25px;border-top: 1px solid #E7EAEC;">
                       <tr>
                         <td>
-                          <p class="sub" style="font-size: 12px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                          <p class="sub" style="font-size: 12px;">Something not working? Please write to us at support@pakjazba.com.
                             </p>
                         </td>
                       </tr>
@@ -214,7 +213,7 @@ rand=Math.floor((Math.random() * 100) + 54);
                 <tr>
                   <td class="content-cell">
                     <p class="sub center" style="text-align:center;">
-                      PAJAZBA
+                     <img src="http://res.cloudinary.com/dxk0bmtei/image/upload/v1534159021/pakjazba_f3orb0.png" style="display: block;margin-left: auto;margin-right: auto;" />
                       <br>
                     </p>
                   </td>
@@ -524,6 +523,7 @@ app.post('/api/postbusinessdata',function(req,res){
       businessImages = businessData.arr_url,
       businessId = businessData.businessId;
       businessDescription = businessData.description;
+      posted = businessData.posted;
 
 if(businessData.objectId == '' || businessData.objectId == undefined || businessData.objectId == null){
    var yellowBusiness_info = new yellowPagesBusiness({
@@ -548,7 +548,8 @@ if(businessData.objectId == '' || businessData.objectId == undefined || business
     socialGoogle:businessData.socialGoogle,
     socialLinkIn:businessData.socialLinkIn,
     profileId:businessData.profileId,
-    description:businessDescription
+    description:businessDescription,
+    posted:posted
    });
 
    yellowBusiness_info.save(function(err,data){
@@ -560,6 +561,7 @@ if(businessData.objectId == '' || businessData.objectId == undefined || business
       })
     }//end if
     else if(data!=''){
+      console.log(data);
       res.send({
         code:200,
         msg:'Data inserted successfully'
@@ -602,6 +604,7 @@ if(businessData.objectId == '' || businessData.objectId == undefined || business
     businessProfile.socialLinkIn=businessData.socialLinkIn;
     businessProfile.profileId=businessData.profileId;
     businessProfile.description = businessData.description;
+    businessProfile.description = businessData.posted;
 
     businessProfile.save(function(err,doc){
       if(err){
@@ -636,6 +639,7 @@ app.post('/api/postbuyselldata',function(req,res){
       contactnumber = buyselldata.contactNumber;
       modeofcontact = buyselldata.contactMode;
   var address = buyselldata.address,
+      state = buyselldata.state,
       category = buyselldata.category,
       city = buyselldata.city,
       condition = buyselldata.condition;
@@ -654,7 +658,8 @@ app.post('/api/postbuyselldata',function(req,res){
 var   subcategory   = buyselldata.subCategory,
       subsubcategory = buyselldata.subSubCategory,
       profileid =      buyselldata.profileId,
-      streetaddress = buyselldata.streetAddress
+      streetaddress = buyselldata.streetAddress,
+      posted = buyselldata.posted
 
 if(buyselldata.objectId == '' || buyselldata.objectId == undefined || buyselldata.objectId == null){
 
@@ -671,6 +676,7 @@ if(buyselldata.objectId == '' || buyselldata.objectId == undefined || buyselldat
       sizedimension:sizedimension,
       images:classifiedImages,
       city:city,
+      state: state,
       postingtype:postingtype,
       category:category,
       title:title,
@@ -683,7 +689,8 @@ if(buyselldata.objectId == '' || buyselldata.objectId == undefined || buyselldat
       subcategory:subcategory,
       subsubcategory:subsubcategory,
       profileid:profileid,
-      streetaddress:streetaddress
+      streetaddress:streetaddress,
+      posted:posted
  });
 
 classifiedBusiness_info.save(function(err,data){
@@ -739,6 +746,7 @@ classifiedBusiness.findOne({"_id" : buyselldata.objectId},function(err,buysell){
       buysell.subsubcategory=buyselldata.subSubCategory;
       buysell.profileid=buyselldata.profileId;
       buysell.streetaddress=buyselldata.streetaddress;
+      buysell.posted = buyselldata.posted;
 
       buysell.save(function(err,doc){
         if(err){
@@ -982,7 +990,8 @@ app.post('/api/changepassword',function(req,res){
       profileId:postroomrent.profileId,
       subCategory:postroomrent.subCategory,
       subSubCategory:postroomrent.subSubCategory,
-      state:postroomrent.state
+      state:postroomrent.state,
+      posted:postroomrent.posted
     })
     roommates_info.save(function(err,data){
   if(err){
@@ -1040,6 +1049,7 @@ else if(postroomrent.objectId != '' || postroomrent.objectId != undefined || pos
       roomrentsdata.subCategory=postroomrent.subCategory;
       roomrentsdata.subSubCategory=postroomrent.subSubCategory;
       roomrentsdata.state=postroomrent.state;
+      roomrentsdata.posted = postroomrent.posted;
 
       roomrentsdata.save(function(err,doc){
         if(err){

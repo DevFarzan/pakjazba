@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
 import './burgermenu.css';
-import { Button } from 'antd';
 import MainLogin from '../header/mainLogin';
 import Category from '../header/getcategory';
 import { Link } from "react-router-dom";
+import { Menu, Icon, Button } from 'antd';
+
+
+const SubMenu = Menu.SubMenu;
 
 class Burgermenu extends Component{
+state = {
+    collapsed: false,
+    hidemenu:false
+  }
+
+  toggleCollapsed = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
+  }
 
   render(){
+    //const hidemenu = false;
       return(
           <div>
               <nav className="navbar navbar-fixed-top hidden-xs"
@@ -15,7 +29,7 @@ class Burgermenu extends Component{
                   <div className="container-fluid">
                       <div className="col-md-2 col-sm-6 col-xs-6">
                           <div className="navbar-header">
-                              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" >
                                   <span className="sr-only">Toggle navigation</span>
                                   <span className="icon-bar"></span>
                                   <span className="icon-bar"></span>
@@ -40,7 +54,7 @@ class Burgermenu extends Component{
                                       <Button type="button_globalclassName" name='buySell' ghost className="button_globalclassName">
                                           <Link rel="noopener noreferrer" to={`/market_jobPortal`}>Job Portal</Link>
                                       </Button>
-                                      {/*<Button type="button_globalclass" name='events' ghost className="button_globalclass">
+                                      {/*<Button type="button_globalclassName" name='events' ghost className="button_globalclassName">
                                           <Link rel="noopener noreferrer" to={`/market_eventPortal`}>Events</Link>
                                       </Button>*/}
                                   </div>
@@ -59,35 +73,56 @@ class Burgermenu extends Component{
               <nav className="navbar navbar-default visible-xs">
                   <div className="container-fluid">
                       <div className="row">
-                          <div className="col-xs-9">
+                          <div className="col-xs-12">
                               <div className="navbar-header">
-                                  <a className="navbar-brand"><img alt='' src="./images/mobile-logo.png" style={{"width": "100px", marginTop: "11px"}} /></a>
+                                  <a  className="navbar-brand"><Link to={`/`}><img alt='' src="./images/mobile-logo.png" style={{"width": "100px", marginTop: "11px"}} /></Link></a>
+                                  <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="true" onClick={()=>this.setState({hidemenu:!this.state.hidemenu})}>
+                                      <span class="sr-only">Toggle navigation</span>
+                                      <span class="icon-bar"></span>
+                                      <span class="icon-bar"></span>
+                                      <span class="icon-bar"></span>
+                                  </button>
                               </div>
                           </div>
-                          <div className="col-xs-3" style={{marginTop: "28px"}}><MainLogin/></div>
+        
                       </div>
-
-                      <div className="row" style={{marginTop: "22px",marginBottom: "11px"}}>
-                          <div className="col-xs-6">
-                              <div style={{"float": "right"}}>
-                                  <Button type="primary" ghost>
+                      <ul className="list-group">
+                      {this.state.hidemenu && <div className="" style={{marginTop: "22px",marginBottom: "11px"}} >
+                         <li className="list-group-item" style={{padding:'19px'}}> 
+                            <div className="col-xs-12" style={{marginTop:'-12px'}}>
+                                  <span>
                                       <Link rel="noopener noreferrer" to={`/market_roommates`}>Room Renting</Link>
-                                  </Button>
-                                  <Button type="primary" ghost style={{marginTop: "8px"}}>
+                                  </span>
+                            </div> 
+                          </li> 
+                          <li className="list-group-item" style={{padding:'19px'}}>     
+                              <div className="col-xs-12" style={{marginTop:'-12px'}}>    
+                                  <span style={{marginTop: "8px"}}>
                                       <Link rel="noopener noreferrer" to={`/market_business`}>Business Listing</Link>
-                                  </Button>
+                                  </span>
                               </div>
-                          </div>
-                          <div className="col-xs-6">
-                              <Button type="primary" ghost style={{marginBottom: "8px"}}>
-                                  <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
-                              </Button>
+                          </li>
+                           <li className="list-group-item" style={{padding:'19px'}} >
+                              <div className="col-xs-12" style={{marginTop:'-12px'}}>
+                                  <span style={{marginTop: "8px"}}>
+                                      <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
+                                  </span>
+                              </div>
+                          </li>  
+                          <li className="list-group-item" style={{padding:'19px'}}>  
+                          <div className="col-xs-12" style={{marginTop: "-15px"}}>    
                               <span ><Category/></span>
                           </div>
-                      </div>
+                          </li>
+                          <li className="list-group-item" style={{padding:'19px'}}>
+                          <div className="col-xs-12" style={{marginTop: "-12px"}}>
+                              <div style={{backgroundColor:'#37a99b',width: '37%'}}><MainLogin/></div>
+                          </div>
+                          </li>
+                      </div>}
+                    </ul>
                   </div>
               </nav>
-              
           </div>
       )
   }

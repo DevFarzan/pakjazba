@@ -16,6 +16,7 @@ var postclassifiedSchema = new mongoose.Schema({
 	sizedimension:{type:Array},
 	images:{type:Array},
 	city:{type:String},
+	state:{type:String},
 	postingtype:{type:String},
 	category:{type:String},
 	title:{type:String},
@@ -29,6 +30,7 @@ var postclassifiedSchema = new mongoose.Schema({
 	subsubcategory:{type:String},
 	streetaddress:{type:String},
 	profileid:{type:String},
+	posted:{type:String},
 
 });
 

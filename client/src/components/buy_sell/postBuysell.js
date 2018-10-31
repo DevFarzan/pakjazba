@@ -17,6 +17,7 @@ import sha1 from "sha1";
 import superagent from "superagent";
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
+import moment from 'moment';
 import stateCities from "../../lib/countrycitystatejson";
 
 const { TextArea } = Input;
@@ -74,7 +75,6 @@ class Postbuysell extends Component{
             dataTitle: '',
             dataDescription: '',
             dataPrice: '',
-            dataHidePrice: false,
             dataCondition: [],
             dataMake: '',
             dataModelName: '',
@@ -86,12 +86,12 @@ class Postbuysell extends Component{
             dataDelivery: [],
             dataCity: [],
             dataAddress: '',
-            dataHideAddress: '',
             imageList: [],
             objectId: '',
             statesUS: [],
             citiesUS: [],
-            loader: false
+            loader: false,
+            objData: {}
         }
     }
 
@@ -109,7 +109,7 @@ class Postbuysell extends Component{
                 dataTitle: data.title,
                 dataDescription: data.description,
                 dataPrice: data.price,
-                dataHidePrice: data.hideprice,
+                hidePrice: data.hideprice,
                 dataCondition: [data.condition],
                 dataMake: data.modelmake,
                 dataModelName: data.modelname,
@@ -125,7 +125,7 @@ class Postbuysell extends Component{
                 dataCity: [data.city],
                 dataState: [data.state],
                 dataAddress: data.address,
-                dataHideAddress: data.hideaddress,
+                hideAddress: data.hideaddress,
                 imageList: data.images,
                 objectId: data._id
             })
@@ -288,15 +288,14 @@ class Postbuysell extends Component{
             subSubCategory: values.subsubcategory ? values.subsubcategory[0] : '',
             price: values.price,
             arr_url: [...response, ...imageList],
-            objectId: objectId
+            objectId: objectId,
+            posted: moment().format('LL')
         }
-        console.log(obj, 'kkkkkkkkkkkkkkk')
         let req = await HttpUtils.post('postbuyselldata', obj)
-        console.log(req, 'lllllllllllllll')
         if(req.code === 200){
             this.props.form.resetFields();
             this.openNotification()
-            this.setState({msg: true, dLength: '', dWidth: '', dHeight: '', loader: false})
+            this.setState({objData: obj, msg: true, dLength: '', dWidth: '', dHeight: '', loader: false})
         }
     }
 
@@ -394,13 +393,25 @@ class Postbuysell extends Component{
         this.setState({imageList: imageList})
     }
 
+    validateNumber(rule, value, callback){
+        if(isNaN(value)){
+            callback('Please type Numbers');
+        }else {
+            callback()    
+        }
+    }
+
     render(){
-        const { previewVisible, previewImage, fileList, desLength, categ, subCat, selectSubCat, secSubCat, statesUS, citiesUS } = this.state;
+        const { previewVisible, previewImage, fileList, desLength, categ, subCat, selectSubCat, secSubCat, statesUS, citiesUS, objData } = this.state;
         const {getFieldDecorator} = this.props.form;
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
         if (this.state.msg === true) {
-            return <Redirect to='/' />
+            return <Redirect to={{pathname: '/detail_buySell', state: objData}} />
+        }
+
+        function filter(inputValue, path) {
+            return (path.some(option => (option.label).toLowerCase().indexOf(inputValue.toLowerCase()) > -1));
         }
 
         const uploadedImages = (
@@ -465,7 +476,7 @@ class Postbuysell extends Component{
                         <div className="panel-group" style={{paddingTop:"104px"}}>
                             <div className="panel panel-default">
                             <div className="main_c_panel">Add Business<br/>
-                                    Find all your Local Business in one place
+                                    Add your items to sell
                                 </div>
                                 <div className="panel-body">
                                 <div className="panel panel-default">
@@ -479,7 +490,7 @@ class Postbuysell extends Component{
                                             initialValue: this.state.dataCat,
                                             rules: [{ type: 'array', required: true, message: 'Please select your Category!' }],
                                         })(
-                                            <Cascader options={categ} onChange={this.onChangeCat.bind(this)}/>
+                                            <Cascader options={categ} showSearch={{ filter }} onChange={this.onChangeCat.bind(this)}/>
                                         )}
                                     </FormItem>
                                     <FormItem
@@ -490,7 +501,7 @@ class Postbuysell extends Component{
                                             initialValue: this.state.dataCatSub,
                                             rules: [{ type: 'array', required: true, message: 'Please select your Sub-Category!' }],
                                         })(
-                                            <Cascader options={subCat} onChange={this.onChangeSubCat.bind(this)}/>
+                                            <Cascader options={subCat} showSearch={{ filter }} onChange={this.onChangeSubCat.bind(this)}/>
                                         )}
                                     </FormItem>
                                     {(!!this.state.dataSubSub.length || selectSubCat) && <div className="row">
@@ -535,10 +546,10 @@ class Postbuysell extends Component{
                                             <TextArea
                                                 rows={6}
                                                 maxLength="500"
-                                            />
+                                           style={{"marginBottom": "10px",float:'right'}} />
                                         )}
                                         <br />
-                                        <span>{500 - desLength}</span>
+                                        <span>{500 - desLength} Words</span>
                                     </FormItem>
                                     <div className="row" style={{'textAlign': 'center'}}>
                                         <div className="col-md-2"></div>
@@ -549,14 +560,15 @@ class Postbuysell extends Component{
                                             >
                                                 {getFieldDecorator('price', {
                                                     initialValue: this.state.dataPrice,
-                                                    rules: [{ validator: this.checkPriceValue.bind(this) }],
+                                                    rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
+                                                            { validator: this.validateNumber.bind(this) }],
                                                 })(
                                                     <Input />
                                                 )}
                                             </FormItem>
                                         </div>
                                         <div className="col-md-3" style={{'textAlign': 'left'}}>
-                                            <Checkbox checked={this.state.dataHidePrice} onChange={this.onChangePrice.bind(this)}>(Hide Price)</Checkbox>
+                                            <Checkbox checked={this.state.hidePrice} onChange={this.onChangePrice.bind(this)}>(Hide Price)</Checkbox>
                                         </div>
                                         <div className="col-md-4"></div>
                                     </div>
@@ -574,7 +586,7 @@ class Postbuysell extends Component{
                                             initialValue: this.state.dataCondition,
                                             rules: [{ type: 'array', required: true, message: 'Please select your Condition!' }],
                                         })(
-                                            <Cascader options={condition} />
+                                            <Cascader options={condition} showSearch={{ filter }} />
                                         )}
                                     </FormItem>
                                     <FormItem
@@ -605,7 +617,8 @@ class Postbuysell extends Component{
                                     >
                                         {getFieldDecorator('number', {
                                             initialValue: this.state.dataModelNumber,
-                                            rules: [{ required: true, message: 'Please input your Number!', whitespace: true }],
+                                            rules: [{ required: true, message: 'Please input your Number!', whitespace: true },
+                                                    { validator: this.validateNumber.bind(this) }],
                                         })(
                                             <Input  />
                                         )}
@@ -667,7 +680,8 @@ class Postbuysell extends Component{
                                     >
                                         {getFieldDecorator('contactEmail', {
                                             initialValue: this.state.dataEmail,
-                                            rules: [{ required: true, message: 'Please input your Contact Email!', whitespace: true }],
+                                            rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true },
+                                                    { required: true, message: 'Please input your Contact Email!', whitespace: true }],
                                         })(
                                             <Input  />
                                         )}
@@ -678,7 +692,8 @@ class Postbuysell extends Component{
                                     >
                                         {getFieldDecorator('contactNumber', {
                                             initialValue: this.state.dataNumber,
-                                            rules: [{ required: true, message: 'Please input your Contact Number!', whitespace: true }],
+                                            rules: [{ required: true, message: 'Please input your Contact Number!', whitespace: true },
+                                                    { validator: this.validateNumber.bind(this) }],
                                         })(
                                             <Input  />
                                         )}
@@ -713,7 +728,7 @@ class Postbuysell extends Component{
                                             initialValue: this.state.dataState,
                                             rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
                                         })(
-                                            <Cascader options={statesUS} onChange={this.onChangeState.bind(this)}/>
+                                            <Cascader options={statesUS} showSearch={{ filter }} onChange={this.onChangeState.bind(this)}/>
                                         )}
                                     </FormItem>
                                     <FormItem
@@ -724,7 +739,7 @@ class Postbuysell extends Component{
                                             initialValue: this.state.dataCity,
                                             rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
                                         })(
-                                            <Cascader options={citiesUS} />
+                                            <Cascader options={citiesUS} showSearch={{ filter }}/>
                                         )}
                                     </FormItem>
                                     <div className="row">
@@ -747,7 +762,7 @@ class Postbuysell extends Component{
                                             </FormItem>
                                         </div>
                                         <div className="col-md-3" style={{'textAlign': 'left'}}>
-                                            <Checkbox checked={this.state.dataHideAddress} onChange={this.onChangeAddress.bind(this)}>(Hide Address)</Checkbox>
+                                            <Checkbox checked={this.state.hideAddress} onChange={this.onChangeAddress.bind(this)}>(Hide Address)</Checkbox>
                                         </div>
                                         <div className="col-md-3"></div>
                                     </div>

@@ -153,7 +153,10 @@ class Roomrentingtwocontentarea extends Component{
     }
 
     componentWillUnmount() {
-        this.props.history.push('/market_roommates');
+        const { objData, goDetail } = this.state;
+        if(!(objData && Object.keys(objData).length <= 0) && !goDetail){
+            this.props.history.push('/market_roommates');
+        }
     }
 
     async getAllBusiness(){
@@ -178,8 +181,8 @@ class Roomrentingtwocontentarea extends Component{
         this.setState({
             roomrents: res && res,
             states: states,
-            showroomrents: filter.slice(0, 6),
-            filteredArr: filter,
+            showroomrents: filter ? filter.slice(0, 6) : [],
+            filteredArr: filter ? filter : [],
             loader: false,
             add: 6
         })
@@ -192,7 +195,7 @@ class Roomrentingtwocontentarea extends Component{
 
     searchArr(arr, text){
         let data = arr;
-        data = data.filter((elem) => {
+        data = data && data.filter((elem) => {
             return (elem.category && elem.category.toLowerCase().includes(text.toLowerCase())) ||
                 (elem.subCategory && elem.subCategory.toLowerCase().includes(text.toLowerCase())) ||
                 (elem.subSubCategory && elem.subSubCategory.toLowerCase().includes(text.toLowerCase())) ||
@@ -269,11 +272,18 @@ class Roomrentingtwocontentarea extends Component{
     }
 
     onAddMore = () => {
-        const { add, filteredArr } = this.state;
-        this.setState({
-            showroomrents: filteredArr.slice(0, add + 6),
-            add: add + 6
-        });
+        const { add, filteredArr, roomrents } = this.state;
+        if(!!filteredArr.length){
+            this.setState({
+                showroomrents: filteredArr.slice(0, add + 6),
+                add: add + 6
+            });
+        }else {
+            this.setState({
+                showroomrents: roomrents.slice(0, add + 6),
+                add: add + 6
+            });
+        }
     }
 
     onChangeSlider(value){
@@ -310,17 +320,25 @@ class Roomrentingtwocontentarea extends Component{
         })
     }
 
+    clickItem(item){
+        this.setState({goDetail: true, objData: item})
+    }
+
 	render(){
-        const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader } = this.state;
+        const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader, objData, goDetail } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
         if(!noText){
             return <Redirect to='/market_roommates'/>
         }
+        if(goDetail){
+            return <Redirect to={{pathname: `/detail_roomRent`, state: objData}} />
+        }
 
 		return(
             <div>
 		    <Burgermenu/>
+            <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}></div>
             <div className="countainer">
                 <div className="head-bg">
                     <div className="col-md-12">
@@ -337,7 +355,7 @@ class Roomrentingtwocontentarea extends Component{
                         <Cascader style={{width: '100%'}} options={category} onChange={this.onChange.bind(this)} placeholder="Please select" />
                     </div>
                     <div className="col-md-2 col-sm-2 search-space1">
-                        <button className="btn search-btn" onClick={this.mostPopular.bind(this)}> Most Popular</button>
+                        <button className="btn search-btn" onClick={this.mostPopular.bind(this)}>Search</button>
                     </div>
                 </div>
                 <div className="col-md-1 col-sm-1">
@@ -378,6 +396,9 @@ class Roomrentingtwocontentarea extends Component{
                             width="180" height="200" frameBorder="0" style={{"border": "0"}} allowFullScreen></iframe>
                     </div>
                     <div className="col-md-10 col-sm-12 col-xs-12">
+                        {!!showroomrents.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
+                        {!!showroomrents.length === false && <span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
+                        {!!showroomrents.length === false && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
                         {showroomrents && showroomrents.map((elem, key) => {
                             let str = elem.propertylocation || '';
                             if(str.length > 25) {
@@ -393,16 +414,16 @@ class Roomrentingtwocontentarea extends Component{
                                 <div key={key} className="col-lg-4 col-md-4 col-sm-12 space-top">
                                     <div className="secondfold" style={{backgroundColor:"#ffffff08"}}>
                                         <div className="row">
-                                            <Link to={{pathname: `/detail_roomRent`, state: elem}}>
-                                                <div className="">
+                                            {/*<Link to={{pathname: `/detail_roomRent`, state: elem}}>*/}
+                                                <div className="" onClick={() => {this.clickItem(elem)}}>
                                                     <div className="ibox">
                                                         <div className="ibox-content product-box">
                                                             <div className="product-imitation">
                                                                 <div className="card2">
                                                                     <img alt='' src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'}/>
                                                                     <span className="card-button">
-                                                                        <p className="categories-on-card">{elem.category}</p>
-                                                                        <i className="glyphicon glyphicon-map-marker"/><p className="text">{elem.state +" & "+ elem.city}</p>
+                                                                        <p className="categories-on-card" style={{backgroundColor: 'rgb(0, 128, 128)',textAlign:'center'}}>{elem.category}</p>
+                                                                        <i style={{color:'rgb(0, 128, 128)'}} className="glyphicon glyphicon-map-marker"/><p className="text" style={{color:'white',marginTop:'-23px'}}>{elem.state +" & "+ elem.city}</p>
                                                                     </span>
                                                                 </div>
                                                             </div>
@@ -411,18 +432,18 @@ class Roomrentingtwocontentarea extends Component{
                                                                 <p className="text">{str}</p>
                                                             </div>
                                                             <div className="product-desc">
-                                                                <span className="product-price">{elem.rent}</span>
+                                                                <span className="product-price">${elem.rent}</span>
                                                                 <small className="text-muted">Category</small>
                                                                 <a className="product-name">{elem.category}</a>
-                                                                <div className="small m-t-xs">{des}</div>
+                                                                {/*<div className="small m-t-xs">{des}</div>
                                                                 <div className="m-t text-righ">
                                                                     <Link to={{pathname: `/detail_roomRent`, state: elem}} className="btn btn-xs btn-outline btn-primary">Info <i className="fa fa-long-arrow-right"></i> </Link>
-                                                                </div>
+                                                                </div>*/}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </Link>
+                                            {/*</Link>*/}
                                         </div>
                                     </div>
                                 </div>
@@ -431,7 +452,7 @@ class Roomrentingtwocontentarea extends Component{
                         {loader && <div className="col-md-12" style={{textAlign: 'center'}}>
                             <Spin indicator={antIcon} />
                         </div>}
-                        <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>
+                        {(showroomrents.length >= 6) && !(showroomrents.length === roomrents.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>}
                         {/*<div className="col-md-12">
                             <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :roomrents.length} onChange={this.onChangePage} /></span>
                         </div>*/}

@@ -22,6 +22,74 @@ import {HttpUtils} from "../../Services/HttpUtils";
 const FormItem = Form.Item;
 const { TextArea } = Input;
 
+const category = [{
+    value: 'Accounting',
+    label: 'Accounting'
+},{
+    value: 'Admin & Clerical',
+    label: 'Admin & Clerical',
+},{
+    value: 'Banking & Finance',
+    label: 'Banking & Finance',
+},{
+    value:'Business Opportunities',
+    label:'Business Opportunities'
+},{
+    value:'Contract & Freelance',
+    label:'Contract & Freelance',
+},{
+    value:'Customer Service',
+    label:'Customer Service',
+},{
+    label:'Diversity Opportunities',
+    value:'Diversity Opportunities',
+},{
+    label:'Engineering',
+    value:'Engineering',
+},{
+    value:'Executive',
+    label:'Executive',
+},{
+    value:'Franchise',
+    label:'Franchise',
+},{
+    value:'Government',
+    label:'Government',
+},{
+    value:'Health Care',
+    label:'Health Care',
+},{
+    value:'Hospitality',
+    label:'Hospitality',
+},{
+    value:'Human Resources',
+    label:'Human Resources',
+},{
+    value:'Information Technology',
+    label:'Information Technology',
+},{
+    value:'Internships & College',
+    label:'Internships & College',
+},{
+    value:'Manufacturing',
+    label:'Manufacturing',
+},{
+    value:'Nonprofit',
+    label:'Nonprofit',
+},{
+    value:'Retail',
+    label:'Retail',
+},{
+    value:'Sales & Marketing',
+    label:'Sales & Marketing',
+},{
+    value:'Science & Biotech',
+    label:'Science & Biotech',
+},{
+    value:'Transportation',
+    label:'Transportation',
+}];
+
 class JobPortal extends Component {
     constructor(props) {
         super(props)
@@ -37,7 +105,8 @@ class JobPortal extends Component {
             userId: '',
             profileId: '',
             msg: false,
-            objectId: ''
+            objectId: '',
+            objData: {}
         }
     }
 
@@ -169,7 +238,7 @@ class JobPortal extends Component {
             compName: values.compName,
             email: values.email,
             experience: values.experience,
-            jobCat: values.jobCat,
+            jobCat: values.jobCat[0],
             jobDescription: values.jobDescription,
             jobTitle: values.jobTitle,
             jobType: values.jobType,
@@ -188,6 +257,7 @@ class JobPortal extends Component {
         if(req.code === 200){
             this.openNotification()
             this.setState({
+                objData: obj,
                 msg: true,
                 loader: false
             })
@@ -231,12 +301,20 @@ class JobPortal extends Component {
         this.setState({imageList: imageList})
     }
 
+    validateNumber(rule, value, callback){
+        if(isNaN(value)){
+            callback('Please type Numbers');
+        }else {
+            callback()    
+        }
+    }
+
     render(){
         const {getFieldDecorator} = this.props.form;
-        const { email, jobTitle, jobType, jobCat, salary, compDescription, jobDescription, experience, compEmail, jobBanner, location, previewVisible, previewImage, fileList } = this.state;
+        const { email, jobTitle, jobType, jobCat, salary, compDescription, jobDescription, experience, compEmail, jobBanner, location, previewVisible, previewImage, fileList, objData } = this.state;
 
         if (this.state.msg === true) {
-            return <Redirect to='/' />
+            return <Redirect to={{pathname: '/detail_jobPortal', state: {...objData, user: false}}} />
         }
 
         const uploadedImages = (
@@ -269,6 +347,11 @@ class JobPortal extends Component {
                 value: 'Night Shift',
             }
         ];
+
+        function filter(inputValue, path) {
+            return (path.some(option => (option.label).toLowerCase().indexOf(inputValue.toLowerCase()) > -1));
+        }
+
         const uploadButton = (
             <div>
                 <Icon type="plus" />
@@ -281,7 +364,7 @@ class JobPortal extends Component {
         return (
             <div>
                 <Burgermenu/>
-                <div style={{backgroundColor: "#0000006b", width:"100%", height:"67px", marginTop: "-20px"}} />
+                <div style={{backgroundColor: "#032a30", width:"100%", height:"67px", marginTop: "-20px"}} />
                 <div className="">
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="panel-group" style={{paddingTop:"50px"}}>
@@ -303,7 +386,7 @@ class JobPortal extends Component {
                                                         <FormItem>
                                                             {getFieldDecorator('email', {
                                                                 initialValue: email,
-                                                                rules: [{
+                                                                rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true },{
                                                                     required: true,
                                                                     message: 'Please input your Email!',
                                                                     whitespace: true
@@ -358,7 +441,7 @@ class JobPortal extends Component {
                                                                 initialValue: jobType,
                                                                 rules: [{ validator: this.onChangeState }],
                                                             })(
-                                                                <Cascader options={categ} />
+                                                                <Cascader options={categ} showSearch={{ filter }}/>
                                                             )}
                                                         </FormItem>
                                                     </div>
@@ -371,13 +454,8 @@ class JobPortal extends Component {
                                                         <FormItem>
                                                             {getFieldDecorator('jobCat', {
                                                                 initialValue: jobCat,
-                                                                rules: [{
-                                                                    required: true,
-                                                                    message: 'Please input your Job Category!',
-                                                                    whitespace: true
-                                                                }],
-                                                            })(
-                                                                <input type="text" className="form-control"/>
+                                                                rules: [{ validator: this.onChangeState }],                                                            })(
+                                                                <Cascader options={category} showSearch={{ filter }}/>
                                                             )}
                                                         </FormItem>
                                                     </div>
@@ -392,7 +470,8 @@ class JobPortal extends Component {
                                                                     required: true,
                                                                     message: 'Please input your Job Salary!',
                                                                     whitespace: true
-                                                                }],
+                                                                },
+                                                                { validator: this.validateNumber.bind(this) }],
                                                             })(
                                                                 <input type="text" className="form-control"/>
                                                             )}
@@ -441,7 +520,7 @@ class JobPortal extends Component {
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <label htmlFor="sel1">Company Email/URL</label>
+                                                        <label htmlFor="sel1">Receiving CV/Resume Email</label>
                                                         <FormItem>
                                                             {getFieldDecorator('compEmail', {
                                                                 initialValue: compEmail,

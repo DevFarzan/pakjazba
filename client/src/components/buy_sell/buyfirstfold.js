@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import './buyfirstfold.css'
 import { connect } from 'react-redux'
@@ -8,8 +9,9 @@ class Firstfold extends Component{
         this.category = this.category.bind(this);
     }
     category(e){
+        console.log(e.target.innerText , 'eeeeeeeeeeeeeeeeee')
         const { dispatch } = this.props;
-        var inputValue = e.target.alt;
+        var inputValue = e.target.alt || e.target.innerText;
         dispatch({type: 'SEARCHON', inputValue})
     }
 
@@ -26,8 +28,10 @@ class Firstfold extends Component{
                                 </a>
                             </div>
                             <div className="media-body">
+                                <a onClick={this.category}>
                                 <h4 className="media-heading">Furniture</h4>
-                                Bed, Sofa, Garden..
+                                <span style={{color:'black'}}>Bed, Sofa, Garden..</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -40,8 +44,10 @@ class Firstfold extends Component{
                                 </a>
                             </div>
                             <div className="media-body">
+                                <a onClick={this.category}>
                                 <h4 className="media-heading">Pets</h4>
-                                Dogs, Cats, Exotic
+                                <span style={{color:'black'}}>Dogs, Cats, Exotic</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -54,8 +60,10 @@ class Firstfold extends Component{
                                 </a>
                             </div>
                             <div className="media-body">
+                                <a onClick={this.category}>
                                 <h4 className="media-heading">Real Estate</h4>
-                                House, Appartments
+                                <span style={{color:'black'}}>House, Appartments</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -68,8 +76,10 @@ class Firstfold extends Component{
                                 </a>
                             </div>
                             <div className="media-body">
+                                <a onClick={this.category}>
                                 <h4 className="media-heading">Jobs</h4>
-                                Find Jobs, Offer Jobs
+                                <span style={{color:'black'}}>Find Jobs, Offer Jobs</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -84,8 +94,10 @@ class Firstfold extends Component{
                                 </a>
                             </div>
                             <div className="media-body">
+                            <a onClick={this.category}>
                                 <h4 className="media-heading">Cars</h4>
-                                New, Used, Rent
+                                <span style={{color:'black'}}>New, Used, Rent</span>
+                            </a>    
                             </div>
                         </div>
                     </div>
@@ -98,8 +110,10 @@ class Firstfold extends Component{
                                 </a>
                             </div>
                             <div className="media-body">
+                                <a onClick={this.category}>
                                 <h4 className="media-heading">Mobile</h4>
-                                Apple, Samsung
+                                <span style={{color:'black'}}>Apple, Samsung</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -112,8 +126,10 @@ class Firstfold extends Component{
                                 </a>
                             </div>
                             <div className="media-body">
+                            <a onClick={this.category}>
                                 <h4 className="media-heading">Cameras</h4>
-                                Photo, Video, Lenses
+                                <span style={{color:'black'}}>Photo, Video, Lenses</span>
+                            </a>    
                             </div>
                         </div>
                     </div>
@@ -126,8 +142,10 @@ class Firstfold extends Component{
                                 </a>
                             </div>
                             <div className="media-body">
+                                <a onClick={this.category}>
                                 <h4 className="media-heading">Sports</h4>
-                                Ski, Bikes, Hockey
+                                <span style={{color:'black'}}>Ski, Bikes, Hockey</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -142,8 +160,10 @@ class Firstfold extends Component{
                                 </a>
                             </div>
                             <div className="media-body">
+                                <a onClick={this.category}>
                                 <h4 className="media-heading">Electro</h4>
-                                Tv, Radio, PC
+                                <span style={{color:'black'}}>Tv, Radio, PC</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -156,8 +176,10 @@ class Firstfold extends Component{
                                 </a>
                             </div>
                             <div className="media-body">
+                                <a onClick={this.category}>
                                 <h4 className="media-heading">Clothing</h4>
-                                Shirts, Trousers...
+                                <span style={{color:'black'}}>Shirts, Trousers...</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -170,8 +192,10 @@ class Firstfold extends Component{
                                 </a>
                             </div>
                             <div className="media-body">
+                            <a onClick={this.category}>
                                 <h4 className="media-heading">Books</h4>
-                                Fanatasy, Horror, Sci-Fi..
+                                <span style={{color:'black'}}>Fanatasy, Horror, Sci-Fi..</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -184,8 +208,10 @@ class Firstfold extends Component{
                                 </a>
                             </div>
                             <div className="media-body">
+                                <a onClick={this.category}>
                                 <h4 className="media-heading">Music</h4>
-                                Rock, Techno, Folks...
+                                <span style={{color:'black'}}>Rock, Techno, Folks...</span>
+                                </a>
                             </div>
                         </div>
                     </div>

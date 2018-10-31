@@ -595,9 +595,11 @@ class Postbusiness extends Component {
             socialGoogle: socGoo,
             socialLinkIn: socLin,
             arr_url: response ? [...response, ...imageList] : imageList,
-            objectId: objectId
+            objectId: objectId,
+            posted: moment().format('LL')
         }
         let req = await HttpUtils.post('postbusinessdata', obj)
+        console.log(req);
         if(req.code === 200){
             this.props.form.resetFields();
             this.openNotification()
@@ -716,10 +718,10 @@ class Postbusiness extends Component {
                 {/*================================App component include Start===========================*/}
                 <Burgermenu/>
                 {/*================================post business form start============================*/}
-                <div style={{backgroundColor:"#0000006b",width:"100%",height:"67px",marginTop:"-20px"}}></div>
+                <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}></div>
                 <div className="">
                     <Form onSubmit={this.handleSubmit} className="login-form">
-                        <div className="panel-group" style={{paddingTop:"104px"}}>
+                        <div className="panel-group" style={{paddingTop:"37px"}}>
                             <div className="panel panel-default">
                                 <div className="main_c_panel">Add Business<br/>
                                     Find all your Local Business in one place

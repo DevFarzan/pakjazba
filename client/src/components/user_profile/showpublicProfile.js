@@ -18,7 +18,8 @@ class ShowProfilepublic extends Component{
             listData2: [],
             listData3: [],
             listData4: [],
-            setState: false
+            setState: false,
+            userDetail: false
         };
         this.onGoBack = this.onGoBack.bind(this);
     }
@@ -27,7 +28,12 @@ class ShowProfilepublic extends Component{
         window.scrollTo(0,0);
         let data = this.props.allArr;
         if(!data.arr1.length && !data.arr2.length && !data.arr3.length && !data.arr4.length){
-            this.handleLocalStorage();
+            if(data.userDetail){
+                this.setState({userDetail: true})
+                this.getprofileData(data.userDetail.profileId, data.userDetail.userId)
+            }else {
+                this.handleLocalStorage();                
+            }
         }else {
             this.setState({
                 listData1: data.arr3,
@@ -111,42 +117,18 @@ class ShowProfilepublic extends Component{
         })
     }
 
-	editBusiness = (e) => {
-        if(e.route === "buySell"){
-            this.setState({
-                buySell: true,
-                data: e,
-            })
-        }else if(e.route === "business"){
-            this.setState({
-                business: true,
-                data: e,
-            })
-        }else if(e.route === "rooms"){
-            this.setState({
-                rooms: true,
-                data: e,
-            })
-        }else if(e.route === "jobPortal"){
-            this.setState({
-                jobPortal: true,
-                data: e,
-            })
-        }
-    }	
-
     onGoBack(){
         this.props.callPublicSection();
     }
 
 	render(){
-		const {listing, listData1, listData2, listData3, listData4, callMain} = this.state;
+		const {listing, listData1, listData2, listData3, listData4, callMain, userDetail} = this.state;
 
 		return(
 			<span>
 			<div className="row">
 				<div className="col-md-6">
-					<span className="name_style margin-left_13">{this.state.name}<Icon type="edit" size={16} style={{marginLeft:'13%', cursor: 'pointer'}} onClick={() => {this.onGoBack()}}></Icon></span><br/>
+					<span className="name_style margin-left_13">{this.state.name}{!userDetail && <Icon type="edit" size={16} style={{marginLeft:'13%', cursor: 'pointer'}} onClick={() => {this.onGoBack()}}></Icon>}</span><br/>
                     <a href={this.state.facebook} target="_blank"><Icon type="facebook" size={18} style={{marginLeft:'13%'}}></Icon></a>
                     <a href={this.state.twitter} target="_blank" style={{marginRight: "12px"}}><Icon type="twitter" size={18} style={{marginLeft:'2%'}}></Icon></a>
                     <p style={{fontFamily:'Work Sans,sans-serif',marginLeft:'13%'}}>{this.state.description}</p>
@@ -173,10 +155,10 @@ class ShowProfilepublic extends Component{
                                                 str = str + '...'
                                             }
                                             return(
-                                                <div className="col-md-4"  style={{'marginBottom': '30px', marginTop: '30px'}}>
-                                                    <div className="card" style={{paddingBottom: '10px'}}>
+                                                <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
+                                                    <div className="card" style={{border: '1px solid #3a252542',boxShadow: 'none',borderRadius:'13px',width:'100%'}}>
                                                         <Link to={{pathname: `/detail_roomRent`, state: elem}}>
-                                                            <img alt='' src={img} />
+                                                            <img alt='' src={img} style={{height:'200px'}} />
                                                             <h4>{title}</h4>
                                                             <p>{str}</p>
                                                         </Link>
@@ -194,7 +176,7 @@ class ShowProfilepublic extends Component{
                                 </div>
                             </div>
                         </TabPane>
-                        <TabPane tab='Bussiness Listing' key="2" style={{background:'#8080801a'}}>
+                        <TabPane tab='Business Listing' key="2" style={{background:'#8080801a'}}>
                             <div className="secondfold">
                                 <div className="index-content" style={{marginTop: '-125px'}}>
                                     <div className="row">
@@ -207,10 +189,10 @@ class ShowProfilepublic extends Component{
                                                 str = str + '...'
                                             }
                                             return(
-                                                <div className="col-md-4"  style={{'marginBottom': '30px', marginTop: '30px'}}>
-                                                    <div className="card"  style={{paddingBottom: '10px'}}>
+                                                <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
+                                                    <div className="card"  style={{border: '1px solid #3a252542',boxShadow: 'none',borderRadius:'13px',width:'100%'}}>
                                                         <Link to={{pathname: `/detail_business`, state: elem}}>
-                                                            <img alt='' src={img} />
+                                                            <img alt='' src={img} style={{height:'200px'}} />
                                                             <h4>{title}</h4>
                                                             <p>{str}</p>
                                                         </Link>
@@ -241,10 +223,10 @@ class ShowProfilepublic extends Component{
                                                 str = str + '...'
                                             }
                                             return(
-                                                <div className="col-md-4"  style={{'marginBottom': '30px', marginTop: '30px'}}>
-                                                    <div className="card" style={{paddingBottom: '10px'}}>
+                                                <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
+                                                    <div className="card" style={{border: '1px solid #3a252542',boxShadow: 'none',borderRadius:'13px',width:'100%'}}>
                                                         <Link to={{pathname: `/detail_buySell`, state: elem}}>
-                                                            <img alt='' src={img} />
+                                                            <img alt='' src={img} style={{height:'200px'}} />
                                                             <h4>{title}</h4>
                                                             <p>{str}</p>
                                                         </Link>
@@ -275,10 +257,10 @@ class ShowProfilepublic extends Component{
                                                 str = str + '...'
                                             }
                                             return(
-                                                <div className="col-md-4"  style={{'marginBottom': '30px', marginTop: '30px'}}>
-                                                    <div className="card" style={{paddingBottom: '10px'}}>
+                                                <div className="col-md-3"  style={{'marginBottom': '30px', marginTop: '30px'}}>
+                                                    <div className="card" style={{border: '1px solid #3a252542',boxShadow: 'none',borderRadius:'13px',width:'100%'}}>
                                                         <Link to={{pathname: `/detail_jobPortal`, state: elem}}>
-                                                            <img alt='' src={img} />
+                                                            <img alt='' src={img} style={{height:'200px'}} />
                                                             <h4>{title}</h4>
                                                             <p>{str}</p>
                                                         </Link>

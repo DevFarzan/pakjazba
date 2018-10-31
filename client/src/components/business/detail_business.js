@@ -135,7 +135,7 @@ class DetailBusiness extends Component{
     render(){
         const { isData, data, reviews, goProfile, previewVisible, previewImage } = this.state;
         const hide = true;
-        let images = data.businessImages;
+        let images = data.businessImages || data.arr_url;
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
         if(!isData){

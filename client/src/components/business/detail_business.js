@@ -404,7 +404,7 @@ class DetailBusiness extends Component{
                                                         <div className="col-md-6 col-sm-12 col-xs-12 " style={{paddingLeft:"0px" ,  paddingRight:"0px"}}><br/>
                                                             <img src="../images/images.jpg" className="img-circle" alt="" width="100" height="100" />
                                                               <h5 className="mon-timing">{elem.name}</h5>
-                                                            <Rate style={{paddingLeft: '125px'}} allowHalf value={elem.star} />
+                                                            <Rate disabled style={{paddingLeft: '125px'}} allowHalf value={elem.star} />
                                                         </div>
                                                         <div className="col-md-2 col-sm-12 col-xs-12">
                                                         </div>

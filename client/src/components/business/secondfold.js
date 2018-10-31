@@ -208,7 +208,7 @@ class Secondfold extends Component{
                                             <img alt='' src={elem.businessImages.length ? elem.businessImages[0] : './images/def_card_img.jpg'} style={{height:'200px'}} />
                                             <h4 style={{marginTop:'53px'}}><b>{elem.businessname}</b></h4>
                                             {elem.businessaddress && <p style={{marginTop:"-15px",marginLeft:"11px"}}><span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}></span><span style={{color:"black"}}>{str}</span></p>}
-                                            <Rate  disabled style={{paddingLeft: '20px', paddingBottom: '10px'}} allowHalf value={elem.star} />
+                                            <Rate disabled style={{paddingLeft: '20px', paddingBottom: '10px'}} allowHalf value={elem.star} />
                                         </div>
                                     </div>
                                 </Link>

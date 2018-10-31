@@ -144,8 +144,16 @@ class Forthfold extends Component{
         this.setState({goForLogin: true, visible: false})
     }
 
+    goToProfile(val, data){
+        if(val === 1){
+            this.setState({detailPage: true, objData: data})
+        }else {
+            this.setState({goProfile : true, objData: data})
+        }
+    }
+
     render(){
-        const { buySell, showBuySell, filteredArr, goForLogin, goDetail } = this.state;
+        const { buySell, showBuySell, filteredArr, goForLogin, goDetail, detailPage, goProfile, objData } = this.state;
         const { text } = this.props;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
@@ -154,6 +162,12 @@ class Forthfold extends Component{
         }
         if(goDetail){
             return <Redirect to={{pathname: `/postad_buysell`}} />
+        }
+        if(detailPage){
+            return <Redirect to={{pathname: `/detail_buySell`, state: objData}} />
+        }
+        if(goProfile){
+            return <Redirect to={{pathname: `/profile_userDetail`, state: {userId: objData.userid, profileId: objData.profileid}}} />
         }
 
         return(
@@ -177,12 +191,11 @@ class Forthfold extends Component{
                             des = des + '...'
                         }
                         return (
-                            <Link key={key} to={{pathname: `/detail_buySell`, state: elem}}>
                                 <div className="col-md-3">
-                                    <div className="ibox">
+                                    <div className="ibox" style={{cursor: 'pointer'}}>
                                         <div className="ibox-content product-box">
                                             <div className="product-imitation">
-                                                <div className="card2">
+                                                <div className="card2"  onClick={() => {this.goToProfile(1, elem)}}>
                                                     <img alt='' src={elem.images.length ? elem.images[0] : './images/def_card_img.jpg'}/>
                                                     <span className="card-button">
                                                         <p className="categories-on-card" style={{backgroundColor:"#008080",textAlign: "center"}}>{elem.category}</p>
@@ -197,9 +210,9 @@ class Forthfold extends Component{
                                                 <span className="text" style={{color: "#000000c7"}}>{elem.contactname}</span>*/}
                                             </div>
                                             <div className="product-desc">
-                                                <span className="product-price">{!elem.hideprice ? elem.price : 'Hide'}</span>
-                                                <p className="product-name">{elem.contactname}</p>
-                                                <div className="small m-t-xs" style={{color:'black'}}>{!elem.hideaddress ? des : ''}
+                                                <span className="product-price">{!elem.hideprice ? '$' + elem.price : 'Hide'}</span>
+                                                <p className="product-name" onClick={() => {this.goToProfile(2, elem)}}>{elem.contactname}</p>
+                                                <div className="small m-t-xs" style={{color:'black'}}>{des}
                                                 </div>
                                                 {/*<div className="m-t text-righ" style={{marginTop:"58px",fontSize: "18px",textDecoration:"underline"}}>
                                                     <Link to={{pathname: `/detail_buySell`, state: elem}} className="" style={{color:"red"}}>Detail</Link>
@@ -211,7 +224,6 @@ class Forthfold extends Component{
                                         </div>
                                     </div>
                                 </div>
-                            </Link>
                         )
                     })}
                 </div>

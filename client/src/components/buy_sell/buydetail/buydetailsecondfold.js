@@ -73,7 +73,7 @@ class Buydetailsecondfold extends Component{
     render(){
         const { name, userEmail, msg, goProfile } = this.state;
         const { data } = this.props;
-        let email= data.contactMode && data.contactMode.includes('email') ? data.contactEmail : 'abc@gmail.com';
+        let email= data.contactMode && data.contactMode.includes('email') ? data.contactEmail : '*****@gmail.com';
         let phone = data.contactMode && data.contactMode.includes('phone') ? data.contactNumber : '***********';
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 

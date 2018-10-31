@@ -74,9 +74,7 @@ class Roomrenting3contentarea extends Component{
 
      async callApi(){
         const sports = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-sport&apiKey=6e7e6a696773424187f9bdb80954ded7');
-        console.log(sports.data.articles, 'sportssssssssss')
         const news = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=6e7e6a696773424187f9bdb80954ded7');
-        console.log(news.data.articles, 'newssssssssssssssss')
         this.setState({news: news.data.articles, sports: sports.data.articles})
     }
 
@@ -92,7 +90,7 @@ class Roomrenting3contentarea extends Component{
         let accommodates = data.accomodates || data.accommodates;
         let images = data.imageurl || data.arr_url;
         let AIncludes = data.amenitiesinclude || data.amenities;
-        let email= data.contactMode && data.contactMode.includes('email') ? data.contactEmail : 'abc@gmail.com';
+        let email= data.contactMode && data.contactMode.includes('email') ? data.contactEmail : '*****@gmail.com';
         let phone = data.contactMode && data.contactMode.includes('phone') ? data.contactNumber : '***********';
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 

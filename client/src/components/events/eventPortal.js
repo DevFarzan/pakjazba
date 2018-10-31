@@ -341,9 +341,9 @@ class EventPortal extends Component{
             </div>
 
             <div className="row center_global row">
-                <div className="col-xs-10 col-md-6">
-                    <button style={{textAlign: 'centre', width:"45%"}} className="btn button_custom">Submit Event</button>
-                </div>
+
+                    <button style={{textAlign: 'center', width:"45%"}} className="btn button_custom">Submit Event</button>
+              
             </div>
 
         </div>

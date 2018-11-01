@@ -84,19 +84,19 @@ state = {
                                   </button>
                               </div>
                           </div>
-        
+
                       </div>
                       <ul className="list-group">
                       {this.state.hidemenu && <div className="" style={{marginTop: "22px",marginBottom: "11px"}} >
-                         <li className="list-group-item" style={{padding:'19px'}}> 
+                         <li className="list-group-item" style={{padding:'19px'}}>
                             <div className="col-xs-12" style={{marginTop:'-12px'}}>
                                   <span>
                                       <Link rel="noopener noreferrer" to={`/market_roommates`}>Room Renting</Link>
                                   </span>
-                            </div> 
-                          </li> 
-                          <li className="list-group-item" style={{padding:'19px'}}>     
-                              <div className="col-xs-12" style={{marginTop:'-12px'}}>    
+                            </div>
+                          </li>
+                          <li className="list-group-item" style={{padding:'19px'}}>
+                              <div className="col-xs-12" style={{marginTop:'-12px'}}>
                                   <span style={{marginTop: "8px"}}>
                                       <Link rel="noopener noreferrer" to={`/market_business`}>Business Listing</Link>
                                   </span>
@@ -108,9 +108,9 @@ state = {
                                       <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
                                   </span>
                               </div>
-                          </li>  
-                          <li className="list-group-item" style={{padding:'19px'}}>  
-                          <div className="col-xs-12" style={{marginTop: "-15px"}}>    
+                          </li>
+                          <li className="list-group-item" style={{padding:'19px'}}>
+                          <div className="col-xs-12" style={{marginTop: "-15px"}}>
                               <span ><Category/></span>
                           </div>
                           </li>

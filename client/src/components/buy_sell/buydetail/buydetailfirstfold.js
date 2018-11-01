@@ -6,7 +6,6 @@ import './buydetailfirstfold.css'
 class Buydetailfirstfold extends Component{
     render(){
         let data = this.props.data;
-        console.log(data, 'lllllllllllllllll');
         let images = data.images || data.arr_url;
         return(
             <div className="">

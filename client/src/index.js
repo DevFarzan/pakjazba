@@ -25,6 +25,7 @@ import MarketBusiness from './components/business/marketBusiness';
 import MarketClassified from './components/buy_sell/marketClassified';
 import MarketRoommates from './components/roomrenting/MarketRoommates';
 import JobClassified from './components/job_portal/jobClassified';
+import MarketEvent from './components/events/marketEvent'
 import ApplyJob from './components/job_portal/applyJob';
 import JobDetail from './components/job_portal/jobDetail';
 import {PrivateRoute} from './components/signin_seperate';
@@ -54,7 +55,7 @@ function reducer(state = initialState, action){
 		case 'FACEBOOKSIGNUP':
 			return {...state, data: action.data}
 		case 'ANOTHERDATA':
-			return {...state, otherData: action.otherData}	
+			return {...state, otherData: action.otherData}
         default:
             return state;
     }
@@ -73,7 +74,7 @@ ReactDOM.render(
 					<PrivateRoute path="/postad_Roommates" component={Postroommates}></PrivateRoute>
 					<PrivateRoute path="/postad_buysell" component={Postbuysell}></PrivateRoute>
 					<PrivateRoute path="/postad_jobPortal" component={JobPortal}></PrivateRoute>
-          			<PrivateRoute path="/postad_eventPortal" component={EventPortal}></PrivateRoute>
+          <PrivateRoute path="/postad_eventPortal" component={EventPortal}></PrivateRoute>
 					<PrivateRoute path="/profile_user" component={ProfileUser}></PrivateRoute>
 					<Route path="/profile_userDetail" component={ProfileUser}></Route>
 					<Route path="/detail_buySell" component={DetailBuySell}></Route>
@@ -86,7 +87,8 @@ ReactDOM.render(
 					<Route path="/market_business" component={MarketBusiness}></Route>
 					<Route path="/market_classified" component={MarketClassified}></Route>
 					<Route path="/market_roommates" component={MarketRoommates}></Route>
-    				<Route path="/market_jobPortal" component={JobClassified}></Route>
+    			<Route path="/market_jobPortal" component={JobClassified}></Route>
+          {/*<Route path="/market_eventPortal" component={MarketEvent}></Route>*/}
 				</div>
 			</BrowserRouter>
 		</Provider>

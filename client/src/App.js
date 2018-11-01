@@ -45,7 +45,7 @@ class App extends Component {
                 <div className ="" style={{"backgroundImage":"url('../images/home-1.png')", marginTop : "-20px",backgroundSize: 'cover' }}>
                     <div className="background-image" >
                         <Burgermenu/>
-                        <Slider mainH1="Pak Jazba" mainH2="Connection  Communities" hide={hide} />
+                        <Slider mainH1="Pak Jazba" mainH2="Connecting  Communities" hide={hide} />
                     </div>
                 </div>
             </span>

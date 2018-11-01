@@ -27,14 +27,14 @@ class Home1 extends Component{
 
     async getAllBlogs(){
         let req = await HttpUtils.get('getblog');
-        console.log(req, 'zzzzzzzzzzzzzzzzzzzzzz')
+        //console.log(req, 'zzzzzzzzzzzzzzzzzzzzzz')
     }
 
     async callApi(){
         const sports = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-sport&apiKey=6e7e6a696773424187f9bdb80954ded7');
-        console.log(sports.data.articles, 'sportssssssssss')
+        //console.log(sports.data.articles, 'sportssssssssss')
         const news = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=6e7e6a696773424187f9bdb80954ded7');
-        console.log(news.data.articles, 'newssssssssssssssss')
+        //console.log(news.data.articles, 'newssssssssssssssss')
         this.setState({news: news.data.articles, sports: sports.data.articles})
 
     }

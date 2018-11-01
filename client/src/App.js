@@ -22,7 +22,7 @@ class App extends Component {
 
     async getAllBusiness(){
         var req = await HttpUtils.get('marketplace')
-        console.log(req, 'reqqqqqqqqqqqq Appppppppppp')
+        //console.log(req, 'reqqqqqqqqqqqq Appppppppppp')
     }
 
     // callApi = async () => {

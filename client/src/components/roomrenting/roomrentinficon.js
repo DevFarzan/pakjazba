@@ -21,7 +21,7 @@ class RoomrentingIcon extends Component{
                 <div className="row">
                     <div className="col-md-2 col-sm-3">
                         <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('information technology')}}>
+                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('single family home')}}>
                                 <center>
                                     <img src="../images/how to upload/1.png" style={{width: "100%"}}/>
                                 </center>
@@ -31,7 +31,7 @@ class RoomrentingIcon extends Component{
 
                     <div className="col-md-2 col-sm-3">
                         <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('banking')}}>
+                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('appartment')}}>
                                 <center>
                                     <img src="../images/how to upload/2.png" style={{width: "100%"}}/>
                                 </center>
@@ -41,7 +41,7 @@ class RoomrentingIcon extends Component{
 
                     <div className="col-md-2 col-sm-3">
                         <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('accounting')}}>
+                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('condo')}}>
                                 <center>
                                     <img src="../images/how to upload/3.png"style={{width: "100%"}}/>
                                 </center>
@@ -51,7 +51,7 @@ class RoomrentingIcon extends Component{
 
                     <div className="col-md-2 col-sm-3">
                         <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('management')}}>
+                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('town house')}}>
                                 <center>
                                     <img src="../images/how to upload/4.png"style={{width: "100%"}}/>
                                 </center>
@@ -61,7 +61,7 @@ class RoomrentingIcon extends Component{
 
                     <div className="col-md-2 col-sm-3">
                         <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('digital and creative')}}>
+                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('homes')}}>
                                 <center>
                                     <img src="../images/how to upload/5.png"style={{width: "100%"}}/>
                                 </center>

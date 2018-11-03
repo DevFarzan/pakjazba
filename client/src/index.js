@@ -42,7 +42,6 @@ const initialState = {
 }
 
 function reducer(state = initialState, action){
-	console.log(action, 'actionnnnnnnnnnnnn')
     switch (action.type) {
         case 'SEARCHON':
             return {

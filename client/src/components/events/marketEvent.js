@@ -3,7 +3,7 @@ import Burgermenu from '../header/burgermenu';
 import Slider from '../header/Slider';
 import Footer from '../footer/footer';
 import { connect } from 'react-redux';
-import EventCategories from './EventCategories';
+import EventCategories from '../main_Component/EventCategories';
 import EventFeatured from './Eventfeaturedcard';
 
 class MarketEvent extends Component{

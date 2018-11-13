@@ -29,8 +29,8 @@ class EventPortal extends Component{
     return(
         <div>
           <Burgermenu/>
-          <div style={{backgroundColor:"#0000006b",width:"100%",height:"67px",marginTop:"-20px"}}></div>
-            <div className="row jobdetail-page">
+          <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}></div>
+            <div className="row jobdetail-page" style={{backgroundColor:"#37a99b"}}>
                 <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>
                     <div className="">
                         <h1 style={{fontFamily: 'Work Sans, sans-serif', fontWeight:"bold"}}>SUBMIT YOUR EVENT</h1>
@@ -39,7 +39,7 @@ class EventPortal extends Component{
             </div>
             <div className="panel-body">
               <div className="panel panel-default">
-                  <div className="panel-heading bold_c_text">
+                  <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}>
                     <Icon type="info-circle"/>
                     <span className="margin_font_location">Event Detail</span>
                   </div>
@@ -113,7 +113,81 @@ class EventPortal extends Component{
 
             <div className="panel-body">
               <div className="panel panel-default">
-                  <div className="panel-heading bold_c_text">
+                  <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}>
+                    <Icon type="info-circle"/>
+                    <span className="margin_font_location">Upload</span>
+                  </div>
+
+                  <div className="container" style={{width:'80%'}}>
+                    <section>
+                        <div className="row">
+                          <div className="col-md-12">
+                              <div className="col-md-6">
+                                  <div className="form-group">
+                                      <label htmlFor="sel1">Your Email</label>
+                                        <input type="text" className="form-control"/>
+                                  </div>
+                              </div>
+                              <div className="col-md-6" style={{textAlign: 'left', display:'grid'}}>
+                                      <label htmlFor="Price Mode"> Category </label>
+                                        <Cascader/>
+                              </div>
+                          </div>
+                        </div>
+
+                        <div className="row">
+                          <div className="col-md-12">
+                            <div className="col-md-6">
+                              <div className="row" style={{padding:'0px'}}>
+                                <div className="col-md-7" style={{display:'grid'}}>
+                                  <label> Location (City) </label>
+                                    <Cascader />
+                                </div>
+                                <div className="col-md-5">
+                                  <input type="text" className="form-control" style={{marginTop:'25px'}}/>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="col-md-6">
+                              <div className="row" style={{padding:'0px'}}>
+                                <div className="col-md-6"  style={{display:'grid'}}>
+                                  <label>Start Date</label>
+                                  <DatePicker/>
+                                </div>
+
+                                <div className="col-md-6"  style={{display:'grid'}}>
+                                  <label>Start Date</label>
+                                  <DatePicker/>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="row">
+                          <div className="col-md-12">
+                              <div className="col-md-6">
+                                <div className="form-group">
+                                    <label htmlFor="sel1">Description</label>
+                                        <textarea type="text" id="message" name="message" className="form-background1" style={{height:"235px"}}></textarea>
+                                </div>
+                              </div>
+                              <div className="col-md-6">
+                                  <div className="form-group">
+                                      <label htmlFor="usr">Experience</label>
+                                          <input type="text" className="form-control"/>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                    </section>
+                  </div>
+              </div>
+            </div>
+
+            <div className="panel-body">
+              <div className="panel panel-default">
+                  <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}>
                     <Icon type="info-circle"/>
                     <span className="margin_font_location">Ticket Detail</span>
                   </div>
@@ -250,7 +324,7 @@ class EventPortal extends Component{
 
             <div className="panel-body">
               <div className="panel panel-default">
-                  <div className="panel-heading bold_c_text">
+                  <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}>
                     <Icon type="info-circle"/>
                     <span className="margin_font_location">Organizer Detail</span>
                   </div>
@@ -343,9 +417,9 @@ class EventPortal extends Component{
             <div className="row center_global row">
 
                     <button style={{textAlign: 'center', width:"45%"}} className="btn button_custom">Submit Event</button>
-              
-            </div>
 
+            </div>
+          <Footer />
         </div>
     )
   }

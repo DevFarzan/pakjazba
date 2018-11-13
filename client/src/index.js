@@ -28,6 +28,7 @@ import JobClassified from './components/job_portal/jobClassified';
 import MarketEvent from './components/events/marketEvent'
 import ApplyJob from './components/job_portal/applyJob';
 import JobDetail from './components/job_portal/jobDetail';
+import EventDetail from './components/events/EventDetail';
 import {PrivateRoute} from './components/signin_seperate';
 
 
@@ -87,7 +88,8 @@ ReactDOM.render(
 					<Route path="/market_classified" component={MarketClassified}></Route>
 					<Route path="/market_roommates" component={MarketRoommates}></Route>
     			<Route path="/market_jobPortal" component={JobClassified}></Route>
-          {/*<Route path="/market_eventPortal" component={MarketEvent}></Route>*/}
+          <Route path="/market_eventPortal" component={MarketEvent}></Route>
+          <Route path="/detail_eventPortal" component={EventDetail}></Route>
 				</div>
 			</BrowserRouter>
 		</Provider>

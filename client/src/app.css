@@ -853,7 +853,7 @@ color: #fff;
     color: white;
 }
 .font-style{
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif !important;
 }
 .signuphover{
 
@@ -1833,7 +1833,7 @@ color: #fff;
     color: white;
 }
 .font-style{
-  font-family: 'Work Sans', sans-serif;
+  font-family: '', sans-serif;
 }
 .signuphover{
 

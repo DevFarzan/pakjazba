@@ -1,0 +1,14 @@
+.efeaturedcard{
+  border-radius: 2px solid #00000;
+}
+.eventfeature-margin{
+    margin-top: -50px;
+    margin-left: -18px;
+    margin-bottom: 5px;
+}
+
+.ecardfeatured{
+  background-color: white;
+   border:1px solid #000000;
+   margin-top: -45px;
+}

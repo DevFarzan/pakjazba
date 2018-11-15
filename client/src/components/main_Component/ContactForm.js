@@ -4,7 +4,7 @@ class ContactForm extends Component{
   render(){
     return(
       <div className="row">
-          <div className="card outset" style={{ boxShadow: "none", border:"1px solid #80808042", background: "white"}}>
+          <div className="card outset" style={{ boxShadow: "none", border:"1px solid #D3D3D3", background: "white"}}>
               <div className="card-body space">
                   <div className="row">
                       <div className="col-md-12 col-sm-12 col-xs-12">
@@ -47,7 +47,7 @@ class ContactForm extends Component{
                                               <div className="col-md-12">
                                                   <div className="">
                                                       <label style={{display:"block"}}>Your message</label>
-                                                      <textarea type="text" id="message1" name="message" rows="5" ></textarea>
+                                                      <textarea type="text" id="message1" name="message" rows="5" style={{width:"100%"}}></textarea>
                                                   </div>
                                               </div>
                                           </div>

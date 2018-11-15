@@ -12,7 +12,7 @@ class EventDetail extends Component{
       <div className="">
       <Burgermenu/>
       <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}></div>
-        <div className="row jobdetail-page" style={{backgroundColor:"#37a99b"}}>
+        <div className="row jobdetail-page">
             <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>
                 <div className="">
                     <h1 style={{fontFamily: 'Crimson Text, serif', fontWeight:"bold"}}>Event Detail</h1>

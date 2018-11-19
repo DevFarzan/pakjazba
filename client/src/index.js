@@ -28,7 +28,10 @@ import JobClassified from './components/job_portal/jobClassified';
 import MarketEvent from './components/events/marketEvent'
 import ApplyJob from './components/job_portal/applyJob';
 import JobDetail from './components/job_portal/jobDetail';
+import TicketDetail from './components/events/event_listing/TicketDetail';
 import EventDetail from './components/events/EventDetail';
+//import TicketDetail from './components/events/TicketDetail';
+//import TicketDetail from './components/events/TicketDetail'
 import {PrivateRoute} from './components/signin_seperate';
 
 
@@ -88,6 +91,7 @@ ReactDOM.render(
     			<Route path="/market_jobPortal" component={JobClassified}></Route>
           <Route path="/market_eventPortal" component={MarketEvent}></Route>
           <Route path="/detail_eventPortal" component={EventDetail}></Route>
+          <Route path="/Ticket_eventPortals" component={TicketDetail}></Route>
 				</div>
 			</BrowserRouter>
 		</Provider>

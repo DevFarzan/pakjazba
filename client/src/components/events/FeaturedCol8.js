@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ContactForm from '../main_Component/ContactForm'
 
-class FeaturedCol8 extends Component{
+class FeaturedCol extends Component{
   render(){
     return(
       <div>
@@ -46,4 +46,4 @@ class FeaturedCol8 extends Component{
     )
   }
 }
-export default FeaturedCol8;
+export default FeaturedCol;

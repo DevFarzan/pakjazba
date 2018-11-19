@@ -7,6 +7,7 @@ import { Tabs, Icon } from 'antd';
 import Burgermenu from '../header/burgermenu';
 import Slider from '../header/Slider';
 import {HttpUtils} from "../../Services/HttpUtils";
+import { connect } from 'react-redux';
 
 const TabPane = Tabs.TabPane;
 
@@ -15,41 +16,43 @@ class Home1 extends Component{
         super(props)
         this.state = {
             news: [],
-            sports: []
+            sports: [],
+            blogs: {}
         };
     }
 
     componentDidMount() {
         window.scrollTo(0,0);
         this.callApi()
-        this.getAllBlogs()
+        this.getAllBlogs()            
     }
 
     async getAllBlogs(){
+        const { dispatch, data } = this.props;
+        this.setState({blogs: data !== undefined && data})
         let req = await HttpUtils.get('getblog');
-        //console.log(req, 'zzzzzzzzzzzzzzzzzzzzzz')
+        let blogData = req;
+        dispatch({type: 'BLOGDATA', blogData})
+        this.setState({blogs: req})
     }
 
     async callApi(){
         const sports = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-sport&apiKey=6e7e6a696773424187f9bdb80954ded7');
-        //console.log(sports.data.articles, 'sportssssssssss')
         const news = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=6e7e6a696773424187f9bdb80954ded7');
-        //console.log(news.data.articles, 'newssssssssssssssss')
         this.setState({news: news.data.articles, sports: sports.data.articles})
-
     }
 
     render(){
-        const { news, sports } = this.state;
+        const { news, sports, blogs } = this.state;
 
         return(
             <div>
                 <App/>
                 <div className="row">
-                        <div className="col-md-12">
-                          <h4 style={{color:'black',marginLeft:'15px',fontSize:'22px',fontWeight:'bold',marginTop: '13px', fontFamily:'crimson'}}>Find what you need…</h4>
-                        </div>
-                      </div>
+                    <div className="col-md-12">
+                      <h4 style={{color:'black',marginLeft:'15px',fontSize:'22px',fontWeight:'bold',marginTop: '13px', fontFamily:'crimson'}}>Find what you need…</h4>
+                    </div>
+                </div>
                 <div className="row" style={{marginTop:'-23px'}}>
                     <div className="col-md-10">
                         <div className="col-md-3 col-sm-4">
@@ -109,51 +112,51 @@ class Home1 extends Component{
                 <div className="row"> <br/></div>
                 <div className="row" style={{marginTop:'-76px'}}>
                     <div className="col-md-5">
-                        <Link to={`/detail_blog`}>
-                            <img alt='' src="./images/shutterstock_1094843246.jpg" width="540" height="350" />
+                        <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[0]}}>
+                            <img alt='' src={blogs.blog && blogs.blog[0].main[0].image[0]} width="540" height="350" />
                         </Link>
                         <h4> </h4>
-                        <h4 className="tag" style={{backgroundColor: "#008080",textAlign:"center"}}><b>Loram Ipsum </b></h4>
-                        <Link to={`/detail_blog`}><h4><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h4></Link>
-                        <Link to={`/detail_blog`}><p style={{color:'gray'}}>Loram Ipsum Loram Ipsum Loram Ipsum, Loram Ipsum Loram Ipsum Loram Ipsum. Loram Ipsum Loram Ipsum</p></Link>
-                        <p style={{paddingTop: "21px"}}><b><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span></b></p>
+                        {/*<h4 className="tag" style={{backgroundColor: "#008080",textAlign:"center"}}><b>Loram Ipsum </b></h4>*/}
+                        <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[0]}}><h4><b>{blogs.blog && blogs.blog[0].main[0].maintitle}</b></h4></Link>
+                        <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[0]}}><p style={{color:'gray'}}>{blogs.blog && blogs.blog[0].main[0].description.substring(0, 150) + " ..."}</p></Link>
+                        <p style={{paddingTop: "21px"}}><b><span style={{marginRight: "67px"}}>By Simran</span>    <span>01.10.2018</span></b></p>
                     </div>
                     <div className="col-md-4">
                         <div className="col-md-5">
-                            <Link to={`/detail_blog`}>
-                                <img alt='' src="./images/default/shutterstock_67891210.png" width="130" height="120" />
+                            <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[1]}}>
+                                <img alt='' src={blogs.blog && blogs.blog[1].mainimage} width="130" height="120" />
                             </Link>
                         </div>
                         <div className="col-md-7" style={{paddingLeft: '15px'}}>
-                            <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
-                            <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px",color:'Black'}}>By Hills Estate</span>    <span style={{color:'black'}}>13.09.2018</span> <br/><br/></p>
+                            <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[1]}}><h5><b>{blogs.blog && blogs.blog[1].mainheading}</b></h5></Link>
+                            <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px",color:'Black'}}>By Shania</span>    <span style={{color:'black'}}>02.10.2018</span> <br/><br/></p>
                         </div>
                         <div className="col-md-5">
-                            <Link to={`/detail_blog`}>
-                                <img alt='' src="./images/default/shutterstock_88612780.png" width="130" height="120" />
+                            <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[2]}}>
+                                <img alt='' src={blogs.blog && blogs.blog[2].main[0].image[0]} width="130" height="120" />
                             </Link>
                         </div>
                         <div className="col-md-7" style={{paddingLeft: '15px'}}>
-                            <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum</b></h5></Link>
-                            <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
+                            <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[2]}}><h5><b>{blogs.blog && blogs.blog[2].mainheading}</b></h5></Link>
+                            <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px"}}>By Simran</span>    <span>3.10.2018</span> <br/><br/></p>
                         </div>
                         <div className="col-md-5">
-                            <Link to={`/detail_blog`}>
-                                <img alt='' src="./images/default/shutterstock_103383050.png" width="130" height="120" />
+                            <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[3]}}>
+                                <img alt='' src={blogs.blog && blogs.blog[3].main[0].image[0]} width="130" height="120" />
                             </Link>
                         </div>
                         <div className="col-md-7" style={{paddingLeft: '15px'}}>
-                            <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum</b></h5></Link>
-                            <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
+                            <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[3]}}><h5><b>{blogs.blog && blogs.blog[3].mainheading}</b></h5></Link>
+                            <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px"}}>By Shania</span>    <span>4.10.2018</span> <br/><br/></p>
                         </div>
                         <div className="col-md-5">
-                            <Link to={`/detail_blog`}>
-                                <img alt='' src="./images/default/shutterstock_167474171.png" width="130" height="120" />
+                            <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[4]}}>
+                                <img alt='' src={blogs.blog && blogs.blog[4].main[0].image[0]} width="130" height="120" />
                             </Link>
                         </div>
                         <div className="col-md-7" style={{paddingLeft: '15px'}}>
-                            <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum</b></h5></Link>
-                            <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
+                            <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[4]}}><h5><b>{blogs.blog && blogs.blog[4].mainheading}</b></h5></Link>
+                            <p style={{paddingTop: "21px"}}><span style={{marginRight: "67px"}}>By Shania</span>    <span>5.10.2018</span> <br/><br/></p>
                         </div>
                     </div>
                     <div className="col-md-3" style={{marginTop:'-34px'}}>
@@ -219,50 +222,50 @@ class Home1 extends Component{
                         <div className="col-md-8">
                             <div className="col-md-6">
                                 <div className="col-md-4">
-                                <Link to={`/detail_blog`}>
-                                    <img alt='' src="./images/default/shutterstock_283141730.png" width="120" height="110" />
+                                <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[5]}}>
+                                    <img alt='' src={blogs.blog && blogs.blog[5].main[0].image[0]} width="120" height="110" />
                                 </Link>
                                 </div>
                                 <div className="col-md-8" style={{paddingLeft: '15px'}}>
-                                    <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsums</b></h5></Link>
+                                    <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[5]}}><h5><b>{blogs.blog && blogs.blog[5].mainheading}</b></h5></Link>
                                     <br/>
-                                    <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
+                                    <p><span style={{marginRight: "67px"}}>By Shania</span>    <span>5.10.2018</span>  <br/><br/></p>
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="col-md-4">
-                                    <Link to={`/detail_blog`}>
-                                        <img alt='' src="./images/default/shutterstock_287171087.png" width="120" height="110" />
+                                    <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[6]}}>
+                                        <img alt='' src={blogs.blog && blogs.blog[6].main[0].image[0]} width="120" height="110" />
                                         </Link>
                                 </div>
                                 <div className="col-md-8" style={{paddingLeft: '15px'}}>
-                                    <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
+                                    <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[6]}}><h5><b>{blogs.blog && blogs.blog[6].mainheading}</b></h5></Link>
                                     <br/>
-                                    <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
+                                    <p><span style={{marginRight: "67px"}}>By Shania</span>    <span>6.10.2018</span> <br/><br/></p>
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="col-md-4">
-                                <Link to={`/detail_blog`}>
-                                    <img alt='' src="./images/default/shutterstock_332684105.png" width="120" height="110" />
+                                <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[7]}}>
+                                    <img alt='' src={blogs.blog && blogs.blog[7].main[0].image[0]} width="120" height="110" />
                                 </Link>
                                 </div>
                                 <div className="col-md-8" style={{paddingLeft: '15px'}}>
-                                    <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
+                                    <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[7]}}><h5><b>{blogs.blog && blogs.blog[7].mainheading}</b></h5></Link>
                                     <br/>
-                                    <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span> <br/><br/></p>
+                                    <p><span style={{marginRight: "67px"}}>By Simran</span>    <span>7.10.2018</span> <br/><br/></p>
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="col-md-4">
-                                    <Link to={`/detail_blog`}>
-                                        <img alt='' src="./images/default/shutterstock_416673679.png" width="120" height="110" />
+                                    <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[8]}}>
+                                        <img alt='' src={blogs.blog && blogs.blog[8].main[0].image[0]} width="120" height="110" />
                                     </Link>
                                 </div>
                                 <div className="col-md-8" style={{paddingLeft: '15px'}}>
-                                    <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
+                                    <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[8]}}><h5><b>{blogs.blog && blogs.blog[8].mainheading}</b></h5></Link>
                                     <br/>
-                                    <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
+                                    <p><span style={{marginRight: "67px"}}>By Simran</span>    <span>8.10.2018</span>  <br/><br/></p>
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -369,4 +372,10 @@ class Home1 extends Component{
     }
 }
 
-export default Home1;
+const mapStateToProps = (state) => {
+    return({
+        data: state.blogData
+    })
+}
+
+export default connect(mapStateToProps)(Home1);

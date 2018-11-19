@@ -45,17 +45,15 @@ const initialState = {
 function reducer(state = initialState, action){
     switch (action.type) {
         case 'SEARCHON':
-            return {
-                text: action.inputValue
-            }
+            return {...state, text: action.inputValue}
         case 'SEARCHOF':
-            return {
-                text: initialState.text
-            }
+            return {...state, text: initialState.text}
 		case 'FACEBOOKSIGNUP':
 			return {...state, data: action.data}
 		case 'ANOTHERDATA':
 			return {...state, otherData: action.otherData}
+		case 'BLOGDATA':
+			return {...state, blogData: action.blogData}	
         default:
             return state;
     }

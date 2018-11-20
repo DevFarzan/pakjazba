@@ -7,6 +7,17 @@ import EventCategories from '../main_Component/EventCategories';
 import EventFeatured from './Eventfeaturedcard';
 
 class MarketEvent extends Component{
+    componentDidMount() {
+        window.scrollTo(0,0);
+    }
+
+    componentWillUnmount(){
+        let inputValue = '';
+        if(this.props.text.length){
+            const { dispatch } = this.props;
+            dispatch({type: 'SEARCHON', inputValue})
+        }
+    }
 
     render(){
         return(
@@ -19,7 +30,7 @@ class MarketEvent extends Component{
                         </div>
                     </div>
                 </span>
-                <EventCategories/>
+                {!this.props.text && <EventCategories/>}
                 <EventFeatured/>
                 <Footer/>
             </div>
@@ -28,5 +39,10 @@ class MarketEvent extends Component{
     }
 }
 
+const mapStateToProps = (state) => {
+    return({
+        text: state.text
+    })
+}
 
-export default MarketEvent;
+export default connect(mapStateToProps)(MarketEvent);

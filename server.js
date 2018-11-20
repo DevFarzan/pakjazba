@@ -862,19 +862,28 @@ app.get('/api/marketplace',function(req,res){
               jobPortalData.push(jobData[l])
             }
           }
-          res.send({
-                  code:200,
-                  business:businesses,
-                  busell:buysell,
-                  roomrentsdata:roomrentsdata,
-                  jobPortalData: jobPortalData,
-                  msg:'data recieve successfully'
-                });
-          });  
-        
+
+          eventPortal.find(function(err, eventData) {
+            if(eventData != ''){
+              var eventPortalData = [];
+              for(var m=0; m<eventData.length; m++){
+                eventPortalData.push(eventData[m])
+              }
+            }
+            res.send({
+              code:200,
+              business:businesses,
+              busell:buysell,
+              roomrentsdata:roomrentsdata,
+              jobPortalData: jobPortalData,
+              eventPortalData: eventPortalData,
+              msg:'data recieve successfully'
+            });
+          });
+        });    
+      });
     });
-   })
-  })
+  });
 });
 /*====================get market Market place end=====================================================*/
 

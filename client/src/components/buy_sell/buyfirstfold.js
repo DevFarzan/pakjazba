@@ -9,7 +9,6 @@ class Firstfold extends Component{
         this.category = this.category.bind(this);
     }
     category(e){
-        console.log(e.target.innerText , 'eeeeeeeeeeeeeeeeee')
         const { dispatch } = this.props;
         var inputValue = e.target.alt || e.target.innerText;
         dispatch({type: 'SEARCHON', inputValue})

@@ -29,7 +29,7 @@ class Form_signup extends Component{
     }
 
     async getAllUsers(){
-        console.log(ip.address(), 'ipAddressssssss')
+        // console.log(ip.address(), 'ipAddressssssss')
         let response = await HttpUtils.get('allusers')
         this.setState({allUser: response.content})
     }

@@ -54,9 +54,18 @@ state = {
                                       <Button type="button_globalclassName" name='buySell' ghost className="button_globalclassName">
                                           <Link rel="noopener noreferrer" to={`/market_jobPortal`}>Job Portal</Link>
                                       </Button>
-                                      {/*<Button type="button_globalclassName" name='events' ghost className="button_globalclassName">
+                                      <Button type="button_globalclassName" name='events' ghost className="button_globalclassName">
                                           <Link rel="noopener noreferrer" to={`/market_eventPortal`}>Events</Link>
-                                      </Button>*/}
+                                      </Button>
+                                      <Button type="button_globalclassName" name='events' ghost className="button_globalclassName">
+                                          <Link rel="noopener noreferrer" to={`/detail_eventPortal`}>Details</Link>
+                                      </Button>
+                                      <Button type="button_globalclassName" name='events' ghost className="button_globalclassName">
+                                          <Link rel="noopener noreferrer" to={`/Ticket_eventPortals`}>Ticket Detail</Link>
+                                      </Button>
+                                      <Button type="button_globalclassName" name='events' ghost className="button_globalclassName">
+                                          <Link rel="noopener noreferrer" to={`/Buyer_DetailPage`}>Buyer Detail</Link>
+                                      </Button>
                                   </div>
                               </div>{/*col-md-4*/}
                               <div className="col-md-2" style={{marginTop: "26px"}}>

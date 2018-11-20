@@ -28,6 +28,11 @@ import JobClassified from './components/job_portal/jobClassified';
 import MarketEvent from './components/events/marketEvent'
 import ApplyJob from './components/job_portal/applyJob';
 import JobDetail from './components/job_portal/jobDetail';
+import TicketDetail from './components/events/event_listing/TicketDetail';
+import BuyerDetail from './components/events/event_listing/BuyerDetail';
+import EventDetail from './components/events/EventDetail';
+//import TicketDetail from './components/events/TicketDetail';
+//import TicketDetail from './components/events/TicketDetail'
 import {PrivateRoute} from './components/signin_seperate';
 
 
@@ -42,20 +47,17 @@ const initialState = {
 }
 
 function reducer(state = initialState, action){
-	console.log(action, 'actionnnnnnnnnnnnn')
     switch (action.type) {
         case 'SEARCHON':
-            return {
-                text: action.inputValue
-            }
+            return {...state, text: action.inputValue}
         case 'SEARCHOF':
-            return {
-                text: initialState.text
-            }
+            return {...state, text: initialState.text}
 		case 'FACEBOOKSIGNUP':
 			return {...state, data: action.data}
 		case 'ANOTHERDATA':
 			return {...state, otherData: action.otherData}
+		case 'BLOGDATA':
+			return {...state, blogData: action.blogData}	
         default:
             return state;
     }
@@ -74,7 +76,7 @@ ReactDOM.render(
 					<PrivateRoute path="/postad_Roommates" component={Postroommates}></PrivateRoute>
 					<PrivateRoute path="/postad_buysell" component={Postbuysell}></PrivateRoute>
 					<PrivateRoute path="/postad_jobPortal" component={JobPortal}></PrivateRoute>
-          <PrivateRoute path="/postad_eventPortal" component={EventPortal}></PrivateRoute>
+          			<PrivateRoute path="/postad_eventPortal" component={EventPortal}></PrivateRoute>
 					<PrivateRoute path="/profile_user" component={ProfileUser}></PrivateRoute>
 					<Route path="/profile_userDetail" component={ProfileUser}></Route>
 					<Route path="/detail_buySell" component={DetailBuySell}></Route>
@@ -87,8 +89,10 @@ ReactDOM.render(
 					<Route path="/market_business" component={MarketBusiness}></Route>
 					<Route path="/market_classified" component={MarketClassified}></Route>
 					<Route path="/market_roommates" component={MarketRoommates}></Route>
-    			<Route path="/market_jobPortal" component={JobClassified}></Route>
-          {/*<Route path="/market_eventPortal" component={MarketEvent}></Route>*/}
+    				<Route path="/market_jobPortal" component={JobClassified}></Route>
+			        <Route path="/market_eventPortal" component={MarketEvent}></Route>
+			        <Route path="/detail_eventPortal" component={EventDetail}></Route>
+			        <Route path="/Ticket_eventPortals" component={TicketDetail}></Route>
 				</div>
 			</BrowserRouter>
 		</Provider>

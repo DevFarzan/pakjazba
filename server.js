@@ -33,6 +33,8 @@ require('./models/facebookLoginSchema');
 require('./models/blog');
 require('./models/jobPortalSchema');
 require('./models/jobAppliedSchema');
+require('./models/blogReviews');
+require('./models/eventPortalSchema');
 
 require('./config/passport');
 
@@ -49,6 +51,8 @@ var facebookLogin = mongoose.model('facebookdatabase');
 var blog = mongoose.model('blogdata');
 var jobPortal = mongoose.model('jobschema');
 var jobApplied = mongoose.model('jobApplied');
+var blogReview = mongoose.model('blogReviews');
+var eventPortal = mongoose.model('EventSchema');
 
 app.use(passport.initialize());
 
@@ -378,6 +382,62 @@ reviewdata.find({__v:0},function(err,reviews){
 
 /*==================Review api end=================================*/
 
+/*==================BlogReview api start=================================*/
+
+app.post('/api/addBlogReviews',function(req,res){
+    var reviews  = req.body;
+    console.log(reviews, '3333333333333333')
+    var review_info = new blogReview({
+        objId:reviews.objId,
+        user:reviews.user,
+        comm:reviews.comm,
+        userImg:reviews.userImg,
+        userId:reviews.userId,
+        written:reviews.written
+    });
+
+    review_info.save(function(err,data){
+        if(err){
+            res.send({error:'something done wrong'})
+        }
+        else if(data){
+            res.send({
+                code:200,
+                msg:'reviews added successfully',
+                content:data
+            });
+        }
+    });
+});
+
+
+app.get('/api/getBlogReviews',function(req,res){
+    blogReview.find({__v:0},function(err,reviews){
+        if(err){
+            res.send({
+                code:500,
+                content:'Internal Server Error',
+                msg:'API not called properly'
+            });
+        }//end if
+        else if(reviews!=''){
+            res.send({
+                code:200,
+                content:reviews,
+                msg:'all user reviews'
+            });
+        }//end else if condition
+        else{
+            res.send({
+                code:404,
+                content:'Not Found',
+                msg:'no user reviews'
+            });
+        }//end else condition
+    });
+});
+
+/*==================BlogReview api end=================================*/
 
 
 
@@ -802,19 +862,28 @@ app.get('/api/marketplace',function(req,res){
               jobPortalData.push(jobData[l])
             }
           }
-          res.send({
-                  code:200,
-                  business:businesses,
-                  busell:buysell,
-                  roomrentsdata:roomrentsdata,
-                  jobPortalData: jobPortalData,
-                  msg:'data recieve successfully'
-                });
-          });  
-        
+
+          eventPortal.find(function(err, eventData) {
+            if(eventData != ''){
+              var eventPortalData = [];
+              for(var m=0; m<eventData.length; m++){
+                eventPortalData.push(eventData[m])
+              }
+            }
+            res.send({
+              code:200,
+              business:businesses,
+              busell:buysell,
+              roomrentsdata:roomrentsdata,
+              jobPortalData: jobPortalData,
+              eventPortalData: eventPortalData,
+              msg:'data recieve successfully'
+            });
+          });
+        });    
+      });
     });
-   })
-  })
+  });
 });
 /*====================get market Market place end=====================================================*/
 
@@ -1150,6 +1219,101 @@ app.post('/api/postJobPortal', (req, res) => {
 });
 
 /*===================post Job API end================================================================*/
+
+/*===================post Event API start================================================================*/
+app.post('/api/postEventPortal', (req, res) => {
+    let postEventPortal = req.body;
+    if(postEventPortal.objectId === ''){
+        let eventData = new eventPortal({
+            availableTickets: postEventPortal.availableTickets,
+            city: postEventPortal.city,
+            dateRange: postEventPortal.dateRange,
+            delivery: postEventPortal.delivery,
+            description: postEventPortal.description,
+            email: postEventPortal.email,
+            eventCategory: postEventPortal.eventCategory,
+            eventTitle: postEventPortal.eventTitle,
+            images: postEventPortal.images,
+            name: postEventPortal.name,
+            number: postEventPortal.number,
+            paymentMode: postEventPortal.paymentMode,
+            price: postEventPortal.price,
+            state: postEventPortal.state,
+            totalTickets: postEventPortal.totalTickets,
+            free: postEventPortal.free,
+            website: postEventPortal.website,
+            faceBook: postEventPortal.faceBook,
+            linkdIn: postEventPortal.linkdIn,
+            google: postEventPortal.google,
+            userId: postEventPortal.userId,
+            profileId: postEventPortal.profileId,
+            objectId: postEventPortal.objectId,
+            posted: postEventPortal.posted
+        });
+
+        eventData.save((error, response) => {
+            if(error){
+                res.send({
+                    code:500,
+                    content:'Internal Server Error',
+                    msg:'API not called properly'
+                });
+            }else if(response !== ''){
+                res.send({
+                    code:200,
+                    msg:'Data inserted successfully'
+                });
+            }else{
+                res.send({
+                    code:404,
+                    content:'Not Found',
+                    msg:'no data inserted'
+                });
+            }
+        });
+    }else {
+        eventPortal.findOne({objectId: postEventPortal.objectId}, (err, eventData) => {
+            if(err){
+                return res.status(400).json({"Unexpected Error:: ": err});
+            }
+            eventData.availableTickets = postEventPortal.availableTickets;
+            eventData.city = postEventPortal.city;
+            eventData.dateRange = postEventPortal.dateRange;
+            eventData.delivery = postEventPortal.delivery;
+            eventData.description = postEventPortal.description;
+            eventData.email = postEventPortal.email;
+            eventData.eventCategory = postEventPortal.eventCategory;
+            eventData.eventTitle = postEventPortal.eventTitle;
+            eventData.images = postEventPortal.images;
+            eventData.name = postEventPortal.name;
+            eventData.number = postEventPortal.number;
+            eventData.paymentMode = postEventPortal.paymentMode;
+            eventData.price = postEventPortal.price;
+            eventData.state = postEventPortal.state;
+            eventData.totalTickets = postEventPortal.totalTickets;
+            eventData.free = postEventPortal.free;
+            eventData.website = postEventPortal.website;
+            eventData.faceBook = postEventPortal.faceBook;
+            eventData.linkdIn = postEventPortal.linkdIn;
+            eventData.google = postEventPortal.google;
+            eventData.userId = postEventPortal.userId;
+            eventData.profileId = postEventPortal.profileId;
+            eventData.objectId = postEventPortal.objectId;
+            eventData.posted = postEventPortal.posted;
+        });
+        eventData.save((error, doc) => {
+            if(error){
+                return res.status(400).json({"Unexpected Error:: ": error});
+            }
+            return res.send({
+                code:200,
+                msg:'Add job data updated successfully'
+            });
+        });
+    }
+});
+
+/*===================post Event API end================================================================*/
 
 /*===================Applied for Job start===========================================================*/
 

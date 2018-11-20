@@ -387,7 +387,7 @@ class Postbusiness extends Component {
      * When the input receives focus
      */
     onFocus() {
-        console.log('onFocus'); // eslint-disable-line
+        // console.log('onFocus'); // eslint-disable-line
     }
 
     /**
@@ -395,7 +395,7 @@ class Postbusiness extends Component {
      * @param {String} value The user input
      */
     onBlur(value) {
-        console.log('onBlur', value); // eslint-disable-line
+        // console.log('onBlur', value); // eslint-disable-line
     }
 
     /**
@@ -403,7 +403,7 @@ class Postbusiness extends Component {
      * @param {String} value The new value
      */
     onChange(value) {
-        console.log('input changes to :' + value); // eslint-disable-line
+        // console.log('input changes to :' + value); // eslint-disable-line
     }
 
     /**
@@ -419,7 +419,7 @@ class Postbusiness extends Component {
      * @param {String} userInput The user input
      */
     onSuggestNoResults(userInput) {
-        console.log('onSuggestNoResults for :' + userInput); // eslint-disable-line
+        // console.log('onSuggestNoResults for :' + userInput); // eslint-disable-line
     }
 
     //-------------- GeoSuggest functions end -----------------
@@ -599,7 +599,6 @@ class Postbusiness extends Component {
             posted: moment().format('LL')
         }
         let req = await HttpUtils.post('postbusinessdata', obj)
-        console.log(req);
         if(req.code === 200){
             this.props.form.resetFields();
             this.openNotification()

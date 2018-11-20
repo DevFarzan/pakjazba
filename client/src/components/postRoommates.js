@@ -359,9 +359,7 @@ class Postroommates extends Component{
             vegNoVeg: vegNoVeg,
             arr_url: response ? response : []
         }
-        console.log(obj, 'objjjjjjjj');
         var req = await HttpUtils.post('postroomrent', obj)
-        console.log(req,'server response');
     }
 
     render(){

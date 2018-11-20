@@ -7,6 +7,5 @@ var blogSchema = new mongoose.Schema({
 	subtitle:{type:String},
 	image:{type:Array},
 	description:{type:String},
-
 });
 mongoose.model('blogdata',blogSchema);

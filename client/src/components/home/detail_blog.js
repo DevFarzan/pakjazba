@@ -20,15 +20,19 @@ class DetailBlog extends Component {
             review: [],
             userId : '',
             profileId: '',
-            userImg: ''
+            userImg: '',
+            data: {}
         };
     }
 
     componentDidMount() {
         window.scrollTo(0,0);
+        let data = this.props.location.state;
+        this.setState({data})
         this.callApi()
         this.getAllBlogs()
         this.handleLocalStorage()
+        this.getAllReviews(data)
     }
 
     handleLocalStorage = () =>{
@@ -36,7 +40,6 @@ class DetailBlog extends Component {
             .then((obj) => {
                 let userObj = JSON.parse(obj)
                 if(!!userObj) {
-                    console.log(userObj, 'lllllllllllllll')
                     // this.getprofileData(userObj.profileId, userObj._id)
                     this.setState({
                         userId: userObj._id,
@@ -47,44 +50,56 @@ class DetailBlog extends Component {
                 }
             })
     }
+    
+    async getAllReviews(data){
+        var res = await HttpUtils.get('getBlogReviews');
+        let review = []
+        if(res.code === 200 && res.content){
+            review = res.content.filter((elem) => elem.objId === data._id);
+        }
+        this.setState({review});
+    }
 
     async getAllBlogs(){
         let req = await HttpUtils.get('getblog');
-        console.log(req, 'zzzzzzzzzzzzzzzzzzzzzz')
+        this.setState({blogs: req})
     }
 
-    async callApi(){
+    async callApi(data){
         const sports = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-sport&apiKey=6e7e6a696773424187f9bdb80954ded7');
-        console.log(sports.data.articles, 'sportssssssssss')
         const news = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=6e7e6a696773424187f9bdb80954ded7');
-        console.log(news.data.articles, 'newssssssssssssssss')
         this.setState({news: news.data.articles, sports: sports.data.articles})
-
     }
 
     changeVal(e){
         this.setState({comment: e.target.value})
     }
 
-    publishComment(){
-        console.log(this.state.comment, '888888888888')
-        let { review, comment, userImg, userName } = this.state;
+    async publishComment(){
+        let { review, comment, userImg, userName, userId, data } = this.state;
         let obj = {
             written: moment().format('LL'),
             user: userName,
             comm: this.state.comment,
             userImg,
+            objId: data._id,
+            userId
         }
-        review.push(obj)
-        this.setState({review, comment: ''})
+        let req = await HttpUtils.post('addBlogReviews', obj)
+        if(req.code === 200){
+            review.push(obj)
+            this.getAllReviews(data);
+            this.setState({review, comment: ''})
+        }
     }
 
     render(){
-        const { news, sports, review } = this.state;
+        const { news, sports, review, data, userId } = this.state;
+        let bckImage = data.mainimage && !!data.mainimage.length ? (data.mainimage && data.mainimage) : (data.main && data.main[0].image[0]);
 
         return (
             <div>
-                <div className ="" style={{"backgroundImage":"url('./images/shutterstock_1094843246.jpg')", backgroundSize: '1500px 500px', height: "500px", marginTop: "-65px", marginLeft:"-66px"}}>
+                <div className ="" style={{"backgroundImage": 'url('+bckImage+')', backgroundSize: '1500px 500px', height: "500px", marginTop: "-65px", marginLeft:"-66px"}}>
                     <div className="background-image">
                         <Burgermenu/>
                     </div>
@@ -92,17 +107,20 @@ class DetailBlog extends Component {
                 <div style={{height: '50px'}}></div>
                 <div className='row'>
                     <div style={{marginTop: '20px'}} className="col-md-9 col-sm-12 col-xs-12">
-                        <h3><b>Loram Ipsum Koram Posam, Loram Ipsum Koram Posam Loram Ipsum Koram Posam </b></h3>
-                        <div className="col-md-6">
-                            <p>Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram
-                                Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum
-                                Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam. Loram
-                                Ipsum Koram Posam Loram Ipsum Koram Posam. </p>
-                        </div>
-                        <div className="col-md-6">
-                            <img src="./images/shutterstock_1094843246.jpg" width="350" height="200"/>
-                        </div>
-                        <div className="col-md-12">
+                    {data.main && data.main.map((elem) => {
+                        return (
+                            <div className="row">
+                                <h3><b>{elem.subtitle ? elem.subtitle : elem.maintitle}</b></h3>
+                                <div className="col-md-6">
+                                    <p>{elem.description}</p>
+                                </div>
+                                <div className="col-md-6">
+                                    <img src={elem.image[0]} width="350" height="200"/>
+                                </div>
+                            </div>
+                        )
+                    })}
+                        {/*<div className="col-md-12">
                             <br/>
                             <div className="b-head">
                                 <h3><b>" Loram Ipsum Koram Poram, Loram Ipsum Koram Poram, Loram Ipsum Koram Poram "</b>
@@ -115,8 +133,8 @@ class DetailBlog extends Component {
                                 Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum
                                 Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam. Loram
                                 Ipsum Koram Posam Loram Ipsum Koram Posam. </h4>
-                        </div>
-                        <div className="col-md-12">
+                        </div>*/}
+                        {/*<div className="col-md-12">
                             <br/> <br/>
                             <div className="col-md-2">
                                 <img src="../images/images.jpg" className="img-circle" width="100" height="100"/>
@@ -159,7 +177,8 @@ class DetailBlog extends Component {
                                     Loram Ipsum Koram Posam Loram Ipsum Koram Posam Loram Ipsum Koram Posam. Loram Ipsum
                                     Koram Posam Loram Ipsum Koram Posam.</p>
                             </div>
-                        </div>
+                        </div>*/}
+                        <hr/>
                         {review && review.map((elem) => {
                             return(
                                 <div className="col-md-12">
@@ -171,11 +190,12 @@ class DetailBlog extends Component {
                                         <h3>{elem.user}</h3>
                                         <p>{elem.written}</p>
                                         <p>{elem.comm}</p>
+                                        <hr/>
                                     </div>
                                 </div>
                             )
                         })}
-                        <div className="col-md-12">
+                        {userId && <div className="col-md-12">
                             <br/><br/>
                             <div className="col-md-4">
                                 <hr/>
@@ -184,18 +204,18 @@ class DetailBlog extends Component {
                             <div className="col-md-5">
                                 <hr/>
                             </div>
-                        </div>
-                        <div className="col-md-12">
-                            <div className="card outset">
+                        </div>}
+                        {userId && <div className="col-md-12">
+                            <div style={{border:'1px solid gray'}}>
                                 <div className="card-body space tag1 bspace">
                                     <br/><br/>
-                                    <textarea cols="80" rows="5" value={this.state.comment} placeholder="Enter Your Comment..." onChange={this.changeVal.bind(this)} style={{marginLeft: "21px",paddingLeft: "13px"}}> </textarea>
+                                    <textarea cols="80" rows="5" value={this.state.comment} placeholder="Enter Your Comment..." onChange={this.changeVal.bind(this)} style={{marginLeft: "21px",paddingLeft: "13px",width:'95%'}}> </textarea>
                                     <br/><br/>
                                     <button className="btn" onClick={this.publishComment.bind(this)} style={{marginLeft: "21px",backgroundColor:"#008080",color: "white"}}>Publish</button>
                                     <br/><br/>
                                 </div>
                             </div>
-                        </div>
+                        </div>}
                         <div className="col-md-12">
                             <br/><br/>
                             <div className="col-md-4">

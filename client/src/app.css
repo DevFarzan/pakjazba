@@ -5,6 +5,10 @@
 
 }
 
+.ant-input-number-input{
+  height: 23px !important;
+}
+
 h1{
 font-family: 'Crimson Text', serif !important;
 

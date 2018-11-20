@@ -29,6 +29,7 @@ import MarketEvent from './components/events/marketEvent'
 import ApplyJob from './components/job_portal/applyJob';
 import JobDetail from './components/job_portal/jobDetail';
 import TicketDetail from './components/events/event_listing/TicketDetail';
+import BuyerDetail from './components/events/event_listing/BuyerDetail';
 import EventDetail from './components/events/EventDetail';
 //import TicketDetail from './components/events/TicketDetail';
 //import TicketDetail from './components/events/TicketDetail'
@@ -94,6 +95,7 @@ ReactDOM.render(
           <Route path="/market_eventPortal" component={MarketEvent}></Route>
           <Route path="/detail_eventPortal" component={EventDetail}></Route>
           <Route path="/Ticket_eventPortals" component={TicketDetail}></Route>
+          <Route path="/Buyer_DetailPage" component={BuyerDetail}></Route>
 				</div>
 			</BrowserRouter>
 		</Provider>

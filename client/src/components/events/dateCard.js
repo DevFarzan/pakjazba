@@ -1,5 +1,17 @@
 import React, { Component } from 'react';
 import './dateCard.css'
+import { Checkbox, InputNumber } from 'antd';
+
+
+
+
+function onChange(e) {
+  console.log(`checked = ${e.target.checked}`);
+}
+
+function onChange(value) {
+  console.log('changed', value);
+}
 
 class DateCard extends Component{
   render(){
@@ -69,9 +81,52 @@ class DateCard extends Component{
                             <h3><b>Charges</b></h3>
                             <hr className="ehr"/>
                         </div>
-                        <span>
-                            <p style={{fontSize:"15px", marginLeft:"5px"}}>Free $</p>
-                        </span>
+
+                      <div className="row">
+                        <div className="col-md-6 col-xs-6">
+                           <Checkbox onChange={onChange}></Checkbox>
+                           <span>Early Bird</span>
+                        </div>
+                        <div className="col-md-6 col-xs-6">
+                              <InputNumber min={1} max={10} defaultValue={2} onChange={onChange} style={{width:"50px", height:"23px"}} />
+                              <span style={{marginLeft:'7px'}}> $200 </span>
+                        </div>
+                      </div>
+
+                      <div className="row">
+                        <div className="col-md-6 col-xs-6">
+                           <Checkbox onChange={onChange}></Checkbox>
+                            <span>Normal Ticket</span>
+                        </div>
+                        <div className="col-md-6 col-xs-6">
+                              <InputNumber min={1} max={10} defaultValue={0} onChange={onChange} style={{width:"50px", height:"23px"}} />
+                              <span style={{marginLeft:'7px'}}> $0 </span>
+                        </div>
+
+                      </div>
+
+                      <div className="row">
+                        <div className="col-md-6 col-xs-6">
+                        </div>
+                        <div className="col-md-6 col-xs-6" style={{borderBottom:"2px solid black", width:"110px"}}>
+                          {/*<hr className="ehr" style={{width:"100px", marginTop:"0px"}}/>*/}
+                        </div>
+                      </div>
+
+                      <div className="row" style={{marginTop:"-40px"}}>
+                        <div className="col-md-6 col-xs-6">
+
+                            <h4>Total Amount </h4>
+
+                        </div>
+                        <div className="col-md-6 col-xs-6" style={{textAlign:"center"}}>
+                              <span> $200 </span>
+                        </div>
+                      </div>
+
+                      <div className="text-center text-md-left">
+                          <a className="btn button_custom" style={{width: "45%"}}>Purchase Yicket</a>
+                      </div>
                     </div>
 
                   </div>

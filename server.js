@@ -271,7 +271,7 @@ rand=Math.floor((Math.random() * 100) + 54);
           }
           else {
             var facebookLogindata = new facebookLogin({
-            email:email,
+           email:email,
            name:nickname,
            password:password
   })

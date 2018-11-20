@@ -26,7 +26,9 @@ class Slider extends Component{
         }
     }
 
-    searchText(){
+    searchText = (e) => {
+        e.preventDefault();
+        console.log('1111111111111')
         const  { inputValue } = this.state;
         const { dispatch } = this.props;
         dispatch({type: 'SEARCHON', inputValue})
@@ -53,7 +55,7 @@ class Slider extends Component{
                                         <div className="input-group">
                                             <input type="text" className="form-control" placeholder="Search" onChange={this.onChange.bind(this)}/>
                                             <span className="input-group-btn">
-                                                <button className="btn btn-theme" type="submit" onClick={this.searchText.bind(this)}>Search</button>
+                                                <button className="btn btn-theme" type="submit" onClick={this.searchText}>Search</button>
                                             </span>
                                         </div>
                                     </div>

@@ -11,19 +11,19 @@ class MarketEvent extends Component{
         window.scrollTo(0,0);
     }
 
-    componentWillUnmount(){
-        let inputValue = '';
-        if(this.props.text.length){
-            const { dispatch } = this.props;
-            dispatch({type: 'SEARCHON', inputValue})
-        }
-    }
+    // componentWillUnmount(){
+    //     let inputValue = '';
+    //     if(this.props.text.length){
+    //         const { dispatch } = this.props;
+    //         dispatch({type: 'SEARCHON', inputValue})
+    //     }
+    // }
 
     render(){
         return(
             <div>
                 <span>
-                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/buy-sell.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
+                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/events.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
                         <div className="background-image">
                             <Burgermenu/>
                             <Slider mainH1="Buy & Sell" mainH2="Find what you need"/>

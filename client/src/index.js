@@ -43,7 +43,8 @@ import './app.css';
 const initialState = {
     text: '',
 	data: {},
-	otherData: {}
+	otherData: {},
+	blogData: {}
 }
 
 function reducer(state = initialState, action){

@@ -11,26 +11,42 @@ class EventDetail extends Component{
         super()
         this.state = {
             isData: true,
+            data: {}
           }
         }
 
-  componentDidMount(){
+  async componentDidMount(){
       window.scrollTo(0,0);
       let data = this.props.location.state;
       if(data === undefined){
-          this.setState({
-              isData: false
-          })
+          await this.getDetail(this.props.match.params.value);
       }else {
           this.setState({
               isData : true,
               data : data
           })
-          this.getReviews(data)
+          this.getReviews(data);
+      }
+  }
+
+  async componentDidUpdate(prevProps, prevState){
+      if(prevProps.match.params.value !== this.props.match.params.value){
+          await this.getDetail(this.props.match.params.value);
+      }
+  }
+
+  async getDetail(val){
+      let response = await HttpUtils.get('getSpecific?randomKey='+val);
+      if(response.code === 200){
+          this.setState({data: response.content, isData : true});
+          this.getReviews(response.content);
+      }else {
+          this.setState({isData : false})
       }
   }
 
   async getReviews(data){
+    console.log('abccccccccccccc')
       let res = await HttpUtils.get('getreviews')
       if(res.code === 200) {
           let filteredReviews = res.content.filter((elem) => elem.objid === data._id)
@@ -39,11 +55,10 @@ class EventDetail extends Component{
   }
 
   render(){
-    const { isData } = this.state;
-
-    // if(isData){
-    //     return <Redirect to='/' />
-    // }
+    const { isData, data } = this.state;
+    if(!isData){
+        return <Redirect to='/' />
+    }
 
     return(
       <div className="">
@@ -56,7 +71,7 @@ class EventDetail extends Component{
                 </div>
             </div>
         </div>
-        <EdetailFirstfold/>
+        <EdetailFirstfold data={data}/>
         <Footer />
       </div>
 

@@ -1247,6 +1247,7 @@ app.post('/api/postEventPortal', (req, res) => {
             google: postEventPortal.google,
             userId: postEventPortal.userId,
             profileId: postEventPortal.profileId,
+            randomKey: postEventPortal.randomKey,
             objectId: postEventPortal.objectId,
             posted: postEventPortal.posted
         });
@@ -1298,6 +1299,7 @@ app.post('/api/postEventPortal', (req, res) => {
             eventData.google = postEventPortal.google;
             eventData.userId = postEventPortal.userId;
             eventData.profileId = postEventPortal.profileId;
+            eventData.randomKey = postEventPortal.randomKey;
             eventData.objectId = postEventPortal.objectId;
             eventData.posted = postEventPortal.posted;
         });
@@ -1356,15 +1358,15 @@ app.post('/api/AppliedForJob', (req, res) => {
 
 /*===============specific event find start======================================*/
 app.get('/api/getSpecific',function(req,res){
-  var eventkeyword = '5bf3b93baee82f11eca65cdb';
+  var eventkeyword = req.query.randomKey;
   if(eventkeyword != '' || eventkeyword != undefined){
-    eventPortal.findOne({_id:eventkeyword},function(err,eventData){
-      if(err){
+    eventPortal.findOne({randomKey:eventkeyword},function(err,eventData){
+      if(err === null && eventData === null){
         res.send({
           code:404,
           msg:'there is no record found'
         })
-      }else if(eventData){
+      }else if(eventData !== null){
         res.send({
           code:200,
           content:eventData

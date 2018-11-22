@@ -23,6 +23,7 @@ var EventSchema = new mongoose.Schema({
     google:{type:String},
     userId:{type:String},
     profileId:{type:String},
+    randomKey:{type:String},
     objectId:{type:String},
     posted:{type:String}
 });

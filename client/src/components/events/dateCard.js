@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import './dateCard.css'
 import { Checkbox, InputNumber } from 'antd';
-
-
-
+import moment from 'moment';
 
 function onChange(e) {
   console.log(`checked = ${e.target.checked}`);
@@ -15,6 +13,9 @@ function onChange(value) {
 
 class DateCard extends Component{
   render(){
+    const { data } = this.props;
+    let from = moment(data.dateRange && data.dateRange[0].from, 'YYYY-MM-DD').format("LL");
+    let to = moment(data.dateRange && data.dateRange[0].to, 'YYYY-MM-DD').format("LL");
     return(
       <div>
       <div className="row" style={{padding:"0px"}}>
@@ -36,7 +37,7 @@ class DateCard extends Component{
                                 </div>
                                 <div className="col-md-5 col-sm-4 col-xs-12">
                                   <span>
-                                  <p className="font-style"><b>Feburary25, 2025</b></p>
+                                  <p className="font-style"><b>{from}</b></p>
                                   </span>
                                 </div>
                                 <div className="col-md-4 col-sm-4 col-xs-12">
@@ -51,7 +52,7 @@ class DateCard extends Component{
                                 </div>
                                 <div className="col-md-5 col-sm-4 col-xs-12">
                                   <span>
-                                  <p className="font-style"><b>Feburary25, 2025</b></p>
+                                  <p className="font-style"><b>{to}</b></p>
                                   </span>
                                 </div>
                                 <div className="col-md-4 col-sm-4 col-xs-12 ">

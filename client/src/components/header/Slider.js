@@ -28,7 +28,6 @@ class Slider extends Component{
 
     searchText = (e) => {
         e.preventDefault();
-        console.log('1111111111111')
         const  { inputValue } = this.state;
         const { dispatch } = this.props;
         dispatch({type: 'SEARCHON', inputValue})

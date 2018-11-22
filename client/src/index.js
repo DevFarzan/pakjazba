@@ -92,7 +92,7 @@ ReactDOM.render(
 					<Route path="/market_roommates" component={MarketRoommates}></Route>
     				<Route path="/market_jobPortal" component={JobClassified}></Route>
 			        <Route path="/market_eventPortal" component={MarketEvent}></Route>
-			        <Route path="/detail_eventPortal" component={EventDetail}></Route>
+			        <Route path="/detail_eventPortal/:value" component={EventDetail}></Route>
 			        <Route path="/Ticket_eventPortals" component={TicketDetail}></Route>
 				</div>
 			</BrowserRouter>

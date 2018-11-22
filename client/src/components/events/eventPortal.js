@@ -107,7 +107,9 @@ class EventPortal extends Component{
             citiesUS: [],
             objectId: '',
             loader: false,
-            msg: false
+            msg: false,
+            openingTime: '00:00:00',
+            closingTime: '00:00:00',
         }
     }
 
@@ -207,9 +209,12 @@ class EventPortal extends Component{
 
     async postData(values, response) {
         const {dateObj, userId, profileId, objectId, website, faceBook, linkdIn, google, free} = this.state;
+        let rand = Math.floor((Math.random() * 1000000) + 54);
+        var randomKey = values.eventTitle + "_" + values.eventCategory[0] + "_" + rand;
         let obj ={
             availableTickets: values.availableTickets,
             city: values.city[0],
+            address: values.address,
             dateRange: dateObj,
             delivery: values.delivery === undefined ? [] : values.delivery,
             description: values.description,
@@ -231,12 +236,13 @@ class EventPortal extends Component{
             userId,
             profileId,
             objectId,
+            randomKey,
             posted: moment().format('LL')
         }
         console.log(obj, 'objjjjjjjjjj')
         let req = await HttpUtils.post('postEventPortal', obj)
         if(req.code === 200){
-            this.setState({objData: obj, msg: true})
+            this.setState({objData: obj, msg: true, randomKey})
         }
     }
 
@@ -311,12 +317,32 @@ class EventPortal extends Component{
         }
     }
 
+    validateTime(rule, value, callback){
+        if (!(!!value)) {
+            callback('Please select your Time!');
+        } else {
+            callback();
+        }
+    }
+
+    onOpeningTime(time, timeString){
+        this.setState({
+            openingTime: timeString,
+        })
+    }
+
+    onClosingTime(time, timeString){
+        this.setState({
+            closingTime: timeString,
+        })
+    }
+
     render(){
-        const { fileList, previewImage, previewVisible, statesUS , citiesUS, msg, objData } = this.state;
+        const { fileList, previewImage, previewVisible, statesUS , citiesUS, msg, objData, randomKey } = this.state;
         const {getFieldDecorator} = this.props.form;
 
         if (msg === true) {
-            return <Redirect to={{pathname: '/detail_eventPortal', state: objData}} />
+            return <Redirect to={{pathname: '/detail_eventPortal/${randomKey}', state: objData}} />
         }
 
         const uploadButton = (
@@ -461,7 +487,19 @@ class EventPortal extends Component{
                                                     </FormItem>
                                                 </div>
                                             </div>
-                                            <div className="col-md-6"></div>
+                                            <div className="col-md-6">
+                                                  <div className="form-group">
+                                                      <label htmlFor="sel1">Address</label>
+                                                      <FormItem>
+                                                      {getFieldDecorator('address', {
+                                                          initialValue: this.state.address,
+                                                          rules: [{ required: true, message: 'Please input your Address!', whitespace: true }],
+                                                      })(
+                                                          <Input  />
+                                                      )}
+                                                    </FormItem>
+                                                  </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </section>
@@ -572,7 +610,7 @@ class EventPortal extends Component{
                                         </div>
                                     </div>
                                     <div className="row">
-                                        {!this.state.free && <div className="col-md-6" style={{marginLeft:"15px"}}>
+                                        {!this.state.free && <div className="col-md-6">
                                             <label>Ticket Delivery</label>
                                             <FormItem>
                                                 {getFieldDecorator('delivery', {
@@ -583,6 +621,34 @@ class EventPortal extends Component{
                                                 )}
                                             </FormItem>
                                         </div>}
+                                        <div className="col-md-6">
+                                        
+                                            <label>Opening & closing Time</label>
+
+                                              <div className="row" style={{marginTop: '-17px'}}>
+                                              <div className="col-md-6">
+                                                <FormItem>
+                                                    {getFieldDecorator('openingTime', {
+                                                        initialValue: moment(this.state.openingTime, 'HH:mm:ss'),
+                                                        rules: [{ validator: this.validateTime.bind(this) }],
+                                                    })(
+                                                        <TimePicker placeholder="Opening Time" onChange={this.onOpeningTime.bind(this)} />
+                                                    )}
+                                                </FormItem>
+                                              </div>
+                                              <div className="col-md-6">
+                                                <FormItem>
+                                                    {getFieldDecorator('closingTime', {
+                                                        initialValue: moment(this.state.closingTime, 'HH:mm:ss'),
+                                                        rules: [{ validator: this.validateTime.bind(this) }],
+                                                    })(
+                                                        <TimePicker placeholder="Closing Time" onChange={this.onClosingTime.bind(this)} />
+                                                    )}
+                                                </FormItem>
+                                              </div>
+                                           </div>
+                                        
+                                        </div>
                                     </div>
                                 </section>
                             </div>

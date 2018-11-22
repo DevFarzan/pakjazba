@@ -271,7 +271,7 @@ rand=Math.floor((Math.random() * 100) + 54);
           }
           else {
             var facebookLogindata = new facebookLogin({
-            email:email,
+           email:email,
            name:nickname,
            password:password
   })
@@ -862,19 +862,28 @@ app.get('/api/marketplace',function(req,res){
               jobPortalData.push(jobData[l])
             }
           }
-          res.send({
-                  code:200,
-                  business:businesses,
-                  busell:buysell,
-                  roomrentsdata:roomrentsdata,
-                  jobPortalData: jobPortalData,
-                  msg:'data recieve successfully'
-                });
-          });  
-        
+
+          eventPortal.find(function(err, eventData) {
+            if(eventData != ''){
+              var eventPortalData = [];
+              for(var m=0; m<eventData.length; m++){
+                eventPortalData.push(eventData[m])
+              }
+            }
+            res.send({
+              code:200,
+              business:businesses,
+              busell:buysell,
+              roomrentsdata:roomrentsdata,
+              jobPortalData: jobPortalData,
+              eventPortalData: eventPortalData,
+              msg:'data recieve successfully'
+            });
+          });
+        });    
+      });
     });
-   })
-  })
+  });
 });
 /*====================get market Market place end=====================================================*/
 
@@ -1341,8 +1350,37 @@ app.post('/api/AppliedForJob', (req, res) => {
         }
     });
 })
+/*===============specific event find start======================================*/
 
-/*===================Applied for Job end===========================================================*/
+
+
+/*===============specific event find start======================================*/
+app.get('/api/getSpecific',function(req,res){
+  var eventkeyword = '5bf3b93baee82f11eca65cdb';
+  if(eventkeyword != '' || eventkeyword != undefined){
+    eventPortal.findOne({_id:eventkeyword},function(err,eventData){
+      if(err){
+        res.send({
+          code:404,
+          msg:'there is no record found'
+        })
+      }else if(eventData){
+        res.send({
+          code:200,
+          content:eventData
+        })
+      }
+    })
+  }else{
+    res.send({
+      code:404,
+      msg:'kindly send proper detail'
+    })
+  }
+})
+
+
+/*===================Applied for Job End===========================================================*/
 
 app.post('/api/sendmessage',function(req,res){
 var getuserfields = req.body;

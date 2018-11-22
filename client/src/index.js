@@ -43,7 +43,8 @@ import './app.css';
 const initialState = {
     text: '',
 	data: {},
-	otherData: {}
+	otherData: {},
+	blogData: {}
 }
 
 function reducer(state = initialState, action){
@@ -76,7 +77,7 @@ ReactDOM.render(
 					<PrivateRoute path="/postad_Roommates" component={Postroommates}></PrivateRoute>
 					<PrivateRoute path="/postad_buysell" component={Postbuysell}></PrivateRoute>
 					<PrivateRoute path="/postad_jobPortal" component={JobPortal}></PrivateRoute>
-          <PrivateRoute path="/postad_eventPortal" component={EventPortal}></PrivateRoute>
+          			<PrivateRoute path="/postad_eventPortal" component={EventPortal}></PrivateRoute>
 					<PrivateRoute path="/profile_user" component={ProfileUser}></PrivateRoute>
 					<Route path="/profile_userDetail" component={ProfileUser}></Route>
 					<Route path="/detail_buySell" component={DetailBuySell}></Route>
@@ -89,11 +90,10 @@ ReactDOM.render(
 					<Route path="/market_business" component={MarketBusiness}></Route>
 					<Route path="/market_classified" component={MarketClassified}></Route>
 					<Route path="/market_roommates" component={MarketRoommates}></Route>
-    			<Route path="/market_jobPortal" component={JobClassified}></Route>
-          <Route path="/market_eventPortal" component={MarketEvent}></Route>
-          <Route path="/detail_eventPortal" component={EventDetail}></Route>
-          <Route path="/Ticket_eventPortals" component={TicketDetail}></Route>
-          <Route path="/Buyer_DetailPage" component={BuyerDetail}></Route>
+    				<Route path="/market_jobPortal" component={JobClassified}></Route>
+			        <Route path="/market_eventPortal" component={MarketEvent}></Route>
+			        <Route path="/detail_eventPortal" component={EventDetail}></Route>
+			        <Route path="/Ticket_eventPortals" component={TicketDetail}></Route>
 				</div>
 			</BrowserRouter>
 		</Provider>

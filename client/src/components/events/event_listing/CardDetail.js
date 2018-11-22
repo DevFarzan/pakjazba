@@ -1,61 +1,66 @@
 import React, { Component } from 'react';
 import { Form, DatePicker, TimePicker, Button } from 'antd';
+import { Input } from 'antd';
+import moment from 'moment';
 
 
-const FormItem = Form.Item;
 const { MonthPicker, RangePicker } = DatePicker;
+const monthFormat = 'YYYY/MM';
 
 class CardDetail extends Component{
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-
-    this.props.form.validateFields((err, fieldsValue) => {
-      if (err) {
-        return;
-      }
-
-      const values = {
-          ...fieldsValue,
-          'date-picker': fieldsValue['date-picker'].format('YYYY-MM-DD'),
-          'date-time-picker': fieldsValue['date-time-picker'].format('YYYY-MM-DD HH:mm:ss'),
-          'month-picker': fieldsValue['month-picker'].format('YYYY-MM'),
-          'range-picker': [rangeValue[0].format('YYYY-MM-DD'), rangeValue[1].format('YYYY-MM-DD')],
-          'range-time-picker': [
-            rangeTimeValue[0].format('YYYY-MM-DD HH:mm:ss'),
-            rangeTimeValue[1].format('YYYY-MM-DD HH:mm:ss'),
-          ],
-
   render(){
-    const { getFieldDecorator } = this.props.form;
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 8 },
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 },
-      },
-    };
-    const config = {
-      rules: [{ type: 'object', required: true, message: 'Please select time!' }],
-    };
-    const rangeConfig = {
-      rules: [{ type: 'array', required: true, message: 'Please select time!' }],
-    };
-
     return(
-      <FormItem
-          {...formItemLayout}
-          label="MonthPicker"
-        >
-          {getFieldDecorator('month-picker', config)(
-            <MonthPicker />
-          )}
-      </FormItem>
+      <div className="panel-body">
+          <div className="panel panel-default">
+              <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}>
+                  <icon type="info-circle"/>
+                  <span className="margin_font_location">Credit Card Details</span>
+              </div>
+              <div className="container" style={{width:'90%'}}>
+                  <section>
+                        <div className="row">
+                          <div className="col-md-12">
+                            <div className="col-md-7">
+                            </div>
+                            <div className="col-md-5">
+                              <span>Pay Using Credit Card.</span>
+                              <span style={{marginLeft:"10px"}}><img src='../images/master visa.png' style={{height:"35px"}}/></span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="row">
+                          <div className="col-md-12">
+                            <div className="col-md-6">
+                              <label style={{fontSize:"initial"}}> Credit Card Number* </label>
+                                <Input placeholder="" />
+                            </div>
+
+                            <div className="col-md-6">
+                              <label> Name On Card* </label>
+                                <Input placeholder="" />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="row">
+                          <div className="col-md-12">
+                            <div className="col-md-6">
+                              <label style={{display:"block"}}> Expiry* </label>
+                                <MonthPicker defaultValue={moment('2015/01', monthFormat)} format={monthFormat} />
+                            </div>
+
+                            <div className="col-md-6">
+                              <label style={{display:"block"}}> CVC* </label>
+                                <Input placeholder="" style={{width:"35%"}}/>
+                            </div>
+                          </div>
+                        </div>
+                  </section>
+              </div>
+          </div>
+      </div>
     )
   }
 }
-
 export default CardDetail;

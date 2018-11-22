@@ -1,0 +1,17 @@
+.summarycard{
+  background-color: white;
+   border:1px solid rgb(55, 169, 155);
+   margin-bottom: 30px;
+   margin-top: 25px;
+   width: 100%
+}
+.ohr{
+  height:0;
+   width:100% ;
+   border-top: 1px solid #379BA2;
+   margin-top: -5px
+}
+
+.orederform{
+  font-size: 17px;
+}

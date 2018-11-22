@@ -1350,8 +1350,37 @@ app.post('/api/AppliedForJob', (req, res) => {
         }
     });
 })
+/*===============specific event find start======================================*/
 
-/*===================Applied for Job end===========================================================*/
+
+
+/*===============specific event find start======================================*/
+app.get('/api/getSpecific',function(req,res){
+  var eventkeyword = '5bf3b93baee82f11eca65cdb';
+  if(eventkeyword != '' || eventkeyword != undefined){
+    eventPortal.findOne({_id:eventkeyword},function(err,eventData){
+      if(err){
+        res.send({
+          code:404,
+          msg:'there is no record found'
+        })
+      }else if(eventData){
+        res.send({
+          code:200,
+          content:eventData
+        })
+      }
+    })
+  }else{
+    res.send({
+      code:404,
+      msg:'kindly send proper detail'
+    })
+  }
+})
+
+
+/*===================Applied for Job End===========================================================*/
 
 app.post('/api/sendmessage',function(req,res){
 var getuserfields = req.body;

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Input, Select } from 'antd';
 import { Cascader } from 'antd';
 import { Modal, Button } from 'antd';
-import OrderCard from '../event_listing/OrderSummarycard'
+import OrderCard from '../event_listing/OrderSummarycard';
+import ModalOrderCard from '../event_listing/ModalForm';
 
 //*function for input fields*//
 const Option = Select.Option;
@@ -86,7 +87,7 @@ class ContactDetail extends Component{
               </div>
               <div className="container" style={{width:'90%'}}>
                   <section>
-                      <div className="row visible-xs">
+                      <div className="row visible-xs visible-sm">
                         <div className="col-md-12" style={{textAlign:"right"}}>
                           <div>
                            <Button type="primary" onClick={this.showModal} style={{backgroundColor: "#008080",color: "white", textAlign:"right"}}>
@@ -98,7 +99,7 @@ class ContactDetail extends Component{
                              onOk={this.handleOk}
                              onCancel={this.handleCancel}
                            >
-                             <OrderCard/>
+                             <ModalOrderCard/>
                            </Modal>
                          </div>
                         </div>

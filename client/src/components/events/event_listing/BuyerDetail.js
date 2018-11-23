@@ -6,6 +6,7 @@ import CardDetail from '../event_listing/CardDetail';
 import ContactDetail from '../event_listing/ContactDetails';
 import TermsandConditions from '../event_listing/Terms&Conditions';
 import OrderCard from '../event_listing/OrderSummarycard';
+import ModalOrderCard from '../event_listing/ModalForm';
 
 class BuyerDetail extends Component{
   render(){
@@ -21,7 +22,7 @@ class BuyerDetail extends Component{
           <TermsandConditions/>
         </div>
 
-        <div className="col-md-4 hidden-xs">
+        <div className="col-md-4 hidden-xs hidden-sm">
           <OrderCard/>
         </div>
 

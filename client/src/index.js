@@ -58,7 +58,7 @@ function reducer(state = initialState, action){
 		case 'ANOTHERDATA':
 			return {...state, otherData: action.otherData}
 		case 'BLOGDATA':
-			return {...state, blogData: action.blogData}	
+			return {...state, blogData: action.blogData}
         default:
             return state;
     }
@@ -94,6 +94,8 @@ ReactDOM.render(
 			        <Route path="/market_eventPortal" component={MarketEvent}></Route>
 			        <Route path="/detail_eventPortal/:value" component={EventDetail}></Route>
 			        <Route path="/Ticket_eventPortals" component={TicketDetail}></Route>
+               <Route path="/Buyer_Detailpage" component={BuyerDetail}></Route>
+
 				</div>
 			</BrowserRouter>
 		</Provider>

@@ -12,7 +12,7 @@ function onChange(value) {
   console.log('changed', value);
 }
 
-class OrderCard extends Component{
+class ModalOrderCard extends Component{
   render(){
     return(
       <div className="container" style={{width:"100%"}}>
@@ -30,7 +30,7 @@ class OrderCard extends Component{
               </div>
               <div className="col-md-6 col-xs-6">
                     <InputNumber min={1} max={10} defaultValue={2} onChange={onChange} style={{width:"50px", height:"23px"}} />
-                    <span className="orederform" style={{marginLeft:'25px'}}> $200 </span>
+                    <span className="orederform" style={{marginLeft:'0px'}}> $200 </span>
               </div>
             </div>
 
@@ -41,7 +41,7 @@ class OrderCard extends Component{
               </div>
               <div className="col-md-6 col-xs-6">
                     <InputNumber min={1} max={10} defaultValue={0} onChange={onChange} style={{width:"50px", height:"23px"}} />
-                    <span className="orederform" style={{marginLeft:'25px'}}> $0 </span>
+                    <span className="orederform" style={{marginLeft:'0px'}}> $0 </span>
               </div>
 
             </div>
@@ -54,7 +54,7 @@ class OrderCard extends Component{
 
               </div>
               <div className="col-md-6 col-xs-6" style={{textAlign:"center"}}>
-                    <span style={{fontSize:"initial", marginLeft:"30px"}}> $200 </span>
+                    <span style={{fontSize:"initial", marginLeft:"25px"}}> $200 </span>
               </div>
             </div>
 
@@ -88,7 +88,7 @@ class OrderCard extends Component{
 
               </div>
               <div className="col-md-6 col-xs-6" style={{textAlign:"center"}}>
-                    <span style={{fontSize:"initial", marginLeft:"50px"}}> $204.25 </span>
+                    <span style={{fontSize:"initial", marginLeft:"44px"}}> $204.25 </span>
               </div>
             </div>
 
@@ -99,4 +99,4 @@ class OrderCard extends Component{
   }
 }
 
-export default OrderCard;
+export default ModalOrderCard;

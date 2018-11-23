@@ -27,6 +27,21 @@ const RangePicker = DatePicker.RangePicker;
 const { TextArea } = Input;
 const CheckboxGroup = Checkbox.Group;
 
+const ticketNames = [
+  {
+    value: 'Early Bird',
+    label: 'Early Bird',
+  },
+  {
+    value: 'Normal Ticket',
+    label: 'Normal Ticket',
+  },
+  {
+    value: 'Both',
+    label: 'Both',
+  },
+]
+
 const category = [{
   value: 'art/film',
     label: 'art/film'
@@ -92,7 +107,8 @@ class EventPortal extends Component{
             endDate: '',
             description: '',
             desLength: '',
-            free: false,
+            earlyBirdFree: false,
+            normalTicketFree: false,
             availableTickets: '',
             totalTickets: '',
             price: '',
@@ -110,6 +126,8 @@ class EventPortal extends Component{
             msg: false,
             openingTime: '00:00:00',
             closingTime: '00:00:00',
+            normalTicket: true,
+            earlyBird: true
         }
     }
 
@@ -154,6 +172,16 @@ class EventPortal extends Component{
         }
     }
 
+    onSelectTicket(value){
+        if(value[0] === 'Early Bird'){
+            this.setState({earlyBird: true, normalTicket: false})
+        }else if(value[0] === 'Normal Ticket'){
+            this.setState({earlyBird: false, normalTicket: true})
+        }else if(value[0] === 'Both' || value.length == 0){
+            this.setState({earlyBird: true, normalTicket: true})
+        }
+    }
+
     uploadFile = (files) =>{
         const image = files.originFileObj
         const cloudName = 'dxk0bmtei'
@@ -184,11 +212,9 @@ class EventPortal extends Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log('jkhljlgljhgljhg')
         const { fileList } = this.state;
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log(values, 'valueeessssssssss')
                 this.setState({loader: true})
                 this.funcForUpload(values)
             }
@@ -203,20 +229,19 @@ class EventPortal extends Component{
                 return result.body.url
             })
         })).then((results) => {
-            this.postData(values, results)
+            this.postData(values, results);
         })
     }
 
     async postData(values, response) {
-        const {dateObj, userId, profileId, objectId, website, faceBook, linkdIn, google, free} = this.state;
+        const {dateObj, userId, profileId, objectId, website, faceBook, linkdIn, google, earlyBird, normalTicket, earlyBirdFree, normalTicketFree, openingTime, closingTime} = this.state;
         let rand = Math.floor((Math.random() * 1000000) + 54);
         var randomKey = values.eventTitle + "_" + values.eventCategory[0] + "_" + rand;
         let obj ={
-            availableTickets: values.availableTickets,
+            state: values.state[0],
             city: values.city[0],
             address: values.address,
             dateRange: dateObj,
-            delivery: values.delivery === undefined ? [] : values.delivery,
             description: values.description,
             email: values.email,
             eventCategory: values.eventCategory[0],
@@ -224,11 +249,22 @@ class EventPortal extends Component{
             images: response,
             name: values.name,
             number: values.number,
-            paymentMode: values.paymentMode === undefined ? [] : values.paymentMode,
-            price: values.price,
-            state: values.state[0],
-            totalTickets: values.totalTickets,
-            free,
+            openingTime,
+            closingTime,
+            earlyBird,
+            earlyBirdAvailableTickets: earlyBird === false ? '' : values.earlyBirdAvailableTickets,
+            earlyBirdTotalTickets: earlyBird === false ? '' : values.earlyBirdTotalTickets,
+            earlyBirdPaymentMode: values.earlyBirdPaymentMode === undefined ? [] : values.earlyBirdPaymentMode,
+            earlyBirdDelivery: values.earlyBirdDelivery === undefined ? [] : values.earlyBirdDelivery,
+            earlyBirdPrice: earlyBird === false ? '' : values.earlyBirdPrice,
+            earlyBirdFree,
+            normalTicket,
+            normalTicketAvailableTickets: normalTicket === false ? '' : values.normalTicketAvailableTickets,
+            normalTicketTotalTickets: normalTicket === false ? '' : values.normalTicketTotalTickets,
+            normalTicketPaymentMode: values.normalTicketPaymentMode === undefined ? [] : values.normalTicketPaymentMode,
+            normalTicketDelivery: values.normalTicketDelivery === undefined ? [] : values.normalTicketDelivery,
+            normalTicketPrice: normalTicket === false ? '' : values.normalTicketPrice,
+            normalTicketFree,
             website,
             faceBook,
             linkdIn,
@@ -285,8 +321,12 @@ class EventPortal extends Component{
     }
     //--------------upload functions end ---------------------
 
-    onChangePrice(e) {
-        this.setState({free: e.target.checked});
+    onChangePrice1(e) {
+        this.setState({earlyBirdFree: e.target.checked});
+    }
+
+    onChangePrice2(e) {
+        this.setState({normalTicketFree: e.target.checked});
     }
 
     checkCheckBox = (rule, value, callback) => {
@@ -342,7 +382,7 @@ class EventPortal extends Component{
         const {getFieldDecorator} = this.props.form;
 
         if (msg === true) {
-            return <Redirect to={{pathname: '/detail_eventPortal/${randomKey}', state: objData}} />
+            return <Redirect to={{pathname: `/detail_eventPortal/${randomKey}`, state: objData}} />
         }
 
         const uploadButton = (
@@ -548,13 +588,54 @@ class EventPortal extends Component{
                                 <section>
                                     <div className="row">
                                         <div className="col-md-12">
-                                            <div className="col-md-3">
+                                            <div className="col-md-6">
+                                                <label> Available Tickets &nbsp;&nbsp;&nbsp;Total</label>
+                                                    <FormItem>
+                                                    {getFieldDecorator('ticketsCategory', {
+                                                        initialValue: this.state.ticketsCategory,
+                                                        rules: [{ type: 'array', required: true, message: 'Please select your Ticket category!' }],
+                                                    })(
+                                                        <Cascader options={ticketNames} showSearch={{ filter }} onChange={this.onSelectTicket.bind(this)}/>
+                                                    )}
+                                                    </FormItem>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <label>Opening & closing Time</label>
+                                                <div className="row" style={{marginTop: '-17px'}}>
+                                                    <div className="col-md-6">
+                                                        <FormItem>
+                                                            {getFieldDecorator('openingTime', {
+                                                                initialValue: moment(this.state.openingTime, 'HH:mm:ss'),
+                                                                rules: [{ validator: this.validateTime.bind(this) }],
+                                                            })(
+                                                                <TimePicker placeholder="Opening Time" onChange={this.onOpeningTime.bind(this)} />
+                                                            )}
+                                                        </FormItem>
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <FormItem>
+                                                            {getFieldDecorator('closingTime', {
+                                                                initialValue: moment(this.state.closingTime, 'HH:mm:ss'),
+                                                                rules: [{ validator: this.validateTime.bind(this) }],
+                                                            })(
+                                                                <TimePicker placeholder="Closing Time" onChange={this.onClosingTime.bind(this)} />
+                                                            )}
+                                                        </FormItem>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>    
+                                    {this.state.earlyBird && <div className="row">
+                                        <div className="col-md-12">
+                                            <div className="col-md-6">
+                                                <label style={{fontSize: '18px'}}>Early Bird</label><br />
                                                 <label> Available Tickets &nbsp;&nbsp;&nbsp;Total</label>
                                                 <div className="row">
-                                                    <div className="col-md-6" style={{paddingLeft: '0px'}}>
+                                                    <div className="col-md-3" style={{paddingLeft: '0px'}}>
                                                         <FormItem>
-                                                        {getFieldDecorator('availableTickets', {
-                                                            initialValue: this.state.availableTickets,
+                                                        {getFieldDecorator('earlyBirdAvailableTickets', {
+                                                            initialValue: this.state.earlyBirdAvailableTickets,
                                                             rules: [{ required: true, message: 'Please input your Available Tickets!', whitespace: true },
                                                             { validator: this.validateNumber.bind(this) }],
                                                         })(
@@ -562,10 +643,10 @@ class EventPortal extends Component{
                                                         )}
                                                         </FormItem>
                                                     </div>
-                                                    <div className="col-md-6" style={{paddingRight: '0px'}}>
+                                                    <div className="col-md-3" style={{paddingRight: '0px'}}>
                                                         <FormItem>
-                                                        {getFieldDecorator('totalTickets', {
-                                                            initialValue: this.state.totalTickets,
+                                                        {getFieldDecorator('earlyBirdTotalTickets', {
+                                                            initialValue: this.state.earlyBirdTotalTickets,
                                                             rules: [{ required: true, message: 'Please input your Total Tickets!', whitespace: true },
                                                             { validator: this.validateNumber.bind(this) }],
                                                         })(
@@ -573,15 +654,11 @@ class EventPortal extends Component{
                                                         )}
                                                         </FormItem>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <label> Price </label>
-                                                <div className="row">
-                                                    <div className="col-md-6" style={{paddingLeft: '0px'}}>
+                                                    <div className="col-md-3" style={{marginTop:'-27px'}}>
+                                                    <label> Price </label>
                                                         <FormItem>
-                                                        {getFieldDecorator('price', {
-                                                            initialValue: this.state.price,
+                                                        {getFieldDecorator('earlyBirdPrice', {
+                                                            initialValue: this.state.earlyBirdPrice,
                                                             rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
                                                             { validator: this.validateNumber.bind(this) }],
                                                         })(
@@ -589,18 +666,18 @@ class EventPortal extends Component{
                                                         )}
                                                         </FormItem>
                                                     </div>
-                                                    <div className="col-md-6">
+                                                    <div className="col-md-3">
                                                         <label className="ant-checkbox ant-checkbox-wrapper">
-                                                            <Checkbox checked={this.state.free} onChange={this.onChangePrice.bind(this)}>(Free)</Checkbox>
+                                                            <Checkbox checked={this.state.earlyBirdFree} onChange={this.onChangePrice1.bind(this)}>(Free)</Checkbox>
                                                         </label>
                                                     </div>
-                                                </div>
+                                                </div> 
                                             </div>
-                                            {!this.state.free && <div className="col-md-6">
+                                            {!this.state.earlyBirdFree && <div className="col-md-6" style={{marginTop: '35px'}}>
                                                 <label> Mode Of Payment </label>
                                                 <FormItem>
-                                                {getFieldDecorator('paymentMode', {
-                                                    initialValue: this.state.paymentMode,
+                                                {getFieldDecorator('earlyBirdPaymentMode', {
+                                                    initialValue: this.state.earlyBirdPaymentMode,
                                                     rules: [{ validator: this.checkCheckBox }],
                                                 })(
                                                     <CheckboxGroup options={optionsPayment} />
@@ -608,13 +685,13 @@ class EventPortal extends Component{
                                                 </FormItem>
                                             </div>}
                                         </div>
-                                    </div>
-                                    <div className="row">
-                                        {!this.state.free && <div className="col-md-6">
+                                    </div>}
+                                    {this.state.earlyBird && <div className="row">
+                                        {!this.state.earlyBirdFree && <div className="col-md-6">
                                             <label>Ticket Delivery</label>
                                             <FormItem>
-                                                {getFieldDecorator('delivery', {
-                                                    initialValue: this.state.delivery,
+                                                {getFieldDecorator('earlyBirdDelivery', {
+                                                    initialValue: this.state.earlyBirdDelivery,
                                                     rules: [{ validator: this.checkCheckBox }],
                                                 })(
                                                     <CheckboxGroup options={optionsDelivery} />
@@ -622,34 +699,86 @@ class EventPortal extends Component{
                                             </FormItem>
                                         </div>}
                                         <div className="col-md-6">
-                                        
-                                            <label>Opening & closing Time</label>
-
-                                              <div className="row" style={{marginTop: '-17px'}}>
-                                              <div className="col-md-6">
-                                                <FormItem>
-                                                    {getFieldDecorator('openingTime', {
-                                                        initialValue: moment(this.state.openingTime, 'HH:mm:ss'),
-                                                        rules: [{ validator: this.validateTime.bind(this) }],
-                                                    })(
-                                                        <TimePicker placeholder="Opening Time" onChange={this.onOpeningTime.bind(this)} />
-                                                    )}
-                                                </FormItem>
-                                              </div>
-                                              <div className="col-md-6">
-                                                <FormItem>
-                                                    {getFieldDecorator('closingTime', {
-                                                        initialValue: moment(this.state.closingTime, 'HH:mm:ss'),
-                                                        rules: [{ validator: this.validateTime.bind(this) }],
-                                                    })(
-                                                        <TimePicker placeholder="Closing Time" onChange={this.onClosingTime.bind(this)} />
-                                                    )}
-                                                </FormItem>
-                                              </div>
-                                           </div>
-                                        
+                                            
                                         </div>
-                                    </div>
+                                    </div>}
+                                    {this.state.normalTicket && this.state.earlyBird && <hr />        }
+                                    {this.state.normalTicket && <div className="row">
+                                        <div className="col-md-12">
+                                            <div className="col-md-6">
+                                                <label style={{fontSize: '18px'}}>Normal Ticket</label><br />
+                                                <label> Available Tickets &nbsp;&nbsp;&nbsp;Total</label>
+                                                <div className="row">
+                                                    <div className="col-md-3" style={{paddingLeft: '0px'}}>
+                                                        <FormItem>
+                                                        {getFieldDecorator('normalTicketAvailableTickets', {
+                                                            initialValue: this.state.normalTicketAvailableTickets,
+                                                            rules: [{ required: true, message: 'Please input your Available Tickets!', whitespace: true },
+                                                            { validator: this.validateNumber.bind(this) }],
+                                                        })(
+                                                            <input type="text" className="form-control"/>
+                                                        )}
+                                                        </FormItem>
+                                                    </div>
+                                                    <div className="col-md-3" style={{paddingRight: '0px'}}>
+                                                        <FormItem>
+                                                        {getFieldDecorator('normalTicketTotalTickets', {
+                                                            initialValue: this.state.normalTicketTotalTickets,
+                                                            rules: [{ required: true, message: 'Please input your Total Tickets!', whitespace: true },
+                                                            { validator: this.validateNumber.bind(this) }],
+                                                        })(
+                                                            <input type="text" className="form-control"/>
+                                                        )}
+                                                        </FormItem>
+                                                    </div>
+                                                    <div className="col-md-3" style={{marginTop:'-27px'}}>
+                                                    <label> Price </label>
+                                                        <FormItem>
+                                                        {getFieldDecorator('normalTicketPrice', {
+                                                            initialValue: this.state.normalTicketPrice,
+                                                            rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
+                                                            { validator: this.validateNumber.bind(this) }],
+                                                        })(
+                                                            <input type="text" className="form-control"/>
+                                                        )}
+                                                        </FormItem>
+                                                    </div>
+                                                    <div className="col-md-3">
+                                                        <label className="ant-checkbox ant-checkbox-wrapper">
+                                                            <Checkbox checked={this.state.normalTicketFree} onChange={this.onChangePrice2.bind(this)}>(Free)</Checkbox>
+                                                        </label>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                            {!this.state.normalTicketFree && <div className="col-md-6" style={{marginTop: '35px'}}>
+                                                <label> Mode Of Payment </label>
+                                                <FormItem>
+                                                {getFieldDecorator('normalTicketPaymentMode', {
+                                                    initialValue: this.state.normalTicketPaymentMode,
+                                                    rules: [{ validator: this.checkCheckBox }],
+                                                })(
+                                                    <CheckboxGroup options={optionsPayment} />
+                                                )}
+                                                </FormItem>
+                                            </div>}
+                                        </div>
+                                    </div>}
+                                    {this.state.normalTicket && <div className="row">
+                                        {!this.state.normalTicketFree && <div className="col-md-6">
+                                            <label>Ticket Delivery</label>
+                                            <FormItem>
+                                                {getFieldDecorator('normalTicketDelivery', {
+                                                    initialValue: this.state.normalTicketDelivery,
+                                                    rules: [{ validator: this.checkCheckBox }],
+                                                })(
+                                                    <CheckboxGroup options={optionsDelivery} />
+                                                )}
+                                            </FormItem>
+                                        </div>}
+                                        <div className="col-md-6">
+                                            
+                                        </div>
+                                    </div>}
                                 </section>
                             </div>
                         </div>

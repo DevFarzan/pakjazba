@@ -370,7 +370,7 @@ class DetailBusiness extends Component{
                                             </div>
                                         </div>
                                         <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-                                                <img alt="example" style={{ width: '100%' }} src={previewImage} />
+                                            <img alt="example" style={{ width: '100%' }} src={previewImage} />
                                         </Modal>
                                         <div className="row">
                                             <div className="col-md-12 col-sm-12 col-xs-12">

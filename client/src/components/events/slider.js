@@ -4,6 +4,7 @@ import './slider.css';
 
 class DetailSliders extends Component{
   render(){
+    const { data } = this.props;
     return(
 
 /* Include the above in your HEAD tag */

@@ -26,7 +26,6 @@ class EventFeatured extends Component{
     componentDidUpdate(prevProps, prevState){
         const { events } = this.state;
         const { text } = this.props;
-        console.log(text, 'textttttttt')
         if(prevProps.text !== text){
             if(!!text){
                 this.setState({showEvents: []})
@@ -77,14 +76,12 @@ class EventFeatured extends Component{
         var res = await HttpUtils.get('marketplace')
         if(res.code === 200){
             let data = res.eventPortalData;
-        console.log(data, 'responseeeeeeeee')
             this.setState({
                 events: data ? data : [],
                 showEvents: data ? data.slice(0, 7) : [],
                 loader: false
             });
         }
-        // this.getReviews(res.eventPortalData);
         this.handleLocalStorage();
     }
 
@@ -142,32 +139,34 @@ class EventFeatured extends Component{
               {text && !!filteredArr.length === false && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
           <div className="row">
               <div className="col-md-3"  style={{'marginBottom': '30px'}} onClick={() => {this.clickItem()}}>
-                  <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '350px', width: '100%', borderRadius: '13px'}}/>
+                  <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '345px', width: '100%', borderRadius: '13px'}}/>
               </div>
-            {showEvents && showEvents.map((elem) => {
+            {showEvents && showEvents.map((elem, key) => {
                 let postedOn = moment(elem.posted, "LL").format('YYYY-MM-DD');
                 return(
-                    <div className="col-md-3"  style={{'marginBottom': '30px'}}>
-                        <div className="card" style={{border: '1px solid #3a252542',boxShadow: 'none',borderRadius:'13px',width:'100%'}}>
-                            <img alt='' src='./images/job-category.jpeg' style={{height:'200px', width:"100%"}}/>
-                            <h4 style={{marginTop:'15px', textAlign:"center",}}><b>{elem.eventTitle}</b></h4>
-                            <div className="row">
-                              <div className="col-md-6">
-                                <p style={{marginTop:"-15px"}}>
-                                    <span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}></span>
-                                    <span style={{color:"black"}}>{elem.city}</span>
-                                </p>
-                              </div>
-                              <div className="col-md-6">
-                                <p style={{marginTop:"-15px", marginLeft: '11px'}}>
-                                    <span className="glyphicon glyphicon-calendar" style={{color: "#008080",margin:"2px"}}></span>
-                                    <span style={{color:"black"}}>{postedOn}</span>
-                                </p>
-                              </div>
-                                <img src='./images/event-icons/fashion.png' style={{marginLeft:"90px", height:"100px", marginTop:"-40px", marginBottom:"-35px"}}/>
+                    <Link key={key} to={{pathname: `/detail_eventPortal/${elem.randomKey}`, state: elem}}>
+                        <div className="col-md-3"  style={{'marginBottom': '30px'}}>
+                            <div className="card" style={{border: '1px solid #3a252542',boxShadow: 'none',borderRadius:'13px',width:'100%'}}>
+                                <img alt='' src={elem.images[0]} style={{height:'200px', width:"100%"}}/>
+                                <h4 style={{marginTop:'15px', textAlign:"center",}}><b>{elem.eventTitle}</b></h4>
+                                <div className="row">
+                                  <div className="col-md-6">
+                                    <p style={{marginTop:"-15px"}}>
+                                        <span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}></span>
+                                        <span style={{color:"black"}}>{elem.city}</span>
+                                    </p>
+                                  </div>
+                                  <div className="col-md-6">
+                                    <p style={{marginTop:"-15px", marginLeft: '11px'}}>
+                                        <span className="glyphicon glyphicon-calendar" style={{color: "#008080",margin:"2px"}}></span>
+                                        <span style={{color:"black"}}>{postedOn}</span>
+                                    </p>
+                                  </div>
+                                    <img src='./images/event-icons/fashion.png' style={{marginLeft:"90px", height:"100px", marginTop:"-40px", marginBottom:"-35px"}}/>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 )
             })}
           </div>

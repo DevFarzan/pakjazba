@@ -8,33 +8,30 @@ import FeaturedCol8 from '../events/FeaturedCol8';
 
 class EdetailFirstfold extends Component{
   render(){
+    // console.log(this.props.data.description, 'zzzzzzzzzzzzzzzzzzz')
     return(
       <div className="container" style={{width:"100%"}}>
           <div className="row">
               <div className="col-md-12" style={{paddingTop:"4px", paddingBottom:"10px"}}>
                   <div className="col-md-4 col-sm-12 col-xs-12 des-space">
-                      <img alt='' src="../images/black.jpg" style={{width:"100%",height:"300px", borderRadius:"2px"}} />
+                      <img alt='' src={this.props.data.images && this.props.data.images[0]} style={{width:"100%",height:"300px", borderRadius:"2px"}} />
 
-                      <DateCard/>
+                      <DateCard data={this.props.data}/>
                       <FeaturedCol4/>
 
                   </div>
                   <div className="col-md-8 col-sm-12 col-xs-12 des-space">
                     <div className="Event-borders">
-                      <h3 style={{fontWeight:"bold",fontFamily: 'Crimson Text, sans-serif',marginTop:'11px'}}>Event Name</h3>
+                      <h3 style={{fontWeight:"bold",fontFamily: 'Crimson Text, sans-serif',marginTop:'11px'}}>{this.props.data && this.props.data.eventTitle}</h3>
                       <span >
                       <p className="job-time"></p>
                       </span>
 
-                      <p className="font-style">Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                       when an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-                       has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
-                        unchanged.</p>
+                      <p className="font-style">{this.props.data && this.props.data.description}</p>
                     </div>
 
                     <DetailSliders/>
-                    <FeaturedCol8/>
+                    <FeaturedCol8 data={this.props.data}/>
                   </div>
               </div>
           </div>

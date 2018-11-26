@@ -1225,30 +1225,42 @@ app.post('/api/postEventPortal', (req, res) => {
     let postEventPortal = req.body;
     if(postEventPortal.objectId === ''){
         let eventData = new eventPortal({
-            availableTickets: postEventPortal.availableTickets,
-            city: postEventPortal.city,
-            dateRange: postEventPortal.dateRange,
-            delivery: postEventPortal.delivery,
-            description: postEventPortal.description,
-            email: postEventPortal.email,
-            eventCategory: postEventPortal.eventCategory,
-            eventTitle: postEventPortal.eventTitle,
-            images: postEventPortal.images,
-            name: postEventPortal.name,
-            number: postEventPortal.number,
-            paymentMode: postEventPortal.paymentMode,
-            price: postEventPortal.price,
-            state: postEventPortal.state,
-            totalTickets: postEventPortal.totalTickets,
-            free: postEventPortal.free,
-            website: postEventPortal.website,
-            faceBook: postEventPortal.faceBook,
-            linkdIn: postEventPortal.linkdIn,
-            google: postEventPortal.google,
-            userId: postEventPortal.userId,
-            profileId: postEventPortal.profileId,
-            objectId: postEventPortal.objectId,
-            posted: postEventPortal.posted
+            address:postEventPortal.address,
+            city:postEventPortal.city,
+            closingTime:postEventPortal.closingTime,
+            dateRange:postEventPortal.dateRange,
+            description:postEventPortal.description,
+            earlyBird:postEventPortal.earlyBird,
+            earlyBirdAvailableTickets:postEventPortal.earlyBirdAvailableTickets,
+            earlyBirdDelivery:postEventPortal.earlyBirdDelivery,
+            earlyBirdFree:postEventPortal.earlyBirdFree,
+            earlyBirdPaymentMode:postEventPortal.earlyBirdPaymentMode,
+            earlyBirdPrice:postEventPortal.earlyBirdPrice,
+            earlyBirdTotalTickets:postEventPortal.earlyBirdTotalTickets,
+            email:postEventPortal.email,
+            eventCategory:postEventPortal.eventCategory,
+            eventTitle:postEventPortal.eventTitle,
+            faceBook:postEventPortal.faceBook,
+            google:postEventPortal.google,
+            images:postEventPortal.images,
+            linkdIn:postEventPortal.linkdIn,
+            name:postEventPortal.name,
+            normalTicket:postEventPortal.normalTicket,
+            normalTicketAvailableTickets:postEventPortal.normalTicketAvailableTickets,
+            normalTicketDelivery:postEventPortal.normalTicketDelivery,
+            normalTicketFree:postEventPortal.normalTicketFree,
+            normalTicketPaymentMode:postEventPortal.normalTicketPaymentMode,
+            normalTicketPrice:postEventPortal.normalTicketPrice,
+            normalTicketTotalTickets:postEventPortal.normalTicketTotalTickets,
+            number:postEventPortal.number,
+            objectId:postEventPortal.objectId,
+            openingTime:postEventPortal.openingTime,
+            posted:postEventPortal.posted,
+            profileId:postEventPortal.profileId,
+            randomKey:postEventPortal.randomKey,
+            state:postEventPortal.state,
+            userId:postEventPortal.userId,
+            website:postEventPortal.website 
         });
 
         eventData.save((error, response) => {
@@ -1276,30 +1288,42 @@ app.post('/api/postEventPortal', (req, res) => {
             if(err){
                 return res.status(400).json({"Unexpected Error:: ": err});
             }
-            eventData.availableTickets = postEventPortal.availableTickets;
+            eventData.address = postEventPortal.address;
             eventData.city = postEventPortal.city;
+            eventData.closingTime = postEventPortal.closingTime;
             eventData.dateRange = postEventPortal.dateRange;
-            eventData.delivery = postEventPortal.delivery;
             eventData.description = postEventPortal.description;
+            eventData.earlyBird = postEventPortal.earlyBird;
+            eventData.earlyBirdAvailableTickets = postEventPortal.earlyBirdAvailableTickets;
+            eventData.earlyBirdDelivery = postEventPortal.earlyBirdDelivery;
+            eventData.earlyBirdFree = postEventPortal.earlyBirdFre;
+            eventData.earlyBirdPaymentMode = postEventPortal.earlyBirdPaymentMode;
+            eventData.earlyBirdPrice = postEventPortal.earlyBirdPrice;
+            eventData.earlyBirdTotalTickets = postEventPortal.earlyBirdTotalTickets;
             eventData.email = postEventPortal.email;
             eventData.eventCategory = postEventPortal.eventCategory;
             eventData.eventTitle = postEventPortal.eventTitle;
-            eventData.images = postEventPortal.images;
-            eventData.name = postEventPortal.name;
-            eventData.number = postEventPortal.number;
-            eventData.paymentMode = postEventPortal.paymentMode;
-            eventData.price = postEventPortal.price;
-            eventData.state = postEventPortal.state;
-            eventData.totalTickets = postEventPortal.totalTickets;
-            eventData.free = postEventPortal.free;
-            eventData.website = postEventPortal.website;
             eventData.faceBook = postEventPortal.faceBook;
-            eventData.linkdIn = postEventPortal.linkdIn;
             eventData.google = postEventPortal.google;
-            eventData.userId = postEventPortal.userId;
-            eventData.profileId = postEventPortal.profileId;
+            eventData.images = postEventPortal.images;
+            eventData.linkdIn = postEventPortal.linkdIn;
+            eventData.name = postEventPortal.name;
+            eventData.normalTicket = postEventPortal.normalTicket;
+            eventData.normalTicketAvailableTickets = postEventPortal.normalTicketAvailableTickets;
+            eventData.normalTicketDelivery = postEventPortal.normalTicketDelivery;
+            eventData.normalTicketFree = postEventPortal.normalTicketFree;
+            eventData.normalTicketPaymentMode = postEventPortal.normalTicketPaymentMode;
+            eventData.normalTicketPrice = postEventPortal.normalTicketPrice;
+            eventData.normalTicketTotalTickets = postEventPortal.normalTicketTotalTickets;
+            eventData.number = postEventPortal.number;
             eventData.objectId = postEventPortal.objectId;
+            eventData.openingTime = postEventPortal.openingTime;
             eventData.posted = postEventPortal.posted;
+            eventData.profileId = postEventPortal.profileId;
+            eventData.randomKey = postEventPortal.randomKey;
+            eventData.state = postEventPortal.state;
+            eventData.userId = postEventPortal.userId;
+            eventData.website = postEventPortal.website;
         });
         eventData.save((error, doc) => {
             if(error){
@@ -1356,15 +1380,15 @@ app.post('/api/AppliedForJob', (req, res) => {
 
 /*===============specific event find start======================================*/
 app.get('/api/getSpecific',function(req,res){
-  var eventkeyword = '5bf3b93baee82f11eca65cdb';
+  var eventkeyword = req.query.randomKey;
   if(eventkeyword != '' || eventkeyword != undefined){
-    eventPortal.findOne({_id:eventkeyword},function(err,eventData){
-      if(err){
+    eventPortal.findOne({randomKey:eventkeyword},function(err,eventData){
+      if(err === null && eventData === null){
         res.send({
           code:404,
           msg:'there is no record found'
         })
-      }else if(eventData){
+      }else if(eventData !== null){
         res.send({
           code:200,
           content:eventData

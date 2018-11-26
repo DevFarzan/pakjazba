@@ -11,6 +11,7 @@ class MarketBusiness extends Component{
         window.scrollTo(0,0);
     }
     
+    
     componentWillUnmount(){
         let inputValue = '';
         if(this.props.text.length){
@@ -23,7 +24,7 @@ class MarketBusiness extends Component{
         return(
             <div>
                 <span>
-                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/busnes-listing.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
+                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/busnes-listing.png')", marginTop : "105px",backgroundSize: 'cover'}}>
                         <div className="background-image">
                             <Burgermenu/>
                             <Slider mainH1="Business Listing" mainH2="Businesses Near You"/>

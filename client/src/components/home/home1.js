@@ -8,6 +8,7 @@ import Burgermenu from '../header/burgermenu';
 import Slider from '../header/Slider';
 import {HttpUtils} from "../../Services/HttpUtils";
 import { connect } from 'react-redux';
+import Form from '../form/mainpayment';
 
 const TabPane = Tabs.TabPane;
 
@@ -51,6 +52,7 @@ class Home1 extends Component{
                 <div className="row">
                     <div className="col-md-12">
                       <h4 style={{color:'black',marginLeft:'15px',fontSize:'22px',fontWeight:'bold',marginTop: '13px', fontFamily:'crimson'}}>Find what you need…</h4>
+                      {/*<span><Form/></span>*/}
                     </div>
                 </div>
                 <div className="row" style={{marginTop:'-23px'}}>

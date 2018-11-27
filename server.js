@@ -8,6 +8,8 @@ var passport = require('passport');
 var bodyParser = require('body-parser')
 var jwt = require('jsonwebtoken');
 var ip = require('ip');
+//const app = require("express")();
+const stripe = require("stripe")("sk_test_foUE2rlRd21Ik7MVSa7QIqSt");
 
 const port = process.env.PORT || 5000;
 
@@ -1440,13 +1442,22 @@ var getuserfields = req.body;
      })
   
 })
-app.post('/api/stripeApi',function(req,res){
-  var stripedetail = req.body;
-  res.send({
-    msg:200,
-    content:stripedetail
-  }) 
-})
+app.post("/api/charge", async (req, res) => {
+  console.log(req.body.body,'sdsadsadsad');
+  try {
+    let {status} = await stripe.charges.create({
+      amount: 2000,
+      currency: "usd",
+      description: "An example charge",
+      source: req.body.body
+    });
+
+    res.json({status});
+  } catch (err) {
+    console.log(err,'eeeeerrrrrrrr')
+    res.status(500).end();
+  }
+});
 /*===================post roommates API end =================================================================*/
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files

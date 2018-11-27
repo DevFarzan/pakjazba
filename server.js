@@ -1440,7 +1440,13 @@ var getuserfields = req.body;
      })
   
 })
-
+app.post('/api/stripeApi',function(req,res){
+  var stripedetail = req.body;
+  res.send({
+    msg:200,
+    content:stripedetail
+  }) 
+})
 /*===================post roommates API end =================================================================*/
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files

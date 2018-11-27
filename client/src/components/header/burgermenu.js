@@ -25,7 +25,7 @@ state = {
       return(
           <div>
               <nav className="navbar navbar-fixed-top hidden-xs"
-                   style={{position: "fixed", width: "100%", "zIndex": "999", marginTop: "-19px",background:"#032a30"}}>
+                   style={{position: "fixed", width: "100%", "zIndex": "999", marginTop: "-19px",background:"#032a30",border:'none'}}>
                   <div className="container-fluid">
                       <div className="col-md-2 col-sm-6 col-xs-6">
                           <div className="navbar-header">

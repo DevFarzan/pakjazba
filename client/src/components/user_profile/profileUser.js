@@ -379,7 +379,7 @@ class ProfileUser extends Component{
             <div>
                 <Burgermenu/>  
                 <div style={{backgroundColor:"black",width:"100%",height:"67px",marginTop:"-20px"}}></div>
-                <div className="content" style={{"paddingTop": "3px"}}>
+                <div className="content" style={{"paddingTop": "72px"}}>
                     {publicSection && <div>
                         <Showpuclicprofile callPublicSection={this.callPublicSection.bind(this)} allArr={passObj}/>
                     </div>}

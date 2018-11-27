@@ -45,7 +45,7 @@ class MarketRoommates extends Component{
                     </div>
                 </div>
                 </span>
-                <div className="container" style={{width:"94%"}}>
+                <div className="container" style={{width:"100%"}}>
                     <RoomrentingIcon/>
                     <Roomrenting1content/>
                 </div>

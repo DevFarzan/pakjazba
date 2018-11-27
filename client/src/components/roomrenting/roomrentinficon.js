@@ -19,57 +19,70 @@ class RoomrentingIcon extends Component{
             <div>
                 <h2 style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}> Categories </h2>
                 <div className="row">
-                    <div className="col-md-2 col-sm-3">
-                        <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('single family home')}}>
-                                <center>
-                                    <img src="../images/how to upload/1.png" style={{width: "100%"}}/>
-                                </center>
-                            </div>
+                    <div className="col-md-2 col-sm-2" style={{marginLeft:'96px'}}>
+                            <div onClick={() => {this.clickItem('single family home')}}>
+                              <div className="wrimagecard wrimagecard-topimage">
+                                <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
+                                    <center>
+                                        <img src="../images/PHR ICON ROOM/SINGLE-FAMILY.png" style={{width: "100%"}}/>
+                                    </center>
+                                 </div>
+                        
+                             </div>
                         </div>
                     </div>
 
-                    <div className="col-md-2 col-sm-3">
-                        <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('appartment')}}>
-                                <center>
-                                    <img src="../images/how to upload/2.png" style={{width: "100%"}}/>
-                                </center>
-                            </div>
+                    <div className="col-md-2 col-sm-2">
+                        <div onClick={() => {this.clickItem('single family home')}}>
+                              <div className="wrimagecard wrimagecard-topimage">
+                                <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
+                                    <center>
+                                        <img src="../images/PHR ICON ROOM/APPARTMENT.png" style={{width: "100%"}}/>
+                                    </center>
+                                 </div>
+                        
+                             </div>
                         </div>
                     </div>
 
-                    <div className="col-md-2 col-sm-3">
-                        <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('condo')}}>
-                                <center>
-                                    <img src="../images/how to upload/3.png"style={{width: "100%"}}/>
-                                </center>
-                            </div>
+                    <div className="col-md-2 col-sm-2">
+                         <div onClick={() => {this.clickItem('single family home')}}>
+                              <div className="wrimagecard wrimagecard-topimage">
+                                <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
+                                    <center>
+                                        <img src="../images/PHR ICON ROOM/CONDO.png" style={{width: "100%"}}/>
+                                    </center>
+                                 </div>
+                        
+                             </div>
                         </div>
                     </div>
 
-                    <div className="col-md-2 col-sm-3">
-                        <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('town house')}}>
-                                <center>
-                                    <img src="../images/how to upload/4.png"style={{width: "100%"}}/>
-                                </center>
-                            </div>
+                    <div className="col-md-2 col-sm-2">
+                        <div onClick={() => {this.clickItem('single family home')}}>
+                              <div className="wrimagecard wrimagecard-topimage">
+                                <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
+                                    <center>
+                                        <img src="../images/PHR ICON ROOM/TOWN-HOUSE.png" style={{width: "100%"}}/>
+                                    </center>
+                                 </div>
+                             </div>
                         </div>
                     </div>
 
-                    <div className="col-md-2 col-sm-3">
-                        <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('homes')}}>
-                                <center>
-                                    <img src="../images/how to upload/5.png"style={{width: "100%"}}/>
-                                </center>
-                            </div>
+                    <div className="col-md-2 col-sm-2">
+                        <div onClick={() => {this.clickItem('single family home')}}>
+                              <div className="wrimagecard wrimagecard-topimage">
+                                <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
+                                    <center>
+                                        <img src="../images/PHR ICON ROOM/HOME.png" style={{width: "100%"}}/>
+                                    </center>
+                                 </div>
+                             </div>
                         </div>
                     </div>
 
-                    {/*<div className="col-md-2 col-sm-3">
+                    {/*<div className="col-md-2 col-sm-2">
                         <div className="wrimagecard wrimagecard-topimage">
                             <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('sales and marketing')}}>
                                 <center>
@@ -78,6 +91,7 @@ class RoomrentingIcon extends Component{
                             </div>
                         </div>
                     </div>*/}
+
                 </div>
             </div>
         )

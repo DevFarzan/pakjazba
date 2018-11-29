@@ -8,8 +8,8 @@ var passport = require('passport');
 var bodyParser = require('body-parser')
 var jwt = require('jsonwebtoken');
 var ip = require('ip');
-//const app = require("express")();
-const stripe = require("stripe")("sk_test_foUE2rlRd21Ik7MVSa7QIqSt");
+const keys = require('./config/keys');
+const stripe = require("stripe")(keys.stripeSecretKey);
 
 const port = process.env.PORT || 5000;
 
@@ -80,6 +80,11 @@ app.get('/api/hello', (req, res) => {
   res.send({ express: 'Hello From Express' });
 });
 
+app.get ('/api/keys',(req,res) =>{
+res.send({
+  keys:keys.stripePulishableKey
+})
+});
 /*=========================category List=====================================*/
 app.get('/api/categoryPost',(req,res) =>{
   var category = req.query.category;

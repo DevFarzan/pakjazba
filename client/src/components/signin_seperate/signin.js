@@ -26,6 +26,7 @@ class Signin extends Component{
     }
 
     componentDidMount(){
+        console.log(this.props.location.state, '123456')
         this.setState({to: this.props.location.state})
         this.handleLocalStorage();
         this.getSignData();

@@ -384,7 +384,7 @@ class EventPortal extends Component{
         if (msg === true) {
             return <Redirect to={{pathname: `/detail_eventPortal/${randomKey}`, state: objData}} />
         }
-
+        const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
         const uploadButton = (
             <div>
                 <Icon type="plus" />
@@ -905,7 +905,8 @@ class EventPortal extends Component{
                         </div>
                     </div>
                     <div className="row center_global row">
-                        <button style={{textAlign: 'center', width:"45%"}} className="btn button_custom">Submit Event</button>
+                        {this.state.loader && <Spin indicator={antIcon} />}
+                        <button disabled={!!this.state.loader} style={{textAlign: 'center', width:"45%"}} className="btn button_custom">Submit Event</button>
                     </div>
                 </Form>
               <Footer />

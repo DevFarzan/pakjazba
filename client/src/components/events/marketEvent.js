@@ -23,10 +23,10 @@ class MarketEvent extends Component{
         return(
             <div>
                 <span>
-                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/events.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
+                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/events.png')", marginTop : "105px",backgroundSize: 'cover'}}>
                         <div className="background-image">
                             <Burgermenu/>
-                            <Slider mainH1="Buy & Sell" mainH2="Find what you need"/>
+                            <Slider mainH1="Events" mainH2="Find what you need"/>
                         </div>
                     </div>
                 </span>

@@ -81,8 +81,11 @@ app.get('/api/hello', (req, res) => {
 });
 
 app.get ('/api/keys',(req,res) =>{
+  var publicKey = String(keys.stripePulishableKey)
+  console.log(publicKey,'with string')
+  console.log(keys.stripePulishableKey,'without string')
 res.send({
-  keys:keys.stripePulishableKey
+  keys:publicKey
 })
 });
 /*=========================category List=====================================*/
@@ -1456,7 +1459,6 @@ app.post("/api/charge", async (req, res) => {
       description: "An example charge",
       source: req.body.body
     });
-
     res.json({status});
   } catch (err) {
     console.log(err,'eeeeerrrrrrrr')

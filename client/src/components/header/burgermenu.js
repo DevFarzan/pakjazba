@@ -80,10 +80,10 @@ state = {
               
              <div style={{background:'#ececec',width:'100%'}} className="hidden-xs">
                         
-                <span className="glyphicon glyphicon-home" style={{color:'black',fontSize:'17px',margin: '21px'}}>
+                <span to={`/`} className="glyphicon glyphicon-home" style={{color:'black',fontSize:'17px',margin: '21px',cursor:'pointer'}}>
                 </span>
                 <span type="" name='room' ghost className="button_globalclassName">
-                    <Link rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Room Renting</Link>
+                    <Link  rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Room Renting</Link>
                 </span>
                 <span type="" name='bussiness' ghost style={{marginRight: "10px", marginLeft: "10px"}} className="button_globalclassName">
                     <Link rel="noopener noreferrer" to={`/market_business`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Business Listing</Link>
@@ -97,15 +97,15 @@ state = {
                 <span type="" name='events' ghost className="button_globalclassName">
                     <Link rel="noopener noreferrer" to={`/market_eventPortal`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Events</Link>
                 </span>
-                <span type="" name='events' ghost className="button_globalclassName">
+                {/*<span type="" name='events' ghost className="button_globalclassName">
                     <Link rel="noopener noreferrer" to={`/detail_eventPortal`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Details</Link>
-                </span>
-                <span type="" name='events' ghost className="button_globalclassName">
+                </span>*/}
+                {/*<span type="" name='events' ghost className="button_globalclassName">
                     <Link rel="noopener noreferrer" to={`/Ticket_eventPortals`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Ticket Detail</Link>
-                </span>
-                <span type="" name='events' ghost className="button_globalclassName">
+                </span>*/}
+                {/*<span type="" name='events' ghost className="button_globalclassName">
                     <Link rel="noopener noreferrer" to={`/Buyer_DetailPage`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Buyer Detail</Link>
-                </span>
+                </span>*/}
               </div>
               </nav>
               {/*=============================================visible xs============================================*/}

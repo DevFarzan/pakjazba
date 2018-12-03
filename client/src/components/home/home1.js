@@ -52,11 +52,11 @@ class Home1 extends Component{
                 <div className="row">
                     <div className="col-md-12">
                       <h4 style={{color:'black',marginLeft:'15px',fontSize:'22px',fontWeight:'bold',marginTop: '13px', fontFamily:'crimson'}}>Find what you need…</h4>
-                      <span><Form/></span>
+                      {/*<span><Form/></span>*/}
                     </div>
                 </div>
                 <div className="row" style={{marginTop:'-23px'}}>
-                    <div className="col-md-10">
+                    <div className="col-md-12">
                         <div className="col-md-3 col-sm-4">
                             <div className="card outset" style={{boxShadow:'none',border: '1px solid rgba(128, 128, 128, 0.56)',background: 'white'}}>
                                 <div className="card-body space tag1">
@@ -88,7 +88,15 @@ class Home1 extends Component{
                             <div className="card outset" style={{boxShadow:'none',border: '1px solid rgba(128, 128, 128, 0.56)',background: 'white'}}>
                                 <div className="card-body space tag1">
                                     <Link to={`/market_jobPortal`} style={{color: 'black'}}>
-                                    <img alt='' src="./images/bg.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b style={{paddingLeft:'9px'}}>JOBS</b></Link>
+                                    <img alt='' src="./images/bg.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b style={{paddingLeft:'9px'}}>Jobs</b></Link>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3 col-sm-4" style={{marginTop:'30px'}}>
+                            <div className="card outset" style={{boxShadow:'none',border: '1px solid rgba(128, 128, 128, 0.56)',background: 'white'}}>
+                                <div className="card-body space tag1">
+                                    <Link to={`/market_eventPortal`} style={{color: 'black'}}>
+                                    <img alt='' src="./images/bg.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b style={{paddingLeft:'9px'}}>Events</b></Link>
                                 </div>
                             </div>
                         </div>

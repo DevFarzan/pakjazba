@@ -7,7 +7,7 @@ class MainPayment extends Component {
   constructor(props){
     super(props)
     this.state = {
-      publickey :'strip'
+      PUBLISHABLE :'strip'
     }
   }
   componentDidMount(){
@@ -16,16 +16,16 @@ class MainPayment extends Component {
     async capturedKeys (){
       let res = await HttpUtils.get('keys')
         this.setState({
-          publickey:res.keys
+          PUBLISHABLE:res.keys
         })
     } 
 
 
   render() {
-    const { publickey } = this.state;
-    //console.log(publickey,'ppppppuuubbbbliiiccc')
+    const { PUBLISHABLE } = this.state;
+    console.log(PUBLISHABLE,'ppppppuuubbbbliiiccc')
     return (
-      <StripeProvider apiKey={publickey}>
+      <StripeProvider apiKey= {PUBLISHABLE}>
         <div className="example">
           <h1>React Stripe Elements Example</h1>
           <Elements>

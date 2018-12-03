@@ -10,7 +10,7 @@ class CheckoutForm extends Component {
 
   async submit(ev) {
     // User clicked submit
-    let {token} = await this.props.stripe.createToken({name: "farzan"});
+    let {token} = await this.props.stripe.createToken();
   let response = await HttpUtils.post("charge", {
     method: "POST",
     headers: {"Content-Type": "text/plain"},

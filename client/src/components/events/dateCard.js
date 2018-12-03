@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import './dateCard.css'
-import { Checkbox, InputNumber } from 'antd';
+import { Checkbox, InputNumber, Modal, Icon, Tooltip } from 'antd';
 import moment from 'moment';
+import AsyncStorage from "@callstack/async-storage/lib/index";
+import { Redirect } from 'react-router';
+import { connect } from 'react-redux';
 
 function onChange(e) {
   console.log(`checked = ${e.target.checked}`);
@@ -19,9 +22,61 @@ class DateCard extends Component{
           nTicket: 1
       }
   }
+
+  componentDidMount(){
+      this.handleLocalStorage()
+  }
+
+  handleLocalStorage = () =>{
+      AsyncStorage.getItem('user')
+          .then((obj) => {
+              let userObj = JSON.parse(obj)
+              if(!!userObj){
+                  this.setState({
+                      user: true,
+                  })
+              }
+              else {
+                  this.setState({
+                      user: false
+                  })
+              }
+          })
+  }
+
+  purchaseTicket(){
+      const { user } = this.state;
+      if(user){
+          this.setState({goForward: true})
+      }else {
+          this.setState({visible: true})
+      }
+  }
+
+  handleCancel = (e) => {
+      this.setState({visible: false});
+  }
+
+  handleLogin = (e) => {
+      const { dispatch, data } = this.props;
+      // const { objData, user } = this.state;
+      // let otherData = {...objData, user: true};
+      let otherData = data;
+      dispatch({type: 'ANOTHERDATA', otherData})
+      this.setState({goForLogin: true, visible: false})
+  }
+
   render(){
-    const { eBird, nTicket } = this.state;
+    const { eBird, nTicket, goForLogin, goForward } = this.state;
     const { data } = this.props;
+
+    if (goForLogin) {
+        return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/Buyer_Detailpage" }, state: data}}}/>;
+    }
+    if(goForward){
+        return <Redirect to={{pathname: `/Buyer_Detailpage`, state: data}} />
+    }
+
     let from = '';
     let to = '';
     let earlyBird = data && data.earlyBird;
@@ -31,8 +86,6 @@ class DateCard extends Component{
     let nTicketPrice = '';
 
     if(data){
-      console.log(data.earlyBird, '1111111111')
-      console.log(data.normalTicket, '2222222222')
         eBirdPrice = data.earlyBirdPrice * eBird ;
         nTicketPrice = data.normalTicketPrice * nTicket ;
     }
@@ -120,6 +173,9 @@ class DateCard extends Component{
                         <div className="col-md-6 col-xs-6">
                               <InputNumber min={0} max={data && data.earlyBirdAvailableTickets} defaultValue={1} disabled={!earlyBird} onChange={(e) => {this.setState({eBird: e})}} style={{width:"50px", height:"23px"}} />
                               <span style={{marginLeft:'7px'}}>{'$' + eBirdPrice}</span>
+                              <Tooltip placement="top" title='Early Bird Ticket is not Available'>
+                                  {!earlyBird && <Icon type="question-circle" theme="filled" style={{fontSize: '16px', marginLeft: '10px'}}/>}
+                              </Tooltip>
                         </div>
                       </div>
                       <div className="col-md-12">
@@ -131,8 +187,11 @@ class DateCard extends Component{
                             <span>Normal Ticket</span>
                         </div>
                         <div className="col-md-6 col-xs-6">
-                              <InputNumber min={0} max={data && data.normalTicketAvailableTickets} defaultValue={1} disabled={!normalTicket} onChange={(e) => {this.setState({nTicket: e})}} style={{width:"50px", height:"23px"}} />
-                              <span style={{marginLeft:'7px'}}>{'$' + nTicketPrice}</span>
+                            <InputNumber min={0} max={data && data.normalTicketAvailableTickets} defaultValue={1} disabled={!normalTicket} onChange={(e) => {this.setState({nTicket: e})}} style={{width:"50px", height:"23px"}} />
+                            <span style={{marginLeft:'7px'}}>{'$' + nTicketPrice}</span>
+                            <Tooltip placement="top" title='Normal Ticket is not Available'>
+                                {!normalTicket && <Icon type="question-circle" theme="filled" style={{fontSize: '16px', marginLeft: '10px'}}/>}
+                            </Tooltip>
                         </div>
                       </div>
                       <div className="row">
@@ -147,14 +206,24 @@ class DateCard extends Component{
                             <h4>Total Amount </h4>
                         </div>
                         <div className="col-md-6 col-xs-6" style={{textAlign:"center"}}>
-                              <span>{'$' + totalPrice}</span>
+                            <span>{'$' + totalPrice}</span>
                         </div>
                       </div>
-                      <div className="text-center text-md-left">
-                          <a className="btn button_custom" style={{width: "45%"}}>Purchase Yicket</a>
+                      <div className="text-center text-md-left" onClick={() => {this.purchaseTicket()}}>
+                          <a className="btn button_custom" style={{width: "45%"}}>Purchase Ticket</a>
                       </div>
                     </div>
-
+                      {this.state.visible && <Modal
+                          title="Kindly Login first"
+                          visible={this.state.visible}
+                          onOk={this.handleOk}
+                          onCancel={this.handleCancel}
+                      >
+                          <div className="row">
+                              <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleLogin}>Login</button></div>
+                              <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleCancel}>Cancel</button></div>
+                          </div>
+                      </Modal>}
                   </div>
               </div>
             </div>
@@ -164,4 +233,11 @@ class DateCard extends Component{
     )
   }
 }
-export default DateCard;
+
+const mapStateToProps = (state) => {
+    return({
+        text: state.text
+    })
+}
+
+export default connect(mapStateToProps)(DateCard);

@@ -37,6 +37,7 @@ require('./models/jobPortalSchema');
 require('./models/jobAppliedSchema');
 require('./models/blogReviews');
 require('./models/eventPortalSchema');
+require('./models/eventTicketSchema');
 
 require('./config/passport');
 
@@ -55,6 +56,7 @@ var jobPortal = mongoose.model('jobschema');
 var jobApplied = mongoose.model('jobApplied');
 var blogReview = mongoose.model('blogReviews');
 var eventPortal = mongoose.model('EventSchema');
+var eventTicket = mongoose.model('EventTicketSchema');
 
 app.use(passport.initialize());
 
@@ -1345,6 +1347,53 @@ app.post('/api/postEventPortal', (req, res) => {
 });
 
 /*===================post Event API end================================================================*/
+
+/*===================post Event Ticket API start================================================================*/
+
+app.post('/api/eventTicket', (req, res) => {
+    let ticketInfo = req.body;
+    let ticketData = new eventTicket({
+        address: ticketInfo.address,
+        city: ticketInfo.city,
+        conEmail: ticketInfo.conEmail,
+        docId: ticketInfo.docId,
+        eBirdVal: ticketInfo.eBirdVal,
+        email: ticketInfo.email,
+        eventId: ticketInfo.eventId,
+        firstName: ticketInfo.firstName,
+        hoNumber: ticketInfo.hoNumber,  
+        lastName: ticketInfo.lastName,
+        moNumber: ticketInfo.moNumber,
+        nTicketVal: ticketInfo.nTicketVal,
+        state: ticketInfo.state,
+        total: ticketInfo.total,
+        userId: ticketInfo.userId,
+        zipCode: ticketInfo.zipCode,
+        posted: ticketInfo.posted
+    });
+    ticketData.save((error, response) => {
+        if(error){
+            res.send({
+                code:500,
+                content:'Internal Server Error',
+                msg:'API not called properly'
+            });
+        }else if(response !== ''){
+            res.send({
+                code:200,
+                msg:'yor request submitted successfully'
+            });
+        }else{
+            res.send({
+                code:404,
+                content:'Not Found',
+                msg:'no data inserted'
+            });
+        }
+    });
+});
+
+/*===================post Event Ticket API end================================================================*/
 
 /*===================Applied for Job start===========================================================*/
 

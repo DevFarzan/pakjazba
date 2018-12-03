@@ -834,6 +834,7 @@ classifiedBusiness.findOne({"_id" : buyselldata.objectId},function(err,buysell){
 }//end else
 });
 
+
 /*======================post buy & sell business end===========================================*/
 
 /*======================get Market place start========================================================*/

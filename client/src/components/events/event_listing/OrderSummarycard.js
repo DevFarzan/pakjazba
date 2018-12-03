@@ -35,9 +35,9 @@ class OrderCard extends Component{
         let stripeRate = totalPrice > 0 ? (2.9*100/totalPrice).toFixed(2) : 0.00;
         let total = (+totalPrice + +webSiteRate + +stripeRate).toFixed(2);
         if(val === 'NormalTicket'){
-           this.setState({nTicket: e ? e : nTicket})
+           this.setState({nTicket: e !== null && e !==undefined ? e : nTicket})
         }else {
-            this.setState({eBird: e ? e : eBird})
+            this.setState({eBird: e !== null && e !==undefined ? e : eBird})
         }
         this.props.onChange({eBirdVal, nTicketVal, total});
     }
@@ -49,6 +49,7 @@ class OrderCard extends Component{
         let nTicketPrice = '';
         let earlyBird = data && data.earlyBird;
         let normalTicket = data && data.normalTicket;
+        console.log(eBird, 'eBirddddd')
         
         if(data){
             eBirdPrice = data.earlyBirdPrice * eBird ;

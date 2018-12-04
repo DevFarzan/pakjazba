@@ -61,7 +61,7 @@ class EventDetail extends Component{
     }
 
     return(
-      <div className="">
+      <div className="background-image">
       <Burgermenu/>
       <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}></div>
         <div className="row jobdetail-page" style={{marginTop:'57px'}}>
@@ -72,7 +72,7 @@ class EventDetail extends Component{
             </div>
         </div>
         <EdetailFirstfold data={data}/>
-        <Footer />
+        <Footer/>
       </div>
 
     )

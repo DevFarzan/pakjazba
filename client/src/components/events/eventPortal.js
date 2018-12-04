@@ -412,7 +412,7 @@ class EventPortal extends Component{
         return(
             <div>
               <Burgermenu/>
-              <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}></div>
+              <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px",marginTop:'57px'}}></div>
                 <div className="row jobdetail-page" style={{backgroundColor:"#37a99b"}}>
                     <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>
                         <div className="">

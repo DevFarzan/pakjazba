@@ -49,8 +49,7 @@ class OrderCard extends Component{
         let nTicketPrice = '';
         let earlyBird = data && data.earlyBird;
         let normalTicket = data && data.normalTicket;
-        console.log(eBird, 'eBirddddd')
-        
+
         if(data){
             eBirdPrice = data.earlyBirdPrice * eBird ;
             nTicketPrice = data.normalTicketPrice * nTicket ;

@@ -10,6 +10,8 @@ var jwt = require('jsonwebtoken');
 var ip = require('ip');
 const keys = require('./config/keys');
 const stripe = require("stripe")(keys.stripeSecretKey);
+const moment = require('moment');
+const QRCode = require('qrcode')
 
 const port = process.env.PORT || 5000;
 
@@ -1355,7 +1357,8 @@ app.post('/api/postEventPortal', (req, res) => {
 /*===================post Event Ticket API start================================================================*/
 
 app.post('/api/eventTicket', (req, res) => {
-    let ticketInfo = req.body;
+    let ticketInfo = req.body.obj;
+    let mailTicket = req.body.data;
     let ticketData = new eventTicket({
         address: ticketInfo.address,
         city: ticketInfo.city,
@@ -1387,6 +1390,79 @@ app.post('/api/eventTicket', (req, res) => {
                 code:200,
                 msg:'yor request submitted successfully'
             });
+            let title = mailTicket.eventTitle;
+                ticketOne = "Early Bird $" + mailTicket.earlyBirdPrice;
+                ticketTwo = "Normal Ticket $" + mailTicket.normalTicketPrice;
+                address = mailTicket.address;
+                startDate = moment(mailTicket.dateRange[0].from).format('LL');
+                startDay = moment(mailTicket.dateRange[0].from).format('dddd');
+                endDate = moment(mailTicket.dateRange[0].to).format('LL');
+                endDay = moment(mailTicket.dateRange[0].to).format('dddd');
+                eventDayTime = startDay + ' ' + startDate + ' at ' + mailTicket.openingTime + ' - ' + endDay + ' ' + endDate + ' at ' + mailTicket.closingTime;
+                userDetail =  'Order no. ' + ticketInfo.docId + ', ordered by ';
+                userDetail2 = ticketInfo.firstName + ' ' + ticketInfo.lastName;
+                userDetail3 = ' on ' + moment(ticketInfo.posted, 'LL').format('LLLL')
+                calIndex = ticketInfo.total.indexOf('.');
+                str = ticketInfo.total.substring(0, calIndex);
+                res = +ticketInfo.total - +str;
+                resToFixed = res.toFixed(2)
+                fullName = ticketInfo.firstName + " " + ticketInfo.lastName;
+                description = mailTicket.description;
+                strForURL = userDetail2 + ' Order no. ' + ticketInfo.docId;
+            QRCode.toDataURL(strForURL, function (err, url) {
+                if(!err){
+                    mailOptions={
+                        to : ticketInfo.email,
+                        subject : "Event Ticket",
+                        html : `<html>
+                                    <head>
+                                        <title>PakJazba</title>
+                                    </head>
+                                    <body>
+                                        <div style="margin-bottom: 10px;">
+                                            <span style="color:#37a99b; font-size: 40px; margin-left: 15%;">PakJazba</span>
+                                            <span style="margin-left: 40%">Order no:${ticketInfo.docId}</span>
+                                        </div>  
+                                        <div style="width: 70%;height: 940px; border:1px solid gray; margin: auto;">
+                                            <div style="width: 50%; display: inline-block;">
+                                                <div>
+                                                    <h2 style="margin-left: 15px; ">${title}<br>${ticketOne}<br>${ticketTwo}</h2><br>
+                                                    <p style="margin-left: 15px; display: inline-block;">${address}<br><br>${eventDayTime}</p>
+                                                </div>
+                                            </div>
+                                            <div style="width: 30%; float: right;">
+                                                <img style="width: 150px; height: 150px;" src=${mailTicket.images[0]}><br>
+                                                <img style="" src="${url}">
+                                            </div>
+                                        <div>
+                                            <div style="float: left; width: 34%;">
+                                              <h3 style="margin-left: 15px; display: inline;">PakJazba Completed</h3>
+                                              <h4 style="color: rgb(177,117,117); margin-left: 15px;">Order Information</h4>
+                                              <p style="margin-left: 15px;">${userDetail}<br>${userDetail2}<br>${userDetail3}</p>
+                                            </div>
+                                            <div style="margin-left: 40px;">
+                                                <h3>Vat $ ${resToFixed}</h3>
+                                                <h4 style="color: rgb(177,117,117);">Name</h4>
+                                                <p>${fullName}</p>
+                                            </div><br><br>
+                                            <h3 style="width: 60%; margin-left: 15px;">Event Information</h3>
+                                            <p style="width: 60%; margin-left: 15px;">${description}</p>
+                                        </div>
+                                    </body>
+                                </html>`
+                    }
+                    console.log(mailOptions);
+                    smtpTransport.sendMail(mailOptions, function(error, response){
+                        if(error){
+                            console.log(error);
+                            res.end("error");
+                        }else{
+                            console.log("Message sent: " + response);
+                            console.log("Message sent: " + response);
+                        }
+                    });
+                }
+            });
         }else{
             res.send({
                 code:404,
@@ -1395,7 +1471,7 @@ app.post('/api/eventTicket', (req, res) => {
             });
         }
     });
-});
+    });
 
 /*===================post Event Ticket API end================================================================*/
 

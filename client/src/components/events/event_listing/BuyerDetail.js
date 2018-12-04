@@ -30,7 +30,6 @@ class BuyerDetail extends Component{
   }
 
   onReceiveData(e){
-    console.log(this.props, 'bhai jannnnnnnnnn')
       let data = this.props.location.state || this.props.otherData;
       let obj = {...e, eventId: data._id};
       this.setState({cardData: obj});
@@ -39,10 +38,10 @@ class BuyerDetail extends Component{
   async postTicketData(obj){
       let data = this.props.location.state || this.props.otherData;
       let objData = {data, obj}
-      // let req = await HttpUtils.post('eventTicket', obj)
-      // if(req.code === 200){
+      let req = await HttpUtils.post('eventTicket', objData)
+      if(req.code === 200){
           this.setState({objData, msg: true, loader: false})
-      // }
+      }
   }
 
   render(){

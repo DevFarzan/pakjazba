@@ -6,14 +6,6 @@ import AsyncStorage from "@callstack/async-storage/lib/index";
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 
-function onChange(e) {
-  console.log(`checked = ${e.target.checked}`);
-}
-
-function onChange(value) {
-  console.log('changed', value);
-}
-
 class DateCard extends Component{
   constructor(props){
       super(props);
@@ -93,7 +85,6 @@ class DateCard extends Component{
     let totalPrice = eBirdPrice + nTicketPrice;
 
     if(data.dateRange !== undefined && data.dateRange[0] !== undefined){
-        console.log(data.dateRange[0], 'dataaaaaaaaaaaaaaa')
         from = moment(data.dateRange[0].from, 'YYYY-MM-DD').format("LL");
         to = moment(data.dateRange[0].to, 'YYYY-MM-DD').format("LL");
     }

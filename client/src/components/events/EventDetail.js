@@ -46,7 +46,6 @@ class EventDetail extends Component{
   }
 
   async getReviews(data){
-    console.log('abccccccccccccc')
       let res = await HttpUtils.get('getreviews')
       if(res.code === 200) {
           let filteredReviews = res.content.filter((elem) => elem.objid === data._id)

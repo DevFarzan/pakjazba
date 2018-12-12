@@ -46,7 +46,6 @@ class EventDetail extends Component{
   }
 
   async getReviews(data){
-    console.log('abccccccccccccc')
       let res = await HttpUtils.get('getreviews')
       if(res.code === 200) {
           let filteredReviews = res.content.filter((elem) => elem.objid === data._id)
@@ -61,10 +60,10 @@ class EventDetail extends Component{
     }
 
     return(
-      <div className="">
+      <div className="background-image">
       <Burgermenu/>
       <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}></div>
-        <div className="row jobdetail-page">
+        <div className="row jobdetail-page" style={{marginTop:'57px'}}>
             <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>
                 <div className="">
                     <h1 style={{fontFamily: 'Crimson Text, serif', fontWeight:"bold"}}>Event Detail</h1>
@@ -72,7 +71,7 @@ class EventDetail extends Component{
             </div>
         </div>
         <EdetailFirstfold data={data}/>
-        <Footer />
+        <Footer/>
       </div>
 
     )

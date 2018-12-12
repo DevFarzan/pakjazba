@@ -24,7 +24,6 @@ class FeaturedCol extends Component{
 
   render(){
     const { data } = this.state;
-    console.log(data, 'kkkkkkkkkkk')
     return(
       <div>
         <div className="ecardoutset">

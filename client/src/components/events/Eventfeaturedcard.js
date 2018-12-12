@@ -147,7 +147,7 @@ class EventFeatured extends Component{
                     <Link key={key} to={{pathname: `/detail_eventPortal/${elem.randomKey}`, state: elem}}>
                         <div className="col-md-3"  style={{'marginBottom': '30px'}}>
                             <div className="card" style={{border: '1px solid #3a252542',boxShadow: 'none',borderRadius:'13px',width:'100%'}}>
-                                <img alt='' src={elem.images[0]} style={{height:'200px', width:"100%"}}/>
+                                <img alt='' src={elem.images[0]} style={{height:'200px', width:"100%", borderTopLeftRadius: '12px', borderTopRightRadius: '12px'}}/>
                                 <h4 style={{marginTop:'15px', textAlign:"center",}}><b>{elem.eventTitle}</b></h4>
                                 <div className="row">
                                   <div className="col-md-6">

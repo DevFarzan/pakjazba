@@ -44,7 +44,7 @@ class JobClassified extends Component {
         return (
             <div>
                 <span>
-                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/job-portal.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
+                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/job-portal.png')", marginTop : "104px",backgroundSize: 'cover'}}>
                         <div className="background-image">
                             <Burgermenu/>
                             <Slider mainH1="Job Portal" mainH2="Find your jobs here"/>

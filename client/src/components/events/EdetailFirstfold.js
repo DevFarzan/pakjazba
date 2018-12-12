@@ -8,7 +8,6 @@ import FeaturedCol8 from '../events/FeaturedCol8';
 
 class EdetailFirstfold extends Component{
   render(){
-    // console.log(this.props.data.description, 'zzzzzzzzzzzzzzzzzzz')
     return(
       <div className="container" style={{width:"100%"}}>
           <div className="row">

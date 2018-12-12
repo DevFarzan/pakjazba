@@ -98,11 +98,15 @@ ReactDOM.render(
 
 			        <Route path="/detail_eventPortal/:value" component={EventDetail}></Route>
 			        <Route path="/Ticket_eventPortals" component={TicketDetail}></Route>
+<<<<<<< HEAD
                <Route path="/Buyer_Detailpage" component={BuyerDetail}></Route>
                <Route path="/market_ecommerceMarket" component={EcommerceMarket}></Route>
                <Route path="/detail_ecommercedetail" component={EcomDetail}></Route>
                <Route path="/products_GridStyle" component={GridProducts}></Route>
 
+=======
+               		<Route path="/Buyer_Detailpage" component={BuyerDetail}></Route>
+>>>>>>> origin/master
 
 				</div>
 			</BrowserRouter>

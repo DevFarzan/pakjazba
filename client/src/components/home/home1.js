@@ -8,6 +8,7 @@ import Burgermenu from '../header/burgermenu';
 import Slider from '../header/Slider';
 import {HttpUtils} from "../../Services/HttpUtils";
 import { connect } from 'react-redux';
+import Form from '../form/mainpayment';
 
 const TabPane = Tabs.TabPane;
 
@@ -51,10 +52,11 @@ class Home1 extends Component{
                 <div className="row">
                     <div className="col-md-12">
                       <h4 style={{color:'black',marginLeft:'15px',fontSize:'22px',fontWeight:'bold',marginTop: '13px', fontFamily:'crimson'}}>Find what you need…</h4>
+                      {/*<span><Form/></span>*/}
                     </div>
                 </div>
                 <div className="row" style={{marginTop:'-23px'}}>
-                    <div className="col-md-10">
+                    <div className="col-md-12">
                         <div className="col-md-3 col-sm-4">
                             <div className="card outset" style={{boxShadow:'none',border: '1px solid rgba(128, 128, 128, 0.56)',background: 'white'}}>
                                 <div className="card-body space tag1">
@@ -86,7 +88,15 @@ class Home1 extends Component{
                             <div className="card outset" style={{boxShadow:'none',border: '1px solid rgba(128, 128, 128, 0.56)',background: 'white'}}>
                                 <div className="card-body space tag1">
                                     <Link to={`/market_jobPortal`} style={{color: 'black'}}>
-                                    <img alt='' src="./images/bg.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b style={{paddingLeft:'9px'}}>JOBS</b></Link>
+                                    <img alt='' src="./images/bg.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b style={{paddingLeft:'9px'}}>Jobs</b></Link>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3 col-sm-4" style={{marginTop:'30px'}}>
+                            <div className="card outset" style={{boxShadow:'none',border: '1px solid rgba(128, 128, 128, 0.56)',background: 'white'}}>
+                                <div className="card-body space tag1">
+                                    <Link to={`/market_eventPortal`} style={{color: 'black'}}>
+                                    <img alt='' src="./images/bg.jpg" height="82" width="95" style={{marginLeft: "-5px",marginTop: "-5px",marginBottom: "-5px"}} /><b style={{paddingLeft:'9px'}}>Events</b></Link>
                                 </div>
                             </div>
                         </div>
@@ -270,36 +280,36 @@ class Home1 extends Component{
                             </div>
                             <div className="col-md-6">
                                 <div className="col-md-4">
-                                    <Link to={`/detail_blog`}>
-                                    <img alt='' src="./images/default/shutterstock_458805415.png" width="120" height="110" />
+                                    <Link to={{pathname:`/detail_blog`, state: blogs.blog && blogs.blog[9]}}>
+                                    <img alt='' src={blogs.blog && blogs.blog[9].main[0].image[0]} width="120" height="110" />
                                     </Link>
                                 </div>
                                 <div className="col-md-8" style={{paddingLeft: '15px'}}>
-                                    <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
+                                    <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[9]}}><h5><b>{blogs.blog && blogs.blog[9].mainheading} </b></h5></Link>
                                     <br/>
-                                    <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
+                                    <p><span style={{marginRight: "67px"}}>By Shania</span>    <span>10.10.2018</span>  <br/><br/></p>
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="col-md-4">
-                                <Link to={`/detail_blog`}>
-                                    <img alt='' src="./images/default/shutterstock_500151964.png" width="120" height="110" />
+                                <Link to={{pathname:`/detail_blog`, state: blogs.blog && blogs.blog[10]}}>
+                                    <img alt='' src={blogs.blog && blogs.blog[10].main[0].image[0]} width="120" height="110" />
                                 </Link>
                                 </div>
                                 <div className="col-md-8" style={{paddingLeft: '15px'}}>
-                                    <Link to={`/detail_blog`}><h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
+                                    <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[10]}}><h5><b>{blogs.blog && blogs.blog[10].mainheading}</b></h5></Link>
                                     <br/>
-                                    <p><span style={{marginRight: "67px"}}>By Hills Estate</span>    <span>13.09.2018</span>  <br/><br/></p>
+                                    <p><span style={{marginRight: "67px"}}>By Simran</span>    <span>12.10.2018</span>  <br/><br/></p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-1">
                         </div>
                         <div className="col-md-3">
-                            <Link to={`/detail_blog`}><img alt='' src="./images/default/shutterstock_519784624.png" width="300" height="150" /></Link>
-                            <Link to={`/detail_blog`}><h5 style={{marginTop:'10px'}}><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
-                            <Link to={`/detail_blog`}><img alt='' src="./images/default/shutterstock_590486768.png" width="300" height="150" /></Link>
-                            <Link to={`/detail_blog`}><h5 style={{marginTop:'10px'}}><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
+                            <Link to={{pathname:`/detail_blog`, state: blogs.blog && blogs.blog[11]}}><img alt='' src={blogs.blog && blogs.blog[11].main[0].image[0]} width="300" height="150" /></Link>
+                            <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[11]}}><h5 style={{marginTop:'10px'}}><b>{blogs.blog && blogs.blog[11].mainheading}</b></h5></Link>
+                            <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[12]}}><img alt='' src={blogs.blog && blogs.blog[12].main[0].image[0]} width="300" height="150" /></Link>
+                            <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[13]}}><h5 style={{marginTop:'10px'}}><b>{blogs.blog && blogs.blog[13].mainheading}</b></h5></Link>
                         </div>
                     </div>
                 </div>
@@ -323,45 +333,45 @@ class Home1 extends Component{
                     <div className="col-md-12">
                         <div className="col-md-8">
                             <div className="col-md-4">
-                                <Link to={`/detail_blog`}>
-                                <img alt='' src="./images/default/shutterstock_611045375.png" width="250px" height="120" />
+                                <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[14]}}>
+                                <img alt='' src={blogs.blog && blogs.blog[14].main[0].image[0]} width="250px" height="120" />
                                 </Link>
-                                <Link to={`/detail_blog`}><h5><br/><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
-                                <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                                <Link to={{pathname:`/detail_blog`,state: blogs.blog && blogs.blog[14]}}><h5><br/><b>{blogs.blog && blogs.blog[14].mainheading}</b></h5></Link>
+                                <p>By Simran    15.10.2018 <br/><br/></p>
                             </div>
                             <div className="col-md-4">
-                                <Link to={`/detail_blog`}><img alt='' src="./images/default/shutterstock_620158250.png" width="250px" height="120" /></Link>
-                                <Link to={`/detail_blog`}><h5><br/><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
-                                <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                                <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[15]}}><img alt='' src={blogs.blog && blogs.blog[15].main[0].image[0]} width="250px" height="120" /></Link>
+                                <Link to={{pathname:`/detail_blog`,state: blogs.blog && blogs.blog[15]}}><h5><br/><b>{blogs.blog && blogs.blog[15].mainheading}</b></h5></Link>
+                                <p>By Shania    16.10.2018 <br/><br/></p>
                             </div>
                             <div className="col-md-4">
-                               <Link to={`/detail_blog`}> <img alt='' src="./images/default/shutterstock_650457544.png" width="250px" height="120" /></Link>
-                                <Link to={`/detail_blog`}><h5><br/><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
-                                <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                               <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[16]}}> <img alt='' src={blogs.blog && blogs.blog[16].main[0].image[0]} width="250px" height="120" /></Link>
+                                <Link to={{pathname:`/detail_blog`,state: blogs.blog && blogs.blog[16]}}><h5><br/><b>{blogs.blog && blogs.blog[16].mainheading}</b></h5></Link>
+                                <p>By Simran    16.10.2018 <br/><br/></p>
                             </div>
                             <div className="col-md-4">
-                               <Link to={`/detail_blog`}> <img alt='' src="./images/default/shutterstock_653422798.png" width="250px" height="120" /></Link>
-                                <Link to={`/detail_blog`}><h5><br/><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
-                                <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                               <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[17]}}> <img alt='' src={blogs.blog && blogs.blog[17].main[0].image[0]} width="250px" height="120" /></Link>
+                                <Link to={{pathname:`/detail_blog`,state: blogs.blog && blogs.blog[17]}}><h5><br/><b>{blogs.blog && blogs.blog[17].mainheading}</b></h5></Link>
+                                <p>By shania    17.10.2018 <br/><br/></p>
                             </div>
                             <div className="col-md-4">
-                               <Link to={`/detail_blog`}> <img alt='' src="./images/default/shutterstock_681199717.png" width="250px" height="120" /></Link>
-                                <Link to={`/detail_blog`}><h5><br/><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
-                                <p>By Hills Estate    13.09.2018 <br/><br/></p>
+                               <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[18]}}> <img alt='' src={blogs.blog && blogs.blog[18].main[0].image[0]} width="250px" height="120" /></Link>
+                                <Link to={{pathname:`/detail_blog`,state: blogs.blog && blogs.blog[18]}}><h5><br/><b>{blogs.blog && blogs.blog[18].mainheading}</b></h5></Link>
+                                <p>By Simran    18.10.2018 <br/><br/></p>
                             </div>
                             <div className="col-md-4">
-                               <Link to={`/detail_blog`}> <img alt='' src="./images/default/shutterstock_692689633.png" width="250px" height="120" /></Link>
-                                <Link to={`/detail_blog`}><h5><br/><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
-                                <p>By Hills Estate    13.09.2018 <br/></p>
+                               <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[19]}}> <img alt='' src={blogs.blog && blogs.blog[19].main[0].image[0]} width="250px" height="120" /></Link>
+                                <Link to={{pathname:`/detail_blog`,state: blogs.blog && blogs.blog[19]}}><h5><br/><b>{blogs.blog && blogs.blog[19].mainheading}</b></h5></Link>
+                                <p>By Shania    18.10.2018 <br/></p>
                             </div>
                         </div>
                         <div className="col-md-1">
                         </div>
                         <div className="col-md-3">
-                            <Link to={`/detail_blog`}><img alt='' src="./images/default/shutterstock_717281428.png" width="300" height="150" /></Link>
-                            <Link to={`/detail_blog`}><h5 style={{marginTop:'10px'}}><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
-                            <Link to={`/detail_blog`}><img alt='' src="./images/default/shutterstock_722699410.png" width="300" height="150" /></Link>
-                            <Link to={`/detail_blog`}><h5 style={{marginTop:'10px'}}><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5></Link>
+                            <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[21]}}><img alt='' src={blogs.blog && blogs.blog[21].main[0].image[0]} width="300" height="150" /></Link>
+                            <Link to={{pathname:`/detail_blog`,state: blogs.blog && blogs.blog[21]}}><h5 style={{marginTop:'10px'}}><b>{blogs.blog && blogs.blog[21].mainheading}</b></h5></Link>
+                            <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[20]}}><img alt='' src={blogs.blog && blogs.blog[20].main[0].image[0]} width="300" height="150" /></Link>
+                            <Link to={{pathname:`/detail_blog`,state: blogs.blog && blogs.blog[20]}}><h5 style={{marginTop:'10px'}}><b>{blogs.blog && blogs.blog[20].mainheading}</b></h5></Link>
                         </div>
                     </div>
                 </div>

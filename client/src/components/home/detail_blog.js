@@ -99,13 +99,12 @@ class DetailBlog extends Component {
 
         return (
             <div>
-                <div className ="" style={{"backgroundImage": 'url('+bckImage+')', backgroundSize: '1500px 500px', height: "500px", marginTop: "-65px", marginLeft:"-66px"}}>
+                <div className ="" style={{"backgroundImage": 'url('+bckImage+')', backgroundSize: '1500px 500px', height: "370px", marginTop: "104px", marginLeft:"-66px"}}>
                     <div className="background-image">
                         <Burgermenu/>
                     </div>
                 </div>
-                <div style={{height: '50px'}}></div>
-                <div className='row'>
+                <div className='row' style={{marginTop:'-11px'}}>
                     <div style={{marginTop: '20px'}} className="col-md-9 col-sm-12 col-xs-12">
                     {data.main && data.main.map((elem) => {
                         return (

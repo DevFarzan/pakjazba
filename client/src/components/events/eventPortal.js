@@ -275,7 +275,6 @@ class EventPortal extends Component{
             randomKey,
             posted: moment().format('LL')
         }
-        console.log(obj, 'objjjjjjjjjj')
         let req = await HttpUtils.post('postEventPortal', obj)
         if(req.code === 200){
             this.setState({objData: obj, msg: true, randomKey})
@@ -384,7 +383,7 @@ class EventPortal extends Component{
         if (msg === true) {
             return <Redirect to={{pathname: `/detail_eventPortal/${randomKey}`, state: objData}} />
         }
-
+        const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
         const uploadButton = (
             <div>
                 <Icon type="plus" />
@@ -412,7 +411,7 @@ class EventPortal extends Component{
         return(
             <div>
               <Burgermenu/>
-              <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}></div>
+              <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px",marginTop:'57px'}}></div>
                 <div className="row jobdetail-page" style={{backgroundColor:"#37a99b"}}>
                     <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>
                         <div className="">
@@ -905,7 +904,8 @@ class EventPortal extends Component{
                         </div>
                     </div>
                     <div className="row center_global row">
-                        <button style={{textAlign: 'center', width:"45%"}} className="btn button_custom">Submit Event</button>
+                        {this.state.loader && <Spin indicator={antIcon} />}
+                        <button disabled={!!this.state.loader} style={{textAlign: 'center', width:"45%"}} className="btn button_custom">Submit Event</button>
                     </div>
                 </Form>
               <Footer />

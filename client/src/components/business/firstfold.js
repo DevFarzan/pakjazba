@@ -23,46 +23,78 @@ class Firstfold extends Component{
                 <div className='col-md-8'>
                     <div className="index-content">
                         <div className="col-lg-3" onClick={() => {this.clickItem('coffee shop')}} style={{cursor:'pointer'}}>
-                            <div className="">
-                                <img alt='' src="../images/icons/cafi.png" style={{width: "103%"}} />
+                            <div className="wrimagecard wrimagecard-topimage">
+                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
+                                <center>
+                                    <img src="../images/business icon/coffee-shop.png" style={{width: "100%"}}/>
+                                </center>
                             </div>
+                        </div>
                         </div>
                         <div className="col-lg-3" onClick={() => {this.clickItem('business')}} style={{cursor:'pointer'}}>
-                            <div className="">
-                                <img alt='' src="../images/icons/business.png" style={{width: "103%"}} />
+                            <div className="wrimagecard wrimagecard-topimage">
+                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
+                                <center>
+                                    <img src="../images/business icon/business.png" style={{width: "100%"}}/>
+                                </center>
                             </div>
+                        </div>
                         </div>
                         <div className="col-lg-3" onClick={() => {this.clickItem('hospital')}} style={{cursor:'pointer'}}>
-                            <div className="">
-                                <img alt='' src="../images/icons/hospital.png" style={{width: "103%"}} />
+                            <div className="wrimagecard wrimagecard-topimage">
+                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
+                                <center>
+                                    <img src="../images/business icon/hospital.png" style={{width: "100%"}}/>
+                                </center>
                             </div>
                         </div>
+                        </div>
                         <div className="col-lg-3" onClick={() => {this.clickItem('market')}} style={{cursor:'pointer'}}>
-                            <div className="">
-                                <img alt='' src="../images/icons/market.png" style={{width: "103%"}} />
+                            <div className="wrimagecard wrimagecard-topimage">
+                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
+                                <center>
+                                    <img src="../images/business icon/market.png" style={{width: "100%"}}/>
+                                </center>
                             </div>
+                        </div>
                         </div>
                     </div>
                     <div className="index-content">
                         <div className="col-lg-3" onClick={() => {this.clickItem('restaurant')}} style={{cursor:'pointer'}}>
-                            <div className="">
-                                <img alt='' src="../images/icons/restuarant.png" style={{width: "103%"}} />
+                            <div className="wrimagecard wrimagecard-topimage">
+                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
+                                <center>
+                                    <img src="../images/business icon/restaurant.png" style={{width: "100%"}}/>
+                                </center>
                             </div>
+                        </div>
                         </div>
                         <div className="col-lg-3" onClick={() => {this.clickItem('park')}} style={{cursor:'pointer'}}>
-                            <div className="">
-                                <img alt='' src="../images/icons/park.png" style={{width: "103%"}} />
+                            <div className="wrimagecard wrimagecard-topimage">
+                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
+                                <center>
+                                    <img src="../images/business icon/park.png" style={{width: "100%"}}/>
+                                </center>
                             </div>
+                        </div>
                         </div>
                         <div className="col-lg-3" onClick={() => {this.clickItem('hostel')}} style={{cursor:'pointer'}}>
-                            <div className="">
-                                <img alt='' src="../images/icons/hatel.png " style={{width: "103%"}} />
+                            <div className="wrimagecard wrimagecard-topimage">
+                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
+                                <center>
+                                    <img src="../images/business icon/hotel.png" style={{width: "100%"}}/>
+                                </center>
                             </div>
                         </div>
+                        </div>
                         <div className="col-lg-3" onClick={() => {this.clickItem('animal hospital')}} style={{cursor:'pointer'}}>
-                            <div className="">
-                                <img alt='' src="../images/icons/animal.png"  style={{width: "103%"}} />
+                            <div className="wrimagecard wrimagecard-topimage">
+                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
+                                <center>
+                                    <img src="../images/business icon/animal-hospital.png" style={{width: "100%"}}/>
+                                </center>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>

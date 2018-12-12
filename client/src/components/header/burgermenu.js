@@ -25,7 +25,7 @@ state = {
       return(
           <div>
               <nav className="navbar navbar-fixed-top hidden-xs"
-                   style={{position: "fixed", width: "100%", "zIndex": "999", marginTop: "-19px",background:"#032a30"}}>
+                   style={{position: "fixed", width: "100%", "zIndex": "999", marginTop: "-19px",background:"#032a30",border:'none'}}>
                   <div className="container-fluid">
                       <div className="col-md-2 col-sm-6 col-xs-6">
                           <div className="navbar-header">
@@ -66,10 +66,7 @@ state = {
                                       <Button type="button_globalclassName" name='events' ghost className="button_globalclassName">
                                           <Link rel="noopener noreferrer" to={`/Buyer_DetailPage`}>Buyer Detail</Link>
                                       </Button>
-
-                                  </div>
                                   </div>*/}
-
                               </div>{/*col-md-4*/}
                               <div className="col-md-2" style={{marginTop: "26px"}}>
                                   <MainLogin/>
@@ -83,10 +80,10 @@ state = {
 
              <div style={{background:'#ececec',width:'100%'}} className="hidden-xs">
 
-                <span className="glyphicon glyphicon-home" style={{color:'black',fontSize:'17px',margin: '21px'}}>
+                <span to={`/`} className="glyphicon glyphicon-home" style={{color:'black',fontSize:'17px',margin: '21px',cursor:'pointer'}}>
                 </span>
                 <span type="" name='room' ghost className="button_globalclassName">
-                    <Link rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Room Renting</Link>
+                    <Link  rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Room Renting</Link>
                 </span>
                 <span type="" name='bussiness' ghost style={{marginRight: "10px", marginLeft: "10px"}} className="button_globalclassName">
                     <Link rel="noopener noreferrer" to={`/market_business`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Business Listing</Link>
@@ -100,24 +97,15 @@ state = {
                 <span type="" name='events' ghost className="button_globalclassName">
                     <Link rel="noopener noreferrer" to={`/market_eventPortal`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Events</Link>
                 </span>
-                <span type="" name='events' ghost className="button_globalclassName">
+                {/*<span type="" name='events' ghost className="button_globalclassName">
                     <Link rel="noopener noreferrer" to={`/detail_eventPortal`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Details</Link>
-                </span>
-                <span type="" name='events' ghost className="button_globalclassName">
+                </span>*/}
+                {/*<span type="" name='events' ghost className="button_globalclassName">
                     <Link rel="noopener noreferrer" to={`/Ticket_eventPortals`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Ticket Detail</Link>
-                </span>
-                <span type="" name='events' ghost className="button_globalclassName">
+                </span>*/}
+                {/*<span type="" name='events' ghost className="button_globalclassName">
                     <Link rel="noopener noreferrer" to={`/Buyer_DetailPage`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Buyer Detail</Link>
-                </span>
-                <span type="" name='EcommerceMarket' ghost className="button_globalclassName">
-                    <Link rel="noopener noreferrer" to={`/market_ecommerceMarket`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Ecommerce</Link>
-                </span>
-                <span type="" name='EcommerceMarket' ghost className="button_globalclassName">
-                    <Link rel="noopener noreferrer" to={`/detail_ecommercedetail`} style={{color:'black',fontSize:'17px',margin: '21px'}}>EcommerceDetail</Link>
-                </span>
-                <span type="" name='GridProduct' ghost className="button_globalclassName">
-                    <Link rel="noopener noreferrer" to={`/products_GridStyle`} style={{color:'black',fontSize:'17px',margin: '21px'}}>GridProducts</Link>
-                </span>
+                </span>*/}
               </div>
               </nav>
               {/*=============================================visible xs============================================*/}

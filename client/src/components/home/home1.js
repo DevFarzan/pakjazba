@@ -134,7 +134,7 @@ class Home1 extends Component{
                     <div className="col-md-4">
                         <div className="col-md-5">
                             <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[1]}}>
-                                <img alt='' src={blogs.blog && blogs.blog[1].mainimage} width="130" height="120" />
+                                <img alt='' src={blogs.blog && blogs.blog[1].main[0].image[0]} width="130" height="120" />
                             </Link>
                         </div>
                         <div className="col-md-7" style={{paddingLeft: '15px'}}>

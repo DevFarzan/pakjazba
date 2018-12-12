@@ -35,7 +35,7 @@ state = {
                                   <span className="icon-bar"></span>
                                   <span className="icon-bar"></span>
                               </button>
-                              <Link to={`/`} className="navbar-brand"><img alt='' src="./images/mobile-logo.png" style={{"width": "100px",marginTop: "28px"}} /></Link>
+                              <Link to={`/`} className="navbar-brand"><img alt='' src="https://res.cloudinary.com/dxk0bmtei/image/upload/v1544616262/mobile-logo_knmrrp.png" style={{"width": "100px",marginTop: "28px"}} /></Link>
                           </div>
                       </div>
                       <div className="col-md-10 col-sm-6 col-xs-6">

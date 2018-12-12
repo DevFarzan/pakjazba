@@ -40,6 +40,10 @@ const ticketNames = [
     value: 'Both',
     label: 'Both',
   },
+  {
+    value: 'Free',
+    label: 'Free',
+  },
 ]
 
 const category = [{
@@ -179,6 +183,8 @@ class EventPortal extends Component{
             this.setState({earlyBird: false, normalTicket: true})
         }else if(value[0] === 'Both' || value.length == 0){
             this.setState({earlyBird: true, normalTicket: true})
+        }else if(value[0] === 'Free'){
+            this.setState({earlyBird: false, normalTicket: false})
         }
     }
 
@@ -588,7 +594,7 @@ class EventPortal extends Component{
                                     <div className="row">
                                         <div className="col-md-12">
                                             <div className="col-md-6">
-                                                <label> Available Tickets &nbsp;&nbsp;&nbsp;Total</label>
+                                                <label> Select Ticketsl</label>
                                                     <FormItem>
                                                     {getFieldDecorator('ticketsCategory', {
                                                         initialValue: this.state.ticketsCategory,

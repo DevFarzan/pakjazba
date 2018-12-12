@@ -24,7 +24,7 @@ class MarketClassified extends Component{
         return(
             <div>
                 <span>
-                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/buy-sell.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
+                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/buy-sell.png')", marginTop : "105px",backgroundSize: 'cover'}}>
                         <div className="background-image">
                             <Burgermenu/>
                             <Slider mainH1="Buy & Sell" mainH2="Find what you need"/>

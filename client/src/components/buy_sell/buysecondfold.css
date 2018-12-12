@@ -8,7 +8,7 @@ body{margin-top:20px;
 }
 
 .product-box {
-  padding: 0;
+  padding: 25px;
   border: 1px solid #e7eaec;
 }
 /*.product-box:hover,

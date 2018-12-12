@@ -2,8 +2,29 @@ import React, { Component } from 'react';
 import ContactForm from '../main_Component/ContactForm'
 
 class FeaturedCol extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+          data: {}
+        }
+    }
+
+    componentDidMount(){
+        window.scrollTo(0,0);
+        let data = this.props.data;
+        this.setState({data})
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        let data = this.props.data;
+        if(prevProps.data !== data){
+            this.setState({data})
+        }
+    }
+
   render(){
-    const { data } = this.props;
+    const { data } = this.state;
+    console.log(data, 'kkkkkkkkkkk')
     return(
       <div>
         <div className="ecardoutset">
@@ -40,8 +61,7 @@ class FeaturedCol extends Component{
             </div>
           </div>
         </div>
-
-      <ContactForm/>
+      <ContactForm data={data}/>
     </div>
     )
   }

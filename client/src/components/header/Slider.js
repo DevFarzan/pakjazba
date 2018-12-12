@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 
 class Slider extends Component{
     constructor(props){
@@ -37,6 +38,7 @@ class Slider extends Component{
         return (
             <div>
                 <div>
+                     
                     <div className="row">
                         <div className="col-md-12 col-sm-12 col-xs-12">
                         <p className="paragragh-text"></p>

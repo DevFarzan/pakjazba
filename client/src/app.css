@@ -14,10 +14,14 @@ font-family: 'Crimson Text', serif !important;
 
 }
 
+.ant-menu-submenu-title{
+  padding-left: 0px !important;
+}
 h2{
 font-family: 'Crimson Text', serif !important;
 
 }
+
 
 h3{
 font-family: 'Crimson Text', serif !important;

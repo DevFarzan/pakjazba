@@ -25,12 +25,15 @@ import MarketBusiness from './components/business/marketBusiness';
 import MarketClassified from './components/buy_sell/marketClassified';
 import MarketRoommates from './components/roomrenting/MarketRoommates';
 import JobClassified from './components/job_portal/jobClassified';
-import MarketEvent from './components/events/marketEvent'
+import MarketEvent from './components/events/marketEvent';
+import EcommerceMarket from './components/ecommerce/ecommerceMarket';
 import ApplyJob from './components/job_portal/applyJob';
 import JobDetail from './components/job_portal/jobDetail';
 import TicketDetail from './components/events/event_listing/TicketDetail';
 import BuyerDetail from './components/events/event_listing/BuyerDetail';
 import EventDetail from './components/events/EventDetail';
+import EcomDetail from './components/ecommerce/ecommercedetail/ecommercedetailpage';
+import GridProducts from './components/ecommerce/ecommercedetail/GridProducts';
 //import TicketDetail from './components/events/TicketDetail';
 //import TicketDetail from './components/events/TicketDetail'
 import {PrivateRoute} from './components/signin_seperate';
@@ -91,10 +94,19 @@ ReactDOM.render(
 					<Route path="/market_classified" component={MarketClassified}></Route>
 					<Route path="/market_roommates" component={MarketRoommates}></Route>
     				<Route path="/market_jobPortal" component={JobClassified}></Route>
-			        <Route path="/market_eventPortal" component={MarketEvent}></Route>
+			      <Route path="/market_eventPortal" component={MarketEvent}></Route>
+
 			        <Route path="/detail_eventPortal/:value" component={EventDetail}></Route>
 			        <Route path="/Ticket_eventPortals" component={TicketDetail}></Route>
+
+               <Route path="/Buyer_Detailpage" component={BuyerDetail}></Route>
+               <Route path="/market_ecommerceMarket" component={EcommerceMarket}></Route>
+               <Route path="/detail_ecommercedetail" component={EcomDetail}></Route>
+               <Route path="/products_GridStyle" component={GridProducts}></Route>
+
+=======
                		<Route path="/Buyer_Detailpage" component={BuyerDetail}></Route>
+
 
 				</div>
 			</BrowserRouter>

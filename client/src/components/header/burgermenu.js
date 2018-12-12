@@ -77,9 +77,9 @@ state = {
                           </div>{/*row*/}
                       </div>
                   </div>
-              
+
              <div style={{background:'#ececec',width:'100%'}} className="hidden-xs">
-                        
+
                 <span to={`/`} className="glyphicon glyphicon-home" style={{color:'black',fontSize:'17px',margin: '21px',cursor:'pointer'}}>
                 </span>
                 <span type="" name='room' ghost className="button_globalclassName">

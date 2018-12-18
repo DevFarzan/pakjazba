@@ -29,7 +29,6 @@ class EventFeatured extends Component{
         if(prevProps.text !== text){
             if(!!text){
                 this.setState({showEvents: []})
-                // this.searchedArr(text)
             }else {
                 this.setState({
                     showEvents: events.slice(0, 7),

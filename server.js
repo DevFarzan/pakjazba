@@ -1422,7 +1422,7 @@ app.post('/api/eventTicket', (req, res) => {
                                         <div style="margin-bottom: 10px;">
                                             <span style="color:#37a99b; font-size: 40px; margin-left: 15%;">PakJazba</span>
                                             <span style="margin-left: 40%">Order no:${ticketInfo.docId}</span>
-                                        </div>  
+                                        </div>
                                         <div style="width: 70%;height: 940px; border:1px solid gray; margin: auto;">
                                             <div style="width: 50%; display: inline-block;">
                                                 <div>
@@ -1576,14 +1576,16 @@ var getuserfields = req.body;
      })
   
 })
+
 app.post("/api/charge", async (req, res) => {
-  console.log(req.body.body,'sdsadsadsad');
+  let data = req.body.body;
+  console.log(data.name, data.email, data.amount, 'sab k sab')
   try {
     let {status} = await stripe.charges.create({
-      amount: 2000,
+      amount: Math.round(data.amount*100),
       currency: "usd",
       description: "An example charge",
-      source: req.body.body
+      source: data.token
     });
     res.json({status});
   } catch (err) {
@@ -1591,6 +1593,7 @@ app.post("/api/charge", async (req, res) => {
     res.status(500).end();
   }
 });
+
 /*===================post roommates API end =================================================================*/
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files

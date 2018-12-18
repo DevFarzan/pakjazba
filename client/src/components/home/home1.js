@@ -334,33 +334,33 @@ class Home1 extends Component{
                         <div className="col-md-8">
                             <div className="col-md-4">
                                 <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[14]}}>
-                                <img alt='' src={blogs.blog && blogs.blog[14].main[0].image[0]} width="250px" height="120" />
+                                <img alt='' src={blogs.blog && blogs.blog[14].main[0].image[0]} width="250px" height="250" />
                                 </Link>
                                 <Link to={{pathname:`/detail_blog`,state: blogs.blog && blogs.blog[14]}}><h5><br/><b>{blogs.blog && blogs.blog[14].mainheading}</b></h5></Link>
                                 <p>By Simran    15.10.2018 <br/><br/></p>
                             </div>
                             <div className="col-md-4">
-                                <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[15]}}><img alt='' src={blogs.blog && blogs.blog[15].main[0].image[0]} width="250px" height="120" /></Link>
+                                <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[15]}}><img alt='' src={blogs.blog && blogs.blog[15].main[0].image[0]} width="250px" height="250" /></Link>
                                 <Link to={{pathname:`/detail_blog`,state: blogs.blog && blogs.blog[15]}}><h5><br/><b>{blogs.blog && blogs.blog[15].mainheading}</b></h5></Link>
                                 <p>By Shania    16.10.2018 <br/><br/></p>
                             </div>
                             <div className="col-md-4">
-                               <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[16]}}> <img alt='' src={blogs.blog && blogs.blog[16].main[0].image[0]} width="250px" height="120" /></Link>
+                               <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[16]}}> <img alt='' src={blogs.blog && blogs.blog[16].main[0].image[0]} width="250px" height="250" /></Link>
                                 <Link to={{pathname:`/detail_blog`,state: blogs.blog && blogs.blog[16]}}><h5><br/><b>{blogs.blog && blogs.blog[16].mainheading}</b></h5></Link>
                                 <p>By Simran    16.10.2018 <br/><br/></p>
                             </div>
                             <div className="col-md-4">
-                               <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[17]}}> <img alt='' src={blogs.blog && blogs.blog[17].main[0].image[0]} width="250px" height="120" /></Link>
+                               <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[17]}}> <img alt='' src={blogs.blog && blogs.blog[17].main[0].image[0]} width="250px" height="250" /></Link>
                                 <Link to={{pathname:`/detail_blog`,state: blogs.blog && blogs.blog[17]}}><h5><br/><b>{blogs.blog && blogs.blog[17].mainheading}</b></h5></Link>
                                 <p>By shania    17.10.2018 <br/><br/></p>
                             </div>
                             <div className="col-md-4">
-                               <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[18]}}> <img alt='' src={blogs.blog && blogs.blog[18].main[0].image[0]} width="250px" height="120" /></Link>
+                               <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[18]}}> <img alt='' src={blogs.blog && blogs.blog[18].main[0].image[0]} width="250px" height="250" /></Link>
                                 <Link to={{pathname:`/detail_blog`,state: blogs.blog && blogs.blog[18]}}><h5><br/><b>{blogs.blog && blogs.blog[18].mainheading}</b></h5></Link>
                                 <p>By Simran    18.10.2018 <br/><br/></p>
                             </div>
                             <div className="col-md-4">
-                               <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[19]}}> <img alt='' src={blogs.blog && blogs.blog[19].main[0].image[0]} width="250px" height="120" /></Link>
+                               <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[19]}}> <img alt='' src={blogs.blog && blogs.blog[19].main[0].image[0]} width="250px" height="250" /></Link>
                                 <Link to={{pathname:`/detail_blog`,state: blogs.blog && blogs.blog[19]}}><h5><br/><b>{blogs.blog && blogs.blog[19].mainheading}</b></h5></Link>
                                 <p>By Shania    18.10.2018 <br/></p>
                             </div>

@@ -345,8 +345,12 @@ class EventPortal extends Component{
     validateNumber(rule, value, callback){
         if(isNaN(value)){
             callback('Please type Numbers');
-        }else {
-            callback()    
+        }else if(rule.field === 'earlyBirdPrice' || rule.field === 'normalTicketPrice'){
+            if(value < 5){
+                callback('put atleast $5')
+            }else {
+                callback()    
+            }
         }
     }
 

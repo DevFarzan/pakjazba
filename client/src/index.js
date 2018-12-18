@@ -101,7 +101,6 @@ ReactDOM.render(
 				    <Route path="/market_ecommerceMarket" component={EcommerceMarket}></Route>
 				    <Route path="/detail_ecommercedetail" component={EcomDetail}></Route>
 				    <Route path="/products_GridStyle" component={GridProducts}></Route>
-               		<Route path="/Buyer_Detailpage" component={BuyerDetail}></Route>
 				</div>
 			</BrowserRouter>
 		</Provider>

@@ -7,7 +7,6 @@ import ContactDetail from '../event_listing/ContactDetails';
 import TermsandConditions from '../event_listing/Terms&Conditions';
 import OrderCard from '../event_listing/OrderSummarycard';
 import ModalOrderCard from '../event_listing/ModalForm';
-import {HttpUtils} from "../../../Services/HttpUtils";
 import { Icon, Spin } from 'antd';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
@@ -16,33 +15,54 @@ class BuyerDetail extends Component{
     constructor(props){
         super(props);
         this.state = {
-          cardData: {},
-          loader: false
+            cardData: {
+                eBirdVal: '',
+                nTicketVal: '',
+                total: '',
+                eventId: '',
+                firstName: '',
+                email: ''
+            },
+            loader: false
         }
-    }
-
-    onClick = () => {
-        this.setState({loader: true})
-        this.child.handleSubmit() // do stuff
     }
 
     componentDidMount(){
         let data = this.props.location.state;
     }
 
+    onClick = () => {
+        this.setState({loader: true});
+        this.child.handleSubmit();
+    }
+
     onReceiveData(e){
         let data = this.props.location.state || this.props.otherData;
-        let obj = {...e, eventId: data._id};
-        this.setState({cardData: obj});
+        let { cardData } = this.state;
+        cardData = {...cardData, ...e, eventId: data._id}
+        this.setState({cardData});
     }
 
     async postTicketData(obj){
         let data = this.props.location.state || this.props.otherData;
-        let objData = {data, obj}
-        let req = await HttpUtils.post('eventTicket', objData)
-        if(req.code === 200){
-          this.setState({objData, msg: true, loader: false})
-        }
+        let objData = {data, obj};
+        this.setState({objData}, () => {
+            this.child2.creditCard();
+        });
+    }
+
+    changeHandler(data){
+        this.setState({msg: true, loader: false});
+    }
+
+    handleError = () => {
+        this.setState({loader: false})
+    }
+
+    changeNameEmail = (e) => {
+        let { cardData } = this.state;
+        cardData = {...cardData, ...e};
+        this.setState({ cardData });
     }
 
     render(){
@@ -60,8 +80,17 @@ class BuyerDetail extends Component{
                 <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}>
                 </div>
                 <div className="col-md-8" style={{marginTop: '70px'}}>
-                    <ContactDetail onRef={ref => (this.child = ref)} data={this.state.cardData} onPostTicketData={this.postTicketData.bind(this)}/>
-                    {(data.earlyBird || data.normalTicket) && <CardDetail/>}
+                    <ContactDetail
+                        onRef={ref => (this.child = ref)}
+                        data={this.state.cardData}
+                        onError={this.handleError}
+                        onChange={this.changeNameEmail}
+                        onPostTicketData={this.postTicketData.bind(this)}/>
+                    {(data.earlyBird || data.normalTicket) && <CardDetail
+                        onRef={ref => (this.child2 = ref)}
+                        data={this.state.cardData}
+                        onError={this.handleError}
+                        onChange={this.changeHandler.bind(this)}/>}
                     <TermsandConditions/>
                     <div className="row center_global row">
                         {this.state.loader && <Spin indicator={antIcon} />}
@@ -69,17 +98,20 @@ class BuyerDetail extends Component{
                     </div>
                 </div>
                 <div className="col-md-4 hidden-xs hidden-sm" style={{marginTop: '50px'}}>
-                    <OrderCard data={data} onChange={this.onReceiveData.bind(this)}/>
+                    <OrderCard 
+                        data={data} 
+                        onChange={this.onReceiveData.bind(this)}
+                    />
                 </div>
             </div>
-        )
+        );
     }
 }
 
 const mapStateToProps = (state) => {
     return({
         otherData: state.otherData
-    })
+    });
 }
 
 export default connect(mapStateToProps)(BuyerDetail);

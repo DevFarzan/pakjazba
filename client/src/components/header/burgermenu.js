@@ -80,8 +80,8 @@ state = {
 
              <div style={{background:'#ececec',width:'100%'}} className="hidden-xs">
 
-                <span to={`/`} className="glyphicon glyphicon-home" style={{color:'black',fontSize:'17px',margin: '21px',cursor:'pointer'}}>
-                </span>
+                <Link to={`/`}><span className="glyphicon glyphicon-home" style={{color:'black',fontSize:'17px',margin: '21px',cursor:'pointer'}}>
+                </span></Link>
                 <span type="" name='room' ghost className="button_globalclassName">
                     <Link  rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Room Renting</Link>
                 </span>

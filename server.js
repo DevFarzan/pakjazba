@@ -111,9 +111,9 @@ mongoose.connect(configDB.EvenNodeDB,{ useNewUrlParser: true },function(err,db){
   }
 })
 
-app.get('/', function(req, res) {
+/*app.get('/', function(req, res) {
   console.log('Cookies: ', req.cookies)
-})
+})*/
 
 // API calls
 app.get('/api/hello', (req, res) => {

@@ -119,6 +119,7 @@ mongoose.connect(configDB.EvenNodeDB,{ useNewUrlParser: true },function(err,db){
 // API calls
 app.get('/api/hello', (req, res) => {
   res.send({ express: 'Hello From Express' });
+  
 });
 
 app.get ('/api/keys',(req,res) =>{
@@ -514,18 +515,18 @@ app.get('/api/getBlogReviews',function(req,res){
               token = jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs');
               console.log(jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs'), 'userrrrrrrr')
                 req.session.cookie.user = token;
-                req.session.user = token;
-                // req.session.save();
-                // console.log(req.session.user, '0000000000000000')
-                res.send({
-                 _id:User[0]._id,
-                name:User[0].username,
-                email:User[0].email,
-                profileId:User[0].profileId,
-                token:jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs'),
-                code:200,
-                msg:'User logged successfully'
-              })
+                // req.session.user = token;
+                req.session.save((err) => {
+                    res.send({
+                        _id:User[0]._id,
+                        name:User[0].username,
+                        email:User[0].email,
+                        profileId:User[0].profileId,
+                        token:jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs'),
+                        code:200,
+                        msg:'User logged successfully',
+                    })
+                });
             }//end else if
             else {
                 res.send({

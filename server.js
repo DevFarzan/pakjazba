@@ -2,7 +2,7 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
-// const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 var nodemailer = require("nodemailer");
 var passport = require('passport');
 var bodyParser = require('body-parser')
@@ -12,21 +12,21 @@ const keys = require('./config/keys');
 const stripe = require("stripe")(keys.stripeSecretKey);
 const moment = require('moment');
 const QRCode = require('qrcode');
-// var session = require('express-session');
+var session = require('express-session');
 
 const port = process.env.PORT || 5000;
 const app = express();
-// app.use(cookieParser());
+app.use(cookieParser());
 
-// app.use(session({
-//     key: 'user_sid',
-//     secret: 'somerandonstuffs',
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: {
-//         expires: 600000
-//     }
-// }));
+app.use(session({
+    key: 'user_sid',
+    secret: 'somerandonstuffs',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 600000
+    }
+}));
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -77,24 +77,24 @@ var eventTicket = mongoose.model('EventTicketSchema');
 
 app.use(passport.initialize());
 
- // app.use((req, res, next) => {
- //   console.log('ppppppppppppppppp')
- //     if (req.cookies.user_sid && !req.session.user) {
- //         res.clearCookie('user_sid');
- //     }
- //     next();
- // });
+app.use((req, res, next) => {
+    console.log('ppppppppppppppppp')
+    if (req.cookies.user_sid && !req.session.user) {
+        res.clearCookie('user_sid');
+    }
+   next();
+});
 
-// var sessionChecker = (req, res, next) => {
-//   console.log(req.session, 'aaaaaaaa')
-//   console.log(req.cookies, 'bbbbbbbbbbb')
-//     if (req.session.user && req.cookies.user_sid) {
-//         console.log('111111111111')
-//     } else {
-//       console.log('2222222222222')
-//         next();
-//     }    
-// };
+var sessionChecker = (req, res, next) => {
+  console.log(req.session, 'aaaaaaaa')
+  console.log(req.cookies, 'bbbbbbbbbbb')
+    if (req.session.user && req.cookies.user_sid) {
+        console.log('111111111111')
+    } else {
+      console.log('2222222222222')
+        next();
+    }    
+};
 
 // //database Development
 var configDB = require('./config/database.js');
@@ -161,7 +161,7 @@ app.post('/api/blogpost',(req,res) => {
 });
 
 app.get('/api/getblog', (req,res) =>{
-    // console.log('Cookies: ', req.cookies)
+    console.log('Cookies: ', req.cookies)
     blog.find(function(err,data){
         res.send({
             blog:data

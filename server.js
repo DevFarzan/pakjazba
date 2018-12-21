@@ -73,11 +73,12 @@ var jobApplied = mongoose.model('jobApplied');
 var blogReview = mongoose.model('blogReviews');
 var eventPortal = mongoose.model('EventSchema');
 var eventTicket = mongoose.model('EventTicketSchema');
+var sess;
 
 app.use(passport.initialize());
 
 app.use((req, res, next) => {
-    console.log(req.session.use, 'ppppppppppppppppp')
+    console.log(req.session.user, 'ppppppppppppppppp')
     console.log(req.session.cookie.user, 'qqqqqqqqqqq')
     if (req.cookies.user_sid && !req.session.user) {
         res.clearCookie('user_sid');
@@ -496,6 +497,7 @@ app.get('/api/getBlogReviews',function(req,res){
 
 /*========================user signin start==============================================*/
  app.get('/api/usersignin',(req,res) =>{
+    sess = req.session;
     var Useremail = req.query.useremail,
         Password = req.query.password;
         boo = false;
@@ -514,7 +516,8 @@ app.get('/api/getBlogReviews',function(req,res){
               token = jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs');
               console.log(jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs'), 'userrrrrrrr')
                 req.session.cookie.user = token;
-                // req.session.user = token;
+                req.session.user = token;
+                
                 req.session.save((err) => {
                     res.send({
                         _id:User[0]._id,

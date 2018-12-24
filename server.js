@@ -77,6 +77,21 @@ var sess;
 
 app.use(passport.initialize());
 
+// //database Development
+var configDB = require('./config/database.js');
+mongoose.connect(configDB.EvenNodeDB,{ useNewUrlParser: true },function(err,db){
+  if(err){
+      console.log(err);
+      db.on('error', console.error.bind(console, 'Database connection failed:'));
+  }
+  else {
+    var db = mongoose.connection;
+      //console.log('connected to '+ configDB.EvenNodeDB);
+      console.log("Database :: pakjazba :: connection established successfully.");
+      //db.close();
+  }
+})
+
 app.use((req, res, next) => {
     console.log(req.session.user, 'ppppppppppppppppp')
     console.log(req.session.cookie.user, 'qqqqqqqqqqq')
@@ -96,21 +111,6 @@ var sessionChecker = (req, res, next) => {
         next();
     }    
 };
-
-// //database Development
-var configDB = require('./config/database.js');
-mongoose.connect(configDB.EvenNodeDB,{ useNewUrlParser: true },function(err,db){
-  if(err){
-      console.log(err);
-      db.on('error', console.error.bind(console, 'Database connection failed:'));
-  }
-  else {
-    var db = mongoose.connection;
-      //console.log('connected to '+ configDB.EvenNodeDB);
-      console.log("Database :: pakjazba :: connection established successfully.");
-      //db.close();
-  }
-})
 
 /*app.get('/', function(req, res) {
   console.log('Cookies: ', req.cookies)
@@ -517,7 +517,6 @@ app.get('/api/getBlogReviews',function(req,res){
               console.log(jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs'), 'userrrrrrrr')
                 req.session.cookie.user = token;
                 req.session.user = token;
-                
                 req.session.save((err) => {
                     res.send({
                         _id:User[0]._id,
@@ -526,6 +525,7 @@ app.get('/api/getBlogReviews',function(req,res){
                         profileId:User[0].profileId,
                         token:jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs'),
                         code:200,
+                        token: token,
                         msg:'User logged successfully',
                     })
                 });

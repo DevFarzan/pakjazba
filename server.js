@@ -13,8 +13,12 @@ const stripe = require("stripe")(keys.stripeSecretKey);
 const moment = require('moment');
 const QRCode = require('qrcode');
 var session = require('express-session');
+const winston = require('winston');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const port = process.env.PORT || 5000;
+if (process.stdout._handle) process.stdout._handle.setBlocking(true);
 const app = express();
 app.use(bodyParser.json()) // handle json data
 app.use(bodyParser.urlencoded({ extended: true })) // handle URL-encoded data
@@ -29,6 +33,17 @@ app.use(session({
         expires: 600000
     }
 }));
+
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.printf(info => {
+            return `${info.timestamp} ${info.level}: ${info.message}`;
+        })
+    ),
+    transports: [new winston.transports.Console()]
+});
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -93,7 +108,8 @@ mongoose.connect(configDB.EvenNodeDB,{ useNewUrlParser: true },function(err,db){
 })
 
 app.use((req, res, next) => {
-    console.log(req.session.user, 'ppppppppppppppppp')
+    logger.log('info', 'A request was received');
+    console.log(req.session, 'ppppppppppppppppp')
     console.log(req.session.cookie.user, 'qqqqqqqqqqq')
     if (req.cookies.user_sid && !req.session.user) {
         res.clearCookie('user_sid');
@@ -163,8 +179,8 @@ app.post('/api/blogpost',(req,res) => {
 });
 
 app.get('/api/getblog', sessionChecker, (req,res) =>{
-    console.log('Cookies: ', req.cookies)
-    console.log('Session: ', req.session)
+    console.log('Cookiessssssss: ', req.cookies)
+    console.log('Sessionsssssssss: ', req.session)
     blog.find(function(err,data){
         res.send({
             blog:data
@@ -280,7 +296,6 @@ rand=Math.floor((Math.random() * 100) + 54);
             </td>
           </tr>
         </table>
-
       </td>
     </tr>
   </table>
@@ -302,19 +317,20 @@ rand=Math.floor((Math.random() * 100) + 54);
        }
 });
   console.log(rand)
+    // dont remove these encrypt or hash lines.........
+    // bcrypt.hash(password, saltRounds, function(err, hash) {
 
     var user_info = new User({
         username: nickname,
         email: email,
-        password: password,
+        password: password, // change this to hash when doing work of encryption,
         InsertedDate:date,
         randomno: rand,
         subscribe:false,
         status:false,
         blocked:false
-
     });
-
+     
   //res.send({message:user_info,code:200});
       //res.json({token: jwt.sign({ email: user_info.Useremail, _id: user_info._id}, 'RESTFULAPIs')})
       user_info.save(function(err,data) {
@@ -324,14 +340,14 @@ rand=Math.floor((Math.random() * 100) + 54);
               })
           }
           else {
-            var facebookLogindata = new facebookLogin({
-           email:email,
-           name:nickname,
-           password:password
-  })
-  facebookLogindata.save(function(err,data){
-    console.log(data);
-  })
+              var facebookLogindata = new facebookLogin({
+              email:email,
+              name:nickname,
+             password:password // change this to hash when doing work of encryption
+            })
+            facebookLogindata.save(function(err,data){
+              console.log(data);
+            })
               res.send({
                   _id: user_info._id,
                   name: user_info.username,
@@ -340,13 +356,9 @@ rand=Math.floor((Math.random() * 100) + 54);
                   code: 200
               })
           }
-       })
-      
-  
-      //  user_info.save(function(err,data) {
-      //   res.send({err:err,data:data})
-      // })
+       });
      });
+    // });
 // /*============================user register end===========================================*/
 
 app.get('/verify',async function(req,res){
@@ -503,7 +515,7 @@ app.get('/api/getBlogReviews',function(req,res){
         boo = false;
         token = ''
 
-       User.find({email:Useremail,password:Password},{__v:0},
+       User.find({email:Useremail},{__v:0},
         function(err,User){
             if(err){
                 res.send({
@@ -513,22 +525,34 @@ app.get('/api/getBlogReviews',function(req,res){
                 });
             }//end if
             else if(User!=''){
-              token = jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs');
-              console.log(jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs'), 'userrrrrrrr')
-                req.session.cookie.user = token;
-                req.session.user = token;
-                req.session.save((err) => {
-                    res.send({
-                        _id:User[0]._id,
-                        name:User[0].username,
-                        email:User[0].email,
-                        profileId:User[0].profileId,
-                        token:jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs'),
-                        code:200,
-                        token: token,
-                        msg:'User logged successfully',
-                    })
-                });
+                // bcrypt.compare(Password, User[0].password, function(err, response) {
+                //     if(response){
+                        token = jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs');
+                        console.log(jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs'), 'userrrrrrrrrrrrr')
+                        // req.session.cookie.user = token;
+                        logger.log('info', 'A request was received');
+                        // logger.log(jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs'), 'userrrrrrrrrrrrr');
+                        req.session.user = token;
+                        req.session.save((err) => {
+                          console.log(!err, 'kkkkkkk')
+                          console.log(err, 'llllllllll')
+                            if(!err){
+                                res.send({
+                                    _id:User[0]._id,
+                                    name:User[0].username,
+                                    email:User[0].email,
+                                    profileId:User[0].profileId,
+                                    token:jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs'),
+                                    code:200,
+                                    token: token,
+                                    msg:'User logged successfully',
+                                })
+                            }
+                        });
+                //     }else {
+                //         res.send({msg: 'Invalid Email or Password'});
+                //     }
+                // }); 
             }//end else if
             else {
                 res.send({

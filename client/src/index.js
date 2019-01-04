@@ -142,6 +142,17 @@ ReactDOM.render(
 
 
 
+					{/*<Route path="/detail_roomRent" component={DetailRoommates}></Route>
+					<Route path="/market_business" component={MarketBusiness}></Route>
+					<Route path="/market_classified" component={MarketClassified}></Route>
+					<Route path="/market_roommates" component={MarketRoommates}></Route>
+    				<Route path="/market_jobPortal" component={JobClassified}></Route>
+			      	<Route path="/market_eventPortal" component={MarketEvent}></Route>
+			        <Route path="/detail_eventPortal/:value" component={EventDetail}></Route>
+			        <Route path="/Ticket_eventPortals" component={TicketDetail}></Route>
+				    <Route path="/Buyer_Detailpage" component={BuyerDetail}></Route>
+				    <Route path="/market_ecommerceMarket" component={EcommerceMarket}></Route>
+				    <Route path="/detail_ecommercedetail" component={EcomDetail}></Route>*/}
 				</div>
 			</BrowserRouter>
 		</Provider>

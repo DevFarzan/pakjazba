@@ -35,7 +35,7 @@ state = {
                                   <span className="icon-bar"></span>
                                   <span className="icon-bar"></span>
                               </button>
-                              <Link to={`/`} className="navbar-brand"><img alt='' src="./images/mobile-logo.png" style={{"width": "100px",marginTop: "28px"}} /></Link>
+                              <Link to={`/`} className="navbar-brand"><img alt='' src="https://res.cloudinary.com/dxk0bmtei/image/upload/v1544616262/mobile-logo_knmrrp.png" style={{"width": "100px",marginTop: "28px"}} /></Link>
                           </div>
                       </div>
                       <div className="col-md-10 col-sm-6 col-xs-6">
@@ -80,8 +80,8 @@ state = {
 
              <div style={{background:'#ececec',width:'100%'}} className="hidden-xs">
 
-                <span to={`/`} className="glyphicon glyphicon-home" style={{color:'black',fontSize:'17px',margin: '21px',cursor:'pointer'}}>
-                </span>
+                <Link to={`/`}><span className="glyphicon glyphicon-home" style={{color:'black',fontSize:'17px',margin: '21px',cursor:'pointer'}}>
+                </span></Link>
                 <span type="" name='room' ghost className="button_globalclassName">
                     <Link  rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Room Renting</Link>
                 </span>

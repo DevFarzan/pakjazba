@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var config = require('../config/config');
 
-
 var profileSchema = new mongoose.Schema({
 	user_id:{type:String},
 	description:{type:String},

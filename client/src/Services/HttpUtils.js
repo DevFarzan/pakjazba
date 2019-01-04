@@ -1,7 +1,7 @@
 import { AsyncStorage } from '@callstack/async-storage'
 
-// const BASE_URL = 'http://localhost:5000/api';
-const BASE_URL = 'https://pure-hollows-17968.herokuapp.com/api';
+const BASE_URL = 'http://localhost:5000/api';
+// const BASE_URL = 'https://pure-hollows-17968.herokuapp.com/api';
 
 
 const headersFor = (token) => {
@@ -12,6 +12,8 @@ const headersFor = (token) => {
     if (token) headers['Authorization'] = 'Bearer ' + token;
     return headers;
 }
+
+const credentials = "same-origin";
 
 const handleErrors = (response) => {
     return response.json().then(responseData => {
@@ -38,7 +40,7 @@ const hitEndpoint = (method, endpoint, token, body) => {
     let url = [BASE_URL, endpoint].join('/')
 
 
-    return fetch(url, { method, headers, body }).then((response) => {
+    return fetch(url, { method, credentials, headers, body }).then((response) => {
         return handleErrors(response)
     }).catch((err) => {
         if (err.message === 'Network request failed')

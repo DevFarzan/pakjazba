@@ -12,8 +12,12 @@
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
+    "bcrypt": "^3.0.3",
     "body-parser": "^1.18.3",
-    "express": "^4.16.2",
+    "cookie-parser": "^1.4.3",
+    "event-stream": "4.0.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "html2canvas": "^1.0.0-alpha.12",
     "ip": "^1.1.5",
     "jsonwebtoken": "^8.3.0",
@@ -40,7 +44,8 @@
     "sha1": "^1.1.1",
     "stripe": "^6.15.2",
     "superagent": "^3.8.3",
-    "validator": "^10.4.0"
+    "validator": "^10.4.0",
+    "winston": "^3.1.0"
   },
   "devDependencies": {
     "concurrently": "^3.5.0"

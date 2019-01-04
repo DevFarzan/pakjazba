@@ -97,6 +97,25 @@ state = {
                 <span type="" name='events' ghost className="button_globalclassName">
                     <Link rel="noopener noreferrer" to={`/market_eventPortal`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Events</Link>
                 </span>
+                <span type="" name='EcommerceMarket' ghost className="button_globalclassName">
+                    <Link rel="noopener noreferrer" to={`/market_ecommerceMarket`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Ecommerce</Link>
+                </span>
+                <span type="" name='EcommerceMarket' ghost className="button_globalclassName">
+                    <Link rel="noopener noreferrer" to={`/detail_ecommercedetail`} style={{color:'black',fontSize:'17px',margin: '21px'}}>EcommerceDetail</Link>
+                </span>
+                <span type="" name='GridProduct' ghost className="button_globalclassName">
+                    <Link rel="noopener noreferrer" to={`/products_GridStyle`} style={{color:'black',fontSize:'17px',margin: '21px'}}>GridProducts</Link>
+                </span>
+                <span type="" name='ProductDetails' ghost className="button_globalclassName">
+                    <Link rel="noopener noreferrer" to={`/products_DetailStyle`} style={{color:'black',fontSize:'17px',margin: '21px'}}>ProductDetails</Link>
+                </span>
+                <span type="" name='EcomForms' ghost className="button_globalclassName">
+                    <Link rel="noopener noreferrer" to={`/Forms_Ecommerce`} style={{color:'black',fontSize:'17px',margin: '21px'}}>EcomForms</Link>
+                </span>
+                <span type="" name='Entertainment' ghost className="button_globalclassName">
+                    <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Entertainment</Link>
+                </span>
+
                 {/*<span type="" name='events' ghost className="button_globalclassName">
                     <Link rel="noopener noreferrer" to={`/detail_eventPortal`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Details</Link>
                 </span>*/}

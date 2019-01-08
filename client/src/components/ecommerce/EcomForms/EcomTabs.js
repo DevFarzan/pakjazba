@@ -79,7 +79,6 @@ class EcomTabs extends Component{
             <div role="tabpanel" class="tab-pane fade" id="Section5">
               <KeywordsForm/>
             </div>
-
         </div>
       </div>
     </div>

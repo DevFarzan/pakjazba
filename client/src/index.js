@@ -37,6 +37,7 @@ import GridProducts from './components/ecommerce/ecommercedetail/GridProducts';
 import EproductDetails from './components/ecommerce/productdetail/EproductDetails';
 import EcomForms from './components/ecommerce/EcomForms/EcomForms';
 import EntertainmentHome from './components/entertainment/entertainmenthome/EntertainmentHome';
+import EntCategory from './components/entertainment/entertainmentPages/EntCategory';
 //import TicketDetail from './components/events/TicketDetail';
 //import TicketDetail from './components/events/TicketDetail'
 import {PrivateRoute} from './components/signin_seperate';
@@ -128,6 +129,7 @@ ReactDOM.render(
 
           {/*=============Entertainment====================*/}
           <Route path="/entertainment_Home" component={EntertainmentHome}></Route>
+          <Route path="/entertainment_Category" component={EntCategory}></Route>
           {/*===============Entertainement end===============================*/}
 
 

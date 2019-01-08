@@ -115,6 +115,7 @@ state = {
                 <span type="" name='Entertainment' ghost className="button_globalclassName">
                     <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Entertainment</Link>
                 </span>
+                
 
                 {/*<span type="" name='events' ghost className="button_globalclassName">
                     <Link rel="noopener noreferrer" to={`/detail_eventPortal`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Details</Link>

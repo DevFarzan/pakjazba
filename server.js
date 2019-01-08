@@ -14,7 +14,7 @@ const moment = require('moment');
 const QRCode = require('qrcode');
 var session = require('express-session');
 const winston = require('winston');
-const bcrypt = require('bcrypt');
+//const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const port = process.env.PORT || 5000;
@@ -125,7 +125,7 @@ var sessionChecker = (req, res, next) => {
     } else {
       console.log('2222222222222')
         next();
-    }    
+    }
 };
 
 /*app.get('/', function(req, res) {
@@ -201,7 +201,7 @@ app.get('/api/getcategory',(req,res) =>{
   categorypost.find(function(err,data){
     res.send({err:err,data:data});
   })
-        
+
 })
 
 
@@ -267,7 +267,7 @@ rand=Math.floor((Math.random() * 100) + 54);
                         </td>
                         </tr>
                         </table>
-                      
+
                      <table class="body-sub" style="margin-top: 25px;padding-top: 25px;border-top: 1px solid #E7EAEC;">
                       <tr>
                         <td>
@@ -330,7 +330,7 @@ rand=Math.floor((Math.random() * 100) + 54);
         status:false,
         blocked:false
     });
-     
+
   //res.send({message:user_info,code:200});
       //res.json({token: jwt.sign({ email: user_info.Useremail, _id: user_info._id}, 'RESTFULAPIs')})
       user_info.save(function(err,data) {
@@ -552,7 +552,7 @@ app.get('/api/getBlogReviews',function(req,res){
                 //     }else {
                 //         res.send({msg: 'Invalid Email or Password'});
                 //     }
-                // }); 
+                // });
             }//end else if
             else {
                 res.send({
@@ -562,7 +562,7 @@ app.get('/api/getBlogReviews',function(req,res){
                 });
             }
        })
-       
+
   //   passport.authenticate('local', function(err, user, info){
   //   var token;
 
@@ -917,7 +917,7 @@ classifiedBusiness.findOne({"_id" : buyselldata.objectId},function(err,buysell){
 /*======================get Market place start========================================================*/
 app.get('/api/marketplace',function(req,res){
   var session = req.query.session;
-  
+
     yellowPagesBusiness.find(function(err,yellowPages){
       // console.log(yellowPages);
      if(yellowPages!=''){
@@ -970,7 +970,7 @@ app.get('/api/marketplace',function(req,res){
               msg:'data recieve successfully'
             });
           });
-        });    
+        });
       });
     });
   });
@@ -1082,7 +1082,7 @@ app.get('/api/getprofile',function(req,res){
         content:specificProfile,
         msg:'Specific Profile'
       })
-     }   
+     }
   });
 });
 /*====================get profile api end==============================================================*/
@@ -1095,7 +1095,7 @@ app.post('/api/changepassword',function(req,res){
       if(err){
         //console.log("Profile not found Error:::", err);
          return res.status(400).json({"Unexpected Error:: ": err});
-      }//end 
+      }//end
       else if(speUser){
         if(req.body.currentPassword != speUser.password){
           return res.status(200).json({"error":"Password not belong to current user"});
@@ -1350,7 +1350,7 @@ app.post('/api/postEventPortal', (req, res) => {
             randomKey:postEventPortal.randomKey,
             state:postEventPortal.state,
             userId:postEventPortal.userId,
-            website:postEventPortal.website 
+            website:postEventPortal.website
         });
 
         eventData.save((error, response) => {
@@ -1443,7 +1443,7 @@ app.post('/api/eventTicket', (req, res) => {
         email: ticketInfo.email,
         eventId: ticketInfo.eventId,
         firstName: ticketInfo.firstName,
-        hoNumber: ticketInfo.hoNumber,  
+        hoNumber: ticketInfo.hoNumber,
         lastName: ticketInfo.lastName,
         moNumber: ticketInfo.moNumber,
         nTicketVal: ticketInfo.nTicketVal,
@@ -1649,7 +1649,7 @@ var getuserfields = req.body;
     })
        }
      })
-  
+
 })
 
 app.post("/api/charge", async (req, res) => {

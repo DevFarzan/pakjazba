@@ -785,7 +785,7 @@ color: #fff;
 }
 
 .navbar-fixed-top.scrolled {
-  background-color: #032a30 !important;
+  background-color: floralwhite !important;
   transition: background-color 200ms linear;
 }
 
@@ -1765,7 +1765,7 @@ color: #fff;
 }
 
 .navbar-fixed-top.scrolled {
-  background-color: #032a30 !important;
+  background-color: floralwhite !important;
   transition: background-color 200ms linear;
 }
 
@@ -1965,3 +1965,103 @@ color: #fff;
         right: 0;
     }
 }
+
+
+/*=================mobile menu start=====================================*/
+.overlay {
+  background:rgb(3, 42, 48) !important;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 999;
+  top:0;
+  left:0;
+  background-color:rgb(0,0,0);
+  background-color:rgba(0,0,0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+  color: white;
+}
+
+.overlay-content {
+  position:relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+  color:white;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+  color:white;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+}
+
+
+
+
+/*================mobile menu end=======================================*/
+
+
+/*================new header coding====================================*/
+.post_need{
+    font-size: var(--font-button-small-font-size, 14px) !important;
+    font-family: var(--font-button-small-font-family, Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif) !important;
+    text-transform: var(--font-button-small-text-transform, undefined) !important;
+    padding-top: var(--spacing-button-small-vertical, 6px) !important;
+    padding-bottom: var(--spacing-button-small-vertical, 6px) !important;
+    font-weight: var(--font-book-font-weight, 600) !important;
+    padding-left: var(--spacing-button-small-horizontal, 15px) !important;
+    padding-right: var(--spacing-button-small-horizontal, 15px) !important;
+    box-shadow: var(--shadow-button-level0-box-shadow, none) !important;
+    
+}
+.global_submenu{
+  padding-left:76px;
+  padding-top:8px;
+}
+
+
+
+
+/*================new header coding start=============================*/
+
+/*================footer coding start=================================*/
+.jazba_footer{
+  background: rgba(236, 236, 236, 0.48);
+}
+.jazba_text_align{
+  text-align: center;
+}
+.social_button{
+    background: black;
+    color: white;
+    border: none;
+    font-size: 21px;
+}
+/*==============footer coding end=====================================*/

@@ -4,6 +4,7 @@ import Burgermenu from './components/header/burgermenu';
 import Slider from './components/header/Slider';
 import {HttpUtils} from "./Services/HttpUtils";
 
+
 class App extends Component {
     constructor(props) {
         super(props)
@@ -40,15 +41,18 @@ class App extends Component {
     render() {
         const hide=true;
         return (
-            <span>
+            <div >
             {/*<img src={'../images/home.png'} style={{width: '100%', position: 'relative', marginTop: '-20px'}}/>*/}
-                <div className ="" style={{"backgroundImage":"url('../images/home-1.png')", marginTop : "46px",backgroundSize: 'cover' }}>
+                <span className="hidden-xs" style={{marginTop : "46px"}}></span>
+                <span className="visible-xs" style={{marginTop : "-19px"}}></span>
+                {/*<div className ="" style={{"backgroundImage":"url('../images/home-1.png')"backgroundSize: 'cover' }}>*/}
+                    <div>
                     <div className="background-image" >
                         <Burgermenu/>
                         <Slider mainH1="Pak Jazba" mainH2="Connecting Communities" hide={hide} />
                     </div>
                 </div>
-            </span>
+            </div>
         );
     }
 }

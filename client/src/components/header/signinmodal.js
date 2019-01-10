@@ -298,7 +298,7 @@ class Signin extends Component{
         return(
             <div className="">
                 <span>
-                    {dropdown ? <span style={{color: "white"}}><Dropdowns style={{paddingLeft: '10px'}} modalContent={this.props.modalContent}/></span> : <span onClick={this.showModal} className="signuphover">Sign Up</span>}
+                    {dropdown ? <span style={{}}><Dropdowns style={{paddingLeft: '10px'}} modalContent={this.props.modalContent}/></span> : <span onClick={this.showModal} className="signuphover">Sign Up</span>}
                     <Modal
                         visible={visible}
                         title="Sign Up"

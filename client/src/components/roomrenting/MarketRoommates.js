@@ -38,7 +38,9 @@ class MarketRoommates extends Component{
         return(
             <div>
                 <span>
-                <div className ="" style={{"backgroundImage":"url('../images/bgc-images/room-renting.png')", marginTop : "104px",backgroundSize: 'cover'}}>
+                <span className="hidden-xs" style={{marginTop : "104px"}}></span>
+                <span className="visible-xs" style={{marginTop : "-19px"}}></span>
+                <div className ="" style={{"backgroundImage":"url('../images/bgc-images/room-renting.png')",backgroundSize: 'cover'}}>
                     <div className="background-image">
                         <Burgermenu/>
                         <Slider mainH1="Explore Homes" mainH2="Find Your Perfect Match"/>

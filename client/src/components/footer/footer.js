@@ -4,9 +4,8 @@ import './footer.css'
 class Footer extends Component{
     render(){
         return(
-            <footer id="myFooter">
-
-                <div className="">
+            <footer className="jazba_footer">
+                {/*<div className="">
                     <div className="row">
                         <div className="col-sm-3" style={{textAlign:'center'}}>
                             <h5>Get started</h5>
@@ -40,7 +39,7 @@ class Footer extends Component{
                             <img src="../images/logo.png" style={{width:'74%'}} />
                         </div>
                     </div>
-                </div>
+                </div>*/}
                 {/*<div className="second-bar">
                     <div className="container">
                         <h2 className="logo"><a href=""> LOGO </a></h2>
@@ -51,6 +50,55 @@ class Footer extends Component{
                         </div>
                     </div>
                 </div>*/}
+                <div className="row">
+                    <div className="col-md-12 jazba_text_align">
+                        <img alt='' src="../images/pakjazba_new.png" style={{width:'19%'}} />
+                    </div>
+                </div>
+                <div className="row" style={{padding:'0px'}}>
+                    <div className="col-md-6" style={{textAlign:'center'}}>
+                        <span style={{marginLeft:'51%'}}><b>Contact Us</b></span>
+                    </div>
+                    <div className="col-md-6" style={{textAlign:'center'}}>
+                       <span style={{marginRight:'48%'}}><b>Post Your Need</b></span> 
+                    </div>
+                </div>
+                <div className="row" style={{padding:'0px'}}>
+                    <div className="col-md-6" style={{textAlign:'center'}}>
+                        <span style={{marginLeft:'51%'}}><b>info@pakjazba.com</b></span>
+                    </div>
+                    <div className="col-md-6" style={{textAlign:'center'}}>
+                       <span style={{marginRight:'48%'}}><b>Find expert service providers</b></span> 
+                    </div>
+                </div>
+                <div className="row" style={{padding:'0px'}}>
+                    <div className="col-md-6" style={{textAlign:'center'}}>
+                        <span style={{marginLeft:'51%'}}><b>+01 456 7890</b></span>
+                    </div>
+                    <div className="col-md-6" style={{textAlign:'center'}}>
+                       <span style={{marginRight:'48%'}}><b>For All Your Local Need</b></span> 
+                    </div>
+                </div>
+                <div className="row" style={{padding:'0px'}}>
+                    <div className="col-md-6" style={{textAlign:'center'}}>
+                        <span style={{marginLeft:'51%'}}></span>
+                    </div>
+                    <div className="col-md-6" style={{textAlign:'center'}}>
+                       <span style={{marginRight:'48%'}}><b>Get Started Now!</b></span> 
+                    </div>
+                </div>
+                <div className="row" style={{padding:'0px'}}>
+                    <div className="col-md-12" style={{textAlign:'center'}}>
+                        <span><b>Follow Us</b></span>
+                    </div>
+                </div>
+                <div className="row" style={{padding:'0px'}}>
+                    <div className="col-md-12" style={{textAlign:'center'}}>
+                        <button className="fa fa-facebook social_button"><i></i></button>
+                        <button className="fa fa-linkedin social_button" style={{margin:'6px'}}></button>
+                        <button className="fa fa-google-plus social_button"></button>
+                    </div>
+                </div>
             </footer>
         )
     }

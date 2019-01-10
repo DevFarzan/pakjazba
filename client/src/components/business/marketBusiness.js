@@ -24,7 +24,9 @@ class MarketBusiness extends Component{
         return(
             <div>
                 <span>
-                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/busnes-listing.png')", marginTop : "105px",backgroundSize: 'cover'}}>
+                    <span className="hidden-xs" style={{marginTop : "105px"}}></span>
+                    <span className="visible-xs" style={{marginTop:'-19px'}}></span>
+                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/busnes-listing.png')",backgroundSize: 'cover'}}>
                         <div className="background-image">
                             <Burgermenu/>
                             <Slider mainH1="Business Listing" mainH2="Businesses Near You"/>

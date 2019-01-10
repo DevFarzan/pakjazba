@@ -51,6 +51,7 @@ class Home1 extends Component{
                 <App/>
                 <div className="row">
                     <div className="col-md-12">
+                    
                       <h4 style={{color:'black',marginLeft:'15px',fontSize:'22px',fontWeight:'bold',marginTop: '13px', fontFamily:'crimson'}}>Find what you need…</h4>
                       {/*<span><Form/></span>*/}
                     </div>
@@ -123,7 +124,7 @@ class Home1 extends Component{
                 <div className="row" style={{marginTop:'-76px'}}>
                     <div className="col-md-5">
                         <Link to={{pathname: `/detail_blog`, state: blogs.blog && blogs.blog[0]}}>
-                            <img alt='' src={blogs.blog && blogs.blog[0].main[0].image[0]} width="540" height="350" />
+                            <img alt='' src={blogs.blog && blogs.blog[0].main[0].image[0]} width="100%" height="350" />
                         </Link>
                         <h4> </h4>
                         {/*<h4 className="tag" style={{backgroundColor: "#008080",textAlign:"center"}}><b>Loram Ipsum </b></h4>*/}

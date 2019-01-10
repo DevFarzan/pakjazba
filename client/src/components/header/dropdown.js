@@ -49,7 +49,7 @@ class Dropdowns extends Component{
         };
 
         const menu = (
-            <Menu onClick={onClick}>
+            <Menu onClick={onClick} style={{color:'black'}}>
                 <Menu.Item key="1" onClick={this.profilePage}>My Profile</Menu.Item>
                 <Menu.Item key="2">Settings</Menu.Item>
                 <Menu.Item key="3" onClick={this.handleChangeLogout}>Logout</Menu.Item>
@@ -57,7 +57,7 @@ class Dropdowns extends Component{
         );
 
         return(
-            <Dropdown overlay={menu}>
+            <Dropdown overlay={menu} style={{color:'black'}}>
                 <a className="ant-dropdown-link">
                     {localStorage.getItem('name')}<Icon type="down" />
                 </a>

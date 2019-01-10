@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import EntSlider from '../entertainmenthome/EntSlider';
 import EHeader from '../entertainmenthome/entertainmentHeader';
+import Footer from '../../footer/footer';
 import DramaSection from './CategorySelect';
 
 
@@ -15,6 +16,7 @@ class EntCategory extends Component{
           <EntSlider/>
           <DramaSection/>
         </div>
+        <Footer/>
       </div>
 
     )

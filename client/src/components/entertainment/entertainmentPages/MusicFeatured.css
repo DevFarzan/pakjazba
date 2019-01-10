@@ -1,0 +1,25 @@
+.textmusic{
+  margin-top: 5px;
+}
+
+.mcovertext{
+  color: black;
+  margin-top: -50px;
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.textmusic img{
+  width:100%;
+  height: 100px;
+}
+
+.textmusic p{
+  font-weight: bold;
+  color: black;
+}
+
+.textmusic h4{
+  font-weight: bold;
+}

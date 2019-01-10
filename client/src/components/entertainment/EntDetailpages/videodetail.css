@@ -1,0 +1,240 @@
+.videoheading{
+
+}
+
+.videoheading h6{
+  color: white;
+  background-color: #37a99b;
+  width:80px;
+  text-align: center;
+  font-size: 16px;
+  margin: 0px;
+}
+
+.h4{
+  margin-left: auto;
+  font-weight: bold;
+  font-family: Crimson Text , serif !important;
+  color: black;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+a.socialbox {
+  font-family: "Open Sans";
+  font-weight: 300;
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  padding: 5px 8px;
+  width: 180px;
+  margin: 10px 0 0 10px;
+}
+
+a.socialbox.facebook {
+  background-color: #2980b9;
+  -webkit-transition: background-color 0.25s ease-in-out;
+  transition: background-color 0.25s ease-in-out;
+}
+a.socialbox.twitter {
+  background-color: #3498db;
+  -webkit-transition: background-color 0.25s ease-in-out;
+  transition: background-color 0.25s ease-in-out;
+}
+
+
+a.socialbox .social-icon {
+  line-height: 25px;
+    font-size: 25px;
+    display: inline-block;
+    vertical-align: middle;
+    border-right: 1px solid rgba(255, 255, 255, 0.25);
+    padding-right: 0px;
+}
+a.socialbox .description {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 10px;
+  font-size: 13px;
+}
+
+a.socialbox .description span {
+  display: block;
+  line-height: 16px;
+}
+
+
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/* Styles */
+.precomend{
+  border-top: 1px solid #37a99b;
+    width: 75%;
+    font-weight: bold;
+    color: black;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+/* Styles */
+.precomend{
+  border-top: 1px solid #37a99b;
+    width: 70%;
+    font-weight: bold;
+    color: black;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+/* Styles */
+.precomend{
+  border-top: 1px solid #37a99b;
+    width: 75%;
+    font-weight: bold;
+    color: black;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+/* Styles */
+.precomend{
+  border-top: 1px solid #37a99b;
+    width: 30%;
+    font-weight: bold;
+    color: black;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+}
+
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 1224px) {
+/* Styles */
+.precomend{
+  border-top: 1px solid #37a99b;
+    width: 35%;
+    font-weight: bold;
+    color: black;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+/* Styles */
+.precomend{
+  border-top: 1px solid #37a99b;
+    width: 25%;
+    font-weight: bold;
+    color: black;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+}
+/* iPhone 6, 7, 8 ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+.precomend{
+  border-top: 1px solid #37a99b;
+    width: 75%;
+    font-weight: bold;
+    color: black;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+}
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+.videotag{
+  width:100px;
+  height: 250px;
+}
+}
+
+/* iPhone X ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+/* Styles */
+.precomend{
+  border-top: 1px solid #37a99b;
+    width: 75%;
+    font-weight: bold;
+    color: black;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+}
+
+
+/* iPhone XS Max, XR ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+/* Styles */
+.precomend{
+  border-top: 1px solid #37a99b;
+    width: 25%;
+    font-weight: bold;
+    color: black;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+/* Styles */
+.precomend{
+  border-top: 1px solid #37a99b;
+    width: 75%;
+    font-weight: bold;
+    color: black;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+}
+
+/* Samsung Galaxy S5 ----------- */
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+/* Styles */
+.precomend{
+  border-top: 1px solid #37a99b;
+    width: 75% !important;
+    font-weight: bold;
+    color: black;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+}
+
+.stylish-input-group .input-group-addon{
+    background: white !important;
+}
+.stylish-input-group .form-control{
+	border-right:0;
+	box-shadow:0 0 0;
+	border-color:#ccc;
+  height: 50px;
+  width: 300px;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+
+.btp{
+    background-color:yellow;
+    color:green;
+    width: 200px;
+    padding: 10px;
+
+}

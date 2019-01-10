@@ -83,10 +83,10 @@ class EHeader extends Component{
          <Link to={`/`}><span className="glyphicon glyphicon-home" style={{color:'black',fontSize:'17px',margin: '21px',cursor:'pointer'}}>
          </span></Link>
          <span type="" name='room' ghost className="button_globalclassName">
-             <Link  rel="noopener noreferrer" to={`/`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Entertainment</Link>
+             <Link  rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Entertainment</Link>
          </span>
          <span type="" name='bussiness' ghost style={{marginRight: "10px", marginLeft: "10px"}} className="button_globalclassName">
-             <Link rel="noopener noreferrer" to={`/market_business`} style={{color:'black',fontSize:'17px',margin: '21px'}}></Link>
+             <Link rel="noopener noreferrer" to={`/entertainment_detail`} style={{color:'black',fontSize:'17px',margin: '21px'}}>DetailPage</Link>
          </span>
          <span type="" name='Category' ghost className="button_globalclassName" style={{marginRight: '10px'}}>
              <Link rel="noopener noreferrer" to={`/market_eventPortal`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Movies</Link>
@@ -95,10 +95,10 @@ class EHeader extends Component{
              <Link rel="noopener noreferrer" to={`/entertainment_Category`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Dramas</Link>
          </span>
          <span type="" name='events' ghost className="button_globalclassName">
-             <Link rel="noopener noreferrer" to={`/market_eventPortal`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Music</Link>
+             <Link rel="noopener noreferrer" to={`/entertainment_music`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Music</Link>
          </span>
          <span type="" name='EcommerceMarket' ghost className="button_globalclassName">
-             <Link rel="noopener noreferrer" to={`/market_ecommerceMarket`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Sports</Link>
+             <Link rel="noopener noreferrer" to={`/music_detail`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Browse</Link>
          </span>
          <span type="" name='EcommerceMarket' ghost className="button_globalclassName">
              <Link rel="noopener noreferrer" to={`/detail_ecommercedetail`} style={{color:'black',fontSize:'17px',margin: '21px'}}>News</Link>

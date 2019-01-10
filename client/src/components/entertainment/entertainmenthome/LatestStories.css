@@ -1,0 +1,16 @@
+h4{
+  margin-left: 15px;
+}
+
+.newsBoxes{
+  margin-top: 10px;
+}
+
+.newsBoxes img{
+  width: 100%;
+}
+
+.newsBoxes col{
+  padding-left: 0;
+  padding-right: 0;
+}

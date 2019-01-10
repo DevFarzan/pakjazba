@@ -34,6 +34,10 @@ import BuyerDetail from './components/events/event_listing/BuyerDetail';
 import EventDetail from './components/events/EventDetail';
 import EcomDetail from './components/ecommerce/ecommercedetail/ecommercedetailpage';
 import GridProducts from './components/ecommerce/ecommercedetail/GridProducts';
+import EproductDetails from './components/ecommerce/productdetail/EproductDetails';
+import EcomForms from './components/ecommerce/EcomForms/EcomForms';
+import EntertainmentHome from './components/entertainment/entertainmenthome/EntertainmentHome';
+import EntCategory from './components/entertainment/entertainmentPages/EntCategory';
 //import TicketDetail from './components/events/TicketDetail';
 //import TicketDetail from './components/events/TicketDetail'
 import {PrivateRoute} from './components/signin_seperate';
@@ -76,20 +80,71 @@ ReactDOM.render(
                     <Favicon url="https://res.cloudinary.com/dxk0bmtei/image/upload/v1534159021/pakjazba_f3orb0.png" />
 					<Route exact path="/" component={Home}></Route>
 					<Route path="/sigin" component={Signin}></Route>
-					<PrivateRoute path="/postad_business" component={Postbusiness}></PrivateRoute>
-					<PrivateRoute path="/postad_Roommates" component={Postroommates}></PrivateRoute>
-					<PrivateRoute path="/postad_buysell" component={Postbuysell}></PrivateRoute>
-					<PrivateRoute path="/postad_jobPortal" component={JobPortal}></PrivateRoute>
-          			<PrivateRoute path="/postad_eventPortal" component={EventPortal}></PrivateRoute>
+
+          {/*============Room Renting=============*/}
+          <PrivateRoute path="/postad_Roommates" component={Postroommates}></PrivateRoute>
+          <Route path="/filter_roomRent" component={Roomrentingtwocontentarea}></Route>
+          <Route path="/market_roommates" component={MarketRoommates}></Route>
+          <Route path="/detail_roomRent" component={DetailRoommates}></Route>
+          {/*============Room Renting End=============*/}
+
+          {/*============Bussiness=============*/}
+          <PrivateRoute path="/postad_business" component={Postbusiness}></PrivateRoute>
+          <Route path="/detail_business" component={DetailBusiness}></Route>
+          <Route path="/market_business" component={MarketBusiness}></Route>
+          {/*============Bussiness End=============*/}
+
+          {/*============Buy And Sell start=============*/}
+          <PrivateRoute path="/postad_buysell" component={Postbuysell}></PrivateRoute>
+          <Route path="/market_classified" component={MarketClassified}></Route>
+          <Route path="/Buyer_Detailpage" component={BuyerDetail}></Route>
+          <Route path="/detail_buySell" component={DetailBuySell}></Route>
+          {/*============Buy and Sell End=============*/}
+
+
+          {/*============Job=============*/}
+          <PrivateRoute path="/postad_jobPortal" component={JobPortal}></PrivateRoute>
+          <Route path="/market_jobPortal" component={JobClassified}></Route>
+          <Route path="/detail_jobPortal" component={JobDetail}></Route>
+          <Route path="/apply_forJob" component={ApplyJob}></Route>
+          {/*============Job End=============*/}
+
+
+          {/*============Events Start=============*/}
+          <PrivateRoute path="/postad_eventPortal" component={EventPortal}></PrivateRoute>
+          <Route path="/market_eventPortal" component={MarketEvent}></Route>
+            <Route path="/detail_eventPortal/:value" component={EventDetail}></Route>
+            <Route path="/Ticket_eventPortals" component={TicketDetail}></Route>
+          {/*============Events Start=============*/}
+
+
+          {/*============Ecommerce=============*/}
+          <Route path="/market_ecommerceMarket" component={EcommerceMarket}></Route>
+          <Route path="/detail_ecommercedetail" component={EcomDetail}></Route>
+          <Route path="/products_GridStyle" component={GridProducts}></Route>
+          <Route path="/products_DetailStyle" component={EproductDetails}></Route>
+          <Route path="/Forms_Ecommerce" component={EcomForms}></Route>
+          {/*============Ecommerce=============*/}
+
+
+          {/*=============Entertainment====================*/}
+          <Route path="/entertainment_Home" component={EntertainmentHome}></Route>
+          <Route path="/entertainment_Category" component={EntCategory}></Route>
+          {/*===============Entertainement end===============================*/}
+
+
+
 					<PrivateRoute path="/profile_user" component={ProfileUser}></PrivateRoute>
 					<Route path="/profile_userDetail" component={ProfileUser}></Route>
-					<Route path="/detail_buySell" component={DetailBuySell}></Route>
-					<Route path="/detail_jobPortal" component={JobDetail}></Route>
-					<Route path="/apply_forJob" component={ApplyJob}></Route>
-					<Route path="/detail_business" component={DetailBusiness}></Route>
+
+
+
+
 					<Route path="/detail_blog" component={DetailBlog}></Route>
-					<Route path="/filter_roomRent" component={Roomrentingtwocontentarea}></Route>
-					<Route path="/detail_roomRent" component={DetailRoommates}></Route>
+
+
+
+					{/*<Route path="/detail_roomRent" component={DetailRoommates}></Route>
 					<Route path="/market_business" component={MarketBusiness}></Route>
 					<Route path="/market_classified" component={MarketClassified}></Route>
 					<Route path="/market_roommates" component={MarketRoommates}></Route>
@@ -99,8 +154,7 @@ ReactDOM.render(
 			        <Route path="/Ticket_eventPortals" component={TicketDetail}></Route>
 				    <Route path="/Buyer_Detailpage" component={BuyerDetail}></Route>
 				    <Route path="/market_ecommerceMarket" component={EcommerceMarket}></Route>
-				    <Route path="/detail_ecommercedetail" component={EcomDetail}></Route>
-				    <Route path="/products_GridStyle" component={GridProducts}></Route>
+				    <Route path="/detail_ecommercedetail" component={EcomDetail}></Route>*/}
 				</div>
 			</BrowserRouter>
 		</Provider>

@@ -2,7 +2,7 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
-const app = express();
+const cookieParser = require('cookie-parser');
 var nodemailer = require("nodemailer");
 var passport = require('passport');
 var bodyParser = require('body-parser')
@@ -11,18 +11,47 @@ var ip = require('ip');
 const keys = require('./config/keys');
 const stripe = require("stripe")(keys.stripeSecretKey);
 const moment = require('moment');
-const QRCode = require('qrcode')
+const QRCode = require('qrcode');
+var session = require('express-session');
+const winston = require('winston');
+//const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const port = process.env.PORT || 5000;
-
-app.use(function(req, res, next) {
-        res.header("Access-Control-Allow-Origin", "*");
-       res.header("Access-Control-Allow-Credentials", "true");
-       res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-      next();
-   });
+if (process.stdout._handle) process.stdout._handle.setBlocking(true);
+const app = express();
 app.use(bodyParser.json()) // handle json data
 app.use(bodyParser.urlencoded({ extended: true })) // handle URL-encoded data
+app.use(cookieParser());
+
+app.use(session({
+    key: 'user_sid',
+    secret: 'somerandonstuffs',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 600000
+    }
+}));
+
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.printf(info => {
+            return `${info.timestamp} ${info.level}: ${info.message}`;
+        })
+    ),
+    transports: [new winston.transports.Console()]
+});
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 // // DB models
 require('./models/User');
 require('./models/category');
@@ -59,6 +88,7 @@ var jobApplied = mongoose.model('jobApplied');
 var blogReview = mongoose.model('blogReviews');
 var eventPortal = mongoose.model('EventSchema');
 var eventTicket = mongoose.model('EventTicketSchema');
+var sess;
 
 app.use(passport.initialize());
 
@@ -77,11 +107,35 @@ mongoose.connect(configDB.EvenNodeDB,{ useNewUrlParser: true },function(err,db){
   }
 })
 
+app.use((req, res, next) => {
+    logger.log('info', 'A request was received');
+    console.log(req.session, 'ppppppppppppppppp')
+    console.log(req.session.cookie.user, 'qqqqqqqqqqq')
+    if (req.cookies.user_sid && !req.session.user) {
+        res.clearCookie('user_sid');
+    }
+    next();
+});
 
+var sessionChecker = (req, res, next) => {
+  console.log(req.session, 'aaaaaaaa')
+  console.log(req.cookies, 'bbbbbbbbbbb')
+    if (req.session.user && req.cookies.user_sid) {
+        console.log('111111111111')
+    } else {
+      console.log('2222222222222')
+        next();
+    }
+};
+
+/*app.get('/', function(req, res) {
+  console.log('Cookies: ', req.cookies)
+})*/
 
 // API calls
 app.get('/api/hello', (req, res) => {
   res.send({ express: 'Hello From Express' });
+
 });
 
 app.get ('/api/keys',(req,res) =>{
@@ -124,12 +178,14 @@ app.post('/api/blogpost',(req,res) => {
   })
 });
 
-app.get('/api/getblog',(req,res) =>{
-blog.find(function(err,data){
-  res.send({
-    blog:data
-  })
-})
+app.get('/api/getblog', sessionChecker, (req,res) =>{
+    console.log('Cookiessssssss: ', req.cookies)
+    console.log('Sessionsssssssss: ', req.session)
+    blog.find(function(err,data){
+        res.send({
+            blog:data
+        })
+    })
 });
 
 app.get('/api/categoryclassifieddata',function(req,res){
@@ -145,7 +201,7 @@ app.get('/api/getcategory',(req,res) =>{
   categorypost.find(function(err,data){
     res.send({err:err,data:data});
   })
-        
+
 })
 
 
@@ -211,7 +267,7 @@ rand=Math.floor((Math.random() * 100) + 54);
                         </td>
                         </tr>
                         </table>
-                      
+
                      <table class="body-sub" style="margin-top: 25px;padding-top: 25px;border-top: 1px solid #E7EAEC;">
                       <tr>
                         <td>
@@ -240,7 +296,6 @@ rand=Math.floor((Math.random() * 100) + 54);
             </td>
           </tr>
         </table>
-
       </td>
     </tr>
   </table>
@@ -262,17 +317,18 @@ rand=Math.floor((Math.random() * 100) + 54);
        }
 });
   console.log(rand)
+    // dont remove these encrypt or hash lines.........
+    // bcrypt.hash(password, saltRounds, function(err, hash) {
 
     var user_info = new User({
         username: nickname,
         email: email,
-        password: password,
+        password: password, // change this to hash when doing work of encryption,
         InsertedDate:date,
         randomno: rand,
         subscribe:false,
         status:false,
         blocked:false
-
     });
 
   //res.send({message:user_info,code:200});
@@ -284,14 +340,14 @@ rand=Math.floor((Math.random() * 100) + 54);
               })
           }
           else {
-            var facebookLogindata = new facebookLogin({
-           email:email,
-           name:nickname,
-           password:password
-  })
-  facebookLogindata.save(function(err,data){
-    console.log(data);
-  })
+              var facebookLogindata = new facebookLogin({
+              email:email,
+              name:nickname,
+             password:password // change this to hash when doing work of encryption
+            })
+            facebookLogindata.save(function(err,data){
+              console.log(data);
+            })
               res.send({
                   _id: user_info._id,
                   name: user_info.username,
@@ -300,13 +356,9 @@ rand=Math.floor((Math.random() * 100) + 54);
                   code: 200
               })
           }
-       })
-      
-  
-      //  user_info.save(function(err,data) {
-      //   res.send({err:err,data:data})
-      // })
+       });
      });
+    // });
 // /*============================user register end===========================================*/
 
 app.get('/verify',async function(req,res){
@@ -457,10 +509,13 @@ app.get('/api/getBlogReviews',function(req,res){
 
 /*========================user signin start==============================================*/
  app.get('/api/usersignin',(req,res) =>{
+    sess = req.session;
     var Useremail = req.query.useremail,
         Password = req.query.password;
-      
-       User.find({email:Useremail,password:Password},{__v:0},
+        boo = false;
+        token = ''
+
+       User.find({email:Useremail},{__v:0},
         function(err,User){
             if(err){
                 res.send({
@@ -470,15 +525,34 @@ app.get('/api/getBlogReviews',function(req,res){
                 });
             }//end if
             else if(User!=''){
-                res.send({
-                 _id:User[0]._id,
-                name:User[0].username,
-                email:User[0].email,
-                profileId:User[0].profileId,
-                token:jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs'),
-                code:200,
-                msg:'User logged successfully'
-              })
+                // bcrypt.compare(Password, User[0].password, function(err, response) {
+                //     if(response){
+                        token = jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs');
+                        console.log(jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs'), 'userrrrrrrrrrrrr')
+                        // req.session.cookie.user = token;
+                        logger.log('info', 'A request was received');
+                        // logger.log(jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs'), 'userrrrrrrrrrrrr');
+                        req.session.user = token;
+                        req.session.save((err) => {
+                          console.log(!err, 'kkkkkkk')
+                          console.log(err, 'llllllllll')
+                            if(!err){
+                                res.send({
+                                    _id:User[0]._id,
+                                    name:User[0].username,
+                                    email:User[0].email,
+                                    profileId:User[0].profileId,
+                                    token:jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs'),
+                                    code:200,
+                                    token: token,
+                                    msg:'User logged successfully',
+                                })
+                            }
+                        });
+                //     }else {
+                //         res.send({msg: 'Invalid Email or Password'});
+                //     }
+                // });
             }//end else if
             else {
                 res.send({
@@ -488,6 +562,7 @@ app.get('/api/getBlogReviews',function(req,res){
                 });
             }
        })
+
   //   passport.authenticate('local', function(err, user, info){
   //   var token;
 
@@ -842,7 +917,7 @@ classifiedBusiness.findOne({"_id" : buyselldata.objectId},function(err,buysell){
 /*======================get Market place start========================================================*/
 app.get('/api/marketplace',function(req,res){
   var session = req.query.session;
-  
+
     yellowPagesBusiness.find(function(err,yellowPages){
       // console.log(yellowPages);
      if(yellowPages!=''){
@@ -895,7 +970,7 @@ app.get('/api/marketplace',function(req,res){
               msg:'data recieve successfully'
             });
           });
-        });    
+        });
       });
     });
   });
@@ -1007,7 +1082,7 @@ app.get('/api/getprofile',function(req,res){
         content:specificProfile,
         msg:'Specific Profile'
       })
-     }   
+     }
   });
 });
 /*====================get profile api end==============================================================*/
@@ -1020,7 +1095,7 @@ app.post('/api/changepassword',function(req,res){
       if(err){
         //console.log("Profile not found Error:::", err);
          return res.status(400).json({"Unexpected Error:: ": err});
-      }//end 
+      }//end
       else if(speUser){
         if(req.body.currentPassword != speUser.password){
           return res.status(200).json({"error":"Password not belong to current user"});
@@ -1275,7 +1350,7 @@ app.post('/api/postEventPortal', (req, res) => {
             randomKey:postEventPortal.randomKey,
             state:postEventPortal.state,
             userId:postEventPortal.userId,
-            website:postEventPortal.website 
+            website:postEventPortal.website
         });
 
         eventData.save((error, response) => {
@@ -1368,7 +1443,7 @@ app.post('/api/eventTicket', (req, res) => {
         email: ticketInfo.email,
         eventId: ticketInfo.eventId,
         firstName: ticketInfo.firstName,
-        hoNumber: ticketInfo.hoNumber,  
+        hoNumber: ticketInfo.hoNumber,
         lastName: ticketInfo.lastName,
         moNumber: ticketInfo.moNumber,
         nTicketVal: ticketInfo.nTicketVal,
@@ -1574,7 +1649,7 @@ var getuserfields = req.body;
     })
        }
      })
-  
+
 })
 
 app.post("/api/charge", async (req, res) => {
@@ -1597,10 +1672,10 @@ app.post("/api/charge", async (req, res) => {
 /*===================post roommates API end =================================================================*/
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
-  app.use(express.static(path.join(__dirname, 'client/public')));
+  app.use(express.static(path.join(__dirname, 'client/build')));
   // Handle React routing, return all requests to React app
   app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'client/public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
 app.listen(port, () => console.log(`Listening on port ${port}`));

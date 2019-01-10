@@ -13,6 +13,8 @@ const headersFor = (token) => {
     return headers;
 }
 
+const credentials = "same-origin";
+
 const handleErrors = (response) => {
     return response.json().then(responseData => {
         if (responseData.errors) {
@@ -38,7 +40,7 @@ const hitEndpoint = (method, endpoint, token, body) => {
     let url = [BASE_URL, endpoint].join('/')
 
 
-    return fetch(url, { method, headers, body }).then((response) => {
+    return fetch(url, { method, credentials, headers, body }).then((response) => {
         return handleErrors(response)
     }).catch((err) => {
         if (err.message === 'Network request failed')

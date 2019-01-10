@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import Burgermenu from '../header/burgermenu';
-import Footer from '../footer/footer';
+import Burgermenu from '../../header/burgermenu';
+import Slider from '../../header/Slider';
+import Footer from '../../footer/footer';
+import PthreeColumn from './PthreeColumn';
+import PeightColumn from './PeightColumn';
 
 
 class EproductDetail extends Component{
@@ -15,6 +18,16 @@ class EproductDetail extends Component{
                   </div>
               </div>
           </span>
+
+          <div className="row">
+            <div className="col-md-12">
+
+                <PthreeColumn/>
+            </div>
+
+          </div>
+        </div>
+
     )
   }
 }

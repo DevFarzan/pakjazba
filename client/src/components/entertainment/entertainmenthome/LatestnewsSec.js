@@ -6,7 +6,7 @@ class LatestNews extends Component{
     return(
       <div className="container" style={{width:"100%"}}>
         <h4><strong> LATEST NEWS </strong></h4>
-          <hr style={{marginTop:"-10px", borderTop:"2px solid #008080"}}/>
+          <hr style={{marginTop:"-10px", borderTop:"2px solid #37a99b"}}/>
           <div className="row">
             <div className="col-md-12 col-sm-8">
               <img src='/images/ceo-google.jpg' style={{ height:"300px", width:"100%"}}/>

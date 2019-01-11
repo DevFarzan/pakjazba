@@ -17,6 +17,7 @@ class EntertainmentHome extends Component{
           <EntSlider/>
           <Stories/>
         </div>
+        <Footer/>
       </div>
 
 

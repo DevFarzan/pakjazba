@@ -38,6 +38,9 @@ import EproductDetails from './components/ecommerce/productdetail/EproductDetail
 import EcomForms from './components/ecommerce/EcomForms/EcomForms';
 import EntertainmentHome from './components/entertainment/entertainmenthome/EntertainmentHome';
 import EntCategory from './components/entertainment/entertainmentPages/EntCategory';
+import EntMusic from './components/entertainment/entertainmentPages/EntMusic';
+import MusicBrowse from './components/entertainment/EntDetailpages/MusicBrowse';
+import VideoBox from './components/entertainment/EntDetailpages/VideoBox'
 //import TicketDetail from './components/events/TicketDetail';
 //import TicketDetail from './components/events/TicketDetail'
 import {PrivateRoute} from './components/signin_seperate';
@@ -130,6 +133,10 @@ ReactDOM.render(
           {/*=============Entertainment====================*/}
           <Route path="/entertainment_Home" component={EntertainmentHome}></Route>
           <Route path="/entertainment_Category" component={EntCategory}></Route>
+          <Route path="/entertainment_music" component={EntMusic}></Route>
+          <Route path="/entertainment_detail" component={VideoBox}></Route>
+          <Route path="/music_detail" component={MusicBrowse}></Route>
+
           {/*===============Entertainement end===============================*/}
 
 

@@ -26,10 +26,10 @@ class MarketBusiness extends Component{
                 <span>
                     <span className="hidden-xs" style={{marginTop : "105px"}}></span>
                     <span className="visible-xs" style={{marginTop:'-19px'}}></span>
-                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/busnes-listing.png')",backgroundSize: 'cover'}}>
+                    <div className ="col-md-12" style={{backgroundColor:'#d8e7e4',backgroundSize: 'cover',marginTop:'9%',width:'93.8%',marginLeft:'47px'}}>
                         <div className="background-image">
                             <Burgermenu/>
-                            <Slider mainH1="Business Listing" mainH2="Businesses Near You"/>
+                            <Slider mainH1="Pakjazba Classified" mainH2=""/>
                         </div>
                     </div>
                 </span>

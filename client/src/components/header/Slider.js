@@ -40,13 +40,20 @@ class Slider extends Component{
                 <div>
                      
                     <div className="row">
-                        <div className="col-md-12 col-sm-12 col-xs-12">
-                        <p className="paragragh-text"></p>
-                        <h1 className="text-h1" style={{fontSize:'58px',fontWeight:'bold'}}>{this.props.mainH1}</h1>
-                        <h2 style={{textAlign:'center',color: 'white'}}>{this.props.mainH2}</h2>
+                        <div className="col-md-6 col-sm-12 col-xs-12">
+                        <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black'}}>{this.props.mainH1}</h3>
+                        <div className="row">
+                            <div className="col-md-12" style={{marginLeft:'24%'}}>
+                                <div className="input-group">
+                                    <input type="text" className="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2" style={{border:'1px solid rgb(55, 169, 155)',width:'50%',borderRight:'none'}} />
+                                    <input type="text" className="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2" style={{border:'1px solid rgb(55, 169, 155)',width:'50%',borderLeft:'none'}} />
+
+                                 </div>
+                             </div>
+                         </div>
                     </div>
                     </div>
-                    <section className="home-newsletter">
+                    {/*<section className="home-newsletter">
                         <div className="">
                             <div className="row">
                                 <div className="col-md-2"></div>
@@ -65,7 +72,9 @@ class Slider extends Component{
                                 <div className="col-md-2"></div>
                             </div>
                         </div>
-                    </section>
+                    </section>*/}
+
+                    
                 </div>
             </div>
         );

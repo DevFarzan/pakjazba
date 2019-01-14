@@ -10,6 +10,7 @@ import { Redirect } from 'react-router';
 import _ from 'underscore'
 
 class Secondfold extends Component{
+
     constructor(props){
         super(props);
         this.state = {
@@ -184,38 +185,39 @@ class Secondfold extends Component{
         }
 
         return(
+          <div className="container" style={{width:"70%"}}>
             <div className="secondfold">
-                {!text && <h1 className="text-align"> Great Places </h1>}
+                {!text && <h1 className="headingtext"> Find the Best Business </h1>}
                     {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
                     {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
                     {text && !!filteredArr.length === false && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
-                <div className="index-content" style={{marginTop:'-77px'}}>
-                    <div className="container" style={{width: '93%'}}>
-                    <div className="row">
-                        <div className="col-md-3"  style={{'marginBottom': '30px'}} onClick={() => {this.clickItem()}}>
-                            <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '360px', width: '100%', borderRadius: '13px'}}/>
-                        </div>
-                        {showBusiness && showBusiness.map((elem, key) => {
-                            let str = elem.businessaddress || '';
-                            if(str.length > 25) {
-                                str = str.substring(0, 25);
-                                str = str + '...'
-                            }
-                            return (
-                                <Link key={key} to={{pathname: `/detail_business`, state: elem}}>
-                                    <div className="col-md-3"  style={{'marginBottom': '30px'}}>
-                                        <div className="card" style={{border: '1px solid #3a252542',boxShadow: 'none',borderRadius:'13px',width:'100%'}}>
-                                            <img alt='' src={elem.businessImages.length ? elem.businessImages[0] : './images/def_card_img.jpg'} style={{height:'200px'}} />
-                                            <h4 style={{marginTop:'53px'}}><b>{elem.businessname}</b></h4>
-                                            {elem.businessaddress && <p style={{marginTop:"-15px",marginLeft:"11px"}}><span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}></span><span style={{color:"black"}}>{str}</span></p>}
-                                            <Rate disabled style={{paddingLeft: '20px', paddingBottom: '10px'}} allowHalf value={elem.star} />
-                                        </div>
-                                    </div>
-                                </Link>
-                            )
-                        })}
-                    </div>
-                    </div>
+                <div className="index-content" style={{marginTop:'0'}}>
+                      <div className="row">
+                          {/*<div className="col-md-3"  style={{'marginBottom': '30px'}} onClick={() => {this.clickItem()}}>
+                              <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '360px', width: '100%', borderRadius: '13px'}}/>
+                          </div>*/}
+                          {showBusiness && showBusiness.map((elem, key) => {
+                              let str = elem.businessaddress || '';
+                              if(str.length > 25) {
+                                  str = str.substring(0, 25);
+                                  str = str + '...'
+                              }
+                              return (
+                                  <Link key={key} to={{pathname: `/detail_business`, state: elem}}>
+                                      <div className="col-md-4"  style={{'marginBottom': '30px'}}>
+                                          <div className="card" style={{width:'100%'}}>
+                                              <img alt='' src={elem.businessImages.length ? elem.businessImages[0] : './images/def_card_img.jpg'} style={{height:'200px'}} />
+                                              <h4 style={{marginTop:'53px'}}><b>{elem.businessname}</b></h4>
+                                              <span>
+                                              <Rate disabled style={{paddingBottom: '20px', marginTop:"-10px"}} allowHalf value={elem.star}/> 5.0 </span>
+                                              {elem.businessaddress && <p style={{marginTop:"-15px"}}><span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}></span><span style={{color:"black"}}>{str}</span></p>}
+
+                                          </div>
+                                      </div>
+                                  </Link>
+                              )
+                          })}
+                      </div>
                     {this.state.loader &&  <div  style={{textAlign: 'center', marginLeft:'-100px', marginBottom: '15px'}}>
                         <Spin indicator={antIcon} />
                     </div>}
@@ -233,12 +235,9 @@ class Secondfold extends Component{
                     </Modal>}
                     {(showBusiness.length >= 7) && !(showBusiness.length === business.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>View More ...</button></div>}
                 </div>
-                <div className="row">
-                    <div className="col-md-12">
-                        <img src="../images/businesslistingimage.png" style={{width:'100%'}} />
-                    </div>
-                </div>
+                <div className="col-md-12" style={{textAlign:'center'}}><button className="btn btn-sm btnview-success" style={{width:'20%'}} onClick={this.handleLogin}>Veiw More</button></div>
             </div>
+          </div>
         )
     }
 }

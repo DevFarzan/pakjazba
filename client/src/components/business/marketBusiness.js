@@ -5,13 +5,14 @@ import Firstfold from "./firstfold";
 import Secondfold from './secondfold'
 import Footer from '../footer/footer';
 import { connect } from 'react-redux';
+import BusinessCategory from "./BusinessCategories";
 
 class MarketBusiness extends Component{
     componentDidMount() {
         window.scrollTo(0,0);
     }
-    
-    
+
+
     componentWillUnmount(){
         let inputValue = '';
         if(this.props.text.length){
@@ -35,6 +36,7 @@ class MarketBusiness extends Component{
                 </span>
                 {!this.props.text && <Firstfold/>}
                 <Secondfold/>
+                <BusinessCategory/>
                 <Footer/>
             </div>
         )

@@ -2039,7 +2039,7 @@ color: #fff;
     padding-left: var(--spacing-button-small-horizontal, 15px) !important;
     padding-right: var(--spacing-button-small-horizontal, 15px) !important;
     box-shadow: var(--shadow-button-level0-box-shadow, none) !important;
-    
+
 }
 .global_submenu{
   padding-left:76px;

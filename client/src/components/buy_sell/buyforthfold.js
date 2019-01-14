@@ -171,15 +171,16 @@ class Forthfold extends Component{
         }
 
         return(
-            <div className="secondfold">
+            <div className="container">
                 {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
                 {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
                 {text && !!filteredArr.length === false && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
-                <div className="col-md-3"  style={{'marginTop': '21px'}} onClick={() => {this.clickItem()}}>
+                {/*<div className="col-md-3"  style={{'marginTop': '21px'}} onClick={() => {this.clickItem()}}>
                     <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '385px', width: '100%', borderRadius: '13px'}}/>
-                </div>
+                </div>*/}
                 <div className="row">
                     {showBuySell && showBuySell.map((elem, key) => {
+                        console.log(elem,'cccccuuuuussssttttooo');
                         let str = elem.address || '';
                         if(str.length > 25) {
                             str = str.substring(0, 25);
@@ -191,39 +192,16 @@ class Forthfold extends Component{
                             des = des + '...'
                         }
                         return (
-                                <div className="col-md-3">
-                                    <div className="ibox" style={{cursor: 'pointer'}}>
-                                        <div className="ibox-content product-box">
-                                            <div className="product-imitation">
-                                                <div className="card2"  onClick={() => {this.goToProfile(1, elem)}}>
-                                                    <img alt='' src={elem.images.length ? elem.images[0] : './images/def_card_img.jpg'}/>
-                                                    <span className="card-button">
-                                                        <p className="categories-on-card" style={{backgroundColor:"#008080",textAlign: "center"}}>{elem.category}</p>
-                                                        <i className="buyicon glyphicon-map-marker" style={{color: "white",marginLeft: "0", left:"0"}} /><p className="text" style={{color: "white",marginLeft: "27", marginTop:"-30"}}>{elem.state +" & "+ elem.city}</p>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div className="cust-margin">
-                                                {/*<i className="glyphicon glyphicon-calendar" style={{color:"#008080"}} />
-                                                <span className="text" style={{color: "#000000c7"}}>{elem.Date}</span>
-                                                <i className="glyphicon glyphicon-user" style={{color:"#008080",marginLeft: "71px"}} />
-                                                <span className="text" style={{color: "#000000c7"}}>{elem.contactname}</span>*/}
-                                            </div>
-                                            <div className="product-desc">
-                                                <span className="product-price">{!elem.hideprice ? '$' + elem.price : 'Hide'}</span>
-                                                <p className="product-name" onClick={() => {this.goToProfile(2, elem)}}>{elem.contactname}</p>
-                                                <div className="small m-t-xs" style={{color:'black'}}>{des}
-                                                </div>
-                                                {/*<div className="m-t text-righ" style={{marginTop:"58px",fontSize: "18px",textDecoration:"underline"}}>
-                                                    <Link to={{pathname: `/detail_buySell`, state: elem}} className="" style={{color:"red"}}>Detail</Link>
-                                                    <div className="location-padding">
-                                                    
-                                                    </div>
-                                                </div>*/}
-                                            </div>
-                                        </div>
+                                
+                                    <div class="col-md-3 col-sm-4 col-xs-12" onClick={() => {this.goToProfile(1, elem)}} style={{cursor:'pointer'}}>
+                                        <img alt='' src={elem.images.length ? elem.images[0] : './images/def_card_img.jpg'} style={{width:'100%',height:'200px'}} />
+                                        <p>Rs.{!elem.hideprice ? '$' + elem.price : 'Hide'}
+                                            <br/><b>{elem.modelname}</b>
+                                            <br/>{elem.address},{elem.state}</p>
                                     </div>
-                                </div>
+
+                                
+                            
                         )
                     })}
                 </div>
@@ -245,6 +223,7 @@ class Forthfold extends Component{
                     </div>
                 </Modal>}
             </div>
+
         )
     }
 }
@@ -256,3 +235,40 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Forthfold);
+
+
+
+
+// {/*<div className="col-md-3">
+//                                     <div className="ibox" style={{cursor: 'pointer'}}>
+//                                         <div className="ibox-content product-box">
+//                                             <div className="product-imitation">
+//                                                 <div className="card2"  onClick={() => {this.goToProfile(1, elem)}}>
+//                                                     <img alt='' src={elem.images.length ? elem.images[0] : './images/def_card_img.jpg'}/>
+//                                                     <span className="card-button">
+//                                                         <p className="categories-on-card" style={{backgroundColor:"#008080",textAlign: "center"}}>{elem.category}</p>
+//                                                         <i className="buyicon glyphicon-map-marker" style={{color: "white",marginLeft: "0", left:"0"}} /><p className="text" style={{color: "white",marginLeft: "27", marginTop:"-30"}}>{elem.state +" & "+ elem.city}</p>
+//                                                     </span>
+//                                                 </div>
+//                                             </div>
+//                                             <div className="cust-margin">
+//                                                 {/*<i className="glyphicon glyphicon-calendar" style={{color:"#008080"}} />
+//                                                 <span className="text" style={{color: "#000000c7"}}>{elem.Date}</span>
+//                                                 <i className="glyphicon glyphicon-user" style={{color:"#008080",marginLeft: "71px"}} />
+//                                                 <span className="text" style={{color: "#000000c7"}}>{elem.contactname}</span>*/}
+//                                             </div>
+//                                             <div className="product-desc">
+//                                                 <span className="product-price">{!elem.hideprice ? '$' + elem.price : 'Hide'}</span>
+//                                                 <p className="product-name" onClick={() => {this.goToProfile(2, elem)}}>{elem.contactname}</p>
+//                                                 <div className="small m-t-xs" style={{color:'black'}}>{des}
+//                                                 </div>
+//                                                 <div className="m-t text-righ" style={{marginTop:"58px",fontSize: "18px",textDecoration:"underline"}}>
+//                                                     <Link to={{pathname: `/detail_buySell`, state: elem}} className="" style={{color:"red"}}>Detail</Link>
+//                                                     <div className="location-padding">
+                                                    
+//                                                     </div>
+//                                                 </div>
+//                                             </div>
+//                                         </div>
+//                                     </div>
+//                                 </div>*/}

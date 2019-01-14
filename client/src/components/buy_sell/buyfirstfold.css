@@ -14,3 +14,42 @@
 .media-body{
   padding-top: 15px;
 }
+.popular_c{
+	font-size:26px;
+	font-weight: bold;
+	color:black;
+}
+.table_popular{
+	text-align: left;
+}
+.margin_right_c{
+	margin-right:10px;
+	color: black;
+    font-weight: 500;
+    font-size: 16px;
+}
+.list_style_c{
+	list-style: none;
+
+}
+.color_b{
+	color:black;
+}
+.jambo_text
+{
+	font-size: 45px;
+	font-weight: 900;
+	margin-top: 22px;
+	font-family: 'Source Serif Pro', serif;
+}
+.jambo_img
+{
+	height: 250px;
+	width: 380px;	
+}
+.card_border{
+	    border: 1px solid #8080804a;
+}
+.under_jumbo_text{
+	font-family: 'Source Sans Pro', sans-serif;
+}

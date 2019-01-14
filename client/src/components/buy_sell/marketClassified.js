@@ -23,25 +23,30 @@ class MarketClassified extends Component{
     render(){
         return(
             <div>
-                <span>
-                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/buy-sell.png')", marginTop : "105px",backgroundSize: 'cover'}}>
+                    <div className ="hidden-xs" style={{"background":"#d8e7e4",marginTop:'86px',backgroundSize: 'cover'}}>
                         <div className="background-image">
                             <Burgermenu/>
-                            <Slider mainH1="Buy & Sell" mainH2="Find what you need"/>
+                            <Slider mainH1="Pakjazba Classified" mainH2=""/>
                         </div>
                     </div>
-                </span>
+                    <div className ="visible-xs" style={{"background":"#d8e7e4",marginTop : "-20px",backgroundSize: 'cover'}}>
+                        <div className="background-image">
+                            <Burgermenu/>
+                            <Slider mainH1="Pakjazba Classified" mainH2=""/>
+                        </div>
+                    </div>
+                
                 {!this.props.text && <BuyFirstFold />}
                 <BuyFourthFold />
                 <div className="row" style={{marginTop:"40px"}}>
                   <div className="col-md-12">
-                    <BuyThirdFold />
+                    {/*<BuyThirdFold />*/}
                   </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-12">
+                    {/*<div className="col-md-12">
                         <img src="../images/businesslistingimage.png" style={{width:'100%'}} />
-                    </div>
+                    </div>*/}
                 </div>
                 <Footer />
             </div>

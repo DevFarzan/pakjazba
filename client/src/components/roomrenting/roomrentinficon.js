@@ -73,6 +73,7 @@ class RoomrentingIcon extends Component{
                     <div className="col-md-2 col-sm-2">
                         <div onClick={() => {this.clickItem('single family home')}}>
                               <div className="wrimagecard wrimagecard-topimage">
+                
                                 <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
                                     <center>
                                         <img src="../images/PHR ICON ROOM/HOME.png" style={{width: "100%"}}/>

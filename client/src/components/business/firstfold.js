@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
-import './firstfold.css'
+import './firstfold.css';
 import { connect } from 'react-redux';
 
 class Firstfold extends Component{
@@ -17,89 +17,41 @@ class Firstfold extends Component{
 
     render(){
         return(
-            <div className="row">
-                <h1 className="text-align" style={{fontWeight:"bold"}}>  What Do You Need To find? </h1>
-                <div className="col-md-2"></div>
-                <div className='col-md-8'>
-                    <div className="index-content">
-                        <div className="col-lg-3" onClick={() => {this.clickItem('coffee shop')}} style={{cursor:'pointer'}}>
-                            <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
-                                <center>
-                                    <img src="../images/business icon/coffee-shop.png" style={{width: "100%"}}/>
-                                </center>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="col-lg-3" onClick={() => {this.clickItem('business')}} style={{cursor:'pointer'}}>
-                            <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
-                                <center>
-                                    <img src="../images/business icon/business.png" style={{width: "100%"}}/>
-                                </center>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="col-lg-3" onClick={() => {this.clickItem('hospital')}} style={{cursor:'pointer'}}>
-                            <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
-                                <center>
-                                    <img src="../images/business icon/hospital.png" style={{width: "100%"}}/>
-                                </center>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="col-lg-3" onClick={() => {this.clickItem('market')}} style={{cursor:'pointer'}}>
-                            <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
-                                <center>
-                                    <img src="../images/business icon/market.png" style={{width: "100%"}}/>
-                                </center>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    <div className="index-content">
-                        <div className="col-lg-3" onClick={() => {this.clickItem('restaurant')}} style={{cursor:'pointer'}}>
-                            <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
-                                <center>
-                                    <img src="../images/business icon/restaurant.png" style={{width: "100%"}}/>
-                                </center>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="col-lg-3" onClick={() => {this.clickItem('park')}} style={{cursor:'pointer'}}>
-                            <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
-                                <center>
-                                    <img src="../images/business icon/park.png" style={{width: "100%"}}/>
-                                </center>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="col-lg-3" onClick={() => {this.clickItem('hostel')}} style={{cursor:'pointer'}}>
-                            <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
-                                <center>
-                                    <img src="../images/business icon/hotel.png" style={{width: "100%"}}/>
-                                </center>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="col-lg-3" onClick={() => {this.clickItem('animal hospital')}} style={{cursor:'pointer'}}>
-                            <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
-                                <center>
-                                    <img src="../images/business icon/animal-hospital.png" style={{width: "100%"}}/>
-                                </center>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
+          <div className="container" style={{width:"70%"}}>
+            <div className="Bestbusiness">
+              <div className="row">
+                  <h3 className="text-align" style={{fontWeight:"bold"}}>  Find the Best Business </h3>
+                <div className="col-md-3">
+                  <img src="../images/business/shutterstock_1270187209.jpg"/>
+
+                  <p>Hotels</p>
                 </div>
-                <div className="col-md-2"></div>
+                <div className="col-md-3">
+                  <img src="images/business/shutterstock_1270435183.jpg"/>
+                  <p>Massage</p>
+                </div>
+                <div className="col-md-3">
+                  <img src="images/business/shutterstock_1270450375.jpg"/>
+                  <p>Gym</p>
+                </div>
+                <div className="col-md-3">
+                  <img src="../images/business/shutterstock_1268093062.jpg"/>
+                  <p>Goldsmith</p>
+                </div>
+              </div>
             </div>
+            <div className="Person" style={{width:"100%"}}>
+              <div className="row">
+                <div className="col-md-6">
+                  <h1> Grow Your Business <br/> by Listing on <br/> PakJazba </h1>
+                  <p> We will showcase your business to more customers </p>
+                </div>
+                <div className="col-md-6">
+                  <img src="images/business/busi-illus-2.png"/>
+                </div>
+              </div>
+            </div>
+          </div>
 
         )
     }

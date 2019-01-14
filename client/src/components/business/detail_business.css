@@ -11,3 +11,25 @@
 .outset {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
 }
+
+.backgroundColor{
+  background-color: azure;
+
+}
+
+.btndetail-success {
+    background-color:#37a99b;
+    color: white;
+    margin: 2px 0 2px 0;
+    border: 1px solid #37a99b;
+    border-radius: 7px !important;
+}
+
+.listshytle{
+list-style-type: none;
+margin-left: -40px;
+}
+
+.image-circle{
+  border-radius: 50% !important;
+}

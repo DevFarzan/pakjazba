@@ -30,7 +30,7 @@ class MarketBusiness extends Component{
                     <div className ="col-md-12" style={{backgroundColor:'#d8e7e4',backgroundSize: 'cover',marginTop:'9%',width:'93.8%',marginLeft:'47px'}}>
                         <div className="background-image">
                             <Burgermenu/>
-                            <Slider mainH1="Pakjazba Classified" mainH2=""/>
+                            <Slider mainH1="Pakjazba Business Listing" mainH2=""/>
                         </div>
                     </div>
                 </span>

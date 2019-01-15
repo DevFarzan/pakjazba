@@ -17,6 +17,7 @@ import Postroommates from './components/roomrenting/postRoommates';
 import Postbuysell from './components/buy_sell/postBuysell';
 import ProfileUser from './components/user_profile/profileUser';
 import DetailBuySell from './components/buy_sell/detail_buySell';
+import FilterBuySell from './components/buy_sell/filterBuySell';
 import DetailBusiness from './components/business/detail_business';
 import DetailBlog from './components/home/detail_blog';
 import Roomrentingtwocontentarea from "./components/roomrenting/roomrenting2contentarea";
@@ -102,6 +103,7 @@ ReactDOM.render(
           <Route path="/market_classified" component={MarketClassified}></Route>
           <Route path="/Buyer_Detailpage" component={BuyerDetail}></Route>
           <Route path="/detail_buySell" component={DetailBuySell}></Route>
+          <Route path="/filter_buySell" component={FilterBuySell}></Route>
           {/*============Buy and Sell End=============*/}
 
 

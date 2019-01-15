@@ -42,7 +42,7 @@ class Slider extends Component{
         return (
             <div>
                 <div>
-                     
+
                     {/*<div className="row">
                         <div className="col-md-6 col-sm-12 col-xs-12">
                         <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black'}}>{this.props.mainH1}</h3>
@@ -69,8 +69,8 @@ class Slider extends Component{
                         <div className="col-md-5 col-sm-6 hidden-xs">
                             <img src="../images/buysell/header1.png" style={{width:'50%'}} />
                         </div>
-                        
-                    </div>    
+
+                    </div>
 */}
 
                   {/*  <div className="row">
@@ -108,7 +108,7 @@ class Slider extends Component{
 
 
                     </div>*/ }
-                    <div className="row">
+                    {/* <div className="row">
                        <div className="col-md-6 col-sm-12 col-xs-12">
                        <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black'}}>{this.props.mainH1}</h3>
                        <div className="row">
@@ -141,7 +141,42 @@ class Slider extends Component{
                    <div className="col-md-5 hidden-xs">
                      <img src="images/business/busi-illus-1.png" style={{width:"100%"}}/>
                    </div>
+                   </div>*/}
+
+                {/*For Business Market*/}
+                   <div className="row">
+                       <span className="col-md-2"></span>
+                       <div className="col-md-5 col-sm-12 col-xs-12">
+                       <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black',textAlign:'left'}}>{this.props.mainH1}</h3>
+
+                       <div className="form-group has-feedback" style={{display:"flex"}}>
+                       <input type="text" className="form-control" placeholder="Find" aria-describedby="basic-addon2" style={{ border:'1px solid rgb(55, 169, 155)', width:'50%',borderRight:'none'}}/>
+                       <input type="text" className="form-control" placeholder="Near" aria-describedby="basic-addon2" style={{border:'1px solid rgb(55, 169, 155)',width:'50%',borderLeft:'1px solid black'}} />
+                           <span className=" btn btn-sm glyphicon glyphicon-search form-control-feedback" onClick={this.searchText}  style={{background:'rgb(55, 169, 155)',color:'white'}}></span>
+                       </div>
+                       <div className="row" style={{padding:"10px"}}>
+                         <div className="col-md-3 col-xs-4">
+                           <h5> Nightlife </h5>
+                         </div>
+                         <div className="col-md-3 col-xs-4">
+                           <h5> Resturant </h5>
+                         </div>
+                         <div className="col-md-3 col-xs-4">
+                           <h5> Delivery</h5>
+                         </div>
+                         <div className="col-md-3">
+                         </div>
+                       </div>
+                       </div>
+                       <div className="col-md-5 col-sm-6 hidden-xs hidden-sm">
+                           <img src="../images/business/busi-illus-1.png" style={{width:'50%'}} />
+                       </div>
+
                    </div>
+
+                   {/*Business Market end*/}
+
+
                     {/*<section className="home-newsletter">
                         <div className="">
                             <div className="row">

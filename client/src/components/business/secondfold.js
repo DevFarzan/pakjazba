@@ -204,7 +204,7 @@ class Secondfold extends Component{
                               }
                               return (
                                   <Link key={key} to={{pathname: `/detail_business`, state: elem}}>
-                                      <div className="col-md-4"  style={{'marginBottom': '30px'}}>
+                                      <div className="col-md-4 col-sm-6"  style={{'marginBottom': '30px'}}>
                                           <div className="card" style={{width:'100%'}}>
                                               <img alt='' src={elem.businessImages.length ? elem.businessImages[0] : './images/def_card_img.jpg'} style={{height:'200px'}} />
                                               <h4 style={{marginTop:'53px'}}><b>{elem.businessname}</b></h4>
@@ -235,7 +235,7 @@ class Secondfold extends Component{
                     </Modal>}
                     {(showBusiness.length >= 7) && !(showBusiness.length === business.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>View More ...</button></div>}
                 </div>
-                <div className="col-md-12" style={{textAlign:'center'}}><button className="btn btn-sm btnview-success" style={{width:'20%'}} onClick={this.handleLogin}>Veiw More</button></div>
+                <div className="col-md-12" style={{textAlign:'center'}}><button className="btn btn-md btnview-success" onClick={this.handleLogin}>Veiw More</button></div>
             </div>
           </div>
         )

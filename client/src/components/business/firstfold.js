@@ -21,33 +21,35 @@ class Firstfold extends Component{
             <div className="Bestbusiness">
               <div className="row">
                   <h3 className="text-align" style={{fontWeight:"bold"}}>  Find the Best Business </h3>
-                <div className="col-md-3">
-                  <img src="../images/business/shutterstock_1270187209.jpg"/>
+                <div className="col-md-3 col-sm-3 col-xs-6">
+                  <img src="../images/business/home.jpg"/>
 
-                  <p>Hotels</p>
+                  <p style={{textAlign: "center", paddingTop: "5px"}}>Hotels</p>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 col-sm-3 col-xs-6">
                   <img src="images/business/shutterstock_1270435183.jpg"/>
-                  <p>Massage</p>
+                  <p style={{textAlign: "center", paddingTop: "5px"}}>Massage</p>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 col-sm-3 col-xs-6">
                   <img src="images/business/shutterstock_1270450375.jpg"/>
-                  <p>Gym</p>
+                  <p style={{textAlign: "center", paddingTop: "5px"}}>Gym</p>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 col-sm-3 col-xs-6">
                   <img src="../images/business/shutterstock_1268093062.jpg"/>
-                  <p>Goldsmith</p>
+                  <p style={{textAlign: "center", paddingTop: "5px"}}>Goldsmith</p>
                 </div>
               </div>
             </div>
-            <div className="Person" style={{width:"100%"}}>
-              <div className="row">
-                <div className="col-md-6">
-                  <h1> Grow Your Business <br/> by Listing on <br/> PakJazba </h1>
-                  <p> We will showcase your business to more customers </p>
-                </div>
-                <div className="col-md-6">
-                  <img src="images/business/busi-illus-2.png"/>
+            <div className="hidden-xs">
+              <div className="Person" style={{width:"100%"}}>
+                <div className="row">
+                  <div className="col-md-6">
+                    <h1> Grow Your Business <br/> by Listing on <br/> PakJazba </h1>
+                    <p> We will showcase your business to more customers </p>
+                  </div>
+                  <div className="col-md-6">
+                    <img src="images/business/busi-illus-2.png"/>
+                  </div>
                 </div>
               </div>
             </div>

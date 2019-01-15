@@ -195,37 +195,38 @@ class DetailBusiness extends Component{
                   <div className="container" style={{width:"70%"}}>
                     <div className="row">
                       <div className="col-md-7">
-                        <div className="card-body space" style={{padding: "17px"}}>
-                            <div className="row">
+                        <div className="card-body space" style={{padding: "2px"}}>
+                            <div className="row" style={{padding:"0"}}>
                                 <div className="col-md-12">
-                                    <h3><b>Opening Time</b></h3>
-                                    <p>You can contact between these timings</p>
+                                    <h4><b>Opening Time</b></h4>
+                                    <p style={{marginLeft:"16px"}}>You can contact between these timings</p>
                                     <hr size="3"/>
                                 </div>
                             </div>
                             <div className="row" style={{padding:"0"}}>
                                 <div className="col-md-12">
                                     <div className="col-md-6">
-                                        <h4><b>Opening Time</b></h4>
+                                        <p><b>Opening Time</b></p>
                                     </div>
                                     <div className="col-md-6">
-                                        <h4><b>{data.openingTime}</b></h4>
+                                        <p><b>{data.openingTime}</b></p>
                                     </div>
                                 </div>
                             </div>
-                            <div className="row">
+                            <div className="row" style={{padding:"0"}}>
                                 <div className="col-md-12">
                                     <div className="col-md-6">
-                                        <h4><b>Closing Time</b></h4>
+                                        <p><b>Closing Time</b></p>
                                     </div>
                                     <div className="col-md-6">
-                                        <h4><b>{data.closingTime}</b></h4>
+                                        <p><b>{data.closingTime}</b></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div>
 
+                          <div className="row" style={{padding:"0px", marginTop:"10px"}}>
                             <div class="col-md-2">
                                 <h4>
                                 <b>Excellent </b>
@@ -293,20 +294,16 @@ class DetailBusiness extends Component{
                                   </div>
                                 </div>
                             </div>
+                          </div>
 
                         </div>
-                        <div class="col-md-12">
-                            <br/>
-                            <div class="h_row"></div>
-                            <br/>
-                        </div>
-                        <div className="row"><br/></div>
+                        <hr/>
                         {/*Start 5th tile */}
                         <div className="card">
-                            {!!reviews.length && <div className="row">
+                            {!!reviews.length && <div className="row" style={{padding:"0px"}}>
                                 {reviews && reviews.map((elem, key) => {
                                     return(
-                                        <div  key={key} className="card-body space">
+                                        <div  key={key} className="card-body space" style={{marginBottom:"0px", paddingLeft:"0px"}}>
                                             <div className="row">
                                                 <div className="col-md-12 col-sm-12 col-xs-12">
                                                     <div className="col-md-3 col-sm-12 col-xs-12 " style={{paddingLeft:"0px" ,  paddingRight:"0px"}}><br/>
@@ -327,6 +324,10 @@ class DetailBusiness extends Component{
                                                         <p>{elem.message}.</p>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <hr style={{marginTop:"-10px"}}/>
+                                            <div className="">
+                                              <a  className="btn btndetail-success" style={{display:"block", margin:"auto0"}}>More</a>
                                             </div>
                                         </div>
                                     )

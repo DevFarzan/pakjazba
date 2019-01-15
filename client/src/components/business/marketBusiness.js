@@ -24,16 +24,24 @@ class MarketBusiness extends Component{
     render(){
         return(
             <div>
-                <span>
-                    <span className="hidden-xs" style={{marginTop : "105px"}}></span>
-                    <span className="visible-xs" style={{marginTop:'-19px'}}></span>
-                    <div className ="col-md-12" style={{backgroundColor:'#d8e7e4',backgroundSize: 'cover',marginTop:'9%',width:'93.8%',marginLeft:'47px'}}>
-                        <div className="background-image">
-                            <Burgermenu/>
-                            <Slider mainH1="Pakjazba Classified" mainH2=""/>
-                        </div>
-                    </div>
-                </span>
+            <div className ="hidden-xs" style={{"background":"#d8e7e4",marginTop:'86px',backgroundSize: 'cover'}}>
+                <div className="background-image">
+                    <Burgermenu/>
+                    <Slider mainH1="Pakjazba Classified" mainH2=""/>
+                </div>
+            </div>
+            <div className ="visible-xs" style={{"background":"#d8e7e4",marginTop : "-20px",backgroundSize: 'cover'}}>
+                <div className="background-image">
+                    <Burgermenu/>
+                    <Slider mainH1="Pakjazba Classified" mainH2=""/>
+                </div>
+            </div>    
+            <div className ="hidden-xs" style={{"background":"#d8e7e4",marginTop:'86px',backgroundSize: 'cover'}}>
+                <div className="background-image">
+                    <Burgermenu/>
+                    <Slider mainH1="PakJazba Business Listing" mainH2=""/>
+                </div>
+            </div>
                 {!this.props.text && <Firstfold/>}
                 <Secondfold/>
                 <BusinessCategory/>

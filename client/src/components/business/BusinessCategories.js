@@ -22,7 +22,7 @@ class BusinessCategory extends Component{
       <div className="container" style={{width:"70%"}}>
         <div className="row">
           <h1 className="headingtext"> Browse Businessess by Category </h1>
-                <div className="col-lg-3" onClick={() => {this.clickItem('coffee shop')}} style={{cursor:'pointer'}}>
+                <div className="col-lg-3 col-md-3 col-sm-4 col-xs-6" onClick={() => {this.clickItem('coffee shop')}} style={{cursor:'pointer'}}>
                     <div className="wrimagecard wrimagecard-topimage">
                     <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
                         <center>
@@ -31,7 +31,7 @@ class BusinessCategory extends Component{
                     </div>
                 </div>
                 </div>
-                <div className="col-lg-3" onClick={() => {this.clickItem('business')}} style={{cursor:'pointer'}}>
+                <div className="col-lg-3 col-md-3 col-sm-4 col-xs-6" onClick={() => {this.clickItem('business')}} style={{cursor:'pointer'}}>
                     <div className="wrimagecard wrimagecard-topimage">
                     <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
                         <center>
@@ -40,7 +40,7 @@ class BusinessCategory extends Component{
                     </div>
                 </div>
                 </div>
-                <div className="col-lg-3" onClick={() => {this.clickItem('hospital')}} style={{cursor:'pointer'}}>
+                <div className="col-lg-3 col-md-3 col-sm-4 col-xs-6" onClick={() => {this.clickItem('hospital')}} style={{cursor:'pointer'}}>
                     <div className="wrimagecard wrimagecard-topimage">
                     <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
                         <center>
@@ -49,7 +49,7 @@ class BusinessCategory extends Component{
                     </div>
                 </div>
                 </div>
-                <div className="col-lg-3" onClick={() => {this.clickItem('market')}} style={{cursor:'pointer'}}>
+                <div className="col-lg-3 col-md-3 col-sm-4 col-xs-6" onClick={() => {this.clickItem('market')}} style={{cursor:'pointer'}}>
                     <div className="wrimagecard wrimagecard-topimage">
                     <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
                         <center>
@@ -58,7 +58,7 @@ class BusinessCategory extends Component{
                     </div>
                 </div>
                 </div>
-                <div className="col-lg-3" onClick={() => {this.clickItem('restaurant')}} style={{cursor:'pointer'}}>
+                <div className="col-lg-3 col-md-3 col-sm-4 col-xs-6" onClick={() => {this.clickItem('restaurant')}} style={{cursor:'pointer'}}>
                     <div className="wrimagecard wrimagecard-topimage">
                     <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
                         <center>
@@ -68,7 +68,7 @@ class BusinessCategory extends Component{
                 </div>
                 </div>
 
-                <div className="col-lg-3" onClick={() => {this.clickItem('park')}} style={{cursor:'pointer'}}>
+                <div className="col-lg-3 col-md-3 col-sm-4 col-xs-6" onClick={() => {this.clickItem('park')}} style={{cursor:'pointer'}}>
                     <div className="wrimagecard wrimagecard-topimage">
                     <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
                         <center>
@@ -77,7 +77,7 @@ class BusinessCategory extends Component{
                     </div>
                 </div>
                 </div>
-                <div className="col-lg-3" onClick={() => {this.clickItem('hostel')}} style={{cursor:'pointer'}}>
+                <div className="col-lg-3 col-md-3 col-sm-4 col-xs-6" onClick={() => {this.clickItem('hostel')}} style={{cursor:'pointer'}}>
                     <div className="wrimagecard wrimagecard-topimage">
                     <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
                         <center>
@@ -86,7 +86,7 @@ class BusinessCategory extends Component{
                     </div>
                 </div>
                 </div>
-                <div className="col-lg-3" onClick={() => {this.clickItem('animal hospital')}} style={{cursor:'pointer'}}>
+                <div className="col-lg-3 col-md-3 col-sm-4 col-xs-6" onClick={() => {this.clickItem('animal hospital')}} style={{cursor:'pointer'}}>
                     <div className="wrimagecard wrimagecard-topimage">
                     <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
                         <center>

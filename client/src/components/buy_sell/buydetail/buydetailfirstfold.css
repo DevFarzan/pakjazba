@@ -134,3 +134,10 @@ margin-left: 5px;
 .No-padding{
   padding: 0px;
 }
+.profile_img >img{
+  border-radius: 50% !important;
+}
+hr{ 
+  height: 1px;
+  color: black;
+}

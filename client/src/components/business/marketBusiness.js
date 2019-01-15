@@ -36,12 +36,7 @@ class MarketBusiness extends Component{
                       <Slider mainH1="Pakjazba Business Listing" mainH2=""/>
                   </div>
               </div>
-              <div className ="hidden-xs" style={{"background":"#d8e7e4",marginTop:'86px',backgroundSize: 'cover'}}>
-                  <div className="background-image">
-                      <Burgermenu/>
-                      <Slider mainH1="PakJazba Business Listing" mainH2=""/>
-                  </div>
-              </div>
+              
                   {!this.props.text && <Firstfold/>}
                   <Secondfold/>
                   <BusinessCategory/>

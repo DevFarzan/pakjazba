@@ -51,10 +51,10 @@ class DetailBuySell extends Component{
                     <div className ="" style={{"backgroundImage":"url('../images/bgc-images/buy-sell.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
                         <div className="background-image">
                             <Burgermenu/>
-                            <Slider mainH1="Buy & Sell" mainH2="Find what you need"/>
+                            {/*<Slider mainH1="Buy & Sell" mainH2="Find what you need"/>*/}
                         </div>
                     </div>
-                </span>                <div className='container' style={{width:"80%"}}>
+                </span>                <div className='container' style={{width:"68%",textAlign:'center'}}>
                     <Buydetailfirstfold data={data}/>
                 </div>
                 <Footer />

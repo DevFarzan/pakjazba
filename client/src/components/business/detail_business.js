@@ -327,7 +327,7 @@ class DetailBusiness extends Component{
                                             </div>
                                             <hr style={{marginTop:"-10px"}}/>
                                             <div className="">
-                                              <a  className="btn btndetail-success" style={{display:"block", margin:"auto"}}>More</a>
+                                              <a  className="btn btndetail-success" style={{display:"block", margin:"auto0"}}>More</a>
                                             </div>
                                         </div>
                                     )

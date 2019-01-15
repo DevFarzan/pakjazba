@@ -56,7 +56,7 @@ class Slider extends Component{
                          </div>
                     </div>
                     </div>*/}
-                    {/*<div className="row">
+                    <div className="row">
                         <span className="col-md-2"></span>
                         <div className="col-md-5 col-sm-12 col-xs-12">
                         <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black',textAlign:'left'}}>{this.props.mainH1}</h3>
@@ -71,7 +71,7 @@ class Slider extends Component{
                         </div>
                         
                     </div>    
-*/}
+
 
                   {/*  <div className="row">
                         <div className="col-md-6 col-sm-12 col-xs-12" style={{width:"100%", marginTop: "107px", backgroundColor: "aliceblue"}}>
@@ -108,7 +108,7 @@ class Slider extends Component{
 
 
                     </div>*/ }
-                    <div className="row">
+                   {/* <div className="row">
                        <div className="col-md-6 col-sm-12 col-xs-12">
                        <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black'}}>{this.props.mainH1}</h3>
                        <div className="row">
@@ -141,7 +141,7 @@ class Slider extends Component{
                    <div className="col-md-5 hidden-xs">
                      <img src="images/business/busi-illus-1.png" style={{width:"100%"}}/>
                    </div>
-                   </div>
+                   </div>*/}
                     {/*<section className="home-newsletter">
                         <div className="">
                             <div className="row">

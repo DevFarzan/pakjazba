@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
-import { Spin, Icon, Pagination, Rate, Modal } from 'antd';
+import { Spin, Icon, Rate, Modal } from 'antd';
 import './secondfold.css'
 import {HttpUtils} from "../../Services/HttpUtils";
 import { connect } from 'react-redux';
@@ -221,7 +221,6 @@ class Secondfold extends Component{
                     {this.state.loader &&  <div  style={{textAlign: 'center', marginLeft:'-100px', marginBottom: '15px'}}>
                         <Spin indicator={antIcon} />
                     </div>}
-                    {/*!!showBusiness.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :business.length} onChange={this.onChange} /></span>*/}
                     {this.state.visible && <Modal
                         title="Kindly Login first"
                         visible={this.state.visible}
@@ -233,9 +232,12 @@ class Secondfold extends Component{
                             <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleCancel}>Cancel</button></div>
                         </div>
                     </Modal>}
-                    {(showBusiness.length >= 7) && !(showBusiness.length === business.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>View More ...</button></div>}
+                    {(showBusiness.length >= 7) && !(showBusiness.length === business.length) && <div className="col-md-12" style={{textAlign:"center"}}>
+                        <button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>
+                            View More
+                        </button>
+                    </div>}
                 </div>
-                <div className="col-md-12" style={{textAlign:'center'}}><button className="btn btn-md btnview-success" onClick={this.handleLogin}>Veiw More</button></div>
             </div>
           </div>
         )

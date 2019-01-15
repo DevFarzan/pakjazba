@@ -38,7 +38,7 @@ class MarketBusiness extends Component{
             </div>    
                 {!this.props.text && <Firstfold/>}
                 <Secondfold/>
-                <BusinessCategory/>
+                {!this.props.text && <BusinessCategory/>}
                 <Footer/>
             </div>
         )

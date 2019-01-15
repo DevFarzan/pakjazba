@@ -145,9 +145,9 @@ class Thirdrow extends Component{
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
         return(
-            <div className="container" style={{width:"90%"}}>
+            <div className="container" style={{width:"70%"}}>
                 <div className="row">
-                    <div className="col-md-4 col-sm-12 col-xs-12 des-space" style={{border:'1px solid #80808059',marginTop:'-4px'}}>
+                    {/*<div className="col-md-4 col-sm-12 col-xs-12 des-space" style={{border:'1px solid #80808059',marginTop:'-4px'}}>
                         <span className="featurejob-box">
                             <h4 className="margin-thirdrow font-style"> Featured Jobs </h4>
                                 {job && job.map((elem) => {
@@ -183,12 +183,12 @@ class Thirdrow extends Component{
                                         </div>
                                     )
                                 })}
-                                
+
                         </span>
-                    </div>
-                    <div className="col-md-8 col-sm-12 col-xs-12 des-space">
+                    </div>*/}
+                    <div className="col-md-12 col-sm-12 col-xs-12 des-space">
                       <div className="row">
-                          <div className="card outset" style={{ boxShadow: "none", marginTop:"-40px", border: '1px solid gray'}}>
+                          <div className="card outset" style={{ boxShadow: "none", marginTop:"-40px", background:"whitesmoke"}}>
                               <div className="card-body space">
                                   <div className="row">
                                       <div className="col-md-12 col-sm-12 col-xs-12">
@@ -219,7 +219,7 @@ class Thirdrow extends Component{
                                                 <label className="font-style">Add Your CV</label>
                                                 <div className="form-background">
                                                     <Dropzone style={{border: 'none'}} onDrop={this.uploadFile.bind(this)}>
-                                                        <button className="btn button_custom"  style={{width: "45%"}}>Choose File</button>
+                                                        <button className="btn button_custom"  style={{width: "100%"}}>Choose File</button>
                                                     </Dropzone>
                                                 </div>
                                                  {loader2 && <Spin className="col-xs-2 col-md-1" indicator={antIcon} />}
@@ -235,7 +235,7 @@ class Thirdrow extends Component{
                                                 </div>
                                                 <div className="form-background">
                                                     {loader && <Spin className="col-xs-2 col-md-1" indicator={antIcon} />}
-                                                    <button className="btn button_custom" disabled={!!loader} style={{width: "45%"}} onClick={this.handleSubmit}>Submit Now</button>
+                                                    <button className="btn button_custom" disabled={!!loader} style={{width: "100%"}} onClick={this.handleSubmit}>Submit Now</button>
                                                     <p className="font-style">{this.state.err2}</p>
                                                 </div>
                                             </div>

@@ -72,7 +72,7 @@ class JobDetail extends Component {
                     </div>
                 </div>
                 <JobDetailpage data={data}/>
-                <JobSecondrow data={data}/>
+                {/*<JobSecondrow data={data}/>*/}
                 {user && <Thirdrow data={data}/>}
                 <Footer/>
             </div>

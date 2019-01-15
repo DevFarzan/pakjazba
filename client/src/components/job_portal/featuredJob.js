@@ -175,14 +175,28 @@ class FeaturedBox extends Component{
         if(goForward){
             return <Redirect to={{pathname: `/postad_jobPortal`}} />
         }
+        console.log(showJob)
 
         return(
-            <div className="container" style={{width:"94%"}}>
+            <div className="container" style={{width:"70%"}}>
+              <div className="hidden-xs">
+                <div className="Person" style={{width:"100%"}}>
+                  <div className="row">
+                    <div className="col-md-6">
+                      <h1> Find, Explore Job <br/> Opportunities <br/> with PakJazba </h1>
+                      <p> 100+ companies with the jobs for you </p>
+                    </div>
+                    <div className="col-md-6">
+                      <img src="images/job-icons/ilus-2.png"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
                 <h2 className="font-style" style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}>Featured Jobs </h2>
                 <div className="row">
-                    <div className="col-md-3" onClick={() => {this.addJob()}}>
+                    {/*<div className="col-md-3" onClick={() => {this.addJob()}}>
                         <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '380px', width: '90%',borderRadius:'16px'}}/>
-                    </div>
+                    </div>*/}
                     {showJob && showJob.map((elem) => {
                         let str = elem.location || '';
                         if(str.length > 8) {
@@ -191,8 +205,7 @@ class FeaturedBox extends Component{
                         }
                         return (
                             <div className="col-md-3">
-                                <div className="featuredbox">
-                                    <div className="featuredbox-content featuredjob-box ">
+                                <div className="">
                                         <div className="featuredjob-imitation">
                                         <Link to={{pathname: `/detail_jobPortal`, state: {...elem, sec: 'mainPart', user: user}}}>
                                             <div className="card2">
@@ -201,9 +214,8 @@ class FeaturedBox extends Component{
                                             </Link>
                                         </div>
                                         <div className="customjob-margin">
+                                            <p> Selmore Advertising </p>
                                             <h4 className="heading-wight font-style">{elem.jobCat}</h4>
-                                            <i className="glyphicon glyphicon-star"/>
-                                            <p className="textforjob font-style">{elem.jobType}</p>
                                             <div className="glyphicom">
                                                 <i className="glyphicon glyphicon-map-marker"/>
                                                 <p className="textforjob font-style ">{str}</p>
@@ -211,7 +223,7 @@ class FeaturedBox extends Component{
                                         </div>
                                         <div className="jobdetail-desc">
                                             <div> </div>
-                                            <div className="row" style={{padding:'0px'}}>
+                                            {/*<div className="row" style={{padding:'0px'}}>
                                                 <div className="col-md-6 col-sm-12 col-xs-12">
                                                     <Link to={{pathname: `/detail_jobPortal`, state: {...elem, sec: 'mainPart', user: user}}}>
                                                         <button type="button" className="btn btn-sm btn2-success font-style">View Detail</button>
@@ -220,10 +232,9 @@ class FeaturedBox extends Component{
                                                 <div className="col-md-6 col-sm-12 col-xs-12">
                                                     <button type="button" className="btn btn-sm btn2-success font-style" onClick={() => {this.clickItem(elem)}}>Apply Now</button>
                                                 </div>
-                                            </div>
+                                            </div>*/}
                                         </div>
                                     </div>
-                                </div>
                             </div>
                         )
                     })}

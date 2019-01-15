@@ -3,7 +3,6 @@ import Burgermenu from '../header/burgermenu';
 import Slider from '../header/Slider';
 import ClassifiedIcons from './jobClassifiedicon';
 import FeaturedBox from './featuredJob';
-import JobBlog from './jobBlogs';
 import { Redirect } from 'react-router';
 import Footer from '../footer/footer';
 import { connect } from 'react-redux';
@@ -43,19 +42,20 @@ class JobClassified extends Component {
         }
         return (
             <div>
-                <span>
-                    <span className="hidden-xs" style={{marginTop : "104px"}}></span>
-                    <span className="visible-xs" style={{marginTop : "-19px"}}></span>
-                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/job-portal.png')",backgroundSize: 'cover'}}>
-                        <div className="background-image">
-                            <Burgermenu/>
-                            <Slider mainH1="Job Portal" mainH2="Find your jobs here"/>
-                        </div>
-                    </div>
-                </span>
+              <div className ="hidden-xs" style={{"background":"#d8e7e4",marginTop:'86px',backgroundSize: 'cover'}}>
+                  <div className="background-image">
+                      <Burgermenu/>
+                      <Slider mainH1="Pak Jazba Job Portal" mainH2=""/>
+                  </div>
+              </div>
+              <div className ="visible-xs" style={{"background":"#d8e7e4",marginTop : "-20px",backgroundSize: 'cover'}}>
+                  <div className="background-image">
+                      <Burgermenu/>
+                      <Slider mainH1="Pak Jazba Job Portal" mainH2=""/>
+                  </div>
+              </div>
                 {!this.props.text && <ClassifiedIcons/>}
                 <FeaturedBox/>
-                <JobBlog/>
                 <Footer/>
             </div>
         )

@@ -6,21 +6,31 @@ class JobDetailpage extends Component{
         const { data } = this.props;
         console.log(data, 'arrrrrrrrrrrryyyyyyyyyyyyyyyyyyyy bhaiiiiiiiiiiiiiiiiiiiii')
         return(
-            <div className="container" style={{width:"90%"}}>
-                <div className="row" style={{border:'1px solid #80808059'}}>
-                    <div className="col-md-12" style={{paddingTop:"4px", paddingBottom:"10px"}}>
-                        <div className="col-md-4 col-sm-12 col-xs-12 des-space">
-                            <img alt='' src={data.arr_url && data.arr_url[0]} width="100%" />
+            <div className="container" style={{width:"70%"}}>
+                <div className="row" style={{padding:"0"}}>
+                        <div className="col-md-10 col-sm-9 col-xs-7 des-space">
+                            <h1 style={{fontWeight:"bold",fontFamily: 'Crimson Text, sans-serif',marginTop:'11px', marginBottom:"5px"}}>{data.jobTitle && data.jobTitle}</h1>
+                            <p className="companyName" style={{marginBottom:"0"}}> Selmore Advertising </p>
+                            <div className="glyphicom">
+                                <i className="glyphicon glyphicon-map-marker"/>
+                                <p className="textforjob font-style ">Dallas Ontario Texas</p>
+                            </div>
                         </div>
-                        <div className="col-md-8 col-sm-12 col-xs-12 des-space">
-                            <h3 style={{fontWeight:"bold",fontFamily: 'Crimson Text, sans-serif',marginTop:'11px'}}>{data.jobTitle && data.jobTitle}</h3>
+                        <div className="col-md-2 col-sm-3 col-xs-5 des-space">
                             <span >
                             <p className="job-time" style={{fontFamily: 'Work Sans, sans-serif'}}>{data.jobType && data.jobType}</p>
                             </span>
-                            
-                            <p style={{fontFamily: 'Work Sans, sans-serif'}}>{data.jobDescription && data.jobDescription}</p>
                         </div>
-                    </div>
+                        <div className="col-md-2 col-sm-3 col-xs-5 des-space">
+                            <span >
+                            <p className="job-time" style={{fontFamily: 'Work Sans, sans-serif', marginTop:"-30px"}}>Category</p>
+                            </span>
+                        </div>
+                </div>
+                <div>
+                    <h3> About The Job </h3>
+                    <hr style={{borderTop: "1px solid black"}}/>
+                    <p style={{fontFamily: 'Work Sans, sans-serif'}}>{data.jobDescription && data.jobDescription}</p>
                 </div>
             </div>
         )

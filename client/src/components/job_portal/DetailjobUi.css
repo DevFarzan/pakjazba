@@ -1,7 +1,17 @@
 .job-time{
   color: white;
-    text-align: center;
-    background-color:#008080;
-    width: 100px;
-    border-radius: 6px;
+  text-align: center;
+  background-color: #008080;
+  width: 88px;
+  border-radius: 6px;
+  float: right;
+  margin-top: 20px;
+  padding: 5px;
+}
+
+.companyName{
+  font-size: 18px;
+  color: black;
+  font-weight: 500;
+
 }

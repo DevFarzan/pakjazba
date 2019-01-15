@@ -78,9 +78,9 @@
 }
 
 .customjob-margin{
-  margin-top:32px;
-  margin-bottom:4px;
-  padding-left: 20px;
+  margin-top:0px;
+  margin-bottom:0px;
+  padding-left: 5px;
 }
 
 .textforjob{
@@ -98,7 +98,7 @@
   border-radius: 0;
 }
 .glyphicom{
-  margin-left: 15px;
+  margin-left: -2px;
   display: inline;
 }
 
@@ -111,7 +111,7 @@
   padding-right: 18px;
   border-radius: 8px;
   color:#ffff;
-  
+
 
 }
 
@@ -134,6 +134,6 @@
 .heading-wight{
   font-family: "Source-bold" ;
 font-weight: 600;
-margin: 0 0 20px 0;
+margin: 0 0 5px 0;
 padding: 0;
 }

@@ -89,7 +89,7 @@ class Slider extends Component{
                                         <div className="input-group">
                                             <input type="text" className="form-control" placeholder="Search" onChange={this.onChange.bind(this)}/>
                                             <span className="input-group-btn">
-                                                <button className="btn btn-theme" type="submit" style={{backgroundColor:'#37a99b',color:'white'}} onClick={this.searchText}><i class="fa fa-search"/></button>
+                                                <button className="btn btn-theme" type="submit" style={{backgroundColor:'#37a99b',color:'white'}} onClick={this.searchText}><i className="fa fa-search"/></button>
                                             </span>
                                         </div>
                                     </div>
@@ -124,10 +124,16 @@ class Slider extends Component{
                         <div className="col-md-5 col-sm-12 col-xs-12">
                         <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black',textAlign:'left'}}>{this.props.mainH1}</h3>
 
-                        <div className="form-group has-feedback">
-                            <input type="text" placeholder="Find" className="form-control" id="inputSuccess2" onChange={this.onChange.bind(this)} style={{border:'1px solid rgb(55, 169, 155)'}}/>
-                            <span className=" btn btn-sm glyphicon glyphicon-search form-control-feedback" onClick={this.searchText}  style={{background:'rgb(55, 169, 155)',color:'white'}}></span>
-                        </div>
+                        <form>
+                                    <div className="single">
+                                        <div className="input-group">
+                                            <input type="text" className="form-control" placeholder="Search" onChange={this.onChange.bind(this)}/>
+                                            <span className="input-group-btn">
+                                                <button className="btn btn-theme" type="submit" style={{backgroundColor:'#37a99b',color:'white'}} onClick={this.searchText}><i class="fa fa-search"/></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
                         </div>
                         <div className="col-md-5 col-sm-6 hidden-xs">
                             <img src="../images/job-icons/ilus-1.png" style={{width:'50%'}} />
@@ -140,7 +146,38 @@ class Slider extends Component{
                        <img src="../images/business/busi-illus-1.png" style={{width:"50%"}}/>
                    </div>*/}
                    </div>}
+                 {/*=====================roomRenting start==================*/}
+                  {/*<!-- Header Start -->*/}
+                    {this.props.mainH1 === "PakJazba Room Renting" && <div className="row">
+                        <span className="col-md-2"></span>
+                        <div className="col-md-5 col-sm-12 col-xs-12">
+                        <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black',textAlign:'left'}}>{this.props.mainH1}</h3>
+                        <form>
+                            <div className="single">
+                                <div className="input-group">
+                                    <input type="text" className="form-control" placeholder="Search" onChange={this.onChange.bind(this)}/>
+                                    <span className="input-group-btn">
+                                        <button className="btn btn-theme" type="submit" style={{backgroundColor:'#37a99b',color:'white'}} onClick={this.searchText}><i className="fa fa-search"/></button>
+                                    </span>
+                                </div>
+                                <div className="row">
+                                  <div className="col-md-7">
+                                    <h4>Looking for tenant or a roommate?</h4>
+                                  </div>
+                                  <div className="col-md-5">
+                                    <button className="header_button">Post Your Room</button>
+                                  </div>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                        <div className="col-md-5 col-sm-6 hidden-xs">
+                            <img src="../images/room icon/room_header.png" style={{width:'50%'}} />
+                        </div>
+                    </div> }
+                      {/*<!-- Header End -->*/}
 
+                 {/*=====================roomRenting end====================*/}
 
                   {/*  <div className="row">
                         <div className="col-md-6 col-sm-12 col-xs-12" style={{width:"100%", marginTop: "107px", backgroundColor: "aliceblue"}}>

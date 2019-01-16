@@ -1009,3 +1009,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 .slick-slide .slick-active .slick-current{
   height:430px !important;
 }
+.list_img
+{
+  width: 200px;
+  height: 150px;
+}

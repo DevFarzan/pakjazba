@@ -111,12 +111,6 @@ class Roomrenting1content extends Component{
         const { showroomrents, filteredArr, roomrents, goForLogin, goDetail } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
-        if (goForLogin) {
-            return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/postad_Roommates" }}}}/>;
-        }
-        if(goDetail){
-            return <Redirect to={{pathname: `/postad_Roommates`}} />
-        }
 
         return(
             <section id="about">
@@ -138,29 +132,22 @@ class Roomrenting1content extends Component{
                                 str = str.substring(0, 25);
                                 str = str + '...'
                             }
-                            let des = elem.discription || '';
-                            if(des.length > 30) {
-                                des = des.substring(0, 30);
-                                des = des + '...'
-                            }
                             let postedOn = moment(elem.posted, "LL").format('YYYY-MM-DD');
                             return(
                                 <Link key={key} to={{pathname: `/detail_roomRent`, state: elem}}>
-                                   
-                                        <div class="col-md-3 col-sm-4 col-xs-12">
-                                            <img src="../images/room icon/home_option3.jpg" class="img-responsive list_img" />
-                                            <p>ENTIRE HOUSE. DALLAS
-                                                <br/><b>I SETTE CON! - TRULLO EDERA</b>
-                                                <br/>$74 per Night - Free Cencellation</p>
-                                                  <div style={{marginTop:'-34px'}}>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star"></span>
-                                                </div>    
-                                        </div>
-                                      
+                                    <div class="col-md-3 col-sm-4 col-xs-12">
+                                        <img src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'} class="img-responsive list_img" />
+                                        <p style={{color: 'black'}}>{str}
+                                            <br/><b>{elem.contactname}</b>
+                                            <br/>{'$' + elem.rent + ' ' + elem.pricemode}</p>
+                                              <div style={{marginTop:'-34px'}}>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                            </div>    
+                                    </div>                                    
                                 </Link>
                             )
                         })
@@ -178,37 +165,3 @@ class Roomrenting1content extends Component{
 }
 
 export default Roomrenting1content;
-
-// <div className="col-md-3">
-//                                         <div className="ibox" style={{width: "100%"}}>
-//                                             <div className="ibox-content product-box" style={{backgroundColor:'white',border:'1px solid #80808038',borderRadius:'17px'}}>
-//                                                 <div className="product-imitation">
-//                                                     <div className="card2">
-//                                                         <img alt='' src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'}/>
-//                                                         <span className="card-button" style={{width: "200px"}}>
-//                                                             <p className="categories-on-card" style={{backgroundColor:"#008080",textAlign: "center",width: "159px",marginBottom: "6px"}}>{elem.category}</p>
-//                                                             <i className="glyphicon glyphicon-map-marker" style={{color: "#008080",marginLeft: "-2px"}} /><p className="text" style={{color: "white",marginLeft: "14px"}}>{elem.state +" & "+ elem.city}</p>
-//                                                         </span>
-//                                                     </div>
-//                                                 </div>
-//                                                 <div>
-//                                                     <span className="product-price" style={{top: '-40px',position:'relative'}}>{"$" + elem.rent}</span>
-//                                                 </div>
-                                                
-//                                                 <div className="row" style={{textAlign:'center',marginTop:'-15px'}}>
-//                                                 <span className="col-md-6" style={{color: "#000000c7",fontSize:'13px'}}>Posted On</span>
-//                                                 <div className="col-md-6">
-//                                                     <i className="glyphicon glyphicon-calendar" style={{color:"#008080"}} />
-//                                                     <span className="" style={{color: "#000000c7",fontSize:'13px'}}>{postedOn}</span>
-//                                                  </div>
-//                                                 </div>
-//                                                 <div className="row" style={{textAlign:'center',marginTop:'-15px'}}>
-//                                                 <span className="col-md-6" style={{color: "#000000c7",fontSize:'13px'}}>Availible From</span>
-//                                                 <div className="col-md-6">
-//                                                     <i className="glyphicon glyphicon-calendar" style={{color:"#008080"}} />
-//                                                     <span className="" style={{color: "#000000c7",fontSize:'13px'}}>{elem.startdate ? elem.startdate : '10-17-2018'}</span>
-//                                                  </div>
-//                                                 </div>
-//                                             </div>
-//                                         </div>
-//                                     </div>

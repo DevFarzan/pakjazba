@@ -336,64 +336,68 @@ class Roomrentingtwocontentarea extends Component{
         }
 
 		return(
-            <div>
+            <div style={{marginTop:'6%'}}>
 		    <Burgermenu/>
-            <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}></div>
             <div className="countainer">
-                <div className="head-bg">
-                    <div className="col-md-12">
-                        <h2 className="head-space">Rent List Page </h2>
-                    </div>
-                </div>
+                <div className="row">
                 <div className="col-md-1 col-sm-1">
                 </div>
                 <div className="col-md-10 col-sm-10 search-space search-space2">
                     <div className="col-md-2 col-sm-2">
                         <h4><b> Search By:</b></h4>
                     </div>
-                    <div className="col-md-6 col-sm-6 search-space1">
+                    <div className="col-md-4 col-sm-6 search-space1">
                         <Cascader style={{width: '100%'}} options={category} onChange={this.onChange.bind(this)} placeholder="Please select" />
                     </div>
-                    <div className="col-md-2 col-sm-2 search-space1">
-                        <button className="btn search-btn" onClick={this.mostPopular.bind(this)}>Search</button>
+                    <div className="col-md-4 col-sm-2 search-space1">
+                        <button className="btn btn-sm" onClick={this.mostPopular.bind(this)}>Search</button>
+                        <button className="btn btn-sm" style={{backroundColor:'rgb(55, 169, 155) !important',color:'white',marginLeft:'23px'}}>More Filter</button>
+                    </div>
+                </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-1"></div>
+                    <div class="col-md-5 col-sm-12 spacing">
+                        <h3 className="col-md-3">Location </h3>
+                                <div className="col-md-4 col-sm-4 col-xs-12"><Cascader options={states} onChange={this.onChangeState.bind(this)}/></div>
+                                <div className="col-md-4 col-sm-4 col-xs-12"><Cascader options={cities} onChange={this.onChangeCity.bind(this)}/></div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 spacing hidden-xs" style={{marginLeft:'-47px'}}>
+                    <span>Price</span>
+                    <div className="slidecontainer" style={{marginTop:'-16px'}}>
+                            <Slider range min={0} max={6000} step={500} tipFormatter={this.formatter} defaultValue={[0, 6000]} onChange={this.onChangeSlider.bind(this)}/>
+                            <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 spacing visible-xs">
+                        <span>Price</span>
+                        <div className="slidecontainer" style={{marginTop:'-16px'}}>
+                            <Slider range min={0} max={6000} step={500} tipFormatter={this.formatter} defaultValue={[0, 6000]} onChange={this.onChangeSlider.bind(this)}/>
+                            <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p>
+                         </div>
+                    </div>
+                    <div className="col-md-1">Beds:</div>
+                    <div className="col-md-3">
+                        <div className="row" style={{padding:'0px'}}>
+                            <div className="col-md-3">
+                                <label><input type="checkbox" value="" id='1 Bed' onClick={this.checkedBed.bind(this)}/>1</label>
+                            </div>
+                            <div className="col-md-3">
+                                <label><input type="checkbox" value="" id='2 Beds' onClick={this.checkedBed.bind(this)}/>2</label>
+                            </div>
+                            <div className="col-md-3">
+                                <label><input type="checkbox" value="" id='3 Beds' onClick={this.checkedBed.bind(this)}/>3</label>
+                            </div>
+                            <div className="col-md-3">
+                                <label><input type="checkbox" value="" id='4+ Beds' onClick={this.checkedBed.bind(this)}/>4+</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="col-md-1 col-sm-1">
                 </div>
                 <div className="col-md-12 col-sm-12 main-space">
                     <div className="col-md-2 col-sm-12 col-xs-12">
-                        <h3><span className="glyphicon glyphicon-usd"></span> Price Rating </h3>
-                        <div className="slidecontainer">
-                            <Slider range min={0} max={6000} step={500} tipFormatter={this.formatter} defaultValue={[0, 6000]} onChange={this.onChangeSlider.bind(this)}/>
-                            <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p>
-                        </div>
-                        <br/>
-                        <h3><span className="glyphicon glyphicon-map-marker"></span> Location </h3>
-                        <div className="checkbox">
-                            <Cascader options={states} onChange={this.onChangeState.bind(this)}/>
-                        </div>
-                        <div className="checkbox">
-                            <Cascader options={cities} onChange={this.onChangeCity.bind(this)}/>
-                        </div>
-                        <br/>
-                        <h3><span className="glyphicon glyphicon-bed"></span> Bedrooms</h3>
-                        <div className="checkbox">
-                            <label><input type="checkbox" value="" id='1 Bed' onClick={this.checkedBed.bind(this)}/>1 Bed</label>
-                        </div>
-                        <div className="checkbox">
-                            <label><input type="checkbox" value="" id='2 Beds' onClick={this.checkedBed.bind(this)}/>2 Beds</label>
-                        </div>
-                        <div className="checkbox">
-                            <label><input type="checkbox" value="" id='3 Beds' onClick={this.checkedBed.bind(this)}/>3 Beds</label>
-                        </div>
-                        <div className="checkbox">
-                            <label><input type="checkbox" value="" id='4+ Beds' onClick={this.checkedBed.bind(this)}/>4+ Beds</label>
-                        </div>
-                        <br/>
-                        <h3><span className="glyphicon glyphicon-map-marker"></span> On the Map</h3>
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.6337348509687!2d67.03749541472551!3d24.807992284078704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33da992be1aa7%3A0x7646411a2d8e6ac5!2sKRL+Creatives!5e0!3m2!1sen!2s!4v1536302761580"
-                            width="180" height="200" frameBorder="0" style={{"border": "0"}} allowFullScreen></iframe>
                     </div>
                     <div className="col-md-10 col-sm-12 col-xs-12">
                         {!!showroomrents.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}

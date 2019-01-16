@@ -403,7 +403,7 @@ class Roomrentingtwocontentarea extends Component{
                 <div className="col-md-1 col-sm-1">
                 </div>
               </div>
-              <div className="container" style={{width:"70%"}}>
+              <div className="container" style={{width:"75%"}}>
                     <div className="col-md-12 col-sm-12 col-xs-12">
                         {!!showroomrents.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
                         {!!showroomrents.length === false && <span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
@@ -423,13 +423,13 @@ class Roomrentingtwocontentarea extends Component{
                                 <div key={key} className="col-lg-3 col-md-3 col-sm-12 space-top">
                                     <div className="secondfold" style={{backgroundColor:"#ffffff08"}}>
                                         <div className="row">
-                                            {/*<Link to={{pathname: `/detail_roomRent`, state: elem}}>*/}
+                                            <Link key={key} to={{pathname: `/detail_roomRent`, state: elem}}>
                                                 <div className="" onClick={() => {this.clickItem(elem)}}>
                                                 <div class="">
-                                                    <img src="../images/room icon/home_option3.jpg" class="img-responsive list_img" />
-                                                    <p>ENTIRE HOUSE. DALLAS
-                                                        <br/><b>I SETTE CON! - TRULLO EDERA</b>
-                                                        <br/>$74 per Night - Free Cencellation</p>
+                                                    <img src={elem.imageurl.length ? elem.imageurl[0] : "../images/room icon/home_option3.jpg"} class="img-responsive list_img" />
+                                                    <p style={{color: 'black'}}>{str}
+                                                        <br/><b>{elem.contactname}</b>
+                                                        <br/>{'$' + elem.rent + ' ' + elem.pricemode}</p>
                                                           <div style={{marginTop:'-34px'}}>
                                                             <span class="fa fa-star checked"></span>
                                                             <span class="fa fa-star checked"></span>
@@ -439,7 +439,7 @@ class Roomrentingtwocontentarea extends Component{
                                                         </div>
                                                 </div>
                                                 </div>
-                                            {/*</Link>*/}
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>

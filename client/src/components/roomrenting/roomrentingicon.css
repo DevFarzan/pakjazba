@@ -24,3 +24,33 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
     height: 50%;
     display: inline;
 }
+.card_room{
+    box-shadow: none; 
+    border: 1px solid rgba(128, 128, 128, 0.56); 
+    background: white;
+}
+.tag1 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.option_text
+{
+    color: black;
+}
+.option_img
+{
+    margin-left: -5px; 
+    margin-top: -5px; 
+    margin-bottom: -5px;
+    height: 82px;
+    width: 95px;
+}
+.jambo_text
+{
+    font-size: 30px;
+}
+.jambo_img
+{
+    height: 250px;
+    width: 380px;   
+}

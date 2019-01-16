@@ -38,16 +38,20 @@ class MarketRoommates extends Component{
         return(
             <div>
                 <span>
-                <span className="hidden-xs" style={{marginTop : "104px"}}></span>
-                <span className="visible-xs" style={{marginTop : "-19px"}}></span>
-                <div className ="" style={{"backgroundImage":"url('../images/bgc-images/room-renting.png')",backgroundSize: 'cover'}}>
-                    <div className="background-image">
-                        <Burgermenu/>
-                        <Slider mainH1="Explore Homes" mainH2="Find Your Perfect Match"/>
-                    </div>
-                </div>
+                <div className ="hidden-xs" style={{"background":"#d8e7e4",marginTop:'86px',backgroundSize: 'cover'}}>
+                  <div className="background-image">
+                      <Burgermenu/>
+                      <Slider mainH1="PakJazba Room Renting" mainH2=""/>
+                  </div>
+              </div>
+              <div className ="visible-xs" style={{"background":"#d8e7e4",marginTop : "-20px",backgroundSize: 'cover'}}>
+                  <div className="background-image">
+                      <Burgermenu/>
+                      <Slider mainH1="PakJazba Room Renting" mainH2=""/>
+                  </div>
+              </div>
                 </span>
-                <div className="container" style={{width:"100%"}}>
+                <div className="container" style={{width:"71%"}}>
                     <RoomrentingIcon/>
                     <Roomrenting1content/>
                 </div>

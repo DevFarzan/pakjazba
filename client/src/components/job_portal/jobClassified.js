@@ -45,13 +45,13 @@ class JobClassified extends Component {
               <div className ="hidden-xs" style={{"background":"#d8e7e4",marginTop:'86px',backgroundSize: 'cover'}}>
                   <div className="background-image">
                       <Burgermenu/>
-                      <Slider mainH1="Pak Jazba Job Portal" mainH2=""/>
+                      <Slider mainH1="Pak Jazba Room Renting" mainH2=""/>
                   </div>
               </div>
               <div className ="visible-xs" style={{"background":"#d8e7e4",marginTop : "-20px",backgroundSize: 'cover'}}>
                   <div className="background-image">
                       <Burgermenu/>
-                      <Slider mainH1="Pak Jazba Job Portal" mainH2=""/>
+                      <Slider mainH1="Pak Jazba Room Renting" mainH2=""/>
                   </div>
               </div>
                 {!this.props.text && <ClassifiedIcons/>}

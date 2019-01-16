@@ -49,7 +49,7 @@ class Secondscreencard extends Component{
             })
     }
 
-    ViewAll(item){
+    ViewAll = (item) => {
         this.props.allData();
     }
 
@@ -86,10 +86,9 @@ class Secondscreencard extends Component{
         }
 
         return(
-            <div className="conatiner">
-                <div className="row">
-                    <div className="col-md-9"> {/*col-md-9 open*/}
-                        <div className="row">
+            <div className="container" style={{width:"70%"}}>
+                <div className="row" style={{padding:"0"}}>
+                    <div className="col-md-12"> {/*col-md-9 open*/}
                             {data && data.length ? data.map((elem) => {
                                 let str = elem.location || '';
                                 if(str.length > 10) {
@@ -102,31 +101,24 @@ class Secondscreencard extends Component{
                                     des = des + '...'
                                 }
                                 return (
-                                    <div className="col-md-4 col-sm-12 col-xs-12" style={{paddingRight:"6px"}}>
-                                        <div className="featuredbox width100">
-                                            <div className="marketjob-content featuredjob-box ">
-                                                <div className="featuredjob-imitation">
-                                                    <div className="card2">
-                                                        <img alt='' src={elem.arr_url[0]}/>
-                                                    </div>
+                                    <div className="col-md-3 col-sm-3 col-xs-6" style={{paddingRight:"6px"}}>
+                                        <div className="">
+                                            <div className="featuredjob-imitation">
+                                              <Link to={{pathname: `/detail_jobPortal`, state: {...elem, sec: 'mainPart', user: user}}}>
+                                                <div className="card2">
+                                                    <img alt='' src={elem.arr_url[0]}/>
                                                 </div>
+                                              </Link>
                                             </div>
                                             <div className="customjob-margin">
+                                                <p className="companyName" style={{marginBottom:"0"}}>{elem.compName && elem.compName}</p>
                                                 <h4 className="heading-wight font-style">{elem.jobCat}</h4>
-                                                <div className="row" style={{marginLeft:"-32px"}}>
-                                                    <div className="col-md-6 col-sm-12 col-xs-12">
-                                                        <i className="glyphicon glyphicon-star"/>
-                                                        <p className="textforjob font-style">{elem.jobType}</p>
-                                                    </div>
-                                                    <div className="col-md-6 col-sm-12 col-xs-12">
-                                                        <div className="glyphicom">
-                                                            <i className="glyphicon glyphicon-map-marker"/>
-                                                            <p className="textforjob font-style ">{str}</p>
-                                                        </div>
-                                                    </div>
+                                                <div className="glyphicom">
+                                                    <i className="glyphicon glyphicon-map-marker"/>
+                                                    <p className="textforjob font-style ">{str}</p>
                                                 </div>
                                             </div>
-                                            <div className="jobdetail-desc">
+                                            {/*<div className="jobdetail-desc">
                                                 <div className="small m-t-xs font-style">
                                                     <p>{des}</p>
                                                 </div>
@@ -140,21 +132,20 @@ class Secondscreencard extends Component{
                                                         <button type="button" className="btn btn-sm btn2-success font-style" style={{width:"100%"}} onClick={() => {this.clickItem(elem)}}>Apply Now</button>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>*/}
                                         </div>
                                     </div>
                                 )
                             })
                             :<div className="col-md-12 col-sm-12 col-xs-12">
                                 <div className="col-md-4"></div>
-                                <div className="col-md-4">
+                                <div className="col-md-4"  style={{textAlign:"center"}}>
                                     <h3>Searched data not found</h3>
-                                    <button type="button" className="btn btn-sm btn2-success font-style"  style={{width:"100%"}}  onClick={() => {this.ViewAll()}}>Search More</button>
+                                    <button type="button" className="btn btn-sm btn2-success font-style"  style={{width:"100%"}}  onClick={this.ViewAll}>Search More</button>
                                 </div>
                                 <div className="col-md-4"></div>
                             </div>
                             }
-                        </div>
                         {this.state.visible && <Modal
                             title="Kindly Login first"
                             visible={this.state.visible}
@@ -167,7 +158,7 @@ class Secondscreencard extends Component{
                             </div>
                         </Modal>}
                     </div>
-                    <div className="col-md-3">
+                    {/*<div className="col-md-3">
                         <div className="row">
                             <Tabs defaultActiveKey="2" style={{border:'1px solid gray',backgroundColor:'rgba(119, 136, 153, 0.05)',padding: '10px', marginBottom: '20px'}}>
                                 <TabPane style={{height: '450px', 'overflow-y': 'overlay', fontColor: 'black'}} tab='SPORTS' key="1">
@@ -197,7 +188,7 @@ class Secondscreencard extends Component{
                             </Tabs>
                             <JobNews/>
                         </div>
-                    </div>
+                    </div>*/}
                 </div>
             </div>
         )

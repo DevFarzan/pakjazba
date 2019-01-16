@@ -57,39 +57,43 @@ class CategoriesjobMarket extends Component{
   }
 
   clickItem(item){
-      this.props.filteringData('hello')
+      const { cat, typeR } = this.state;
+      let str = typeof(item) == 'string' ? item : {cat, typeR};
+      this.props.filteringData(str)
   }
 
   render(){
     const {typeR, cat} = this.state;
     return(
-      <div className="container categoriesbars">
+      <div className="container categoriesbars" style={{width:"70%"}}>
       	<div className="row">
-          <div className="col-md-6">
-            <div className="row">
-        	    <form className="col-md-6">
+          <div className="col-md-12">
+        	    <form className="col-md-2">
         	        <label>Sort By:</label>
         	        <Cascader style={{width: '100%'}} options={type} onChange={this.onChangeType.bind(this)} placeholder="Please select" />
         	    </form>
-              <form className="col-md-6">
+              <form className="col-md-3">
         	        <label>Categoies:</label>
         	        <Cascader style={{width: '100%'}} options={categ} onChange={this.onChangeCategory.bind(this)} placeholder="Please select" />
         	    </form>
-            </div>
-          </div>
-          <div className="col-md-6">
-            <div className="row">
-              <div className=" col-md-2">
+
+              <div className=" col-md-1">
                 <div className="input-group">
                   <label>Search:</label>
                     <div className="flex">
-                      <button type="button" className="btn btn-sm btn2-success font-style" style={{backgroundColor:"#8cbc40"}}>
+                      <button
+                          type="button"
+                          className="btn btn-sm btn2-success
+                          font-style"
+                          style={{backgroundColor:"#8cbc40"}}
+                          onClick={this.clickItem}
+                      >
                           Search
                       </button>
                     </div>
                 </div>
               </div>
-              <div className="col-md-10">
+              <div className="col-md-6">
                 <div className="custom-row">
                     <label>Keywords:</label>
                     <div className="flex">
@@ -109,7 +113,6 @@ class CategoriesjobMarket extends Component{
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
 

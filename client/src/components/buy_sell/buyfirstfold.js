@@ -15,7 +15,7 @@ class Firstfold extends Component{
     }
 
     category(e){
-        const { dispatch } = this.props;  
+        const { dispatch } = this.props;
         var inputValue = e.target.textContent;
         dispatch({type: 'SEARCHON', inputValue})
     }
@@ -36,14 +36,14 @@ class Firstfold extends Component{
             return <Redirect to={{pathname: `/filter_buySell`}} />
         }
         return(
-            <div className="container">
+            <div className="container" style={{width:"70%"}}>
                 <div className="row">
                     <div className="col-md-12 col-sm-12 col-xs-12">
                         <span className="popular_c">Popular categories</span>
                     </div>
                 </div>
                 <div className="row" style={{padding:'0px'}}>
-                    <div className="col-md-4 col-sm-3 col-xs-12" style={{marginRight:'-30px'}} onClick={this.category}>                         
+                    <div className="col-md-4 col-sm-3 col-xs-12" style={{marginRight:'-30px'}} onClick={this.category}>
                         <div style={{border:'1px solid black',padding:'6px'}}>
                             <i className="fa fa-car margin_right_c"></i>
                             <span className="margin_right_c">Motors</span>
@@ -70,7 +70,7 @@ class Firstfold extends Component{
                             <li className="color_b"><span>Bath & Body</span></li>
                             <li className="color_b"><span>Luxury Handbags </span></li>
                             <li className="color_b"><span>Health Care </span></li>
-                            <li className="color_b"><span>Diamond Jewelry and Loose Diamonds </span></li>                                                                
+                            <li className="color_b"><span>Diamond Jewelry and Loose Diamonds </span></li>
                         </ul>
                         </div>}
                     </div>
@@ -92,7 +92,7 @@ class Firstfold extends Component{
                     </div>
                 </div>
                 <div className="row" style={{padding:'0px'}}>
-                    <div className="col-md-4 col-sm-3 col-xs-12" style={{marginRight:'-30px'}} onClick={this.category}>                    
+                    <div className="col-md-4 col-sm-3 col-xs-12" style={{marginRight:'-30px'}} onClick={this.category}>
                         <div style={{border:'1px solid black',padding:'6px'}}>
                             <i className="fa fa-home margin_right_c"></i>
                             <span className="margin_right_c">Home</span>
@@ -253,7 +253,7 @@ export default connect()(Firstfold);
 //                             <a onClick={this.category}>
 //                                 <h4 className="media-heading">Cars</h4>
 //                                 <span style={{color:'black'}}>New, Used, Rent</span>
-//                             </a>    
+//                             </a>
 //                             </div>
 //                         </div>
 //                     </div>
@@ -285,7 +285,7 @@ export default connect()(Firstfold);
 //                             <a onClick={this.category}>
 //                                 <h4 className="media-heading">Cameras</h4>
 //                                 <span style={{color:'black'}}>Photo, Video, Lenses</span>
-//                             </a>    
+//                             </a>
 //                             </div>
 //                         </div>
 //                     </div>
@@ -373,4 +373,4 @@ export default connect()(Firstfold);
 //                     </div>
 //                 </div>
 //             </div>}
-//             
+//

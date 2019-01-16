@@ -214,7 +214,7 @@ class FeaturedBox extends Component{
                                             </Link>
                                         </div>
                                         <div className="customjob-margin">
-                                            <p> Selmore Advertising </p>
+                                            <p className="companyName" style={{marginBottom:"0"}}>{elem.compName && elem.compName}</p>
                                             <h4 className="heading-wight font-style">{elem.jobCat}</h4>
                                             <div className="glyphicom">
                                                 <i className="glyphicon glyphicon-map-marker"/>

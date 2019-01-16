@@ -171,7 +171,7 @@ class Forthfold extends Component{
         }
 
         return(
-            <div className="container">
+            <div className="container" style={{width:"70%"}}>
                 {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
                 {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
                 {text && !!filteredArr.length === false && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
@@ -190,7 +190,7 @@ class Forthfold extends Component{
                             des = des.substring(0, 25);
                             des = des + '...'
                         }
-                        return (                                
+                        return (
                             <div className="col-md-3 col-sm-4 col-xs-12" onClick={() => {this.goToProfile(1, elem)}} style={{cursor:'pointer'}}>
                                 <img alt='' src={elem.images.length ? elem.images[0] : './images/def_card_img.jpg'} style={{width:'100%',height:'200px'}} />
                                 <p>Rs.{!elem.hideprice ? '$' + elem.price : 'Hide'}
@@ -202,7 +202,7 @@ class Forthfold extends Component{
                 </div>
                 {this.state.loader && <div className="col-md-12" style={{textAlign: 'center', marginLeft: '-50px', marginBottom: '20px'}}>
                     <Spin indicator={antIcon} />
-                </div>}                
+                </div>}
                 {(showBuySell.length >= 7) && !(showBuySell.length === buySell.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>}
                 {/*!!showBuySell.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :buySell.length} onChange={this.onChange} /></span>*/}
                 {this.state.visible && <Modal
@@ -258,7 +258,7 @@ export default connect(mapStateToProps)(Forthfold);
 //                                                 <div className="m-t text-righ" style={{marginTop:"58px",fontSize: "18px",textDecoration:"underline"}}>
 //                                                     <Link to={{pathname: `/detail_buySell`, state: elem}} className="" style={{color:"red"}}>Detail</Link>
 //                                                     <div className="location-padding">
-                                                    
+
 //                                                     </div>
 //                                                 </div>
 //                                             </div>

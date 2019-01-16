@@ -338,68 +338,73 @@ class Roomrentingtwocontentarea extends Component{
 		return(
             <div style={{marginTop:'6%'}}>
 		    <Burgermenu/>
-            <div className="countainer">
+            <div className="container" style={{width:"75%"}}>
                 <div className="row">
                 <div className="col-md-1 col-sm-1">
                 </div>
-                <div className="col-md-10 col-sm-10 search-space search-space2">
-                    <div className="col-md-2 col-sm-2">
-                        <h4><b> Search By:</b></h4>
-                    </div>
-                    <div className="col-md-4 col-sm-6 search-space1">
-                        <Cascader style={{width: '100%'}} options={category} onChange={this.onChange.bind(this)} placeholder="Please select" />
-                    </div>
-                    <div className="col-md-4 col-sm-2 search-space1">
-                        <button className="btn btn-sm" onClick={this.mostPopular.bind(this)}>Search</button>
-                        <button className="btn btn-sm" style={{backroundColor:'rgb(55, 169, 155) !important',color:'white',marginLeft:'23px'}}>More Filter</button>
-                    </div>
-                </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-1"></div>
-                    <div class="col-md-5 col-sm-12 spacing">
-                        <h3 className="col-md-3">Location </h3>
-                                <div className="col-md-4 col-sm-4 col-xs-12"><Cascader options={states} onChange={this.onChangeState.bind(this)}/></div>
-                                <div className="col-md-4 col-sm-4 col-xs-12"><Cascader options={cities} onChange={this.onChangeCity.bind(this)}/></div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 spacing hidden-xs" style={{marginLeft:'-47px'}}>
-                    <span>Price</span>
-                    <div className="slidecontainer" style={{marginTop:'-16px'}}>
-                            <Slider range min={0} max={6000} step={500} tipFormatter={this.formatter} defaultValue={[0, 6000]} onChange={this.onChangeSlider.bind(this)}/>
-                            <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p>
+                <div className="locationbox">
+                  <span className="search-space2">
+                  <div className="row">
+                    <div className="col-md-12 col-sm-10">
+                        <div className="col-md-2 col-sm-2">
+                            <h4><b> Search By:</b></h4>
+                        </div>
+                        <div className="col-md-4 col-sm-6 search-space1">
+                            <Cascader style={{width: '100%'}} options={category} onChange={this.onChange.bind(this)} placeholder="Please select" />
+                        </div>
+                        <div className="col-md-4 col-sm-2 search-space1">
+                            <button className="btn btn-sm" onClick={this.mostPopular.bind(this)}>Search</button>
+                            <button className="btn btn-sm" style={{backroundColor:'rgb(55, 169, 155) !important',color:'white',marginLeft:'23px'}}>More Filter</button>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6 spacing visible-xs">
+                  </div>
+
+                    <div className="row">
+                        <div class="col-md-5 col-sm-12 spacing">
+                            <h3 className="col-md-3">Location </h3>
+                                    <div className="col-md-4 col-sm-4 col-xs-12"><Cascader options={states} onChange={this.onChangeState.bind(this)}/></div>
+                                    <div className="col-md-4 col-sm-4 col-xs-12"><Cascader options={cities} onChange={this.onChangeCity.bind(this)}/></div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 spacing hidden-xs" style={{marginLeft:'-47px'}}>
                         <span>Price</span>
                         <div className="slidecontainer" style={{marginTop:'-16px'}}>
-                            <Slider range min={0} max={6000} step={500} tipFormatter={this.formatter} defaultValue={[0, 6000]} onChange={this.onChangeSlider.bind(this)}/>
-                            <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p>
-                         </div>
-                    </div>
-                    <div className="col-md-1">Beds:</div>
-                    <div className="col-md-3">
-                        <div className="row" style={{padding:'0px'}}>
-                            <div className="col-md-3">
-                                <label><input type="checkbox" value="" id='1 Bed' onClick={this.checkedBed.bind(this)}/>1</label>
+                                <Slider range min={0} max={6000} step={500} tipFormatter={this.formatter} defaultValue={[0, 6000]} onChange={this.onChangeSlider.bind(this)}/>
+                                <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p>
                             </div>
-                            <div className="col-md-3">
-                                <label><input type="checkbox" value="" id='2 Beds' onClick={this.checkedBed.bind(this)}/>2</label>
-                            </div>
-                            <div className="col-md-3">
-                                <label><input type="checkbox" value="" id='3 Beds' onClick={this.checkedBed.bind(this)}/>3</label>
-                            </div>
-                            <div className="col-md-3">
-                                <label><input type="checkbox" value="" id='4+ Beds' onClick={this.checkedBed.bind(this)}/>4+</label>
+                        </div>
+                        <div class="col-md-3 col-sm-6 spacing visible-xs">
+                            <span>Price</span>
+                            <div className="slidecontainer" style={{marginTop:'-16px'}}>
+                                <Slider range min={0} max={6000} step={500} tipFormatter={this.formatter} defaultValue={[0, 6000]} onChange={this.onChangeSlider.bind(this)}/>
+                                <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p>
+                             </div>
+                        </div>
+                        <div className="col-md-1">Beds:</div>
+                        <div className="col-md-3">
+                            <div className="row" style={{padding:'0px'}}>
+                                <div className="col-md-3">
+                                    <label><input type="checkbox" value="" id='1 Bed' onClick={this.checkedBed.bind(this)}/>1</label>
+                                </div>
+                                <div className="col-md-3">
+                                    <label><input type="checkbox" value="" id='2 Beds' onClick={this.checkedBed.bind(this)}/>2</label>
+                                </div>
+                                <div className="col-md-3">
+                                    <label><input type="checkbox" value="" id='3 Beds' onClick={this.checkedBed.bind(this)}/>3</label>
+                                </div>
+                                <div className="col-md-3">
+                                    <label><input type="checkbox" value="" id='4+ Beds' onClick={this.checkedBed.bind(this)}/>4+</label>
+                                </div>
                             </div>
                         </div>
                     </div>
+                  </span>
+                </div>
                 </div>
                 <div className="col-md-1 col-sm-1">
                 </div>
-                <div className="col-md-12 col-sm-12 main-space">
-                    <div className="col-md-2 col-sm-12 col-xs-12">
-                    </div>
-                    <div className="col-md-10 col-sm-12 col-xs-12">
+              </div>
+              <div className="container" style={{width:"75%"}}>
+                    <div className="col-md-12 col-sm-12 col-xs-12">
                         {!!showroomrents.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
                         {!!showroomrents.length === false && <span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
                         {!!showroomrents.length === false && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
@@ -415,39 +420,26 @@ class Roomrentingtwocontentarea extends Component{
                                 des = des + '...'
                             }
                             return(
-                                <div key={key} className="col-lg-4 col-md-4 col-sm-12 space-top">
+                                <div key={key} className="col-lg-3 col-md-3 col-sm-12 space-top">
                                     <div className="secondfold" style={{backgroundColor:"#ffffff08"}}>
                                         <div className="row">
-                                            {/*<Link to={{pathname: `/detail_roomRent`, state: elem}}>*/}
+                                            <Link key={key} to={{pathname: `/detail_roomRent`, state: elem}}>
                                                 <div className="" onClick={() => {this.clickItem(elem)}}>
-                                                    <div className="ibox">
-                                                        <div className="ibox-content product-box">
-                                                            <div className="product-imitation">
-                                                                <div className="card2">
-                                                                    <img alt='' src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'}/>
-                                                                    <span className="card-button">
-                                                                        <p className="categories-on-card" style={{backgroundColor: 'rgb(0, 128, 128)',textAlign:'center'}}>{elem.category}</p>
-                                                                        <i style={{color:'rgb(0, 128, 128)'}} className="glyphicon glyphicon-map-marker"/><p className="text" style={{color:'white',marginTop:'-23px'}}>{elem.state +" & "+ elem.city}</p>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="cust-margin">
-                                                                <i className="glyphicon glyphicon-home"/>
-                                                                <p className="text">{str}</p>
-                                                            </div>
-                                                            <div className="product-desc">
-                                                                <span className="product-price">${elem.rent}</span>
-                                                                <small className="text-muted">Category</small>
-                                                                <a className="product-name">{elem.category}</a>
-                                                                {/*<div className="small m-t-xs">{des}</div>
-                                                                <div className="m-t text-righ">
-                                                                    <Link to={{pathname: `/detail_roomRent`, state: elem}} className="btn btn-xs btn-outline btn-primary">Info <i className="fa fa-long-arrow-right"></i> </Link>
-                                                                </div>*/}
-                                                            </div>
+                                                <div class="">
+                                                    <img src={elem.imageurl.length ? elem.imageurl[0] : "../images/room icon/home_option3.jpg"} class="img-responsive list_img" />
+                                                    <p style={{color: 'black'}}>{str}
+                                                        <br/><b>{elem.contactname}</b>
+                                                        <br/>{'$' + elem.rent + ' ' + elem.pricemode}</p>
+                                                          <div style={{marginTop:'-34px'}}>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
                                                         </div>
-                                                    </div>
                                                 </div>
-                                            {/*</Link>*/}
+                                                </div>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
@@ -461,8 +453,8 @@ class Roomrentingtwocontentarea extends Component{
                             <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :roomrents.length} onChange={this.onChangePage} /></span>
                         </div>*/}
                     </div>
-                </div>
-            </div>
+              </div>
+
             </div>
         )
 	}

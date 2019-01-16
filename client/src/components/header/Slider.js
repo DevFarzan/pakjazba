@@ -3,9 +3,6 @@ import 'antd/dist/antd.css';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import './slider.css';
-import { Input } from 'antd';
-
-const Search = Input.Search;
 
 class Slider extends Component{
     constructor(props){
@@ -17,7 +14,7 @@ class Slider extends Component{
 
     componentDidMount(){
         const { dispatch } = this.props;
-        dispatch({type: 'SEARCHOF'})
+        dispatch({type: 'SEARCHOF'});
     }
 
     onChange(e){
@@ -38,7 +35,13 @@ class Slider extends Component{
         dispatch({type: 'SEARCHON', inputValue})
     }
 
+    postRoom = (e) => {
+        e.preventDefault();
+        this.props.getMethod();
+    }
+
     render(){
+        
         return (
             <div>
                 <div>
@@ -165,7 +168,7 @@ class Slider extends Component{
                                     <h4>Looking for tenant or a roommate?</h4>
                                   </div>
                                   <div className="col-md-5">
-                                    <button className="header_button">Post Your Room</button>
+                                    <button className="header_button" onClick={this.postRoom}>Post Your Room</button>
                                   </div>
                                 </div>
                             </div>
@@ -274,7 +277,6 @@ class Slider extends Component{
                             </div>
                         </div>
                     </section>*/}
-
 
                 </div>
             

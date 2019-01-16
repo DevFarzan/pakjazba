@@ -28,7 +28,9 @@ class JobDetail extends Component {
         this.state = {
             isData: true,
             data: {},
-            user: false
+            user: false,
+            visible: false,
+            goForLogin: false
         }
     }
 
@@ -48,10 +50,29 @@ class JobDetail extends Component {
         }
     }
 
+    clickItem(item){
+        this.setState({visible: true, objData: item})
+    }
+
+    handleCancel = (e) => {
+        this.setState({visible: false});
+    }
+
+    handleLogin = (e) => {
+        const { dispatch } = this.props;
+        const { data, user } = this.state;
+        let otherData = {...data, user: true};
+        dispatch({type: 'ANOTHERDATA', otherData})
+        this.setState({goForLogin: true, visible: false})
+    }
+
     render(){
-        const { data, isData, user } = this.state;
+        const { data, isData, user, goForLogin } = this.state;
         if(!isData){
             return <Redirect to='/' />
+        }
+        if (goForLogin) {
+            return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/detail_jobPortal" }, state: data}}}/>;
         }
 
         return (
@@ -74,7 +95,30 @@ class JobDetail extends Component {
                 <JobDetailpage data={data}/>
                 {/*<JobSecondrow data={data}/>*/}
                 {user && <Thirdrow data={data}/>}
+                <div className="row">
+                    <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>                        
+                        {!user && <button 
+                            type="button"
+                            className="btn2" 
+                            style={{marginTop:"70px", padding:"5px", backgroundColor:'#37a99b',color:'white'}} 
+                            onClick={() => {this.clickItem(data)}}
+                        >
+                            Apply This Job
+                        </button>}                        
+                    </div>
+                </div>
                 <Footer/>
+                {this.state.visible && <Modal
+                    title="Kindly Login first"
+                    visible={this.state.visible}
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
+                >
+                <div className="row">
+                    <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleLogin}>Login</button></div>
+                    <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleCancel}>Cancel</button></div>
+                </div>
+                </Modal>}
             </div>
         )
     }

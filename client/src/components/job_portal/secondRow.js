@@ -43,41 +43,40 @@ class JobSecondrow extends Component{
             <div className="container" style={{width:"90%"}}>
                 <div className="row" style={{border:'1px solid #80808059'}}>
                     <div className="col-md-4 col-sm-12 col-xs-12 " style={{border:'1px solid #80808059'}}>
-                            <div className="row">
-                                <div className="col-md-6 col-sm-6 col-xs-12">
-                                    <h3 className="font-style"> Posted By: </h3>
-                                </div>
-                                <div className="col-md-6 col-sm-6 col-xs-12">
-                                    <span className="font-style">{data.compName}</span>
-                                </div>
+                        <div className="row">
+                            <div className="col-md-6 col-sm-6 col-xs-12">
+                                <h3 className="font-style"> Posted By: </h3>
                             </div>
-                            <div className="row" style={{marginTop:'-29px'}}>
-                                <div className="col-md-6 col-sm-6 col-xs-12">
-                                    <h3 className="font-style"> Location: </h3>
-                                </div>
-                                <div className="col-md-6 col-sm-6 col-xs-12">
-                                    <span className="font-style">{data.location}</span>
-                                </div>
+                            <div className="col-md-6 col-sm-6 col-xs-12">
+                                <span className="font-style">{data.compName}</span>
                             </div>
-                            
-                            <div className="row" style={{marginTop:'-29px'}}>
-                                <div className="col-md-6 col-sm-6 col-xs-12">
-                                    <h3 className="font-style"> Salary: </h3>
-                                </div>
-                                <div className="col-md-6 col-sm-6 col-xs-12">
-                                    <p className="font-style">${data.salary}</p>
-                                </div>
+                        </div>
+                        <div className="row" style={{marginTop:'-29px'}}>
+                            <div className="col-md-6 col-sm-6 col-xs-12">
+                                <h3 className="font-style"> Location: </h3>
                             </div>
-                            <div className="row" style={{marginTop:'-29px'}}>
-                                <div className="col-md-6 col-sm-6 col-xs-12">
-                                    <h3 className="font-style"> Experience: </h3>
-                                </div>
-                                <div className="col-md-6 col-sm-6 col-xs-12">
-                                    <p className="font-style">{data.experience}</p>
-                                </div>
+                            <div className="col-md-6 col-sm-6 col-xs-12">
+                                <span className="font-style">{data.location}</span>
                             </div>
-                    </div>
-                    
+                        </div>
+                        
+                        <div className="row" style={{marginTop:'-29px'}}>
+                            <div className="col-md-6 col-sm-6 col-xs-12">
+                                <h3 className="font-style"> Salary: </h3>
+                            </div>
+                            <div className="col-md-6 col-sm-6 col-xs-12">
+                                <p className="font-style">${data.salary}</p>
+                            </div>
+                        </div>
+                        <div className="row" style={{marginTop:'-29px'}}>
+                            <div className="col-md-6 col-sm-6 col-xs-12">
+                                <h3 className="font-style"> Experience: </h3>
+                            </div>
+                            <div className="col-md-6 col-sm-6 col-xs-12">
+                                <p className="font-style">{data.experience}</p>
+                            </div>
+                        </div>
+                    </div>                    
                     <div className="col-md-8 col-sm-12 col-xs-12">
                         <div style={{border:'1px solid #80808059',padding:'13px'}}>
                         <h3 className="font-style" style={{marginTop:'2px'}}> About {data.compName} </h3>

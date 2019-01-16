@@ -49,7 +49,7 @@ class Secondscreencard extends Component{
             })
     }
 
-    ViewAll(item){
+    ViewAll = (item) => {
         this.props.allData();
     }
 
@@ -147,9 +147,9 @@ class Secondscreencard extends Component{
                             })
                             :<div className="col-md-12 col-sm-12 col-xs-12">
                                 <div className="col-md-4"></div>
-                                <div className="col-md-4">
+                                <div className="col-md-4"  style={{textAlign:"center"}}>
                                     <h3>Searched data not found</h3>
-                                    <button type="button" className="btn btn-sm btn2-success font-style"  style={{width:"100%"}}  onClick={() => {this.ViewAll()}}>Search More</button>
+                                    <button type="button" className="btn btn-sm btn2-success font-style"  style={{width:"100%"}}  onClick={this.ViewAll}>Search More</button>
                                 </div>
                                 <div className="col-md-4"></div>
                             </div>

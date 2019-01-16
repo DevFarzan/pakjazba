@@ -57,7 +57,9 @@ class CategoriesjobMarket extends Component{
   }
 
   clickItem(item){
-      this.props.filteringData('hello')
+      const { cat, typeR } = this.state;
+      let str = typeof(item) == 'string' ? item : {cat, typeR};
+      this.props.filteringData(str)
   }
 
   render(){
@@ -83,7 +85,13 @@ class CategoriesjobMarket extends Component{
                 <div className="input-group">
                   <label>Search:</label>
                     <div className="flex">
-                      <button type="button" className="btn btn-sm btn2-success font-style" style={{backgroundColor:"#8cbc40"}}>
+                      <button 
+                          type="button" 
+                          className="btn btn-sm btn2-success 
+                          font-style" 
+                          style={{backgroundColor:"#8cbc40"}}
+                          onClick={this.clickItem}
+                      >
                           Search
                       </button>
                     </div>

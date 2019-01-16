@@ -4,16 +4,15 @@ import './DetailjobUi.css';
 class JobDetailpage extends Component{
     render(){
         const { data } = this.props;
-        console.log(data, 'arrrrrrrrrrrryyyyyyyyyyyyyyyyyyyy bhaiiiiiiiiiiiiiiiiiiiii')
         return(
             <div className="container" style={{width:"70%"}}>
                 <div className="row" style={{padding:"0"}}>
                         <div className="col-md-10 col-sm-9 col-xs-7 des-space">
                             <h1 style={{fontWeight:"bold",fontFamily: 'Crimson Text, sans-serif',marginTop:'11px', marginBottom:"5px"}}>{data.jobTitle && data.jobTitle}</h1>
-                            <p className="companyName" style={{marginBottom:"0"}}> Selmore Advertising </p>
+                            <p className="companyName" style={{marginBottom:"0"}}>{data.compName && data.compName}</p>
                             <div className="glyphicom">
                                 <i className="glyphicon glyphicon-map-marker"/>
-                                <p className="textforjob font-style ">Dallas Ontario Texas</p>
+                                <p className="textforjob font-style ">{data.location && data.location}</p>
                             </div>
                         </div>
                         <div className="col-md-2 col-sm-3 col-xs-5 des-space">

@@ -14,6 +14,7 @@ import App from '../../App';
 import Secondscreencard from './Secondscreenjob';
 import JobNews from './Rssforjob';
 import CategoriesjobMarket from './CategoriesJobs';
+import {HttpUtils} from "../../Services/HttpUtils";
 import { connect } from 'react-redux';
 
 class ApplyJob extends Component {
@@ -28,10 +29,11 @@ class ApplyJob extends Component {
     }
 
     async getAllBusiness(){
-        let res = this.props.location.state;
+        let data = this.props.location.state;
+        let res = data.length ? data : await HttpUtils.get('marketplace');
         let text = this.props.text;
         this.setState({
-            job: res && res,
+            job: res.jobPortalData ? res.jobPortalData : res,
             loader: false
         }, () => {
             this.filteringData(text)
@@ -41,7 +43,12 @@ class ApplyJob extends Component {
     filteringData(e){
         const { job } = this.state;
         let data = job.filter((elem) => {
-            return (elem.jobCat.toLowerCase().includes(e.toLowerCase()))
+            if(typeof(e) === 'string'){
+                return (elem.jobCat.toLowerCase().includes(e.toLowerCase()))                
+            }else {
+                return (elem.jobCat.toLowerCase().includes(e.cat.toLowerCase())) || 
+                    (elem.jobType.toLowerCase().includes(e.typeR.toLowerCase()))
+            }
         })
         this.setState({
             filteredData: data,

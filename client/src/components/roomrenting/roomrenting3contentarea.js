@@ -4,6 +4,7 @@ import { Carousel, notification, Icon, Spin, Tabs} from 'antd';
 import "./roomrenting2content.css";
 import moment from 'moment'
 import { Redirect } from 'react-router';
+import Gallery from './gallery';
 import {HttpUtils} from "../../Services/HttpUtils";
 
 const TabPane = Tabs.TabPane;
@@ -109,7 +110,7 @@ class Roomrenting3contentarea extends Component{
 
         return(
             <div>
-                <div className="">
+                <div className="" style={{marginTop: '7%'}}>
                     <div className="col-md-12" style={{border:'1px solid #8080804d'}}>
                        <h2 className="head-space">{data.postingtitle || data.postingTitle} Available</h2>
                     </div>
@@ -139,6 +140,7 @@ class Roomrenting3contentarea extends Component{
                         </div>
                     </div>
                 </div>*/}
+                <Gallery images={images} style={{marginTop: '13%'}}/>
                 <div className="col-md-12 col-sm-12 col-xs-12">
                     <div className="row" style={{"border-style": 'none',boxShadow:'none',border: '1px solid #8080804f',background: 'white',marginTop:'11px'}}>
                         <div className="col-lg-5 col-md-6 col-sm-6 col-xs-12">

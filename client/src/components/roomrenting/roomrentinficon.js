@@ -5,11 +5,12 @@ import { connect } from 'react-redux'
 class RoomrentingIcon extends Component{
     constructor(props){
         super(props);
-        this.clickItem = this.clickItem.bind(this);
+        // this.clickItem = this.clickItem.bind(this);
     }
 
     clickItem(item){
         const { dispatch } = this.props;
+        console.log(item, 'ggggggggggggggggggg')
         var inputValue = item;
         dispatch({type: 'SEARCHON', inputValue})
     }
@@ -24,33 +25,33 @@ class RoomrentingIcon extends Component{
                     </div>
                 </div>
                 <div className="row" style={{marginTop:'-30px'}}>
-                    <div className="col-md-3 col-sm-4" onClick={() => {this.clickItem('Condo')}}>
+                    <div className="col-md-3 col-sm-4" onClick={this.clickItem.bind(this, 'Condo')} style={{cursor: 'pointer'}}>
                         <div className="card_room">
                             <div className="space tag1">
-                                <a href="/market_roommates" className="option_text">
+                                <div className="option_text">
                                     <img alt="img" src="../images/room icon/home_option1.jpg" className="option_img"/>
                                     <b className="tag1"> Condo</b>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-3 col-sm-4" onClick={() => {this.clickItem('Home')}}>
+                    <div className="col-md-3 col-sm-4" onClick={() => {this.clickItem('Home')}} style={{cursor: 'pointer'}}>
                         <div className="card_room">
                             <div className="space tag1">
-                                <a href="/market_roommates" className="option_text">
+                                <div className="option_text">
                                     <img alt="img" src="../images/room icon/home_option2.jpg" className="option_img"/>
                                     <b className="tag1"> Homes</b>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-3 col-sm-4" onClick={() => {this.clickItem('Apartment')}}>
+                    <div className="col-md-3 col-sm-4" onClick={() => {this.clickItem('Apartment')}} style={{cursor: 'pointer'}}>
                         <div className="card_room">
                             <div className="space tag1">
-                                <a href="/market_roommates" className="option_text">
+                                <div className="option_text">
                                     <img alt="img" src="../images/room icon/home_option3.jpg" className="option_img"/>
                                     <b className="tag1"> Apartment</b>
-                                </a>
+                                </div>
                             </div>
                         </div>
                         <br/><br/><br/>

@@ -147,3 +147,11 @@
     border-radius: 5px;
     color: black;
 }
+
+.btn-filter {
+    padding: 5px 10px;
+    font-size: 13px;
+    line-height: 1.5;
+    border-radius: 3px !important;
+    background-color: rgb(55, 169, 155);
+}

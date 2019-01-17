@@ -78,33 +78,27 @@ class JobDetail extends Component {
         return (
             <div>
                 <span>
-                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/job-portal.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
+                    <div className ="" style={{marginTop : "60px",backgroundSize: 'cover'}}>
                         <div className="background-image">
                             <Burgermenu/>
                             <Slider mainH1="Job Portal" mainH2="Find your jobs here"/>
                         </div>
                     </div>
                 </span>
-                <div className="row jobdetail-page">
-                    <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>
-                        <div className="">
-                            <h1 style={{fontFamily: 'Work Sans, sans-serif', fontWeight:"bold"}}>Job Detail</h1>
-                        </div>
-                    </div>
-                </div>
+
                 <JobDetailpage data={data}/>
                 {/*<JobSecondrow data={data}/>*/}
                 {user && <Thirdrow data={data}/>}
                 <div className="row">
-                    <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>                        
-                        {!user && <button 
+                    <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>
+                        {!user && <button
                             type="button"
-                            className="btn2" 
-                            style={{marginTop:"70px", padding:"5px", backgroundColor:'#37a99b',color:'white'}} 
+                            className="btn2"
+                            style={{marginTop:"70px", padding:"5px", backgroundColor:'#37a99b',color:'white'}}
                             onClick={() => {this.clickItem(data)}}
                         >
                             Apply This Job
-                        </button>}                        
+                        </button>}
                     </div>
                 </div>
                 <Footer/>

@@ -155,3 +155,66 @@
     border-radius: 3px !important;
     background-color: rgb(55, 169, 155);
 }
+
+.appartmentdes{
+  display: flex;
+}
+
+.appartmentdes p{
+  margin-right: 30px;
+}
+
+.head-space2{
+	margin-bottom: 4px;
+	margin-left: "0px !important";
+}
+.head-space2 h4{
+	margin-left: 0px;
+}
+.forimage{
+	width: 100%;
+	display: flex;
+}
+
+.forimage p{
+	padding: 0;
+	margin-left: -20px;
+	font-size: 17px;
+}
+
+.availability{
+	font-size: 15px;
+	font-weight: bold;
+	margin: 0;
+}
+
+.progres {
+    /* background-image: -webkit-linear-gradient(top,#ebebeb 0,#f5f5f5 100%); */
+    background-image: -o-linear-gradient(top,#ebebeb 0,#f5f5f5 100%);
+    /* background-image: -webkit-gradient(linear,left top,left bottom,from(#ebebeb),to(#f5f5f5)); */
+    /* background-image: linear-gradient(to bottom,#ebebeb 0,#f5f5f5 100%); */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffebebeb', endColorstr='#fff5f5f5', GradientType=0);
+    /* background-repeat: repeat-x; */
+    height: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    /* background-color: #f5f5f5; */
+    border-radius: 4px;
+    /* -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1); */
+    /* box-shadow: inset 0 1px 2px rgba(0,0,0,.1); */
+}
+
+.roomdetail{
+	border:1px solid #80808040;
+	padding: 17px;
+}
+
+.roomdetail p{
+	margin-top:  10px;
+	margin-bottom: 0;
+}
+
+.roomdetail hr{
+	margin-top: 0;
+	margin-bottom: 0;
+}

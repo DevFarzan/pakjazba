@@ -72,7 +72,7 @@ class CategoriesjobMarket extends Component{
         	        <label>Sort By:</label>
         	        <Cascader style={{width: '100%'}} options={type} onChange={this.onChangeType.bind(this)} placeholder="Please select" />
         	    </form>
-              <form className="col-md-3">
+              <form className="col-md-2">
         	        <label>Categoies:</label>
         	        <Cascader style={{width: '100%'}} options={categ} onChange={this.onChangeCategory.bind(this)} placeholder="Please select" />
         	    </form>
@@ -93,22 +93,30 @@ class CategoriesjobMarket extends Component{
                     </div>
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-md-7">
                 <div className="custom-row">
                     <label>Keywords:</label>
-                    <div className="flex">
+                    <div className="marginLeft">
+                      <div className="col-md-3 col-sm-3">
                       <button type="button" className="btn btn-sm btn3-success font-style" onClick={() => {this.clickItem('Content Writer')}}>
                           Content Writer
                       </button>
-                      <button type="button" className="btn btn-sm btn3-success font-style" onClick={() => {this.clickItem('IT Specialist')}}>
-                          IT Specialist
-                      </button>
-                      <button type="button" className="btn btn-sm btn3-success font-style" onClick={() => {this.clickItem('Web Developer')}}>
-                          Web Developer
-                      </button>
-                      <button type="button" className="btn btn-sm btn3-success font-style" onClick={() => {this.clickItem('Business management')}}>
-                          Business management
-                      </button>
+                      </div>
+                      <div className="col-md-3 col-sm-3">
+                        <button type="button" className="btn btn-sm btn3-success font-style" onClick={() => {this.clickItem('IT Specialist')}}>
+                            IT Specialist
+                        </button>
+                      </div>
+                      <div className="col-md-3 col-sm-3">
+                        <button type="button" className="btn btn-sm btn3-success font-style" onClick={() => {this.clickItem('Web Developer')}}>
+                            Web Developer
+                        </button>
+                      </div>
+                      <div className="col-md-3 col-sm-3">
+                        <button type="button" className="btn btn-sm btn3-success font-style" onClick={() => {this.clickItem('Business management')}}>
+                            Business management
+                        </button>
+                      </div>
                     </div>
                 </div>
               </div>

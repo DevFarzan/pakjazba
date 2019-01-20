@@ -180,12 +180,12 @@ class DetailBusiness extends Component{
                             <div className="card">
                                 <img className="card-img-top" src={images && images[0]} alt="" style={{"width":"100%"}} />
                             </div>
-                            <div className="row" style={{padding:"0"}}>
-                              <div className="col-md-6 col-sm-6 col-xs-6">
-                                  <a  className="btn btndetail-success">Write a Review</a>
+                            <div className="row" style={{padding:"0",marginTop:'15px'}}>
+                              <div className="col-md-6 col-sm-6 col-xs-12">
+                                  <a  className="btn btndetail-success" style={{width:'100%'}}>Write a Review</a>
                               </div>
-                              <div className="col-md-6 col-sm-6 col-xs-6">
-                                  <a className="btn btndetail-success">Share</a>
+                              <div className="col-md-6 col-sm-6 col-xs-12">
+                                  <a className="btn btndetail-success" style={{width:'100%'}}>Share</a>
                               </div>
                             </div>
                           </div>

@@ -58,10 +58,10 @@ class RoomrentingIcon extends Component{
                     </div>
                 </div>
                     {/*<!-- jambo section start -->*/}
-                        <div className="row" style={{border:'1px solid #80808057'}}>
+                        <div className="row Person" style={{border:'1px solid #80808057'}}>
                             <div className="col-md-12 col-sm-12 col-xs-12 card">
                                 <div className="col-md-6">
-                                    <h1 className="jambo_text"><b>Find your New Home With Pak Jazba Room Renting</b></h1>
+                                    <h1 className="" style={{marginTop:'9%'}}><b>Find your New Home With Pak Jazba Room Renting</b></h1>
                                     <p><b>more than 100 of Rent and Sale Property Available</b></p>
                                 </div>
                                 <div className="col-md-6">

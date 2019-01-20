@@ -135,17 +135,17 @@ class Roomrenting1content extends Component{
                             let postedOn = moment(elem.posted, "LL").format('YYYY-MM-DD');
                             return(
                                 <Link key={key} to={{pathname: `/detail_roomRent`, state: elem}}>
-                                    <div class="col-md-3 col-sm-4 col-xs-12">
+                                    <div className="col-md-3 col-sm-4 col-xs-12" style={{marginTop:'5%'}}>
                                         <img src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'} class="img-responsive list_img" />
                                         <p style={{color: 'black'}}>{str}
                                             <br/><b>{elem.contactname}</b>
                                             <br/>{'$' + elem.rent + ' ' + elem.pricemode}</p>
                                               <div style={{marginTop:'-34px'}}>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
+                                                <span className="fa fa-star checked"></span>
+                                                <span className="fa fa-star checked"></span>
+                                                <span className="fa fa-star checked"></span>
+                                                <span className="fa fa-star"></span>
+                                                <span className="fa fa-star"></span>
                                             </div>    
                                     </div>                                    
                                 </Link>

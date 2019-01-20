@@ -143,7 +143,8 @@ class Roomrentingtwocontentarea extends Component{
             from: 6000,
             bedArr: [],
             loader: true,
-            add: 6
+            add: 6,
+            moreFilter: false
         }
     }
 
@@ -353,13 +354,25 @@ class Roomrentingtwocontentarea extends Component{
                             <Cascader style={{width: '100%'}} options={category} onChange={this.onChange.bind(this)} placeholder="Please select" />
                         </div>
                         <div className="col-md-4 col-sm-2 search-space1">
-                            <button className="btn btn-sm" onClick={this.mostPopular.bind(this)}>Search</button>
-                            <button className="btn btn-sm" style={{backroundColor:'rgb(55, 169, 155) !important',color:'white',marginLeft:'23px'}}>More Filter</button>
+                            <button 
+                                className="btn" 
+                                onClick={this.mostPopular.bind(this)}
+                                style={{backgroundColor:'#37a99b', color:'white'}}
+                            >
+                                Search
+                            </button>
+                            <button 
+                                className="btn" 
+                                style={{backgroundColor:'#37a99b', color:'white', marginLeft:'23px'}}
+                                onClick={() => {this.setState({moreFilter: !this.state.moreFilter})}}
+                            >
+                                More Filter
+                            </button>
                         </div>
                     </div>
                   </div>
 
-                    <div className="row">
+                    {this.state.moreFilter && <div className="row">
                         <div class="col-md-5 col-sm-12 spacing">
                             <h3 className="col-md-3">Location </h3>
                                     <div className="col-md-4 col-sm-4 col-xs-12"><Cascader options={states} onChange={this.onChangeState.bind(this)}/></div>
@@ -396,7 +409,7 @@ class Roomrentingtwocontentarea extends Component{
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>}
                   </span>
                 </div>
                 </div>
@@ -414,32 +427,23 @@ class Roomrentingtwocontentarea extends Component{
                                 str = str.substring(0, 25);
                                 str = str + '...'
                             }
-                            let des = elem.discription || '';
-                            if(des.length > 100) {
-                                des = des.substring(0, 100);
-                                des = des + '...'
-                            }
                             return(
                                 <div key={key} className="col-lg-3 col-md-3 col-sm-12 space-top">
                                     <div className="secondfold" style={{backgroundColor:"#ffffff08"}}>
                                         <div className="row">
-                                            <Link key={key} to={{pathname: `/detail_roomRent`, state: elem}}>
-                                                <div className="" onClick={() => {this.clickItem(elem)}}>
-                                                <div class="">
-                                                    <img src={elem.imageurl.length ? elem.imageurl[0] : "../images/room icon/home_option3.jpg"} class="img-responsive list_img" />
-                                                    <p style={{color: 'black'}}>{str}
-                                                        <br/><b>{elem.contactname}</b>
-                                                        <br/>{'$' + elem.rent + ' ' + elem.pricemode}</p>
-                                                          <div style={{marginTop:'-34px'}}>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                        </div>
-                                                </div>
-                                                </div>
-                                            </Link>
+                                            <div className="" onClick={() => {this.clickItem(elem)}}>
+                                                <img src={elem.imageurl.length ? elem.imageurl[0] : "../images/room icon/home_option3.jpg"} class="img-responsive list_img" />
+                                                <p style={{color: 'black'}}>{str}
+                                                    <br/><b>{elem.contactname}</b>
+                                                    <br/>{'$' + elem.rent + ' ' + elem.pricemode}</p>
+                                                      <div style={{marginTop:'-34px'}}>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star"></span>
+                                                    </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

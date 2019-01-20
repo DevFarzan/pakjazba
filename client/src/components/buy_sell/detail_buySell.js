@@ -54,9 +54,18 @@ class DetailBuySell extends Component{
                             {/*<Slider mainH1="Buy & Sell" mainH2="Find what you need"/>*/}
                         </div>
                     </div>
-                </span>                <div className='container' style={{width:"68%",textAlign:'center'}}>
-                    <Buydetailfirstfold data={data}/>
+                </span>
+                <div className="hidden-xs">
+                  <div className='container' style={{width:"70%",textAlign:'center'}}>
+                      <Buydetailfirstfold data={data}/>
+                  </div>
                 </div>
+                <div className="visible-xs">
+                  <div className='container' style={{width:"100%",textAlign:'center'}}>
+                      <Buydetailfirstfold data={data}/>
+                  </div>
+                </div>
+
                 <Footer />
             </div>
         )

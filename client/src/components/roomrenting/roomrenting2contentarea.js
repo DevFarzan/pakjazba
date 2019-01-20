@@ -353,8 +353,8 @@ class Roomrentingtwocontentarea extends Component{
                             <Cascader style={{width: '100%'}} options={category} onChange={this.onChange.bind(this)} placeholder="Please select" />
                         </div>
                         <div className="col-md-4 col-sm-2 search-space1">
-                            <button className="btn btn-sm" onClick={this.mostPopular.bind(this)}>Search</button>
-                            <button className="btn btn-sm" style={{backroundColor:'rgb(55, 169, 155) !important',color:'white',marginLeft:'23px'}}>More Filter</button>
+                            <button className="btn btn-filter" onClick={this.mostPopular.bind(this)} style={{backroundColor:"rgb(55, 169, 155)"}}>Search</button>
+                            <button className="btn btn-filter" style={{backroundColor:'rgb(55, 169, 155) !important',color:'white',marginLeft:'23px'}}>More Filter</button>
                         </div>
                     </div>
                   </div>

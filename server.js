@@ -1722,7 +1722,41 @@ eventSeats.find(function(err,eventData){
     });
 })
 
-})
+});
+
+app.get('/api/getseats',(req,res)=>{
+  let eventname = 'salman Khan';
+  eventSeats.find(function(err,eventData){
+      if(err){
+            res.send({
+                code:500,
+                content:'Internal Server Error',
+                msg:'API not called properly'
+            });
+        }else if(eventData !== ''){
+          var finalSeatsArray = []; 
+          for(var i=0;i<eventData.length;i++){
+            if(eventData[i].eventName == eventname){
+                finalSeatsArray.push({
+                  eventName:eventData[i].eventName,
+                  seats:eventData[i].seats
+                })  
+            }
+          }
+          res.send({
+                code:200,
+                msg:'All Seats',
+                finalSeats:finalSeatsArray
+            }); 
+        }else{
+            res.send({
+                code:404,
+                content:'Not Found',
+                msg:'no data inserted'
+            });
+        }
+  });
+});
 
 /*===================event seats arrangment API end================================================================*/
 if (process.env.NODE_ENV === 'production') {

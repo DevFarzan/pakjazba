@@ -50,9 +50,14 @@ class Footer extends Component{
                         </div>
                     </div>
                 </div>*/}
-                <div className="row">
+                <div className="row hidden-xs">
                     <div className="col-md-12 jazba_text_align">
                         <img alt='' src="../images/pakjazba_new.png" style={{width:'19%'}} />
+                    </div>
+                </div>
+                <div className="row visible-xs">
+                    <div className="col-md-12 jazba_text_align">
+                        <img alt='' src="../images/pakjazba_new.png" style={{width:'50%'}} />
                     </div>
                 </div>
                 <div className="row" style={{padding:'0px'}}>

@@ -45,20 +45,6 @@ class Slider extends Component{
         return (
             <div>
                 <div>
-
-                    {/*<div className="row">
-                        <div className="col-md-6 col-sm-12 col-xs-12">
-                        <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black'}}>{this.props.mainH1}</h3>
-                        <div className="row">
-                            <div className="col-md-12" style={{marginLeft:'24%'}}>
-                                <div className="input-group">
-                                    <input type="text" className="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2" style={{border:'1px solid rgb(55, 169, 155)',width:'50%',borderRight:'none'}} />
-                                    <input type="text" className="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2" style={{border:'1px solid rgb(55, 169, 155)',width:'50%',borderLeft:'none'}} />
-                                 </div>
-                             </div>
-                         </div>
-                    </div>
-                    </div>*/}
                     {this.props.mainH1 === 'Pakjazba Classified' && <div className="row">
                         <span className="col-md-2"></span>
                         <div className="col-md-5 col-sm-12 col-xs-12">
@@ -75,7 +61,7 @@ class Slider extends Component{
                         </form>
                         </div>
                         <div className="col-md-5 col-sm-6 hidden-xs">
-                            <img src="../images/buysell/header1.png" style={{width:'50%'}} />
+                            <img src="../images/buysell/header1.png" style={{width:'65%'}} />
                         </div>
                     </div> }
 
@@ -116,13 +102,13 @@ class Slider extends Component{
 
                         </div>
                         <div className="col-md-5 col-sm-6 hidden-xs">
-                          <img src="../images/business/busi-illus-1.png" style={{width:"50%"}}/>
+                          <img src="../images/business/busi-illus-1.png" style={{width:"65%"}}/>
                         </div>
                       </div>}
                     {/*Slider for Business Listing End*/}
 
                     {/*Slider for Job Portal start*/}
-                    {this.props.mainH1 === 'Pak Jazba Job Portal' && <div className="row">
+                    {this.props.mainH1 === 'PakJazba Job Portal' && <div className="row">
                         <span className="col-md-2"></span>
                         <div className="col-md-5 col-sm-12 col-xs-12">
                         <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black',textAlign:'left'}}>{this.props.mainH1}</h3>
@@ -139,7 +125,7 @@ class Slider extends Component{
                                 </form>
                         </div>
                         <div className="col-md-5 col-sm-6 hidden-xs">
-                            <img src="../images/job-icons/ilus-1.png" style={{width:'50%'}} />
+                            <img src="../images/job-icons/ilus-1.png" style={{width:'55%'}} />
                         </div>
                     </div> }
                     {/*Slider for Job Portal start*/}
@@ -175,7 +161,7 @@ class Slider extends Component{
                         </form>
                         </div>
                         <div className="col-md-5 col-sm-6 hidden-xs">
-                            <img src="../images/room icon/room_header.png" style={{width:'50%'}} />
+                            <img src="../images/room icon/room_header.png" style={{width:'65%'}} />
                         </div>
                     </div> }
                       {/*<!-- Header End -->*/}

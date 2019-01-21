@@ -164,7 +164,7 @@ class DetailBusiness extends Component{
                                 <div className="card-body space" style={{padding: "17px"}}>
                                   <h1 style={{fontWeight:"bold"}}>{data.businessName || data.businessname}</h1>
                                   <span>
-                                  <Rate disabled style={{paddingBottom: '20px', marginTop:"-10px"}} allowHalf value={5}/> 5.0
+                                  <Rate disabled style={{paddingBottom: '20px', marginTop:"-10px", fontSize:"19px"}} allowHalf value={5}/> 5.0
                                   </span>
                                     <h5><span className="glyphicon glyphicon-home" style={{marginRight: "15px", color:"#36a89f"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{data.address || data.businessAddress}</span></h5>
 
@@ -180,12 +180,12 @@ class DetailBusiness extends Component{
                             <div className="card">
                                 <img className="card-img-top" src={images && images[0]} alt="" style={{"width":"100%"}} />
                             </div>
-                            <div className="row" style={{padding:"0"}}>
-                              <div className="col-md-6 col-sm-6 col-xs-6">
-                                  <a  className="btn btndetail-success">Write a Review</a>
+                            <div className="row" style={{padding:"0",marginTop:'15px'}}>
+                              <div className="col-md-6 col-sm-6 col-xs-12">
+                                  <a  className="btn btndetail-success" style={{width:'100%'}}>Write a Review</a>
                               </div>
-                              <div className="col-md-6 col-sm-6 col-xs-6">
-                                  <a className="btn btndetail-success">Share</a>
+                              <div className="col-md-6 col-sm-6 col-xs-12">
+                                  <a className="btn btndetail-success" style={{width:'100%'}}>Share</a>
                               </div>
                             </div>
                           </div>
@@ -227,70 +227,70 @@ class DetailBusiness extends Component{
                         <div>
 
                           <div className="row" style={{padding:"0px", marginTop:"10px"}}>
-                            <div class="col-md-2">
+                            <div class="col-md-2 col-sm-3">
                                 <h4>
                                 <b>Excellent </b>
                                 </h4>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-5 col-sm-5">
                                 <Rate allowHalf defaultValue={5} style={{marginTop: "-6px", marginLeft: "10px"}} />
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-5 col-sm-4">
 
-                                <div class="progress">
+                                <div class="progres2">
                                   <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
-                                  aria-valuemin="0" aria-valuemax="100" style={{width:"100%"}}>
+                                  aria-valuemin="0" aria-valuemax="100" style={{width:"100%", height:"50%"}}>
                                   </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-2 col-sm-3">
                                 <h4>
                                 <b>Good </b>
                                 </h4>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-5 col-sm-5">
                                 <Rate allowHalf defaultValue={4} style={{marginTop: "-6px", marginLeft: "10px"}} />
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-5 col-sm-4">
 
-                                <div class="progress">
+                                <div class="progres2">
                                   <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
-                                  aria-valuemin="0" aria-valuemax="100" style={{width:"60%"}}>
+                                  aria-valuemin="0" aria-valuemax="100" style={{width:"60%", height:"50%"}}>
                                   </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-2 col-sm-3">
                                 <h4>
                                 <b>Average </b>
                                 </h4>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-5 col-sm-5">
                                 <Rate allowHalf defaultValue={3} style={{marginTop: "-6px", marginLeft: "10px"}} />
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-5 col-sm-4">
 
-                                <div class="progress">
+                                <div class="progres2">
                                   <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
-                                  aria-valuemin="0" aria-valuemax="100" style={{width:"45%"}}>
+                                  aria-valuemin="0" aria-valuemax="100" style={{width:"45%", height:"50%"}}>
                                   </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-2 col-sm-3">
                                 <h4>
                                 <b>Bad </b>
                                 </h4>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-5 col-sm-5">
                                 <Rate allowHalf defaultValue={2} style={{marginTop: "-6px", marginLeft: "10px"}} />
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-5 col-sm-4">
 
-                                <div class="progress">
+                                <div class="progres2">
                                   <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
-                                  aria-valuemin="0" aria-valuemax="100" style={{width:"20%"}}>
+                                  aria-valuemin="0" aria-valuemax="100" style={{width:"20%", height:"50%"}}>
                                   </div>
                                 </div>
                             </div>
@@ -340,13 +340,36 @@ class DetailBusiness extends Component{
                         <div className="">
                           <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7242.887220253883!2d67.02816338632098!3d24.814498692583676!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x74882ba91beb6409!2sBar.B.Q.+Tonight!5e0!3m2!1sen!2snl!4v1547465385394" width="100%" height="250" frameborder="0" style={{border:"0"}} allowfullscreen></iframe>
                         </div>
-                        <div className="">
+                        <div className="businessinfo">
                           <h4> More Business Info </h4>
-                          <span><p> Accept Credit Card </p> <p><strong>No.</strong></p> </span>
-                          <span><p> By Appointment Only  </p> <p><strong>No.</strong></p> </span>
+                          <div className="row" style={{padding:"0"}}>
+                            <div className="col-md-6">
+                              <p> Accept Credit Card </p>
+                            </div>
+                            <div className="col-md-1">
+                              <p><strong>No.</strong></p>
+                            </div>
+                            <div className="col-md-5">
+                            </div>
+                          </div>
+                          <div className="row" style={{padding:"0"}}>
+                            <div className="col-md-6">
+                              <p> By Appointment Only  </p>
+                            </div>
+                            <div className="col-md-1">
+                              <p><strong>No.</strong></p>
+                            </div>
+                            <div className="col-md-5">
+                            </div>
+                          </div>
                           <br/>
                           <h4> From The Business  </h4>
-                          <p> How are we different</p>
+                          <p> How are we different: We included everything
+                          you need to move affordably you have us for as long
+                          as you only pay for the time we are working. Take a moment to visualize...</p>
+                        </div>
+                        <div className="anchor">
+                          <span> Is this your business?<a href="">Clain it now </a> </span>
                         </div>
                       </div>
                     </div>

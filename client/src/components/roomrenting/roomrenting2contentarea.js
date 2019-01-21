@@ -368,6 +368,8 @@ class Roomrentingtwocontentarea extends Component{
                             >
                                 More Filter
                             </button>
+                            <button className="btn btn-filter" onClick={this.mostPopular.bind(this)} style={{backroundColor:"rgb(55, 169, 155)"}}>Search</button>
+                            <button className="btn btn-filter" style={{backroundColor:'rgb(55, 169, 155) !important',color:'white',marginLeft:'23px'}}>More Filter</button>
                         </div>
                     </div>
                   </div>

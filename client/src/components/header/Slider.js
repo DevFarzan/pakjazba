@@ -41,7 +41,7 @@ class Slider extends Component{
     }
 
     render(){
-        
+
         return (
             <div>
                 <div>
@@ -79,7 +79,7 @@ class Slider extends Component{
                         </div>
                     </div> }
 
-                    
+
 
                      {this.props.mainH1 === 'Pakjazba Business Listing' && <div className="row">
                         <div className="col-md-2 col-sm-2"> </div>
@@ -119,7 +119,7 @@ class Slider extends Component{
                           <img src="../images/business/busi-illus-1.png" style={{width:"50%"}}/>
                         </div>
                       </div>}
-                    {/*Slider for Business Listing End*/}
+
 
                     {/*Slider for Job Portal start*/}
                     {this.props.mainH1 === 'Pak Jazba Job Portal' && <div className="row">
@@ -144,11 +144,11 @@ class Slider extends Component{
                     </div> }
                     {/*Slider for Job Portal start*/}
 
-                     
+
                    {/*<div className="col-md-5 col-sm-6 hidden-xs">
                        <img src="../images/business/busi-illus-1.png" style={{width:"50%"}}/>
                    </div>*/}
-                   </div>}
+                   </div>
                  {/*=====================roomRenting start==================*/}
                   {/*<!-- Header Start -->*/}
                     {this.props.mainH1 === "PakJazba Room Renting" && <div className="row">
@@ -279,7 +279,7 @@ class Slider extends Component{
                     </section>*/}
 
                 </div>
-            
+
         );
     }
 }

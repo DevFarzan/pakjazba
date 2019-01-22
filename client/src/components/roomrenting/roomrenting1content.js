@@ -45,11 +45,14 @@ class Roomrenting1content extends Component{
 
     async getAllBusiness(){
         let res = await HttpUtils.get('marketplace')
-        this.setState({
-            roomrents: res.roomrentsdata ? res.roomrentsdata : [],
-            showroomrents: res.roomrentsdata ? res.roomrentsdata.slice(0, 7) : [],
-            loader: false
-        })
+        console.log(res, 'pppppppppppppp')
+        if(res.code === 200){
+            this.setState({
+                roomrents: res.roomrentsdata ? res.roomrentsdata : [],
+                showroomrents: res.roomrentsdata ? res.roomrentsdata.slice(0, 7) : [],
+                loader: false
+            })
+          } 
     }
 
     funcIndexes(page){
@@ -146,8 +149,8 @@ class Roomrenting1content extends Component{
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star"></span>
                                                 <span class="fa fa-star"></span>
-                                            </div>    
-                                    </div>                                    
+                                            </div>
+                                    </div>
                                 </Link>
                             )
                         })
@@ -157,7 +160,7 @@ class Roomrenting1content extends Component{
                         <Spin indicator={antIcon} />
                     </div>}
                     {(showroomrents.length >= 7) && !(showroomrents.length === roomrents.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>}
-                  
+
                 </div>
             </section>
         )

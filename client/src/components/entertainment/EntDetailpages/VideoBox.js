@@ -3,6 +3,7 @@ import VideoDetail from './VideoDetail';
 import EHeader from '../entertainmenthome/entertainmentHeader';
 import Footer from '../../footer/footer';
 import LatestNews from '../entertainmenthome/LatestnewsSec';
+import Burgermenu from '../../header/burgermenu';
 
 class VideoBox extends Component{
     constructor(props) {
@@ -19,7 +20,8 @@ class VideoBox extends Component{
         
         return(
             <div className="">
-                <EHeader entertainment={obj.entertainment} {...this.props}/>
+                <Burgermenu entertainment={obj.entertainment}/>
+                {/*<EHeader entertainment={obj.entertainment} {...this.props}/>*/}
                 <div className="container" style={{width:"100%", marginTop:"40px"}}>
                     <div>
                         <VideoDetail data={obj} {...this.props}/>

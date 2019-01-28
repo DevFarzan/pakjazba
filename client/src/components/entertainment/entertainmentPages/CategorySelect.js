@@ -40,7 +40,7 @@ class DramaSection extends Component{
         { news, sports } = entertainment;
 
         return(
-            <div className="container" style={{width:"75%", marginTop:"-20px"}}>
+            <div className="container" style={{width:"75%"}}>
                 <div className="row">
                     <div className="col-md-8">
                         <div className="row" style={{padding:"0px"}}>
@@ -52,7 +52,11 @@ class DramaSection extends Component{
                                 }
                                 if(key <= 17){
                                     return (
-                                        <div key={key} className="col-md-4 col-sm-4" onClick={this.nextVideo.bind(this, {elem, data})}>
+                                        <div key={key}
+                                            className="col-md-4 col-sm-4" 
+                                            style={{cursor: 'pointer'}}
+                                            onClick={this.nextVideo.bind(this, {elem, data})}
+                                        >
                                             <img style={{height:"130px", width:"100%"}} src={elem.thumbnail_url} />
                                             <p>{des}</p>
                                         </div>

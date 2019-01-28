@@ -31,7 +31,7 @@ class LatestNews extends Component{
                                 }
                                 if(k <= 2){
                                     return(
-                                        <div key={k} className="row" onClick={this.nextVideo.bind(this, {elem, arr})}>
+                                        <div key={k} className="row" style={{cursor: 'pointer'}} onClick={this.nextVideo.bind(this, {elem, arr})}>
                                             <div className="col-md-6 col-sm-5" style={{paddingRight:"0px"}}>
                                               <img src={elem.thumbnail_url}/>
                                             </div>

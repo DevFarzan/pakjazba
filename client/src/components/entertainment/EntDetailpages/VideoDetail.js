@@ -40,7 +40,7 @@ class VideoDetail extends Component{
   render(){
     const { data } = this.props,
     { showDetail } = this.state; 
-    let video = data.elem || data.news1 || data.sports1 || data.movies1 || data.dramas1,
+    let video = data.elem || data.final1 || data.final2 || data.final3 || data.news1,
     { news, sports } = data.entertainment,
     detail = data.arr || data.detail || data.news || data.sports || data.movies || data.dramas,
     description = !!video.description ? video.description : video.title;
@@ -49,7 +49,7 @@ class VideoDetail extends Component{
     }
 
     return(
-      <div className="container" style={{width:"75%", marginTop:"20px"}}>
+      <div className="container" style={{width:"75%", marginTop:"145px"}}>
         <div className="row">
           <div className="col-md-8">
             <div className="videoheading">

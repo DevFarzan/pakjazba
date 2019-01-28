@@ -65,12 +65,12 @@ function reducer(state = initialState, action){
             return {...state, text: action.inputValue}
         case 'SEARCHOF':
             return {...state, text: initialState.text}
-		case 'FACEBOOKSIGNUP':
-			return {...state, data: action.data}
-		case 'ANOTHERDATA':
-			return {...state, otherData: action.otherData}
-		case 'BLOGDATA':
-			return {...state, blogData: action.blogData}
+    		case 'FACEBOOKSIGNUP':
+    			return {...state, data: action.data}
+    		case 'ANOTHERDATA':
+    			return {...state, otherData: action.otherData}
+    		case 'BLOGDATA':
+    			return {...state, blogData: action.blogData}
         default:
             return state;
     }
@@ -136,9 +136,9 @@ ReactDOM.render(
 
           {/*=============Entertainment====================*/}
           <Route path="/entertainment_Home" component={EntertainmentHome}></Route>
-          <Route path="/entertainment_Category" component={EntCategory}></Route>
+          <Route path="/entertainment_Category/:value" component={EntCategory}></Route>
           <Route path="/entertainment_music" component={EntMusic}></Route>
-          <Route path="/entertainment_detail" component={VideoBox}></Route>
+          <Route path="/entertainment_detail/:value" component={VideoBox}></Route>
           <Route path="/music_detail" component={MusicBrowse}></Route>
 
           {/*===============Entertainement end===============================*/}

@@ -2,20 +2,15 @@ import React, { Component } from 'react';
 import Burgermenu from '../header/burgermenu';
 import Slider from '../header/Slider';
 import Footer from '../footer/footer'
-import { Tabs, Icon } from 'antd';
-import axios from "axios/index";
 import {HttpUtils} from "../../Services/HttpUtils";
-import moment from 'moment'
+import moment from 'moment';
+import NewsTab from './newsTab';
 import AsyncStorage from "@callstack/async-storage/lib/index";
-
-const TabPane = Tabs.TabPane;
 
 class DetailBlog extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            news: [],
-            sports: [],
             comment: '',
             review: [],
             userId : '',
@@ -29,7 +24,6 @@ class DetailBlog extends Component {
         window.scrollTo(0,0);
         let data = this.props.location.state;
         this.setState({data})
-        this.callApi()
         this.getAllBlogs()
         this.handleLocalStorage()
         this.getAllReviews(data)
@@ -65,12 +59,6 @@ class DetailBlog extends Component {
         this.setState({blogs: req})
     }
 
-    async callApi(data){
-        const sports = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-sport&apiKey=6e7e6a696773424187f9bdb80954ded7');
-        const news = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=6e7e6a696773424187f9bdb80954ded7');
-        this.setState({news: news.data.articles, sports: sports.data.articles})
-    }
-
     changeVal(e){
         this.setState({comment: e.target.value})
     }
@@ -94,7 +82,7 @@ class DetailBlog extends Component {
     }
 
     render(){
-        const { news, sports, review, data, userId } = this.state;
+        const { review, data, userId } = this.state;
         let bckImage = data.mainimage && !!data.mainimage.length ? (data.mainimage && data.mainimage) : (data.main && data.main[0].image[0]);
 
         return (
@@ -244,32 +232,7 @@ class DetailBlog extends Component {
                         </div>
                     </div>
                     <div className="col-md-3 col-sm-12 col-xs-12">
-                        <Tabs defaultActiveKey="2">
-                            <TabPane style={{height: '450px', 'overflow-y': 'overlay'}} tab='SPORTS' key="1">
-                                {sports.map((elem) => {
-                                    return(
-                                        <div className="b-sec">
-                                            <a href={elem.url} target="_blank">
-                                                <img style={{width: '100%'}} src={elem.urlToImage} alt=""/>
-                                                <p><b>{elem.title}</b></p>
-                                            </a>
-                                        </div>
-                                    )
-                                })}
-                            </TabPane>
-                            <TabPane style={{height: '450px', 'overflow-y': 'overlay'}} tab='NEWS' key="2">
-                                {news.map((elem) => {
-                                    return(
-                                        <div className="b-sec">
-                                            <a href={elem.url} target="_blank">
-                                                <img style={{width: '100%'}} src={elem.urlToImage} alt=""/>
-                                                <p><b>{elem.title}</b></p>
-                                            </a>
-                                        </div>
-                                    )
-                                })}
-                            </TabPane>
-                        </Tabs>
+                        <NewsTab />
                         <br/><br/>
                         <h3><b>Popular</b></h3>
                         <br/><br/><br/>

@@ -2,29 +2,23 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import App from "../../App";
 import Footer from '../footer/footer'
-import axios from "axios/index";
-import { Tabs, Icon } from 'antd';
 import Burgermenu from '../header/burgermenu';
 import Slider from '../header/Slider';
 import {HttpUtils} from "../../Services/HttpUtils";
 import { connect } from 'react-redux';
 import Form from '../form/mainpayment';
-
-const TabPane = Tabs.TabPane;
+import NewsTab from './newsTab';
 
 class Home1 extends Component{
     constructor(props) {
         super(props)
         this.state = {
-            news: [],
-            sports: [],
             blogs: {}
         };
     }
 
     componentDidMount() {
         window.scrollTo(0,0);
-        this.callApi()
         this.getAllBlogs()            
     }
 
@@ -37,14 +31,8 @@ class Home1 extends Component{
         this.setState({blogs: req})
     }
 
-    async callApi(){
-        const sports = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-sport&apiKey=6e7e6a696773424187f9bdb80954ded7');
-        const news = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=6e7e6a696773424187f9bdb80954ded7');
-        this.setState({news: news.data.articles, sports: sports.data.articles})
-    }
-
     render(){
-        const { news, sports, blogs } = this.state;
+        const { blogs } = this.state;
 
         return(
             <div>
@@ -171,42 +159,7 @@ class Home1 extends Component{
                         </div>
                     </div>
                     <div className="col-md-3" style={{marginTop:'-34px'}}>
-                        <Tabs defaultActiveKey="2" style={{border:'1px solid gray',backgroundColor:'rgba(119, 136, 153, 0.05)',padding: '10px'}}>
-                            <TabPane style={{height: '450px', 'overflow-y': 'overlay', color:'#34414c'}} tab='SPORTS' key="1">
-                                {sports.map((elem) => {
-                                    return(
-                                        <div className="b-sec">
-                                            <a href={elem.url} target="_blank">
-                                                <img style={{width: '100%'}} src={elem.urlToImage} alt=""/>
-                                                <p style={{color:'#34414c'}}><b style={{color:'#34414c'}}>{elem.title}</b></p>
-                                            </a>
-                                        </div>
-                                    )
-                                })}
-                            </TabPane>
-                            <TabPane style={{height: '450px', 'overflow-y': 'overlay'}} tab='NEWS' key="2">
-                                {news.map((elem) => {
-                                    return(
-                                        <div className="b-sec">
-                                            <a href={elem.url} target="_blank">
-                                                <img style={{width: '100%'}} src={elem.urlToImage} alt=""/>
-                                                <p style={{color:'#34414c'}}><b style={{color:'#34414c'}}>{elem.title}</b></p>
-                                            </a>
-                                        </div>
-                                    )
-                                })}
-                            </TabPane>
-                        </Tabs>
-                        {/*<div className="b-sec">*/}
-                            {/*<h4><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h4>*/}
-                            {/*<h5><b>7-September-2018 </b></h5>*/}
-                            {/*<p> Loram Ipsum Loram Ipsum, Loram IpsumLoram IpsumLoram Ipsum ,</p>*/}
-                        {/*</div>*/}
-                        {/*<div className="b-sec">*/}
-                            {/*<h4><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h4>*/}
-                            {/*<h5><b>7-September-2018 </b></h5>*/}
-                            {/*<p> Loram Ipsum Loram Ipsum, Loram IpsumLoram IpsumLoram Ipsum ,</p>*/}
-                        {/*</div>*/}
+                        <NewsTab />
                     </div>
                 </div>
                 <div className="row">

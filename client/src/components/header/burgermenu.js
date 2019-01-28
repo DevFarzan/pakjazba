@@ -106,9 +106,9 @@ state = {
                       <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
                           <Link rel="noopener noreferrer" to={`/market_eventPortal`} style={{color:'black',fontSize:'15px'}}>Events</Link>
                       </span>
-                      {/*<span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
-                          <Link rel="noopener noreferrer" to={`/detail_eventPortal`} style={{color:'black',fontSize:'15px'}}>Details</Link>
-                      </span>*/}
+                      <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
+                          <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'15px'}}>Entertainment</Link>
+                      </span>
                       {/*<span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
                           <Link rel="noopener noreferrer" to={`/Ticket_eventPortals`} style={{color:'black',fontSize:'15px'}}>Ticket Detail</Link>
                       </span>*/}

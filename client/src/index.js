@@ -33,6 +33,7 @@ import JobDetail from './components/job_portal/jobDetail';
 import TicketDetail from './components/events/event_listing/TicketDetail';
 import BuyerDetail from './components/events/event_listing/BuyerDetail';
 import EventDetail from './components/events/EventDetail';
+import SeatMap from './components/events/Maps/index';
 import EcomDetail from './components/ecommerce/ecommercedetail/ecommercedetailpage';
 import GridProducts from './components/ecommerce/ecommercedetail/GridProducts';
 import EproductDetails from './components/ecommerce/productdetail/EproductDetails';
@@ -120,6 +121,7 @@ ReactDOM.render(
           <Route path="/market_eventPortal" component={MarketEvent}></Route>
             <Route path="/detail_eventPortal/:value" component={EventDetail}></Route>
             <Route path="/Ticket_eventPortals" component={TicketDetail}></Route>
+            <Route path="/seat_map" component={SeatMap}></Route>            
           {/*============Events Start=============*/}
 
 

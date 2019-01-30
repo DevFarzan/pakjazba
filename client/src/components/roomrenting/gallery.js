@@ -1,51 +1,41 @@
 import React, { Component } from 'react';
 
+export class ImageDiv extends Component{
+	render(){
+		const { classHeight, srcImg, divStyle } = this.props;
+		return(
+			<div className={classHeight.class} style={divStyle}>
+				<img src={srcImg} alt="" height={classHeight.height} width="100%"/>
+			</div>
+		)
+	}
+}
+
 class Gallery extends Component{
 	render(){
 		const { images } = this.props;
-		console.log(images && images.length, 'length')
-		let abc = false;
-		let obj = { class: '', height: ''};
-		if(images && images.length === 2){
-			obj = { class: 'col-md-6', height: '300'};
-		}else if(images && images.length === 3){
-			obj = { class: 'col-md-4', height: '200'};
-		}
-		if(images && images.length === 5){
-			abc = true;
-		}
 		return(
 			<div className="row">				
 				{images && images.map((elem, key) => {
-					if(images.length === 2 || images.length === 3){
-						return(
-							<div className={obj.class} style={{paddingRight: '0px', paddingLeft: '0px'}}>
-								<img src={elem} alt="" height={obj.height} width="100%" onClick={() => {this.goToProfile()}}/>
-							</div>
+					let abc = false;
+					let imgLen = images.length;
+					let divSt = {paddingRight: '0px', paddingLeft: '0px'};
+					let obj = { 
+						class: imgLen == 2 || imgLen >= 4 ? 'col-md-6' : 'col-md-4', 
+						height: imgLen == 2 ? '300' : imgLen == 3 ? '200' : '500'};
+					if(imgLen === 5){
+						abc = true;
+					}
+					let divClass = !abc ? (key === 2 || key === 3 ? "col-md-3" : "col-md-6") : "col-md-3";
+					if((imgLen === 2 || imgLen === 3) || (imgLen >=4 && key === 0)){
+						return <ImageDiv key={key} srcImg={elem} classHeight={obj} divStyle={divSt}/>
+					}else {
+						return(							
+							<div key={key} className={divClass} style={divSt}>
+								<ImageDiv srcImg={elem} classHeight={{class: 'col-md-12', height: '250'}} divStyle={divSt}/>								
+							</div>								
 						)
-					}
-					else if(images.length >= 4){
-						if(key === 0){
-							return(
-
-								<div className="col-md-6" style={{paddingRight: '0px', paddingLeft: '0px'}}>
-									<img src={elem} alt="" height="500" width="100%" onClick={() => {this.goToProfile()}}/>
-								</div>
-							)
-						}else {
-							return(
-							
-								<div className={!abc ? (key === 2 || key === 3 ? "col-md-3" : "col-md-6") : "col-md-3"} style={{paddingRight: '0px', paddingLeft: '0px'}}>
-									<div className="col-md-12" style={{paddingRight: '0px', paddingLeft: '0px'}}>
-										<img src={elem} alt="" height="250" width="100%" onClick={() => {this.goToProfile()}}/>
-									</div>
-								
-								</div>
-								
-							)
-						}
-						
-					}
+					}						
 				})}				
 			</div>
 		)

@@ -159,13 +159,15 @@ class Roomrenting3contentarea extends Component{
                     </div>
                 </div>*/}
                 <Gallery images={images} style={{marginTop: '13%'}}/>
+                {/*<div className="col-md-12 col-sm-12 col-xs-12">*/}
+                    {/*<div className="row" style={{"borderStyle": 'none',boxShadow:'none',border: '1px solid #8080804f',background: 'white',marginTop:'11px'}}>*/}
                 {/*<div className="col-md-12 col-sm-12 col-xs-12">
                     <div className="row" style={{"border-style": 'none',boxShadow:'none',border: '1px solid #8080804f',background: 'white',marginTop:'11px'}}>
                         <div className="col-lg-5 col-md-6 col-sm-6 col-xs-12">
                             <Carousel autoplay>
-                                {images && images.map((elem) => {
+                                {images && images.map((elem, key) => {
                                     return(
-                                        <div>
+                                        <div key={key}>
                                             <img src={elem}/>
                                         </div>
                                     )
@@ -174,11 +176,11 @@ class Roomrenting3contentarea extends Component{
                         </div>
                         <div className="col-lg-7 col-md-6 col-sm-6 col-xs-12">
 
-                         <div className="col-md-12 col-sm-12 col-xs-12 des-space auther-border"  style={{"border-style": 'none',boxShadow:'none',border: '1px solid #8080804f',background: 'white',marginTop: '10px'}}>
+                         <div className="col-md-12 col-sm-12 col-xs-12 des-space auther-border"  style={{"borderStyle": 'none',boxShadow:'none',border: '1px solid #8080804f',background: 'white',marginTop: '10px'}}>
                         <h3 style={{"marginTop":"14px","textAlign":"center","textDecoration": "underline"}}> Author </h3>
                         <div className="">
                             <div className="col-md-6 col-sm-12 col-xs-12">
-                                <img src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} class="img-circle" alt="" height="200" width="200" style={{cursor:'pointer'}} onClick={() => {this.goToProfile()}}/>
+                                <img src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="img-circle" alt="" height="200" width="200" style={{cursor:'pointer'}} onClick={() => {this.goToProfile()}}/>
                                 <hr/>
                                 <br/>
                                 <h4><b> Phone: </b>{' ' + phone}</h4>
@@ -187,15 +189,15 @@ class Roomrenting3contentarea extends Component{
                             <div className="col-md-6 col-sm-12 col-xs-12">
                                 <form action="#">
                                     <div className="form-group">
-                                        <label for="Name">Name:</label>
+                                        <label htmlFor="Name">Name:</label>
                                         <input type="text" value={this.state.name} onChange={this.onChangeValue} className="form-control" id="name"/>
                                     </div>
                                     <div className="form-group">
-                                        <label for="email">Email address:</label>
+                                        <label htmlFor="email">Email address:</label>
                                         <input type="email" value={this.state.email} onChange={this.onChangeValue} className="form-control" id="email"/>
                                     </div>
                                     <div className="form-group">
-                                        <label for="Massage">Massage:</label>
+                                        <label htmlFor="Massage">Massage:</label>
                                         <textarea className="form-control" value={this.state.msg} onChange={this.onChangeValue} id="msg"> </textarea>
                                     </div>
                                     {this.state.loader && <Spin indicator={antIcon} />}
@@ -213,7 +215,7 @@ class Roomrenting3contentarea extends Component{
                         <p>{data.discription || data.description}</p>
                     </div>
                     <div className="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                        <ul class="list-group" style={{marginTop:'15px',border:'1px solid #80808040'}}>
+                        <ul className="list-group" style={{marginTop:'15px',border:'1px solid #80808040'}}>
                             <div className="row">
                                 <div className="col-md-6"><h4 style={{fontSize: "16px",fontWeight:'bold',color: 'dimgray'}}> Available From</h4></div>
                                 <div className="col-md-6"><h4 style={{fontSize: "16px"}}> <span className="glyphicon glyphicon-calendar"></span>{dateRange}</h4></div>
@@ -227,6 +229,35 @@ class Roomrenting3contentarea extends Component{
                                 <div className="col-md-6" onClick={() => {this.goToProfile()}}><h4 style={{fontSize: "16px", cursor: 'pointer'}}> <span className="glyphicon glyphicon-user"></span>{data.contactname || data.contactName}</h4></div>
                             </div>
                          </ul>
+                    
+                </div>
+                <div className="row" >
+                    <div >
+                        <div className="col-md-12 col-sm-12 col-xs-12 des-space" style={{border:'1px solid #8080804d',marginTop:'11px'}}>
+                            <div className="col-md-4 col-sm-12 col-xs-12 des-space">
+                                <h3> Details </h3>
+                                <p><b>Date Added:</b>{' ' + dateRange}</p>
+                                <p><b>Type:</b>{' ' + data.category}</p>
+                                <p><b>Status:</b>{' ' + data.furnished}</p>
+                                <p><b>Pet Friendly:</b>{' ' + petFriendly}</p>
+                                <p><b>Accommodates:</b>{' ' + accommodates}</p>
+                                <p><b>Smoking:</b>{' ' + data.smoking}</p>
+                            </div>
+                            <div className="col-md-8 col-sm-12 col-xs-12">
+                                <h3 style={{marginTop:'18px'}}>Location </h3>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.6337348509687!2d67.03749541472551!3d24.807992284078704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33da992be1aa7%3A0x7646411a2d8e6ac5!2sKRL+Creatives!5e0!3m2!1sen!2s!4v1536302761580" width="100%" height="400" frameBorder="0" style={{"border":"0"}} allowFullScreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="row" style={{border:'1px solid #8080804d',marginTop:'11px'}}>
+                    <h3> Features </h3>
+                    {AIncludes && AIncludes.map((elem, key) => {
+                        return(
+                            <div key={key} className="col-md-3 col-sm-12 col-xs-12 des-space">
+                                <div className="col-md-12 col-sm-12 col-xs-12 ">
+                                    <div className="checkbox">
+                                        <h4> <label><input type="checkbox" value="" checked="checked"/>{elem}</label> </h4>
 
                     </div>
                     <div className="row" >

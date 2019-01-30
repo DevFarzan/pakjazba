@@ -21,14 +21,22 @@ class BuyerDetail extends Component{
                 total: '',
                 eventId: '',
                 firstName: '',
-                email: ''
+                email: '',
+                selectSeat: false
             },
             loader: false
         }
     }
 
     componentDidMount(){
-        let data = this.props.location.state;
+        const { data } = this.props.location.state || this.props.otherData;
+    }
+
+    componentWillUnmount(){
+        if(!this.state.selectSeat && !this.state.msg){
+            let data = this.props.location.state.data || this.props.location.state || this.props.otherData;
+            this.props.history.push(`/detail_eventPortal/${data.randomKey}`)
+        }
     }
 
     onClick = () => {
@@ -36,15 +44,19 @@ class BuyerDetail extends Component{
         this.child.handleSubmit();
     }
 
+    selectSeat = () => {
+        this.setState({selectSeat: true})
+    }
+
     onReceiveData(e){
-        let data = this.props.location.state || this.props.otherData;
+        let data = this.props.location.state.data || this.props.location.state || this.props.otherData;
         let { cardData } = this.state;
         cardData = {...cardData, ...e, eventId: data._id}
         this.setState({cardData});
     }
 
     async postTicketData(obj){
-        let data = this.props.location.state || this.props.otherData;
+        let data = this.props.location.state.data || this.props.location.state || this.props.otherData;
         let objData = {data, obj};
         this.setState({objData}, () => {
             this.child2.creditCard();
@@ -66,9 +78,12 @@ class BuyerDetail extends Component{
     }
 
     render(){
-        const { msg, objData } = this.state;
-        let data = this.props.location.state || this.props.otherData;
-        if(msg === true) {
+        const { msg, objData, selectSeat } = this.state;
+        let data = this.props.location.state.data || this.props.location.state || this.props.otherData;
+        if(selectSeat) {
+            return <Redirect to={{pathname: '/seat_map', state: data}} />
+        }
+        if(msg) {
             return <Redirect to={{pathname: '/Ticket_eventPortals', state: objData}} />
         }
 
@@ -78,8 +93,9 @@ class BuyerDetail extends Component{
             <div className="">
                 <Burgermenu/>
                 <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}>
-                </div>
+                </div>                
                 <div className="col-md-8" style={{marginTop: '70px'}}>
+                    <button style={{textAlign: 'center', width:"40%"}} className=" col-md-offset-7 btn button_custom" onClick={this.selectSeat}>I want to select my seat</button>
                     <ContactDetail
                         onRef={ref => (this.child = ref)}
                         data={this.state.cardData}

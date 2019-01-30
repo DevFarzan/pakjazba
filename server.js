@@ -69,6 +69,7 @@ require('./models/jobAppliedSchema');
 require('./models/blogReviews');
 require('./models/eventPortalSchema');
 require('./models/eventTicketSchema');
+require('./models/eventseatvenue');
 
 require('./config/passport');
 
@@ -88,6 +89,7 @@ var jobApplied = mongoose.model('jobApplied');
 var blogReview = mongoose.model('blogReviews');
 var eventPortal = mongoose.model('EventSchema');
 var eventTicket = mongoose.model('EventTicketSchema');
+var eventSeats  = mongoose.model('EventVenue');
 var sess;
 
 app.use(passport.initialize());
@@ -1668,8 +1670,95 @@ app.post("/api/charge", async (req, res) => {
     res.status(500).end();
   }
 });
-
 /*===================post roommates API end =================================================================*/
+/*===================event seats arragment API start===============================================================*/
+app.post('/api/eventseats',(req,res)=>{
+let seatsData = req.body;
+console.log(seatsData.eventName,seatsData.seats);
+eventSeats.find(function(err,eventData){
+
+  /*for(var i=0;i<eventData.length;i++){
+    if(eventData[i].eventName == seatsData.eventName){
+      var data1 = eventData[i].seats;
+      //console.log(data1,'dddddaaatatatata1')
+      var data2 = seatsData.seats;
+      var updateseats = [];
+      updateseats = [...data1,...data2];
+      console.log(updateseats,'uuuuuuppppppppddddd')
+      eventSeats.update({ eventName:eventData.eventName }, { $set: { "seats": [...data1,...data2] }})
+      res.send('update seats')
+    }
+  }*/
+  console.log(eventData,'sadsadsadsad')
+  var data1 = eventData[0].seats;
+      //console.log(data1,'dddddaaatatatata1')
+      var data2 = seatsData.seats;
+      var updateseats = [];
+      updateseats = [...data1,...data2];
+  let seatsarrangment = new eventSeats({
+        eventName: seatsData.eventName,
+        seats: updateseats,
+    })
+
+    seatsarrangment.save((error, response) => {
+        if(error){
+            res.send({
+                code:500,
+                content:'Internal Server Error',
+                msg:'API not called properly'
+            });
+        }else if(response !== ''){
+            res.send({
+                code:200,
+                msg:'your request submitted successfully'
+            });
+        }else{
+            res.send({
+                code:404,
+                content:'Not Found',
+                msg:'no data inserted'
+            });
+        }
+    });
+})
+
+});
+
+app.get('/api/getseats',(req,res)=>{
+  let eventname = 'salman Khan';
+  eventSeats.find(function(err,eventData){
+      if(err){
+            res.send({
+                code:500,
+                content:'Internal Server Error',
+                msg:'API not called properly'
+            });
+        }else if(eventData !== ''){
+          var finalSeatsArray = []; 
+          for(var i=0;i<eventData.length;i++){
+            if(eventData[i].eventName == eventname){
+                finalSeatsArray.push({
+                  eventName:eventData[i].eventName,
+                  seats:eventData[i].seats
+                })  
+            }
+          }
+          res.send({
+                code:200,
+                msg:'All Seats',
+                finalSeats:finalSeatsArray
+            }); 
+        }else{
+            res.send({
+                code:404,
+                content:'Not Found',
+                msg:'no data inserted'
+            });
+        }
+  });
+});
+
+/*===================event seats arrangment API end================================================================*/
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
   app.use(express.static(path.join(__dirname, 'client/build')));

@@ -19,6 +19,11 @@ class TicketDetail extends Component{
         this.setState({receivedData: req})
     }
 
+    componentWillUnmount(){
+        let data = this.props.location.state;
+        this.props.history.push({pathname: `/Buyer_Detailpage`, state: data})
+    }
+
     purchaseTicket(){
         const input = document.getElementById('divIdToPrint');
         html2canvas(input)

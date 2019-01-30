@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './burgermenu.css';
 import MainLogin from '../header/mainLogin';
 import Category from '../header/getcategory';
+import EHeader from '../entertainment/entertainmenthome/entertainmentHeader'; 
 import { Link } from "react-router-dom";
 import { Menu, Icon, Button } from 'antd';
 
@@ -48,32 +49,7 @@ state = {
                       <div className="col-md-10 col-sm-6 col-xs-6">
                           <div className="row">
                               <div className="col-md-7">
-                                 {/* <div style={{ padding: '22px 16px 10px',"float": "right"}}>
-                                      <Button type="button_globalclassName" name='room' ghost className="button_globalclassName">
-                                          <Link rel="noopener noreferrer" to={`/market_roommates`}>Room Renting</Link>
-                                      </Button>
-                                      <Button type="button_globalclassName" name='bussiness' ghost style={{marginRight: "10px", marginLeft: "10px"}} className="button_globalclassName">
-                                          <Link rel="noopener noreferrer" to={`/market_business`}>Business Listing</Link>
-                                      </Button>
-                                      <Button type="button_globalclassName" name='buySell' ghost className="button_globalclassName" style={{marginRight: '10px'}}>
-                                          <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
-                                      </Button>
-                                      <Button type="button_globalclassName" name='buySell' ghost className="button_globalclassName">
-                                          <Link rel="noopener noreferrer" to={`/market_jobPortal`}>Job Portal</Link>
-                                      </Button>
-                                      <Button type="button_globalclassName" name='events' ghost className="button_globalclassName">
-                                          <Link rel="noopener noreferrer" to={`/market_eventPortal`}>Events</Link>
-                                      </Button>
-                                      <Button type="button_globalclassName" name='events' ghost className="button_globalclassName">
-                                          <Link rel="noopener noreferrer" to={`/detail_eventPortal`}>Details</Link>
-                                      </Button>
-                                      <Button type="button_globalclassName" name='events' ghost className="button_globalclassName">
-                                          <Link rel="noopener noreferrer" to={`/Ticket_eventPortals`}>Ticket Detail</Link>
-                                      </Button>
-                                      <Button type="button_globalclassName" name='events' ghost className="button_globalclassName">
-                                          <Link rel="noopener noreferrer" to={`/Buyer_DetailPage`}>Buyer Detail</Link>
-                                      </Button>
-                                  </div>*/}
+                                
                               </div>{/*col-md-4*/}
                               <div className="col-md-2" style={{marginTop: "26px"}}>
                                   <MainLogin/>
@@ -86,18 +62,17 @@ state = {
                   </div>
 
              <div className="row"  className="hidden-xs">
-                <div className="col-md-12">
+                
                     <div style={{background:'rgba(236, 236, 236, 0.48)',width:'96%',height:'42px',marginLeft:'16px'}}>
-                      {/*<Link to={`/`}><span className="glyphicon glyphicon-home" style={{color:'black',fontSize:'17px',margin: '21px',cursor:'pointer'}}>
-                      </span></Link>*/}
+                     
 
                       <span type="" name='room' ghost className="button_globalclassName col-md-2 global_submenu">
                           <Link  rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'15px'}}>Room Renting</Link>
                       </span>
-                      <span type="" name='bussiness' ghost style={{marginRight: "10px", marginLeft: "10px"}} className="button_globalclassName col-md-3 global_submenu">
-                          <Link rel="noopener noreferrer" to={`/market_business`} style={{color:'black',fontSize:'15px',margin: '21px'}}>Business Listing</Link>
+                      <span type="" name='bussiness' ghost className="button_globalclassName col-md-2 global_submenu">
+                          <Link rel="noopener noreferrer" to={`/market_business`} style={{color:'black',fontSize:'15px'}}>Business Listing</Link>
                       </span>
-                      <span type="" name='buySell' ghost className="button_globalclassName col-md-2 global_submenu" style={{marginRight: '10px'}}>
+                      <span type="" name='buySell' ghost className="button_globalclassName col-md-2 global_submenu">
                           <Link rel="noopener noreferrer" to={`/market_classified`} style={{color:'black',fontSize:'15px'}}>Buy & Sell</Link>
                       </span>
                       <span type="" name='buySell' ghost className="button_globalclassName col-md-2 global_submenu">
@@ -106,52 +81,14 @@ state = {
                       <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
                           <Link rel="noopener noreferrer" to={`/market_eventPortal`} style={{color:'black',fontSize:'15px'}}>Events</Link>
                       </span>
-                      {/*<span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
-                          <Link rel="noopener noreferrer" to={`/detail_eventPortal`} style={{color:'black',fontSize:'15px'}}>Details</Link>
-                      </span>*/}
-                      {/*<span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
-                          <Link rel="noopener noreferrer" to={`/Ticket_eventPortals`} style={{color:'black',fontSize:'15px'}}>Ticket Detail</Link>
-                      </span>*/}
-                      {/*<span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu col-md-2 global_submenu">
-                          <Link rel="noopener noreferrer" to={`/Buyer_DetailPage`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Buyer Detail</Link>
-                      </span>*/}
-                    </div>  
+                      <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
+                          <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'15px'}}>Entertainment</Link>
+                      </span>
                 </div>
-                {/*<Link to={`/`}><span className="glyphicon glyphicon-home" style={{color:'black',fontSize:'17px',margin: '21px',cursor:'pointer'}}>
-                </span></Link>
-                <span type="" name='room' ghost className="button_globalclassName">
-                    <Link  rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Room Renting</Link>
-                </span>
-                <span type="" name='bussiness' ghost style={{marginRight: "10px", marginLeft: "10px"}} className="button_globalclassName">
-                    <Link rel="noopener noreferrer" to={`/market_business`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Business Listing</Link>
-                </span>
-                <span type="" name='buySell' ghost className="button_globalclassName" style={{marginRight: '10px'}}>
-                    <Link rel="noopener noreferrer" to={`/market_classified`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Buy & Sell</Link>
-                </span>
-                <span type="" name='buySell' ghost className="button_globalclassName">
-                    <Link rel="noopener noreferrer" to={`/market_jobPortal`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Job Portal</Link>
-                </span>
-                <span type="" name='events' ghost className="button_globalclassName">
-                    <Link rel="noopener noreferrer" to={`/market_eventPortal`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Events</Link>
-                </span>
-                <span type="" name='EcommerceMarket' ghost className="button_globalclassName">
-                    <Link rel="noopener noreferrer" to={`/market_ecommerceMarket`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Ecommerce</Link>
-                </span>
-                <span type="" name='EcommerceMarket' ghost className="button_globalclassName">
-                    <Link rel="noopener noreferrer" to={`/detail_ecommercedetail`} style={{color:'black',fontSize:'17px',margin: '21px'}}>EcommerceDetail</Link>
-                </span>
-                <span type="" name='GridProduct' ghost className="button_globalclassName">
-                    <Link rel="noopener noreferrer" to={`/products_GridStyle`} style={{color:'black',fontSize:'17px',margin: '21px'}}>GridProducts</Link>
-                </span>
-                <span type="" name='ProductDetails' ghost className="button_globalclassName">
-                    <Link rel="noopener noreferrer" to={`/products_DetailStyle`} style={{color:'black',fontSize:'17px',margin: '21px'}}>ProductDetails</Link>
-                </span>
-                <span type="" name='EcomForms' ghost className="button_globalclassName">
-                    <Link rel="noopener noreferrer" to={`/Forms_Ecommerce`} style={{color:'black',fontSize:'17px',margin: '21px'}}>EcomForms</Link>
-                </span>
-                <span type="" name='Entertainment' ghost className="button_globalclassName">
-                    <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Entertainment</Link>
-                </span>*/}
+                {this.props.entertainment && <div className="row"  className="hidden-xs">
+                    <EHeader entertainment={this.props.entertainment}/>
+                </div>}
+               
                 
 
                 {/*<span type="" name='events' ghost className="button_globalclassName">

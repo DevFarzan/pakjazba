@@ -1,42 +1,119 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from "react-router-dom";
+import axios from "axios/index";
 import './Entslider.css';
 
 class EntSlider extends Component{
-  render(){
-    return(
-      <div class="container" style={{width:"100%", marginTop:"30px"}}>
-        <div class="row">
-          <div className="col-md-5" style={{paddingLeft:"0px", paddingRight:"0px"}}>
-            <div className="videobox">
-              <div class="card bg-dark text-white">
-                  <img class="card-img img-fluid" src="images/news.gif" alt="" style={{width:"100%", height:"400px"}}/>
-                <div class="card-img-overlay d-flex linkfeat">
-                    <a href="http://makro.id/review-gsp-amerika-ingin-perdagangan-saling-menguntungkan" class="align-self-end">
-                      <span class="badge">Ekspor</span>
-                      <h4 class="card-title">Review GSP: Amerika Ingin Perdagangan Saling Menguntungkan</h4>
-                    </a>
+  constructor(props) {
+        super(props)
+        this.state = {
+            featuresApi: 'https://api.dailymotion.com/videos?fields=description,duration,embed_url,id,thumbnail_url,title,&country=pk&sort=trending&tags=Pakistani+dramas',            
+            sportsApi: 'https://api.dailymotion.com/videos?fields=description,duration,embed_url,id,thumbnail_url,title,&tags=Pakistani+cricket',
+            features: [],
+            sports: []
+        };
+    }
+
+    componentDidMount() {
+        this.callApi()
+    }
+
+    async callApi(){
+        const { featuresApi, sportsApi } = this.state,      
+        features = await axios.get(featuresApi),
+        sports =await axios.get(sportsApi);
+        this.setState({            
+            features: features.data.list,
+            sports: sports.data.list
+        });
+    }
+
+    shuffleArr(arr, len){
+        var i = arr.length,
+        j = 0,
+        temp;
+        while (i--) {
+            j = Math.floor(Math.random() * (i+1));
+
+            // swap randomly chosen element with current element
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+        return arr.slice(0, len);
+    }
+
+    render(){
+        const  { entertainment, match } = this.props,
+        { news, dramas } = entertainment,
+        { features, sports } = this.state,
+        target = match.path.slice(1, match.path.length),
+        target2 = match.params.value;
+        let news1, assend, finalArr, final1, final2, final3, str, obj;
+        if(target.toString() === 'entertainment_Home'){    
+            news1 = !!news.length && news[0],
+            assend = this.shuffleArr([1,2,3,4,5,6,7,8,9], 3),
+            finalArr = features.filter((elem, key) => assend.includes(key)),
+            final1 = !!finalArr.length && finalArr[0],
+            final2 = !!finalArr.length && finalArr[1],
+            final3 = !!finalArr.length && finalArr[2];
+        }else {
+            str = target2.split('')[0].toLowerCase() + target2.slice(1, target2.length),
+            obj = entertainment[str];            
+            if(str.toString() === 'sports'){
+                assend = this.shuffleArr([1,2,3,4,5,6,7,8,9], 4),
+                finalArr = !!sports.length && sports.filter((elem, key) => assend.includes(key)),
+                news1 = finalArr.length > 0 ? finalArr[0] : {id: 'sjdhlkj'},                
+                final1 = finalArr.length > 0 ? finalArr[1] : {id: 'sjdhlkj'},
+                final2 = finalArr.length > 0 ? finalArr[2] : {id: 'sjdhlkj'},
+                final3 = finalArr.length > 0 ? finalArr[3] : {id: 'sjdhlkj'};
+            }else {
+                news1 = !!obj.length && obj[0],
+                final1 = !!obj.length && obj[1],
+                final2 = !!obj.length && obj[2],
+                final3 = !!obj.length && obj[3];
+            }
+        }
+
+        return(
+            <div className="container" style={{width:"100%", marginTop:"100px"}}>
+                <div className="row">
+                    <div className="col-md-5" style={{paddingLeft:"0px", paddingRight:"0px"}}>
+                        <div className="videobox">
+                            <Link to={{pathname: `/entertainment_detail/${news1.id}`, state: {news1, news, entertainment}}}
+                                className="card bg-dark text-white" style={{cursor: 'pointer'}}
+                            >
+                                <img className="card-img img-fluid" src={news1.thumbnail_url} alt="" style={{width:"100%", height:"400px"}}/>
+                                <div className="card-img-overlay d-flex linkfeat">
+                                    <span className="badge">Ekspor</span>
+                                    <h4 style={{color : 'white'}} className="card-title">{news1.title}</h4>
+                                </div>
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="col-md-7">
+                        <div className="row" style={{padding:"0px"}}>
+                            <div className="col-md-6" style={{paddingLeft:"0px", paddingRight:"0px", cursor: 'pointer'}}>
+                                <Link to={{pathname: `/entertainment_detail/${final1.id}`, state: {final1, dramas, entertainment}}} className="videobox">
+                                    <img src={final1.thumbnail_url} style={{height:"400px", width:"100%"}}/>
+                                </Link>
+                            </div>
+                            <div className="col-md-6" style={{paddingLeft:"0px", paddingRight:"0px"}}>
+                                <div className="videobox">
+                                    <Link to={{pathname: `/entertainment_detail/${final2.id}`, state: {final2, dramas, entertainment}}}>
+                                        <img src={final2.thumbnail_url} style={{height:"200px", width:"100%", cursor: 'pointer'}}/>
+                                    </Link>
+                                    <Link to={{pathname: `/entertainment_detail/${final3.id}`, state: {final3, dramas, entertainment}}}>
+                                        <img src={final3.thumbnail_url} style={{height:"200px", width:"100%", cursor: 'pointer'}}/>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-          <div className="col-md-7">
-            <div className="row" style={{padding:"0px"}}>
-              <div className="col-md-6" style={{paddingLeft:"0px", paddingRight:"0px"}}>
-                <div className="videobox">
-                  <img src='images/entertainment/980x.jpg' style={{height:"400px", width:"100%"}}/>
-                </div>
-              </div>
-              <div className="col-md-6" style={{paddingLeft:"0px", paddingRight:"0px"}}>
-              <div className="videobox">
-                <img src='images/entertainment/images.jpg' style={{height:"200px", width:"100%"}}/>
-                <img src='images/entertainment/timthumb.jpg' style={{height:"200px", width:"100%"}}/>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
+        )
+    }
 }
+
 export default EntSlider;

@@ -31,6 +31,8 @@ class Stories extends Component{
                         {Object.keys(this.props.entertainment).map((el, k) => {
                           let arr = detail[k];
                           let str = el.split('')[0].toUpperCase() + el.slice(1, el.length);
+                          {/*This if else will be  remove if enable music  */}
+                          if(str !== 'Musics'){
                           return (
                               <div key={k} className="row" style={{padding:"0px"}}>
                                   <h4><strong>{str}</strong></h4>
@@ -58,7 +60,7 @@ class Stories extends Component{
                                       >See More...</p>                         
                                   <hr style={{margin:"0px"}}/>
                               </div>
-                            )
+                            )}
                         })}                                              
                     </div>
                     <div className="col-md-4">

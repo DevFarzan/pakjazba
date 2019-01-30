@@ -51,9 +51,9 @@ class EHeader extends Component{
          <span type="" name='buySell' className="button_globalclassName">
              <Link rel="noopener noreferrer" to={{pathname: `/entertainment_Category/${'Dramas'}`, state: {dramas, entertainment}}} style={{color:'black',fontSize:'17px',margin: '21px'}}>Dramas</Link>
          </span>
-         <span type="" name='events' className="button_globalclassName">
+         {/*<span type="" name='events' className="button_globalclassName">
              <Link rel="noopener noreferrer" to={{pathname: `/entertainment_Category/${'Musics'}`, state: {musics, entertainment}}} style={{color:'black',fontSize:'17px',margin: '21px'}}>Music</Link>
-         </span>         
+         </span> */}        
          <span type="" name='EcommerceMarket' className="button_globalclassName">
              <Link rel="noopener noreferrer" to={{pathname: `/entertainment_Category/${'Sports'}`, state: {sports, entertainment}}} style={{color:'black',fontSize:'17px',margin: '21px'}}>Sports</Link>
          </span>

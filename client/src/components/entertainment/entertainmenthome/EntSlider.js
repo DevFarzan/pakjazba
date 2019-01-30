@@ -8,7 +8,9 @@ class EntSlider extends Component{
         super(props)
         this.state = {
             featuresApi: 'https://api.dailymotion.com/videos?fields=description,duration,embed_url,id,thumbnail_url,title,&country=pk&sort=trending&tags=Pakistani+dramas',            
+            sportsApi: 'https://api.dailymotion.com/videos?fields=description,duration,embed_url,id,thumbnail_url,title,&tags=Pakistani+cricket',
             features: [],
+            sports: []
         };
     }
 
@@ -17,14 +19,16 @@ class EntSlider extends Component{
     }
 
     async callApi(){
-        const { featuresApi } = this.state,      
-        features = await axios.get(featuresApi);
+        const { featuresApi, sportsApi } = this.state,      
+        features = await axios.get(featuresApi),
+        sports =await axios.get(sportsApi);
         this.setState({            
-            features: features.data.list
+            features: features.data.list,
+            sports: sports.data.list
         });
     }
 
-    shuffleArr(arr){
+    shuffleArr(arr, len){
         var i = arr.length,
         j = 0,
         temp;
@@ -36,19 +40,40 @@ class EntSlider extends Component{
             arr[i] = arr[j];
             arr[j] = temp;
         }
-        return arr.slice(0, 3);
+        return arr.slice(0, len);
     }
 
     render(){
-        const  { entertainment } = this.props,
+        const  { entertainment, match } = this.props,
         { news, dramas } = entertainment,
-        { features } = this.state,        
-        news1 = !!news.length && news[0],
-        assend = this.shuffleArr([1,2,3,4,5,6,7,8,9]),
-        finalArr = features.filter((elem, key) => assend.includes(key)),
-        final1 = !!finalArr.length && finalArr[0],
-        final2 = !!finalArr.length && finalArr[1],
-        final3 = !!finalArr.length && finalArr[2];
+        { features, sports } = this.state,
+        target = match.path.slice(1, match.path.length),
+        target2 = match.params.value;
+        let news1, assend, finalArr, final1, final2, final3, str, obj;
+        if(target.toString() === 'entertainment_Home'){    
+            news1 = !!news.length && news[0],
+            assend = this.shuffleArr([1,2,3,4,5,6,7,8,9], 3),
+            finalArr = features.filter((elem, key) => assend.includes(key)),
+            final1 = !!finalArr.length && finalArr[0],
+            final2 = !!finalArr.length && finalArr[1],
+            final3 = !!finalArr.length && finalArr[2];
+        }else {
+            str = target2.split('')[0].toLowerCase() + target2.slice(1, target2.length),
+            obj = entertainment[str];            
+            if(str.toString() === 'sports'){
+                assend = this.shuffleArr([1,2,3,4,5,6,7,8,9], 4),
+                finalArr = !!sports.length && sports.filter((elem, key) => assend.includes(key)),
+                news1 = finalArr.length > 0 ? finalArr[0] : {id: 'sjdhlkj'},                
+                final1 = finalArr.length > 0 ? finalArr[1] : {id: 'sjdhlkj'},
+                final2 = finalArr.length > 0 ? finalArr[2] : {id: 'sjdhlkj'},
+                final3 = finalArr.length > 0 ? finalArr[3] : {id: 'sjdhlkj'};
+            }else {
+                news1 = !!obj.length && obj[0],
+                final1 = !!obj.length && obj[1],
+                final2 = !!obj.length && obj[2],
+                final3 = !!obj.length && obj[3];
+            }
+        }
 
         return(
             <div className="container" style={{width:"100%", marginTop:"100px"}}>

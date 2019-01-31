@@ -45,11 +45,14 @@ class Roomrenting1content extends Component{
 
     async getAllBusiness(){
         let res = await HttpUtils.get('marketplace')
-        this.setState({
-            roomrents: res.roomrentsdata ? res.roomrentsdata : [],
-            showroomrents: res.roomrentsdata ? res.roomrentsdata.slice(0, 7) : [],
-            loader: false
-        })
+        console.log(res, 'pppppppppppppp')
+        if(res.code === 200){
+            this.setState({
+                roomrents: res.roomrentsdata ? res.roomrentsdata : [],
+                showroomrents: res.roomrentsdata ? res.roomrentsdata.slice(0, 7) : [],
+                loader: false
+            })
+          } 
     }
 
     funcIndexes(page){
@@ -135,19 +138,20 @@ class Roomrenting1content extends Component{
                             let postedOn = moment(elem.posted, "LL").format('YYYY-MM-DD');
                             return(
                                 <Link key={key} to={{pathname: `/detail_roomRent`, state: elem}}>
-                                    <div className="col-md-3 col-sm-4 col-xs-12" style={{marginTop:'5%'}}>
+                                    <div className="col-md-3 col-sm-4 col-xs-12">
                                         <img src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'} class="img-responsive list_img" />
                                         <p style={{color: 'black'}}>{str}
                                             <br/><b>{elem.contactname}</b>
                                             <br/>{'$' + elem.rent + ' ' + elem.pricemode}</p>
                                               <div style={{marginTop:'-34px'}}>
-                                                <span className="fa fa-star checked"></span>
-                                                <span className="fa fa-star checked"></span>
-                                                <span className="fa fa-star checked"></span>
-                                                <span className="fa fa-star"></span>
-                                                <span className="fa fa-star"></span>
-                                            </div>    
-                                    </div>                                    
+
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                            </div>
+                                    </div>
                                 </Link>
                             )
                         })
@@ -157,7 +161,7 @@ class Roomrenting1content extends Component{
                         <Spin indicator={antIcon} />
                     </div>}
                     {(showroomrents.length >= 7) && !(showroomrents.length === roomrents.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>}
-                  
+
                 </div>
             </section>
         )

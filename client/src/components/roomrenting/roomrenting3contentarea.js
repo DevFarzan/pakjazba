@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios/index";
-import { Carousel, Rate, notification, Icon, Spin, Tabs, Cascader} from 'antd';
+import { Carousel, Rate, notification, Icon, Spin, Cascader} from 'antd';
 import "./roomrenting2content.css";
 import moment from 'moment'
 import { Redirect } from 'react-router';
@@ -10,7 +10,7 @@ import { DatePicker } from 'antd';
 
 const { MonthPicker, RangePicker } = DatePicker;
 
-const dateFormat = 'YYYY/MM/DD';
+const dateFormat = 'YYYY-MM-DD';
 const monthFormat = 'YYYY/MM';
 
 const options = [{
@@ -27,7 +27,6 @@ const options = [{
     console.log(value);
   }
 
-const TabPane = Tabs.TabPane;
 class Roomrenting3contentarea extends Component{
     constructor(props) {
         super(props)
@@ -36,16 +35,29 @@ class Roomrenting3contentarea extends Component{
             email: '',
             msg: '',
             receiver: '',
+            reviews: [],
+            item: 2,
             loader: false,
-            news: [],
-            sports: [],
-            goProfile: false
+            goProfile: false,
+            amenitiesArr: [
+              {key: "Gym/Fitness Center", value: "../images/icons-room/gym.png"},
+              {key: "Visitors Parking", value: "../images/icons-room/visitor-parking.png"},
+              {key: "Private Lawn", value: "../images/icons-room/lawn.png"},
+              {key: "Laundry Service", value: "../images/icons-room/Washer.png"},
+              {key: "Swimming Pool", value: "../images/icons-room/swimmimg.png"},
+              {key: "Power Backup", value: "../images/icons-room/power-backup.png"},
+              {key: "Water Heater Plant", value: "../images/icons-room/water-heater-filled.png"},
+              {key: "Elevator", value: "../images/icons-room/elevator.png"},
+              {key: "Car Park", value: "../images/icons-room/car-park.png"},
+              {key: "Garbage Disposal", value: "../images/icons-room/garbage.png"},
+              {key: "Security System", value: "../images/icons-room/security-system.png"},
+              {key: "Club House", value: "../images/icons-room/club-house.png"},
+            ]
         }
     }
 
-    componentDidMount() {
-        this.callApi()
-        //this.getAllBlogs()
+    componentDidMount(){
+      this.getReviews(this.props.location.state);
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -55,34 +67,45 @@ class Roomrenting3contentarea extends Component{
         }
     }
 
-    onChangeValue = (e) => {
-        let target = e.target.id;
-        let value = e.target.value;
-        if(target === 'name'){
-            this.setState({name: value})
-        }else if(target === 'email'){
-            this.setState({email: value})
-        }else if(target === 'msg'){
-            this.setState({msg: value})
+    async getReviews(data){
+      console.log(data._id, 'idddddddd')
+        let res = await HttpUtils.get('getreviews'),
+        id = data.user_id || data._id;
+        if(res.code === 200) {
+          console.log(res.content, 'lllllllllllll')
+            let filteredReviews = res.content.filter((elem) => elem.objid === id)
+            this.setState({reviews: filteredReviews, data})
         }
     }
 
-    async submitMsg(e){
-        e.preventDefault();
+    onChangeReview(e){
+        let target = e.target.id;
+        if(target === 'name1'){
+            this.setState({name1: e.target.value})
+        }else if(target === 'email1'){
+            this.setState({email1: e.target.value})
+        }else if(target === 'message1'){
+            this.setState({msg1: e.target.value})
+        }
+    }
+
+    async submitReview(){
         this.setState({loader: true})
-        const { name, email, msg, receiver } = this.state;
+        let { name1, email1, msg1, star, reviews, data } = this.state;
         let obj = {
-            name,
-            sender: email,
-            msg,
-            receiver,
+            objId: data._id,
+            name : name1,
+            email: email1,
+            message: msg1,
+            star,
             written: moment().format('LL')
         }
-        let res = await HttpUtils.post('sendmessage', obj)
+        let res = await HttpUtils.post('reviews', obj)
+        reviews.push(obj)
         if(res.code === 200) {
-            let message1 = 'Your message sent successfully'
+            let message1 = 'Your review sent successfully'
             this.openNotification(message1)
-            this.setState({name: '', email: '', msg: '', loader: false})
+            this.setState({name1: '', email1: '', msg1: '', star: 0, reviews, loader: false})
         }
     }
 
@@ -93,28 +116,27 @@ class Roomrenting3contentarea extends Component{
         });
     };
 
-     async callApi(){
-        const sports = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-sport&apiKey=6e7e6a696773424187f9bdb80954ded7');
-        const news = await axios.get('https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=6e7e6a696773424187f9bdb80954ded7');
-        this.setState({news: news.data.articles, sports: sports.data.articles})
-    }
-
     goToProfile(){
         this.setState({goProfile : true})
     }
 
-    render(){
-        const { data } = this.props;
-        const { news, sports, goProfile } = this.state;
-        let dateRange = data.startdate || data.dateRange && data.dateRange.from;
-        let petFriendly = data.petfriendly || data.petFriendly;
-        let accommodates = data.accomodates || data.accommodates;
-        let images = data.imageurl || data.arr_url;
-        let AIncludes = data.amenitiesinclude || data.amenities;
-        let email= data.contactMode && data.contactMode.includes('email') ? data.contactEmail : '*****@gmail.com';
-        let phone = data.contactMode && data.contactMode.includes('phone') ? data.contactNumber : '***********';
-        const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
+    handleChange(value){
+        this.setState({star: value})
+    }
 
+    render(){
+        const { data } = this.props,
+        { goProfile, reviews, item } = this.state,
+        antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;        
+        let from = data.startdate || data.dateRange && data.dateRange.from,
+        to = data.enddate || data.dateRange && data.dateRange.to,
+        petFriendly = data.petfriendly || data.petFriendly,
+        accommodates = data.accomodates || data.accommodates,
+        images = data.imageurl || data.arr_url,
+        AIncludes = data.amenitiesinclude || data.amenities,
+        email= data.contactMode && data.contactMode.includes('email') ? data.contactEmail : '*****@gmail.com',
+        phone = data.contactMode && data.contactMode.includes('phone') ? data.contactNumber : '***********';
+        console.log(AIncludes, 'dataaaaaaaaaaaaaaaaaa')
         if(goProfile){
             return <Redirect to={{pathname: '/profile_userDetail', state: {userId: data.user_id, profileId: data.profileId}}}/>
         }
@@ -130,31 +152,29 @@ class Roomrenting3contentarea extends Component{
 
         return(
             <div>
-                <div className="" style={{marginTop: '7%'}}>
-
-                </div>
-                
+                <div className="" style={{marginTop: '10%'}}></div>                
                 <Gallery images={images} style={{marginTop: '13%'}}/>            
                   <div className="container" style={{width:"70%"}}>
                     <div className="row">
                       <div className="col-md-8">
                           <h3 className="head-space2"> California  </h3>
                           <h1 className="head-space2"><b>{data.postingtitle || data.postingTitle} Available</b></h1>
-                          <h4 style={{marginLeft:"0", marginBottom:"70px"}}> Riva </h4>
+                          <h4 style={{marginLeft:"0", marginBottom:"70px"}}> { data.propertylocation || data.propertyLocation } </h4>
                           <div className="row" style={{padding:"0"}}>
                             <div className="col-md-1">
-                            <i class="fa fa-home" style={{fontSize:"30px"}}/>
+                            <i className="fa fa-home" style={{fontSize:"30px"}}/>
                             </div>
                             <div className="col-md-11">
                               <h4 style={{margin:"0"}}> ENTIRE APPARTMENT </h4>
                               <span className="appartmentdes">
-                                <p> 6 Guest  </p>
-                                <p> 2 Bedrooms</p>
-                                <p> 1 Bath</p>
+                                <p> { data.accomodates } Guest  </p>
+                                <p> { data.subSubCategory} Bedrooms</p>
+                                {data.Attachedbath && <p> Attachedbath </p>}
+                                {data.attachedBath && <p> Attachedbath </p>}
                                </span>
                             </div>
                             <div className="col-md-1">
-                            <i class="fa fa-map" style={{fontSize:"30px"}}/>
+                            <i className="fa fa-map" style={{fontSize:"30px"}}/>
                             </div>
                             <div className="col-md-11">
                               <h4 style={{margin:"0"}}> GREAT LOCATION </h4>
@@ -164,7 +184,7 @@ class Roomrenting3contentarea extends Component{
                                </span>
                             </div>
                             <div className="col-md-1">
-                            <i class="fa fa-snowflake-o" style={{fontSize:"30px"}}/>
+                            <i className="fa fa-snowflake-o" style={{fontSize:"30px"}}/>
                             </div>
                             <div className="col-md-11">
                               <h4 style={{margin:"0"}}> Sparkling Clean </h4>
@@ -180,174 +200,113 @@ class Roomrenting3contentarea extends Component{
                           <h3 style={{marginTop:'9px'}}> Amenities </h3>
                           <div className="forimage">
                             <div className="row" style={{padding:"0"}}>
-                              <div className="col-md-12 col-sm-12 col-xs-12">
-                              <div className="col-md-4 col-sm-4 col-xs-12">
-                                <div className="col-md-4 col-xs-5">
-                                  <img src="../images/icons-room/gym.png"/>
-                                </div>
-                                <div className="col-md-8 col-xs-7">
-                                  <p> Gym/Fitness Center </p>
-                                </div>
-                                <div className="col-md-4 col-xs-5">
-                                  <img src="../images/icons-room/swimmimg.png"/>
-                                </div>
-                                <div className="col-md-8 col-xs-7">
-                                  <p> Swimming Pool </p>
-                                </div>
-                                <div className="col-md-4 col-xs-5">
-                                  <img src="../images/icons-room/lawn.png"/>
-                                </div>
-                                <div className="col-md-8 col-xs-7">
-                                  <p> Private Lawn </p>
-                                </div>
-                                <div className="col-md-4 col-xs-5">
-                                  <img src="../images/icons-room/power-backup.png"/>
-                                </div>
-                                <div className="col-md-8 col-xs-7">
-                                  <p> Power Backup </p>
-                                </div>
+                              <div className="col-md-12 col-sm-12 col-xs-12">                              
+                                {AIncludes && AIncludes.map((elem, key) => {
+                                  console.log(elem, 'elemmmmmmmmmmmmm')
+                                  return(
+                                    this.state.amenitiesArr.map((el, i) => {    
+                                    console.log(el, 'ellllllllll')                                
+                                      if(el.key === elem){
+                                        return (                                        
+                                          <div className="col-md-4 col-sm-4 col-xs-12">
+                                            <div className="col-md-4 col-xs-5">
+                                              <img src={el.value}/>
+                                            </div>
+                                            <div className="col-md-8 col-xs-7" style={{width: '50%'}}>
+                                              <p> {el.key} </p>
+                                            </div>
+                                          </div>                                      
+                                        )
+                                      }
+                                    })
+                                  )                                                             
+                                })}                              
                               </div>
-                              <div className="col-md-4 col-sm-4 col-xs-12">
-                                <div className="col-md-4 col-xs-5">
-                                  <img src="../images/icons-room/water-heater-filled.png"/>
-                                </div>
-                                <div className="col-md-8 col-xs-7">
-                                  <p> Water Heater</p>
-                                </div>
-                                <div className="col-md-4 col-xs-5">
-                                  <img src="../images/icons-room/car-park.png"/>
-                                </div>
-                                <div className="col-md-8 col-xs-7">
-                                  <p> Car Park </p>
-                                </div>
-                                <div className="col-md-4 col-xs-5">
-                                  <img src="../images/icons-room/garbage.png"/>
-                                </div>
-                                <div className="col-md-8 col-xs-7">
-                                  <p> Garbage Disposal </p>
-                                </div>
-                                <div className="col-md-4 col-xs-5">
-                                  <img src="../images/icons-room/club-house.png"/>
-                                </div>
-                                <div className="col-md-8 col-xs-7">
-                                  <p> Club House </p>
-                                </div>
-                              </div>
-                              <div className="col-md-4 col-sm-4 col-xs-12">
-                                <div className="col-md-4 col-xs-5">
-                                  <img src="../images/icons-room/security-system.png"/>
-                                </div>
-                                <div className="col-md-8 col-xs-7">
-                                  <p> Security System </p>
-                                </div>
-                                <div className="col-md-4 col-xs-5">
-                                  <img src="../images/icons-room/elevator.png"/>
-                                </div>
-                                <div className="col-md-8 col-xs-7">
-                                  <p> Elevator </p>
-                                </div>
-                                <div className="col-md-4 col-xs-5">
-                                  <img src="../images/icons-room/visitor-parking.png"/>
-                                </div>
-                                <div className="col-md-8 col-xs-7">
-                                  <p> Visitors Parking </p>
-                                </div>
-                                <div className="col-md-4 col-xs-5">
-                                  <img src="../images/icons-room/Washer.png"/>
-                                </div>
-                                <div className="col-md-8 col-xs-7">
-                                  <p> Washer </p>
-                                </div>
-                              </div>
-
-
-                              </div>
-
                             </div>
                           </div>
                           <hr/>
                           <h3 style={{marginTop:'9px'}}> Sleeping Arrangments </h3>
                           <div className="forimage">
                             <div className="row" style={{padding:"0"}}>
-                              <div className="col-md-4 col-sm-4">
-                                <div className="col-md-4 col-sm-5 col-xs-4">
-                                  <img src="../images/icons-room/gym.png"/>
+                              <div className="col-md-12 col-sm-4">
+                                <div className="col-md-6 col-sm-5 col-xs-4">
+                                  <i class="fa fa-bed" aria-hidden="true" style={{fontSize: '30px'}}></i>
                                 </div>
-                                <div className="col-md-8 col-sm-7 col-xs-8">
-                                  <p> 1 Bed </p>
+                                <div className="col-md-6 col-sm-7 col-xs-8">
+                                  <p> { data.subSubCategory } </p>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <p className="availability">  Availability </p>
+                          {/*<p className="availability">  Availability </p>
                           <p style={{marginBottom:"0"}}> 1 night minimum stay </p>
                           <span>
                             <Rate allowHalf defaultValue={5} />
-                          </span>
+                          </span>*/}
                           <div className="row" style={{padding:"0px", marginTop:"50px"}}>
-                            <div class="col-md-2 col-sm-3" style={{paddingLeft:"0"}}>
+                            <div className="col-md-2 col-sm-3" style={{paddingLeft:"0"}}>
                                 <h4>
                                 <b>Excellent </b>
                                 </h4>
                             </div>
-                            <div class="col-md-5 col-sm-5">
-                                <Rate allowHalf defaultValue={5} style={{marginTop: "-6px", marginLeft: "10px"}} />
+                            <div className="col-md-5 col-sm-5">
+                                <Rate disabled allowHalf defaultValue={5} style={{marginTop: "-6px", marginLeft: "10px"}} />
                             </div>
-                            <div class="col-md-5 col-sm-4">
+                            <div className="col-md-5 col-sm-4">
 
-                                <div class="progres">
-                                  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+                                <div className="progres">
+                                  <div className="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
                                   aria-valuemin="0" aria-valuemax="100" style={{width:"100%", height:"50%"}}>
                                   </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-2 col-sm-3" style={{paddingLeft:"0"}}>
+                            <div className="col-md-2 col-sm-3" style={{paddingLeft:"0"}}>
                                 <h4>
                                 <b>Good </b>
                                 </h4>
                             </div>
-                            <div class="col-md-5 col-sm-5">
-                                <Rate allowHalf defaultValue={4} style={{marginTop: "-6px", marginLeft: "10px"}} />
+                            <div className="col-md-5 col-sm-5">
+                                <Rate disabled allowHalf defaultValue={4} style={{marginTop: "-6px", marginLeft: "10px"}} />
                             </div>
-                            <div class="col-md-5 col-sm-4">
+                            <div className="col-md-5 col-sm-4">
 
-                                <div class="progres">
-                                  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+                                <div className="progres">
+                                  <div className="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
                                   aria-valuemin="0" aria-valuemax="100" style={{width:"60%", height:"50%"}}>
                                   </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-2 col-sm-3" style={{paddingLeft:"0"}}>
+                            <div className="col-md-2 col-sm-3" style={{paddingLeft:"0"}}>
                                 <h4>
                                 <b>Average </b>
                                 </h4>
                             </div>
-                            <div class="col-md-5 col-sm-5">
-                                <Rate allowHalf defaultValue={3} style={{marginTop: "-6px", marginLeft: "10px"}} />
+                            <div className="col-md-5 col-sm-5">
+                                <Rate disabled allowHalf defaultValue={3} style={{marginTop: "-6px", marginLeft: "10px"}} />
                             </div>
-                            <div class="col-md-5 col-sm-4">
+                            <div className="col-md-5 col-sm-4">
 
-                                <div class="progres">
-                                  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+                                <div className="progres">
+                                  <div className="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
                                   aria-valuemin="0" aria-valuemax="100" style={{width:"45%", height:"50%"}}>
                                   </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-2 col-sm-3" style={{paddingLeft:"0"}}>
+                            <div className="col-md-2 col-sm-3" style={{paddingLeft:"0"}}>
                                 <h4>
                                 <b>Bad </b>
                                 </h4>
                             </div>
-                            <div class="col-md-5 col-sm-5">
-                                <Rate allowHalf defaultValue={2} style={{marginTop: "-6px", marginLeft: "10px"}} />
+                            <div className="col-md-5 col-sm-5">
+                                <Rate disabled allowHalf defaultValue={2} style={{marginTop: "-6px", marginLeft: "10px"}} />
                             </div>
-                            <div class="col-md-5 col-sm-4">
+                            <div className="col-md-5 col-sm-4">
 
-                                <div class="progres">
-                                  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+                                <div className="progres">
+                                  <div className="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
                                   aria-valuemin="0" aria-valuemax="100" style={{width:"20%", height:"50%"}}>
                                   </div>
                                 </div>
@@ -356,92 +315,90 @@ class Roomrenting3contentarea extends Component{
                           <hr/>
                           <div className="card">
                               <div className="row" style={{padding:"0px"}}>
-                                          <div  className="card-body space" style={{marginBottom:"0px", paddingLeft:"0px"}}>
-                                              <div className="row">
-                                                  <div className="col-md-12 col-sm-12 col-xs-12">
-                                                      <div className="col-md-3 col-sm-4 col-xs-12 " style={{paddingLeft:"0px" ,  paddingRight:"0px"}}><br/>
-                                                          <img src="../images/images.jpg" className="image-circle" alt="" width="100" height="100" />
-                                                      </div>
-                                                      <div className="col-md-5 col-sm-4"  style={{marginTop:"40px"}}>
-                                                            <h5 className="" style={{margin:"0"}}>Farzan</h5>
-                                                          <Rate disabled allowHalf value={5}/>
-                                                      </div>
-                                                      <div className="col-md-4 col-sm-4 col-xs-12" style={{marginTop:"40px"}}>
-                                                          <a name="linkReview"><p className="star-space1">Writen On 2018 </p></a>
-                                                      </div>
+                              {!!reviews.length && <div className="row" style={{padding:"0px"}}>
+                                {reviews && reviews.map((elem, key) => {
+                                    if(key <= item -1 )
+                                    return(
+                                      <div  className="card-body space" style={{marginBottom:"0px", paddingLeft:"0px"}}>
+                                          <div className="row">
+                                              <div className="col-md-12 col-sm-12 col-xs-12">
+                                                  <div className="col-md-3 col-sm-4 col-xs-12 " style={{paddingLeft:"0px" ,  paddingRight:"0px"}}><br/>
+                                                      <img src="../images/images.jpg" className="image-circle" alt="" width="100" height="100" />
                                                   </div>
-                                                  <div className="col-md-12 col-sm-12 col-xs-12"><br/>
-                                                      <div className="col-md-12 col-sm-12 col-xs-12" style={{paddingLeft:"0"}}>
-                                                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                                           Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                                           when an unknown printer took a galley of type and scrambled it to make a type
-                                                           specimen book. It has survived not only five centuries, </p>
-                                                      </div>
+                                                  <div className="col-md-5 col-sm-4"  style={{marginTop:"40px"}}>
+                                                        <h5 className="" style={{margin:"0"}}>{elem.name}</h5>
+                                                      <Rate disabled allowHalf value={elem.star}/>
+                                                  </div>
+                                                  <div className="col-md-4 col-sm-4 col-xs-12" style={{marginTop:"40px"}}>
+                                                      <a name="linkReview"><p className="star-space1">Writen On {elem.written} </p></a>
                                                   </div>
                                               </div>
-                                              <hr style={{marginTop:"-10px"}}/>
-                                              <div className="">
-                                                <a  className="btn btndetail-success" style={{display:"block", margin:"auto0"}}>More</a>
+                                              <div className="col-md-12 col-sm-12 col-xs-12"><br/>
+                                                  <div className="col-md-12 col-sm-12 col-xs-12" style={{paddingLeft:"0"}}>
+                                                      <p>{elem.message}.</p>
+                                                  </div>
                                               </div>
                                           </div>
-
-                              </div>
+                                          <hr style={{marginTop:"-10px"}}/>                                      
+                                      </div>
+                                  )
+                                  })}
+                              </div>}
+                              {reviews.length > item && <div className="">
+                                <a className="btn btndetail-success" style={{display:"block", margin:"auto0"}}>More</a>
+                              </div>} 
                           </div>
+                      </div>
                       </div>
 
                       <div className="col-md-4" style={{position: 'sticky',top:'25'}}>
                         <div className="roomdetail">
-                          <h2 className="head-space2"><b>$ 81</b><sub> per night</sub></h2>
+                          <h2 className="head-space2"><b>$ { data.rent || data.price }</b><sub>{ data.pricemode || data.priceMode }</sub></h2>
                           <br/>
                           <p> Dates </p>
-                          <RangePicker
-                          defaultValue={[moment('2015/01/01', dateFormat), moment('2015/01/01', dateFormat)]}
-                          format={dateFormat}
-                          />
-                          <p> Guests </p>
-                           <Cascader options={options} onChange={onChange} placeholder="Please select" style={{width:"100%"}} />
-                          <hr/>
-                          <div className="row">
-                            <div className="col-md-8">
-                              <p style={{marginTop:"0"}}> $81 X 27 nights </p>
-                            </div>
-                            <div className="col-md-4">
-                              $2,430
-                            </div>
-                          </div>
-                          <hr/>
-                          <div className="row">
-                            <div className="col-md-8">
-                              <p style={{marginTop:"0"}}> Cleaning Fee </p>
-                            </div>
-                            <div className="col-md-4">
-                              $25
-                            </div>
-                          </div>
-                          <hr/>
-                          <div className="row">
-                            <div className="col-md-8">
-                              <p style={{marginTop:"0"}}> Service Fee </p>
-                            </div>
-                            <div className="col-md-4">
-                              $285
-                            </div>
-                          </div>
-                          <hr/>
-                          <div className="row">
-                            <div className="col-md-8">
-                              <p style={{marginTop:"0"}}> <b> Total </b></p>
-                            </div>
-                            <div className="col-md-4">
-                              <b>$2,430</b>
-                            </div>
-                          </div>
+                              <input value={" " + from + " ~ " + to + " "} />
+                          <p> Accomodates </p>
+                          <p> {accommodates} </p>
 
-
+                           {/*<Cascader options={options} onChange={onChange} placeholder="Please select" style={{width:"100%"}} />*/}
+                          <hr/>
+                          <div className="row">
+                            <div className="col-md-4">
+                              <p style={{marginTop:"0"}}> Pets </p>
+                            </div>
+                            <div className="col-md-8">
+                              {petFriendly}
+                            </div>
+                          </div>
+                          <hr/>
+                          <div className="row">
+                            <div className="col-md-4">
+                              <p style={{marginTop:"0"}}> Smoking </p>
+                            </div>
+                            <div className="col-md-8">
+                              {data.smoking}
+                            </div>
+                          </div>
+                          <hr/>
+                          <div className="row">
+                            <div className="col-md-4">
+                              <p style={{marginTop:"0"}}> Vegetarian </p>
+                            </div>
+                            <div className="col-md-8">
+                              {data.vegetariansprefered || data.vegNoVeg }
+                            </div>
+                          </div>
+                          <hr/>
+                          <div className="row">
+                            <div className="col-md-4">
+                              <p style={{marginTop:"0"}}> <b> Furnished </b></p>
+                            </div>
+                            <div className="col-md-8">
+                              {data.furnished}
+                            </div>
+                          </div>
                         </div>
                       </div>
-
-
                     </div>
                   </div>
                   <div className="container" style={{width:"70%"}}>
@@ -458,9 +415,8 @@ class Roomrenting3contentarea extends Component{
                                         {/*Section: Contact v.2*/}
                                         <section className="section">
                                             <h4>Your Rating:
-                                                <Rate allowHalf value={5} />
+                                                <Rate onChange={this.handleChange.bind(this)} allowHalf value={this.state.star}/>
                                             </h4>
-
                                         </section>
                                         {/*Section: Contact v.2*/}
                                     </div>
@@ -469,14 +425,14 @@ class Roomrenting3contentarea extends Component{
                             <div className="row">
                                 {/*Grid column*/}
                                 <div className="col-md-7 mb-md-0 mb-5">
-                                    <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                                    <form id="contact-form" name="contact-form">
                                         {/*Grid row*/}
                                         <div className="row">
                                             {/*Grid column*/}
                                             <div className="col-md-6">
                                                 <div className="md-form mb-0">
                                                     <label className="">Your name</label>
-                                                    <input type="text" id="name1" name="name" className="form-control" />
+                                                    <input type="text" id="name1" name="name" className="form-control" value={this.state.name1} onChange={this.onChangeReview.bind(this)} />
                                                 </div>
                                             </div>
                                             {/*Grid column*/}
@@ -484,7 +440,7 @@ class Roomrenting3contentarea extends Component{
                                             <div className="col-md-6">
                                                 <div className="md-form mb-0">
                                                     <label className="">Your email</label>
-                                                    <input type="text" id="email1" name="email" className="form-control" />
+                                                    <input type="text" id="email1" name="email" className="form-control" value={this.state.email1} onChange={this.onChangeReview.bind(this)}/>
                                                 </div>
                                             </div>
                                             {/*Grid column*/}
@@ -496,14 +452,18 @@ class Roomrenting3contentarea extends Component{
                                             <div className="col-md-12">
                                                 <div className="md-form">
                                                     <label>Your message</label>
-                                                    <textarea type="text" id="message1" name="message" rows="2"  className="form-control md-textarea"></textarea>
+                                                    <textarea type="text" id="message1" name="message" rows="2"
+                                                     className="form-control md-textarea"
+                                                     value={this.state.msg1}
+                                                     onChange={this.onChangeReview.bind(this)}></textarea>
                                                 </div>
                                             </div>
                                         </div>
                                         {/*Grid row*/}
                                     </form>
                                     <div className="text-center text-md-left">
-                                        <a className="btn button_custom" style={{width: "35%"}}>Send</a>
+                                        {this.state.loader && <Spin indicator={antIcon} />}
+                                        <a disabled={!!this.state.loader} onClick={this.submitReview.bind(this)} className="btn button_custom" style={{width: "35%"}}>Send</a>
                                     </div>
                                     <div className="status"></div>
                                 </div>

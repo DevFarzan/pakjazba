@@ -24,7 +24,8 @@ class DetailBusiness extends Component{
             reviews: [],
             loader: false,
             goProfile: false,
-            previewVisible: false
+            previewVisible: false,
+            item: 2
         }
     }
 
@@ -133,10 +134,10 @@ class DetailBusiness extends Component{
     }
 
     render(){
-        const { isData, data, reviews, goProfile, previewVisible, previewImage } = this.state;
-        const hide = true;
+        const { isData, data, reviews, goProfile, previewVisible, previewImage, item } = this.state,
+        hide = true,
+        antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;    
         let images = data.businessImages || data.arr_url;
-        const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
         if(!isData){
             return <Redirect to='/' />
@@ -227,69 +228,69 @@ class DetailBusiness extends Component{
                         <div>
 
                           <div className="row" style={{padding:"0px", marginTop:"10px"}}>
-                            <div class="col-md-2 col-sm-3">
+                            <div className="col-md-2 col-sm-3">
                                 <h4>
                                 <b>Excellent </b>
                                 </h4>
                             </div>
-                            <div class="col-md-5 col-sm-5">
-                                <Rate allowHalf defaultValue={5} style={{marginTop: "-6px", marginLeft: "10px"}} />
+                            <div className="col-md-5 col-sm-5">
+                                <Rate disabled allowHalf defaultValue={5} style={{marginTop: "-6px", marginLeft: "10px"}} />
                             </div>
-                            <div class="col-md-5 col-sm-4">
+                            <div className="col-md-5 col-sm-4">
 
-                                <div class="progres2">
-                                  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+                                <div className="progres2">
+                                  <div className="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
                                   aria-valuemin="0" aria-valuemax="100" style={{width:"100%", height:"50%"}}>
                                   </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-2 col-sm-3">
+                            <div className="col-md-2 col-sm-3">
                                 <h4>
                                 <b>Good </b>
                                 </h4>
                             </div>
-                            <div class="col-md-5 col-sm-5">
-                                <Rate allowHalf defaultValue={4} style={{marginTop: "-6px", marginLeft: "10px"}} />
+                            <div className="col-md-5 col-sm-5">
+                                <Rate disabled allowHalf defaultValue={4} style={{marginTop: "-6px", marginLeft: "10px"}} />
                             </div>
-                            <div class="col-md-5 col-sm-4">
+                            <div className="col-md-5 col-sm-4">
 
-                                <div class="progres2">
-                                  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+                                <div className="progres2">
+                                  <div className="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
                                   aria-valuemin="0" aria-valuemax="100" style={{width:"60%", height:"50%"}}>
                                   </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-2 col-sm-3">
+                            <div className="col-md-2 col-sm-3">
                                 <h4>
                                 <b>Average </b>
                                 </h4>
                             </div>
-                            <div class="col-md-5 col-sm-5">
-                                <Rate allowHalf defaultValue={3} style={{marginTop: "-6px", marginLeft: "10px"}} />
+                            <div className="col-md-5 col-sm-5">
+                                <Rate disabled allowHalf defaultValue={3} style={{marginTop: "-6px", marginLeft: "10px"}} />
                             </div>
-                            <div class="col-md-5 col-sm-4">
+                            <div className="col-md-5 col-sm-4">
 
-                                <div class="progres2">
-                                  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+                                <div className="progres2">
+                                  <div className="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
                                   aria-valuemin="0" aria-valuemax="100" style={{width:"45%", height:"50%"}}>
                                   </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-2 col-sm-3">
+                            <div className="col-md-2 col-sm-3">
                                 <h4>
                                 <b>Bad </b>
                                 </h4>
                             </div>
-                            <div class="col-md-5 col-sm-5">
-                                <Rate allowHalf defaultValue={2} style={{marginTop: "-6px", marginLeft: "10px"}} />
+                            <div className="col-md-5 col-sm-5">
+                                <Rate disabled allowHalf defaultValue={2} style={{marginTop: "-6px", marginLeft: "10px"}} />
                             </div>
-                            <div class="col-md-5 col-sm-4">
+                            <div className="col-md-5 col-sm-4">
 
-                                <div class="progres2">
-                                  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+                                <div className="progres2">
+                                  <div className="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
                                   aria-valuemin="0" aria-valuemax="100" style={{width:"20%", height:"50%"}}>
                                   </div>
                                 </div>
@@ -302,6 +303,7 @@ class DetailBusiness extends Component{
                         <div className="card">
                             {!!reviews.length && <div className="row" style={{padding:"0px"}}>
                                 {reviews && reviews.map((elem, key) => {
+                                    if(key <= item -1 )
                                     return(
                                         <div  key={key} className="card-body space" style={{marginBottom:"0px", paddingLeft:"0px"}}>
                                             <div className="row">
@@ -325,20 +327,22 @@ class DetailBusiness extends Component{
                                                     </div>
                                                 </div>
                                             </div>
-                                            <hr style={{marginTop:"-10px"}}/>
-                                            <div className="">
-                                              <a  className="btn btndetail-success" style={{display:"block", margin:"auto0"}}>More</a>
-                                            </div>
+                                            <hr style={{marginTop:"-10px"}}/>                                            
                                         </div>
                                     )
                                 })}
                             </div>}
-                        </div>
+                            {reviews.length > item && <div className="">
+                              <a className="btn btndetail-success" 
+                                style={{display:"block", margin:"auto0"}}
+                                onClick={() => this.setState({item: item + 3})}>More</a>
+                            </div>}    
+                            </div>
                         {/*End 5th tile */}
                       </div>
                       <div className="col-md-5">
                         <div className="">
-                          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7242.887220253883!2d67.02816338632098!3d24.814498692583676!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x74882ba91beb6409!2sBar.B.Q.+Tonight!5e0!3m2!1sen!2snl!4v1547465385394" width="100%" height="250" frameborder="0" style={{border:"0"}} allowfullscreen></iframe>
+                          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7242.887220253883!2d67.02816338632098!3d24.814498692583676!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x74882ba91beb6409!2sBar.B.Q.+Tonight!5e0!3m2!1sen!2snl!4v1547465385394" width="100%" height="250" frameBorder="0" style={{border:"0"}} allowFullScreen></iframe>
                         </div>
                         <div className="businessinfo">
                           <h4> More Business Info </h4>
@@ -369,7 +373,7 @@ class DetailBusiness extends Component{
                           as you only pay for the time we are working. Take a moment to visualize...</p>
                         </div>
                         <div className="anchor">
-                          <span> Is this your business?<a href="">Clain it now </a> </span>
+                          <span> Is this your business?<a href="">Claim it now </a> </span>
                         </div>
                       </div>
                     </div>
@@ -391,7 +395,6 @@ class DetailBusiness extends Component{
                                           <h4>Your Rating:
                                               <Rate onChange={this.handleChange.bind(this)} allowHalf value={this.state.star} />
                                           </h4>
-
                                       </section>
                                       {/*Section: Contact v.2*/}
                                   </div>
@@ -402,7 +405,7 @@ class DetailBusiness extends Component{
                     <div className="row">
                         {/*Grid column*/}
                         <div className="col-md-7 mb-md-0 mb-5">
-                            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                            <form id="contact-form" name="contact-form">
                                 {/*Grid row*/}
                                 <div className="row">
                                     {/*Grid column*/}

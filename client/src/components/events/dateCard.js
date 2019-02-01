@@ -188,6 +188,9 @@ class DateCard extends Component{
                       <li> In case of event being cancelled/postponed Pakjazba will refund only the face value of the ticket NOT the service fee.</li>
                     </ol>
                   </div>
+                  <div className="text-center text-md-left" onClick={() => {this.purchaseTicket()}}>
+                      <a className="btn button_custom" style={{width: "45%"}}>{earlyBird || normalTicket ? 'Purchase Ticket' : 'Collect Ticket'}</a>
+                  </div>
                 </div>
                 {/*<div className="row" style={{padding:"0px"}}>
                     <div className="col-lg-12 col-md-12 col-sm-12 " >

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SalmanKhan from './SalmanKhan';
+import Sittingarrangements from './sittingarrangments';
 import Burgermenu from '../../header/burgermenu';
 import EventHeader from './Eventheader';
 import EventFilter from './eventfilter';
@@ -29,7 +30,14 @@ class SeatMap extends Component{
 							<EventFilter/>
 						</div>
 				</div>
-				{/*<SalmanKhan />*/}
+				<div className="row">
+					<div className="col-md-8 hidden-xs">
+						<SalmanKhan />
+					</div>
+					<div className="col-md-4 col-sm-12">
+						<Sittingarrangements/>
+					</div>
+				</div>
 			</div>
 
 			)

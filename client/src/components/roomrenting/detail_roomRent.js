@@ -55,7 +55,7 @@ class DetailRoommates extends Component{
                     </div>
                 </span> 
                 <div className="container" style={{"width":"90%"}}>
-                    {!!data && <Roomrentingthreecontentarea data={data}/>}
+                    {!!data && <Roomrentingthreecontentarea data={data} {...this.props}/>}
                 </div>
                 <div>
                     <Footer/>

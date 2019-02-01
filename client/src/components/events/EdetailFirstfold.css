@@ -4,3 +4,55 @@
   padding: 15px;
   margin-left: 0px;
 }
+
+.blurimage{
+
+
+}
+
+.blurimage img{
+
+  }
+
+
+.eventdetail{
+  margin-top: -155px;
+}
+
+.eventdetail h2{
+  color: white;
+  margin: 0;
+  fontWeight: bold;
+}
+
+.whitee{
+  color: white;
+  margin: 0;
+  text-align: left;
+  font-size: 14px;
+}
+
+.whitee p{
+  margin-bottom: 2px;
+}
+
+.display{
+  font-size: 20px;
+    color: rgb(55, 169, 155);
+    display: inline;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.gray{
+  background-color: currentColor;
+  border-radius: 5px !important;
+  border: 1px solid currentColor;
+  padding: 10px;
+}
+
+.gray p{
+  color: white;
+  margin: 0;
+  font-size: 14px;
+}

@@ -1,0 +1,28 @@
+.BackgroundColor{
+  background-color: green;
+  
+}
+
+.buttoninfo{
+  color: black;
+  border: 1px solid black;
+  border-radius: 50px !important;
+  padding: 2px;
+  font-size: 14px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.ticketcautions{
+  border-radius: 10px !important;
+  color: white;
+  background-color: blue;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.ticketcautions p{
+  margin: 0;
+}

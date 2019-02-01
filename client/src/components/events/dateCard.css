@@ -1,3 +1,25 @@
+@media screen
+  and (min-device-width: 1200px)
+  and (max-device-width: 1600px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .widthmobile{
+      width: 70% !important;
+    }
+}
+
+
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .widthmobile{
+      width: 100%;
+      margin-top: -25px !important;
+    }
+}
+
+
+
 .ecardoutset{
   background-color: white;
    border:1px solid #D3D3D3;
@@ -8,4 +30,48 @@
   height:0;
    width:100% ;
    border-top: 1px solid #000000;
+}
+
+.ticketbuy{
+  background-color: whitesmoke;
+  border-radius: 20px;
+  padding: 5px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.ticketbuy ol{
+    margin-bottom: 1em;
+    margin-left: 25px;
+    padding: 0;
+    line-height: 25px;
+    color: black;
+}
+
+
+.textblock{
+  text-align: center;
+}
+
+.textblock p{
+  margin: 0;
+  color: black;
+}
+
+.marginspan{
+  margin-top: 20px;
+}
+
+.ant-anchor-link {
+    padding: 8px 0 8px 16px;
+    line-height: 1;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.ant-anchor-ink {
+    position: relative;
+    height: 100%;
+    left: 0;
+    top: 0;
 }

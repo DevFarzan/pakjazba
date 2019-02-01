@@ -129,40 +129,33 @@ class EventFeatured extends Component{
       if(goDetail){
           return <Redirect to={{pathname: `/postad_eventPortal`}} />
       }
-      
+
       return(
-        <div className="container" style={{width:"90%"}}>
-          {!text && <h2 style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}> Great Events </h2>}
+        <div className="container" style={{width:"70%"}}>
+          {!text && <h4 style={{textAlign:"left", fontWeight:"bold", marginTop:"20px", marginBottom:"0"}}> Upcoming Events   </h4>}
               {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
               {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
               {text && !!filteredArr.length === false && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
           <div className="row">
-              <div className="col-md-3"  style={{'marginBottom': '30px'}} onClick={() => {this.clickItem()}}>
+              {/*<div className="col-md-3"  style={{'marginBottom': '30px'}} onClick={() => {this.clickItem()}}>
                   <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '345px', width: '100%', borderRadius: '13px'}}/>
-              </div>
+              </div>*/}
             {showEvents && showEvents.map((elem, key) => {
                 let postedOn = moment(elem.posted, "LL").format('YYYY-MM-DD');
                 return(
                     <Link key={key} to={{pathname: `/detail_eventPortal/${elem.randomKey}`, state: elem}}>
-                        <div className="col-md-3"  style={{'marginBottom': '30px'}}>
-                            <div className="card" style={{border: '1px solid #3a252542',boxShadow: 'none',borderRadius:'13px',width:'100%'}}>
-                                <img alt='' src={elem.images[0]} style={{height:'200px', width:"100%", borderTopLeftRadius: '12px', borderTopRightRadius: '12px'}}/>
-                                <h4 style={{marginTop:'15px', textAlign:"center",}}><b>{elem.eventTitle}</b></h4>
-                                <div className="row">
-                                  <div className="col-md-6">
-                                    <p style={{marginTop:"-15px"}}>
-                                        <span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}></span>
+                        <div className="col-md-3"  style={{'marginBottom': '10px'}}>
+                            <div className="card">
+                                <img alt='' src={elem.images[0]} style={{height:'120px', width:"100%", borderTopLeftRadius: '12px', borderTopRightRadius: '12px'}}/>
+                                <h5 style={{marginTop:'5px', marginLeft:"0", marginBottom:"5px"}}><b>{elem.eventTitle}</b></h5>
+                                    <p style={{marginBottom:"0px"}}>
                                         <span style={{color:"black"}}>{elem.city}</span>
                                     </p>
-                                  </div>
-                                  <div className="col-md-6">
-                                    <p style={{marginTop:"-15px", marginLeft: '11px'}}>
-                                        <span className="glyphicon glyphicon-calendar" style={{color: "#008080",margin:"2px"}}></span>
-                                        <span style={{color:"black"}}>{postedOn}</span>
+
+                                    <p>
+                                        <span className="glyphicon glyphicon-calendar" style={{color: "#008080",margin:"-1px"}}></span>
+                                        <span style={{color:"black", marginLeft:"5px"}}>{postedOn}</span>
                                     </p>
-                                  </div>
-                                    <img src='./images/event-icons/fashion.png' style={{marginLeft:"90px", height:"100px", marginTop:"-40px", marginBottom:"-35px"}}/>
-                                </div>
                             </div>
                         </div>
                     </Link>
@@ -185,7 +178,7 @@ class EventFeatured extends Component{
           </Modal>}
           <div className="row">
               <div className="col-md-12">
-                  <img src="../images/businesslistingimage.png" style={{width:'100%'}} />
+                <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleCancel}>Veiw More</button></div>
               </div>
           </div>
         </div>

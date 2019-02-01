@@ -5,6 +5,7 @@ import Slider from '../header/Slider';
 import EdetailFirstfold from '../events/EdetailFirstfold';
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
+import './eventdetail.css';
 
 class EventDetail extends Component{
     constructor(props){
@@ -60,15 +61,15 @@ class EventDetail extends Component{
         }
 
         return(
-            <div className="background-image">
-                <Burgermenu/>
+          <div>
+            <div className ="" style={{"backgroundImage":"url('../images/bgc-images/events.png')", marginTop : "105px",backgroundSize: 'cover'}}>
+              <div className="background-image">
+                  <Burgermenu/>
+                  </div>
+                </div>
                 <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}></div>
-                <div className="row jobdetail-page" style={{marginTop:'57px'}}>
-                    <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>
-                        <div className="">
-                            <h1 style={{fontFamily: 'Crimson Text, serif', fontWeight:"bold"}}>Event Detail</h1>
-                        </div>
-                    </div>
+                <div className="row">
+
                 </div>
                 <EdetailFirstfold data={data}/>
                 <Footer/>

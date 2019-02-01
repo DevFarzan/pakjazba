@@ -1,0 +1,140 @@
+.BCfilter{
+  background-color: whitesmoke;
+  width:100%;
+  margin-left: 10px;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 3px #ccc;
+  text-align: center;
+  margin-left: inherit;
+}
+
+.BCfilter p{
+
+  margin: 0;
+  font-size: 18px;
+  display: inline;
+
+}
+.range-filter {
+    padding-top:10px;
+    width:240px;
+    margin:auto;
+    margin-bottom:10px;
+    background-color: rgba(236, 236, 236, 0.48);
+}
+.range-controls {
+    position:relative;
+    height:60px;
+    padding:0 30px;
+    border-radius:5px;
+    overflow:hidden;
+        margin-top: -35px;
+}
+.scale {
+    margin-top:39px;
+    height:2px;
+    background:blue;
+}
+.bar{
+    height:2px;
+    background:#00ca74;
+}
+.toggle {
+    position:absolute;
+    top:30px;
+    left:30px;
+    width:25px;
+    height:25px;
+    border:8px solid white;
+    background:#ababab;
+    cursor:pointer;
+    border-radius:50% !important;
+}
+.min-toggle {
+    left:70px;
+}
+.ma
+
+.min-price {
+    margin-right:14px;
+}x-toggle {
+    left:165px;
+}
+.price-controls input{
+    width:55px;
+    padding:8px 10px;
+    margin-left:10px;
+    border:none;
+    background:#34495e;
+    font-size:16px;
+    font-family:"Tahoma", sans-serif;
+    text-align:center;
+    color:#283136;
+    border-radius:5px;
+    color:white;
+}
+
+
+
+.qty .count {
+    color: #000;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30px;
+    padding: 0 2px
+    ;min-width: 35px;
+    text-align: center;
+}
+.qty .plus {
+  cursor: pointer;
+display: inline-block;
+vertical-align: top;
+color: white;
+width: 30px;
+height: 30px;
+font: 30px/1 Arial,sans-serif;
+text-align: center;
+border-radius: 50% !important;
+border: 1px solid aliceblue;
+background-color: aliceblue;
+    }
+.qty .minus {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: top;
+  color: white;
+  width: 30px;
+  height: 30px;
+  font: 30px/1 Arial,sans-serif;
+  text-align: center;
+  border-radius: 50% !important;
+  border: 1px solid grey;
+  background-color: grey;
+}
+
+.minus:hover{
+    background-color: #717fe0 !important;
+}
+.plus:hover{
+    background-color: #717fe0 !important;
+}
+/*Prevent text selection*/
+span{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+input{
+    border: 0;
+    width: 2%;
+}
+nput::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input:disabled{
+    background-color:white;
+}

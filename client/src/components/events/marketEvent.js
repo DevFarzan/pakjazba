@@ -5,6 +5,7 @@ import Footer from '../footer/footer';
 import { connect } from 'react-redux';
 import EventCategories from '../main_Component/EventCategories';
 import EventFeatured from './Eventfeaturedcard';
+import EventBanner from './bannerAndtop';
 
 class MarketEvent extends Component{
     componentDidMount() {
@@ -30,7 +31,8 @@ class MarketEvent extends Component{
                         </div>
                     </div>
                 </span>
-                {!this.props.text && <EventCategories/>}
+                <EventBanner/>
+                {/*{!this.props.text && <EventCategories/>}*/}
                 <EventFeatured/>
                 <Footer/>
             </div>

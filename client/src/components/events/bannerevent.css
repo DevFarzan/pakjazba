@@ -1,0 +1,24 @@
+.EventBanner{
+  width: 100%;
+margin-top: 10px;
+margin-left: 10px;
+border: 1px solid #eee;
+-webkit-box-shadow: 0 2px 3px #ccc;
+box-shadow: 0 2px 3px #ccc;
+padding: 0px 10px 0px 30px !important;
+text-align: center;
+}
+
+
+.EventBanner h1 {
+    font-weight: bolder;
+    text-align: left;
+    font-size: 40px;
+    line-height: 45px;
+    padding-top: 50px;
+    font-family: 'Source Sans Pro' !important;
+}
+
+.EventBanner p{
+  text-align: left;
+}

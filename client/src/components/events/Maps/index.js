@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import SalmanKhan from './SalmanKhan'
+import SalmanKhan from './SalmanKhan';
+import Burgermenu from '../../header/burgermenu';
+import EventHeader from './Eventheader';
+import EventFilter from './eventfilter';
+
 
 class SeatMap extends Component{
 	componentDidMount(){
@@ -13,9 +17,21 @@ class SeatMap extends Component{
 	}
 
 	render(){
-		
+
 		return (
-				<SalmanKhan />
+			<div>
+				<div className ="" style={{"background":"#d8e7e4",marginTop:'86px',backgroundSize: 'cover'}}>
+						<div className="background-image">
+								<Burgermenu/>
+								<EventHeader/>
+						</div>
+						<div className="">
+							<EventFilter/>
+						</div>
+				</div>
+				{/*<SalmanKhan />*/}
+			</div>
+
 			)
 	}
 }

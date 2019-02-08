@@ -26,7 +26,7 @@ class EHeader extends Component{
         const { inputValue } = this.state,
         { entertainment } = this.props;
         if(!!inputValue){
-            let data = await axios.get(`https://api.dailymotion.com/videos?fields=embed_url,id,thumbnail_120_url,description,thumbnail_url,title,&country=pk&sort=recent&tags=${inputValue}&page=1&limit=100`);          
+            let data = await axios.get(`https://api.dailymotion.com/videos?fields=embed_url,id,thumbnail_120_url,description,thumbnail_url,title,&country=pk&sort=recent&tags=${inputValue}&page=1&limit=100`);
             let arr = data.data.list;
             this.props.history.push({pathname: `/entertainment_Category/${inputValue}`, state: {arr,entertainment}})
         }
@@ -44,7 +44,7 @@ class EHeader extends Component{
          </span></Link>
          <span type="" name='room' className="button_globalclassName">
              <Link  rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Entertainment</Link>
-         </span>         
+         </span>
          <span type="" name='Category' className="button_globalclassName" style={{marginRight: '10px'}}>
              <Link rel="noopener noreferrer" to={{pathname: `/entertainment_Category/${'Movies'}`, state: {movies, entertainment}}} style={{color:'black',fontSize:'17px',margin: '21px'}}>Movies</Link>
          </span>
@@ -53,7 +53,7 @@ class EHeader extends Component{
          </span>
          {/*<span type="" name='events' className="button_globalclassName">
              <Link rel="noopener noreferrer" to={{pathname: `/entertainment_Category/${'Musics'}`, state: {musics, entertainment}}} style={{color:'black',fontSize:'17px',margin: '21px'}}>Music</Link>
-         </span> */}        
+         </span> */}
          <span type="" name='EcommerceMarket' className="button_globalclassName">
              <Link rel="noopener noreferrer" to={{pathname: `/entertainment_Category/${'Sports'}`, state: {sports, entertainment}}} style={{color:'black',fontSize:'17px',margin: '21px'}}>Sports</Link>
          </span>
@@ -62,16 +62,16 @@ class EHeader extends Component{
          </span>
          <span className="button_globalclassName">
          <form>
-            <div className="input-group" 
+            <div className="input-group"
               // style={{marginTop: '-40px', marginRight: '20px', paddingBottom: '10px'}}
               >
               <input type="text" required
-                  className="form-control" 
-                  // style={{width: '20%', float: 'right'}} 
+                  className="form-control"
+                  // style={{width: '20%', float: 'right'}}
                   placeholder="Search"
                   onChange={this.onChange.bind(this)}/>
               <span className="input-group-btn">
-                  <button className="btn btn-theme" type="submit" 
+                  <button className="btn btn-theme" type="submit"
                       // style={{backgroundColor:'#37a99b',color:'white'}}
                       onClick={this.searchText}><i className="fa fa-search"/>
                   </button>

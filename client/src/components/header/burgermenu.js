@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './burgermenu.css';
 import MainLogin from '../header/mainLogin';
 import Category from '../header/getcategory';
-import EHeader from '../entertainment/entertainmenthome/entertainmentHeader'; 
+import EHeader from '../entertainment/entertainmenthome/entertainmentHeader';
 import { Link } from "react-router-dom";
 import { Menu, Icon, Button } from 'antd';
 
@@ -41,15 +41,15 @@ state = {
                                   <span className="icon-bar"></span>
                                   <span className="icon-bar"></span>
                               </button>
-                              
+
                                   <Link to={`/`} className="navbar-brand"><img alt='' src="../images/pakjazba_new.png" style={{"width": "100%",marginTop: "32px",marginLeft:'35%'}} /></Link>
-                             
+
                           </div>
                       </div>
                       <div className="col-md-10 col-sm-6 col-xs-6">
                           <div className="row">
                               <div className="col-md-7">
-                                
+
                               </div>{/*col-md-4*/}
                               <div className="col-md-2" style={{marginTop: "26px"}}>
                                   <MainLogin/>
@@ -62,9 +62,9 @@ state = {
                   </div>
 
              <div className="row"  className="hidden-xs">
-                
+
                     <div style={{background:'rgba(236, 236, 236, 0.48)',width:'96%',height:'42px',marginLeft:'16px'}}>
-                     
+
 
                       <span type="" name='room' ghost className="button_globalclassName col-md-2 global_submenu">
                           <Link  rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'15px'}}>Room Renting</Link>
@@ -84,12 +84,15 @@ state = {
                       <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
                           <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'15px'}}>Entertainment</Link>
                       </span>
+                      <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
+                          <Link rel="noopener noreferrer" to={`/user_upload`} style={{color:'black',fontSize:'15px'}}>User</Link>
+                      </span>
                 </div>
                 {this.props.entertainment && <div className="row"  className="hidden-xs">
                     <EHeader entertainment={this.props.entertainment}/>
                 </div>}
-               
-                
+
+
 
                 {/*<span type="" name='events' ghost className="button_globalclassName">
                     <Link rel="noopener noreferrer" to={`/detail_eventPortal`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Details</Link>
@@ -167,10 +170,10 @@ state = {
             <span style={{marginTop: "8px"}}>
                 <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
             </span>
-           
+
           </div>
         </div>
-        
+
         <div className="row visible-xs" style={{background:'rgb(3, 42, 48)'}}>
           <div className="col-md-4 col-xs-4">
             <i onClick={this.openNav} className="fa fa-bars" style={{color:'white',marginLeft:'8px',fontSize:'24px',marginTop:'10px',cursor:'pointer'}}></i>

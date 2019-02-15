@@ -142,7 +142,7 @@ ReactDOM.render(
           <Route path="/entertainment_music" component={EntMusic}></Route>
           <Route path="/entertainment_detail/:value" component={VideoBox}></Route>
           <Route path="/music_detail" component={MusicBrowse}></Route>
-          <Route path="/user_upload" component={UploadVideo}></Route>
+          <Route path="/UploadVideo" component={UploadVideo}></Route>
 
           {/*===============Entertainement end===============================*/}
 

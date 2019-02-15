@@ -41,7 +41,7 @@ class UploadFunction extends Component{
                 <i class="fa fa-plus-square-o" style={{fontSize:"100px"}}></i>
               </span>
               <span className="modalform" style={{marginTop:"100px"}}>
-              <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+              <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Upload Video</button>
 
                 {/*Modal*/}
                 <div id="myModal" class="modal fade" role="dialog">
@@ -56,9 +56,9 @@ class UploadFunction extends Component{
                     <div class="modal-body">
                       <UploadForm/>
                     </div>
-                    <div class="modal-footer">
+                    {/*<div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
+                    </div>*/}
                   </div>
 
                 </div>

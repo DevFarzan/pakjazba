@@ -84,9 +84,9 @@ state = {
                       <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
                           <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'15px'}}>Entertainment</Link>
                       </span>
-                      <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
-                          <Link rel="noopener noreferrer" to={`/user_upload`} style={{color:'black',fontSize:'15px'}}>User</Link>
-                      </span>
+                      {/*// <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
+                      //     <Link rel="noopener noreferrer" to={`/user_upload`} style={{color:'black',fontSize:'15px'}}>User</Link>
+                      // </span>*/}
                 </div>
                 {this.props.entertainment && <div className="row"  className="hidden-xs">
                     <EHeader entertainment={this.props.entertainment}/>

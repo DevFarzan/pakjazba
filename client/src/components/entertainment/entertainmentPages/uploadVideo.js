@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import Burgermenu from '../../header/burgermenu';
 import EHeader from '../entertainmenthome/entertainmentHeader';
 import LatestNews from '../entertainmenthome/LatestnewsSec';
+import { HttpUtils } from '../../../Services/HttpUtils';
 import { connect } from 'react-redux';
 import Footer from '../../footer/footer';
 import axios from "axios/index";
 import Stories from '../entertainmenthome/LatestStories';
 import { Rate } from 'antd';
+import Loader from 'react-loader-advanced';
 import './uploadVideo.css';
 import UploadFunction from './uploadFunction';
+//import LatestNews from '../entertainmenthome/LatestnewsSec';
 
 
 
@@ -26,13 +29,16 @@ class UploadVideo extends Component{
           dramas: [],
           movies: [],
           musics: [],
-          blogs: {}
+          blogs: {},
+          loader:false,
+          videoData: []
       };
   }
 
   componentDidMount() {
       window.scrollTo(0,0);
-      this.callApi()
+      this.callApi();
+      this.getvideos();
   }
 
   async callApi(){
@@ -51,10 +57,23 @@ class UploadVideo extends Component{
       });
   }
 
+  setLoader = (e) => {
+    this.setState({loader: e})
+  }
+
+  async getvideos(){
+    let response = await HttpUtils.get('getcustomvideo');
+    console.log(response,'getAllVideossssss');
+    this.setState({
+      videoData:response.content
+    })
+  }
+
 
 render(){
-      const { news, sports, dramas, movies, musics } = this.state;
+      const { news, sports, dramas, movies, musics,loader,videoData } = this.state;
   return(
+
     <div className="">
         <Burgermenu entertainment={{news, sports, dramas, movies, musics}}/>
         {/*<EHeader entertainment={{news, sports, dramas, movies, musics}} {...this.props}/>*/}
@@ -63,16 +82,55 @@ render(){
         <div className="container" style={{width:"70%"}}>
           <div className="row">
             <div className="col-md-8">
-              <UploadFunction/>
-
+              <UploadFunction onLoader={this.setLoader}/>
             </div>
             <div className="col-md-4">
 
             </div>
           </div>
 
+
+        <div className="row">
+        <div className="col-md-8">
+            {videoData.map((elem,key) => {
+                            return (
+                                <div onClick={e => this.setState({preview:elem.videoLink[0]})} key={key} className="col-md-4 col-sm-4" style={{cursor: 'pointer'}} data-toggle="modal" data-target="#myModal1">
+                                    <img style={{height:"130px", width:"100%"}} src={elem.thumbnailImageLink} />
+                                    <p>{elem.description}</p>
+
+                                </div>
+                            )
+
+                      })
+            }
+
         </div>
-        <Stories entertainment={{news, sports, dramas, movies, musics}} {...this.props}/>
+          <div className="col-md-4 col-sm-4 col-xs-12">
+              <LatestNews data={{news, sports}} />
+          </div>
+          {/*====================showing news and sports start====================*/}
+
+          {/*====================showing news and sports end====================*/}
+        </div>
+        </div>
+
+        {/*<!-- Modal -->*/}
+<div className="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 className="modal-title" id="myModalLabel">Preview</h4>
+      </div>
+      <div className="modal-body">
+        <iframe id="cartoonVideo" width="560" height="315" src={this.state.preview} frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
 
     )

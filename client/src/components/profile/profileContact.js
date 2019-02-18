@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 
 class ProfileContact extends Component{
+  constructor(props){
+      super(props)
+  }
+  componentDidMount(){
+    console.log(this.props.data,'businessListing')
+  }
   render(){
     return(
       <div className="Hello">

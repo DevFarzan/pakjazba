@@ -23,7 +23,7 @@ class MarketRoommates extends Component{
     componentDidMount(){
         window.scrollTo(0,0);
         this.getAllBusiness();
-        this.handleLocalStorage();        
+        this.handleLocalStorage();
     }
 
     async getAllBusiness(){
@@ -96,7 +96,9 @@ class MarketRoommates extends Component{
                     </div>
                 </span>
                 <div className="container" style={{width:"71%"}}>
-                    <RoomrentingIcon/>
+                    <div className="hidden-xs">
+                      <RoomrentingIcon/>
+                    </div>
                     <Roomrenting1content/>
                 </div>
                 <Footer />

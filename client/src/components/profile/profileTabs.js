@@ -17,6 +17,7 @@ class ProfileTabs extends Component{
 
    handleModeChange = (e) => {
      const mode = e.target.value;
+    if = listing
      this.setState({ mode });
    }
 
@@ -58,7 +59,7 @@ class ProfileTabs extends Component{
                 <ProfileContact/>
               </div>
               <div role="tabpanel" class="tab-pane fade" id="Section2">
-                <ProfileListing/>
+                <ProfileListing data={this.props.}/>
               </div>
           </div>
         </div>

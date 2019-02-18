@@ -97,7 +97,6 @@ render(){
                                 <div onClick={e => this.setState({preview:elem.videoLink[0]})} key={key} className="col-md-4 col-sm-4" style={{cursor: 'pointer'}} data-toggle="modal" data-target="#myModal1">
                                     <img style={{height:"130px", width:"100%"}} src={elem.thumbnailImageLink} />
                                     <p>{elem.description}</p>
-
                                 </div>
                             )
 

@@ -64,8 +64,6 @@ state = {
              <div className="row"  className="hidden-xs">
 
                     <div style={{background:'rgba(236, 236, 236, 0.48)',width:'96%',height:'42px',marginLeft:'16px'}}>
-
-
                       <span type="" name='room' ghost className="button_globalclassName col-md-2 global_submenu">
                           <Link  rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'15px'}}>Room Renting</Link>
                       </span>
@@ -84,12 +82,9 @@ state = {
                       <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
                           <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'15px'}}>Entertainment</Link>
                       </span>
-                      <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
-                          <Link rel="noopener noreferrer" to={`/user_upload`} style={{color:'black',fontSize:'15px'}}>User</Link>
-                      </span>
-                      <span type="" name='profile' ghost className="button_globalclassName col-md-2 global_submenu">
-                          <Link rel="noopener noreferrer" to={`/user_profile`} style={{color:'black',fontSize:'15px'}}>Profile</Link>
-                      </span>
+                      {/*// <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
+                      //     <Link rel="noopener noreferrer" to={`/user_upload`} style={{color:'black',fontSize:'15px'}}>User</Link>
+                      // </span>*/}
                 </div>
                 {this.props.entertainment && <div className="row"  className="hidden-xs">
                     <EHeader entertainment={this.props.entertainment}/>
@@ -188,8 +183,6 @@ state = {
             {/*<i class="fas fa-search"></i>*/}
           </div>
         </div>
-
-
           </div>
       )
   }

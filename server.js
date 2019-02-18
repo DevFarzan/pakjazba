@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-var nodemailer = require("nodemailer");
+var nodemailer = require('nodemailer');
 var passport = require('passport');
 var bodyParser = require('body-parser')
 var jwt = require('jsonwebtoken');
@@ -70,6 +70,7 @@ require('./models/blogReviews');
 require('./models/eventPortalSchema');
 require('./models/eventTicketSchema');
 require('./models/eventseatvenue');
+require('./models/userVideos');
 
 require('./config/passport');
 
@@ -90,6 +91,7 @@ var blogReview = mongoose.model('blogReviews');
 var eventPortal = mongoose.model('EventSchema');
 var eventTicket = mongoose.model('EventTicketSchema');
 var eventSeats  = mongoose.model('EventVenue');
+var uerVideos   = mongoose.model('customData');
 var sess;
 
 app.use(passport.initialize());
@@ -1734,20 +1736,20 @@ app.get('/api/getseats',(req,res)=>{
                 msg:'API not called properly'
             });
         }else if(eventData !== ''){
-          var finalSeatsArray = []; 
+          var finalSeatsArray = [];
           for(var i=0;i<eventData.length;i++){
             if(eventData[i].eventName == eventname){
                 finalSeatsArray.push({
                   eventName:eventData[i].eventName,
                   seats:eventData[i].seats
-                })  
+                })
             }
           }
           res.send({
                 code:200,
                 msg:'All Seats',
                 finalSeats:finalSeatsArray
-            }); 
+            });
         }else{
             res.send({
                 code:404,
@@ -1757,7 +1759,58 @@ app.get('/api/getseats',(req,res)=>{
         }
   });
 });
+app.post('/api/customvideo',(req,res) => {
+  var videoObject = req.body;
+  console.log(videoObject)
+  const videoData = new uerVideos({
+    title:videoObject.title,
+    description:videoObject.description,
+    videoLink:videoObject.videoLink,
+    thumbnailImageLink:videoObject.thumbnailImageLink,
+    tags:videoObject.tags,
+    category:videoObject.category
+  })
+  videoData.save(function(err,data){
+    if(err){
+      res.send({
+        code:500,
+        content:'Internal Server Error',
+        msg:'API not called properly'
+    })
+  }
+  else if(data){
+    res.send({
+          code:200,
+          msg:'Save user video',
+          finalSeats:data
+      });
+  }
+  })
+});
 
+app.get('/api/getcustomvideo',(req,res) => {
+    uerVideos.find(function(err,videos){
+      if(err){
+            res.send({
+                code:500,
+                content:'Internal Server Error',
+                msg:'API not called properly'
+            });
+        }else if(videos){
+          res.send({
+            code:200,
+            content:videos,
+            msg:'All video content with thumbnail_url'
+          })
+        }
+        else{
+          res.send({
+            code:404,
+            msg:'Not Found'
+          })
+        }
+    })
+})
 /*===================event seats arrangment API end================================================================*/
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files

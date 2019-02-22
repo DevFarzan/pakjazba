@@ -13,8 +13,8 @@ class ShowProfilepublic extends Component{
 	constructor(props) {
         super(props)
         this.state = {
-        	listing: true,
-			listData1: [],
+        		listing: true,
+						listData1: [],
             listData2: [],
             listData3: [],
             listData4: [],
@@ -26,13 +26,14 @@ class ShowProfilepublic extends Component{
 
 	componentDidMount(){
         window.scrollTo(0,0);
+				console.log(this.props.allArr,'ALLLLLLLLLL');
         let data = this.props.allArr;
         if(!data.arr1.length && !data.arr2.length && !data.arr3.length && !data.arr4.length){
             if(data.userDetail){
                 this.setState({userDetail: true})
                 this.getprofileData(data.userDetail.profileId, data.userDetail.userId)
             }else {
-                this.handleLocalStorage();                
+                this.handleLocalStorage();
             }
         }else {
             this.setState({
@@ -125,7 +126,7 @@ class ShowProfilepublic extends Component{
 		const {listing, listData1, listData2, listData3, listData4, callMain, userDetail, facebook, twitter} = this.state;
         let fb = facebook === undefined ? false : true;
         let twit = twitter === undefined ? false : true;
-        
+
 		return(
 			<span>
 			<div className="row">
@@ -287,12 +288,9 @@ class ShowProfilepublic extends Component{
 			</div>
 			</span>
 			)
-	}	
+	}
 
 
 }
 
 export default ShowProfilepublic;
-
-
-

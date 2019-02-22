@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './burgermenu.css';
-import MainLogin from '../header/mainLogin';
-import Category from '../header/getcategory';
-import EHeader from '../entertainment/entertainmenthome/entertainmentHeader'; 
+// import MainLogin from '../header/mainLogin';
+// import Category from '../header/getcategory';
+import EHeader from '../entertainment/entertainmenthome/entertainmentHeader';
+import Header from './header'; 
 import { Link } from "react-router-dom";
 import { Menu, Icon, Button } from 'antd';
 
@@ -32,40 +33,10 @@ state = {
           <div>
               <nav className="navbar navbar-fixed-top hidden-xs"
                    style={{position: "fixed", width: "100%", "zIndex": "999", marginTop: "-19px",border:'none'}}>
-                  <div className="container-fluid">
-                      <div className="col-md-2 col-sm-6 col-xs-6">
-                          <div className="navbar-header">
-                              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" >
-                                  <span className="sr-only">Toggle navigation</span>
-                                  <span className="icon-bar"></span>
-                                  <span className="icon-bar"></span>
-                                  <span className="icon-bar"></span>
-                              </button>
-                              
-                                  <Link to={`/`} className="navbar-brand"><img alt='' src="../images/pakjazba_new.png" style={{"width": "100%",marginTop: "32px",marginLeft:'35%'}} /></Link>
-                             
-                          </div>
-                      </div>
-                      <div className="col-md-10 col-sm-6 col-xs-6">
-                          <div className="row">
-                              <div className="col-md-7">
-                                
-                              </div>{/*col-md-4*/}
-                              <div className="col-md-2" style={{marginTop: "26px"}}>
-                                  <MainLogin/>
-                              </div>{/*col-md-4*/}
-                              <div className="col-md-3" style={{marginTop: "21px"}}>
-                                  <Category/>
-                              </div>{/*col-md-4*/}
-                          </div>{/*row*/}
-                      </div>
-                  </div>
+                  <Header />
 
-             <div className="row"  className="hidden-xs">
-                
-                    <div style={{background:'rgba(236, 236, 236, 0.48)',width:'96%',height:'42px',marginLeft:'16px'}}>
-                     
-
+             <div className="row"  className="hidden-xs">                
+                  <div style={{background:'rgba(236, 236, 236, 0.48)',width:'96%',height:'42px',marginLeft:'16px'}}>                     
                       <span type="" name='room' ghost className="button_globalclassName col-md-2 global_submenu">
                           <Link  rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'15px'}}>Room Renting</Link>
                       </span>
@@ -84,7 +55,7 @@ state = {
                       <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
                           <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'15px'}}>Entertainment</Link>
                       </span>
-                </div>
+                  </div>
                 {this.props.entertainment && <div className="row"  className="hidden-xs">
                     <EHeader entertainment={this.props.entertainment}/>
                 </div>}

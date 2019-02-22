@@ -17,15 +17,12 @@ const options = [{
   value: '2 guests',
   label: '2 guests',
 },
-  {
-    value: '3 guests',
-    label: '3 guests',
+{
+  value: '3 guests',
+  label: '3 guests',
 
-  }];
-
-  function onChange(value) {
-    console.log(value);
-  }
+}
+];
 
 class Roomrenting3contentarea extends Component{
     constructor(props) {
@@ -68,11 +65,9 @@ class Roomrenting3contentarea extends Component{
     }
 
     async getReviews(data){
-      console.log(data._id, 'idddddddd')
         let res = await HttpUtils.get('getreviews'),
         id = data.user_id || data._id;
         if(res.code === 200) {
-          console.log(res.content, 'lllllllllllll')
             let filteredReviews = res.content.filter((elem) => elem.objid === id)
             this.setState({reviews: filteredReviews, data})
         }
@@ -136,7 +131,6 @@ class Roomrenting3contentarea extends Component{
         AIncludes = data.amenitiesinclude || data.amenities,
         email= data.contactMode && data.contactMode.includes('email') ? data.contactEmail : '*****@gmail.com',
         phone = data.contactMode && data.contactMode.includes('phone') ? data.contactNumber : '***********';
-        console.log(AIncludes, 'dataaaaaaaaaaaaaaaaaa')
         if(goProfile){
             return <Redirect to={{pathname: '/profile_userDetail', state: {userId: data.user_id, profileId: data.profileId}}}/>
         }
@@ -202,10 +196,8 @@ class Roomrenting3contentarea extends Component{
                             <div className="row" style={{padding:"0"}}>
                               <div className="col-md-12 col-sm-12 col-xs-12">                              
                                 {AIncludes && AIncludes.map((elem, key) => {
-                                  console.log(elem, 'elemmmmmmmmmmmmm')
                                   return(
                                     this.state.amenitiesArr.map((el, i) => {    
-                                    console.log(el, 'ellllllllll')                                
                                       if(el.key === elem){
                                         return (                                        
                                           <div className="col-md-4 col-sm-4 col-xs-12">

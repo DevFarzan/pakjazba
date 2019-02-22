@@ -209,7 +209,7 @@ class Postbuysell extends Component{
     //--------------upload functions end ---------------------
 
     //--------------function for cloudnary url ---------------
-    uploadFile = (files) =>{
+    uploadFile = (files) =>{        
         const image = files.originFileObj
         const cloudName = 'dxk0bmtei'
         const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/upload'
@@ -405,7 +405,7 @@ class Postbuysell extends Component{
         const { previewVisible, previewImage, fileList, desLength, categ, subCat, selectSubCat, secSubCat, statesUS, citiesUS, objData } = this.state;
         const {getFieldDecorator} = this.props.form;
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
-
+        console.log(fileList, 'vallllllllllllll')
         if (this.state.msg === true) {
             return <Redirect to={{pathname: '/detail_buySell', state: objData}} />
         }

@@ -67,17 +67,17 @@ class HomePage extends Component{
 
               <div className="">
                 <h4 className="headingtext"> Job Listing </h4>
-                <CarouselHome  data={jobPortal}/>
+                <CarouselHome  data={jobPortal.slice(0, 3)}/>
               </div>
 
               <div className="">
                 <h4 className="headingtext">Buy & Sell </h4>
-                <CarouselHome  data={buySell}/>
+                <CarouselHome  data={buySell.slice(0, 3)}/>
               </div>
 
               <div className="">
                 <h4 className="headingtext"> Events </h4>
-                 <CarouselHome  data={event}/>
+                 <CarouselHome  data={event.slice(0, 3)}/>
               </div>
 
             </div>

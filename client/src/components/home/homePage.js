@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import Footer from '../footer/footer'
+import Footer from '../footer/footer';
+import { Carousel,Icon } from 'antd';
 import Burgermenu from '../header/burgermenu';
 //import {HttpUtils} from "../../Services/HttpUtils";
 import { connect } from 'react-redux';
@@ -13,7 +14,7 @@ import './homePage.css';
 
 class HomePage extends Component{
   constructor(props) {
-      super(props)
+      super(props);
       this.state = {
         business:[],
         roomRenting:[],
@@ -22,6 +23,8 @@ class HomePage extends Component{
         event:[]
       };
   }
+
+
   componentDidMount(){
     this.marketplace();
   }
@@ -59,25 +62,24 @@ class HomePage extends Component{
                  <h4 className="headingtext"> Business Listing </h4>
                  <CarouselHome data={business}/>
                </div>
-
               <div className="">
                <h4 className="headingtext"> Room Renting </h4>
-               <CarouselHome  data={roomRenting.slice(0, 3)}/>
+               <CarouselHome  data={roomRenting}/>
                </div>
 
               <div className="">
                 <h4 className="headingtext"> Job Listing </h4>
-                <CarouselHome  data={jobPortal.slice(0, 3)}/>
+                <CarouselHome  data={jobPortal}/>
               </div>
 
               <div className="">
                 <h4 className="headingtext">Buy & Sell </h4>
-                <CarouselHome  data={buySell.slice(0, 3)}/>
+                <CarouselHome  data={buySell}/>
               </div>
 
               <div className="">
                 <h4 className="headingtext"> Events </h4>
-                 <CarouselHome  data={event.slice(0, 3)}/>
+                 <CarouselHome  data={event}/>
               </div>
 
             </div>

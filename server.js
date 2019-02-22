@@ -402,7 +402,9 @@ app.post('/api/reviews',function(req,res){
     email:reviews.email,
     message:reviews.message,
     star:reviews.star,
-    written:reviews.written
+    written:reviews.written,
+    userId:review.userId,
+    profileId:review.profileId
   })
 
   review_info.save(function(err,data){

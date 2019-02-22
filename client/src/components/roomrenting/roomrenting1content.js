@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
 import moment from 'moment';
+import { Rate} from 'antd';
 
 class Roomrenting1content extends Component{
     constructor(props) {
@@ -52,7 +53,7 @@ class Roomrenting1content extends Component{
                 showroomrents: res.roomrentsdata ? res.roomrentsdata.slice(0, 7) : [],
                 loader: false
             })
-          } 
+          }
     }
 
     funcIndexes(page){
@@ -120,11 +121,11 @@ class Roomrenting1content extends Component{
                 {/*<!-- Top List start -->*/}
                 <div className="row">
                     <div className="col-md-12 col-sm-12 col-xs-12">
-                        <h4><b>Top Available Buy</b> </h4>
+                        <h4 style={{margin:"0"}}><b>Top Available Buy</b> </h4>
                         <br/>
                     </div>
                 </div>
-                <div className="">
+                <div className="" style={{margin:"-30px"}}>
                     <div className="row">
                         {/*<div className="col-md-3" onClick={() => {this.clickItem()}}>
                             <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '387px', width: '100%', borderRadius: '17px'}}/>
@@ -140,17 +141,11 @@ class Roomrenting1content extends Component{
                                 <Link key={key} to={{pathname: `/detail_roomRent`, state: elem}}>
                                     <div className="col-md-3 col-sm-4 col-xs-12">
                                         <img src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'} class="img-responsive list_img" />
-                                        <p style={{color: 'black'}}>{str}
+                                        <p style={{color: 'black', margin:"0"}}>{str}
                                             <br/><b>{elem.contactname}</b>
                                             <br/>{'$' + elem.rent + ' ' + elem.pricemode}</p>
-                                              <div style={{marginTop:'-34px'}}>
-
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
-                                            </div>
+                                            <span>
+                                            <Rate disabled style={{paddingBottom: '20px', marginTop:"-20px"}} allowHalf value={elem.star}/> 5.0 </span>
                                     </div>
                                 </Link>
                             )

@@ -39,8 +39,8 @@ class EntertainmentHome extends Component{
         movies = await axios.get(moviesApi),
         musics = await axios.get(musicsApi);
         this.setState({
-            news: news.data.list, 
-            sports: sports.data.list, 
+            news: news.data.list,
+            sports: sports.data.list,
             dramas: dramas.data.list,
             movies: movies.data.list,
             musics: musics.data.list

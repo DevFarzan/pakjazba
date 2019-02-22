@@ -1,0 +1,19 @@
+.uploadingcard{
+  background-color: whitesmoke;
+  border: 1px solid grey;
+  padding: 20px;
+}
+
+.uploadingcard img{
+  width: 100%;
+  height: 250px;
+}
+
+.modalform{
+  padding: 100px;
+}
+
+.addvalue{
+margin-left: 120px;
+
+}

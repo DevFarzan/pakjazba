@@ -8,6 +8,7 @@ import {HttpUtils} from "../../Services/HttpUtils";
 import { connect } from 'react-redux';
 import Form from '../form/mainpayment';
 import NewsTab from './newsTab';
+import BussinesCard from '../business/bussinessCard';
 
 class Home1 extends Component{
     constructor(props) {
@@ -19,7 +20,7 @@ class Home1 extends Component{
 
     componentDidMount() {
         window.scrollTo(0,0);
-        this.getAllBlogs()            
+        this.getAllBlogs()
     }
 
     async getAllBlogs(){
@@ -39,7 +40,7 @@ class Home1 extends Component{
                 <App/>
                 <div className="row">
                     <div className="col-md-12">
-                    
+
                       <h4 style={{color:'black',marginLeft:'15px',fontSize:'22px',fontWeight:'bold',marginTop: '13px', fontFamily:'crimson'}}>Find what you need…</h4>
                       {/*<span><Form/></span>*/}
                     </div>
@@ -267,6 +268,7 @@ class Home1 extends Component{
                         </div>
                     </div>
                 </div>
+                <BussinesCard/>
 
                 <div className="row">
                     <div className="col-md-10">

@@ -10,7 +10,7 @@ class Stories extends Component{
         let inputValue = '',
         elem = obj.elem,
         arr = obj.arr;
-        dispatch({type: 'SEARCHON', inputValue});        
+        dispatch({type: 'SEARCHON', inputValue});
         this.props.history.push({pathname: `/entertainment_detail/${elem.id}`, state: {elem, arr, entertainment}})
     }
 
@@ -44,7 +44,7 @@ class Stories extends Component{
                                     }
                                     if(key <= 2){
                                         return (
-                                            <div key={key} className="col-md-4 col-sm-4" 
+                                            <div key={key} className="col-md-4 col-sm-4"
                                                 onClick={this.nextVideo.bind(this, {elem, arr})}
                                                 style={{cursor: 'pointer'}}
                                             >
@@ -53,15 +53,15 @@ class Stories extends Component{
                                             </div>
                                         )
                                     }
-                                  })} 
-                                  <p className="col-md-offset-7" 
+                                  })}
+                                  <p className="col-md-offset-7"
                                       style={{float: 'right', marginRight: '20px', cursor: 'pointer'}}
                                        onClick={this.changeCat.bind(this, {arr, str})}
-                                      >See More...</p>                         
+                                      >See More...</p>
                                   <hr style={{margin:"0px"}}/>
                               </div>
                             )}
-                        })}                                              
+                        })}
                     </div>
                     <div className="col-md-4">
                         <LatestNews data={{news, sports}} callRoute={this.nextVideo.bind(this)}/>

@@ -1,0 +1,9 @@
+.ant-upload-list-picture .ant-upload-list-item-error{
+  border-color:#80808029 !important;
+}
+.ant-upload-list-item-error{
+  color:#80808029 !important;
+}
+.ant-upload-list-item-error .ant-upload-list-item-name{
+  color:#808080db !important;
+}

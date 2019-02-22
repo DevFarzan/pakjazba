@@ -9,12 +9,14 @@ import Favicon from 'react-favicon';
 
 //component
 import Home from './components/home/home1';
+import HomePage from './components/home/homePage';
 import Signin from './components/signin_seperate/signin';
 import Postbusiness from './components/business/postBusiness';
 import JobPortal from './components/job_portal/postJob';
 import EventPortal from './components/events/eventPortal';
 import Postroommates from './components/roomrenting/postRoommates';
 import Postbuysell from './components/buy_sell/postBuysell';
+import ProfileMain from './components/profile/profileMainpage';
 import ProfileUser from './components/user_profile/profileUser';
 import DetailBuySell from './components/buy_sell/detail_buySell';
 import FilterBuySell from './components/buy_sell/filterBuySell';
@@ -42,7 +44,8 @@ import EntertainmentHome from './components/entertainment/entertainmenthome/Ente
 import EntCategory from './components/entertainment/entertainmentPages/EntCategory';
 import EntMusic from './components/entertainment/entertainmentPages/EntMusic';
 import MusicBrowse from './components/entertainment/EntDetailpages/MusicBrowse';
-import VideoBox from './components/entertainment/EntDetailpages/VideoBox'
+import VideoBox from './components/entertainment/EntDetailpages/VideoBox';
+import UploadVideo from './components/entertainment/entertainmentPages/uploadVideo';
 //import TicketDetail from './components/events/TicketDetail';
 //import TicketDetail from './components/events/TicketDetail'
 import {PrivateRoute} from './components/signin_seperate';
@@ -83,7 +86,7 @@ ReactDOM.render(
 			<BrowserRouter>
 				<div>
                     <Favicon url="https://res.cloudinary.com/dxk0bmtei/image/upload/v1534159021/pakjazba_f3orb0.png" />
-					<Route exact path="/" component={Home}></Route>
+					<Route exact path="/" component={HomePage}></Route>
 					<Route path="/sigin" component={Signin}></Route>
 
           {/*============Room Renting=============*/}
@@ -121,7 +124,7 @@ ReactDOM.render(
           <Route path="/market_eventPortal" component={MarketEvent}></Route>
             <Route path="/detail_eventPortal/:value" component={EventDetail}></Route>
             <Route path="/Ticket_eventPortals" component={TicketDetail}></Route>
-            <Route path="/seat_map" component={SeatMap}></Route>            
+            <Route path="/seat_map" component={SeatMap}></Route>
           {/*============Events Start=============*/}
 
 
@@ -140,6 +143,7 @@ ReactDOM.render(
           <Route path="/entertainment_music" component={EntMusic}></Route>
           <Route path="/entertainment_detail/:value" component={VideoBox}></Route>
           <Route path="/music_detail" component={MusicBrowse}></Route>
+          <Route path="/UploadVideo" component={UploadVideo}></Route>
 
           {/*===============Entertainement end===============================*/}
 
@@ -149,7 +153,7 @@ ReactDOM.render(
 					<Route path="/profile_userDetail" component={ProfileUser}></Route>
 
 
-
+          <Route path="/user_profile" component={ProfileMain}></Route>
 
 					<Route path="/detail_blog" component={DetailBlog}></Route>
 

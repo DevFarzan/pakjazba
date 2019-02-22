@@ -8,7 +8,5 @@ var reviewSchema = new mongoose.Schema({
 	message:{type:String},
 	star:{type:String},
 	written:{type:String},
-	userId:{type:String},
-	profileId:{type:String}
 });
 mongoose.model('reviewschema',reviewSchema);

@@ -54,6 +54,7 @@ class Roomrenting3contentarea extends Component{
     }
 
     componentDidMount(){
+      console.log(this.props.location.state, 'kia aaya bhai')
       this.getReviews(this.props.location.state);
     }
 
@@ -66,8 +67,10 @@ class Roomrenting3contentarea extends Component{
 
     async getReviews(data){
         let res = await HttpUtils.get('getreviews'),
-        id = data.user_id || data._id;
+        id = data._id;
+        console.log(res, 'ressssssssss')
         if(res.code === 200) {
+            alert('get review')
             let filteredReviews = res.content.filter((elem) => elem.objid === id)
             this.setState({reviews: filteredReviews, data})
         }

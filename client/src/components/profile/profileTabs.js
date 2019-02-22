@@ -22,11 +22,10 @@ class ProfileTabs extends Component{
    }
 
   render(){
-
-    const { mode } = this.state
+    const { mode } = this.state,
+    { email, phone, userId, listing } = this.props.profileTabData;
 
     return(
-
       <div className>
         <div className="container" style={{}}>
           <div className="row">
@@ -56,15 +55,14 @@ class ProfileTabs extends Component{
         <div className="container" style={{width:"100%"}}>
           <div class="tab-content" style={{marginLeft:"30px"}}>
               <div role="tabpanel" class="tab-pane fade in active" id="Section1">
-                <ProfileContact/>
+                <ProfileContact contactDetail={{ email, phone }}/>
               </div>
               <div role="tabpanel" class="tab-pane fade" id="Section2">
-                <ProfileListing />
+                <ProfileListing userId={userId} listing={listing}/>
               </div>
           </div>
         </div>
       </div>
-
     )
   }
 }

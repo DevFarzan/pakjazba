@@ -41,15 +41,12 @@ state = {
                                   <span className="icon-bar"></span>
                                   <span className="icon-bar"></span>
                               </button>
-
                                   <Link to={`/`} className="navbar-brand"><img alt='' src="../images/pakjazba_new.png" style={{"width": "100%",marginTop: "32px",marginLeft:'35%'}} /></Link>
-
                           </div>
                       </div>
                       <div className="col-md-10 col-sm-6 col-xs-6">
                           <div className="row">
                               <div className="col-md-7">
-
                               </div>{/*col-md-4*/}
                               <div className="col-md-2" style={{marginTop: "26px"}}>
                                   <MainLogin/>
@@ -62,7 +59,6 @@ state = {
                   </div>
 
              <div className="row"  className="hidden-xs">
-
                     <div style={{background:'rgba(236, 236, 236, 0.48)',width:'96%',height:'42px',marginLeft:'16px'}}>
                       <span type="" name='room' ghost className="button_globalclassName col-md-2 global_submenu">
                           <Link  rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'15px'}}>Room Renting</Link>
@@ -160,13 +156,16 @@ state = {
           <a href="javascript:void(0)" className="closebtn" onClick={this.closeNav}>&times;</a>
           <div className="overlay-content">
             <span>
-                <Link rel="noopener noreferrer" to={`/market_roommates`}>Room Renting</Link>
+                <Link rel="noopener noreferrer" to={`/market_roommates`} onClick={this.closeNav}>Room Renting</Link>
             </span>
             <span style={{marginTop: "8px"}}>
                 <Link rel="noopener noreferrer" to={`/market_business`}>Business Listing</Link>
             </span>
             <span style={{marginTop: "8px"}}>
                 <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
+            </span>
+            <span>
+                <Link rel="noopener noreferrer" to={`/market_jobPortal`} style={{color:'black',fontSize:'15px'}}>Job Portal</Link>
             </span>
 
           </div>
@@ -177,7 +176,7 @@ state = {
             <i onClick={this.openNav} className="fa fa-bars" style={{color:'white',marginLeft:'8px',fontSize:'24px',marginTop:'10px',cursor:'pointer'}}></i>
           </div>
           <div className="col-md-4 col-xs-4">
-              <img src="./images/logo.png" style={{width:'80%'}} />
+              <Link to={`/`}><img src="./images/logo.png" style={{width:'80%'}} /></Link>
           </div>
           <div className="col-md-4 col-xs-4">
             {/*<i class="fas fa-search"></i>*/}

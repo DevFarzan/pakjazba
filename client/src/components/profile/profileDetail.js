@@ -12,6 +12,7 @@ class ProfileDetail extends Component{
             twitterlink: '',
             facebooklink: '',
             imageurl: '',
+            reviewProfile: false
         }
     }
 
@@ -29,21 +30,21 @@ class ProfileDetail extends Component{
     }
 
     render(){
-        const { imageurl, name, location, description, facebooklink, twitterlink } = this.state;
+        const { imageurl, name, location, description, facebooklink, twitterlink, reviewProfile } = this.state;
         let fb = facebooklink.length > 0 ? true : false,
         twitter = twitterlink.length > 0 ? true : false;
         return(
             <div className="row">
                 <div className="col-md-4">
-                    <img src={imageurl.length > 0 ? imageurl : './images/10058826.jpg'} style={{width:"100%"}}/>
+                    <img src={imageurl.length > 0 ? imageurl : '../images/images.jpg'} style={{width:"100%"}}/>
                 </div>
                 <div className="col-md-8">
                     <h2> Hi, I am {name} 
-                        <Icon 
+                        {!reviewProfile && <Icon 
                             type="edit" size={16} 
                             style={{marginLeft:'13%', cursor: 'pointer'}} 
                             onClick={() => {this.onGoBack()}}>
-                        </Icon>
+                        </Icon>}
                     </h2>                    
                     <hr className="horizontaildetail"/>
                     <div className="row" style={{padding:"0"}}>
@@ -60,9 +61,9 @@ class ProfileDetail extends Component{
                         </div>
                     </div>
                     <p className="detailpara">{description}</p>
-                    <div class="row">
-                        {fb && <a href={facebooklink} target="_blank" class="fa fa-facebook"></a>}
-                        {twitter && <a href={twitterlink} target="_blank" class="fa fa-twitter"></a>}
+                    <div className="row">
+                        {fb && <a href={facebooklink} target="_blank" className="fa fa-facebook"></a>}
+                        {twitter && <a href={twitterlink} target="_blank" className="fa fa-twitter"></a>}
                     </div>
                 </div>
             </div>

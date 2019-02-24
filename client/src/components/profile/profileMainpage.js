@@ -21,24 +21,37 @@ class ProfileMain extends Component{
             imageurl: '',
             userId: '',
             profileId: '',
-            listing: ''
+            listing: '',
+            reviewProfile: false,
+            compareId: ''
         }
     }
 
-    componentDidMount(){
-        this.handleLocalStorage();
+    async componentDidMount(){
+        const { userId, profileId } = this.props.allArr.userDetail;
+        if(userId && profileId){            
+            this.getprofileData(profileId);
+            let obj = await this.handleLocalStorage(profileId);
+            this.setState({ userId, profileId });
+        }else {
+            this.handleLocalStorage();        
+        }
     }
 
-    handleLocalStorage = () =>{
+    handleLocalStorage = (id) =>{
         AsyncStorage.getItem('user')
         .then((obj) => {
             let userObj = JSON.parse(obj)
-            if(!!userObj) {
+            if(!!userObj && id === undefined) {
                 this.getprofileData(userObj.profileId);
                 this.setState({
                     userId: userObj._id,
                     profileId: userObj.profileId
-                })
+                })                
+            }
+            if(!!userObj && id !== undefined){
+                let reviewProfile = id === userObj.profileId ? false : true;
+                this.setState({ reviewProfile });
             }
         })
     }
@@ -61,9 +74,9 @@ class ProfileMain extends Component{
     }
 
     render(){
-      const { userId, profileId, name, email, location, description, phone, facebooklink, twitterlink, imageurl, listing  } = this.state,
+      const { userId, name, email, location, description, phone, facebooklink, twitterlink, imageurl, listing, reviewProfile, compareId } = this.state,
       profileDetail = {
-          name, location, facebooklink, twitterlink, imageurl, description
+          name, location, facebooklink, twitterlink, imageurl, description, reviewProfile
       },
       profileTab = {
         email, phone

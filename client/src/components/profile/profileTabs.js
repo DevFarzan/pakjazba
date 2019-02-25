@@ -3,7 +3,6 @@ import ProfileContact from './profileContact';
 import ProfileListing from './profileListing';
 import { Tabs, Radio } from 'antd';
 
-
 const TabPane = Tabs.TabPane;
 
 class ProfileTabs extends Component{
@@ -22,12 +21,11 @@ class ProfileTabs extends Component{
    }
 
   render(){
-
-    const { mode } = this.state
+    const { mode } = this.state,
+    { email, phone, userId, listing } = this.props.profileTabData;
 
     return(
-
-      <div className>
+      <div>
         <div className="container" style={{}}>
           <div className="row">
               <div className="col-md-12 hidden-xs">
@@ -54,17 +52,16 @@ class ProfileTabs extends Component{
           </div>
         </div>
         <div className="container" style={{width:"100%"}}>
-          <div class="tab-content" style={{marginLeft:"30px"}}>
-              <div role="tabpanel" class="tab-pane fade in active" id="Section1">
-                <ProfileContact/>
+          <div className="tab-content" style={{marginLeft:"30px"}}>
+              <div role="tabpanel" className="tab-pane fade in active" id="Section1">
+                <ProfileContact contactDetail={{ email, phone }}/>
               </div>
-              <div role="tabpanel" class="tab-pane fade" id="Section2">
-                <ProfileListing />
+              <div role="tabpanel" className="tab-pane fade" id="Section2">
+                <ProfileListing userId={userId} listing={listing}/>
               </div>
           </div>
         </div>
       </div>
-
     )
   }
 }

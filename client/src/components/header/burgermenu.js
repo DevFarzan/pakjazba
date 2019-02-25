@@ -164,8 +164,8 @@ state = {
             <span style={{marginTop: "8px"}}>
                 <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
             </span>
-            <span>
-                <Link rel="noopener noreferrer" to={`/market_jobPortal`} style={{color:'black',fontSize:'15px'}}>Job Portal</Link>
+            <span style={{marginTop: "8px"}}>
+                <Link rel="noopener noreferrer" to={`/market_jobPortal`}>Job Portal</Link>
             </span>
 
           </div>

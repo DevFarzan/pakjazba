@@ -144,7 +144,7 @@ class Slider extends Component{
                         <form>
                             <div className="single">
                                 <div className="input-group">
-                                    <input type="text" className="form-control" placeholder="Search" onChange={this.onChange.bind(this)}/>
+                                    <input type="text" className="form-control" placeholder="Search" style={{height:'40px'}} onChange={this.onChange.bind(this)}/>
                                     <span className="input-group-btn">
                                         <button className="btn btn-theme" type="submit" style={{backgroundColor:'#37a99b',color:'white'}} onClick={this.searchText}><i className="fa fa-search"/></button>
                                     </span>

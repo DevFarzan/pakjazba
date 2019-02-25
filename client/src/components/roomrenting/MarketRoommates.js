@@ -82,18 +82,13 @@ class MarketRoommates extends Component{
         return(
             <div>
                 <span>
-                    <div className ="hidden-xs" style={{"background":"#d8e7e4",marginTop:'86px',backgroundSize: 'cover'}}>
-                      <div className="background-image">
-                          <Burgermenu/>
-                          <Slider mainH1="PakJazba Room Renting" mainH2="" getMethod={this.postRoom}/>
-                      </div>
+                <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "-20px",backgroundSize: 'cover'}}>
+                    <div className="background-image">
+                        <Burgermenu/>
+                        <Slider mainH1="PakJazba Room Renting" mainH2="" getMethod={this.postRoom}/>
                     </div>
-                    <div className ="visible-xs" style={{"background":"#d8e7e4",marginTop : "-20px",backgroundSize: 'cover'}}>
-                        <div className="background-image">
-                            <Burgermenu/>
-                            <Slider mainH1="PakJazba Room Renting" mainH2="" getMethod={this.postRoom}/>
-                        </div>
-                    </div>
+                </div>
+
                 </span>
                 <div className="container" style={{width:"71%"}}>
                     <div className="hidden-xs">

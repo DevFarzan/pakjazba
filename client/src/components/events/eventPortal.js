@@ -96,6 +96,8 @@ const category = [{
     label:'tech',
 }];
 
+const Dragger = Upload.Dragger;
+
 class EventPortal extends Component{
     constructor(props) {
         super(props)
@@ -131,7 +133,11 @@ class EventPortal extends Component{
             openingTime: '00:00:00',
             closingTime: '00:00:00',
             normalTicket: true,
-            earlyBird: true
+            earlyBird: true,
+            coverPhoto: [],
+            coverPhotoSrc: '',
+            bannerSrc: '',
+            banner: []
         }
     }
 
@@ -218,21 +224,27 @@ class EventPortal extends Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { fileList } = this.state;
+        let { fileList, coverPhoto, banner } = this.state,
+        arr = [],
+        image = {...fileList[0], ...{id: 'image'}},
+        coverImg = {...coverPhoto[0], ...{id: 'cover'}},
+        bannerImg = {...banner[0], ...{id: 'banner'}};
+        arr.push(image, coverImg, bannerImg)
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 this.setState({loader: true})
-                this.funcForUpload(values)
+                this.funcForUpload(values, arr)
             }
         })
     }
 
-    async funcForUpload(values){
+    async funcForUpload(values, arr){
         const { fileList } = this.state;
 
-        Promise.all(fileList.map((val) => {
-            return this.uploadFile(val).then((result) => {
-                return result.body.url
+        Promise.all(arr.map((val) => {
+            return this.uploadFile(val).then((result) => { 
+            let id = val.id;
+                return {[id]: result.body.url}
             })
         })).then((results) => {
             this.postData(values, results);
@@ -241,7 +253,21 @@ class EventPortal extends Component{
 
     async postData(values, response) {
         const {dateObj, userId, profileId, objectId, website, faceBook, linkdIn, google, earlyBird, normalTicket, earlyBirdFree, normalTicketFree, openingTime, closingTime} = this.state;
-        let rand = Math.floor((Math.random() * 1000000) + 54);
+        let rand = Math.floor((Math.random() * 1000000) + 54),
+        image = '',
+        cover = '',
+        banner = '';
+        response.map((elem) => {
+            if(Object.keys(elem)[0] == 'image'){
+                image = elem['image']
+            }
+            else if(Object.keys(elem)[0] == 'cover'){
+                cover = elem['cover']
+            }
+            else if(Object.keys(elem)[0] == 'banner'){
+                banner = elem['banner']
+            } 
+        })
         var randomKey = values.eventTitle + "_" + values.eventCategory[0] + "_" + rand;
         let obj ={
             state: values.state[0],
@@ -252,7 +278,10 @@ class EventPortal extends Component{
             email: values.email,
             eventCategory: values.eventCategory[0],
             eventTitle: values.eventTitle,
-            images: response,
+            images: image,
+            bannerSrc: banner,
+            coverPhotoSrc: cover,
+            top: false,
             name: values.name,
             number: values.number,
             openingTime,
@@ -342,17 +371,17 @@ class EventPortal extends Component{
         }
     };
 
-    validateNumber(rule, value, callback){
-        if(isNaN(value)){
-            callback('Please type Numbers');
-        }else if(rule.field === 'earlyBirdPrice' || rule.field === 'normalTicketPrice'){
-            if(value < 5){
-                callback('put atleast $5')
-            }else {
-                callback()    
-            }
-        }
-    }
+    // validateNumber(rule, value, callback){
+    //     if(isNaN(value)){
+    //         callback('Please type Numbers');
+    //     }else if(rule.field === 'earlyBirdPrice' || rule.field === 'normalTicketPrice'){
+    //         if(value < 5){
+    //             callback('put atleast $5')
+    //         }else {
+    //             callback()    
+    //         }
+    //     }
+    // }
 
     onChangeValue(e) {
         if (e.target.id === 'faceBook') {
@@ -386,6 +415,74 @@ class EventPortal extends Component{
         })
     }
 
+    onChangeCoverPhoto = info => {
+        let self = this,
+        file = info.file,
+        coverPhoto = [],
+        reader = new FileReader();
+
+        //Read the contents of Image File.
+        reader.readAsDataURL(info.file.originFileObj);
+        reader.onload = function (e) {
+            
+            //Initiate the JavaScript Image object.
+            var image = new Image();
+
+            //Set the Base64 string return from FileReader as source.
+            image.src = e.target.result;
+            
+            //Validate the File Height and Width.
+            image.onload = function () {
+                let height = this.height,
+                width = this.width;
+                if (height < width) {
+                    file.src = e.target.result;
+                    coverPhoto.push(file);
+                    self.setState({ coverPhotoSrc: file.src, coverPhoto });
+                    return false;
+                }
+                alert("Image must be in landscape mode.");
+                return true;
+            };
+        }
+
+    }
+
+    onChangeBanner = info => {
+        if(info.event !== undefined){        
+            let self = this,
+            file = info.file,
+            banner = [],
+            reader = new FileReader();
+           
+            //Read the contents of Image File.
+            reader.readAsDataURL(info.file.originFileObj);
+            reader.onload = function (e) {
+                
+                //Initiate the JavaScript Image object.
+                var image = new Image();
+
+                //Set the Base64 string return from FileReader as source.
+                image.src = e.target.result;
+                
+                //Validate the File Height and Width.
+                image.onload = function () {
+                    let height = this.height,
+                    width = this.width;
+                    if (height > width) {
+                        file.src = e.target.result;
+                        banner.push(file);
+                        self.setState({ bannerSrc: file.src, banner });
+                        return false;
+                    }
+                    alert("Image must be in portrait mode.");
+                    return true;
+                };
+            }
+        }
+
+    }
+
     render(){
         const { fileList, previewImage, previewVisible, statesUS , citiesUS, msg, objData, randomKey } = this.state;
         const {getFieldDecorator} = this.props.form;
@@ -400,6 +497,13 @@ class EventPortal extends Component{
                 <div className="ant-upload-text">Upload</div>
             </div>
         );
+
+        const bannerButton = (
+            <div style={{height: '190px', width: '150px', border: '1px dotted black'}}>
+                <Icon type="plus-square" />
+                <div className="ant-upload-text">Upload Banner</div>
+            </div>
+        )
 
         function filter(inputValue, path) {
             return (path.some(option => (option.label).toLowerCase().indexOf(inputValue.toLowerCase()) > -1));
@@ -417,6 +521,7 @@ class EventPortal extends Component{
             { label: 'Pickup', value: 'Pickup' },
             { label: 'Free Shipping', value: 'Free Shipping' },
         ];
+
 
         return(
             <div>
@@ -562,27 +667,76 @@ class EventPortal extends Component{
                                 <span className="margin_font_location">Upload</span>
                             </div>
                             <div className="container" style={{width:'80%'}}>
-                                <section>
-                                <FormItem>
-                                    {getFieldDecorator('images', {
-                                        rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
-                                    })(
-                                        <div>
-                                            <Upload
+                                <section className="row">
+                                <div className="col-md-3">
+                                    <FormItem>
+                                        {getFieldDecorator('images', {
+                                            rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
+                                        })(
+                                            <div>
+                                                <Upload
+                                                    action="//jsonplaceholder.typicode.com/posts/"
+                                                    listType="picture-card"
+                                                    fileList={fileList}
+                                                    onPreview={this.handlePreview}
+                                                    onChange={this.handleChange}
+                                                >
+                                                    {fileList.length > 1 ? null : uploadButton}
+                                                </Upload>
+                                                <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+                                                    <img alt="example" style={{ width: '100%' }} src={previewImage} />
+                                                </Modal>
+                                            </div>
+                                          )}
+                                    </FormItem>
+                                </div>
+                                <div className="col-md-6">
+                                    <FormItem>
+                                        {getFieldDecorator('coverPhoto', {
+                                            rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
+                                        })(
+                                            <span>
+                                            {this.state.coverPhotoSrc.length == 0 && <Dragger 
+                                                id="coverPhoto"
+                                                name = 'file'
                                                 action="//jsonplaceholder.typicode.com/posts/"
-                                                listType="picture-card"
-                                                fileList={fileList}
-                                                onPreview={this.handlePreview}
-                                                onChange={this.handleChange}
-                                            >
-                                                {fileList.length >= 6 ? null : uploadButton}
-                                            </Upload>
-                                            <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-                                                <img alt="example" style={{ width: '100%' }} src={previewImage} />
-                                            </Modal>
-                                        </div>
-                                      )}
-                                  </FormItem>
+                                                onChange={this.onChangeCoverPhoto}>
+                                                <p className="ant-upload-drag-icon">
+                                                  <Icon type="inbox" />
+                                                </p>
+                                                <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                                                <p className="ant-upload-hint">Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files</p>
+                                            </Dragger>}
+                                            {this.state.coverPhotoSrc.length > 0 && <div>
+                                            <img alt="example" src={this.state.coverPhotoSrc} style={{height: '190px'}}/>
+                                            </div>}
+                                            </span>
+                                          )}
+                                    </FormItem>
+                                </div>
+                                <div className="col-md-3">
+                                    <FormItem>
+                                        {getFieldDecorator('banner', {
+                                            rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
+                                        })(
+                                            <span>
+                                            {this.state.bannerSrc.length == 0 && <Upload
+                                                    action="//jsonplaceholder.typicode.com/posts/"
+                                                    // listType="picture-card"
+                                                    // style={{border: '1px dotted black'}}
+                                                    // fileList={fileList}
+                                                    onPreview={this.handlePreview}
+                                                    onChange={this.onChangeBanner}
+                                                >
+                                                {bannerButton}
+                                                </Upload>}
+                                            {this.state.bannerSrc.length > 0 && <div>
+                                            <img alt="example" src={this.state.bannerSrc} style={{height: '190px'}}/>
+                                            </div>}
+                                            </span>
+                                          )}
+                                    </FormItem>
+                                </div>
                                 </section>
                             </div>
                         </div>
@@ -646,7 +800,8 @@ class EventPortal extends Component{
                                                         {getFieldDecorator('earlyBirdAvailableTickets', {
                                                             initialValue: this.state.earlyBirdAvailableTickets,
                                                             rules: [{ required: true, message: 'Please input your Available Tickets!', whitespace: true },
-                                                            { validator: this.validateNumber.bind(this) }],
+                                                            // { validator: this.validateNumber.bind(this) }
+                                                            ],
                                                         })(
                                                             <input type="text" className="form-control"/>
                                                         )}
@@ -657,7 +812,8 @@ class EventPortal extends Component{
                                                         {getFieldDecorator('earlyBirdTotalTickets', {
                                                             initialValue: this.state.earlyBirdTotalTickets,
                                                             rules: [{ required: true, message: 'Please input your Total Tickets!', whitespace: true },
-                                                            { validator: this.validateNumber.bind(this) }],
+                                                            // { validator: this.validateNumber.bind(this) }
+                                                            ],
                                                         })(
                                                             <input type="text" className="form-control"/>
                                                         )}
@@ -669,7 +825,8 @@ class EventPortal extends Component{
                                                         {getFieldDecorator('earlyBirdPrice', {
                                                             initialValue: this.state.earlyBirdPrice,
                                                             rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
-                                                            { validator: this.validateNumber.bind(this) }],
+                                                            // { validator: this.validateNumber.bind(this) }
+                                                            ],
                                                         })(
                                                             <input type="text" className="form-control"/>
                                                         )}
@@ -723,7 +880,8 @@ class EventPortal extends Component{
                                                         {getFieldDecorator('normalTicketAvailableTickets', {
                                                             initialValue: this.state.normalTicketAvailableTickets,
                                                             rules: [{ required: true, message: 'Please input your Available Tickets!', whitespace: true },
-                                                            { validator: this.validateNumber.bind(this) }],
+                                                            // { validator: this.validateNumber.bind(this) }
+                                                            ],
                                                         })(
                                                             <input type="text" className="form-control"/>
                                                         )}
@@ -734,7 +892,8 @@ class EventPortal extends Component{
                                                         {getFieldDecorator('normalTicketTotalTickets', {
                                                             initialValue: this.state.normalTicketTotalTickets,
                                                             rules: [{ required: true, message: 'Please input your Total Tickets!', whitespace: true },
-                                                            { validator: this.validateNumber.bind(this) }],
+                                                            // { validator: this.validateNumber.bind(this) }
+                                                            ],
                                                         })(
                                                             <input type="text" className="form-control"/>
                                                         )}
@@ -746,7 +905,8 @@ class EventPortal extends Component{
                                                         {getFieldDecorator('normalTicketPrice', {
                                                             initialValue: this.state.normalTicketPrice,
                                                             rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
-                                                            { validator: this.validateNumber.bind(this) }],
+                                                            // { validator: this.validateNumber.bind(this) }
+                                                            ],
                                                         })(
                                                             <input type="text" className="form-control"/>
                                                         )}
@@ -846,7 +1006,8 @@ class EventPortal extends Component{
                                               {getFieldDecorator('number', {
                                                   initialValue: this.state.number,
                                                   rules: [{ required: true, message: 'Please input your Number!', whitespace: true },
-                                                  { validator: this.validateNumber.bind(this) }],
+                                                  // { validator: this.validateNumber.bind(this) }
+                                                  ],
                                               })(
                                                   <input type="text" className="form-control"/>
                                               )}

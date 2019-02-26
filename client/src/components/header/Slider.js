@@ -52,7 +52,7 @@ class Slider extends Component{
                         <form>
                             <div className="single">
                                 <div className="input-group">
-                                    <input type="text" className="form-control" placeholder="Search" onChange={this.onChange.bind(this)}/>
+                                    <input type="text" className="form-control" placeholder="Search" style={{height:'40px'}} onChange={this.onChange.bind(this)}/>
                                     <span className="input-group-btn">
                                         <button className="btn btn-theme" type="submit" style={{backgroundColor:'#37a99b',color:'white'}} onClick={this.searchText}><i class="fa fa-search"/></button>
                                     </span>
@@ -60,7 +60,7 @@ class Slider extends Component{
                             </div>
                         </form>
                         </div>
-                        <div className="col-md-5 col-sm-6 hidden-xs">
+                        <div className="col-md-5 col-sm-6 hidden-xs hidden-sm">
                             <img src="../images/buysell/header1.png" style={{width:'65%'}} />
                         </div>
                     </div> }
@@ -76,7 +76,7 @@ class Slider extends Component{
                                  <form>
                                     <div className="single">
                                         <div className="input-group">
-                                            <input type="text" className="form-control" placeholder="Search" onChange={this.onChange.bind(this)}/>
+                                            <input type="text" className="form-control" placeholder="Search" style={{height:'40px'}} onChange={this.onChange.bind(this)}/>
                                             <span className="input-group-btn">
                                                 <button className="btn btn-theme" type="submit" style={{backgroundColor:'#37a99b',color:'white'}} onClick={this.searchText}><i className="fa fa-search"/></button>
                                             </span>
@@ -101,7 +101,7 @@ class Slider extends Component{
                           </div>
 
                         </div>
-                        <div className="col-md-5 col-sm-6 hidden-xs">
+                        <div className="col-md-5 col-sm-6 hidden-xs hidden-sm">
                           <img src="../images/business/busi-illus-1.png" style={{width:"65%"}}/>
                         </div>
                       </div>}
@@ -116,7 +116,7 @@ class Slider extends Component{
                         <form>
                                     <div className="single">
                                         <div className="input-group">
-                                            <input type="text" className="form-control" placeholder="Search" onChange={this.onChange.bind(this)}/>
+                                            <input type="text" className="form-control" placeholder="Search" style={{height:'40px'}} onChange={this.onChange.bind(this)}/>
                                             <span className="input-group-btn">
                                                 <button className="btn btn-theme" type="submit" style={{backgroundColor:'#37a99b',color:'white'}} onClick={this.searchText}><i class="fa fa-search"/></button>
                                             </span>
@@ -124,7 +124,7 @@ class Slider extends Component{
                                     </div>
                                 </form>
                         </div>
-                        <div className="col-md-5 col-sm-6 hidden-xs">
+                        <div className="col-md-5 col-sm-6 hidden-xs hidden-sm">
                             <img src="../images/job-icons/ilus-1.png" style={{width:'55%'}} />
                         </div>
                     </div> }
@@ -166,7 +166,7 @@ class Slider extends Component{
                         <form>
                             <div className="single">
                                 <div className="input-group">
-                                    <input type="text" className="form-control" placeholder="Search" onChange={this.onChange.bind(this)}/>
+                                    <input type="text" className="form-control" placeholder="Search" style={{height:'40px'}} onChange={this.onChange.bind(this)}/>
                                     <span className="input-group-btn">
                                         <button className="btn btn-theme" type="submit" style={{backgroundColor:'#37a99b',color:'white'}} onClick={this.searchText}><i className="fa fa-search"/></button>
                                     </span>
@@ -182,7 +182,7 @@ class Slider extends Component{
                             </div>
                         </form>
                         </div>
-                        <div className="col-md-5 col-sm-6 hidden-xs">
+                        <div className="col-md-5 col-sm-6 hidden-xs hidden-sm">
                             <img src="../images/room icon/room_header.png" style={{width:'65%'}} />
                         </div>
                     </div> }

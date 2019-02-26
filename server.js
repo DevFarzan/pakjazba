@@ -1357,7 +1357,10 @@ app.post('/api/postEventPortal', (req, res) => {
             randomKey:postEventPortal.randomKey,
             state:postEventPortal.state,
             userId:postEventPortal.userId,
-            website:postEventPortal.website
+            website:postEventPortal.website,
+            bannerSrc:postEventPortal.postEventPortal,
+            coverPhotoSrc:postEventPortal.coverPhotoSrc,
+            top:postEventPortal.top
         });
 
         eventData.save((error, response) => {
@@ -1421,6 +1424,9 @@ app.post('/api/postEventPortal', (req, res) => {
             eventData.state = postEventPortal.state;
             eventData.userId = postEventPortal.userId;
             eventData.website = postEventPortal.website;
+            bannerSrc=postEventPortal.postEventPortal;
+            coverPhotoSrc=postEventPortal.coverPhotoSrc;
+            top=postEventPortal.top;
         });
         eventData.save((error, doc) => {
             if(error){

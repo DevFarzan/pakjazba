@@ -41,41 +41,47 @@ state = {
                                   <span className="icon-bar"></span>
                                   <span className="icon-bar"></span>
                               </button>
-                                  <Link to={`/`} className="navbar-brand"><img alt='' src="../images/pakjazba_new.png" style={{"width": "100%",marginTop: "32px",marginLeft:'35%'}} /></Link>
+                                  <Link to={`/`} className="navbar-brand hidden-sm">
+                                      <img alt='' src="../images/pakjazba_new.png" style={{"width": "100%",marginTop: "32px",marginLeft:'35%'}} />
+                                  </Link>
+                                  <Link to={`/`} className="navbar-brand visible-sm">
+                                      <img alt='' src="../images/pakjazba_new.png" style={{"width": "100%",marginTop: "8px"}} />
+                                  </Link>
+
                           </div>
                       </div>
                       <div className="col-md-10 col-sm-6 col-xs-6">
                           <div className="row">
                               <div className="col-md-7">
                               </div>{/*col-md-4*/}
-                              <div className="col-md-2" style={{marginTop: "26px"}}>
+                              <div className="col-md-2 col-sm-6 col-xs-12" style={{marginTop: "26px"}}>
                                   <MainLogin/>
                               </div>{/*col-md-4*/}
-                              <div className="col-md-3" style={{marginTop: "21px"}}>
+                              <div className="col-md-3 col-sm-6 col-xs-12" style={{marginTop: "21px"}}>
                                   <Category/>
                               </div>{/*col-md-4*/}
                           </div>{/*row*/}
                       </div>
                   </div>
 
-             <div className="row"  className="hidden-xs">
+             <div className="row hidden-sm">
                     <div style={{background:'rgba(236, 236, 236, 0.48)',width:'96%',height:'42px',marginLeft:'16px'}}>
-                      <span type="" name='room' ghost className="button_globalclassName col-md-2 global_submenu">
+                      <span type="" name='room' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
                           <Link  rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'15px'}}>Room Renting</Link>
                       </span>
-                      <span type="" name='bussiness' ghost className="button_globalclassName col-md-2 global_submenu">
+                      <span type="" name='bussiness' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
                           <Link rel="noopener noreferrer" to={`/market_business`} style={{color:'black',fontSize:'15px'}}>Business Listing</Link>
                       </span>
-                      <span type="" name='buySell' ghost className="button_globalclassName col-md-2 global_submenu">
+                      <span type="" name='buySell' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
                           <Link rel="noopener noreferrer" to={`/market_classified`} style={{color:'black',fontSize:'15px'}}>Buy & Sell</Link>
                       </span>
-                      <span type="" name='buySell' ghost className="button_globalclassName col-md-2 global_submenu">
+                      <span type="" name='buySell' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
                           <Link rel="noopener noreferrer" to={`/market_jobPortal`} style={{color:'black',fontSize:'15px'}}>Job Portal</Link>
                       </span>
-                      <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
+                      <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
                           <Link rel="noopener noreferrer" to={`/market_eventPortal`} style={{color:'black',fontSize:'15px'}}>Events</Link>
                       </span>
-                      <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
+                      <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
                           <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'15px'}}>Entertainment</Link>
                       </span>
                       {/*// <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
@@ -98,6 +104,46 @@ state = {
                     <Link rel="noopener noreferrer" to={`/Buyer_DetailPage`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Buyer Detail</Link>
                 </span>*/}
               </div>
+              <div className="row visible-sm">
+                     <div style={{background:'rgba(236, 236, 236, 0.48)',width:'96%',height:'42px',marginLeft:'16px'}}>
+                       <span type="" name='room' ghost className="button_globalclassName col-md-2 col-sm-2">
+                           <Link  rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'15px'}}>Room Renting</Link>
+                       </span>
+                       <span type="" name='bussiness' ghost className="button_globalclassName col-md-2 col-sm-2">
+                           <Link rel="noopener noreferrer" to={`/market_business`} style={{color:'black',fontSize:'15px'}}>Business Listing</Link>
+                       </span>
+                       <span type="" name='buySell' ghost className="button_globalclassName col-md-2 col-sm-2">
+                           <Link rel="noopener noreferrer" to={`/market_classified`} style={{color:'black',fontSize:'15px'}}>Buy & Sell</Link>
+                       </span>
+                       <span type="" name='buySell' ghost className="button_globalclassName col-md-2 col-sm-2">
+                           <Link rel="noopener noreferrer" to={`/market_jobPortal`} style={{color:'black',fontSize:'15px'}}>Job Portal</Link>
+                       </span>
+                       <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2">
+                           <Link rel="noopener noreferrer" to={`/market_eventPortal`} style={{color:'black',fontSize:'15px'}}>Events</Link>
+                       </span>
+                       <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2">
+                           <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'15px'}}>Entertainment</Link>
+                       </span>
+                       {/*// <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
+                       //     <Link rel="noopener noreferrer" to={`/user_upload`} style={{color:'black',fontSize:'15px'}}>User</Link>
+                       // </span>*/}
+                 </div>
+                 {this.props.entertainment && <div className="row"  className="hidden-xs">
+                     <EHeader entertainment={this.props.entertainment}/>
+                 </div>}
+
+
+
+                 {/*<span type="" name='events' ghost className="button_globalclassName">
+                     <Link rel="noopener noreferrer" to={`/detail_eventPortal`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Details</Link>
+                 </span>*/}
+                 {/*<span type="" name='events' ghost className="button_globalclassName">
+                     <Link rel="noopener noreferrer" to={`/Ticket_eventPortals`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Ticket Detail</Link>
+                 </span>*/}
+                 {/*<span type="" name='events' ghost className="button_globalclassName">
+                     <Link rel="noopener noreferrer" to={`/Buyer_DetailPage`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Buyer Detail</Link>
+                 </span>*/}
+               </div>
               </nav>
               {/*=============================================visible xs============================================*/}
               {/*<nav className="navbar navbar-default visible-xs">
@@ -164,8 +210,8 @@ state = {
             <span style={{marginTop: "8px"}}>
                 <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
             </span>
-            <span>
-                <Link rel="noopener noreferrer" to={`/market_jobPortal`} style={{color:'black',fontSize:'15px'}}>Job Portal</Link>
+            <span style={{marginTop: "8px"}}>
+                <Link rel="noopener noreferrer" to={`/market_jobPortal`}>Job Portal</Link>
             </span>
 
           </div>

@@ -45,7 +45,7 @@ class HomePage extends Component{
 
     return(
       <div className="">
-        <div className ="vissible-xs" style={{marginTop:'0',backgroundSize: 'cover'}}>
+        <div className ="vissible-xs" style={{marginTop:'-19px',backgroundSize: 'cover'}}>
             <div className="background-image">
                 <Burgermenu/>
             </div>

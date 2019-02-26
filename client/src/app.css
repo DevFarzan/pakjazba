@@ -286,7 +286,8 @@ body{
 
 /*==========================profile_user=====================================*/
 .background_image{
-  background-image: url('/public/images/profile-sid.png')
+  background-image: url('/public/images/profile-sid.png');
+
 }
 .hero{
   z-index: 3;

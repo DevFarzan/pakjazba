@@ -140,7 +140,7 @@ class Roomrenting3contentarea extends Component{
     render(){
         const { data } = this.props,
         { goProfile, reviews, item, reviewUserId, reviewProfileId } = this.state,
-        antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;        
+        antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
         let from = data.startdate || data.dateRange && data.dateRange.from,
         to = data.enddate || data.dateRange && data.dateRange.to,
         petFriendly = data.petfriendly || data.petFriendly,
@@ -164,9 +164,9 @@ class Roomrenting3contentarea extends Component{
 
         return(
             <div>
-                <div className="" style={{marginTop: '10%'}}></div>                
-                <Gallery images={images} style={{marginTop: '13%'}}/>            
-                  <div className="container" style={{width:"70%"}}>
+                <div className="" style={{marginTop: '10%'}}></div>
+                <Gallery images={images} style={{marginTop: '13%'}}/>
+                  <div className="container hidden-xs visible-sm " style={{width:"70%"}}>
                     <div className="row">
                       <div className="col-md-8">
                           <h3 className="head-space2"> California  </h3>
@@ -212,12 +212,12 @@ class Roomrenting3contentarea extends Component{
                           <h3 style={{marginTop:'9px'}}> Amenities </h3>
                           <div className="forimage">
                             <div className="row" style={{padding:"0"}}>
-                              <div className="col-md-12 col-sm-12 col-xs-12">                              
+                              <div className="col-md-12 col-sm-12 col-xs-12">
                                 {AIncludes && AIncludes.map((elem, key) => {
                                   return(
-                                    this.state.amenitiesArr.map((el, i) => {    
+                                    this.state.amenitiesArr.map((el, i) => {
                                       if(el.key === elem){
-                                        return (                                        
+                                        return (
                                           <div className="col-md-4 col-sm-4 col-xs-12">
                                             <div className="col-md-4 col-xs-5">
                                               <img src={el.value}/>
@@ -225,12 +225,12 @@ class Roomrenting3contentarea extends Component{
                                             <div className="col-md-8 col-xs-7" style={{width: '50%'}}>
                                               <p> {el.key} </p>
                                             </div>
-                                          </div>                                      
+                                          </div>
                                         )
                                       }
                                     })
-                                  )                                                             
-                                })}                              
+                                  )
+                                })}
                               </div>
                             </div>
                           </div>
@@ -333,16 +333,16 @@ class Roomrenting3contentarea extends Component{
                                           <div className="row">
                                               <div className="col-md-12 col-sm-12 col-xs-12">
                                                   <div className="col-md-3 col-sm-4 col-xs-12 " style={{paddingLeft:"0px" ,  paddingRight:"0px"}}><br/>
-                                                      <img 
-                                                        src={elem.userImg ? elem.userImg : "../images/images.jpg"} 
-                                                        className="image-circle" 
-                                                        alt="" width="100" height="100" 
+                                                      <img
+                                                        src={elem.userImg ? elem.userImg : "../images/images.jpg"}
+                                                        className="image-circle"
+                                                        alt="" width="100" height="100"
                                                         style={{cursor: 'pointer'}}
                                                         onClick={this.goToProfile.bind(this, elem.userId, elem.profileId)}
                                                       />
                                                   </div>
                                                   <div className="col-md-5 col-sm-4"  style={{marginTop:"40px"}}>
-                                                      <h5 className="" 
+                                                      <h5 className=""
                                                           style={{margin:"0", cursor: 'pointer'}}
                                                           onClick={this.goToProfile.bind(this, elem.userId, elem.profileId)}
                                                       >{elem.name}</h5>
@@ -358,18 +358,18 @@ class Roomrenting3contentarea extends Component{
                                                   </div>
                                               </div>
                                           </div>
-                                          <hr style={{marginTop:"-10px"}}/>                                      
+                                          <hr style={{marginTop:"-10px"}}/>
                                       </div>
                                   )
                                   })}
                               </div>}
                               {reviews.length > item && <div className="">
-                                <a 
-                                  className="btn btndetail-success" 
+                                <a
+                                  className="btn btndetail-success"
                                   style={{display:"block", margin:"auto0"}}
                                   onClick={() => this.setState({item: item + 4})}
                                 >More</a>
-                              </div>} 
+                              </div>}
                           </div>
                       </div>
                       </div>
@@ -424,7 +424,336 @@ class Roomrenting3contentarea extends Component{
                       </div>
                     </div>
                   </div>
-                  <div className="container" style={{width:"70%"}}>
+                  <div className="container hidden-xs visible-sm" style={{width:"70%"}}>
+                    <div className="row">
+                        <div className="card outset" style={{ boxShadow: "none", background:"whitesmoke"}}>
+                            <div className="card-body space">
+                                <div className="row">
+                                    <div className="col-md-12 col-sm-12 col-xs-12">
+                                        <h3><b><a name="linkReview" className="black">Add Review</a></b></h3>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-12">
+                                        {/*Section: Contact v.2*/}
+                                        <section className="section">
+                                            <h4>Your Rating:
+                                                <Rate onChange={this.handleChange.bind(this)} allowHalf value={this.state.star}/>
+                                            </h4>
+                                        </section>
+                                        {/*Section: Contact v.2*/}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                {/*Grid column*/}
+                                <div className="col-md-7 mb-md-0 mb-5">
+                                    <form id="contact-form" name="contact-form">
+                                        {/*Grid row*/}
+                                        <div className="row">
+                                            {/*Grid column*/}
+                                            <div className="col-md-6">
+                                                <div className="md-form mb-0">
+                                                    <label className="">Your name</label>
+                                                    <input type="text" id="name1" name="name" className="form-control" value={this.state.name1} onChange={this.onChangeReview.bind(this)} />
+                                                </div>
+                                            </div>
+                                            {/*Grid column*/}
+                                            {/*Grid column*/}
+                                            <div className="col-md-6">
+                                                <div className="md-form mb-0">
+                                                    <label className="">Your email</label>
+                                                    <input type="text" id="email1" name="email" className="form-control" value={this.state.email1} onChange={this.onChangeReview.bind(this)}/>
+                                                </div>
+                                            </div>
+                                            {/*Grid column*/}
+                                        </div>
+                                        {/*Grid row*/}
+                                        {/*Grid row*/}
+                                        <div className="row">
+                                            {/*Grid column*/}
+                                            <div className="col-md-12">
+                                                <div className="md-form">
+                                                    <label>Your message</label>
+                                                    <textarea type="text" id="message1" name="message" rows="2"
+                                                     className="form-control md-textarea"
+                                                     value={this.state.msg1}
+                                                     onChange={this.onChangeReview.bind(this)}></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {/*Grid row*/}
+                                    </form>
+                                    <div className="text-center text-md-left">
+                                        {this.state.loader && <Spin indicator={antIcon} />}
+                                        <a disabled={!!this.state.loader} onClick={this.submitReview.bind(this)} className="btn button_custom" style={{width: "35%"}}>Send</a>
+                                    </div>
+                                    <div className="status"></div>
+                                </div>
+                                {/*Grid column*/}
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div className="container visible-xs">
+                    <div className="row">
+                      <div className="col-md-8">
+                          <h3 className="head-space2"></h3>
+                          <h1 className="head-space2" style={{fontSize:'18px'}}><b>{data.postingtitle || data.postingTitle} Available</b></h1>
+                          <h4 style={{marginLeft:"0", marginBottom:"70px",fontSize:'18px'}}> { data.propertylocation || data.propertyLocation } </h4>
+                          <div className="row" style={{padding:"0"}}>
+                            <div className="col-md-1">
+                            <i className="fa fa-home" style={{fontSize:"30px"}}/>
+                            </div>
+                            <div className="col-md-11">
+                              <h4 style={{margin:"0"}}> ENTIRE APPARTMENT </h4>
+                              <span className="appartmentdes">
+                                <p> { data.accomodates } Guest  </p>
+                                <p> { data.subSubCategory} Bedrooms</p>
+                                {data.Attachedbath && <p> Attachedbath </p>}
+                                {data.attachedBath && <p> Attachedbath </p>}
+                               </span>
+                            </div>
+                            <div className="col-md-1">
+                            <i className="fa fa-map" style={{fontSize:"30px"}}/>
+                            </div>
+                            <div className="col-md-11">
+                              <h4 style={{margin:"0"}}> GREAT LOCATION </h4>
+                              <span className="appartmentdes">
+                                <p> 100% of recent guests gave this homes's location a 5-star rating.  </p>
+
+                               </span>
+                            </div>
+                            <div className="col-md-1">
+                            <i className="fa fa-snowflake-o" style={{fontSize:"30px"}}/>
+                            </div>
+                            <div className="col-md-11">
+                              <h4 style={{margin:"0"}}> Sparkling Clean </h4>
+                              <span className="appartmentdes">
+                                <p> 10 recent guests have said that this home was sparkling clean.  </p>
+                               </span>
+                            </div>
+                          </div>
+                          <hr/>
+                          <h3 style={{marginTop:'9px'}}> Description </h3>
+                          <p>{data.discription || data.description}</p>
+                          <hr/>
+                          <h3 style={{marginTop:'9px'}}> Amenities </h3>
+                          <div className="forimage">
+                            <div className="row" style={{padding:"0"}}>
+                              <div className="col-md-12 col-sm-12 col-xs-12">
+                                {AIncludes && AIncludes.map((elem, key) => {
+                                  return(
+                                    this.state.amenitiesArr.map((el, i) => {
+                                      if(el.key === elem){
+                                        return (
+                                          <div className="col-md-4 col-sm-4 col-xs-12">
+                                            <div className="col-md-4 col-xs-5">
+                                              <img src={el.value}/>
+                                            </div>
+                                            <div className="col-md-8 col-xs-7" style={{width: '50%'}}>
+                                              <p> {el.key} </p>
+                                            </div>
+                                          </div>
+                                        )
+                                      }
+                                    })
+                                  )
+                                })}
+                              </div>
+                            </div>
+                          </div>
+                          <hr/>
+                          <h3 style={{marginTop:'9px'}}> Sleeping Arrangments </h3>
+                          <div className="forimage">
+                            <div className="row" style={{padding:"0"}}>
+                              <div className="col-md-12 col-sm-4">
+                                <div className="col-md-6 col-sm-5 col-xs-4">
+                                  <i class="fa fa-bed" aria-hidden="true" style={{fontSize: '30px'}}></i>
+                                </div>
+                                <div className="col-md-6 col-sm-7 col-xs-8">
+                                  <p> { data.subSubCategory } </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          {/*<p className="availability">  Availability </p>
+                          <p style={{marginBottom:"0"}}> 1 night minimum stay </p>
+                          <span>
+                            <Rate allowHalf defaultValue={5} />
+                          </span>*/}
+                          <div className="row" style={{padding:"0px", marginTop:"50px"}}>
+                            <div className="col-md-2 col-sm-3" style={{paddingLeft:"0"}}>
+                                <h4>
+                                <b>Excellent </b>
+                                </h4>
+                            </div>
+                            <div className="col-md-5 col-sm-5">
+                                <Rate disabled allowHalf defaultValue={5} style={{marginTop: "-6px", marginLeft: "10px"}} />
+                            </div>
+                            <div className="col-md-5 col-sm-4">
+
+                                <div className="progres">
+                                  <div className="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+                                  aria-valuemin="0" aria-valuemax="100" style={{width:"100%", height:"50%"}}>
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div className="col-md-2 col-sm-3" style={{paddingLeft:"0"}}>
+                                <h4>
+                                <b>Good </b>
+                                </h4>
+                            </div>
+                            <div className="col-md-5 col-sm-5">
+                                <Rate disabled allowHalf defaultValue={4} style={{marginTop: "-6px", marginLeft: "10px"}} />
+                            </div>
+                            <div className="col-md-5 col-sm-4">
+
+                                <div className="progres">
+                                  <div className="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+                                  aria-valuemin="0" aria-valuemax="100" style={{width:"60%", height:"50%"}}>
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div className="col-md-2 col-sm-3" style={{paddingLeft:"0"}}>
+                                <h4>
+                                <b>Average </b>
+                                </h4>
+                            </div>
+                            <div className="col-md-5 col-sm-5">
+                                <Rate disabled allowHalf defaultValue={3} style={{marginTop: "-6px", marginLeft: "10px"}} />
+                            </div>
+                            <div className="col-md-5 col-sm-4">
+
+                                <div className="progres">
+                                  <div className="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+                                  aria-valuemin="0" aria-valuemax="100" style={{width:"45%", height:"50%"}}>
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div className="col-md-2 col-sm-3" style={{paddingLeft:"0"}}>
+                                <h4>
+                                <b>Bad </b>
+                                </h4>
+                            </div>
+                            <div className="col-md-5 col-sm-5">
+                                <Rate disabled allowHalf defaultValue={2} style={{marginTop: "-6px", marginLeft: "10px"}} />
+                            </div>
+                            <div className="col-md-5 col-sm-4">
+
+                                <div className="progres">
+                                  <div className="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+                                  aria-valuemin="0" aria-valuemax="100" style={{width:"20%", height:"50%"}}>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                          <hr/>
+                          <div className="card">
+                              <div className="row" style={{padding:"0px"}}>
+                              {!!reviews.length && <div className="row" style={{padding:"0px"}}>
+                                {reviews && reviews.map((elem, key) => {
+                                    if(key <= item -1 )
+                                    return(
+                                      <div  className="card-body space" style={{marginBottom:"0px", paddingLeft:"0px"}}>
+                                          <div className="row">
+                                              <div className="col-md-12 col-sm-12 col-xs-12">
+                                                  <div className="col-md-3 col-sm-4 col-xs-12 " style={{paddingLeft:"0px" ,  paddingRight:"0px"}}><br/>
+                                                      <img
+                                                        src={elem.userImg ? elem.userImg : "../images/images.jpg"}
+                                                        className="image-circle"
+                                                        alt="" width="100" height="100"
+                                                        style={{cursor: 'pointer'}}
+                                                        onClick={this.goToProfile.bind(this, elem.userId, elem.profileId)}
+                                                      />
+                                                  </div>
+                                                  <div className="col-md-5 col-sm-4"  style={{marginTop:"40px"}}>
+                                                      <h5 className=""
+                                                          style={{margin:"0", cursor: 'pointer'}}
+                                                          onClick={this.goToProfile.bind(this, elem.userId, elem.profileId)}
+                                                      >{elem.name}</h5>
+                                                      <Rate disabled allowHalf value={elem.star}/>
+                                                  </div>
+                                                  <div className="col-md-4 col-sm-4 col-xs-12" style={{marginTop:"40px"}}>
+                                                      <a name="linkReview"><p className="star-space1">Writen On {elem.written} </p></a>
+                                                  </div>
+                                              </div>
+                                              <div className="col-md-12 col-sm-12 col-xs-12"><br/>
+                                                  <div className="col-md-12 col-sm-12 col-xs-12" style={{paddingLeft:"0"}}>
+                                                      <p>{elem.message}.</p>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <hr style={{marginTop:"-10px"}}/>
+                                      </div>
+                                  )
+                                  })}
+                              </div>}
+                              {reviews.length > item && <div className="">
+                                <a
+                                  className="btn btndetail-success"
+                                  style={{display:"block", margin:"auto0"}}
+                                  onClick={() => this.setState({item: item + 4})}
+                                >More</a>
+                              </div>}
+                          </div>
+                      </div>
+                      </div>
+
+                      <div className="col-md-4" style={{position: 'sticky',top:'25'}}>
+                        <div className="roomdetail">
+                          <h2 className="head-space2"><b>$ { data.rent || data.price }</b><sub>{ data.pricemode || data.priceMode }</sub></h2>
+                          <br/>
+                          <p> Dates </p>
+                              <input value={" " + from + " ~ " + to + " "} />
+                          <p> Accomodates </p>
+                          <p> {accommodates} </p>
+
+                           {/*<Cascader options={options} onChange={onChange} placeholder="Please select" style={{width:"100%"}} />*/}
+                          <hr/>
+                          <div className="row">
+                            <div className="col-md-4">
+                              <p style={{marginTop:"0"}}> Pets </p>
+                            </div>
+                            <div className="col-md-8">
+                              {petFriendly}
+                            </div>
+                          </div>
+                          <hr/>
+                          <div className="row">
+                            <div className="col-md-4">
+                              <p style={{marginTop:"0"}}> Smoking </p>
+                            </div>
+                            <div className="col-md-8">
+                              {data.smoking}
+                            </div>
+                          </div>
+                          <hr/>
+                          <div className="row">
+                            <div className="col-md-4">
+                              <p style={{marginTop:"0"}}> Vegetarian </p>
+                            </div>
+                            <div className="col-md-8">
+                              {data.vegetariansprefered || data.vegNoVeg }
+                            </div>
+                          </div>
+                          <hr/>
+                          <div className="row">
+                            <div className="col-md-4">
+                              <p style={{marginTop:"0"}}> <b> Furnished </b></p>
+                            </div>
+                            <div className="col-md-8">
+                              {data.furnished}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="container visible-xs">
                     <div className="row">
                         <div className="card outset" style={{ boxShadow: "none", background:"whitesmoke"}}>
                             <div className="card-body space">

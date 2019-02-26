@@ -5,7 +5,7 @@ class BannerHome extends Component{
   render(){
     return(
       <div className="">
-        <img src="./images/pic-home.png"/>
+        <img src="../images/pic-home.png"/>
       </div>
     )
   }

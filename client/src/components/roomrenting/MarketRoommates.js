@@ -83,6 +83,9 @@ class MarketRoommates extends Component{
             <div>
                 <span>
                 <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "-20px",backgroundSize: 'cover'}}>
+                    <div className="visible-xs"></div>
+                    <div className="hidden-xs" style={{marginTop:'9%'}}></div>
+                    <div className="visible-sm" style={{marginTop:'10%'}}></div>
                     <div className="background-image">
                         <Burgermenu/>
                         <Slider mainH1="PakJazba Room Renting" mainH2="" getMethod={this.postRoom}/>

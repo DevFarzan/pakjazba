@@ -24,19 +24,14 @@ class MarketBusiness extends Component{
     render(){
         return(
             <div>
-              <div className ="hidden-xs" style={{"background":"#d8e7e4",marginTop:'86px',backgroundSize: 'cover'}}>
+              <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "102px",backgroundSize: 'cover'}}>
+                  <div className="visible-xs" style={{marginTop:'-119px'}}></div>
                   <div className="background-image">
                       <Burgermenu/>
                       <Slider mainH1="Pakjazba Business Listing" mainH2=""/>
                   </div>
               </div>
-              <div className ="visible-xs" style={{"background":"#d8e7e4",marginTop : "-20px",backgroundSize: 'cover'}}>
-                  <div className="background-image">
-                      <Burgermenu/>
-                      <Slider mainH1="Pakjazba Business Listing" mainH2=""/>
-                  </div>
-              </div>
-              
+
                   {!this.props.text && <Firstfold/>}
                   <Secondfold/>
                   <BusinessCategory/>

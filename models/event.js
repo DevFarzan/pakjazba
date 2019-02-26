@@ -25,6 +25,9 @@ var eventSchema = new mongoose.Schema({
 	ticketprice:{type:String},
 	ticketfree:{type:Boolean},
 	eventpaymentmethod:{type:String},
+	bannerSrc:{ type:String },
+	coverPhotoSrc:{type:String},
+	top:{type:String}
 
 });
 eventSchema.plugin('uniqueValidator');

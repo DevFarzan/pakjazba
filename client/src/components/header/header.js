@@ -17,7 +17,7 @@ class Header extends Component{
 				          <span className="icon-bar"></span>
 				          <span className="icon-bar"></span>
 				      </button>
-				      <Link to={`/`} className="navbar-brand"><img alt='' src="../images/pakjazba_new.png" style={{"width": "100%",marginTop: "32px",marginLeft:'35%'}} /></Link>                             
+				                                 
 				  </div>
 				</div>
 				<div className="col-md-10 col-sm-6 col-xs-6">

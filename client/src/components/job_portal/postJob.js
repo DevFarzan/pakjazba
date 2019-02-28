@@ -305,7 +305,7 @@ class JobPortal extends Component {
         if(isNaN(value)){
             callback('Please type Numbers');
         }else {
-            callback()    
+            callback()
         }
     }
 
@@ -364,7 +364,7 @@ class JobPortal extends Component {
         return (
             <div>
                 <Burgermenu/>
-                <div style={{backgroundColor: "#032a30", width:"100%", height:"67px", marginTop: "-20px"}} />
+                <div className="hidden-xs" style={{width:"100%", height:"67px", marginTop: "3px"}} />
                 <div className="">
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="panel-group" style={{paddingTop:"50px"}}>
@@ -686,7 +686,7 @@ class JobPortal extends Component {
                                     <div className="col-md-2" />
                                 </div>
                                 <div className="row center_global row">
-                                    
+
                                     <div className="col-md-12 col-sm-12 col-xs-12">
                                         {this.state.loader && <Spin className="col-xs-2 col-md-6" indicator={antIcon} />}
                                         <button style={{textAlign: 'center',width:'19%'}} disabled={!!this.state.loader} className="btn color_button">Submit</button>

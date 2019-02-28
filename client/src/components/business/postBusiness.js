@@ -717,7 +717,7 @@ class Postbusiness extends Component {
                 {/*================================App component include Start===========================*/}
                 <Burgermenu/>
                 {/*================================post business form start============================*/}
-                <div style={{width:"100%",height:"67px",marginTop:"3px"}}></div>
+                <div className="hidden-xs" style={{width:"100%",height:"67px",marginTop:"3px"}}></div>
                 <div className="">
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="panel-group" style={{paddingTop:"37px"}}>

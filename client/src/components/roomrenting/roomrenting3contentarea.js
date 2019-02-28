@@ -161,7 +161,7 @@ class Roomrenting3contentarea extends Component{
             phone = data.contactnumber;
         }
         let postedOn = moment(data.posted, "LL").format('YYYY-MM-DD');
-
+        
         return(
             <div>
                 <div className="" style={{marginTop: '10%'}}></div>

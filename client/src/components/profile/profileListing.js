@@ -51,17 +51,24 @@ class ProfileListing extends Component{
                     jobListData.push(data)
                 }
             })
+            req.eventPortalData && req.eventPortalData.map((elem) => {
+                if(elem.userId === userId){
+                    let data = {...elem, ...{route: 'eventPortal'}}
+                    eventPortalData.push(data)
+                }
+            })
         }
         this.setState({
             buySellData,
             businessData,
             roomRentData,
-            jobListData
+            jobListData,
+            eventPortalData
         })
     }
 
     render(){
-        const { buySellData, businessData, roomRentData, jobListData } = this.state;
+        const { buySellData, businessData, roomRentData, jobListData, eventPortalData } = this.state;
         let listOf = this.props.listing.length > 0 ? this.props.listing : 'businessData',
         mapTo = this.state[listOf];
 
@@ -70,7 +77,7 @@ class ProfileListing extends Component{
                 {mapTo.map((elem) => {
                     return (
                         <div className="col-md-4">
-                             <BussinesCard  cardDetails={elem}/>
+                             <BussinesCard  cardDetails={elem} detail={listOf}/>
                         </div>
                     )
                 })}

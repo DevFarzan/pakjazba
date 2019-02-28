@@ -209,7 +209,7 @@ class Postbuysell extends Component{
     //--------------upload functions end ---------------------
 
     //--------------function for cloudnary url ---------------
-    uploadFile = (files) =>{        
+    uploadFile = (files) =>{
         const image = files.originFileObj
         const cloudName = 'dxk0bmtei'
         const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/upload'
@@ -397,7 +397,7 @@ class Postbuysell extends Component{
         if(isNaN(value)){
             callback('Please type Numbers');
         }else {
-            callback()    
+            callback()
         }
     }
 
@@ -468,7 +468,7 @@ class Postbuysell extends Component{
             <div>
                 {/*================================App component include Start===========================*/}
                 <Burgermenu/>
-                <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}></div>
+                <div className="hidden-xs" style={{width:"100%",height:"67px",marginTop:"3px"}}></div>
                 {/*================================post business form start============================*/}
                 <div className="">
                     <Form onSubmit={this.handleSubmit} className="login-form">

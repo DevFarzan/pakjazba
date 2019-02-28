@@ -166,7 +166,7 @@ class Roomrenting3contentarea extends Component{
             <div>
                 <div className="" style={{marginTop: '10%'}}></div>
                 <Gallery images={images} style={{marginTop: '13%'}}/>
-                  <div className="container hidden-xs visible-sm " style={{width:"70%"}}>
+                  <div className="container hidden-xs" style={{width:"70%"}}>
                     <div className="row">
                       <div className="col-md-8">
                           <h3 className="head-space2"> California  </h3>
@@ -424,7 +424,7 @@ class Roomrenting3contentarea extends Component{
                       </div>
                     </div>
                   </div>
-                  <div className="container hidden-xs visible-sm" style={{width:"70%"}}>
+                  <div className="container hidden-xs" style={{width:"70%"}}>
                     <div className="row">
                         <div className="card outset" style={{ boxShadow: "none", background:"whitesmoke"}}>
                             <div className="card-body space">

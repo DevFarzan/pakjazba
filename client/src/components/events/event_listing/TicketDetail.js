@@ -14,9 +14,10 @@ const QRCode = require('qrcode.react');
 
 class TicketDetail extends Component{
     async componentDidMount(){
-        let objData = this.props.location.state;
-        let req = await HttpUtils.post('eventTicket', objData)
-        this.setState({receivedData: req})
+        const { data, obj, booked } = this.props.location.state;
+        let sendObj = {...obj, ...{eventId: data._id}, booked},
+        req = await HttpUtils.post('eventTicket', sendObj);
+        this.setState({receivedData: req});
     }
 
     componentWillUnmount(){

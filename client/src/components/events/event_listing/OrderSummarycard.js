@@ -16,24 +16,24 @@ class OrderCard extends Component{
     }
 
     onChangeTicket(e, val){
-        const { eBird, nTicket } = this.state;
-        const { data } = this.props;
-        let eBirdVal = val === 'EarlyBird' ? e : eBird;
-        let nTicketVal = val === 'NormalTicket' ? e : nTicket;
-        let eBirdPrice = '';
-        let nTicketPrice = '';
-        let earlyBird = data && data.earlyBird;
-        let normalTicket = data && data.normalTicket;
+        const { eBird, nTicket } = this.state,
+        { data } = this.props;
+        let eBirdVal = val === 'EarlyBird' ? e : eBird,
+        nTicketVal = val === 'NormalTicket' ? e : nTicket,
+        eBirdPrice = '',
+        nTicketPrice = '',
+        earlyBird = data && data.earlyBird,
+        normalTicket = data && data.normalTicket;
 
         if(data){
             eBirdPrice = data.earlyBirdPrice * eBirdVal;
             nTicketPrice = data.normalTicketPrice * nTicketVal ;
         }
 
-        let totalPrice = eBirdPrice + nTicketPrice;
-        let webSiteRate = totalPrice > 0 ? (1*100/totalPrice).toFixed(2) : 0.00;
-        let stripeRate = totalPrice > 0 ? (2.9*100/totalPrice).toFixed(2) : 0.00;
-        let total = (+totalPrice + +webSiteRate + +stripeRate).toFixed(2);
+        let totalPrice = eBirdPrice + nTicketPrice,
+        webSiteRate = totalPrice > 0 ? (1*100/totalPrice).toFixed(2) : 0.00,
+        stripeRate = totalPrice > 0 ? (2.9*100/totalPrice).toFixed(2) : 0.00,
+        total = (+totalPrice + +webSiteRate + +stripeRate).toFixed(2);
         if(val === 'NormalTicket'){
             this.setState({nTicket: e !== null && e !==undefined ? e : nTicket})
         }else {
@@ -43,22 +43,22 @@ class OrderCard extends Component{
     }
 
     render(){
-        const { eBird, nTicket } = this.state;
-        const { data } = this.props;
-        let eBirdPrice = '';
-        let nTicketPrice = '';
-        let earlyBird = data && data.earlyBird;
-        let normalTicket = data && data.normalTicket;
+        const { eBird, nTicket } = this.state,
+        { data } = this.props;
+        let eBirdPrice = '',
+        nTicketPrice = '',
+        earlyBird = data && data.earlyBird,
+        normalTicket = data && data.normalTicket;
 
         if(data){
             eBirdPrice = data.earlyBirdPrice * eBird ;
             nTicketPrice = data.normalTicketPrice * nTicket ;
         }
 
-        let totalPrice = eBirdPrice + nTicketPrice;
-        let webSiteRate = totalPrice > 0 ? (1*100/totalPrice).toFixed(2) : 0.00;
-        let stripeRate = totalPrice > 0 ? (2.9*100/totalPrice).toFixed(2) : 0.00;
-        let total = (+totalPrice + +webSiteRate + +stripeRate).toFixed(2);
+        let totalPrice = eBirdPrice + nTicketPrice,
+        webSiteRate = totalPrice > 0 ? (1*100/totalPrice).toFixed(2) : 0.00,
+        stripeRate = totalPrice > 0 ? (2.9*100/totalPrice).toFixed(2) : 0.00,
+        total = (+totalPrice + +webSiteRate + +stripeRate).toFixed(2);
 
         return(
             <div className="container" style={{width:"100%"}}>

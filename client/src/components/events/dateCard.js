@@ -160,16 +160,16 @@ class DateCard extends Component{
                   <h3 style={{fontWeight:"bold",fontFamily: 'Crimson Text, sans-serif',marginTop:'11px'}}><a name="headline2" style={{color: "black"}}>Event Detail</a></h3>
                   <div className="ticketbuy" style={{textAlign:"center"}}>
 
-                      <img src="../images/event-poster.jpg"/>
+                      <img src={data.bannerSrc}/>
                       <div className="textblock">
-                        <p> Bhavesh Sahil Presents</p>
-                        <p> Sonu Nigam with Neha Kakkar Live in Concert 2019 - Chicago </p>
-                        <span  className="marginspan"><p> On March 29 th @ 8:30 PM </p>
-                        <p> at Sears Center Arena  </p>
-                        <p> 5333 Prairi Stone Parkway, Hoffman Estate, fl 60192</p> </span>
+                        <p> {data.name} Presents</p>
+                        <p> {data.eventTitle} </p>
+                        <span  className="marginspan"><p> On {data.dateRange && data.dateRange.from} @ {data.openingTime} </p>
+                        <p> {data.address}  </p>
+                        <p> {data.city} {data.state} </p> </span>
 
                         <span className="marginspan"><p>Ticket Range: </p>
-                        <p> $46- $542</p> </span>
+                        <p> ${data.normalTicketPrice}- ${data.earlyBirdPrice}</p> </span>
 
                       </div>
                   </div>
@@ -178,7 +178,7 @@ class DateCard extends Component{
                 <div className="">
                   <h3 style={{fontWeight:"bold",fontFamily: 'Crimson Text, sans-serif',marginTop:'11px'}}><a name="headline3" style={{color: "black"}}>Terms And Conditions</a></h3>
                   <div className="ticketbuy" style={{padding:"20px"}}>
-                    <ol>
+                    {/*<ol>
                       <li> All Sales are Final. </li>
                       <li> All tickets are NON-Refundable and NON-TRANSFERABLE.</li>
                       <li> The person min whose name the ticket is issued must also be present at the door with valid photo ID.</li>
@@ -186,7 +186,12 @@ class DateCard extends Component{
                       <li> If the event attendance is different from the credit card hlider, a copy of the credit card used for ticket purchase must be produced along with order.</li>
                       <li> Any failure in providing the aforementioned documents may result in denial admission to the event with no refund.</li>
                       <li> In case of event being cancelled/postponed Pakjazba will refund only the face value of the ticket NOT the service fee.</li>
-                    </ol>
+                    </ol>*/}
+                    {data.termsCondition && data.termsCondition.map((elem, idx) => {
+                        return(
+                            <p>{idx + 1}. {elem.name}</p>
+                        )
+                    })}
                   </div>
                   <div className="text-center text-md-left" onClick={() => {this.purchaseTicket()}}>
                       <a className="btn button_custom" style={{width: "45%"}}>{earlyBird || normalTicket ? 'Purchase Ticket' : 'Collect Ticket'}</a>

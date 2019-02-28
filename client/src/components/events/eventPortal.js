@@ -20,6 +20,7 @@ import Footer from '../footer/footer';
 import sha1 from "sha1";
 import superagent from "superagent";
 import {HttpUtils} from "../../Services/HttpUtils";
+import { Shareholder, UploadedImages } from './ColorPicker';
 import stateCities from "../../lib/countrycitystatejson";
 
 const FormItem = Form.Item;
@@ -137,7 +138,9 @@ class EventPortal extends Component{
             coverPhoto: [],
             coverPhotoSrc: '',
             bannerSrc: '',
-            banner: []
+            banner: [],
+            termsCondition: [{ name: "" }],
+            map: false
         }
     }
 
@@ -252,7 +255,9 @@ class EventPortal extends Component{
     }
 
     async postData(values, response) {
-        const {dateObj, userId, profileId, objectId, website, faceBook, linkdIn, google, earlyBird, normalTicket, earlyBirdFree, normalTicketFree, openingTime, closingTime} = this.state;
+        const {dateObj, userId, profileId, objectId, website, faceBook, linkdIn, google, 
+            earlyBird, normalTicket, earlyBirdFree, normalTicketFree, openingTime, 
+            closingTime, termsCondition, map} = this.state;
         let rand = Math.floor((Math.random() * 1000000) + 54),
         image = '',
         cover = '',
@@ -287,6 +292,8 @@ class EventPortal extends Component{
             openingTime,
             closingTime,
             earlyBird,
+            termsCondition,
+            map,
             earlyBirdAvailableTickets: earlyBird === false ? '' : values.earlyBirdAvailableTickets,
             earlyBirdTotalTickets: earlyBird === false ? '' : values.earlyBirdTotalTickets,
             earlyBirdPaymentMode: values.earlyBirdPaymentMode === undefined ? [] : values.earlyBirdPaymentMode,
@@ -311,6 +318,7 @@ class EventPortal extends Component{
             posted: moment().format('LL')
         }
         let req = await HttpUtils.post('postEventPortal', obj)
+        console.log(req, 'responseeeeeeeee')
         if(req.code === 200){
             this.setState({objData: obj, msg: true, randomKey})
         }
@@ -483,10 +491,14 @@ class EventPortal extends Component{
 
     }
 
+    handleCard = (e, f) => {
+      this.setState({ [e]: f })
+    }
+
     render(){
         const { fileList, previewImage, previewVisible, statesUS , citiesUS, msg, objData, randomKey } = this.state;
         const {getFieldDecorator} = this.props.form;
-
+        console.log(this.state.termsCondition, 'stateeee')
         if (msg === true) {
             return <Redirect to={{pathname: `/detail_eventPortal/${randomKey}`, state: objData}} />
         }
@@ -1068,6 +1080,16 @@ class EventPortal extends Component{
                                                         style={{width: '90%', display: 'inline-block', borderRadius: '0px'}}/>
                                                 </div>
                                             </FormItem>
+                                        </div>
+                                    </div>                                        
+                                    <div className="col-md-6">
+                                        <div className="form-group">
+                                            <label htmlFor="usr">Terms and Conditions</label>
+                                            <Shareholder 
+                                                id="termsCondition" 
+                                                value={this.state.termsCondition}
+                                                onChange={this.handleCard}
+                                            />
                                         </div>
                                     </div>
                                 </div>

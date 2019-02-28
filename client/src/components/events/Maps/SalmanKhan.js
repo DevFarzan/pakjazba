@@ -110,7 +110,8 @@ class SalmanKhan extends Component {
     	row = res[1].slice(-1);
     	return {
     		str: res.join(', '),
-			price: sec == 'VV' ? 'AED2000' : sec == 'V' ? 'AED1000' : 'AED500' 
+			price: sec == 'VV' ? 'AED2000' : sec == 'V' ? 'AED1000' : 'AED500',
+			pay: sec == 'VV' ? 2000 : sec == 'V' ? 1000 : 500
     	}
     }
 
@@ -357,10 +358,11 @@ class SalmanKhan extends Component {
     }
 
     onSelectSeat(target, targetId, targetFill){
-    	let { seatArr, yourBooking } = this.state,
+    	let { seatArr, yourBooking } = this.state,    	
         res = targetId.split("_", 3),
         reserved = this.returnObj(res);      
-		target.setAttribute("class", "st27");                  
+		target.setAttribute("class", "st27");  
+		console.log(targetId, 'targetIddddddddd')                
         yourBooking.push(reserved);
         this.props.bookedSeats(yourBooking);
         seatArr.push({targetId, targetFill});
@@ -390,7 +392,7 @@ class SalmanKhan extends Component {
     	const { t2Height, t2Width, t2Head, t2HeadValue, t1Width, t1Height, t1HeadValue, t1Head } = this.state;
     	
 	    return (
-	        <div id="thisComponent" style={{width: '850px'}} onMouseMove={this._onMouseMove.bind(this)}>
+	        <div id="thisComponent" style={{width: '800px'}} onMouseMove={this._onMouseMove.bind(this)}>
 		        <button className="btn" onClick={ this.zoomIn }>Zoom in</button>
 		        <button className="btn" onClick={ this.zoomOut }>Zoom out</button>
 		        <button className="btn" onClick={event => this.setState({value: fitToViewer(this.state.value), showBasicTooltip: true})}>Fit</button>
@@ -399,7 +401,7 @@ class SalmanKhan extends Component {
 
 		        <ReactSVGPanZoom
 		        	className="reactSvgPanZoom"
-					width={850} 
+					width={800} 
 					height={600}
 					ref={Viewer => this.Viewer = Viewer}
 					background='white'
@@ -419,7 +421,7 @@ class SalmanKhan extends Component {
 					// onChangeTool={tool=> this.setState({tool})}
 		        >
 
-					<svg width={850} height={600} id="SVG">
+					<svg width={800} height={600} id="SVG">
 					{/*first Map start*/}
 						<g id="Layer_1" style={!this.state.showBasicTooltip ? {display: 'none'} : {}}>
 							<g id="STAGE">

@@ -37,6 +37,11 @@ var EventSchema = new mongoose.Schema({
     state:{type:String},
     userId:{type:String},
     website:{type:String},   
+    bannerSrc:{ type:String },
+    coverPhotoSrc:{type:String},
+    top:{type:String},
+    termsCondition:{type:Array},
+    map:{type:Boolean}
 });
 
 mongoose.model('EventSchema',EventSchema);

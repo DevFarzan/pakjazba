@@ -27,6 +27,7 @@ class Signin extends Component{
             email2: '',
             route: 'signUp',
             obj: [],
+            termCondition:false
         }
     }
 
@@ -163,14 +164,21 @@ class Signin extends Component{
                 }
             })
     }//end handleLocalStorage function
+     onChange = (e) => {
+        console.log(`checked = ${e.target.checked}`);
+        this.setState({
+          termCondition:e.target.checked
+        })
 
+    }
     handleSubmit = (e) => {
         e.preventDefault();
-        this.setState({
-            loader:true
-        })
+
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
+              this.setState({
+                  loader:true
+              })
                 this.funcSignUp(values)
             }
         });
@@ -255,12 +263,15 @@ class Signin extends Component{
         }
     }
 
-    checkName(rule, value, callback){
-        if(value.includes('<') || value.includes('>') || value.includes('/')){
+    checkName = (rule, value, callback) => {
+        if(value !== undefined && (value.includes('<') || value.includes('>') || value.includes('/'))){
             callback('Name should be string')
             return;
-        }else {
-            callback()
+        }else if(value !== undefined && value.length == 0){
+            callback('Please input your Name!')
+        }
+        else{
+          callback();
         }
     }
 
@@ -279,9 +290,9 @@ class Signin extends Component{
 
     render(){
         const { getFieldDecorator } = this.props.form;
-        const { visible, secModal, email2, dropdown, msg } = this.state;
+        const { visible, secModal, email2, dropdown, msg, termCondition } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
-
+        console.log(this.state.termCondition,'ttttteeerrrrrmmmm');
         const tailFormItemLayout = {
             wrapperCol: {
                 xs: {
@@ -325,7 +336,7 @@ class Signin extends Component{
                                         rules: [{
                                             required: true, message: 'Please input your Name!', whitespace: true
                                         }, {
-                                            validator: this.checkName.bind(this)
+                                            validator: this.checkName
                                         }],
                                     })(
                                         <Input  />
@@ -366,19 +377,14 @@ class Signin extends Component{
                                         <Input type="password"  onBlur={this.handleConfirmBlur} />
                                     )}
                                 </FormItem>
-                                <FormItem {...tailFormItemLayout}>
-                                    {getFieldDecorator('notrobot', {
-                                        valuePropName: 'checked',
-                                    })(
-                                        <Checkbox>I'm not a Robot</Checkbox>
-                                    )}
-                                </FormItem>
+                                <Checkbox onChange={this.onChange}>(By clicking register, you agree to our <a>terms</a>, our <a>data policy</a> and cookies use)</Checkbox>
                                 <div className="row center_global">
-                                    {this.state.loader ? antIcon : null} <button className="btn color_button">Sign up</button>
+                                    {this.state.loader ? antIcon : null} <button className="btn color_button" disabled={!termCondition}>Sign up</button>
                                 </div>{/*row*/}
                                 <div className="row term_condition">
                                     <p>(By clicking register, you agree to our <a>terms</a>, our <a>data policy</a> and cookies use)</p>
                                 </div>
+                                
                             </Form>
                         </div>}
                         {secModal && <div>

@@ -84,6 +84,7 @@ state = {
                       <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
                           <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'15px'}}>Entertainment</Link>
                       </span>
+
                       {/*// <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
                       //     <Link rel="noopener noreferrer" to={`/user_upload`} style={{color:'black',fontSize:'15px'}}>User</Link>
                       // </span>*/}
@@ -199,8 +200,16 @@ state = {
                   </div>
               </nav>*/}
            <div id="myNav" className="overlay visible-xs navbar-fixed-top" style={{background:'rgb(3, 42, 48)'}}>
-          <a href="javascript:void(0)" className="closebtn" onClick={this.closeNav}>&times;</a>
+          <a href="javascript:void(0)" className="closebtn" onClick={this.closeNav} style={{marginTop:'-8%'}}>&times;</a>
           <div className="overlay-content">
+          <div className="row">
+              <div className="col-xs-6">
+                  <MainLogin/>
+              </div>{/*col-md-4*/}
+              <div className="col-xs-6">
+                  <Category/>
+              </div>{/*col-md-4*/}
+          </div>{/*row*/}
             <span>
                 <Link rel="noopener noreferrer" to={`/market_roommates`} onClick={this.closeNav}>Room Renting</Link>
             </span>

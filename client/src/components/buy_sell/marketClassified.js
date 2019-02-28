@@ -19,22 +19,18 @@ class MarketClassified extends Component{
             dispatch({type: 'SEARCHON', inputValue})
         }
     }
-    
+
     render(){
         return(
             <div>
-                <div className ="hidden-xs" style={{"background":"#d8e7e4",marginTop:'86px',backgroundSize: 'cover'}}>
-                    <div className="background-image">
-                        <Burgermenu/>
-                        <Slider mainH1="Pakjazba Classified" mainH2=""/>
-                    </div>
+            <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "102px",backgroundSize: 'cover'}}>
+                <div className="visible-xs" style={{marginTop:'-119px'}}></div>
+                <div className="background-image">
+                    <Burgermenu/>
+                    <Slider mainH1="Pakjazba Classified" mainH2=""/>
                 </div>
-                <div className ="visible-xs" style={{"background":"#d8e7e4",marginTop : "-20px",backgroundSize: 'cover'}}>
-                    <div className="background-image">
-                        <Burgermenu/>
-                        <Slider mainH1="Pakjazba Classified" mainH2=""/>
-                    </div>
-                </div>                
+            </div>
+
                 {!this.props.text && <BuyFirstFold />}
                 <BuyFourthFold />
                 <div className="row" style={{marginTop:"40px"}}>

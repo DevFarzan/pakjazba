@@ -9,7 +9,6 @@ import Burgermenu from '../header/burgermenu';
 import { Link } from "react-router-dom";
 import { Redirect } from 'react-router';
 import PublicProfile from '../profile/profileMainpage';
-
 const FormItem = Form.Item;
 const { TextArea } = Input;
 const TabPane = Tabs.TabPane;
@@ -333,7 +332,7 @@ class ProfileUser extends Component{
         if(isNaN(value)){
             callback('Please type Numbers');
         }else {
-            callback()    
+            callback()
         }
     }
 
@@ -377,9 +376,9 @@ class ProfileUser extends Component{
 
         return(
             <div>
-                <Burgermenu/>  
-                <div style={{backgroundColor:"black",width:"100%",height:"67px",marginTop:"-20px"}}></div>
-                <div className="content" style={{"paddingTop": "72px"}}>
+
+                <div></div>
+                <div className="content">
                     {publicSection && <div>
                         <PublicProfile callPublicSection={this.callPublicSection.bind(this)} allArr={passObj}/>
                     </div>}

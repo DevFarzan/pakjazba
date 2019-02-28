@@ -38,6 +38,7 @@
 }
 .jobIconbox .fa{
 	position: relative;
+	width:200px !important;
 }
 
 .jobIconbox-topimage_header{

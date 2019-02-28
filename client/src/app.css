@@ -4,7 +4,9 @@
     /*font-family: 'Roboto Slab', serif;*/
 
 }
-
+.ant-dropdown-link{
+  margin-top:-86% !important;
+}
 .ant-input-number-input{
   height: 23px !important;
 }

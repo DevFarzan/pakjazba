@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import { Form, Input, Icon, Checkbox, Modal, Spin  } from 'antd';
 import Dropdowns from './dropdown';
 import Facebook from '../Facebook';
@@ -377,14 +378,14 @@ class Signin extends Component{
                                         <Input type="password"  onBlur={this.handleConfirmBlur} />
                                     )}
                                 </FormItem>
-                                <Checkbox onChange={this.onChange}>(By clicking register, you agree to our <a>terms</a>, our <a>data policy</a> and cookies use)</Checkbox>
+                                <Checkbox onChange={this.onChange}>(By clicking register, you agree to our <Link to={`/privacypolicy`} target="blank">privacy policy</Link>, our <Link to="/termofservice" target="blank">term of service</Link> and cookies use)</Checkbox>
                                 <div className="row center_global">
                                     {this.state.loader ? antIcon : null} <button className="btn color_button" disabled={!termCondition}>Sign up</button>
                                 </div>{/*row*/}
                                 <div className="row term_condition">
-                                    <p>(By clicking register, you agree to our <a>terms</a>, our <a>data policy</a> and cookies use)</p>
+                                    {/*<p>(By clicking register, you agree to our <Link to={`/privacypolicy`} target="blank">terms & condition</Link>, our <Link to="/termofservice" target="blank">term of service</Link> and cookies use)</p>*/}
                                 </div>
-                                
+
                             </Form>
                         </div>}
                         {secModal && <div>

@@ -57,7 +57,7 @@ class Dropdowns extends Component{
         );
 
         return(
-            <Dropdown overlay={menu} style={{color:'black'}}>
+            <Dropdown overlay={menu} style={{color:'black',marginTop:'-23px'}}>
                 <a className="ant-dropdown-link">
                     {localStorage.getItem('name')}<Icon type="down" />
                 </a>

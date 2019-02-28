@@ -9,6 +9,8 @@ import Favicon from 'react-favicon';
 
 //component
 import Home from './components/home/home1';
+import Privacy from './components/home/privacyPolicy';
+import TermOfServices from './components/home/termsofservices';
 import HomePage from './components/home/homePage';
 import Signin from './components/signin_seperate/signin';
 import Postbusiness from './components/business/postBusiness';
@@ -156,7 +158,8 @@ ReactDOM.render(
           <Route path="/user_profile" component={ProfileMain}></Route>
 
 					<Route path="/detail_blog" component={DetailBlog}></Route>
-
+          <Route path="/privacypolicy" component={Privacy}></Route>
+          <Route path="/termofservice" component={TermOfServices}></Route>
 
 
 					{/*<Route path="/detail_roomRent" component={DetailRoommates}></Route>

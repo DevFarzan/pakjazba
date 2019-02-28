@@ -377,7 +377,7 @@ class ProfileUser extends Component{
         return(
             <div>
 
-                <div></div>
+                <div className="hidden-xs" style={{marginTop:'13%'}}></div>
                 <div className="content">
                     {publicSection && <div>
                         <PublicProfile callPublicSection={this.callPublicSection.bind(this)} allArr={passObj}/>

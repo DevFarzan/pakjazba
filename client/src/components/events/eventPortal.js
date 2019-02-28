@@ -245,7 +245,7 @@ class EventPortal extends Component{
         const { fileList } = this.state;
 
         Promise.all(arr.map((val) => {
-            return this.uploadFile(val).then((result) => { 
+            return this.uploadFile(val).then((result) => {
             let id = val.id;
                 return {[id]: result.body.url}
             })
@@ -255,8 +255,8 @@ class EventPortal extends Component{
     }
 
     async postData(values, response) {
-        const {dateObj, userId, profileId, objectId, website, faceBook, linkdIn, google, 
-            earlyBird, normalTicket, earlyBirdFree, normalTicketFree, openingTime, 
+        const {dateObj, userId, profileId, objectId, website, faceBook, linkdIn, google,
+            earlyBird, normalTicket, earlyBirdFree, normalTicketFree, openingTime,
             closingTime, termsCondition, map} = this.state;
         let rand = Math.floor((Math.random() * 1000000) + 54),
         image = '',
@@ -271,7 +271,7 @@ class EventPortal extends Component{
             }
             else if(Object.keys(elem)[0] == 'banner'){
                 banner = elem['banner']
-            } 
+            }
         })
         var randomKey = values.eventTitle + "_" + values.eventCategory[0] + "_" + rand;
         let obj ={
@@ -386,7 +386,7 @@ class EventPortal extends Component{
     //         if(value < 5){
     //             callback('put atleast $5')
     //         }else {
-    //             callback()    
+    //             callback()
     //         }
     //     }
     // }
@@ -432,13 +432,13 @@ class EventPortal extends Component{
         //Read the contents of Image File.
         reader.readAsDataURL(info.file.originFileObj);
         reader.onload = function (e) {
-            
+
             //Initiate the JavaScript Image object.
             var image = new Image();
 
             //Set the Base64 string return from FileReader as source.
             image.src = e.target.result;
-            
+
             //Validate the File Height and Width.
             image.onload = function () {
                 let height = this.height,
@@ -457,22 +457,22 @@ class EventPortal extends Component{
     }
 
     onChangeBanner = info => {
-        if(info.event !== undefined){        
+        if(info.event !== undefined){
             let self = this,
             file = info.file,
             banner = [],
             reader = new FileReader();
-           
+
             //Read the contents of Image File.
             reader.readAsDataURL(info.file.originFileObj);
             reader.onload = function (e) {
-                
+
                 //Initiate the JavaScript Image object.
                 var image = new Image();
 
                 //Set the Base64 string return from FileReader as source.
                 image.src = e.target.result;
-                
+
                 //Validate the File Height and Width.
                 image.onload = function () {
                     let height = this.height,
@@ -538,11 +538,12 @@ class EventPortal extends Component{
         return(
             <div>
               <Burgermenu/>
-              <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px",marginTop:'57px'}}></div>
+              <div className="hidden-sm" style={{marginTop:'10%'}}></div>
+              <div className="visible-sm" style={{marginTop:'15%'}}></div>
                 <div className="row jobdetail-page" style={{backgroundColor:"#37a99b"}}>
                     <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>
                         <div className="">
-                            <h1 style={{fontFamily: 'Work Sans, sans-serif', fontWeight:"bold"}}>SUBMIT YOUR EVENT</h1>
+                            <h1 style={{fontFamily: 'Work Sans, sans-serif', fontWeight:"bold",color:'white'}}>SUBMIT YOUR EVENT</h1>
                         </div>
                     </div>
                 </div>
@@ -708,7 +709,7 @@ class EventPortal extends Component{
                                             rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
                                         })(
                                             <span>
-                                            {this.state.coverPhotoSrc.length == 0 && <Dragger 
+                                            {this.state.coverPhotoSrc.length == 0 && <Dragger
                                                 id="coverPhoto"
                                                 name = 'file'
                                                 action="//jsonplaceholder.typicode.com/posts/"
@@ -800,7 +801,7 @@ class EventPortal extends Component{
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>    
+                                    </div>
                                     {this.state.earlyBird && <div className="row">
                                         <div className="col-md-12">
                                             <div className="col-md-6">
@@ -849,7 +850,7 @@ class EventPortal extends Component{
                                                             <Checkbox checked={this.state.earlyBirdFree} onChange={this.onChangePrice1.bind(this)}>(Free)</Checkbox>
                                                         </label>
                                                     </div>
-                                                </div> 
+                                                </div>
                                             </div>
                                             {!this.state.earlyBirdFree && <div className="col-md-6" style={{marginTop: '35px'}}>
                                                 <label> Mode Of Payment </label>
@@ -877,7 +878,7 @@ class EventPortal extends Component{
                                             </FormItem>
                                         </div>}
                                         <div className="col-md-6">
-                                            
+
                                         </div>
                                     </div>}
                                     {this.state.normalTicket && this.state.earlyBird && <hr />        }
@@ -929,7 +930,7 @@ class EventPortal extends Component{
                                                             <Checkbox checked={this.state.normalTicketFree} onChange={this.onChangePrice2.bind(this)}>(Free)</Checkbox>
                                                         </label>
                                                     </div>
-                                                </div> 
+                                                </div>
                                             </div>
                                             {!this.state.normalTicketFree && <div className="col-md-6" style={{marginTop: '35px'}}>
                                                 <label> Mode Of Payment </label>
@@ -957,7 +958,7 @@ class EventPortal extends Component{
                                             </FormItem>
                                         </div>}
                                         <div className="col-md-6">
-                                            
+
                                         </div>
                                     </div>}
                                 </section>
@@ -1081,12 +1082,12 @@ class EventPortal extends Component{
                                                 </div>
                                             </FormItem>
                                         </div>
-                                    </div>                                        
+                                    </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <label htmlFor="usr">Terms and Conditions</label>
-                                            <Shareholder 
-                                                id="termsCondition" 
+                                            <Shareholder
+                                                id="termsCondition"
                                                 value={this.state.termsCondition}
                                                 onChange={this.handleCard}
                                             />

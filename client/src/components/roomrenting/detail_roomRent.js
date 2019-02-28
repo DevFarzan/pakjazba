@@ -39,6 +39,7 @@ class DetailRoommates extends Component{
     render(){
         const { isData, data } = this.state;
         const hide = true;
+        console.log(data, 'dataaaaaa')
 
         if(!isData){
             return <Redirect to='/' />

@@ -3,64 +3,17 @@ import { Checkbox, InputNumber, Icon, Tooltip } from 'antd';
 import './OrderSummarycard.css';
 
 class MapOrderCard extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            eBird : 1,
-            nTicket: 1
-        }
-    }
-
-    componentDidMount(){
-        this.onChangeTicket();
-    }
-
-    onChangeTicket(e, val){
-        const { eBird, nTicket } = this.state,
-        { data } = this.props;
-        // let eBirdVal = val === 'EarlyBird' ? e : eBird,
-        // nTicketVal = val === 'NormalTicket' ? e : nTicket,
-        // eBirdPrice = '',
-        // nTicketPrice = '',
-        // earlyBird = data && data.earlyBird,
-        // normalTicket = data && data.normalTicket;
-
-        // if(data){
-        //     eBirdPrice = data.earlyBirdPrice * eBirdVal;
-        //     nTicketPrice = data.normalTicketPrice * nTicketVal ;
-        // }
-
-        // let totalPrice = eBirdPrice + nTicketPrice,
-        // webSiteRate = totalPrice > 0 ? (1*100/totalPrice).toFixed(2) : 0.00,
-        // stripeRate = totalPrice > 0 ? (2.9*100/totalPrice).toFixed(2) : 0.00,
-        // total = (+totalPrice + +webSiteRate + +stripeRate).toFixed(2);
-        // if(val === 'NormalTicket'){
-        //     this.setState({nTicket: e !== null && e !==undefined ? e : nTicket})
-        // }else {
-        //     this.setState({eBird: e !== null && e !==undefined ? e : eBird})
-        // }
-        // this.props.onChange({eBirdVal, nTicketVal, total});
-    }
 
     render(){
-        const { eBird, nTicket } = this.state,
-        { booked } = this.props;
-        console.log(booked, 'bookedddddddddd')
-        // let eBirdPrice = '',
-        // nTicketPrice = '',
-        // earlyBird = data && data.earlyBird,
-        // normalTicket = data && data.normalTicket;
-
-        // if(data){
-        //     eBirdPrice = data.earlyBirdPrice * eBird ;
-        //     nTicketPrice = data.normalTicketPrice * nTicket ;
-        // }
-
-        // let totalPrice = eBirdPrice + nTicketPrice,
-        // webSiteRate = totalPrice > 0 ? (1*100/totalPrice).toFixed(2) : 0.00,
-        // stripeRate = totalPrice > 0 ? (2.9*100/totalPrice).toFixed(2) : 0.00,
-        // total = (+totalPrice + +webSiteRate + +stripeRate).toFixed(2);
-
+        const { booked } = this.props;
+        let totalPrice = 0;
+        booked.map((elem) => {
+            totalPrice += elem.pay
+        });
+        
+        let webSiteRate = totalPrice > 0 ? (1*100/totalPrice).toFixed(2) : 0.00,
+        stripeRate = totalPrice > 0 ? (2.9*100/totalPrice).toFixed(2) : 0.00,
+        total = (+totalPrice + +webSiteRate + +stripeRate).toFixed(2);
 
         return(
             <span>
@@ -73,10 +26,7 @@ class MapOrderCard extends Component{
                             <div className="col-md-12">
                                 <h3><b>Order Summary</b></h3>
                                 <hr className="ehr"/>
-                            </div>
-                            {/*<div className="col-md-4 hidden-xs hidden-sm">
-                                <h4>Free</h4>
-                            </div>*/}
+                            </div>                            
                             {booked.map((elem) => {
                                 return (
                                     <div className="row">
@@ -96,7 +46,7 @@ class MapOrderCard extends Component{
                                     <h4>Total Amount </h4>
                                 </div>
                                 <div className="col-md-6 col-xs-6" style={{textAlign:"center"}}>
-                                    <span></span>
+                                    <span>{totalPrice}</span>
                                 </div>
                             </div>
                             <div className="row" style={{marginTop:"-30px", marginLeft:"10px"}}>
@@ -104,7 +54,7 @@ class MapOrderCard extends Component{
                                     <h4>Pak Jazba Fee </h4>
                                 </div>
                                 <div className="col-md-6 col-xs-6" style={{textAlign:"center"}}>
-                                    <span></span>
+                                    <span>{webSiteRate}</span>
                                 </div>
                             </div>
                             <div className="row" style={{marginTop:"-30px", marginLeft:"10px"}}>
@@ -112,7 +62,7 @@ class MapOrderCard extends Component{
                                     <h4>Stripe </h4>
                                 </div>
                                 <div className="col-md-6 col-xs-6" style={{textAlign:"center"}}>
-                                    <span></span>
+                                    <span>{stripeRate}</span>
                                 </div>
                             </div>
                             <hr className="ohr" style={{marginTop:"-10px"}}/>
@@ -121,7 +71,7 @@ class MapOrderCard extends Component{
                                     <h4>Sub  Total </h4>
                                 </div>
                                 <div className="col-md-6 col-xs-6" style={{textAlign:"center"}}>
-                                    <span></span>
+                                    <span>{total}</span>
                                 </div>
                             </div>
                         </div>

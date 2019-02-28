@@ -26,6 +26,7 @@ class ProfileListing extends Component{
         let { userId } = this.props,
         { businessData, roomRentData, buySellData, jobListData , eventPortalData} = this.state,
         req = await HttpUtils.get('marketplace');
+        console.log(req, 'reqqqqqqqqqqq')
         if(req && req.code && req.code === 200){
             req.busell && req.busell.map((elem) => {
                 if(elem.userid === userId){
@@ -51,26 +52,35 @@ class ProfileListing extends Component{
                     jobListData.push(data)
                 }
             })
+            req.eventPortalData && req.eventPortalData.map((elem) => {
+                if(elem.userId === userId){
+                    let data = {...elem, ...{route: 'eventPortal'}}
+                    eventPortalData.push(data)
+                }
+            })
         }
         this.setState({
             buySellData,
             businessData,
             roomRentData,
-            jobListData
+            jobListData,
+            eventPortalData
         })
     }
 
     render(){
-        const { buySellData, businessData, roomRentData, jobListData } = this.state;
+        const { buySellData, businessData, roomRentData, jobListData, eventPortalData } = this.state;
+        console.log(this.props.listing, 'listingggggggg')
         let listOf = this.props.listing.length > 0 ? this.props.listing : 'businessData',
         mapTo = this.state[listOf];
+        console.log(listOf, 'listOffffffff')        
 
         return(            
             <div className="row">
                 {mapTo.map((elem) => {
                     return (
                         <div className="col-md-4">
-                             <BussinesCard  cardDetails={elem}/>
+                             <BussinesCard  cardDetails={elem} detail={listOf}/>
                         </div>
                     )
                 })}

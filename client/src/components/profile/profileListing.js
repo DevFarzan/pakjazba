@@ -26,7 +26,6 @@ class ProfileListing extends Component{
         let { userId } = this.props,
         { businessData, roomRentData, buySellData, jobListData , eventPortalData} = this.state,
         req = await HttpUtils.get('marketplace');
-        console.log(req, 'reqqqqqqqqqqq')
         if(req && req.code && req.code === 200){
             req.busell && req.busell.map((elem) => {
                 if(elem.userid === userId){
@@ -70,10 +69,8 @@ class ProfileListing extends Component{
 
     render(){
         const { buySellData, businessData, roomRentData, jobListData, eventPortalData } = this.state;
-        console.log(this.props.listing, 'listingggggggg')
         let listOf = this.props.listing.length > 0 ? this.props.listing : 'businessData',
         mapTo = this.state[listOf];
-        console.log(listOf, 'listOffffffff')        
 
         return(            
             <div className="row">

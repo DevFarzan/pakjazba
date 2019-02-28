@@ -175,7 +175,6 @@ class FeaturedBox extends Component{
         if(goForward){
             return <Redirect to={{pathname: `/postad_jobPortal`}} />
         }
-        console.log(showJob)
 
         return(
             <div className="container" style={{width:"70%"}}>

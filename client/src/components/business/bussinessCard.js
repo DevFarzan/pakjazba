@@ -25,7 +25,7 @@ class BussinesCard extends Component{
         locate = cardDetails.city + ", " + cardDetails.state,
         name = cardDetails.businessname || cardDetails.eventTitle || cardDetails.compName || cardDetails.postingtitle || cardDetails.title,
         obj = this.callFunc(cardDetails, detail);
-        console.log(obj, 'objjjjjjjjjj')
+        
         return(
 
             <Link key={1} to={obj}>

@@ -292,7 +292,7 @@ class Signin extends Component{
         const { getFieldDecorator } = this.props.form;
         const { visible, secModal, email2, dropdown, msg, termCondition } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
-        console.log(this.state.termCondition,'ttttteeerrrrrmmmm');
+        
         const tailFormItemLayout = {
             wrapperCol: {
                 xs: {

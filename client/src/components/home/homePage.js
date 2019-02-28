@@ -31,7 +31,6 @@ class HomePage extends Component{
   async marketplace(){
     let req = await HttpUtils.get('marketplace');
     let marketPlace = req;
-    console.log(marketPlace,'marrrkkettttpppp');
     this.setState({
       business:marketPlace.business,
       buySell:marketPlace.busell,
@@ -60,26 +59,26 @@ class HomePage extends Component{
               <SliderHome/>
                <div  className="">
                  <h4 className="headingtext"> Business Listing </h4>
-                 <CarouselHome data={business}/>
+                 <CarouselHome data={business} detail="businessData"/>
                </div>
               <div className="">
                <h4 className="headingtext"> Room Renting </h4>
-               <CarouselHome  data={roomRenting}/>
+               <CarouselHome data={roomRenting} detail='roomRentData'/>
                </div>
 
               <div className="">
                 <h4 className="headingtext"> Job Listing </h4>
-                <CarouselHome  data={jobPortal}/>
+                <CarouselHome data={jobPortal} detail='jobListData'/>
               </div>
 
               <div className="">
                 <h4 className="headingtext">Buy & Sell </h4>
-                <CarouselHome  data={buySell}/>
+                <CarouselHome data={buySell} detail='buySellData'/>
               </div>
 
               <div className="">
                 <h4 className="headingtext"> Events </h4>
-                 <CarouselHome  data={event}/>
+                 <CarouselHome data={event} detail='eventPortalData'/>
               </div>
 
             </div>

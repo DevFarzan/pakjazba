@@ -130,6 +130,28 @@ class Slider extends Component{
                     </div> }
                     {/*Slider for Job Portal start*/}
 
+                  {/*Slider for Event Portal start*/}
+                    {this.props.mainH1 === 'PakJazba Event Portal' && <div className="row">
+                        <span className="col-md-2"></span>
+                        <div className="col-md-5 col-sm-12 col-xs-12">
+                        <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black',textAlign:'left'}}>{this.props.mainH1}</h3>
+                        <form>
+                            <div className="single">
+                                <div className="input-group">
+                                    <input type="text" className="form-control" placeholder="Search" onChange={this.onChange.bind(this)}/>
+                                    <span className="input-group-btn">
+                                        <button disabled={this.props.showBtn} className="btn btn-theme" type="submit" style={{backgroundColor:'#37a99b',color:'white', height: '34px'}} onClick={this.searchText}><i class="fa fa-search"/></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                        <div className="col-md-5 col-sm-6 hidden-xs">
+                            <img src="../images/job-icons/uper-art.png" style={{width:'55%'}} />
+                        </div>
+                    </div> }
+                    {/*Slider for Event Portal end*/}
+
 
                    {/*<div className="col-md-5 col-sm-6 hidden-xs">
                        <img src="../images/business/busi-illus-1.png" style={{width:"50%"}}/>

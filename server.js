@@ -1321,6 +1321,7 @@ app.post('/api/postJobPortal', (req, res) => {
 app.post('/api/postEventPortal', (req, res) => {
     let postEventPortal = req.body;
     if(postEventPortal.objectId === ''){
+      console.log(postEventPortal, 'if objId is empty')
         let eventData = new eventPortal({
             address:postEventPortal.address,
             city:postEventPortal.city,
@@ -1358,9 +1359,11 @@ app.post('/api/postEventPortal', (req, res) => {
             state:postEventPortal.state,
             userId:postEventPortal.userId,
             website:postEventPortal.website,
-            bannerSrc:postEventPortal.postEventPortal,
+            bannerSrc:postEventPortal.bannerSrc,
             coverPhotoSrc:postEventPortal.coverPhotoSrc,
-            top:postEventPortal.top
+            top:postEventPortal.top,
+            termsCondition:postEventPortal.termsCondition,
+            map:postEventPortal.map
         });
 
         eventData.save((error, response) => {
@@ -1388,6 +1391,7 @@ app.post('/api/postEventPortal', (req, res) => {
             if(err){
                 return res.status(400).json({"Unexpected Error:: ": err});
             }
+            console.log(eventData, 'else objId is not empty')
             eventData.address = postEventPortal.address;
             eventData.city = postEventPortal.city;
             eventData.closingTime = postEventPortal.closingTime;
@@ -1424,9 +1428,11 @@ app.post('/api/postEventPortal', (req, res) => {
             eventData.state = postEventPortal.state;
             eventData.userId = postEventPortal.userId;
             eventData.website = postEventPortal.website;
-            bannerSrc=postEventPortal.postEventPortal;
-            coverPhotoSrc=postEventPortal.coverPhotoSrc;
-            top=postEventPortal.top;
+            eventData.bannerSrc=postEventPortal.bannerSrc;
+            eventData.coverPhotoSrc=postEventPortal.coverPhotoSrc;
+            eventData.top=postEventPortal.top;
+            eventData.termsCondition=postEventPortal.termsCondition;
+            eventData.map=postEventPortal.map;
         });
         eventData.save((error, doc) => {
             if(error){
@@ -1464,7 +1470,9 @@ app.post('/api/eventTicket', (req, res) => {
         total: ticketInfo.total,
         userId: ticketInfo.userId,
         zipCode: ticketInfo.zipCode,
-        posted: ticketInfo.posted
+        posted: ticketInfo.posted,
+        selectSeat: ticketInfo.selectSeat,
+        booked: ticketInfo.booked
     });
     ticketData.save((error, response) => {
         if(error){

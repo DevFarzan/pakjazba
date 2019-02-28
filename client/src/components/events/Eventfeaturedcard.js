@@ -19,23 +19,36 @@ class EventFeatured extends Component{
         }
     }
 
-    componentDidMount(){
-        this.getAllBusiness()
-    }
+    // componentDidMount(){
+    //     this.getAllBusiness()
+    // }
 
     componentDidUpdate(prevProps, prevState){
-        const { events } = this.state;
-        const { text } = this.props;
+        const { text, events } = this.props;
         if(prevProps.text !== text){
-            if(!!text){
+            if(!!text){                
                 this.setState({showEvents: []})
-            }else {
+                this.searchedArr(text);
+                window.scrollTo(0,300);
+            }
+            else {
+                let noTop = events.filter((elem) => !elem.top);
                 this.setState({
-                    showEvents: events.slice(0, 7),
+                    showEvents: noTop.slice(0, 7),
                     filteredArr: [],
                     add: 7
                 })
             }
+        }
+        if(prevProps.events.length !== events.length){
+          let noTop = events.filter((elem) => !elem.top);
+            this.setState({
+                events: noTop,
+                showEvents: noTop.slice(0, 8),
+                filteredArr: [],
+                add: 8,
+                loader: false
+            })
         }
     }
 
@@ -46,8 +59,8 @@ class EventFeatured extends Component{
         })
         this.setState({
             filteredArr,
-            showEvents: filteredArr.slice(0, 7),
-            add: 7
+            showEvents: filteredArr.slice(0, 8),
+            add: 8
         })
     }
 
@@ -55,13 +68,13 @@ class EventFeatured extends Component{
         const { add, events, filteredArr } = this.state;
         if(!!filteredArr.length){
             this.setState({
-                showEvents: filteredArr.slice(0, add + 7),
-                add: add + 7
+                showEvents: filteredArr.slice(0, add + 8),
+                add: add + 8
             });
         }else {
             this.setState({
-                showEvents: events.slice(0, add + 7),
-                add: add + 7
+                showEvents: events.slice(0, add + 8),
+                add: add + 8
             });
         }
         if(this.props.text.length){
@@ -71,44 +84,44 @@ class EventFeatured extends Component{
         }
     }
 
-    async getAllBusiness(){
-        var res = await HttpUtils.get('marketplace')
-        if(res.code === 200){
-            let data = res.eventPortalData;
-            this.setState({
-                events: data ? data : [],
-                showEvents: data ? data.slice(0, 7) : [],
-                loader: false
-            });
-        }
-        this.handleLocalStorage();
-    }
+    // async getAllBusiness(){
+    //     var res = await HttpUtils.get('marketplace')
+    //     if(res.code === 200){
+    //         let data = res.eventPortalData;
+    //         this.setState({
+    //             events: data ? data : [],
+    //             showEvents: data ? data.slice(0, 7) : [],
+    //             loader: false
+    //         });
+    //     }
+    //     this.handleLocalStorage();
+    // }
 
-    handleLocalStorage = () =>{
-        AsyncStorage.getItem('user')
-            .then((obj) => {
-                let userObj = JSON.parse(obj)
-                if(!!userObj){
-                    this.setState({
-                        user: true,
-                    })
-                }
-                else {
-                    this.setState({
-                        user: false
-                    })
-                }
-            })
-    }
+    // handleLocalStorage = () =>{
+    //     AsyncStorage.getItem('user')
+    //         .then((obj) => {
+    //             let userObj = JSON.parse(obj)
+    //             if(!!userObj){
+    //                 this.setState({
+    //                     user: true,
+    //                 })
+    //             }
+    //             else {
+    //                 this.setState({
+    //                     user: false
+    //                 })
+    //             }
+    //         })
+    // }
 
-    clickItem(){
-        const { user } = this.state;
-        if(user){
-            this.setState({goDetail: true})
-        }else {
-            this.setState({visible: true})
-        }
-    }
+    // clickItem(){
+    //     const { user } = this.state;
+    //     if(user){
+    //         this.setState({goDetail: true})
+    //     }else {
+    //         this.setState({visible: true})
+    //     }
+    // }
 
     handleCancel = (e) => {
         this.setState({visible: false});
@@ -132,7 +145,7 @@ class EventFeatured extends Component{
 
       return(
         <div className="container" style={{width:"70%"}}>
-          {!text && <h4 style={{textAlign:"left", fontWeight:"bold", marginTop:"20px", marginBottom:"0"}}> Upcoming Events   </h4>}
+          <h4 style={{textAlign:"left", fontWeight:"bold", marginTop:"20px", marginBottom:"0"}}>{text ? 'your search' : 'Upcoming Events'}</h4>
               {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
               {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
               {text && !!filteredArr.length === false && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
@@ -176,11 +189,19 @@ class EventFeatured extends Component{
                   <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleCancel}>Cancel</button></div>
               </div>
           </Modal>}
-          <div className="row">
-              <div className="col-md-12">
-                <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleCancel}>Veiw More</button></div>
-              </div>
-          </div>
+          {(events > showEvents || filteredArr > showEvents) && <div className="row">
+              <div className="col-md-3"></div>
+                <div className="col-md-6" style={{textAlign:'center'}}>
+                    <button 
+                        className="btn btn-sm btn2-success" 
+                        style={{width:'100%'}} 
+                        onClick={this.onAddMore}
+                    >
+                        Veiw More
+                    </button>
+                </div>
+              <div className="col-md-3"></div>
+          </div>}
         </div>
       )
     }

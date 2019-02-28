@@ -6,34 +6,56 @@ import { connect } from 'react-redux';
 import EventCategories from '../main_Component/EventCategories';
 import EventFeatured from './Eventfeaturedcard';
 import EventBanner from './bannerAndtop';
+import {HttpUtils} from "../../Services/HttpUtils";
 
 class MarketEvent extends Component{
-    componentDidMount() {
-        window.scrollTo(0,0);
+    constructor(props){
+        super(props);
+        this.state = {
+            events: []
+        }
     }
 
-    // componentWillUnmount(){
-    //     let inputValue = '';
-    //     if(this.props.text.length){
-    //         const { dispatch } = this.props;
-    //         dispatch({type: 'SEARCHON', inputValue})
-    //     }
-    // }
+    componentDidMount() {
+        window.scrollTo(0,0);
+        this.setState({ showBtn: true });
+        this.getAllBusiness();
+    }
+
+    async getAllBusiness(){
+        var res = await HttpUtils.get('marketplace');
+        if(res.code === 200){
+            let data = res.eventPortalData;
+            this.setState({
+                events: data ? data : [],
+                showBtn: false
+            });
+        }
+        // this.handleLocalStorage();
+    }
+
+    componentWillUnmount(){
+        let inputValue = '';
+        if(this.props.text.length){
+            const { dispatch } = this.props;
+            dispatch({type: 'SEARCHON', inputValue})
+        }
+    }
 
     render(){
         return(
             <div>
                 <span>
-                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/events.png')", marginTop : "105px",backgroundSize: 'cover'}}>
+                    <div className ="hidden-xs" style={{"background":"#d8e7e4", marginTop : "86px",backgroundSize: 'cover'}}>
                         <div className="background-image">
                             <Burgermenu/>
-                            <Slider mainH1="Events" mainH2="Find what you need"/>
+                            <Slider mainH1="PakJazba Event Portal" mainH2="Find what you need" showBtn={this.state.showBtn}/>
                         </div>
                     </div>
                 </span>
-                <EventBanner/>
+                {!this.props.text && <EventBanner events={this.state.events}/>}
                 {/*{!this.props.text && <EventCategories/>}*/}
-                <EventFeatured/>
+                <EventFeatured events={this.state.events}/>
                 <Footer/>
             </div>
 

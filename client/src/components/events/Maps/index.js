@@ -5,6 +5,7 @@ import Header from '../../header/header';
 import EventHeader from './Eventheader';
 import EventFilter from './eventfilter';
 import BookedSeats from './bookedSeats';
+import { Redirect } from 'react-router';
 
 class SeatMap extends Component{
 	constructor(props){
@@ -20,13 +21,15 @@ class SeatMap extends Component{
 		}
 	}
 	componentDidMount(){
-		let objData = this.props.location.state;
+		const {data, objData} = this.props.location.state;
         console.log(objData, 'objDataaaaaa')
+        console.log(data, 'dataaaaaaaaaa')
+        this.setState({ data });
 	}
 
 	componentWillUnmount(){
-		let data = this.props.location.state;
-		this.props.history.push({pathname: `/Buyer_Detailpage`, state: data})
+		const { data, booked } = this.state;
+		this.props.history.push({pathname: `/Buyer_Detailpage`, state: {data, booked}})
 	}
 
 	availableSeats = (obj) => {
@@ -50,8 +53,16 @@ class SeatMap extends Component{
 		this.setState({range: [500, 5000], reset: true})
 	}
 
+	confirmSeat = e => {
+		this.setState({ msg : true })
+	}
+
 	render(){
-		const { obj, booked, range } = this.state;
+		const { obj, booked, range, msg, data } = this.state;
+		console.log(booked, 'bookedddddddd')
+		if(msg) {
+            return <Redirect to={{pathname: '/Buyer_Detailpage', state: {data, booked}}} />
+        }
 		
 		return (
 			<div>
@@ -79,6 +90,13 @@ class SeatMap extends Component{
 						{!(!!booked.length) && <Sittingarrangements data={obj} range={range}/>}
 						<hr className="col-md-12" style={{marginLeft: '-10px'}}/>
 						<BookedSeats data={booked} />
+					</div>
+					<div className="col-md-4 col-sm-12">
+					</div>
+					<div className="col-md-4 col-sm-12">
+						{booked.length > 0 && <button onClick={this.confirmSeat}>confirm seat</button>}
+					</div>
+					<div className="col-md-4 col-sm-12">
 					</div>
 				</div>
 			</div>

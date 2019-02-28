@@ -83,7 +83,6 @@ class Roomrenting3contentarea extends Component{
         let res = await HttpUtils.get('getreviews'),
         id = data._id;
         if(res.code === 200) {
-            alert('get review')
             let filteredReviews = res.content.filter((elem) => elem.objid === id)
             this.setState({reviews: filteredReviews, data})
         }

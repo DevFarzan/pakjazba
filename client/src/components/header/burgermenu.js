@@ -89,7 +89,7 @@ state = {
                       //     <Link rel="noopener noreferrer" to={`/user_upload`} style={{color:'black',fontSize:'15px'}}>User</Link>
                       // </span>*/}
                 </div>
-                {this.props.entertainment && <div className="row"  className="hidden-xs">
+                 {this.props.entertainment && <div className="row"  className="hidden-sm" style={{marginTop:'20%'}}>
                     <EHeader entertainment={this.props.entertainment}/>
                 </div>}
 
@@ -129,7 +129,7 @@ state = {
                        //     <Link rel="noopener noreferrer" to={`/user_upload`} style={{color:'black',fontSize:'15px'}}>User</Link>
                        // </span>*/}
                  </div>
-                 {this.props.entertainment && <div className="row"  className="hidden-xs">
+                 {this.props.entertainment && <div className="row"  className="visible-sm">
                      <EHeader entertainment={this.props.entertainment}/>
                  </div>}
 
@@ -199,6 +199,7 @@ state = {
                     </ul>
                   </div>
               </nav>*/}
+
            <div id="myNav" className="overlay visible-xs navbar-fixed-top" style={{background:'rgb(3, 42, 48)'}}>
           <a href="javascript:void(0)" className="closebtn" onClick={this.closeNav} style={{marginTop:'-8%'}}>&times;</a>
           <div className="overlay-content">
@@ -222,6 +223,9 @@ state = {
             <span style={{marginTop: "8px"}}>
                 <Link rel="noopener noreferrer" to={`/market_jobPortal`}>Job Portal</Link>
             </span>
+            <span style={{marginTop: "8px"}}>
+                <Link rel="noopener noreferrer" to={`/entertainment_Home`}>Entertainment</Link>
+            </span>
 
           </div>
         </div>
@@ -231,13 +235,18 @@ state = {
             <i onClick={this.openNav} className="fa fa-bars" style={{color:'white',marginLeft:'8px',fontSize:'24px',marginTop:'10px',cursor:'pointer'}}></i>
           </div>
           <div className="col-md-4 col-xs-4">
-              <Link to={`/`}><img src="./images/logo.png" style={{width:'80%'}} /></Link>
+              <Link to={`/`}><img src="../images/logo.png" style={{width:'80%'}} /></Link>
           </div>
           <div className="col-md-4 col-xs-4">
             {/*<i class="fas fa-search"></i>*/}
           </div>
-        </div>
+
           </div>
+          {this.props.entertainment && <div className="row"  className="visible-xs">
+              <EHeader entertainment={this.props.entertainment}/>
+          </div>}
+          </div>
+
       )
   }
 }

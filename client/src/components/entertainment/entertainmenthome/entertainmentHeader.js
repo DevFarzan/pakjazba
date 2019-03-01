@@ -37,9 +37,10 @@ class EHeader extends Component{
     { news, sports, dramas, movies, musics } = entertainment;
 
     return(
-      <div className="row" style={{background:'#ececec',width:'100%'}}>
-        <div className="col-md-6">
-            <div  className="hidden-xs">
+      <span>
+      <div className="row hidden-xs" style={{background:'#ececec',width:'100%'}}>
+        <div className="col-md-6 hidden-xs">
+            <div  className="">
                <Link to={`/`}><span className="glyphicon glyphicon-home" style={{color:'black',fontSize:'17px',margin: '21px',cursor:'pointer'}}>
                </span></Link>
                <span type="" name='room' className="button_globalclassName">
@@ -65,7 +66,7 @@ class EHeader extends Component{
                </span>
           </div>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 hidden-xs">
                <span className="button_globalclassName">
                <form style={{marginTop:'2%'}}>
                   <div className="input-group"
@@ -87,7 +88,16 @@ class EHeader extends Component{
                </span>
           </div>
       </div>
-
+      <div className="row visible-xs">
+          <div className="col-md-6">
+              <Link rel="noopener noreferrer" to={{pathname: `/entertainment_Category/${'Movies'}`, state: {movies, entertainment}}} style={{fontSize:'21px',marginBottom:'-6%',margin:'12px'}}>Movies</Link>
+              <Link rel="noopener noreferrer" to={{pathname: `/entertainment_Category/${'Dramas'}`, state: {dramas, entertainment}}} style={{fontSize:'21px',marginBottom:'-6%',margin:'12px'}}>Dramas</Link>
+              <Link rel="noopener noreferrer" to={{pathname: `/entertainment_Category/${'Sports'}`, state: {sports, entertainment}}} style={{fontSize:'21px',marginBottom:'-6%',margin:'12px'}}>Sports</Link>
+              <Link rel="noopener noreferrer" to={{pathname: `/entertainment_Category/${'News'}`, state: {news, entertainment}}} style={{fontSize:'21px',marginBottom:'-6%',margin:'12px'}}>News</Link>
+              <Link rel="noopener noreferrer" to={`/UploadVideo`} style={{fontSize:'21px',marginBottom:'-6%',margin:'12px'}}>User</Link>
+          </div>
+      </div>
+      </span>
     )
   }
 }

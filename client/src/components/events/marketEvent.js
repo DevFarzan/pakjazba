@@ -46,7 +46,8 @@ class MarketEvent extends Component{
         return(
             <div>
                 <span>
-                    <div className ="hidden-xs" style={{"background":"#d8e7e4", marginTop : "86px",backgroundSize: 'cover'}}>
+                    <div className ="vissible-xs" style={{"background":"#d8e7e4", marginTop : "102px",backgroundSize: 'cover'}}>
+                    <div className="visible-xs" style={{marginTop:'-119px'}}></div>
                         <div className="background-image">
                             <Burgermenu/>
                             <Slider mainH1="PakJazba Event Portal" mainH2="Find what you need" showBtn={this.state.showBtn}/>

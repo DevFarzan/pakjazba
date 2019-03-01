@@ -87,7 +87,7 @@ ReactDOM.render(
 		<Provider store={createStoreWithMiddleware(reducer)}>
 			<BrowserRouter>
 				<div>
-              <Favicon url="https://res.cloudinary.com/dxk0bmtei/image/upload/v1534159021/pakjazba_f3orb0.png" />
+          <Favicon url="https://res.cloudinary.com/dxk0bmtei/image/upload/v1534159021/pakjazba_f3orb0.png" />
 					<Route exact path="/" component={HomePage}></Route>
 					<Route path="/sigin" component={Signin}></Route>
 
@@ -137,7 +137,6 @@ ReactDOM.render(
           <Route path="/products_DetailStyle" component={EproductDetails}></Route>
           <Route path="/Forms_Ecommerce" component={EcomForms}></Route>
           {/*============Ecommerce=============*/}
-
 
           {/*=============Entertainment====================*/}
           <Route path="/entertainment_Home" component={EntertainmentHome}></Route>

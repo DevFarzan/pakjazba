@@ -89,7 +89,7 @@ state = {
                       //     <Link rel="noopener noreferrer" to={`/user_upload`} style={{color:'black',fontSize:'15px'}}>User</Link>
                       // </span>*/}
                 </div>
-                 {this.props.entertainment && <div className="row"  className="hidden-sm" style={{marginTop:'20%'}}>
+                 {this.props.entertainment && <div className="row"  className="hidden-sm">
                     <EHeader entertainment={this.props.entertainment}/>
                 </div>}
 

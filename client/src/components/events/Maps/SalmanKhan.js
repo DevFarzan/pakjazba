@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Icon } from 'antd';
 import './SalmanKhan.css'
 import {ReactSVGPanZoom, TOOL_NONE, fitSelection, zoomOnViewerCenter, fitToViewer, getValue} from 'react-svg-pan-zoom';
 
@@ -392,10 +393,12 @@ class SalmanKhan extends Component {
     	const { t2Height, t2Width, t2Head, t2HeadValue, t1Width, t1Height, t1HeadValue, t1Head } = this.state;
     	
 	    return (
-	        <div id="thisComponent" style={{width: '800px'}} onMouseMove={this._onMouseMove.bind(this)}>
-		        <button className="btn" onClick={ this.zoomIn }>Zoom in</button>
-		        <button className="btn" onClick={ this.zoomOut }>Zoom out</button>
-		        <button className="btn" onClick={event => this.setState({value: fitToViewer(this.state.value), showBasicTooltip: true})}>Fit</button>
+	        <div id="thisComponent" style={{width: '800px', textAlign: 'center'}} onMouseMove={this._onMouseMove.bind(this)}>
+	        	<span>
+			        <button className="btn" style={{marginTop: '15px'}} onClick={ this.zoomIn }><Icon type="zoom-in" /></button>
+			        <button className="btn" style={{marginTop: '15px'}} onClick={ this.zoomOut }><Icon type="zoom-out" /></button>
+			        <button className="btn" style={{marginTop: '15px'}} onClick={event => this.setState({value: fitToViewer(this.state.value), showBasicTooltip: true})}><Icon type="sync" /></button>
+		        </span>
 
 		        <hr/>
 
@@ -8162,64 +8165,64 @@ class SalmanKhan extends Component {
 						</g>
 						{/*second Map end*/}
 		                <g id="tooltip2" visibility="hidden" fill='white'>		
-								<rect id="box" x="21" y="14" fill="white" stroke="black" stroke-width="2" stroke-miterlimit="10" width={t2Width} height={t2Height}/>
+								<rect id="box" x="21" y="14" fill="white" stroke="black" strokeWidth="2" strokeMiterlimit="10" width={t2Width} height={t2Height}/>
 							<g id="XMLID_10_">						
-								<text id="XMLID_142_" transform={this.state.sec2Height} fill="gray" font-family="'HelveticaNeueLTCom-Md'" font-size={t2Head}>SEC</text>
+								<text id="XMLID_142_" transform={this.state.sec2Height} fill="gray" fontFamily="'HelveticaNeueLTCom-Md'" fontSize={t2Head}>SEC</text>
 							</g>
-							<text id="XMLID_15_" transform={this.state.sec2Val} fill="black" font-family="'Helvetica-Bold'" font-size={t2HeadValue}>103</text>
-							<text id="XMLID_16_" transform={this.state.row2Val} fill="black" font-family="'Helvetica-Bold'" font-size={t2HeadValue}>blue</text>
-							<text id="XMLID_17_" transform={this.state.seat2Val} fill="black" font-family="'Helvetica-Bold'" font-size={t2HeadValue}>21</text>
+							<text id="XMLID_15_" transform={this.state.sec2Val} fill="black" fontFamily="'Helvetica-Bold'" fontSize={t2HeadValue}>103</text>
+							<text id="XMLID_16_" transform={this.state.row2Val} fill="black" fontFamily="'Helvetica-Bold'" fontSize={t2HeadValue}>blue</text>
+							<text id="XMLID_17_" transform={this.state.seat2Val} fill="black" fontFamily="'Helvetica-Bold'" fontSize={t2HeadValue}>21</text>
 							<g id="XMLID_13_">						
-								<text id="XMLID_141_" transform={this.state.row2Height} fill="gray" font-family="'HelveticaNeueLTCom-Md'" font-size={t2Head}>ROW</text>
+								<text id="XMLID_141_" transform={this.state.row2Height} fill="gray" fontFamily="'HelveticaNeueLTCom-Md'" fontSize={t2Head}>ROW</text>
 							</g>
 							<g id="XMLID_14_">						
-								<text id="XMLID_140_" transform={this.state.seat2Height} fill="gray" font-family="'HelveticaNeueLTCom-Md'" font-size={t2Head}>SEAT</text>
+								<text id="XMLID_140_" transform={this.state.seat2Height} fill="gray" fontFamily="'HelveticaNeueLTCom-Md'" fontSize={t2Head}>SEAT</text>
 							</g>
 						</g>
 						<g id="tooltip" visibility="hidden" fill='white'>
-							<rect id="XMLID_24_" x="12" y="21" fill="white" stroke="black" stroke-width="2" stroke-miterlimit="10" width={t1Width} height={t1Height}/>
+							<rect id="XMLID_24_" x="12" y="21" fill="white" stroke="black" strokeWidth="2" strokeMiterlimit="10" width={t1Width} height={t1Height}/>
 							<g id="XMLID_23_">			
-								<text id="XMLID_81_" transform={this.state.sec1Height} fill="#737373" font-family="'HelveticaNeueLTCom-Md'" font-size={t1Head}>SEC</text>
+								<text id="XMLID_81_" transform={this.state.sec1Height} fill="#737373" fontFamily="'HelveticaNeueLTCom-Md'" fontSize={t1Head}>SEC</text>
 							</g>
-							<text id="XMLID_22_" transform={this.state.row1Val} fill="black" font-family="'Helvetica-Bold'" font-size={t1HeadValue}>103</text>
-							<text id="XMLID_21_" transform={this.state.seat1Val} fill="black" font-family="'Helvetica-Bold'" font-size={t1HeadValue}>FF</text>
-							<text id="XMLID_20_" transform={this.state.sec1Val} fill="black" font-family="'Helvetica-Bold'" font-size={t1HeadValue}>21</text>
+							<text id="XMLID_22_" transform={this.state.row1Val} fill="black" fontFamily="'Helvetica-Bold'" fontSize={t1HeadValue}>103</text>
+							<text id="XMLID_21_" transform={this.state.seat1Val} fill="black" fontFamily="'Helvetica-Bold'" fontSize={t1HeadValue}>FF</text>
+							<text id="XMLID_20_" transform={this.state.sec1Val} fill="black" fontFamily="'Helvetica-Bold'" fontSize={t1HeadValue}>21</text>
 							<g id="XMLID_19_">			
-								<text id="XMLID_83_" transform={this.state.row1Height} fill="#737373" font-family="'HelveticaNeueLTCom-Md'" font-size={t1Head}>ROW</text>
+								<text id="XMLID_83_" transform={this.state.row1Height} fill="#737373" fontFamily="'HelveticaNeueLTCom-Md'" fontSize={t1Head}>ROW</text>
 							</g>
 							<g id="XMLID_18_">			
-								<text id="XMLID_85_" transform={this.state.seat1Height} fill="#737373" font-family="'HelveticaNeueLTCom-Md'" font-size={t1Head}>SEAT</text>
+								<text id="XMLID_85_" transform={this.state.seat1Height} fill="#737373" fontFamily="'HelveticaNeueLTCom-Md'" fontSize={t1Head}>SEAT</text>
 							</g>		
-							<line id="XMLID_11_" fill="none" stroke="black" stroke-width="0.5" stroke-miterlimit="10" x1={this.state.hrX1} y1={this.state.hrY1} x2={this.state.hrX2} y2={this.state.hrY1}/>
+							<line id="XMLID_11_" fill="none" stroke="black" strokeWidth="0.5" strokeMiterlimit="10" x1={this.state.hrX1} y1={this.state.hrY1} x2={this.state.hrX2} y2={this.state.hrY1}/>
 
-							<line id="XMLID_28_" fill="none" stroke="black" stroke-width="0.5" stroke-miterlimit="10" x1={this.state.hrX1} y1={this.state.hrY2} x2={this.state.hrX2} y2={this.state.hrY2}/>
+							<line id="XMLID_28_" fill="none" stroke="black" strokeWidth="0.5" strokeMiterlimit="10" x1={this.state.hrX1} y1={this.state.hrY2} x2={this.state.hrX2} y2={this.state.hrY2}/>
 							<g id="XMLID_25_">			
-								<text id="ticketName" transform={this.state.ticketFeeFir} fill="#414042" font-family="'HelveticaLTStd-Roman'" font-size={this.state.ticketFee}>Standard Ticket</text>
+								<text id="ticketName" transform={this.state.ticketFeeFir} fill="#414042" fontFamily="'HelveticaLTStd-Roman'" fontSize={this.state.ticketFee}>Standard Ticket</text>
 							</g>
 							<g id="XMLID_29_">
 								<text id="ticketDetail" transform={this.state.t1Text}>
-									<tspan x="0" y="0" fill="#414042" font-family="'HelveticaLTStd-Roman'" font-size={this.state.t1TextSize}>
+									<tspan x="0" y="0" fill="#414042" fontFamily="'HelveticaLTStd-Roman'" fontSize={this.state.t1TextSize}>
 										Plastic Molded Chair Seating 
 									</tspan>
-									<tspan x="0" y="18" fill="#414042" font-family="'HelveticaLTStd-Roman'" font-size={this.state.t1TextSize}>
+									<tspan x="0" y="18" fill="#414042" fontFamily="'HelveticaLTStd-Roman'" fontSize={this.state.t1TextSize}>
 										This Section Has A Full View Of 
 									</tspan>
-									<tspan x="0" y="36" fill="#414042" font-family="'HelveticaLTStd-Roman'" font-size={this.state.t1TextSize}>
+									<tspan x="0" y="36" fill="#414042" fontFamily="'HelveticaLTStd-Roman'" fontSize={this.state.t1TextSize}>
 										The Event
 									</tspan>
 								</text>
 							</g>
 							<g id="XMLID_27_">			
-								<text id="ticketFeeId" transform={this.state.ticketFeeSec} fill="#414042" font-family="'HelveticaLTStd-Roman'" font-size={this.state.ticketFee}>$37.00 + Fees</text>
+								<text id="ticketFeeId" transform={this.state.ticketFeeSec} fill="#414042" fontFamily="'HelveticaLTStd-Roman'" fontSize={this.state.ticketFee}>$37.00 + Fees</text>
 							</g>
 						</g>
 						<g id="tooltip3" visibility="hidden" fill='white'>
-		                    <rect id="box" x="8.1643734" y="8.6129923" fill="white" stroke="black" stroke-width="2" stroke-miterlimit="10" width="130" height="65"/>				
+		                    <rect id="box" x="8.1643734" y="8.6129923" fill="white" stroke="black" strokeWidth="2" strokeMiterlimit="10" width="130" height="65"/>				
 		                    <g id="XMLID_70_">                        
-		                        <text id="basicText1" transform="matrix(1 0 0 1 18.4972897 34.2101479)" fill="black" font-family="'HelveticaLTStd-Roman'" font-size="18px">$37.00</text>
+		                        <text id="basicText1" transform="matrix(1 0 0 1 18.4972897 34.2101479)" fill="black" fontFamily="'HelveticaLTStd-Roman'" fontSize="18px">$37.00</text>
 		                    </g>
 		                    <g id="XMLID_32_">                        
-		                        <text id="basicText2" transform="matrix(1 0 0 1 18.497366 57.2101479)" fill="black" font-family="'HelveticaNeueLTCom-Md'" font-size="12px">5 Tickets</text>
+		                        <text id="basicText2" transform="matrix(1 0 0 1 18.497366 57.2101479)" fill="black" fontFamily="'HelveticaNeueLTCom-Md'" fontSize="12px">5 Tickets</text>
 		                    </g>                    
 		                </g>
 					</svg>

@@ -145,7 +145,8 @@ class EventFeatured extends Component{
 
       return(
         <div className="container" style={{width:"70%"}}>
-          <h4 style={{textAlign:"left", fontWeight:"bold", marginTop:"20px", marginBottom:"0"}}>{text ? 'your search' : 'Upcoming Events'}</h4>
+          {this.state.loader && showEvents == 0 && <h4 style={{textAlign:"center", fontWeight:"bold", marginTop:"20px", marginBottom:"0"}}>No events available</h4>}
+          {showEvents > 0 && <h4 style={{textAlign:"left", fontWeight:"bold", marginTop:"20px", marginBottom:"0"}}>{text ? 'your search' : 'Upcoming Events'}</h4>}
               {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
               {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
               {text && !!filteredArr.length === false && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}

@@ -6,8 +6,10 @@ import './uploadVideo.css';
 
 class UploadFunction extends Component{
   //*for modal*//
-
-  state = { visible: false }
+  constructor(props) {
+        super(props);
+        this.state = { visible: false }
+      }
 
    showModal = () => {
      this.setState({

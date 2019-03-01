@@ -17,6 +17,8 @@ class TicketDetail extends Component{
         const { data, obj, booked } = this.props.location.state;
         let sendObj = {...obj, ...{eventId: data._id}, booked},
         req = await HttpUtils.post('eventTicket', sendObj);
+        console.log(sendObj, 'sendObj')
+        console.log(req, 'reqqqqqqqqqq')
         this.setState({receivedData: req});
     }
 

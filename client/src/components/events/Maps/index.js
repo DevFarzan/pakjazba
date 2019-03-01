@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SalmanKhan from './SalmanKhan';
 import Sittingarrangements from './sittingarrangments';
-import Header from '../../header/header';
+import Burgermenu from '../../header/burgermenu';
 import EventHeader from './Eventheader';
 import EventFilter from './eventfilter';
 import BookedSeats from './bookedSeats';
@@ -17,7 +17,8 @@ class SeatMap extends Component{
 			},
 			booked: [],
 			range: [500, 5000],
-			reset: false
+			reset: false,
+			data: {}
 		}
 	}
 	componentDidMount(){
@@ -59,17 +60,16 @@ class SeatMap extends Component{
 
 	render(){
 		const { obj, booked, range, msg, data } = this.state;
-		console.log(booked, 'bookedddddddd')
 		if(msg) {
             return <Redirect to={{pathname: '/Buyer_Detailpage', state: {data, booked}}} />
         }
 		
 		return (
 			<div>
-				<Header/>
-				<div className ="" style={{"background":"#d8e7e4",backgroundSize: 'cover'}}>
+				<Burgermenu/>
+				<div className ="" style={{"background":"#d8e7e4",backgroundSize: 'cover', marginTop: '90px'}}>
 						<div className="background-image">
-							<EventHeader/>
+							<EventHeader data={data}/>
 						</div>
 						<div className="">
 							<EventFilter 
@@ -94,7 +94,7 @@ class SeatMap extends Component{
 					<div className="col-md-4 col-sm-12">
 					</div>
 					<div className="col-md-4 col-sm-12">
-						{booked.length > 0 && <button onClick={this.confirmSeat}>confirm seat</button>}
+						{booked.length > 0 && <button className="btn btn-submit col-md-12" onClick={this.confirmSeat}><b>confirm seat</b></button>}
 					</div>
 					<div className="col-md-4 col-sm-12">
 					</div>

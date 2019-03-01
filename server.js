@@ -1453,6 +1453,8 @@ app.post('/api/postEventPortal', (req, res) => {
 app.post('/api/eventTicket', (req, res) => {
     let ticketInfo = req.body.obj;
     let mailTicket = req.body.data;
+    console.log(req.body, 'bodyyyyyyyy')
+    
     let ticketData = new eventTicket({
         address: ticketInfo.address,
         city: ticketInfo.city,
@@ -1486,7 +1488,8 @@ app.post('/api/eventTicket', (req, res) => {
                 code:200,
                 msg:'yor request submitted successfully'
             });
-            let title = mailTicket.eventTitle;
+            let title = mailTicket.eventTitle;                
+                allTickets = ticketInfo.booked.map((elem) => Object.values(elem).slice(0, 2).join(", "));
                 ticketOne = "Early Bird $" + mailTicket.earlyBirdPrice;
                 ticketTwo = "Normal Ticket $" + mailTicket.normalTicketPrice;
                 address = mailTicket.address;
@@ -1497,14 +1500,39 @@ app.post('/api/eventTicket', (req, res) => {
                 eventDayTime = startDay + ' ' + startDate + ' at ' + mailTicket.openingTime + ' - ' + endDay + ' ' + endDate + ' at ' + mailTicket.closingTime;
                 userDetail =  'Order no. ' + ticketInfo.docId + ', ordered by ';
                 userDetail2 = ticketInfo.firstName + ' ' + ticketInfo.lastName;
-                userDetail3 = ' on ' + moment(ticketInfo.posted, 'LL').format('LLLL')
-                calIndex = ticketInfo.total.indexOf('.');
-                str = ticketInfo.total.substring(0, calIndex);
-                res = +ticketInfo.total - +str;
-                resToFixed = res.toFixed(2)
+                userDetail3 = ' on ' + moment(ticketInfo.posted, 'LL').format('LLLL');                
                 fullName = ticketInfo.firstName + " " + ticketInfo.lastName;
                 description = mailTicket.description;
-                strForURL = userDetail2 + ' Order no. ' + ticketInfo.docId;
+                strForURL = userDetail2 + ' Order no. ' + ticketInfo.docId;                
+                eachTicket = ticketInfo.booked.map((elem) => {
+                  return `<h3 style="margin-left: 15px;">
+                              ${Object.values(elem).slice(0, 2).join(", ")}
+                          </h3>`
+                });
+                showDiv = mailTicket.map === true ? 
+                   `<h2 style="margin-left: 15px;margin-bottom: -35px;">${title}<br>
+                      ${eachTicket}
+                    </h2>` :                
+                   `<h2 style="margin-left: 15px;">${title}<br>${ticketOne}<br>${ticketTwo}</h2><br>`
+                ;
+                quantityTicket = mailTicket.map === true ?
+                    `<h3 style="margin-left: 15px;">Ticket Quantity ${ticketInfo.booked.length}</h3>` :
+                    `<h3 style="margin-left: 15px;">Ticket Quantity ${+ticketInfo.nTicketVal + +ticketInfo.eBirdVal}</h3>`
+                var resToFixed = 0;
+                if(mailTicket.map === false){
+                  let res = +ticketInfo.total;
+                  // str = ticketInfo.total.substring(0, calIndex),
+                  // res = +ticketInfo.total - +str;
+                  resToFixed = res.toFixed(2);
+                }else if(mailTicket.map === true){
+                  let totalPrice = 0;
+                  ticketInfo.booked.map((elem) => {
+                      totalPrice += elem.pay
+                  });
+                  let webSiteRate = totalPrice > 0 ? (1*100/totalPrice).toFixed(2) : 0.00,
+                  stripeRate = totalPrice > 0 ? (2.9*100/totalPrice).toFixed(2) : 0.00;
+                  resToFixed = (+totalPrice + +webSiteRate + +stripeRate).toFixed(2);
+                }
             QRCode.toDataURL(strForURL, function (err, url) {
                 if(!err){
                     mailOptions={
@@ -1518,17 +1546,18 @@ app.post('/api/eventTicket', (req, res) => {
                                         <div style="margin-bottom: 10px;">
                                             <span style="color:#37a99b; font-size: 40px; margin-left: 15%;">PakJazba</span>
                                             <span style="margin-left: 40%">Order no:${ticketInfo.docId}</span>
-                                        </div>
+                                        </div>                                        
                                         <div style="width: 70%;height: 940px; border:1px solid gray; margin: auto;">
                                             <div style="width: 50%; display: inline-block;">
                                                 <div>
-                                                    <h2 style="margin-left: 15px; ">${title}<br>${ticketOne}<br>${ticketTwo}</h2><br>
+                                                    ${showDiv}
+                                                    ${quantityTicket}
                                                     <p style="margin-left: 15px; display: inline-block;">${address}<br><br>${eventDayTime}</p>
                                                 </div>
                                             </div>
                                             <div style="width: 30%; float: right;">
                                                 <img style="width: 150px; height: 150px;" src=${mailTicket.images[0]}><br>
-                                                <img style="" src="${url}">
+                                                <canvas style="" src=${url}>
                                             </div>
                                         <div>
                                             <div style="float: left; width: 34%;">
@@ -1547,7 +1576,7 @@ app.post('/api/eventTicket', (req, res) => {
                                     </body>
                                 </html>`
                     }
-                    console.log(mailOptions);
+                    // console.log(mailOptions);
                     smtpTransport.sendMail(mailOptions, function(error, response){
                         if(error){
                             console.log(error);
@@ -1559,6 +1588,7 @@ app.post('/api/eventTicket', (req, res) => {
                     });
                 }
             });
+            console.log(QRCode.toFile, 'QRCode3333333333')
         }else{
             res.send({
                 code:404,

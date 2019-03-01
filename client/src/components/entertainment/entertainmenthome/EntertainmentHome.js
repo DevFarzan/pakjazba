@@ -53,10 +53,9 @@ class EntertainmentHome extends Component{
             <div className="">
                 <Burgermenu entertainment={{news, sports, dramas, movies, musics}}/>
                 {/*<EHeader entertainment={{news, sports, dramas, movies, musics}} {...this.props}/>*/}
-                <div style={{width:"100%",height:"67px",marginTop:"-20px"}}>
-                </div>
+
                 <div>
-                    <EntSlider entertainment={{news, sports, dramas, movies, musics}} {...this.props}/>
+                    <EntSlider entertainment={{news, sports, dramas, movies, musics}} {...this.props} style={{marginTop:'2%'}} />
                     <Stories entertainment={{news, sports, dramas, movies, musics}} {...this.props}/>
                 </div>
                 <Footer/>

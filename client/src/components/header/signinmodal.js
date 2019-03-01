@@ -293,7 +293,7 @@ class Signin extends Component{
         const { getFieldDecorator } = this.props.form;
         const { visible, secModal, email2, dropdown, msg, termCondition } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
-        
+
         const tailFormItemLayout = {
             wrapperCol: {
                 xs: {
@@ -378,7 +378,12 @@ class Signin extends Component{
                                         <Input type="password"  onBlur={this.handleConfirmBlur} />
                                     )}
                                 </FormItem>
-                                <Checkbox onChange={this.onChange}>(By clicking register, you agree to our <Link to={`/privacypolicy`} target="blank">privacy policy</Link>, our <Link to="/termofservice" target="blank">term of service</Link> and cookies use)</Checkbox>
+                                <Checkbox onChange={this.onChange}>
+                                  (By clicking register, you agree to our
+                                  <Link to={`/privacypolicy`} target="blank">privacy policy</Link>,
+                                  our <Link to="/termofservice" target="blank">term of service</Link>
+                                  and cookies use)
+                                </Checkbox>
                                 <div className="row center_global">
                                     {this.state.loader ? antIcon : null} <button className="btn color_button" disabled={!termCondition}>Sign up</button>
                                 </div>{/*row*/}

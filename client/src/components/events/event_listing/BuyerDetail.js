@@ -104,8 +104,8 @@ class BuyerDetail extends Component{
         return(
             <div className="">
                 <Burgermenu/>
-                <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}>
-                </div>                
+                <div style={{width:"100%",height:"67px",marginTop:"-20px"}}>
+                </div>
                 <div className="col-md-8" style={{marginTop: '70px'}}>
                     {data.map && <button style={{textAlign: 'center', width:"40%"}} className=" col-md-offset-7 btn button_custom" onClick={this.selectSeat}>I want to select my seat</button>}
                     <ContactDetail
@@ -126,11 +126,11 @@ class BuyerDetail extends Component{
                     </div>
                 </div>
                 <div className="col-md-4 hidden-xs hidden-sm" style={{marginTop: '50px'}}>
-                    {!data.map && <OrderCard 
-                        data={data} 
+                    {!data.map && <OrderCard
+                        data={data}
                         onChange={this.onReceiveData.bind(this)}
                     />}
-                    {data.map && <MapOrderCard 
+                    {data.map && <MapOrderCard
                         booked={booked}
                     />}
                 </div>

@@ -68,7 +68,7 @@ class EventDetail extends Component{
                   <Burgermenu/>
                   </div>
                 </div>
-                <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}></div>
+                <div style={{width:"100%",height:"67px",marginTop:"-20px"}}></div>
                 <div className="row">
 
                 </div>

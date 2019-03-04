@@ -43,30 +43,20 @@ class UploadFunction extends Component{
                 <i class="fa fa-plus-square-o" style={{fontSize:"100px"}}></i>
               </span>
               <span className="modalform" style={{marginTop:"100px"}}>
-              <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Upload Video</button>
+
               <Button type="primary" onClick={this.showModal}>
-                Open Modal
-                  </Button>  
+                Upload Video
+                  </Button>
                 {/*Modal*/}
-                <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
+                <Modal
+                  title="Upload Video"
+                  visible={this.state.visible}
+                  onOk={this.handleOk}
+                  onCancel={this.handleCancel}
+                >
+                  <UploadForm/>
+              </Modal>
 
-                  {/* Modal content */}
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Upload Video</h4>
-                    </div>
-                    <div class="modal-body">
-                      <UploadForm/>
-                    </div>
-                    {/*<div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>*/}
-                  </div>
-
-                </div>
-                </div>
               </span>
             </div>
           </div>

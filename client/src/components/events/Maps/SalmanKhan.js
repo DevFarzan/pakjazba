@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Icon } from 'antd';
-import './SalmanKhan.css'
+import './SalmanKhan.css';
+import {HttpUtils} from "../../../Services/HttpUtils";
 import {ReactSVGPanZoom, TOOL_NONE, fitSelection, zoomOnViewerCenter, fitToViewer, getValue} from 'react-svg-pan-zoom';
 
 class SalmanKhan extends Component {
@@ -50,8 +51,20 @@ class SalmanKhan extends Component {
 	    };
     }
 
-    componentDidMount() {    	
-    	this.Viewer.fitToViewer();
+    async componentDidMount() {    	
+    	this.Viewer.fitToViewer();    	    	
+    	const { data } = this.props.location.state;    	
+    	let req = await HttpUtils.get('getseats?eventId=' + data._id);
+    	if(req && req.code && req.code == 200){
+    		if(req.finalSeats[0].booked.length > 0){
+	    		let filteredSeatsArr = req.finalSeats[0].booked.filter((elem) => Object.values(elem)[0] !== "Golden Seat"),
+	    		filteredSeats = filteredSeatsArr.map((elem) => Object.values(elem)[0].split(', ').join('_'));
+	    		this.setSeatsWithData(filteredSeats);
+	    	}
+    	}
+    }
+
+    setSeatsWithData(reservedSeats){
     	let circle = document.getElementsByTagName('circle'),
     	arr = [].map.call(circle, (el) => {
     		let str = el.id,
@@ -59,7 +72,7 @@ class SalmanKhan extends Component {
   			res = res.join('-');
   			res = res.split("_", 3);
   			res = res.join('_');
-  			if(this.state.reservedSeats.includes(res)){
+  			if(reservedSeats.includes(res)){
   				el.setAttribute("class", "st31");
   			}
     		el.id = res;
@@ -353,7 +366,7 @@ class SalmanKhan extends Component {
     		}
     	})   
     	yourBooking = yourBooking.filter((elem) => elem.str.split(', ', 3).join('_') !== targetId);
-    	this.props.bookedSeats(yourBooking);
+    	this.props.bookedSeats(yourBooking, false);
     	seatArr = seatArr.filter((elem) => elem.targetId !== targetId);
     	this.setState({seatArr, yourBooking})
     }
@@ -365,7 +378,7 @@ class SalmanKhan extends Component {
 		target.setAttribute("class", "st27");  
 		console.log(targetId, 'targetIddddddddd')                
         yourBooking.push(reserved);
-        this.props.bookedSeats(yourBooking);
+        this.props.bookedSeats(yourBooking, false);
         seatArr.push({targetId, targetFill});
         this.setState({seatArr, yourBooking});
     }

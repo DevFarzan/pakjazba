@@ -65,6 +65,7 @@ const initialState = {
 }
 
 function reducer(state = initialState, action){
+  console.log(action, 'actionnnnn')
     switch (action.type) {
         case 'SEARCHON':
             return {...state, text: action.inputValue}

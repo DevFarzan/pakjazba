@@ -53,6 +53,7 @@ class DateCard extends Component{
     handleLogin = (e) => {
         const { dispatch, data } = this.props;
         let otherData = data;
+        console.log(otherData, 'otherDataaaaaaaaa')
         dispatch({type: 'ANOTHERDATA', otherData})
         this.setState({goForLogin: true, visible: false})
     }

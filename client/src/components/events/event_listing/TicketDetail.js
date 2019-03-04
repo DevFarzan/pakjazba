@@ -4,7 +4,6 @@ import Footer from '../../footer/footer';
 import Slider from '../../header/Slider';
 import TicketFirst from '../event_listing/FirstCard';
 import TicketSecond from '../event_listing/SecondCard';
-import {HttpUtils} from "../../../Services/HttpUtils";
 import { Icon } from 'antd';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -13,14 +12,15 @@ import moment from 'moment';
 const QRCode = require('qrcode.react');
 
 class TicketDetail extends Component{
-    async componentDidMount(){
-        const { data, obj, booked } = this.props.location.state;
-        let sendObj = {obj: {...obj, ...{eventId: data._id}, booked}, data},
-        req = await HttpUtils.post('eventTicket', sendObj);
-        console.log(sendObj, 'sendObj')
-        console.log(req, 'reqqqqqqqqqq')
-        this.setState({receivedData: req});
-    }
+    // async componentDidMount(){
+    //     console.log(this.props.location.state, 'dataaaaaa')
+    //     const { data, obj, booked } = this.props.location.state;
+    //     let sendObj = {obj: {...obj, ...{eventId: data._id}, booked}, data},
+    //     req = await HttpUtils.post('eventTicket', sendObj);
+    //     console.log(sendObj, 'sendObj')
+    //     console.log(req, 'reqqqqqqqqqq')
+    //     this.setState({receivedData: req});
+    // }
 
     componentWillUnmount(){
         let data = this.props.location.state;

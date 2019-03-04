@@ -1774,8 +1774,9 @@ eventSeats.find(function(err,eventData){
 });
 
 app.get('/api/getseats',(req,res)=>{
-  let eventname = 'salman Khan';
-  eventSeats.find(function(err,eventData){
+  console.log('kia ye api chaliiiiii')
+  let eventId = req.query.eventId;
+  eventTicket.find(function(err,eventData){
       if(err){
             res.send({
                 code:500,
@@ -1785,10 +1786,10 @@ app.get('/api/getseats',(req,res)=>{
         }else if(eventData !== ''){
           var finalSeatsArray = [];
           for(var i=0;i<eventData.length;i++){
-            if(eventData[i].eventName == eventname){
+            if(eventData[i].eventId == eventId){
                 finalSeatsArray.push({
-                  eventName:eventData[i].eventName,
-                  seats:eventData[i].seats
+                  eventId:eventData[i].eventId,
+                  booked:eventData[i].booked
                 })
             }
           }

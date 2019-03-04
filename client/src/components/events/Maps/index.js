@@ -21,12 +21,11 @@ class SeatMap extends Component{
 			data: {}
 		}
 	}
+
 	componentDidMount(){
 		const {data, objData} = this.props.location.state;
-        console.log(objData, 'objDataaaaaa')
-        console.log(data, 'dataaaaaaaaaa')
-        this.setState({ data });
-	}
+        this.setState({ data }); 
+	}    
 
 	componentWillUnmount(){
 		const { data, booked } = this.state;
@@ -42,8 +41,21 @@ class SeatMap extends Component{
 		this.setState({obj});
 	}
 
-	bookedSeats = (booked) => {
-		this.setState({booked});
+	bookedSeats = (book, golden) => {
+		let { booked } = this.state;
+		if(booked.length > 0){
+			let seatGold = booked.filter((elem) => Object.values(elem)[0] == "Golden Seat"),
+			seatMap = booked.filter((elem) => Object.values(elem)[0] !== "Golden Seat");
+			if(!!golden){
+				this.setState({ booked: [...seatMap, ...book]});
+			}
+			if(!golden){
+				this.setState({ booked: [...seatGold, ...book]});
+			}
+		}else {
+			this.setState({booked: book});	
+		}
+		
 	}
 
 	priceRange = (range) => {
@@ -60,6 +72,7 @@ class SeatMap extends Component{
 
 	render(){
 		const { obj, booked, range, msg, data } = this.state;
+		console.log(data, booked, 'data booked')
 		if(msg) {
             return <Redirect to={{pathname: '/Buyer_Detailpage', state: {data, booked}}} />
         }
@@ -69,7 +82,12 @@ class SeatMap extends Component{
 				<Burgermenu/>
 				<div className ="" style={{"background":"#d8e7e4",backgroundSize: 'cover', marginTop: '90px'}}>
 						<div className="background-image">
-							<EventHeader data={data}/>
+							<EventHeader 
+								data={data} 
+								bookedSeats={this.bookedSeats}
+								// reset={this.state.reset}
+								{...this.props}
+							/>
 						</div>
 						<div className="">
 							<EventFilter 
@@ -81,9 +99,11 @@ class SeatMap extends Component{
 				<div className="row">
 					<div className="col-md-8 hidden-xs" style={{border: '1px solid black'}}>
 						<SalmanKhan 
+							// data={data}
 							availableObj={this.availableSeats}
 							bookedSeats={this.bookedSeats}
 							reset={this.state.reset}
+							{...this.props}
 						/>
 					</div>
 					<div className="col-md-4 col-sm-12">

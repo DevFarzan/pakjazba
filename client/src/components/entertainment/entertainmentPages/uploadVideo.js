@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import Footer from '../../footer/footer';
 import axios from "axios/index";
 import Stories from '../entertainmenthome/LatestStories';
-import { Rate } from 'antd';
+import { Rate,Modal } from 'antd';
 import Loader from 'react-loader-advanced';
 import './uploadVideo.css';
 import UploadFunction from './uploadFunction';
@@ -31,7 +31,8 @@ class UploadVideo extends Component{
           musics: [],
           blogs: {},
           loader:false,
-          videoData: []
+          videoData: [],
+          visible: false
       };
   }
 
@@ -68,10 +69,35 @@ class UploadVideo extends Component{
       videoData:response.content
     })
   }
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  }
 
+  handleOk = (e) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  }
+
+  handleCancel = (e) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  }
+
+  addInPreview(e){
+    console.log(e, 'eeeeeeeeeeee')
+    this.setState({preview:e.videoLink[0]})
+  }
 
 render(){
       const { news, sports, dramas, movies, musics,loader,videoData } = this.state;
+      console.log(this.state.preview,'videoooooPreviewwwwwww');
+      console.log(videoData, 'videoData')
   return(
 
     <div className="">
@@ -94,9 +120,9 @@ render(){
         <div className="col-md-8">
             {videoData.map((elem,key) => {
                             return (
-                                <div onClick={e => this.setState({preview:elem.videoLink[0]})} key={key} className="col-md-4 col-sm-4" style={{cursor: 'pointer'}} data-toggle="modal" data-target="#myModal1">
-                                    <img style={{height:"130px", width:"100%"}} src={elem.thumbnailImageLink} />
-                                    <p>{elem.description}</p>
+                                <div key={key} className="col-md-4 col-sm-4" style={{cursor: 'pointer'}} onClick={this.showModal}>
+                                    <img onClick={this.addInPreview.bind(this, elem)} style={{height:"130px", width:"100%"}} src={elem.thumbnailImageLink} />
+                                    <p onClick={this.addInPreview.bind(this, elem)}>{elem.description}</p>
                                 </div>
                             )
 
@@ -114,6 +140,15 @@ render(){
         </div>
 
         {/*<!-- Modal -->*/}
+        <Modal
+          title="Upload Video"
+          visible={this.state.visible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <iframe id="cartoonVideo" width="103%" height="274px" src={this.state.preview} frameborder="0" allowfullscreen></iframe>
+      </Modal>
+
 <div className="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div className="modal-dialog" role="document">
     <div className="modal-content">

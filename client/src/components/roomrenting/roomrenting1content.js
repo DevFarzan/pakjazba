@@ -113,31 +113,31 @@ class Roomrenting1content extends Component{
     render(){
         const { showroomrents, filteredArr, roomrents, goForLogin, goDetail } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
-
+        console.log(showroomrents,'fullarrayroomrentttt');
 
         return(
             <section id="about">
                 {/*<!-- Top List start -->*/}
                 {!this.state.loader && showroomrents.length == 0 && <div className="row">
                     <div className="col-md-12 col-sm-12 col-xs-12">
-                        <h4 style={{margin:"0", textAlign: 'center'}}><b>No Room for rent</b> </h4>
+                        <h4 style={{margin:"0", textAlign: 'center',fontFamily: 'Source Sans Pro, sans-serif'}}><b>No Room for rent</b> </h4>
                     </div>
                 </div>}
-                {showroomrents.length > 0 && <div className="row">
+                {showroomrents.length > 0 && <div className="row" style={{marginTop:'-11%'}}>
                     <div className="col-md-12 col-sm-12 col-xs-12">
-                        <h4 style={{margin:"0"}}><b>Top Available Buy</b> </h4>
+                        <h4 style={{margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}><b>Top Available Buy</b> </h4>
                         <br/>
                     </div>
                 </div>}
-                <div className="" style={{margin:"-30px"}}>
-                    <div className="row">
+                <div className="">
+                    <div className="row" style={{marginTop:'-4%'}}>
                         {/*<div className="col-md-3" onClick={() => {this.clickItem()}}>
                             <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '387px', width: '100%', borderRadius: '17px'}}/>
                         </div>*/}
                         {showroomrents && showroomrents.map((elem, key) => {
                             let str = elem.propertylocation || '';
-                            if(str.length > 25) {
-                                str = str.substring(0, 25);
+                            if(str.length > 35) {
+                                str = str.substring(0, 35);
                                 str = str + '...'
                             }
                             let postedOn = moment(elem.posted, "LL").format('YYYY-MM-DD');
@@ -145,11 +145,12 @@ class Roomrenting1content extends Component{
                                 <Link key={key} to={{pathname: `/detail_roomRent`, state: elem}}>
                                     <div className="col-md-3 col-sm-4 col-xs-12">
                                         <img src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'} class="img-responsive list_img" />
-                                        <p style={{color: 'black', margin:"0"}}>{str}
-                                            <br/><b>{elem.contactname}</b>
+                                        <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}>{elem.postingtitle}</p>
+                                        <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}><b>{str}</b>
+                                            {/*<br/><b>{elem.contactname}</b>*/}
                                             <br/>{'$' + elem.rent + ' ' + elem.pricemode}</p>
                                             <span>
-                                            <Rate disabled style={{paddingBottom: '20px', marginTop:"-20px"}} allowHalf value={elem.star}/> 5.0 </span>
+                                            <Rate disabled style={{paddingBottom: '20px', marginTop:"-20px",fontFamily: 'Source Sans Pro, sans-serif'}} allowHalf value={elem.star}/> 5.0 </span>
                                     </div>
                                 </Link>
                             )

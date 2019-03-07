@@ -18,7 +18,8 @@ var UserSchema = new mongoose.Schema({
   randomno: {type: String},
   loginvia:{type: String},
   profileId:{type:String},
-
+  resetPasswordToken: {type: String},
+  resetPasswordExpires: {type: String},
 });
 
 UserSchema.methods.setPassword = function(password){

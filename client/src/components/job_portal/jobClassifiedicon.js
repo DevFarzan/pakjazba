@@ -19,7 +19,7 @@ class ClassifiedIcons extends Component{
             <span>
 
 
-            <div className="container">
+            <div className="container" style={{width:'71%'}}>
                 <h2 style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}> Categories </h2>
                 <div className="row">
                     <div className="col-md-4 col-sm-6 col-xs-12"  onClick={() => {this.clickItem('Accounting')}} >

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Modal, Button, Form, Input } from 'antd';
-import axios from 'axios';
+import { Modal, Button, Form, Input, Icon, Spin } from 'antd';
+import {HttpUtils} from "../Services/HttpUtils";
 
 const FormItem = Form.Item;
 
@@ -10,7 +10,9 @@ class Forgotpassword extends Component{
         this.state = {
             visible: false,
             email: '',
-            shown: false
+            shown: false,
+            msg: '',
+            loader: false
         }
     }
 
@@ -25,12 +27,9 @@ class Forgotpassword extends Component{
             email:this.refs.email,
             visible: false,
         });
-        console.log(this.refs.email.value);
-        console.log(this.refs.password.value);
     }
 
     handleCancel = (e) => {
-        console.log(e);
         this.setState({
             visible: false,
         });
@@ -40,25 +39,30 @@ class Forgotpassword extends Component{
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
-                axios.get('http://localhost:5000/api/resetpassword?email='+values.email)
-                    .then((response) =>{
-                        console.log(response);
-                        if(response.data.code === 404){
-                            this.setState({
-                                shown:true
-                            })
-                        }//end if condition
-                        else{
-
-                        }
-                    })
+                let email = values.email;
+                this.setState({ loader: true });
+                this.postForgetPassword(email);                            
             }
         });
     }
 
+    async postForgetPassword(email){
+        let response = await HttpUtils.post('forgotPassword', { email });
+        if(response.code == 200){
+            this.setState({ msg: 'Check your email', shown: true, loader: false });
+            setTimeout(() => {
+                this.setState({ visible: false });
+            }, 3000)                    
+        }else if(response.code == 403){
+            this.setState({ msg: response.message, shown: true, loader: false });
+        }else if(response.code == 404){
+            this.setState({ msg: response.message, shown: true, loader: false });
+        }
+    }
+
     render(){
-        const { getFieldDecorator } = this.props.form;
+        const { getFieldDecorator } = this.props.form,
+        antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
         return(
             <div>
@@ -93,14 +97,25 @@ class Forgotpassword extends Component{
                                 <Input  />
                             )}
                         </FormItem>
-                        <span className="errorLabel">{ this.state.shown ? 'email does not exist' : null }</span>
-                        <FormItem
+                        <span className="errorLabel">{ this.state.shown ? this.state.msg : null }</span>
+                        {/*<FormItem
                             wrapperCol={{ span: 12, offset: 6 }}
                         >
                             <Button type="" className="btn color_button"  htmlType="submit">
                                 Send password reset email
                             </Button>
-                        </FormItem>
+                        </FormItem>*/}
+                        <div className="row center_global row">
+                            {this.state.loader && <Spin indicator={antIcon} />}
+                            <button 
+                                disabled={!!this.state.loader}
+                                onClick={this.handleSubmited} 
+                                style={{textAlign: 'center', width:"45%"}} 
+                                className="btn color_button"
+                            >
+                                Send password reset email
+                            </button>
+                        </div>
                     </Form>{/*Form*/}
                 </Modal>
             </div>

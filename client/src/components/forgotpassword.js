@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Button, Form, Input } from 'antd';
-import axios from 'axios';
+import {HttpUtils} from "../Services/HttpUtils";
 
 const FormItem = Form.Item;
 
@@ -10,7 +10,8 @@ class Forgotpassword extends Component{
         this.state = {
             visible: false,
             email: '',
-            shown: false
+            shown: false,
+            msg: ''
         }
     }
 
@@ -25,12 +26,9 @@ class Forgotpassword extends Component{
             email:this.refs.email,
             visible: false,
         });
-        console.log(this.refs.email.value);
-        console.log(this.refs.password.value);
     }
 
     handleCancel = (e) => {
-        console.log(e);
         this.setState({
             visible: false,
         });
@@ -38,21 +36,20 @@ class Forgotpassword extends Component{
 
     handleSubmited = (e) => {
         e.preventDefault();
-        this.props.form.validateFields((err, values) => {
+        this.props.form.validateFields(async (err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
-                axios.get('http://localhost:5000/api/resetpassword?email='+values.email)
-                    .then((response) =>{
-                        console.log(response);
-                        if(response.data.code === 404){
-                            this.setState({
-                                shown:true
-                            })
-                        }//end if condition
-                        else{
-
-                        }
-                    })
+                let email = values.email,
+                response = await HttpUtils.post('forgotPassword', { email });
+                if(response.code == 200){
+                    this.setState({ msg: 'Check your email', shown: true });
+                    setTimeout(() => {
+                        this.setState({ visible: false });
+                    }, 3000)                    
+                }else if(response.code == 403){
+                    this.setState({ msg: response.message, shown: true });
+                }else if(response.code == 404){
+                    this.setState({ msg: response.message, shown: true });
+                }
             }
         });
     }
@@ -93,7 +90,7 @@ class Forgotpassword extends Component{
                                 <Input  />
                             )}
                         </FormItem>
-                        <span className="errorLabel">{ this.state.shown ? 'email does not exist' : null }</span>
+                        <span className="errorLabel">{ this.state.shown ? this.state.msg : null }</span>
                         <FormItem
                             wrapperCol={{ span: 12, offset: 6 }}
                         >

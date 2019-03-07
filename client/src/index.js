@@ -13,6 +13,7 @@ import Privacy from './components/home/privacyPolicy';
 import TermOfServices from './components/home/termsofservices';
 import HomePage from './components/home/homePage';
 import Signin from './components/signin_seperate/signin';
+import ResetPassword from './components/signin_seperate/resetPassword';
 import Postbusiness from './components/business/postBusiness';
 import JobPortal from './components/job_portal/postJob';
 import EventPortal from './components/events/eventPortal';
@@ -91,6 +92,7 @@ ReactDOM.render(
           <Favicon url="https://res.cloudinary.com/dxk0bmtei/image/upload/v1534159021/pakjazba_f3orb0.png" />
 					<Route exact path="/" component={HomePage}></Route>
 					<Route path="/sigin" component={Signin}></Route>
+          <Route exact path="/reset/:token" component={ResetPassword} />
 
           {/*============Room Renting=============*/}
           <PrivateRoute path="/postad_Roommates" component={Postroommates}></PrivateRoute>

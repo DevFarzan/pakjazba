@@ -87,7 +87,7 @@ class Secondscreencard extends Component{
 
         return(
             <div className="container" style={{width:"70%"}}>
-                <div className="row" style={{padding:"0"}}>
+                <div className="row" style={{padding:"0",marginBottom:'70px'}}>
                     <div className="col-md-12"> {/*col-md-9 open*/}
                             {data && data.length ? data.map((elem) => {
                                 let str = elem.location || '';

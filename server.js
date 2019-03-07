@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const crypto = require('crypto');
 var nodemailer = require('nodemailer');
 var passport = require('passport');
 var bodyParser = require('body-parser')
@@ -13,9 +14,11 @@ const stripe = require("stripe")(keys.stripeSecretKey);
 const moment = require('moment');
 const QRCode = require('qrcode');
 var session = require('express-session');
+var Sequelize = require('sequelize');
 const winston = require('winston');
 //const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const Op = Sequelize.Op;
 
 const port = process.env.PORT || 5000;
 if (process.stdout._handle) process.stdout._handle.setBlocking(true);
@@ -258,7 +261,7 @@ app.get('/api/userregister',(req,res) =>{
 
 rand=Math.floor((Math.random() * 100) + 54);
   host=req.get('host');
-  link="http://"+req.get('host')+"/verify?email="+email+"&&id="+rand;
+  link=req.protocol+"://"+req.get('host')+"/verify?email="+email+"&&id="+rand;
   mailOptions={
     to : req.query.email,
     subject : "Please confirm your Email account",
@@ -392,6 +395,107 @@ app.get('/verify',async function(req,res){
 
 /*--------------------Routing Over----------------------------*/
 
+/*--------------------Forgot password start----------------------------*/
+
+app.post('/api/forgotPassword', (req, res) => {
+    if (req.body.email === '') {
+        res.status(400).send('email required');
+    }
+    
+    var host = req.host,
+    protocol = req.protocol;
+    User.findOne({
+        email: req.body.email,      
+    }).then((user) => {
+        if (user === null) {
+            res.send({
+                code: 403,
+                message: 'email not in db'
+            })
+        } else {
+            const token = crypto.randomBytes(20).toString('hex');
+            user.username = user.username;
+            user.InsertedDate = user.InsertedDate;
+            user.subscribe = user.subscribe;
+            user.status = user.status;
+            user.blocked = user.blocked;
+            user._id = user._id;
+            user.email = user.email;
+            user.password = user.password;
+            user.randomno = user.randomno;  
+            user.profileId = user.profileId;
+            user.resetPasswordToken = token;
+            user.resetPasswordExpires = moment().format();
+
+            user.save((err, response) => {
+                if(!err){
+                    const mailOptions = {
+                        from: 'pakjazbap@gmail.com',
+                        to: `${user.email}`,
+                        subject: 'Link To Reset Password',
+                        text:
+                          'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n'
+                          + 'Please click on the following link, or paste this into your browser to complete the process within one hour of receiving it:\n\n'
+                          + `${protocol}://${host}/reset/${token}\n\n`
+                          + 'If you did not request this, please ignore this email and your password will remain unchanged.\n',
+                    };
+                    
+                    smtpTransport.sendMail(mailOptions, (err, response) => {
+                      if (err) {
+                        res.send({
+                            code: 404,
+                            message: err
+                        })
+                      } else {
+                        res.send({
+                            code: 200,
+                            message: 'recovery email sent'
+                        })
+                      }
+                    });
+                }            
+            });                
+        }
+    });
+});
+
+/*--------------------Forgot password end----------------------------*/
+
+/*--------------------Reset password start----------------------------*/
+
+app.get('/api/reset', (req, res) => {    
+    User.findOne({
+        resetPasswordToken: req.query.resetPasswordToken     
+    }).then((user) => {
+        if(user == null){
+            res.send({
+                code: 403,
+                message: 'password reset link is invalid or has expired'
+            });
+        }  
+        var time = moment(user.resetPasswordExpires).fromNow();
+        if (time == 'an hour ago' || time == "a few seconds ago" || (time.slice(time.indexOf(" ")+1, time.length)) == "minutes ago") {
+            res.send({
+                code: 200,
+                email: user.email,
+                message: 'password reset link a-ok',
+            });
+        } else {        
+            res.send({
+                code: 403,
+                message: 'password reset link is invalid or has expired'
+            });
+        }
+    }).catch((err) => {      
+        res.send({
+            code: 404,
+            message: 'password reset link is invalid or has expired'
+        })
+    });
+});
+
+/*--------------------Reset password end----------------------------*/
+
 /*===================Review api start==============================*/
 app.post('/api/reviews',function(req,res){
   var reviews  = req.body;
@@ -524,6 +628,7 @@ app.get('/api/getBlogReviews',function(req,res){
 
        User.find({email:Useremail},{__v:0},
         function(err,User){
+          console.log(Password, User[0].password,'forexample')
             if(err){
                 res.send({
                     code: 500,
@@ -531,7 +636,9 @@ app.get('/api/getBlogReviews',function(req,res){
                     msg: 'API not called properly'
                 });
             }//end if
-            else if(User!=''){
+            //console.log(User,'forexample')
+            else if(User!='' && Password == User[0].password){
+
                 // bcrypt.compare(Password, User[0].password, function(err, response) {
                 //     if(response){
                         token = jwt.sign({ email: User[0].email, _id: User[0]._id}, 'RESTFULAPIs');
@@ -596,25 +703,34 @@ app.get('/api/getBlogReviews',function(req,res){
 
 
 // /*========================reset password API start=============================================*/
-app.get('/api/resetpassword',function(req,res){
-  var Email = req.query.email;
- user.find({email:Email},{__v:0},
-        function(err,User){
-            if(err){
-                res.send({
-                    code: 500,
-                    content : 'Internal Server Error',
-                    msg: 'API not called properly'
-                });
-            }//end if
-            else if(User!=''){
-                res.send({
-                    code: 200,
-                    content : User[0],
-                    msg: 'user is authenticate'
-                });
-            }//end else if
-            else {
+app.post('/api/resetpassword',function(req,res){
+    var Email = req.body.email;
+    var Password = req.body.password;
+    User.findOne({email:Email})
+        .then((user) => {            
+            if(user!=''){
+                user.username = user.username;
+                user.InsertedDate = user.InsertedDate;
+                user.subscribe = user.subscribe;
+                user.status = user.status;
+                user.blocked = user.blocked;
+                user._id = user._id;
+                user.email = user.email;
+                user.password = Password;
+                user.randomno = user.randomno;  
+                user.profileId = user.profileId;
+                user.resetPasswordToken = null;
+                user.resetPasswordExpires = null;
+                
+                user.save((err, response) => {                    
+                    if(!err){
+                        res.send({
+                            code: 200,
+                            msg: 'Password is updated'
+                        });
+                    }                    
+                })                
+            }else {
                 res.send({
                     code: 404,
                     content: 'Not Found',

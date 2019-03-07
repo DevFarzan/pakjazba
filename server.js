@@ -439,12 +439,13 @@ app.post('/api/forgotPassword', (req, res) => {
                           + `${protocol}://${host}/reset/${token}\n\n`
                           + 'If you did not request this, please ignore this email and your password will remain unchanged.\n',
                     };
+                    // + `http://localhost:3000/reset/${token}\n\n`
                     
                     smtpTransport.sendMail(mailOptions, (err, response) => {
                       if (err) {
                         res.send({
                             code: 404,
-                            message: err
+                            message: 'error'
                         })
                       } else {
                         res.send({

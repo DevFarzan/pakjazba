@@ -36,22 +36,30 @@ class Forgotpassword extends Component{
 
     handleSubmited = (e) => {
         e.preventDefault();
-        this.props.form.validateFields(async (err, values) => {
+        console.log('hello')
+        this.props.form.validateFields((err, values) => {
             if (!err) {
-                let email = values.email,
-                response = await HttpUtils.post('forgotPassword', { email });
-                if(response.code == 200){
-                    this.setState({ msg: 'Check your email', shown: true });
-                    setTimeout(() => {
-                        this.setState({ visible: false });
-                    }, 3000)                    
-                }else if(response.code == 403){
-                    this.setState({ msg: response.message, shown: true });
-                }else if(response.code == 404){
-                    this.setState({ msg: response.message, shown: true });
-                }
+                let email = values.email;
+                this.postForgetPassword(email);
+                
             }
         });
+    }
+
+    async postForgetPassword(email){
+        console.log(email, 'emailllllll')
+        let response = await HttpUtils.post('forgotPassword', { email });
+        console.log(response, 'responseeeee')
+        if(response.code == 200){
+            this.setState({ msg: 'Check your email', shown: true });
+            setTimeout(() => {
+                this.setState({ visible: false });
+            }, 3000)                    
+        }else if(response.code == 403){
+            this.setState({ msg: response.message, shown: true });
+        }else if(response.code == 404){
+            this.setState({ msg: response.message, shown: true });
+        }
     }
 
     render(){

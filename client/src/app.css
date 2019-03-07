@@ -4,13 +4,25 @@
     /*font-family: 'Roboto Slab', serif;*/
 
 }
+.anticon-down{
+  color:black !important;
+}
 .ant-dropdown-link{
   margin-top:-86% !important;
+
 }
 .ant-input-number-input{
   height: 23px !important;
 }
-
+hr {
+  display: block;
+  border: 0;
+  border-top: 1px solid rgb(55, 169, 155);
+  /* margin: 1em 0; */
+  /* padding: 0; */
+  width: 191px;
+  border-top-width:4px;
+}
 h1{
 font-family: 'Crimson Text', serif !important;
 

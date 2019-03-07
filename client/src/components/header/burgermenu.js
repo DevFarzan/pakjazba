@@ -65,7 +65,7 @@ state = {
                   </div>
 
              <div className="row hidden-sm">
-                    <div style={{background:'rgba(236, 236, 236, 0.48)',width:'96%',height:'42px',marginLeft:'16px'}}>
+                    <div style={{background:'rgba(236, 236, 236, 0.48)',height:'42px'}}>
                       <span type="" name='room' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
                           <Link  rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'15px'}}>Room Renting</Link>
                       </span>

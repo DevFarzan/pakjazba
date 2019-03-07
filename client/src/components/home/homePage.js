@@ -58,27 +58,42 @@ class HomePage extends Component{
             <div className="container" style={{width:"70%"}}>
               <SliderHome/>
                <div  className="">
-                 <h4 className="headingtext"> Business Listing </h4>
-                 <CarouselHome data={business} detail="businessData"/>
+                 <h4 className="headingtext" style={{marginLeft:'-11px',marginTop:'-11%'}}> Business Listing </h4>
+                  <hr />
+                  <div style={{marginTop:'-5%'}}>
+                    <CarouselHome data={business} detail="businessData"/>
+                 </div>
                </div>
               <div className="">
-               <h4 className="headingtext"> Room Renting </h4>
-               <CarouselHome data={roomRenting} detail='roomRentData'/>
+               <h4 className="headingtext" style={{marginLeft:'-11px',marginTop:'-15px'}}> Room Renting </h4>
+               <hr />
+               <div style={{marginTop:'-2%'}}>
+                  <CarouselHome data={roomRenting} detail='roomRentData'/>
+                </div>
                </div>
 
               <div className="">
-                <h4 className="headingtext"> Job Listing </h4>
-                <CarouselHome data={jobPortal} detail='jobListData'/>
+                <h4 className="headingtext" style={{marginLeft:'-11px',marginTop:'-4%'}}> Job Listing </h4>
+                <hr/>
+                <div style={{marginTop:'13px'}}>
+                  <CarouselHome data={jobPortal} detail='jobListData'/>
+                </div>
               </div>
 
               <div className="">
-                <h4 className="headingtext">Buy & Sell </h4>
-                <CarouselHome data={buySell} detail='buySellData'/>
+                <h4 className="headingtext" style={{marginLeft:'-11px',marginTop:'-4%'}}>Buy & Sell </h4>
+                <hr/>
+                <div style={{marginTop:'13px'}}>
+                  <CarouselHome data={buySell} detail='buySellData'/>
+                </div>
               </div>
 
               <div className="">
-                <h4 className="headingtext"> Events </h4>
+                <h4 className="headingtext" style={{marginLeft:'-11px',marginTop:'-4%'}}> Events </h4>
+                <hr/>
+                <div style={{marginTop:'-3%'}}>
                  <CarouselHome data={event} detail='eventPortalData'/>
+                 </div>
               </div>
 
             </div>

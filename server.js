@@ -439,8 +439,6 @@ app.post('/api/forgotPassword', (req, res) => {
                           + `https://pure-hollows-17968.herokuapp.com/reset/${token}\n\n`
                           + 'If you did not request this, please ignore this email and your password will remain unchanged.\n',
                     };
-                    // + `http://localhost:3000/reset/${token}\n\n`
-                    // + `${protocol}://${host}/reset/${token}\n\n`
                     
                     smtpTransport.sendMail(mailOptions, (err, response) => {
                       if (err) {

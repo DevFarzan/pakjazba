@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button, Form, Input } from 'antd';
+import { Modal, Button, Form, Input, Icon, Spin } from 'antd';
 import {HttpUtils} from "../Services/HttpUtils";
 
 const FormItem = Form.Item;
@@ -11,7 +11,8 @@ class Forgotpassword extends Component{
             visible: false,
             email: '',
             shown: false,
-            msg: ''
+            msg: '',
+            loader: false
         }
     }
 
@@ -36,34 +37,32 @@ class Forgotpassword extends Component{
 
     handleSubmited = (e) => {
         e.preventDefault();
-        console.log('hello')
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 let email = values.email;
-                this.postForgetPassword(email);
-                
+                this.setState({ loader: true });
+                this.postForgetPassword(email);                            
             }
         });
     }
 
     async postForgetPassword(email){
-        console.log(email, 'emailllllll')
         let response = await HttpUtils.post('forgotPassword', { email });
-        console.log(response, 'responseeeee')
         if(response.code == 200){
-            this.setState({ msg: 'Check your email', shown: true });
+            this.setState({ msg: 'Check your email', shown: true, loader: false });
             setTimeout(() => {
                 this.setState({ visible: false });
             }, 3000)                    
         }else if(response.code == 403){
-            this.setState({ msg: response.message, shown: true });
+            this.setState({ msg: response.message, shown: true, loader: false });
         }else if(response.code == 404){
-            this.setState({ msg: response.message, shown: true });
+            this.setState({ msg: response.message, shown: true, loader: false });
         }
     }
 
     render(){
-        const { getFieldDecorator } = this.props.form;
+        const { getFieldDecorator } = this.props.form,
+        antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
         return(
             <div>
@@ -99,13 +98,24 @@ class Forgotpassword extends Component{
                             )}
                         </FormItem>
                         <span className="errorLabel">{ this.state.shown ? this.state.msg : null }</span>
-                        <FormItem
+                        {/*<FormItem
                             wrapperCol={{ span: 12, offset: 6 }}
                         >
                             <Button type="" className="btn color_button"  htmlType="submit">
                                 Send password reset email
                             </Button>
-                        </FormItem>
+                        </FormItem>*/}
+                        <div className="row center_global row">
+                            {this.state.loader && <Spin indicator={antIcon} />}
+                            <button 
+                                disabled={!!this.state.loader}
+                                onClick={this.handleSubmited} 
+                                style={{textAlign: 'center', width:"45%"}} 
+                                className="btn color_button"
+                            >
+                                Send password reset email
+                            </button>
+                        </div>
                     </Form>{/*Form*/}
                 </Modal>
             </div>

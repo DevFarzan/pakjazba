@@ -56,3 +56,14 @@
   margin: 0;
   font-size: 14px;
 }
+
+.clickbutton{
+  font-size: 16px;
+    color:rgb(55, 169, 155);
+    background: white;
+    border: 2px solid white;
+    padding: 0px;
+    border-radius: 5px !important;
+    position: relative;
+    margin-left: 12px;
+}

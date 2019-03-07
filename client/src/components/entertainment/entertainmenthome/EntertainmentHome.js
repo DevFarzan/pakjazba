@@ -51,11 +51,17 @@ class EntertainmentHome extends Component{
         const { news, sports, dramas, movies, musics } = this.state;
         return(
             <div className="">
-                <Burgermenu entertainment={{news, sports, dramas, movies, musics}}/>
+              <div className="visible-xs" style={{marginTop:'-20px'}}></div>
+                  <Burgermenu entertainment={{news, sports, dramas, movies, musics}}/>
                 {/*<EHeader entertainment={{news, sports, dramas, movies, musics}} {...this.props}/>*/}
 
                 <div>
+                    <div className="visible-xs" style={{marginTop:'-100px'}}>
                     <EntSlider entertainment={{news, sports, dramas, movies, musics}} {...this.props} style={{marginTop:'2%'}} />
+                    </div>
+                    <div className="hidden-xs" style={{marginTop:'133px'}}>
+                    <EntSlider entertainment={{news, sports, dramas, movies, musics}} {...this.props} style={{marginTop:'2%'}} />
+                    </div>
                     <Stories entertainment={{news, sports, dramas, movies, musics}} {...this.props}/>
                 </div>
                 <Footer/>

@@ -37,7 +37,7 @@ class TicketTabs extends Component{
                       <ul className="nav nav-tabs" role="tablist">
 
                           <li role="presentation" className="active"><Anchor affix={true} onClick={handleClick}><Link href="#headline1" title="Buy Ticket " /></Anchor></li>
-                          <li role="presentation"><Anchor affix={false} onClick={handleClick}><Link href="#headline2" title="Event Info" /></Anchor></li>
+                          <li role="presentation"><Anchor affix={false} onClick={handleClick}><Link href="#headline2" title="Event Info"  /></Anchor></li>
                           <li role="presentation"><Anchor affix={false} onClick={handleClick}><Link href="#headline3" title="Terms & Conditions" /></Anchor></li>
                       </ul>
                   </div>

@@ -3,6 +3,8 @@ import './LatestStories.css';
 import {Link} from "react-router-dom";
 import { connect } from 'react-redux'
 import LatestNews from './LatestnewsSec';
+import './LatestStories.css';
+
 
 class Stories extends Component{
     nextVideo(obj){
@@ -58,7 +60,7 @@ class Stories extends Component{
                                       style={{float: 'right', marginRight: '20px', cursor: 'pointer'}}
                                        onClick={this.changeCat.bind(this, {arr, str})}
                                       >See More...</p>
-                                  <hr style={{margin:"0px"}}/>
+                                
                               </div>
                             )}
                         })}

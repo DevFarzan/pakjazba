@@ -11,15 +11,14 @@ class LatestNews extends Component{
         let detail = data && Object.values(data);
 
         return(
-            <div className="container" style={{width:"100%"}}>        
-                <hr style={{marginTop:"-10px", borderTop:"2px solid #37a99b"}}/>
+            <div className="container" style={{width:"100%"}}>
                 <div className="row">
                   <NewsTab />
                 </div>
                 {Object.keys(data).map((el, key) => {
                     let str = el.split('')[0].toUpperCase() + el.slice(1, el.length),
-                    arr = detail[key];                    
-                    return(                  
+                    arr = detail[key];
+                    return(
                         <div key={key} className="newsBoxes">
                             <h4><strong>{str}</strong></h4>
                             <hr/>
@@ -39,12 +38,12 @@ class LatestNews extends Component{
                                               <p>{des}</p>
                                             </div>
                                         </div>
-                                    )  
-                                }                    
-                            })}                      
-                        </div>  
+                                    )
+                                }
+                            })}
+                        </div>
                     )
-                })}                  
+                })}
             </div>
         )
     }

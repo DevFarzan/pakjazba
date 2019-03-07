@@ -38,11 +38,9 @@ class EHeader extends Component{
 
     return(
       <span>
-      <div className="row hidden-xs" style={{background:'#ececec',width:'100%'}}>
-        <div className="col-md-6 hidden-xs">
+      <div className="row hidden-xs hidden-sm" style={{background:'#ececec',width:'73%', marginLeft:"182px", padding:"0"}}>
+        <div className="col-md-8 hidden-xs" style={{marginTop:"15px"}}>
             <div  className="">
-               <Link to={`/`}><span className="glyphicon glyphicon-home" style={{color:'black',fontSize:'17px',margin: '21px',cursor:'pointer'}}>
-               </span></Link>
                <span type="" name='room' className="button_globalclassName">
                    <Link  rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Entertainment</Link>
                </span>
@@ -66,7 +64,7 @@ class EHeader extends Component{
                </span>
           </div>
           </div>
-          <div className="col-md-6 hidden-xs">
+          <div className="col-md-4 hidden-xs">
                <span className="button_globalclassName">
                <form style={{marginTop:'2%'}}>
                   <div className="input-group"
@@ -79,7 +77,7 @@ class EHeader extends Component{
                         onChange={this.onChange.bind(this)}/>
                     <span className="input-group-btn">
                         <button className="btn btn-theme" type="submit"
-                            // style={{backgroundColor:'#37a99b',color:'white'}}
+                            style={{backgroundColor:'#37a99b',color:'white', padding:"3px", marginBottom:"6px"}}
                             onClick={this.searchText}><i className="fa fa-search"/>
                         </button>
                     </span>

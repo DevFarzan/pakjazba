@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import { Rate} from 'antd';
+import moment from 'moment';
 
 class BussinesCard extends Component{
     callFunc(cardDetails, detail){
@@ -25,29 +26,83 @@ class BussinesCard extends Component{
         locate = cardDetails.city + ", " + cardDetails.state,
         name = cardDetails.businessname || cardDetails.eventTitle || cardDetails.compName || cardDetails.postingtitle || cardDetails.title,
         obj = this.callFunc(cardDetails, detail);
-        console.log(detail, 'detailllllll')
         
         return(
             <Link key={1} to={obj}>
                 <div className=""  style={{'marginBottom': '30px'}}>
                     <div className="card" style={{width:'100%'}}>
                         <img alt='' src={src} style={{height:'200px', width:"100%"}} />
-                        {detail == 'businessData' && <h4 style={{marginLeft:"-1px", marginBottom:"15px", marginTop:"20px"}}>
-                            <b>{name}</b>
-                        </h4>}
-                        {detail == 'businessData' && <span><Rate disabled style={{paddingBottom: '20px', marginTop:"-10px"}} allowHalf value={5}/> 5.0 </span>}
-                        {detail == 'businessData' && <p style={{marginTop:"-15px"}}>
-                            <span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}>
+                        {detail == 'businessData' && <span>
+                            <h4 style={{marginLeft:"-1px", marginBottom:"15px", marginTop:"20px"}}>
+                                <b>{name}</b>
+                            </h4>
+                            <span>
+                                <Rate disabled 
+                                    style={{paddingBottom: '20px', marginTop:"-10px"}} 
+                                    allowHalf value={5}
+                                />
+                                5.0 
                             </span>
-                            <span style={{color:"black"}}>
-                                {locate}
+                            <p style={{marginTop:"-15px"}}>
+                                <span className="glyphicon glyphicon-map-marker" 
+                                    style={{color: "#008080",margin:"2px"}}
+                                ></span>
+                                <span style={{color:"black"}}>{locate}</span>
+                            </p>
+                        </span>}
+                        {detail == 'roomRentData' && <span>
+                            <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}>
+                                {cardDetails.postingtitle}
+                            </p>
+                            <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}>
+                                <b>{cardDetails.propertylocation.slice(0, 35)}</b>
+                                <br/>{'$' + cardDetails.rent + ' ' + cardDetails.pricemode}
+                            </p>
+                            <span>
+                                <Rate disabled 
+                                    style={{paddingBottom: '20px', marginTop:"-20px",fontFamily: 'Source Sans Pro, sans-serif'}} 
+                                    allowHalf value={cardDetails.star}
+                                /> 
+                                5.0     
                             </span>
+                        </span>}
+                        {detail == 'jobListData' && <span>
+                            <p className="companyName" 
+                                style={{marginTop:"15px"}}
+                            >
+                                {cardDetails.compName && cardDetails.compName}
+                            </p>
+                            <h4 style={{marginLeft:"-1px", marginBottom:"15px", marginTop:"-22px"}}>
+                                <b>{cardDetails.jobCat}</b>
+                            </h4>
+                            <p style={{marginTop:"-10px", marginLeft: '-5px'}}>
+                                <span className="glyphicon glyphicon-map-marker" 
+                                    style={{color: "#008080",margin:"2px"}}
+                                ></span>
+                                <span style={{color:"black"}}>{cardDetails.location}</span>
+                            </p>
+                        </span>}
+                        {detail == 'buySellData' && <p>
+                            Rs.{!cardDetails.hideprice ? '$' + cardDetails.price : 'Hide'}
+                            <br/><b>{cardDetails.modelname}</b>
+                            <br/>{cardDetails.address},{cardDetails.state}
                         </p>}
-                        {detail == 'roomRentData' && <p style={{color: 'black', margin:"0"}}>{cardDetails.propertylocation}
-                            <br/><b>{cardDetails.contactname}</b>
-                            <br/>{'$' + cardDetails.rent + ' ' + cardDetails.pricemode}
-                        </p>}
-                        {detail == 'roomRentData' && <span><Rate disabled style={{paddingBottom: '20px', marginTop:"-20px"}} allowHalf value={cardDetails.star}/> 5.0 </span>}
+                        {detail == 'eventPortalData' && <span>
+                            <h5 style={{marginTop:'5px', marginLeft:"0", marginBottom:"5px"}}>
+                                <b>{cardDetails.eventTitle}</b>
+                            </h5>
+                            <p style={{marginBottom:"0px"}}>
+                                <span style={{color:"black"}}>{cardDetails.city}</span>
+                            </p>
+                            <p>
+                                <span className="glyphicon glyphicon-calendar" 
+                                    style={{color: "#008080",margin:"-1px"}}
+                                ></span>
+                                <span style={{color:"black", marginLeft:"5px"}}>
+                                    {moment(cardDetails.posted, "LL").format('YYYY-MM-DD')}
+                                </span>
+                            </p>
+                        </span>}
                     </div>
                 </div>
             </Link>

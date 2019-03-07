@@ -161,7 +161,7 @@ class Roomrenting3contentarea extends Component{
             phone = data.contactnumber;
         }
         let postedOn = moment(data.posted, "LL").format('YYYY-MM-DD');
-        
+
         return(
             <div>
                 <div className="" style={{marginTop: '10%'}}></div>
@@ -205,10 +205,10 @@ class Roomrenting3contentarea extends Component{
                                </span>
                             </div>
                           </div>
-                          <hr/>
+                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
                           <h3 style={{marginTop:'9px'}}> Description </h3>
                           <p>{data.discription || data.description}</p>
-                          <hr/>
+                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
                           <h3 style={{marginTop:'9px'}}> Amenities </h3>
                           <div className="forimage">
                             <div className="row" style={{padding:"0"}}>
@@ -234,7 +234,7 @@ class Roomrenting3contentarea extends Component{
                               </div>
                             </div>
                           </div>
-                          <hr/>
+                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
                           <h3 style={{marginTop:'9px'}}> Sleeping Arrangments </h3>
                           <div className="forimage">
                             <div className="row" style={{padding:"0"}}>
@@ -322,7 +322,7 @@ class Roomrenting3contentarea extends Component{
                                 </div>
                             </div>
                           </div>
-                          <hr/>
+                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
                           <div className="card">
                               <div className="row" style={{padding:"0px"}}>
                               {!!reviews.length && <div className="row" style={{padding:"0px"}}>
@@ -358,7 +358,7 @@ class Roomrenting3contentarea extends Component{
                                                   </div>
                                               </div>
                                           </div>
-                                          <hr style={{marginTop:"-10px"}}/>
+                                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
                                       </div>
                                   )
                                   })}
@@ -376,33 +376,33 @@ class Roomrenting3contentarea extends Component{
 
                       <div className="col-md-4" style={{position: 'sticky',top:'25'}}>
                         <div className="roomdetail">
-                          <h2 className="head-space2"><b>$ { data.rent || data.price }</b><sub>{ data.pricemode || data.priceMode }</sub></h2>
+                          <h2 className="head-space2"><b>$ { data.rent || data.price }</b><sub style={{fontWeight:'700'}}>{ data.pricemode || data.priceMode }</sub></h2>
                           <br/>
                           <p> Dates </p>
                               <input value={" " + from + " ~ " + to + " "} />
-                          <p> Accomodates </p>
-                          <p> {accommodates} </p>
+                          <span style={{fontFamily: 'Source Sans Pro, sans-serif'}}> Accomodates </span>
+                          <span style={{fontFamily: 'Source Sans Pro, sans-serif'}}> {accommodates} </span>
 
                            {/*<Cascader options={options} onChange={onChange} placeholder="Please select" style={{width:"100%"}} />*/}
-                          <hr/>
+                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'191px'}}/>
                           <div className="row">
                             <div className="col-md-4">
                               <p style={{marginTop:"0"}}> Pets </p>
                             </div>
                             <div className="col-md-8">
-                              {petFriendly}
+                              <span style={{fontFamily: 'Source Sans Pro, sans-serif'}}>{petFriendly}</span>
                             </div>
                           </div>
-                          <hr/>
+                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'191px'}}/>
                           <div className="row">
                             <div className="col-md-4">
                               <p style={{marginTop:"0"}}> Smoking </p>
                             </div>
                             <div className="col-md-8">
-                              {data.smoking}
+                              <span style={{fontFamily: 'Source Sans Pro, sans-serif'}}>{data.smoking}</span>
                             </div>
                           </div>
-                          <hr/>
+                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'191px'}}/>
                           <div className="row">
                             <div className="col-md-4">
                               <p style={{marginTop:"0"}}> Vegetarian </p>
@@ -411,7 +411,7 @@ class Roomrenting3contentarea extends Component{
                               {data.vegetariansprefered || data.vegNoVeg }
                             </div>
                           </div>
-                          <hr/>
+                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'191px'}}/>
                           <div className="row">
                             <div className="col-md-4">
                               <p style={{marginTop:"0"}}> <b> Furnished </b></p>
@@ -534,10 +534,10 @@ class Roomrenting3contentarea extends Component{
                                </span>
                             </div>
                           </div>
-                          <hr/>
+                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'191px'}}/>
                           <h3 style={{marginTop:'9px'}}> Description </h3>
                           <p>{data.discription || data.description}</p>
-                          <hr/>
+                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
                           <h3 style={{marginTop:'9px'}}> Amenities </h3>
                           <div className="forimage">
                             <div className="row" style={{padding:"0"}}>
@@ -563,7 +563,7 @@ class Roomrenting3contentarea extends Component{
                               </div>
                             </div>
                           </div>
-                          <hr/>
+                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
                           <h3 style={{marginTop:'9px'}}> Sleeping Arrangments </h3>
                           <div className="forimage">
                             <div className="row" style={{padding:"0"}}>
@@ -651,7 +651,7 @@ class Roomrenting3contentarea extends Component{
                                 </div>
                             </div>
                           </div>
-                          <hr/>
+                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
                           <div className="card">
                               <div className="row" style={{padding:"0px"}}>
                               {!!reviews.length && <div className="row" style={{padding:"0px"}}>
@@ -687,7 +687,7 @@ class Roomrenting3contentarea extends Component{
                                                   </div>
                                               </div>
                                           </div>
-                                          <hr style={{marginTop:"-10px"}}/>
+                                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%',marginTop:'-10%'}}/>
                                       </div>
                                   )
                                   })}
@@ -713,7 +713,7 @@ class Roomrenting3contentarea extends Component{
                           <p> {accommodates} </p>
 
                            {/*<Cascader options={options} onChange={onChange} placeholder="Please select" style={{width:"100%"}} />*/}
-                          <hr/>
+                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'141px'}}/>
                           <div className="row">
                             <div className="col-md-4">
                               <p style={{marginTop:"0"}}> Pets </p>
@@ -722,7 +722,7 @@ class Roomrenting3contentarea extends Component{
                               {petFriendly}
                             </div>
                           </div>
-                          <hr/>
+                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'141px'}}/>
                           <div className="row">
                             <div className="col-md-4">
                               <p style={{marginTop:"0"}}> Smoking </p>
@@ -731,7 +731,7 @@ class Roomrenting3contentarea extends Component{
                               {data.smoking}
                             </div>
                           </div>
-                          <hr/>
+                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'141px'}}/>
                           <div className="row">
                             <div className="col-md-4">
                               <p style={{marginTop:"0"}}> Vegetarian </p>
@@ -740,7 +740,7 @@ class Roomrenting3contentarea extends Component{
                               {data.vegetariansprefered || data.vegNoVeg }
                             </div>
                           </div>
-                          <hr/>
+                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'141px'}}/>
                           <div className="row">
                             <div className="col-md-4">
                               <p style={{marginTop:"0"}}> <b> Furnished </b></p>

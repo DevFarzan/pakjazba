@@ -160,7 +160,7 @@ class DetailBusiness extends Component{
     render(){
         const { isData, data, reviews, goProfile, previewVisible, previewImage, item, reviewUserId, reviewProfileId } = this.state,
         hide = true,
-        antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;    
+        antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
         let images = data.businessImages || data.arr_url;
 
         if(!isData){
@@ -181,7 +181,7 @@ class DetailBusiness extends Component{
                     </div>
                 </span>
                 <div className="container" style={{width:"100%", marginTop:"142px"}}>
-                  <div className="backgroundColor">
+                  <div className="backgroundColor" style={{marginTop:'-2%'}}>
                     <div className="container" style={{width:"70%"}}>
                       <div className="row">
                           <div className="col-md-7">
@@ -205,13 +205,13 @@ class DetailBusiness extends Component{
                             <div className="card">
                                 <img className="card-img-top" src={images && images[0]} alt="" style={{"width":"100%"}} />
                             </div>
-                            <div className="row" style={{padding:"0",marginTop:'15px'}}>
-                              <div className="col-md-6 col-sm-6 col-xs-12">
-                                  <a  className="btn btndetail-success" style={{width:'100%'}}>Write a Review</a>
+                            <div className="row" style={{padding:"0",marginTop:'15px',textAlign:'center'}}>
+                              <div className="col-md-12 col-sm-12 col-xs-12">
+                                  <a  className="btn btndetail-success" style={{width:'64%'}} href="#name_of_target">Write a Review</a>
                               </div>
-                              <div className="col-md-6 col-sm-6 col-xs-12">
+                              {/*<div className="col-md-6 col-sm-6 col-xs-12">
                                   <a className="btn btndetail-success" style={{width:'100%'}}>Share</a>
-                              </div>
+                              </div>*/}
                             </div>
                           </div>
                       </div>
@@ -225,7 +225,7 @@ class DetailBusiness extends Component{
                                 <div className="col-md-12">
                                     <h4><b>Opening Time</b></h4>
                                     <p style={{marginLeft:"16px"}}>You can contact between these timings</p>
-                                    <hr size="3"/>
+
                                 </div>
                             </div>
                             <div className="row" style={{padding:"0"}}>
@@ -322,7 +322,7 @@ class DetailBusiness extends Component{
                           </div>
 
                         </div>
-                        <hr/>
+                        <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
                         {/*Start 5th tile */}
                         <div className="card">
                             {!!reviews.length && <div className="row" style={{padding:"0px"}}>
@@ -333,16 +333,16 @@ class DetailBusiness extends Component{
                                             <div className="row">
                                                 <div className="col-md-12 col-sm-12 col-xs-12">
                                                     <div className="col-md-3 col-sm-12 col-xs-12 " style={{paddingLeft:"0px" ,  paddingRight:"0px"}}><br/>
-                                                        <img 
-                                                           src={elem.userImg ? elem.userImg : "../images/images.jpg"} 
-                                                            className="image-circle" 
-                                                            alt="" width="100" height="100" 
+                                                        <img
+                                                           src={elem.userImg ? elem.userImg : "../images/images.jpg"}
+                                                            className="image-circle"
+                                                            alt="" width="100" height="100"
                                                             style={{cursor: 'pointer'}}
                                                             onClick={this.goToProfile.bind(this, elem.userId, elem.profileId)}
                                                         />
                                                     </div>
                                                     <div className="col-md-5"  style={{marginTop:"40px"}}>
-                                                        <h5 className="" 
+                                                        <h5 className=""
                                                             style={{margin:"0", cursor: 'pointer'}}
                                                             onClick={this.goToProfile.bind(this, elem.userId, elem.profileId)}
                                                         >{elem.name}</h5>
@@ -360,16 +360,16 @@ class DetailBusiness extends Component{
                                                     </div>
                                                 </div>
                                             </div>
-                                            <hr style={{marginTop:"-10px"}}/>                                            
+                                            <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
                                         </div>
                                     )
                                 })}
                             </div>}
                             {reviews.length > item && <div className="">
-                              <a className="btn btndetail-success" 
+                              <a className="btn btndetail-success"
                                 style={{display:"block", margin:"auto0"}}
                                 onClick={() => this.setState({item: item + 4})}>More</a>
-                            </div>}    
+                            </div>}
                             </div>
                         {/*End 5th tile */}
                       </div>
@@ -406,7 +406,7 @@ class DetailBusiness extends Component{
                           as you only pay for the time we are working. Take a moment to visualize...</p>
                         </div>
                         <div className="anchor">
-                          <span> Is this your business?<a href="">Claim it now </a> </span>
+                          {/*<span> Is this your business?<a href="">Claim it now </a> </span>*/}
                         </div>
                       </div>
                     </div>
@@ -415,10 +415,10 @@ class DetailBusiness extends Component{
                   <div className="row">
                       <div className="card">
                           <div className="card-body space">
-                              <div className="row">
+                              <div className="row" style={{marginTop:'-7%'}}>
                                   <div className="col-md-12 col-sm-12 col-xs-12">
-                                      <h3><b><a name="linkReview" className="black">Add Review</a></b></h3>
-                                      <hr/>
+                                      <h3><b><a name="linkReview" className="black" name="name_of_target">Add Review</a></b></h3>
+
                                   </div>
                               </div>
                               <div className="row">

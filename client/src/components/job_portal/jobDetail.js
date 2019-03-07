@@ -78,12 +78,13 @@ class JobDetail extends Component {
         return (
             <div>
                 <span>
-                    <div className ="" style={{marginTop : "60px",backgroundSize: 'cover'}}>
-                        <div className="background-image">
-                            <Burgermenu/>
-                            <Slider mainH1="Job Portal" mainH2="Find your jobs here"/>
-                        </div>
+                <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "102px",backgroundSize: 'cover'}}>
+                    <div className="visible-xs" style={{marginTop:'-119px'}}></div>
+                    <div className="background-image">
+                        <Burgermenu/>
+                        <Slider mainH1="Job Portal" mainH2="Find your jobs here"/>
                     </div>
+                </div>
                 </span>
 
                 <JobDetailpage data={data}/>

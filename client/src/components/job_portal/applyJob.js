@@ -70,7 +70,9 @@ class ApplyJob extends Component {
                 </div>
                 <CategoriesjobMarket filteringData={this.filteringData.bind(this)}/>
                 <Secondscreencard data={this.state.showJob} allData={this.getAllBusiness.bind(this)}/>
-                <Footer/>
+                <div>
+                  <Footer/>
+                </div>
             </div>
         )
     }

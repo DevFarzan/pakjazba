@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   Form, Select, InputNumber, Switch, Radio,
   Slider, Button, Upload, Icon, Rate, Input, Checkbox,
-  Row, Col,
+  Row, Col, Progress 
 } from 'antd';
 import { HttpUtils } from '../../../Services/HttpUtils';
 import sha1 from "sha1";
@@ -25,7 +25,8 @@ class UploadForm extends Component{
   constructor(props) {
         super(props);
       this.state = {
-        loader: false
+        loader: false,
+        percent: 0
       }
 
 }
@@ -64,6 +65,13 @@ handleProvinceChange = (value) => {
           'upload_preset':uploadPreset,
           'signature':signature
       }
+      var per = 0;
+      for(var i = 0; i <= 10; i++){
+        setTimeout(() => {
+          per += 10;
+          this.setState({ percent: per })
+        }, 1000)
+      }      
 
       return new Promise((res, rej) => {
           let uploadRequest = superagent.post(url)
@@ -84,6 +92,7 @@ handleProvinceChange = (value) => {
    e.preventDefault();
    this.props.form.validateFields((err, values) => {
      if (!err) {
+      this.setState({ loader: true })
        var arr = [],videoLink,imageLink;
        arr.push(
          values.uploadvideo[0],
@@ -237,6 +246,7 @@ handleProvinceChange = (value) => {
               </div>
               <div className="row">
                 <div className="col-md-12" style={{textAlign:'right'}}>
+                  {this.state.loader && <Progress type="circle" percent={this.state.percent} width={50} />}
                   <button className="btn btn-lg">Upload Video</button>
                 </div>
               </div>

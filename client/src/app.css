@@ -4,11 +4,25 @@
     /*font-family: 'Roboto Slab', serif;*/
 
 }
+.anticon-down{
+  color:black !important;
+}
+.ant-dropdown-link{
+  margin-top:-86% !important;
 
+}
 .ant-input-number-input{
   height: 23px !important;
 }
-
+hr {
+  display: block;
+  border: 0;
+  border-top: 1px solid rgb(55, 169, 155);
+  /* margin: 1em 0; */
+  /* padding: 0; */
+  width: 191px;
+  border-top-width:4px;
+}
 h1{
 font-family: 'Crimson Text', serif !important;
 
@@ -286,7 +300,8 @@ body{
 
 /*==========================profile_user=====================================*/
 .background_image{
-  background-image: url('/public/images/profile-sid.png')
+  background-image: url('/public/images/profile-sid.png');
+
 }
 .hero{
   z-index: 3;
@@ -1985,7 +2000,7 @@ color: #fff;
 
 .overlay-content {
   position:relative;
-  top: 25%;
+  top: 10%;
   width: 100%;
   text-align: center;
   margin-top: 30px;
@@ -2008,7 +2023,7 @@ color: #fff;
 
 .overlay .closebtn {
   position: absolute;
-  top: 20px;
+  top: 7px;
   right: 45px;
   font-size: 60px;
 }

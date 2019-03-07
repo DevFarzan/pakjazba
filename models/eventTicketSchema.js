@@ -17,7 +17,9 @@ var EventTicketSchema = new mongoose.Schema({
     total: {type:String},
     userId: {type:String},
     zipCode: {type:String},
-    posted: {type:String}
+    posted: {type:String},
+    selectSeat: {type: Boolean},
+    booked: {type: Array}
 });
 
 mongoose.model('EventTicketSchema',EventTicketSchema);

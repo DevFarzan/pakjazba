@@ -1,4 +1,4 @@
-.BCfilter{
+.BGfilter{
   background-color: whitesmoke;
   width:100%;
   margin-left: 10px;
@@ -8,7 +8,7 @@
   margin-left: inherit;
 }
 
-.BCfilter p{
+.BGfilter p{
 
   margin: 0;
   font-size: 18px;
@@ -16,7 +16,9 @@
 
 }
 
-
+#switchevent{
+  border-radius: 100px !important;
+}
 .ant-slider-handle {
     position: absolute;
     margin-left: -7px;

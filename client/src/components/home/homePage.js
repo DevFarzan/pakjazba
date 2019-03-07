@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import Footer from '../footer/footer'
+import Footer from '../footer/footer';
+import { Carousel,Icon } from 'antd';
 import Burgermenu from '../header/burgermenu';
 //import {HttpUtils} from "../../Services/HttpUtils";
 import { connect } from 'react-redux';
@@ -13,7 +14,7 @@ import './homePage.css';
 
 class HomePage extends Component{
   constructor(props) {
-      super(props)
+      super(props);
       this.state = {
         business:[],
         roomRenting:[],
@@ -22,13 +23,14 @@ class HomePage extends Component{
         event:[]
       };
   }
+
+
   componentDidMount(){
     this.marketplace();
   }
   async marketplace(){
     let req = await HttpUtils.get('marketplace');
     let marketPlace = req;
-    console.log(marketPlace,'marrrkkettttpppp');
     this.setState({
       business:marketPlace.business,
       buySell:marketPlace.busell,
@@ -42,7 +44,7 @@ class HomePage extends Component{
 
     return(
       <div className="">
-        <div className ="vissible-xs" style={{marginTop:'0',backgroundSize: 'cover'}}>
+        <div className="visible-xs" style={{marginTop:'-19px',backgroundSize: 'cover'}}>
             <div className="background-image">
                 <Burgermenu/>
             </div>
@@ -56,28 +58,42 @@ class HomePage extends Component{
             <div className="container" style={{width:"70%"}}>
               <SliderHome/>
                <div  className="">
-                 <h4 className="headingtext"> Business Listing </h4>
-                 <CarouselHome data={business}/>
+                 <h4 className="headingtext" style={{marginLeft:'-11px',marginTop:'-11%'}}> Business Listing </h4>
+                  <hr />
+                  <div style={{marginTop:'-5%'}}>
+                    <CarouselHome data={business} detail="businessData"/>
+                 </div>
+               </div>
+              <div className="">
+               <h4 className="headingtext" style={{marginLeft:'-11px',marginTop:'-15px'}}> Room Renting </h4>
+               <hr />
+               <div style={{marginTop:'-2%'}}>
+                  <CarouselHome data={roomRenting} detail='roomRentData'/>
+                </div>
                </div>
 
               <div className="">
-               <h4 className="headingtext"> Room Renting </h4>
-               <CarouselHome  data={roomRenting.slice(0, 3)}/>
-               </div>
-
-              <div className="">
-                <h4 className="headingtext"> Job Listing </h4>
-                <CarouselHome  data={jobPortal}/>
+                <h4 className="headingtext" style={{marginLeft:'-11px',marginTop:'-4%'}}> Job Listing </h4>
+                <hr/>
+                <div style={{marginTop:'13px'}}>
+                  <CarouselHome data={jobPortal} detail='jobListData'/>
+                </div>
               </div>
 
               <div className="">
-                <h4 className="headingtext">Buy & Sell </h4>
-                <CarouselHome  data={buySell}/>
+                <h4 className="headingtext" style={{marginLeft:'-11px',marginTop:'-4%'}}>Buy & Sell </h4>
+                <hr/>
+                <div style={{marginTop:'13px'}}>
+                  <CarouselHome data={buySell} detail='buySellData'/>
+                </div>
               </div>
 
               <div className="">
-                <h4 className="headingtext"> Events </h4>
-                 <CarouselHome  data={event}/>
+                <h4 className="headingtext" style={{marginLeft:'-11px',marginTop:'-4%'}}> Events </h4>
+                <hr/>
+                <div style={{marginTop:'-3%'}}>
+                 <CarouselHome data={event} detail='eventPortalData'/>
+                 </div>
               </div>
 
             </div>

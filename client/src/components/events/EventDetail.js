@@ -19,6 +19,7 @@ class EventDetail extends Component{
     async componentDidMount(){
         window.scrollTo(0,0);
         let data = this.props.location.state;
+        console.log(data, 'dataaaaaaaaa')
         if(data === undefined){
             await this.getDetail(this.props.match.params.value);
         }else {
@@ -67,7 +68,7 @@ class EventDetail extends Component{
                   <Burgermenu/>
                   </div>
                 </div>
-                <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}></div>
+                <div style={{width:"100%",height:"67px",marginTop:"-20px"}}></div>
                 <div className="row">
 
                 </div>

@@ -46,7 +46,6 @@ class Roomrenting1content extends Component{
 
     async getAllBusiness(){
         let res = await HttpUtils.get('marketplace')
-        console.log(res, 'pppppppppppppp')
         if(res.code === 200){
             this.setState({
                 roomrents: res.roomrentsdata ? res.roomrentsdata : [],
@@ -119,12 +118,17 @@ class Roomrenting1content extends Component{
         return(
             <section id="about">
                 {/*<!-- Top List start -->*/}
-                <div className="row">
+                {!this.state.loader && showroomrents.length == 0 && <div className="row">
+                    <div className="col-md-12 col-sm-12 col-xs-12">
+                        <h4 style={{margin:"0", textAlign: 'center'}}><b>No Room for rent</b> </h4>
+                    </div>
+                </div>}
+                {showroomrents.length > 0 && <div className="row">
                     <div className="col-md-12 col-sm-12 col-xs-12">
                         <h4 style={{margin:"0"}}><b>Top Available Buy</b> </h4>
                         <br/>
                     </div>
-                </div>
+                </div>}
                 <div className="" style={{margin:"-30px"}}>
                     <div className="row">
                         {/*<div className="col-md-3" onClick={() => {this.clickItem()}}>
@@ -156,7 +160,6 @@ class Roomrenting1content extends Component{
                         <Spin indicator={antIcon} />
                     </div>}
                     {(showroomrents.length >= 7) && !(showroomrents.length === roomrents.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>}
-
                 </div>
             </section>
         )

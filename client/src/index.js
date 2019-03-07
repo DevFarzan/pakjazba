@@ -9,6 +9,8 @@ import Favicon from 'react-favicon';
 
 //component
 import Home from './components/home/home1';
+import Privacy from './components/home/privacyPolicy';
+import TermOfServices from './components/home/termsofservices';
 import HomePage from './components/home/homePage';
 import Signin from './components/signin_seperate/signin';
 import Postbusiness from './components/business/postBusiness';
@@ -63,6 +65,7 @@ const initialState = {
 }
 
 function reducer(state = initialState, action){
+  console.log(action, 'actionnnnn')
     switch (action.type) {
         case 'SEARCHON':
             return {...state, text: action.inputValue}
@@ -85,7 +88,7 @@ ReactDOM.render(
 		<Provider store={createStoreWithMiddleware(reducer)}>
 			<BrowserRouter>
 				<div>
-                    <Favicon url="https://res.cloudinary.com/dxk0bmtei/image/upload/v1534159021/pakjazba_f3orb0.png" />
+          <Favicon url="https://res.cloudinary.com/dxk0bmtei/image/upload/v1534159021/pakjazba_f3orb0.png" />
 					<Route exact path="/" component={HomePage}></Route>
 					<Route path="/sigin" component={Signin}></Route>
 
@@ -136,7 +139,6 @@ ReactDOM.render(
           <Route path="/Forms_Ecommerce" component={EcomForms}></Route>
           {/*============Ecommerce=============*/}
 
-
           {/*=============Entertainment====================*/}
           <Route path="/entertainment_Home" component={EntertainmentHome}></Route>
           <Route path="/entertainment_Category/:value" component={EntCategory}></Route>
@@ -156,7 +158,8 @@ ReactDOM.render(
           <Route path="/user_profile" component={ProfileMain}></Route>
 
 					<Route path="/detail_blog" component={DetailBlog}></Route>
-
+          <Route path="/privacypolicy" component={Privacy}></Route>
+          <Route path="/termofservice" component={TermOfServices}></Route>
 
 
 					{/*<Route path="/detail_roomRent" component={DetailRoommates}></Route>

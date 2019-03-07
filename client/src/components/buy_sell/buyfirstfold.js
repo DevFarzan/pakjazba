@@ -43,7 +43,7 @@ class Firstfold extends Component{
                     </div>
                 </div>
                 <div className="row" style={{padding:'0px'}}>
-                    <div className="col-md-4 col-sm-3 col-xs-12" style={{marginRight:'-30px'}} onClick={this.category}>
+                    <div className="col-md-4 col-sm-4 col-xs-12" style={{marginRight:'-30px'}} onClick={this.category}>
                         <div style={{border:'1px solid black',padding:'6px'}}>
                             <i className="fa fa-car margin_right_c"></i>
                             <span className="margin_right_c">Motors</span>
@@ -59,7 +59,7 @@ class Firstfold extends Component{
                         </ul>
                         </div>}
                     </div>
-                    <div className="col-md-4 col-sm-3 col-xs-12" style={{marginRight:'-30px'}} onClick={this.category}>
+                    <div className="col-md-4 col-sm-4 col-xs-12" style={{marginRight:'-30px'}} onClick={this.category}>
                         <div style={{border:'1px solid black',padding:'6px'}}>
                             <i className="fa fa-tv margin_right_c"></i>
                             <span className="margin_right_c">Fashion</span>
@@ -70,11 +70,12 @@ class Firstfold extends Component{
                             <li className="color_b"><span>Bath & Body</span></li>
                             <li className="color_b"><span>Luxury Handbags </span></li>
                             <li className="color_b"><span>Health Care </span></li>
-                            <li className="color_b"><span>Diamond Jewelry and Loose Diamonds </span></li>
+                            <li className="color_b"><span>Diamond Jewelry</span></li>
+                            <li className="color_b"><span>Loose Diamonds</span></li>
                         </ul>
                         </div>}
                     </div>
-                    <div className="col-md-4 col-sm-3 col-xs-12" onClick={this.category}>
+                    <div className="col-md-4 col-sm-4 col-xs-12" onClick={this.category}>
                         <div style={{border:'1px solid black',padding:'6px'}}>
                             <i className="fa fa-black-tie margin_right_c"></i>
                             <span className="margin_right_c">Electronics</span>
@@ -92,7 +93,7 @@ class Firstfold extends Component{
                     </div>
                 </div>
                 <div className="row" style={{padding:'0px'}}>
-                    <div className="col-md-4 col-sm-3 col-xs-12" style={{marginRight:'-30px'}} onClick={this.category}>
+                    <div className="col-md-4 col-sm-4 col-xs-12" style={{marginRight:'-30px'}} onClick={this.category}>
                         <div style={{border:'1px solid black',padding:'6px'}}>
                             <i className="fa fa-home margin_right_c"></i>
                             <span className="margin_right_c">Home</span>
@@ -110,8 +111,8 @@ class Firstfold extends Component{
                         </ul>
                         </div>}
                     </div>
-                    <div className="col-md-4 col-sm-3 col-xs-12" style={{marginRight:'-30px'}} onClick={this.category}>
-                        <div style={{border:'1px solid black',padding:'6px'}}>
+                    <div className="col-md-4 col-sm-4 col-xs-12" style={{marginRight:'-30px'}} onClick={this.category}>
+                        <div style={{border:'1px solid black',padding:'10px'}}>
                             <i className="fa fa-futbol margin_right_c"></i>
                             <span className="margin_right_c">Garden</span>
                             <span className="fa fa-chevrson-circle-down visible-xs" onClick={this.dropDown.bind(this, 'garden')} style={{float:'right',fontSize:'27px'}}></span>
@@ -128,7 +129,7 @@ class Firstfold extends Component{
                         </ul>
                         </div>}
                     </div>
-                    <div className="col-md-4 col-sm-3 col-xs-12" onClick={this.category}>
+                    <div className="col-md-4 col-sm-4 col-xs-12" onClick={this.category}>
                         <div style={{border:'1px solid black',padding:'6px'}}>
                             <i className="fa fa-pagelines margin_right_c"></i>
                             <span className="margin_right_c">Toys</span>

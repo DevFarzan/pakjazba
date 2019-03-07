@@ -175,7 +175,6 @@ class FeaturedBox extends Component{
         if(goForward){
             return <Redirect to={{pathname: `/postad_jobPortal`}} />
         }
-        console.log(showJob)
 
         return(
             <div className="container" style={{width:"70%"}}>
@@ -192,7 +191,8 @@ class FeaturedBox extends Component{
                   </div>
                 </div>
               </div>
-                <h2 className="font-style" style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}>Featured Jobs </h2>
+                {!this.state.loader && showJob == 0 && <h2 className="font-style" style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}>No jobs available</h2>}
+                {showJob > 0 && <h2 className="font-style" style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}>Featured Jobs </h2>}
                 <div className="row">
                     {/*<div className="col-md-3" onClick={() => {this.addJob()}}>
                         <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '380px', width: '90%',borderRadius:'16px'}}/>

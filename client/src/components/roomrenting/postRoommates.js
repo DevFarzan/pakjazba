@@ -479,7 +479,7 @@ class Postroommates extends Component{
         if(isNaN(value)){
             callback('Please type Numbers');
         }else {
-            callback()    
+            callback()
         }
     }
 
@@ -543,7 +543,7 @@ class Postroommates extends Component{
         return(
             <div>
                 <Burgermenu/>
-                <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}></div>
+                <div className="hidden-xs" style={{width:"100%",height:"67px",marginTop:"3px"}}></div>
                 <div className="">
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="panel-group" style={{paddingTop:"32px"}}>

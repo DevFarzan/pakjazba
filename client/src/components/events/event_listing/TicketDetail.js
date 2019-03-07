@@ -4,7 +4,6 @@ import Footer from '../../footer/footer';
 import Slider from '../../header/Slider';
 import TicketFirst from '../event_listing/FirstCard';
 import TicketSecond from '../event_listing/SecondCard';
-import {HttpUtils} from "../../../Services/HttpUtils";
 import { Icon } from 'antd';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -13,11 +12,15 @@ import moment from 'moment';
 const QRCode = require('qrcode.react');
 
 class TicketDetail extends Component{
-    async componentDidMount(){
-        let objData = this.props.location.state;
-        let req = await HttpUtils.post('eventTicket', objData)
-        this.setState({receivedData: req})
-    }
+    // async componentDidMount(){
+    //     console.log(this.props.location.state, 'dataaaaaa')
+    //     const { data, obj, booked } = this.props.location.state;
+    //     let sendObj = {obj: {...obj, ...{eventId: data._id}, booked}, data},
+    //     req = await HttpUtils.post('eventTicket', sendObj);
+    //     console.log(sendObj, 'sendObj')
+    //     console.log(req, 'reqqqqqqqqqq')
+    //     this.setState({receivedData: req});
+    // }
 
     componentWillUnmount(){
         let data = this.props.location.state;
@@ -47,6 +50,14 @@ class TicketDetail extends Component{
         let str = data.obj.total.substring(0, calIndex);
         let res = +data.obj.total - +str;
         let strForURL = data.obj.firstName + ' ' + data.obj.lastName + ' Order no. ' + data.obj.docId;
+        let totalPrice = 0;
+        data.booked.map((elem) => {
+            totalPrice += elem.pay
+        });
+        let webSiteRate = totalPrice > 0 ? (1*100/totalPrice).toFixed(2) : 0.00,
+        stripeRate = totalPrice > 0 ? (2.9*100/totalPrice).toFixed(2) : 0.00,
+        resToFixed = (+totalPrice + +webSiteRate + +stripeRate).toFixed(2);
+        console.log(data, 'objjjjjjjjjjjj')
         return(
             <div className="" style={{marginTop:"100px"}}>
                 <Burgermenu />
@@ -77,8 +88,10 @@ class TicketDetail extends Component{
                                 <div className="col-md-10 col-sm-12" style={{border: '1px solid #D3D3D3', marginTop: '-20px'}}>
                                     <div className="col-md-8" style={{marginTop: '10px'}}>
                                         <h3>{data.data.eventTitle}</h3>
-                                        {data.data.earlyBird && <h3> Early Bird $ {data.data.earlyBirdPrice} </h3>}
-                                        {data.data.normalTicket && <h3> Normal Ticket $ {data.data.normalTicketPrice} </h3>}
+                                        {data.booked.length == 0 && data.data.earlyBird && <h3> Early Bird $ {data.data.earlyBirdPrice} </h3>}
+                                        {data.booked.length == 0 && data.data.normalTicket && <h3> Normal Ticket $ {data.data.normalTicketPrice} </h3>}
+                                        {data.booked.length > 0 && data.booked.map((elem) => <h5>{Object.values(elem).slice(0, 2).join(", ")}</h5>)}
+                                        <h5><b>Ticket Quantity {data.booked.length > 0 ? data.booked.length : +data.obj.nTicketVal + +data.obj.eBirdVal}</b></h5>                         
                                         <p style={{marginTop:"35px"}}>{data.data.address}</p>
                                         <p style={{marginTop:"-10px"}}>{eventDayTime}</p>
                                         <div className="row" style={{marginLeft:"-25px"}}>
@@ -88,7 +101,8 @@ class TicketDetail extends Component{
                                                 <p style={{marginTop:"-25px"}}>{userDetail}</p>
                                             </div>
                                             <div className="col-md-5">
-                                                <h3>{(data.data.earlyBird || data.data.normalTicket) ? 'Vat $' + res.toFixed(2) : 'Free' }</h3>
+                                                {data.booked.length == 0 && <h3>{(data.data.earlyBird || data.data.normalTicket) ? 'Vat $' + +data.obj.total : 'Free' }</h3>}
+                                                {data.booked.length > 0 && <h3>{'Vat $' + resToFixed}</h3>}
                                                 <p style={{marginTop:"-15px", color:"darkgray"}}> Name </p>
                                                 <p style={{marginTop:"-25px"}}>{data.obj.firstName + ' ' + data.obj.lastName}</p>
                                             </div>

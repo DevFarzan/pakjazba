@@ -6,6 +6,7 @@ import moment from 'moment';
 import { Carousel, Rate, notification, Icon, Spin, Modal } from 'antd';
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
+import AsyncStorage from "@callstack/async-storage/lib/index";
 // import FbImageLibrary from '../../lib/react-fb-image-grid'
 
 class DetailBusiness extends Component{
@@ -25,7 +26,7 @@ class DetailBusiness extends Component{
             loader: false,
             goProfile: false,
             previewVisible: false,
-            item: 2
+            item: 4
         }
     }
 
@@ -41,8 +42,24 @@ class DetailBusiness extends Component{
                 isData : true,
                 data : data
             })
-            this.getReviews(data)
+            this.getReviews(data);
+            this.handleLocalStorage();
         }
+    }
+
+     handleLocalStorage = () =>{
+        AsyncStorage.getItem('user')
+            .then((obj) => {
+                let userObj = JSON.parse(obj)
+                if(!!userObj) {
+                    this.setState({
+                        userId: userObj._id,
+                        profileId: userObj.profileId,
+                        userImg: userObj.userImage,
+                        userName: userObj.name
+                    })
+                }
+            })
     }
 
     async getReviews(data){
@@ -70,14 +87,17 @@ class DetailBusiness extends Component{
 
     async submitReview(){
         this.setState({loader: true})
-        let { name1, email1, msg1, star, reviews, data } = this.state;
+        let { name1, email1, msg1, star, reviews, data, userId, profileId, userImg } = this.state;
         let obj = {
             objId: data._id,
             name : name1,
             email: email1,
             message: msg1,
             star,
-            written: moment().format('LL')
+            written: moment().format('LL'),
+            userId,
+            profileId,
+            userImg
         }
         let res = await HttpUtils.post('reviews', obj)
         reviews.push(obj)
@@ -125,8 +145,12 @@ class DetailBusiness extends Component{
         }
     }
 
-    goToProfile(){
-        this.setState({goProfile : true})
+    // goToProfile(){
+    //     this.setState({goProfile : true})
+    // }
+
+    goToProfile = (reviewUserId, reviewProfileId) => {
+        this.setState({goProfile : true, reviewUserId, reviewProfileId})
     }
 
     handleCancel = () => {
@@ -134,7 +158,7 @@ class DetailBusiness extends Component{
     }
 
     render(){
-        const { isData, data, reviews, goProfile, previewVisible, previewImage, item } = this.state,
+        const { isData, data, reviews, goProfile, previewVisible, previewImage, item, reviewUserId, reviewProfileId } = this.state,
         hide = true,
         antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;    
         let images = data.businessImages || data.arr_url;
@@ -144,7 +168,7 @@ class DetailBusiness extends Component{
         }
 
         if(goProfile){
-            return <Redirect to={{pathname: '/profile_userDetail', state: {userId: data.user_id, profileId: data.profileId}}}/>
+            return <Redirect to={{pathname: '/profile_userDetail', state: {userId: reviewUserId, profileId: reviewProfileId}}}/>
         }
 
         return(
@@ -309,10 +333,19 @@ class DetailBusiness extends Component{
                                             <div className="row">
                                                 <div className="col-md-12 col-sm-12 col-xs-12">
                                                     <div className="col-md-3 col-sm-12 col-xs-12 " style={{paddingLeft:"0px" ,  paddingRight:"0px"}}><br/>
-                                                        <img src="../images/images.jpg" className="image-circle" alt="" width="100" height="100" />
+                                                        <img 
+                                                           src={elem.userImg ? elem.userImg : "../images/images.jpg"} 
+                                                            className="image-circle" 
+                                                            alt="" width="100" height="100" 
+                                                            style={{cursor: 'pointer'}}
+                                                            onClick={this.goToProfile.bind(this, elem.userId, elem.profileId)}
+                                                        />
                                                     </div>
                                                     <div className="col-md-5"  style={{marginTop:"40px"}}>
-                                                          <h5 className="" style={{margin:"0"}}>{elem.name}</h5>
+                                                        <h5 className="" 
+                                                            style={{margin:"0", cursor: 'pointer'}}
+                                                            onClick={this.goToProfile.bind(this, elem.userId, elem.profileId)}
+                                                        >{elem.name}</h5>
                                                         <Rate disabled allowHalf value={elem.star} />
                                                     </div>
                                                     <div className="col-md-4 col-sm-12 col-xs-12" style={{marginTop:"40px"}}>
@@ -335,7 +368,7 @@ class DetailBusiness extends Component{
                             {reviews.length > item && <div className="">
                               <a className="btn btndetail-success" 
                                 style={{display:"block", margin:"auto0"}}
-                                onClick={() => this.setState({item: item + 3})}>More</a>
+                                onClick={() => this.setState({item: item + 4})}>More</a>
                             </div>}    
                             </div>
                         {/*End 5th tile */}

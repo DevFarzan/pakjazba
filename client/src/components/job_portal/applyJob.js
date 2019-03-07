@@ -13,6 +13,7 @@ import {
 import App from '../../App';
 import Secondscreencard from './Secondscreenjob';
 import JobNews from './Rssforjob';
+import Footer from '../footer/footer';
 import CategoriesjobMarket from './CategoriesJobs';
 import {HttpUtils} from "../../Services/HttpUtils";
 import { connect } from 'react-redux';
@@ -44,9 +45,9 @@ class ApplyJob extends Component {
         const { job } = this.state;
         let data = job.filter((elem) => {
             if(typeof(e) === 'string'){
-                return (elem.jobCat.toLowerCase().includes(e.toLowerCase()))                
+                return (elem.jobCat.toLowerCase().includes(e.toLowerCase()))
             }else {
-                return (elem.jobCat.toLowerCase().includes(e.cat.toLowerCase())) || 
+                return (elem.jobCat.toLowerCase().includes(e.cat.toLowerCase())) ||
                     (elem.jobType.toLowerCase().includes(e.typeR.toLowerCase()))
             }
         })
@@ -60,15 +61,16 @@ class ApplyJob extends Component {
         return (
             <div>
                 <App/>
-                <div className="row jobdetail-page">
+                <div className="row jobdetail-page" style={{marginTop:'6%'}}>
                   <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>
-                    <div className="">
+                    {/*<div className="">
                       <h1 style={{fontFamily: 'Work Sans, sans-serif', fontWeight:"bold"}}>JOBS</h1>
-                    </div>
+                    </div>*/}
                   </div>
                 </div>
                 <CategoriesjobMarket filteringData={this.filteringData.bind(this)}/>
                 <Secondscreencard data={this.state.showJob} allData={this.getAllBusiness.bind(this)}/>
+                <Footer/>
             </div>
         )
     }

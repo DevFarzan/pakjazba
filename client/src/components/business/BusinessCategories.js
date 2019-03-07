@@ -21,7 +21,7 @@ class BusinessCategory extends Component{
         return(
             <div className="container" style={{width:"70%"}}>
                 <div className="row">
-                    <h1 className="headingtext"> Browse Businessess by Category </h1>
+                    <h1 className="headingtext" style={{fontWeight:'bold'}}> Browse Businessess by Category </h1>
                     <div className="col-lg-3 col-md-3 col-sm-4 col-xs-6" onClick={() => {this.clickItem('resturants')}} style={{cursor:'pointer'}}>
                         <div className="wrimagecard wrimagecard-topimage">
                         <div className="wrimagecard-topimage_header">

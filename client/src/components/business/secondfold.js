@@ -190,7 +190,7 @@ class Secondfold extends Component{
                 <h1 className="headingtext">No Business to show</h1>
             </div>}
             <div className="secondfold">
-                {!text && showBusiness.length > 0 && <h1 className="headingtext"> Find the Best Business </h1>}
+                {!text && showBusiness.length > 0 && <h1 className="headingtext" style={{color:'black',margin: '0px', fontFamily: 'Source Sans Pro, sans-serif',fontWeight:'bold'}}> Find the Best Business </h1>}
                     {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
                     {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
                     {text && !!filteredArr.length === false && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}

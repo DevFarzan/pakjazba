@@ -1,7 +1,7 @@
 import { AsyncStorage } from '@callstack/async-storage'
 
-//const BASE_URL = 'http://localhost:5000/api';
- const BASE_URL = 'https://pure-hollows-17968.herokuapp.com/api';
+const BASE_URL = 'http://localhost:5000/api';
+ //const BASE_URL = 'https://pure-hollows-17968.herokuapp.com/api';
 
 
 const headersFor = (token) => {

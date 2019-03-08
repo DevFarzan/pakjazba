@@ -194,7 +194,7 @@ class Forthfold extends Component{
                         return (
                             <div className="col-md-3 col-sm-4 col-xs-12" onClick={() => {this.goToProfile(1, elem)}} style={{cursor:'pointer'}}>
                                 <img alt='' src={elem.images.length ? elem.images[0] : './images/def_card_img.jpg'} style={{width:'100%',height:'200px'}} />
-                                <p>Rs.{!elem.hideprice ? '$' + elem.price : 'Hide'}
+                                <p style={{color:"black"}}>{!elem.hideprice ? '$' + elem.price : 'Hide'}
                                 <br/><b>{elem.modelname}</b>
                                 <br/>{elem.address},{elem.state}</p>
                             </div>

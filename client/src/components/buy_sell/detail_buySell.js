@@ -56,7 +56,7 @@ class DetailBuySell extends Component{
                     </div>
                 </span>
                 <div className="hidden-xs">
-                  <div className='container' style={{width:"70%",textAlign:'center'}}>
+                  <div className='container' style={{width:"60%",textAlign:'center', marginTop:"15px"}}>
                       <Buydetailfirstfold data={data}/>
                   </div>
                 </div>

@@ -27,7 +27,7 @@ class VideoDetail extends Component{
 
     nextVideo(el){
         const { data, dispatch } = this.props;
-        let { showDetail } = this.state, 
+        let { showDetail } = this.state,
         name = el.id || el.elem.id,
         elem = el.elem || el,
         entertainment = data.entertainment,
@@ -39,7 +39,7 @@ class VideoDetail extends Component{
 
   render(){
     const { data } = this.props,
-    { showDetail } = this.state; 
+    { showDetail } = this.state;
     let video = data.elem || data.final1 || data.final2 || data.final3 || data.news1,
     { news, sports } = data.entertainment,
     detail = data.arr || data.detail || data.news || data.sports || data.movies || data.dramas,
@@ -110,7 +110,7 @@ class VideoDetail extends Component{
                     <div className="col-md-10 col-sm-6 col-sm-offset-3">
                         <div id="imaginary_container">
                             <div className="input-group stylish-input-group">
-                                <input type="text" className="form-control"  placeholder="Add a comment" />
+                                <input type="text" className="form-control"  placeholder="Add a comment"  style={{width:"100%"}}/>
                                 <span className="input-group-addon">
                                   <div className="text-center text-md-left">
                                       <a className="btn button_custom" style={{width:"110%"}}>Send</a>

@@ -37,12 +37,12 @@ class UploadFunction extends Component{
       <div className="row">
         <div className="col-md-8">
           <div className="uploadingcard">
-            <div>
+            <div className="ard-body text-center mt-4">
             <h4 style={{textAlign:"center"}}>Upload Your Video</h4>
-              <span className="addvalue">
-                <i class="fa fa-plus-square-o" style={{fontSize:"100px"}}></i>
-              </span>
-              <span className="modalform" style={{marginTop:"100px"}}>
+              <p>
+                <i class="fa fa-plus-square-o" style={{fontSize:"100px", padding:"0", width:"0", marginLeft:"-75px"}}></i>
+              </p>
+              <span className="modalform" style={{marginTop:"100px", padding:"0"}}>
 
               <Button type="primary" onClick={this.showModal}>
                 Upload Video

@@ -91,7 +91,7 @@ class DateCard extends Component{
         return(
           <div>
             <TicketTabs/>
-            <div className="container widthmobile">
+            <a name="ticketsection"><div className="container widthmobile">
               <h3 style={{fontWeight:"bold",fontFamily: 'Crimson Text, sans-serif',marginTop:'11px'}}><a name="headline1" style={{color: "black"}}>Ticket Information</a></h3>
                 {(earlyBird || normalTicket) &&<div className="ticketbuy">
                   <div className="row" style={{padding:"0"}}>
@@ -142,7 +142,7 @@ class DateCard extends Component{
                     </div>
                     <div className="col-md-3 col-xs-6">
                     <div className="text-center text-md-left" onClick={() => {this.purchaseTicket()}}>
-                        <a className="btn button_custom" style={{width: "80%", marginTop:"10px", marginLeft:"-58px"}}>{earlyBird || normalTicket ? 'Purchase Ticket' : 'Collect Ticket'}</a>
+                        <a className="btn button_custom" style={{width: "100%", marginTop:"10px", marginLeft:"-58px"}}>{earlyBird || normalTicket ? 'Purchase Ticket' : 'Collect Ticket'}</a>
                     </div>
                     </div>
                   </div>
@@ -160,7 +160,7 @@ class DateCard extends Component{
                     </div>
                 </Modal>}
 
-                <div className="">
+                <a name="headline2"><div className="">
                   <h3 style={{fontWeight:"bold",fontFamily: 'Crimson Text, sans-serif',marginTop:'11px'}}><a name="headline2" style={{color: "black"}}>Event Detail</a></h3>
                   <div className="ticketbuy" style={{textAlign:"center"}}>
 
@@ -177,7 +177,7 @@ class DateCard extends Component{
 
                       </div>
                   </div>
-                </div>
+                </div></a>
 
                 <div className="">
                   <h3 style={{fontWeight:"bold",fontFamily: 'Crimson Text, sans-serif',marginTop:'11px'}}><a name="headline3" style={{color: "black"}}>Terms And Conditions</a></h3>
@@ -266,7 +266,7 @@ class DateCard extends Component{
                         </div>
                     </div>
                 </div>*/}
-            </div>
+            </div></a>
           </div>
         )
     }

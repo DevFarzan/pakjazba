@@ -63,11 +63,12 @@ class EventDetail extends Component{
 
         return(
           <div>
-            <div className ="" style={{"backgroundImage":"url('../images/bgc-images/events.png')", marginTop : "105px",backgroundSize: 'cover'}}>
+          <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "102px",backgroundSize: 'cover'}}>
+              <div className="visible-xs" style={{marginTop:'-119px'}}></div>
               <div className="background-image">
                   <Burgermenu/>
-                  </div>
-                </div>
+              </div>
+          </div>
 
                 <EdetailFirstfold data={data}/>
                 <Footer/>

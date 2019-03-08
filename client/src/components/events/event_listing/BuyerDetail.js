@@ -35,8 +35,8 @@ class BuyerDetail extends Component{
         const { booked } = this.props.location.state !== undefined ? this.props.location.state || this.props.location.state.data : [];
         let { data } = this.props.location.state !== undefined ? this.props.location.state.data || this.props.location.state : this.props.otherData;
         if(booked !== undefined && booked.length > 0){
-            this.setState({ booked });            
-        }        
+            this.setState({ booked });
+        }
     }
 
     componentWillUnmount(){
@@ -112,9 +112,13 @@ class BuyerDetail extends Component{
 
         return(
             <div className="">
-                <Burgermenu/>
-                <div style={{width:"100%",height:"67px",marginTop:"-20px"}}>
+            <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "102px",backgroundSize: 'cover'}}>
+                <div className="visible-xs" style={{marginTop:'-119px'}}></div>
+                <div className="background-image">
+                    <Burgermenu/>
+
                 </div>
+            </div>
                 <div className="col-md-8" style={{marginTop: '70px'}}>
                     {data.map && <button style={{textAlign: 'center', width:"40%"}} className=" col-md-offset-7 btn button_custom" onClick={this.selectSeat}>I want to select my seat</button>}
                     <ContactDetail
@@ -131,7 +135,7 @@ class BuyerDetail extends Component{
                     <TermsandConditions/>
                     <div className="row center_global row">
                         {this.state.loader && <Spin indicator={antIcon} />}
-                        <button disabled={!!this.state.loader} style={{textAlign: 'center', width:"45%"}} className="btn button_custom"  onClick={this.onClick}>Submit Event</button>
+                        <button disabled={!!this.state.loader} style={{textAlign: 'center', width:"45%"}} className="btn button_custom"  onClick={this.onClick}>Submit</button>
                     </div>
                 </div>
                 <div className="col-md-4 hidden-xs hidden-sm" style={{marginTop: '50px'}}>
@@ -142,6 +146,9 @@ class BuyerDetail extends Component{
                     {data.map && <MapOrderCard
                         booked={booked}
                     />}
+                </div>
+                <div>
+                  
                 </div>
             </div>
         );

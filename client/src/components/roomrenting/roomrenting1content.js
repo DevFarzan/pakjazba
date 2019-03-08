@@ -45,14 +45,36 @@ class Roomrenting1content extends Component{
     }
 
     async getAllBusiness(){
-        let res = await HttpUtils.get('marketplace')
-        if(res.code === 200){
+        let res = await HttpUtils.get('marketplace'),
+        req = await HttpUtils.get('getreviews'),
+        roomrents = [];
+        if(res && res.code && res.code == 200 && req && req.code && req.code === 200){
+            roomrents = this.addingStarProp(res.roomrentsdata, req.content);
             this.setState({
-                roomrents: res.roomrentsdata ? res.roomrentsdata : [],
-                showroomrents: res.roomrentsdata ? res.roomrentsdata.slice(0, 7) : [],
+                roomrents,
+                showroomrents: roomrents.slice(0, 7),
                 loader: false
-            })
-          }
+            });
+
+        }
+    }
+
+    addingStarProp(arrforLoop, rateArr){
+        return arrforLoop && arrforLoop.map((elem) => {
+            let rate = 0,
+            len = 0;
+            rateArr && rateArr.map((el) => {                    
+                if(elem._id == el.objid){
+                    rate += el.star ? +el.star : 0;
+                    len++
+                }
+            });
+            let star = rate / len;
+            if(rate > 0 && len > 0){
+                return {...elem, ...{star: star.toFixed(1)}};
+            }
+            return {...elem, ...{star: 0}};
+        });
     }
 
     funcIndexes(page){
@@ -113,7 +135,6 @@ class Roomrenting1content extends Component{
     render(){
         const { showroomrents, filteredArr, roomrents, goForLogin, goDetail } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
-        console.log(showroomrents,'fullarrayroomrentttt');
 
         return(
             <section id="about">
@@ -145,12 +166,12 @@ class Roomrenting1content extends Component{
                                 <Link key={key} to={{pathname: `/detail_roomRent`, state: elem}}>
                                     <div className="col-md-3 col-sm-4 col-xs-12">
                                         <img src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'} class="img-responsive list_img" />
-                                        <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}>{elem.postingtitle}</p>
+                                        <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}>{elem.postingtitle.slice(0, 23)}{elem.postingtitle.length > 22 ? '...' : ''}</p>
                                         <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}><b>{str}</b>
                                             {/*<br/><b>{elem.contactname}</b>*/}
-                                            <br/>{'$' + elem.rent + ' ' + elem.pricemode}</p>
-                                            <span>
-                                            <Rate disabled style={{paddingBottom: '20px', marginTop:"-20px",fontFamily: 'Source Sans Pro, sans-serif'}} allowHalf value={elem.star}/> 5.0 </span>
+                                        <br/>{'$' + elem.rent + ' ' + elem.pricemode}</p>
+                                        <span><Rate disabled style={{paddingBottom: '20px', marginTop:"-20px",fontFamily: 'Source Sans Pro, sans-serif'}} allowHalf value={elem.star}/>
+                                        {elem.star}</span>
                                     </div>
                                 </Link>
                             )

@@ -39,9 +39,9 @@ class BussinesCard extends Component{
                             <span>
                                 <Rate disabled 
                                     style={{paddingBottom: '20px', marginTop:"-10px"}} 
-                                    allowHalf value={5}
+                                    allowHalf value={cardDetails.star}
                                 />
-                                5.0 
+                                {cardDetails.star} 
                             </span>
                             <p style={{marginTop:"-15px"}}>
                                 <span className="glyphicon glyphicon-map-marker" 
@@ -63,7 +63,7 @@ class BussinesCard extends Component{
                                     style={{paddingBottom: '20px', marginTop:"-20px",fontFamily: 'Source Sans Pro, sans-serif'}} 
                                     allowHalf value={cardDetails.star}
                                 /> 
-                                5.0     
+                                {cardDetails.star}     
                             </span>
                         </span>}
                         {detail == 'jobListData' && <span>

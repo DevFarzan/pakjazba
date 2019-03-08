@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Cascader, Pagination, Slider, Spin, Icon } from 'antd';
+import { Cascader, Pagination, Slider, Spin, Icon, Rate } from 'antd';
 import Burgermenu from '../header/burgermenu'
 import "./roomrenting2content.css";
 import {Link, BrowserRouter} from "react-router-dom";
@@ -437,14 +437,9 @@ class Roomrentingtwocontentarea extends Component{
                                                 <img src={elem.imageurl.length ? elem.imageurl[0] : "../images/room icon/home_option3.jpg"} class="img-responsive list_img" />
                                                 <p style={{color: 'black'}}>{str}
                                                     <br/><b>{elem.contactname}</b>
-                                                    <br/>{'$' + elem.rent + ' ' + elem.pricemode}</p>
-                                                      <div style={{marginTop:'-34px'}}>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                        <span class="fa fa-star"></span>
-                                                    </div>
+                                                    <br/>{'$' + elem.rent + ' ' + elem.pricemode}
+                                                </p>
+                                                <span><Rate disabled style={{paddingBottom: '20px', marginTop:"-20px",fontFamily: 'Source Sans Pro, sans-serif'}} allowHalf value={elem.star}/>{elem.star}</span>      
                                             </div>
                                         </div>
                                     </div>

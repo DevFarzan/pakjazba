@@ -43,7 +43,7 @@ class EdetailFirstfold extends Component{
                           <p> Ticket range: $42 - $540</p>*/}
                         </span>
                         <div className="text-center text-md-left">
-                            <a className="btn clickbutton" style={{width: "70%", marginTop:"15px", marginLeft:"-55px"}}>Click Here</a>
+                            <a className="btn clickbutton" href="#ticketsection" style={{width: "70%", marginTop:"15px", marginLeft:"-55px"}}>Buy Ticket</a>
                         </div>
                       </div>
 

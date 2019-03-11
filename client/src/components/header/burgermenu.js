@@ -59,9 +59,9 @@ state = {
                                   <span className="icon-bar"></span>
                                   <span className="icon-bar"></span>
                               </button>
-                                  <Link to={`/`} className="navbar-brand hidden-sm">
-                                      <img alt='' src="../images/pakjazba_new.png" style={{"width": "100%",marginTop: "32px",marginLeft:'35%'}} />
-                                  </Link>
+                                  <p onClick={() => this.renderList('')} className="navbar-brand hidden-sm">
+                                      <img alt='' src="../images/pakjazba_new.png" style={{"width": "100%",marginTop: "32px",marginLeft:'35%', cursor: 'pointer'}} />
+                                  </p>
                                   <Link to={`/`} className="navbar-brand visible-sm">
                                       <img alt='' src="../images/pakjazba_new.png" style={{"width": "100%",marginTop: "8px"}} />
                                   </Link>

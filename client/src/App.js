@@ -39,6 +39,7 @@ class App extends Component {
     // };
 
     render() {
+        console.log(this.props, 'paramssssssss')
         const hide=true;
         return (
             <div >

@@ -47,6 +47,9 @@ class VideoDetail extends Component{
     if(description.length > 75){
         description = description.slice(0, 75)
     }
+    console.log(video.embed_url, 'urlllllll')
+    let URL = 'https' + video.embed_url.slice(4, video.embed_url.length)
+    console.log(URL, 'urlllllll')
 
     return(
       <div className="container" style={{width:"75%", marginTop:"145px"}}>
@@ -56,7 +59,7 @@ class VideoDetail extends Component{
               <h6> DRAMA</h6>
               <h4 className="h4">{description}</h4>
               <div className="videotag">
-                <iframe frameBorder="0" width="100%" height="400" src={video.embed_url} allowFullScreen allow="autoplay"></iframe>
+                <iframe frameBorder="0" width="100%" height="400" src={URL} allowFullScreen allow="autoplay"></iframe>
                 <div>
                   <a className="socialbox facebook" href="https://www.facebook.com/cghubs">
                     <div className="social-icon">

@@ -106,14 +106,9 @@ render(){
         <div style={{width:"100%",height:"67px",marginTop:"100px"}}>
         </div>
         <div className="container" style={{width:"70%"}}>
-          <div className="row">
-            <div className="col-md-8">
-              <UploadFunction onLoader={this.setLoader}/>
-            </div>
-            <div className="col-md-4">
 
-            </div>
-          </div>
+              <UploadFunction onLoader={this.setLoader}/>
+        
 
 
         <div className="row">

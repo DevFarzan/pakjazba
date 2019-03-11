@@ -3,9 +3,10 @@ import './burgermenu.css';
 import MainLogin from '../header/mainLogin';
 import Category from '../header/getcategory';
 import EHeader from '../entertainment/entertainmenthome/entertainmentHeader';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Menu, Icon, Button } from 'antd';
-
+import {connect} from "react-redux";
+import { Redirect } from 'react-router';
 
 const SubMenu = Menu.SubMenu;
 
@@ -26,13 +27,30 @@ state = {
   closeNav = () =>{
     document.getElementById("myNav").style.width = "0%";
   }
+
+  renderList = e => {
+      console.log(this.props, 'propsssss')
+      let str = this.props.match.path,
+      path = str.slice(str.indexOf('/')+1, str.length);
+      console.log(path, 'pathhhhhhhh')
+      if(path !== e){
+        this.props.dispatch({type: 'GOROUTE', route: true});
+        // this.props.history.push(`/market_roommates`);
+        this.setState({ selectRoute: true, route: e });
+      }
+  }
+
   render(){
     //const hidemenu = false;
+      const { selectRoute, route } = this.state;
+      if(selectRoute) {
+          return <Redirect to={`/${route}`} />
+      }
       return(
           <div>
               <nav className="navbar navbar-fixed-top hidden-xs"
                    style={{position: "fixed", width: "100%", "zIndex": "999", marginTop: "-19px",border:'none'}}>
-                  <div className="container-fluid" style={{padding:"0"}}>
+                  <div className="container-fluid">
                       <div className="col-md-2 col-sm-6 col-xs-6">
                           <div className="navbar-header">
                               <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" >
@@ -41,9 +59,9 @@ state = {
                                   <span className="icon-bar"></span>
                                   <span className="icon-bar"></span>
                               </button>
-                                  <Link to={`/`} className="navbar-brand hidden-sm">
-                                      <img alt='' src="../images/pakjazba_new.png" style={{"width": "100%",marginTop: "32px",marginLeft:'35%'}} />
-                                  </Link>
+                                  <p onClick={() => this.renderList('')} className="navbar-brand hidden-sm">
+                                      <img alt='' src="../images/pakjazba_new.png" style={{"width": "100%",marginTop: "32px",marginLeft:'35%', cursor: 'pointer'}} />
+                                  </p>
                                   <Link to={`/`} className="navbar-brand visible-sm">
                                       <img alt='' src="../images/pakjazba_new.png" style={{"width": "100%",marginTop: "8px"}} />
                                   </Link>
@@ -66,23 +84,26 @@ state = {
 
              <div className="row hidden-sm">
                     <div style={{background:'rgba(236, 236, 236, 0.48)',height:'42px'}}>
+                      {/*<span type="" name='room' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
+                          <p rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'15px'}}>Room Renting</p>
+                      </span>*/}
                       <span type="" name='room' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
-                          <Link  rel="noopener noreferrer" to={`/market_roommates`} className="navigationfont">Room Renting</Link>
+                          <p rel="noopener noreferrer" onClick={() => this.renderList('market_roommates')} style={{color:'black',fontSize:'15px', cursor: 'pointer'}}>Room Renting</p>
                       </span>
                       <span type="" name='bussiness' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
-                          <Link rel="noopener noreferrer" to={`/market_business`} className="navigationfont">Business Listing</Link>
+                          <p rel="noopener noreferrer" onClick={() => this.renderList('market_business')} style={{color:'black',fontSize:'15px', cursor: 'pointer'}}>Business Listing</p>
                       </span>
                       <span type="" name='buySell' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
-                          <Link rel="noopener noreferrer" to={`/market_classified`} className="navigationfont">Buy & Sell</Link>
+                          <p rel="noopener noreferrer" onClick={() => this.renderList('market_classified')} style={{color:'black',fontSize:'15px', cursor: 'pointer'}}>Buy & Sell</p>
                       </span>
                       <span type="" name='buySell' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
-                          <Link rel="noopener noreferrer" to={`/market_jobPortal`} className="navigationfont">Job Portal</Link>
+                          <p rel="noopener noreferrer" onClick={() => this.renderList('market_jobPortal')} style={{color:'black',fontSize:'15px', cursor: 'pointer'}}>Job Portal</p>
                       </span>
                       <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
-                          <Link rel="noopener noreferrer" to={`/market_eventPortal`} className="navigationfont">Events</Link>
+                          <p rel="noopener noreferrer" onClick={() => this.renderList('market_eventPortal')} style={{color:'black',fontSize:'15px', cursor: 'pointer'}}>Events</p>
                       </span>
                       <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
-                          <Link rel="noopener noreferrer" to={`/entertainment_Home`} className="navigationfont">Entertainment</Link>
+                          <p rel="noopener noreferrer" onClick={() => this.renderList('entertainment_Home')} style={{color:'black',fontSize:'15px', cursor: 'pointer'}}>Entertainment</p>
                       </span>
 
                       {/*// <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
@@ -106,24 +127,24 @@ state = {
                 </span>*/}
               </div>
               <div className="row visible-sm">
-                     <div style={{background:'rgba(236, 236, 236, 0.48)',width:'100%',height:'25px',marginLeft:'0px', paddingLeft:"26px", paddingRight:"13px"}}>
+                     <div style={{background:'rgba(236, 236, 236, 0.48)',width:'96%',height:'42px',marginLeft:'16px'}}>
                        <span type="" name='room' ghost className="button_globalclassName col-md-2 col-sm-2">
-                           <Link  rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'12px'}}>Room Renting</Link>
+                           <Link  rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'15px'}}>Room Renting</Link>
                        </span>
                        <span type="" name='bussiness' ghost className="button_globalclassName col-md-2 col-sm-2">
-                           <Link rel="noopener noreferrer" to={`/market_business`} style={{color:'black',fontSize:'12px'}}>Business Listing</Link>
+                           <Link rel="noopener noreferrer" to={`/market_business`} style={{color:'black',fontSize:'15px'}}>Business Listing</Link>
                        </span>
                        <span type="" name='buySell' ghost className="button_globalclassName col-md-2 col-sm-2">
-                           <Link rel="noopener noreferrer" to={`/market_classified`} style={{color:'black',fontSize:'12px'}}>Buy & Sell</Link>
+                           <Link rel="noopener noreferrer" to={`/market_classified`} style={{color:'black',fontSize:'15px'}}>Buy & Sell</Link>
                        </span>
                        <span type="" name='buySell' ghost className="button_globalclassName col-md-2 col-sm-2">
-                           <Link rel="noopener noreferrer" to={`/market_jobPortal`} style={{color:'black',fontSize:'12px'}}>Job Portal</Link>
+                           <Link rel="noopener noreferrer" to={`/market_jobPortal`} style={{color:'black',fontSize:'15px'}}>Job Portal</Link>
                        </span>
                        <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2">
-                           <Link rel="noopener noreferrer" to={`/market_eventPortal`} style={{color:'black',fontSize:'12px'}}>Events</Link>
+                           <Link rel="noopener noreferrer" to={`/market_eventPortal`} style={{color:'black',fontSize:'15px'}}>Events</Link>
                        </span>
                        <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2">
-                           <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'12px'}}>Entertainment</Link>
+                           <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'15px'}}>Entertainment</Link>
                        </span>
                        {/*// <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
                        //     <Link rel="noopener noreferrer" to={`/user_upload`} style={{color:'black',fontSize:'15px'}}>User</Link>
@@ -250,4 +271,11 @@ state = {
       )
   }
 }
- export default Burgermenu;
+
+const mapStateToProps = (state) => {
+    return({
+        route: state.route
+    });
+}
+
+export default withRouter(connect(mapStateToProps)(Burgermenu));

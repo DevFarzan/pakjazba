@@ -32,7 +32,7 @@ class MarketRoommates extends Component{
         data = [];
         if(res && res.code && res.code == 200 && req && req.code && req.code === 200){
             data = this.addingStarProp(res.roomrentsdata, req.content);
-            this.setState({ data });            
+            this.setState({ data });
         }
     }
 
@@ -40,7 +40,7 @@ class MarketRoommates extends Component{
         return arrforLoop && arrforLoop.map((elem) => {
             let rate = 0,
             len = 0;
-            rateArr && rateArr.map((el) => {                    
+            rateArr && rateArr.map((el) => {
                 if(elem._id == el.objid){
                     rate += el.star ? +el.star : 0;
                     len++
@@ -114,7 +114,7 @@ class MarketRoommates extends Component{
                 </div>
 
                 </span>
-                <div className="container" style={{width:"71%"}}>
+                <div className="container" style={{width:"70%"}}>
                     <div className="hidden-xs">
                       <RoomrentingIcon/>
                     </div>

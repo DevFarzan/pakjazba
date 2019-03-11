@@ -28,7 +28,7 @@ class JobDetailpage extends Component{
                 </div>
                 <div>
                     <h3> About The Job </h3>
-                    <hr style={{borderTop: "1px solid black"}}/>
+                    <hr style={{borderTop: "1px solid black", width:"100%"}}/>
                     <p style={{fontFamily: 'Work Sans, sans-serif'}}>{data.jobDescription && data.jobDescription}</p>
                 </div>
             </div>

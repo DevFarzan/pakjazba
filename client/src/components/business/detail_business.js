@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Burgermenu from '../header/burgermenu';
 import Slider from '../header/Slider';
+import Footer from '../footer/footer';
 import "./detail_business.css";
 import moment from 'moment';
 import { Carousel, Rate, notification, Icon, Spin, Modal } from 'antd';
@@ -481,6 +482,7 @@ class DetailBusiness extends Component{
                     </div>
                   </div>
                 </div>
+                <Footer/>
             </div>
         )
     }

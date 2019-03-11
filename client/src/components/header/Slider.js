@@ -71,7 +71,7 @@ class Slider extends Component{
                         <div className="col-md-2 col-sm-2"> </div>
                          <div className="col-md-5 col-sm-12 col-xs-12">
                          <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black',textAlign:'left'}}>{this.props.mainH1}</h3>
-                         <div className="row">
+                         <div className="row" style={{padding:"0"}}>
                               <div className="col-md-12">
                                  <form>
                                     <div className="single">
@@ -83,20 +83,6 @@ class Slider extends Component{
                                         </div>
                                     </div>
                                 </form>
-
-                                  <div className="row" style={{padding:"10px"}}>
-                                    <div className="col-md-3 col-xs-4">
-                                      <h5> Nightlife </h5>
-                                    </div>
-                                    <div className="col-md-3 col-xs-4">
-                                      <h5> Resturant </h5>
-                                    </div>
-                                    <div className="col-md-3 col-xs-4">
-                                      <h5> Delivery</h5>
-                                    </div>
-                                    <div className="col-md-3">
-                                    </div>
-                                  </div>
                               </div>
                           </div>
 
@@ -172,11 +158,11 @@ class Slider extends Component{
                                     </span>
                                 </div>
                                 <div className="row">
-                                  <div className="col-md-7">
-                                    <h4>Looking for tenant or a roommate?</h4>
+                                  <div className="col-md-7 col-sm-8">
+                                    <h4 style={{marginTop:"4px", marginLeft:"-12px"}}>Looking for tenant or a roommate?</h4>
                                   </div>
-                                  <div className="col-md-5">
-                                    <button className="header_button" onClick={this.postRoom}>Post Your Room</button>
+                                  <div className="col-md-5 col-sm-4">
+                                    <button className="header_button" onClick={this.postRoom} style={{backgroundColor:"rgb(55, 169, 155)"}}>Post Your Room</button>
                                   </div>
                                 </div>
                             </div>

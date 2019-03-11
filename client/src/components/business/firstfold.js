@@ -20,7 +20,7 @@ class Firstfold extends Component{
             <div className="container" style={{width:"70%"}}>
                 <div className="Bestbusiness">
                     <div className="row">
-                        <h3 className="text-align" style={{fontWeight:"bold"}}>  Find the Best Business </h3>
+                        <h1 className="text-align" style={{fontWeight:"bold", fontSize:"30px"}}>  Find the Best Business </h1>
                         <div className="col-md-3 col-sm-3 col-xs-6" onClick={() => {this.clickItem('hotels')}}>
                             <img src="../images/business/home.jpg"/>
                             <p style={{textAlign: "center", paddingTop: "5px"}}>Hotels</p>
@@ -40,7 +40,7 @@ class Firstfold extends Component{
                     </div>
                 </div>
                 <div className="hidden-xs">
-                    <div className="Person" style={{width:"100%"}}>
+                    <div className="Person" style={{width:"99%", marginLeft:"0"}}>
                         <div className="row">
                             <div className="col-md-6">
                                 <h1> Grow Your Business <br/> by Listing on <br/> PakJazba </h1>

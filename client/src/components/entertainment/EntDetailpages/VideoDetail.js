@@ -59,7 +59,7 @@ class VideoDetail extends Component{
               <h6> DRAMA</h6>
               <h4 className="h4">{description}</h4>
               <div className="videotag">
-                <iframe frameBorder="0" width="100%" height="400" src={video.embed_url} allowFullScreen allow="autoplay"></iframe>
+                <iframe frameBorder="0" width="100%" height="400" src={URL} allowFullScreen allow="autoplay"></iframe>
                 <div>
                   <a className="socialbox facebook" href="https://www.facebook.com/cghubs">
                     <div className="social-icon">

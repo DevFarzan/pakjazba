@@ -105,12 +105,8 @@ render(){
         {/*<EHeader entertainment={{news, sports, dramas, movies, musics}} {...this.props}/>*/}
         <div style={{width:"100%",height:"67px",marginTop:"100px"}}>
         </div>
-        <div className="container" style={{width:"70%"}}>
-
+        <div className="container" style={{width:"70%",marginTop:'10px'}}>
               <UploadFunction onLoader={this.setLoader}/>
-        
-
-
         <div className="row">
         <div className="col-md-8">
             {videoData.map((elem,key) => {

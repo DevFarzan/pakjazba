@@ -32,7 +32,9 @@ class BuyerDetail extends Component{
     }
 
     componentDidMount(){
+        this.props.dispatch({type: 'GOROUTE', route: false});
         const { booked } = this.props.location.state !== undefined ? this.props.location.state || this.props.location.state.data : [];
+        console.log(booked, 'booked')
         let { data } = this.props.location.state !== undefined ? this.props.location.state.data || this.props.location.state : this.props.otherData;
         if(booked !== undefined && booked.length > 0){
             this.setState({ booked });
@@ -40,7 +42,8 @@ class BuyerDetail extends Component{
     }
 
     componentWillUnmount(){
-        if(!this.state.selectSeat && !this.state.msg){
+        console.log(this.props, 'propsssssssssss')
+        if(!this.state.selectSeat && !this.state.msg && !this.props.route){
             // let data = this.props.location.state.data || this.props.location.state || this.props.otherData;
             let data = this.props.location.state !== undefined ? this.props.location.state.data || this.props.location.state : this.props.otherData;
             this.props.history.push(`/detail_eventPortal/${data.randomKey}`)
@@ -157,7 +160,8 @@ class BuyerDetail extends Component{
 
 const mapStateToProps = (state) => {
     return({
-        otherData: state.otherData
+        otherData: state.otherData,
+        route: state.route
     });
 }
 

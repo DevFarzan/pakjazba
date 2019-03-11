@@ -6,6 +6,7 @@ import EventHeader from './Eventheader';
 import EventFilter from './eventfilter';
 import BookedSeats from './bookedSeats';
 import { Redirect } from 'react-router';
+import { connect } from 'react-redux';
 
 class SeatMap extends Component{
 	constructor(props){
@@ -29,7 +30,10 @@ class SeatMap extends Component{
 
 	componentWillUnmount(){
 		const { data, booked } = this.state;
-		this.props.history.push({pathname: `/Buyer_Detailpage`, state: {data, booked}})
+		console.log(this.props, 'kia aaya bhaiii')
+		if(!this.props.route){
+			this.props.history.push({pathname: `/Buyer_Detailpage`, state: {data, booked}})
+		}
 	}
 
 	availableSeats = (obj) => {
@@ -124,4 +128,10 @@ class SeatMap extends Component{
 	}
 }
 
-export default SeatMap;
+const mapStateToProps = (state) => {
+    return({
+        route: state.route
+    });
+}
+
+export default connect(mapStateToProps)(SeatMap);

@@ -34,6 +34,7 @@ class UploadFunction extends Component{
 
   render(){
     return(
+  
 
           <div className="row" style={{border:'1px solid #80808033',width:'94%',marginLeft:'28px'}}>
             <div className="col-md-6">

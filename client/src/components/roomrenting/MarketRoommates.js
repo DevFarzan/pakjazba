@@ -27,10 +27,31 @@ class MarketRoommates extends Component{
     }
 
     async getAllBusiness(){
-        let res = await HttpUtils.get('marketplace')
-        this.setState({
-            data: res && res.roomrentsdata
-        })
+        let res = await HttpUtils.get('marketplace'),
+        req = await HttpUtils.get('getreviews'),
+        data = [];
+        if(res && res.code && res.code == 200 && req && req.code && req.code === 200){
+            data = this.addingStarProp(res.roomrentsdata, req.content);
+            this.setState({ data });            
+        }
+    }
+
+    addingStarProp(arrforLoop, rateArr){
+        return arrforLoop && arrforLoop.map((elem) => {
+            let rate = 0,
+            len = 0;
+            rateArr && rateArr.map((el) => {                    
+                if(elem._id == el.objid){
+                    rate += el.star ? +el.star : 0;
+                    len++
+                }
+            });
+            let star = rate / len;
+            if(rate > 0 && len > 0){
+                return {...elem, ...{star: star.toFixed(1)}};
+            }
+            return {...elem, ...{star: 0}};
+        });
     }
 
     handleLocalStorage = () =>{

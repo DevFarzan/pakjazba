@@ -27,7 +27,7 @@ class VideoDetail extends Component{
 
     nextVideo(el){
         const { data, dispatch } = this.props;
-        let { showDetail } = this.state, 
+        let { showDetail } = this.state,
         name = el.id || el.elem.id,
         elem = el.elem || el,
         entertainment = data.entertainment,
@@ -39,7 +39,7 @@ class VideoDetail extends Component{
 
   render(){
     const { data } = this.props,
-    { showDetail } = this.state; 
+    { showDetail } = this.state;
     let video = data.elem || data.final1 || data.final2 || data.final3 || data.news1,
     { news, sports } = data.entertainment,
     detail = data.arr || data.detail || data.news || data.sports || data.movies || data.dramas,
@@ -47,6 +47,9 @@ class VideoDetail extends Component{
     if(description.length > 75){
         description = description.slice(0, 75)
     }
+    console.log(video.embed_url, 'urlllllll')
+    let URL = 'https' + video.embed_url.slice(4, video.embed_url.length)
+    console.log(URL, 'urlllllll')
 
     return(
       <div className="container" style={{width:"75%", marginTop:"145px"}}>
@@ -56,7 +59,7 @@ class VideoDetail extends Component{
               <h6> DRAMA</h6>
               <h4 className="h4">{description}</h4>
               <div className="videotag">
-                <iframe frameBorder="0" width="100%" height="400" src={video.embed_url} allowFullScreen allow="autoplay"></iframe>
+                <iframe frameBorder="0" width="100%" height="400" src={URL} allowFullScreen allow="autoplay"></iframe>
                 <div>
                   <a className="socialbox facebook" href="https://www.facebook.com/cghubs">
                     <div className="social-icon">
@@ -110,7 +113,7 @@ class VideoDetail extends Component{
                     <div className="col-md-10 col-sm-6 col-sm-offset-3">
                         <div id="imaginary_container">
                             <div className="input-group stylish-input-group">
-                                <input type="text" className="form-control"  placeholder="Add a comment" />
+                                <input type="text" className="form-control"  placeholder="Add a comment"  style={{width:"100%"}}/>
                                 <span className="input-group-addon">
                                   <div className="text-center text-md-left">
                                       <a className="btn button_custom" style={{width:"110%"}}>Send</a>

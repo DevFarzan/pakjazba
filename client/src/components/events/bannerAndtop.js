@@ -34,7 +34,7 @@ class EventBanner extends Component{
 
         return(
             <div className="container" style={{width:"70%"}}>
-                <h4 style={{textAlign:"left", fontWeight:"bolder", marginTop:"20px", marginBottom:"0", fontSize:"19px"}}>Top Events</h4>
+                <h4 style={{textAlign:"left", fontWeight:"bolder", marginTop:"20px", marginBottom:"0", fontSize:"26px"}}>Top Events</h4>
                 <div className="row">
                     {events && events.map((elem, key) => {
                         if(elem.top){
@@ -44,7 +44,7 @@ class EventBanner extends Component{
                                     <div className="col-md-3">
                                         <div className="card">
                                             <img alt='' src={elem.images[0]} style={{height:'120px', width:"100%", borderTopLeftRadius: '12px', borderTopRightRadius: '12px'}}/>
-                                            <h5 style={{marginTop:'5px', marginLeft:"0", marginBottom:"5px", fontSize:"15px"}}><b>{elem.eventTitle}</b></h5>
+                                            <p style={{marginTop:'5px', marginLeft:"0", marginBottom:"5px", fontSize:"17px", color:"black"}}><b>{elem.eventTitle}</b></p>
                                                 <p style={{marginBottom:"0px"}}>
                                                     <span style={{color:"black"}}>{elem.city}</span>
                                                 </p>

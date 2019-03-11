@@ -38,7 +38,7 @@ class EHeader extends Component{
 
     return(
       <span>
-      <div className="row hidden-xs" style={{background:'#ececec',width:'100%', marginLeft:"0px", padding:"0", display:"inline-table"}}>
+      <div className="row hidden-xs" style={{background:'#ececec',width:'100%', marginLeft:"0px", padding:"0", display:"inline-table", paddingLeft:"55px", paddingRight:"120px"}}>
         <div className="col-md-8 hidden-xs" style={{marginTop:"15px"}}>
             <div  className="">
                <span type="" name='room' className="button_globalclassName">

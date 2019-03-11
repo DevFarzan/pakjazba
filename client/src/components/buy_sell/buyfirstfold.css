@@ -1,6 +1,11 @@
 .firstfold{
   padding: 25px;
   margin-top: 0px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: lin
+
 }
 
 .media-object{
@@ -25,8 +30,9 @@
 .margin_right_c{
 	margin-right:10px;
 	color: black;
-    font-weight: 500;
+    font-weight: bold;
     font-size: 16px;
+    
 }
 .list_style_c{
 	list-style: none;
@@ -45,7 +51,7 @@
 .jambo_img
 {
 	height: 250px;
-	width: 380px;	
+	width: 380px;
 }
 .card_border{
 	    border: 1px solid #8080804a;

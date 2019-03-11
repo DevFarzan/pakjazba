@@ -59,7 +59,7 @@ constructor(props){
                           <div style={{border:'1px solid #80808030',width:'100%',paddingLeft:'15px', paddingTop:'5px', marginTop:"5px"}}><h3 style={{fontWeight:'bold', textAlign:"left"}}>Contact Seller</h3>
                               <div className="row" style={{padding:"0"}}>
                                   <div className="col-md-7" style={{marginLeft:"-30px", paddingLeft:"25px"}}>
-                                      <div className="profile_img"><img onClick={() => {this.goToProfile()}} src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="" alt="" style={{width:'70%',cursor:'pointer'}} /></div>
+                                      <div className="profile_img"><img onClick={() => {this.goToProfile()}} src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="" alt="" style={{width:'70%',cursor:'pointer', marginTop:"-10px", marginBottom:"8px"}} /></div>
                                   </div>
                                   <div className="col-md-5" style={{marginTop:'34px',marginLeft:'-20%'}}>
                                       <span style={{fontWeight:'bold'}}>{data.contactname}</span><br/>
@@ -120,22 +120,22 @@ constructor(props){
                     </div>
                     <div className="row">
                         <div className="col-md-3 col-sm-3 col-xs-12">
-                            <p><b>Condition:</b>{data.condition}</p>
+                            <p><b style={{marginRight:"3px"}}>Condition:</b>{data.condition}</p>
                         </div>
                         <div className="col-md-3 col-sm-3 col-xs-12">
-                            <p><b>Model Make:</b>{data.modelmake || data.make}</p>
+                            <p><b style={{marginRight:"3px"}}>Model Make:</b>{data.modelmake || data.make}</p>
                         </div>
                         <div className="col-md-3 col-sm-3 col-xs-12">
-                           <p><b>Model Name:</b>{data.modelname || data.modelName}</p>
+                           <p><b style={{marginRight:"3px"}}>Model Name:</b>{data.modelname || data.modelName}</p>
                         </div>
                         <div className="col-md-3 col-sm-3 col-xs-12">
-                           <p><b>Model Number:</b>{data.modelnumber || data.number}</p>
+                           <p><b style={{marginRight:"3px"}}>Model Number:</b>{data.modelnumber || data.number}</p>
                         </div>
                     </div>
                     <hr width="90%"/>
                     <div className="row">
                         <div className="col-md-12">
-                            <h3> Description </h3>
+                            <h3> <b> Description </b> </h3>
                             <p>{data.description}</p>
                         </div>
                     </div>

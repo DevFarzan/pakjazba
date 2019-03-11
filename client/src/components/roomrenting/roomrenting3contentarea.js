@@ -376,7 +376,7 @@ class Roomrenting3contentarea extends Component{
 
                       <div className="col-md-4" style={{position: 'sticky',top:'25'}}>
                         <div className="roomdetail">
-                          <h2 className="head-space2"><b>$ { data.rent || data.price }</b><sub style={{fontWeight:'700'}}>{ data.pricemode || data.priceMode }</sub></h2>
+                          <h2 className="head-space2"><b>$ { data.rent || data.price }</b><p style={{marginTop:"-28px", marginLeft:"70px", fontSize:"22px"}}>{ data.pricemode || data.priceMode }</p></h2>
                           <br/>
                           <p> Dates </p>
                               <input value={" " + from + " ~ " + to + " "} />

@@ -18,7 +18,7 @@ class RoomrentingIcon extends Component{
     render(){
         return(
             <div className="">
-                <div className="row" style={{marginTop:'33px'}}>
+                <div className="row" style={{marginTop:'33px', padding:"0"}}>
                     <div className="col-md-12 col-sm-12 col-xs-12">
                         <h4><b>Explore Pakjazba Room Renting</b></h4>
                         <br/>
@@ -58,7 +58,7 @@ class RoomrentingIcon extends Component{
                     </div>
                 </div>
                     {/*<!-- jambo section start -->*/}
-                        <div className="row Person" style={{border:'1px solid #80808057',width:'85%',marginTop:'-4%'}}>
+                        <div className="row Person" style={{border:'1px solid #80808057',width:'100%',marginTop:'-4%'}}>
                             <div className="col-md-12 col-sm-12 col-xs-12 card">
                                 <div className="col-md-6">
                                     <h1 className="" style={{marginTop:'-5%',fontSize:'25px'}}><b>Find your New Home With Pak Jazba Room Renting</b></h1>

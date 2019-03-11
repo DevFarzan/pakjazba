@@ -37,7 +37,7 @@ class Firstfold extends Component{
         }
         return(
             <div className="container" style={{width:"70%"}}>
-                <div className="row">
+                <div className="row" style={{padding:"0", marginTop:"10px", marginBottom:"15px"}}>
                     <div className="col-md-12 col-sm-12 col-xs-12">
                         <span className="popular_c">Popular categories</span>
                     </div>
@@ -150,7 +150,7 @@ class Firstfold extends Component{
                 </div>
                 <div className="row" style={{padding:'0px'}}>
                     <div className="col-md-12" style={{textAlign:'right'}}>
-                        <span style={{marginRight:'5%',cursor:'pointer'}} onClick={this.filterPage}>See more</span>
+                        <span style={{marginRight:'5%',cursor:'pointer'}} onClick={this.filterPage}><b>See more</b></span>
                     </div>
                 </div>
             {/*<!-- jambo section start -->*/}

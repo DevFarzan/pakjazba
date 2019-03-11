@@ -2077,7 +2077,7 @@ color: #fff;
     .global_submenu{
       padding-left: 64px;
     padding-top: 8px;
-    margin-right: -16px;
+    margin-right: -19px;
     margin-left: 5px;
     }
 
@@ -2089,9 +2089,9 @@ color: #fff;
   and (-webkit-min-device-pixel-ratio: 1) {
 
     .global_submenu{
-      padding-left: 90px;
+      padding-left: 103px;
     padding-top: 8px;
-    margin-right: -20px;
+    margin-right: -23px;
 }
 }
 

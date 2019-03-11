@@ -60,9 +60,10 @@ import './app.css';
 
 const initialState = {
     text: '',
-	data: {},
-	otherData: {},
-	blogData: {}
+  	data: {},
+  	otherData: {},
+  	blogData: {},
+    route: false
 }
 
 function reducer(state = initialState, action){
@@ -78,6 +79,8 @@ function reducer(state = initialState, action){
     			return {...state, otherData: action.otherData}
     		case 'BLOGDATA':
     			return {...state, blogData: action.blogData}
+        case 'GOROUTE':
+          return {...state, route: action.route}
         default:
             return state;
     }

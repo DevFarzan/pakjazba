@@ -376,20 +376,21 @@ class ProfileUser extends Component{
 
         return(
             <div>
-            <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "102px",backgroundSize: 'cover'}}>
-                <div className="visible-xs" style={{marginTop:'-100px'}}></div>
-                <div className="background-image">
-                    <Burgermenu/>
-                </div>
-            </div>
+
                 <div className="hidden-xs" style={{marginTop:'13%'}}></div>
                 <div className="content">
                     {publicSection && <div>
                         <PublicProfile callPublicSection={this.callPublicSection.bind(this)} allArr={passObj}/>
                     </div>}
                     {!publicSection && <div className="container" style={{width:"87%"}}>
+                    <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "102px",backgroundSize: 'cover'}}>
+                        <div className="visible-xs" style={{marginTop:'-119px'}}></div>
+                        <div className="background-image">
+                            <Burgermenu/>
+                        </div>
+                    </div>
                         <div className="hero">
-                            <div className="row" style={{marginTop:'-15%'}}>
+                            <div className="row">
                                 {/*=======================col-md-3============================*/}
                                 <div className="col-md-3">
                                     <nav className="nav flex-column side-nav">

@@ -91,7 +91,7 @@ class ProfileMain extends Component{
               </div>
           </div>
           <div className="container" style={{width:"80%"}}>
-            <div className="row" style={{marginTop:'-15%'}}>
+            <div className="row" style={{marginTop:'2%'}}>
                 <h2 style={{textAlign:"center", fontWeight:"bold"}}> Your Profile</h2>
               <div className="col-md-3">
                 <ProfileSidebar onChange={this.onChange}/>

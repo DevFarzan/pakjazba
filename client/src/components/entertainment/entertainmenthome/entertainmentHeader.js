@@ -39,7 +39,7 @@ class EHeader extends Component{
     return(
       <span>
       <div className="row hidden-xs" style={{background:'#ececec',width:'100%', marginLeft:"0px", padding:"0", display:"inline-table", paddingLeft:"67px", paddingRight:"125px", marginTop:"-18px"}}>
-        <div className="col-md-8 hidden-xs" style={{marginTop:"15px"}}>
+        <div className="col-md-9 hidden-xs" style={{marginTop:"15px"}}>
             <div  className="">
                <span type="" name='room' className="button_globalclassName">
                    <Link  rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Entertainment</Link>
@@ -64,7 +64,7 @@ class EHeader extends Component{
                </span>
           </div>
           </div>
-          <div className="col-md-4 hidden-xs">
+          <div className="col-md-3 hidden-xs">
                <span className="button_globalclassName">
                <form style={{marginTop:'2%'}}>
                   <div className="input-group"

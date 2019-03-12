@@ -97,15 +97,8 @@ class UploadVideo extends Component{
                   <UploadFunction onLoader={this.getvideos}/>
               <div className="row">
               <div className="col-md-8">
-<<<<<<< HEAD
-              <iframe
-                  frameBorder="0"
-                  width="100%"
-                  height="400"
-                  src={URL}
-                  allowFullScreen
-                  allow="autoplay"></iframe>
-=======
+              
+
               {preview.length > 0 && <iframe
                   frameBorder="0"
                   width="100%"
@@ -113,18 +106,7 @@ class UploadVideo extends Component{
                   src={preview}
                   allowFullScreen
                   allow="autoplay"></iframe>}
->>>>>>> 6d3617e2311a376c82154f39a7cb1c82806292b1
-              {/*<Media>
-                  <div className="media">
-                      <div className="media-player">
-                          <Player src={this.state.preview} />
-                      </div>
-                      <div className="media-controls">
-                          <PlayPause />
-                          <MuteUnmute />
-                      </div>
-                  </div>
-              </Media>*/}
+              
                   {videoData.map((elem,key) => {
                       return (
                           <div key={key} className="col-md-4 col-sm-4" style={{cursor: 'pointer'}}>

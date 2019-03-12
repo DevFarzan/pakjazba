@@ -192,7 +192,7 @@ class FeaturedBox extends Component{
                 </div>
               </div>
                 {!this.state.loader && showJob.length == 0 && <h2 className="font-style" style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}>No jobs available</h2>}
-                {showJob.length > 0 && <h2 className="font-style" style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}>Featured Jobs </h2>}
+                {showJob.length > 0 && <h1 className="font-style" style={{textAlign:"center", fontWeight:"bold", marginTop:"20px", fontSize:"30px"}}>Featured Jobs </h1>}
                 <div className="row">
                     {/*<div className="col-md-3" onClick={() => {this.addJob()}}>
                         <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '380px', width: '90%',borderRadius:'16px'}}/>

@@ -147,7 +147,7 @@ class EventFeatured extends Component{
       return(
         <div className="container" style={{width:"70%"}}>
           {this.state.loader && showEvents == 0 && <h4 style={{textAlign:"center", fontWeight:"bold", marginTop:"20px", marginBottom:"0"}}>No events available</h4>}
-          {showEvents.length > 0 && <h4 style={{textAlign:"left", fontWeight:"bolder", marginTop:"20px", marginBottom:"0", fontSize:"19px"}}>{text ? 'your search' : 'Upcoming Events'}</h4>}
+          {showEvents.length > 0 && <h4 style={{textAlign:"left", fontWeight:"bolder", marginTop:"20px", marginBottom:"0", fontSize:"26px"}}>{text ? 'your search' : 'Upcoming Events'}</h4>}
               {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
               {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
               {text && !!filteredArr.length === false && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
@@ -162,7 +162,7 @@ class EventFeatured extends Component{
                         <div className="col-md-3"  style={{'marginBottom': '10px'}}>
                             <div className="card">
                                 <img alt='' src={elem.images[0]} style={{height:'120px', width:"100%", borderTopLeftRadius: '12px', borderTopRightRadius: '12px'}}/>
-                                <h5 style={{marginTop:'5px', marginLeft:"0", marginBottom:"5px", fontSize:"15px"}}><b>{elem.eventTitle}</b></h5>
+                                <p style={{marginTop:'5px', marginLeft:"0", marginBottom:"5px", fontSize:"17px", color:"black"}}><b>{elem.eventTitle}</b></p>
                                     <p style={{marginBottom:"0px"}}>
                                         <span style={{color:"black"}}>{elem.city}</span>
                                     </p>

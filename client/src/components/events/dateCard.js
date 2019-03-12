@@ -142,7 +142,7 @@ class DateCard extends Component{
                     </div>
                     <div className="col-md-3 col-xs-6">
                     <div className="text-center text-md-left" onClick={() => {this.purchaseTicket()}}>
-                        <a className="btn button_custom" style={{width: "100%", marginTop:"10px", marginLeft:"-58px"}}>{earlyBird || normalTicket ? 'Purchase Ticket' : 'Collect Ticket'}</a>
+                        <a className="btn button_custom" style={{width: "100%", marginTop:"10px", marginLeft:"-58px", backgroundColor:"rgb(55, 169, 155)"}}>{earlyBird || normalTicket ? 'Purchase Ticket' : 'Collect Ticket'}</a>
                     </div>
                     </div>
                   </div>

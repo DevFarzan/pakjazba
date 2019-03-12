@@ -196,7 +196,7 @@ class Forthfold extends Component{
                                 <img alt='' src={elem.images.length ? elem.images[0] : './images/def_card_img.jpg'} style={{width:'100%',height:'200px'}} />
                                 <p style={{color:"black"}}>{!elem.hideprice ? '$' + elem.price : 'Hide'}
                                 <br/><b style={{fontSize:"15px"}}>{elem.modelname}</b>
-                                <br/>{elem.address},{elem.state}</p>
+                                <br/>{elem.address.slice(0, 19)},{elem.state}</p>
                             </div>
                         )
                     })}

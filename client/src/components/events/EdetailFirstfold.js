@@ -4,13 +4,14 @@ import DetailSliders from '../events/slider';
 import DateCard from '../events/dateCard';
 import FeaturedCol4 from '../events/FeaturedCol4';
 import FeaturedCol8 from '../events/FeaturedCol8';
-
+import moment from 'moment';
 
 class EdetailFirstfold extends Component{
   render(){
-  console.log(this.props.data, 'data detail')
     const { data } = this.props;
-
+    let date = data.dateRange && (data.dateRange.from ? data.dateRange.from : data.dateRange[0].from);
+    date = moment(date).format('LL');
+    
     return(
       <div>
       <div className="hidden-sm hidden-xs">
@@ -33,7 +34,7 @@ class EdetailFirstfold extends Component{
                     <div className="row"style={{padding:"0"}}>
                       <div className="col-md-2">
                         <div className="gray">
-                          <p><b>{data.dateRange && data.dateRange.from}</b>&emsp;{data.openingTime}</p>
+                          <p><b>{date}</b>&emsp;{data.openingTime}</p>
                         </div>
                       </div>
                       <div className="col-md-4">

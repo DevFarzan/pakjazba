@@ -65,25 +65,35 @@ handleProvinceChange = (value) => {
           'upload_preset':uploadPreset,
           'signature':signature
       }
-      var per = 0;
-      for(var i = 0; i <= 10; i++){
-        setTimeout(() => {
-          per += 10;
-          this.setState({ percent: per })
-        }, 1000)
-      }      
+      // var per = 0;
+      // for(var i = 0; i <= 10; i++){
+      //   setTimeout(() => {
+      //     per += 10;
+      //     this.setState({ percent: per })
+      //   }, 1000)
+      // }      
 
       return new Promise((res, rej) => {
           let uploadRequest = superagent.post(url)
           uploadRequest.attach('file', image)
           Object.keys(params).forEach((key) =>{
               uploadRequest.field(key, params[key])
-          })
+          });
+          uploadRequest.on('progress', (progress) => {
+            this.onPhotoUploadProgress(progress)
+          });
 
           uploadRequest.end((err, resp) =>{
               err ? rej(err) : res(resp);
-          })
+          });
       })
+  }
+
+  onPhotoUploadProgress(progress) {
+      console.log(progress.percent, '999 0000 8888 ')
+      if(progress.percent && progress.percent > 0 && progress.percent <= 100){
+          this.setState({ percent: Math.floor(progress.percent) });
+      }      
   }
 
   //-----------------cloudnary function end ------------------
@@ -129,8 +139,8 @@ handleProvinceChange = (value) => {
   postdataToServer = async (obj) => {
     //this.setState({loader: true})
     let response = await HttpUtils.post('customvideo', obj);
-    //this.setState({loader: false})
-   //this.props.onLoader(true);
+    this.setState({loader: false})
+   this.props.onOk(false);
    //console.log(this.props,'ppppprrrrooppsss')
    console.log(response,'resssspppponnsseee');
   }

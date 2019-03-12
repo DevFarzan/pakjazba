@@ -56,7 +56,8 @@ class Stories extends Component{
                                         )
                                     }
                                   })}
-                                  <hr  style={{borderBottom:"1px solid black", width:"95%", marginTop:"210px", borderTop:"0"}}/>
+
+                                  {/*<hr  style={{borderBottom:"1px solid black", width:"95%", marginTop:"220px", borderTop:"0"}}/>*/}
                                   <p className="col-md-offset-7"
                                       style={{float: 'right', marginRight: '20px', cursor: 'pointer'}}
                                        onClick={this.changeCat.bind(this, {arr, str})}

@@ -14,7 +14,7 @@ import './uploadVideo.css';
 import UploadFunction from './uploadFunction';
 //import LatestNews from '../entertainmenthome/LatestnewsSec';
 
-const { PlayPause, MuteUnmute } = controls
+// const { PlayPause, MuteUnmute } = controls
 
 class UploadVideo extends Component{
   constructor(props) {
@@ -33,7 +33,8 @@ class UploadVideo extends Component{
           blogs: {},
           loader:false,
           videoData: [],
-          visible: false
+          visible: false,
+          preview: ''
       };
   }
 
@@ -80,12 +81,11 @@ class UploadVideo extends Component{
       let video = e.videoLink[0],
       URL = 'https' + video.slice(4, video.length);
       this.setState({ preview: URL });
+      window.scrollTo(0, 400)
   }
 
   render(){
-      const { news, sports, dramas, movies, musics,loader,videoData } = this.state;
-      console.log(this.state.preview,'videoooooPreviewwwwwww');
-      console.log(videoData, 'videoData')
+      const { news, sports, dramas, movies, musics, loader, videoData, preview } = this.state;
 
       return(
           <div className="">
@@ -94,16 +94,16 @@ class UploadVideo extends Component{
               <div style={{width:"100%",height:"67px",marginTop:"100px"}}>
               </div>
               <div className="container" style={{width:"70%",marginTop:'10px'}}>
-                    <UploadFunction onLoader={this.getvideos}/>
+                  <UploadFunction onLoader={this.getvideos}/>
               <div className="row">
               <div className="col-md-8">
-              <iframe 
+              {preview.length > 0 && <iframe 
                   frameBorder="0" 
                   width="100%" 
                   height="400" 
-                  src={URL} 
+                  src={preview} 
                   allowFullScreen 
-                  allow="autoplay"></iframe>
+                  allow="autoplay"></iframe>}
               {/*<Media>
                   <div className="media">
                       <div className="media-player">
@@ -117,9 +117,9 @@ class UploadVideo extends Component{
               </Media>*/}
                   {videoData.map((elem,key) => {
                       return (
-                          <div key={key} className="col-md-4 col-sm-4" style={{cursor: 'pointer'}} onClick={this.showModal}>
+                          <div key={key} className="col-md-4 col-sm-4" style={{cursor: 'pointer'}}>
                               <img onClick={this.addInPreview.bind(this, elem)} style={{height:"130px", width:"100%"}} src={elem.thumbnailImageLink} />
-                              <p onClick={this.addInPreview.bind(this, elem)}>{elem.description}</p>
+                              <p onClick={this.addInPreview.bind(this, elem)}>{elem.description.slice(0, 23)}</p>
                           </div>
                       );
                   })}

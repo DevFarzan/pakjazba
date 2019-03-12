@@ -10,7 +10,6 @@ import superagent from "superagent";
 import Loader from 'react-loader-advanced';
 import './uploadForm.css'
 
-
 const { Option } = Select;
 //const children = [];
 const provinceData = ["Film & Animation", "Autos & Vehicles", "Music", "Pets & Animals", "Sports", "Travel & Events", "Gaming", "People & Blogs", "Comedy", "Entertainment", "News & Politics", "Howto & Style", "Education", "Science & Technology", "Nonprofits & Activism"];
@@ -19,39 +18,27 @@ const cityData = {
   Jiangsu: ['Nanjing', 'Suzhou', 'Zhenjiang'],
 };
 
-
-
 class UploadForm extends Component{
   constructor(props) {
-        super(props);
+      super(props);
       this.state = {
-        loader: false,
-        percent: 0
+          loader: false,
+          percent: 0
       }
-
-}
-handleProvinceChange = (value) => {
-  console.log(value,'categoryyyyyyy')
-    this.setState({
-      category:value
-    });
   }
 
-  onSecondCityChange = (value) => {
-    this.setState({
-    });
+  handleProvinceChange = (value) => {
+      this.setState({ category:value });
   }
 
- handleChange = (value) => {
-  console.log(`${value}`);
-  this.setState({
-    tags:value
-  })
-}
+  handleChange = (value) => {
+      this.setState({
+          tags:value
+      })
+  }
 
   //--------------function for cloudnary url ---------------
   uploadFile = (files, para) =>{
-    console.log(para,'sdsadsadsadppppp')
       const image = files.originFileObj
       const cloudName = 'dxk0bmtei'
       const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/'+para+'/upload'
@@ -64,14 +51,7 @@ handleProvinceChange = (value) => {
           'timestamp':timestamp,
           'upload_preset':uploadPreset,
           'signature':signature
-      }
-      // var per = 0;
-      // for(var i = 0; i <= 10; i++){
-      //   setTimeout(() => {
-      //     per += 10;
-      //     this.setState({ percent: per })
-      //   }, 1000)
-      // }      
+      }     
 
       return new Promise((res, rej) => {
           let uploadRequest = superagent.post(url)
@@ -90,7 +70,6 @@ handleProvinceChange = (value) => {
   }
 
   onPhotoUploadProgress(progress) {
-      console.log(progress.percent, '999 0000 8888 ')
       if(progress.percent && progress.percent > 0 && progress.percent <= 100){
           this.setState({ percent: Math.floor(progress.percent) });
       }      
@@ -99,60 +78,51 @@ handleProvinceChange = (value) => {
   //-----------------cloudnary function end ------------------
 
   handleSubmit = (e) => {
-   e.preventDefault();
-   this.props.form.validateFields((err, values) => {
-     if (!err) {
-      this.setState({ loader: true })
-       var arr = [],videoLink,imageLink;
-       arr.push(
-         values.uploadvideo[0],
-         values.uploadthumbnail[0]
-       )
-       console.log('Received values of form: ', values);
-       console.log(arr,'testingassdasdsad');
-       this.postDataWithURL(arr,values);
-     }
-   });
- }
- async postDataWithURL(arr,values){
-     //const { fileList } = this.state;
-
-     Promise.all(arr.map((val, key) => {
-       let str = key == 0 ? 'video' : 'image';
-         return this.uploadFile(val, str).then((result) => {
-             return result.body.url
-         })
-     })).then((results) => {
-         console.log(results);
-         let obj = {
-           title:values.note,
-           description:values.description,
-           videoLink:results[0],
-           thumbnailImageLink:results[1],
-           category:this.state.category,
-           tags:this.state.tags
-         }
-         console.log(obj,'Finalllloooobbbjjjj')
-         this.postdataToServer(obj);
-     })
- }
-  postdataToServer = async (obj) => {
-    //this.setState({loader: true})
-    let response = await HttpUtils.post('customvideo', obj);
-    this.setState({loader: false})
-   this.props.onOk(false);
-   //console.log(this.props,'ppppprrrrooppsss')
-   console.log(response,'resssspppponnsseee');
+      e.preventDefault();
+      this.props.form.validateFields((err, values) => {
+        if (!err) {
+            this.setState({ loader: true })
+            var arr = [],videoLink,imageLink;
+            arr.push(
+                values.uploadvideo[0],
+                values.uploadthumbnail[0]
+            )
+            this.postDataWithURL(arr,values);
+        }
+      });
   }
 
+  async postDataWithURL(arr,values){
+      Promise.all(arr.map((val, key) => {
+          let str = key == 0 ? 'video' : 'image';
+          return this.uploadFile(val, str).then((result) => {
+              return result.body.url
+          })
+      })).then((results) => {
+          let obj = {
+              title:values.note,
+              description:values.description,
+              videoLink:results[0],
+              thumbnailImageLink:results[1],
+              category:this.state.category,
+              tags:this.state.tags
+          }
+          this.postdataToServer(obj);
+      })
+  }
 
- normFile = (e) => {
-   console.log('Upload event:', e);
-   if (Array.isArray(e)) {
-     return e;
-   }
-   return e && e.fileList;
- }
+  postdataToServer = async (obj) => {
+      let response = await HttpUtils.post('customvideo', obj);
+      this.setState({loader: false})
+      this.props.onOk(false);
+  }
+
+  normFile = (e) => {
+    if (Array.isArray(e)) {
+        return e;
+    }
+    return e && e.fileList;
+  }
 
 
   render(){
@@ -266,5 +236,6 @@ handleProvinceChange = (value) => {
     )
   }
 }
+
 const WrappedvideoForm = Form.create()(UploadForm);
 export default WrappedvideoForm;

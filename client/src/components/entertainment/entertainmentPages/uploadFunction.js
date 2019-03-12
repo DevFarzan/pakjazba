@@ -3,7 +3,6 @@ import { Modal, Button } from 'antd';
 import UploadForm from './uploadForm';
 import './uploadVideo.css';
 
-
 class UploadFunction extends Component{
   //*for modal*//
   constructor(props) {
@@ -12,30 +11,21 @@ class UploadFunction extends Component{
   }
 
   showModal = () => {
-   this.setState({
-     visible: true,
-   });
+      this.setState({ visible: true });
   }
 
   handleOk = (e) => {
-   console.log(e);
-   this.setState({
-     visible: false,
-   });
+      this.setState({ visible: false });
   }
 
   handleCancel = (e) => {
-   console.log(e);
-   this.setState({
-     visible: false,
-   });
+      this.setState({ visible: false });
   }
 
   handleVideo = e => {
       this.handleOk();
       this.props.onLoader();
   }
-
 
   render(){
       return(

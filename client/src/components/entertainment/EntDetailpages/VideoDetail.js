@@ -48,7 +48,6 @@ class VideoDetail extends Component{
         description = description.slice(0, 75)
     }
     let URL = 'https' + video.embed_url.slice(4, video.embed_url.length)
-    console.log(URL, 'urlllllll')
 
     return(
       <div className="container" style={{width:"75%", marginTop:"145px"}}>

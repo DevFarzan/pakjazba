@@ -291,7 +291,7 @@ class Postbuysell extends Component{
             objectId: objectId,
             posted: moment().format('LL')
         }
-        let req = await HttpUtils.post('postbuyselldata', obj)
+        let req = await HttpUtils.post('postbuyselldata', obj);
         if(req.code === 200){
             this.props.form.resetFields();
             this.openNotification()
@@ -402,10 +402,10 @@ class Postbuysell extends Component{
     }
 
     render(){
-        const { previewVisible, previewImage, fileList, desLength, categ, subCat, selectSubCat, secSubCat, statesUS, citiesUS, objData } = this.state;
-        const {getFieldDecorator} = this.props.form;
-        const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
-        console.log(fileList, 'vallllllllllllll')
+        const { previewVisible, previewImage, fileList, desLength, categ, subCat, selectSubCat, secSubCat, statesUS, citiesUS, objData } = this.state,
+        {getFieldDecorator} = this.props.form,
+        antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
+        
         if (this.state.msg === true) {
             return <Redirect to={{pathname: '/detail_buySell', state: objData}} />
         }

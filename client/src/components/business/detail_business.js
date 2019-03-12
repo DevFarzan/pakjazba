@@ -52,6 +52,7 @@ class DetailBusiness extends Component{
         AsyncStorage.getItem('user')
             .then((obj) => {
                 let userObj = JSON.parse(obj)
+                console.log(userObj, 'objjjjjjj')
                 if(!!userObj) {
                     this.setState({
                         userId: userObj._id,
@@ -67,6 +68,7 @@ class DetailBusiness extends Component{
         let res = await HttpUtils.get('getreviews')
         if(res.code === 200) {
             let filteredReviews = res.content.filter((elem) => elem.objid === data._id)
+            console.log(filteredReviews, 'reviewsssss')
             this.setState({reviews: filteredReviews})
         }
     }

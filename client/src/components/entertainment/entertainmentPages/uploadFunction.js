@@ -7,60 +7,62 @@ import './uploadVideo.css';
 class UploadFunction extends Component{
   //*for modal*//
   constructor(props) {
-        super(props);
-        this.state = { visible: false }
-      }
+      super(props);
+      this.state = { visible: false }
+  }
 
-   showModal = () => {
-     this.setState({
-       visible: true,
-     });
-   }
+  showModal = () => {
+   this.setState({
+     visible: true,
+   });
+  }
 
-   handleOk = (e) => {
-     console.log(e);
-     this.setState({
-       visible: false,
-     });
-   }
+  handleOk = (e) => {
+   console.log(e);
+   this.setState({
+     visible: false,
+   });
+  }
 
-   handleCancel = (e) => {
-     console.log(e);
-     this.setState({
-       visible: false,
-     });
-   }
+  handleCancel = (e) => {
+   console.log(e);
+   this.setState({
+     visible: false,
+   });
+  }
+
+  handleVideo = e => {
+      this.handleOk();
+      this.props.onLoader();
+  }
 
 
   render(){
-    return(
-  
-
+      return(
           <div className="row" style={{border:'1px solid #80808033',width:'94%',marginLeft:'28px'}}>
-            <div className="col-md-6">
-              <h2 style={{fontSize:'40px',marginTop:'58px'}}><b>Upload and Share your videos</b></h2>
-              <p style={{marginTop:'2px'}}>videos not longer than 15 minutes
-By submitting your videos to Pakjazba, you acknowledge that you agree to pakjazba Terms of Service
- and Community Guidelines.</p>
- <Button type="primary" onClick={this.showModal}>
-   Upload Your Video
- </Button>
-
-   <Modal
-     title="Upload Video"
-     visible={this.state.visible}
-     onOk={this.handleOk}
-     onCancel={this.handleCancel}
-   >
-     <UploadForm/>
- </Modal>
-            </div>
-
-            <div className="col-md-6">
-              <img src="../images/ic.png" style={{width:'70%'}} />
-            </div>
+              <div className="col-md-6">
+                  <h2 style={{fontSize:'40px',marginTop:'58px'}}><b>Upload and Share your videos</b></h2>
+                  <p style={{marginTop:'2px'}}>videos not longer than 15 minutes
+                      By submitting your videos to Pakjazba, you acknowledge that you agree to pakjazba Terms of Service
+                       and Community Guidelines.
+                  </p>
+                  <Button type="primary" onClick={this.showModal}>
+                      Upload Your Video
+                  </Button>
+                  <Modal
+                      title="Upload Video"
+                      visible={this.state.visible}
+                      onOk={this.handleOk}
+                      onCancel={this.handleCancel}
+                  >
+                    <UploadForm onOk={this.handleVideo}/>
+                  </Modal>
+              </div>
+              <div className="col-md-6">
+                  <img src="../images/ic.png" style={{width:'70%'}} />
+              </div>
           </div>
-    )
+      )
   }
 }
 

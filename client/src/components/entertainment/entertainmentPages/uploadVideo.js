@@ -4,7 +4,7 @@ import EHeader from '../entertainmenthome/entertainmentHeader';
 import LatestNews from '../entertainmenthome/LatestnewsSec';
 import { HttpUtils } from '../../../Services/HttpUtils';
 import { connect } from 'react-redux';
-import { Media, Player, controls } from 'react-media-player';
+// import { Media, Player, controls } from 'react-media-player';
 import Footer from '../../footer/footer';
 import axios from "axios/index";
 import Stories from '../entertainmenthome/LatestStories';
@@ -59,119 +59,111 @@ class UploadVideo extends Component{
       });
   }
 
-  setLoader = (e) => {
-    this.setState({loader: e})
+  getvideos = async () => {
+      let response = await HttpUtils.get('getcustomvideo');
+      this.setState({ videoData:response.content });
   }
 
-  async getvideos(){
-    let response = await HttpUtils.get('getcustomvideo');
-    console.log(response,'getAllVideossssss');
-    this.setState({
-      videoData:response.content
-    })
-  }
   showModal = () => {
-    this.setState({
-      visible: true,
-    });
+      this.setState({ visible: true });
   }
 
   handleOk = (e) => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
+      this.setState({ visible: false });
   }
 
   handleCancel = (e) => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
+      this.setState({ visible: false });
   }
 
-  addInPreview(e){
-    console.log(e, 'eeeeeeeeeeee')
-    this.setState({preview:e.videoLink[0]})
+  addInPreview(e){    
+      let video = e.videoLink[0],
+      URL = 'https' + video.slice(4, video.length);
+      this.setState({ preview: URL });
   }
 
-render(){
+  render(){
       const { news, sports, dramas, movies, musics,loader,videoData } = this.state;
       console.log(this.state.preview,'videoooooPreviewwwwwww');
       console.log(videoData, 'videoData')
-  return(
 
-    <div className="">
-        <Burgermenu entertainment={{news, sports, dramas, movies, musics}}/>
-        {/*<EHeader entertainment={{news, sports, dramas, movies, musics}} {...this.props}/>*/}
-        <div style={{width:"100%",height:"67px",marginTop:"100px"}}>
-        </div>
-        <div className="container" style={{width:"70%",marginTop:'10px'}}>
-              <UploadFunction onLoader={this.setLoader}/>
-        <div className="row">
-        <div className="col-md-8">
-        <Media>
-          <div className="media">
-            <div className="media-player">
-              <Player src={this.state.preview} />
-            </div>
-            <div className="media-controls">
-              <PlayPause />
-              <MuteUnmute />
-            </div>
+      return(
+          <div className="">
+              <Burgermenu entertainment={{news, sports, dramas, movies, musics}}/>
+              {/*<EHeader entertainment={{news, sports, dramas, movies, musics}} {...this.props}/>*/}
+              <div style={{width:"100%",height:"67px",marginTop:"100px"}}>
+              </div>
+              <div className="container" style={{width:"70%",marginTop:'10px'}}>
+                    <UploadFunction onLoader={this.getvideos}/>
+              <div className="row">
+              <div className="col-md-8">
+              <iframe 
+                  frameBorder="0" 
+                  width="100%" 
+                  height="400" 
+                  src={URL} 
+                  allowFullScreen 
+                  allow="autoplay"></iframe>
+              {/*<Media>
+                  <div className="media">
+                      <div className="media-player">
+                          <Player src={this.state.preview} />
+                      </div>
+                      <div className="media-controls">
+                          <PlayPause />
+                          <MuteUnmute />
+                      </div>
+                  </div>
+              </Media>*/}
+                  {videoData.map((elem,key) => {
+                      return (
+                          <div key={key} className="col-md-4 col-sm-4" style={{cursor: 'pointer'}} onClick={this.showModal}>
+                              <img onClick={this.addInPreview.bind(this, elem)} style={{height:"130px", width:"100%"}} src={elem.thumbnailImageLink} />
+                              <p onClick={this.addInPreview.bind(this, elem)}>{elem.description}</p>
+                          </div>
+                      );
+                  })}
+
+              </div>
+                <div className="col-md-4 col-sm-4 col-xs-12">
+                    <LatestNews data={{news, sports}} />
+                </div>
+                {/*====================showing news and sports start====================*/}
+
+                {/*====================showing news and sports end====================*/}
+              </div>
+              </div>
+
+              {/*<!-- Modal -->*/}
+              <Modal
+                title="Upload Video"
+                visible={this.state.visible}
+                onOk={this.handleOk}
+                onCancel={this.handleCancel}
+              >
+                <iframe id="cartoonVideo" width="103%" height="274px" src={this.state.preview} frameborder="0" allow="autoplay" allowfullscreen></iframe>
+              </Modal>
           </div>
-        </Media>
-            {videoData.map((elem,key) => {
-                            return (
-                                <div key={key} className="col-md-4 col-sm-4" style={{cursor: 'pointer'}} onClick={this.showModal}>
-                                    <img onClick={this.addInPreview.bind(this, elem)} style={{height:"130px", width:"100%"}} src={elem.thumbnailImageLink} />
-                                    <p onClick={this.addInPreview.bind(this, elem)}>{elem.description}</p>
-                                </div>
-                            )
-
-                      })
-            }
-
-        </div>
-          <div className="col-md-4 col-sm-4 col-xs-12">
-              <LatestNews data={{news, sports}} />
-          </div>
-          {/*====================showing news and sports start====================*/}
-
-          {/*====================showing news and sports end====================*/}
-        </div>
-        </div>
-
-        {/*<!-- Modal -->*/}
-        <Modal
-          title="Upload Video"
-          visible={this.state.visible}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-        >
-
-      </Modal>
-
-<div className="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div className="modal-dialog" role="document">
-    <div className="modal-content">
-      <div className="modal-header">
-        <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 className="modal-title" id="myModalLabel">Preview</h4>
-      </div>
-      <div className="modal-body">
-        <iframe id="cartoonVideo" width="560" height="315" src={this.state.preview} frameborder="0" allowfullscreen></iframe>
-      </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-    </div>
-
-    )
+      )
   }
 }
 
 export default UploadVideo;
+
+
+// <div className="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+//   <div className="modal-dialog" role="document">
+//     <div className="modal-content">
+//       <div className="modal-header">
+//         <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+//         <h4 className="modal-title" id="myModalLabel">Preview</h4>
+//       </div>
+//       <div className="modal-body">
+//         <iframe id="cartoonVideo" width="560" height="315" src={this.state.preview} frameborder="0" allowfullscreen></iframe>
+//       </div>
+//       <div className="modal-footer">
+//         <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+//       </div>
+//     </div>
+//   </div>
+// </div>

@@ -14,7 +14,7 @@ import './uploadVideo.css';
 import UploadFunction from './uploadFunction';
 //import LatestNews from '../entertainmenthome/LatestnewsSec';
 
-const { PlayPause, MuteUnmute } = controls
+//const { PlayPause, MuteUnmute } = controls
 
 class UploadVideo extends Component{
   constructor(props) {
@@ -76,7 +76,7 @@ class UploadVideo extends Component{
       this.setState({ visible: false });
   }
 
-  addInPreview(e){    
+  addInPreview(e){
       let video = e.videoLink[0],
       URL = 'https' + video.slice(4, video.length);
       this.setState({ preview: URL });
@@ -97,12 +97,12 @@ class UploadVideo extends Component{
                     <UploadFunction onLoader={this.getvideos}/>
               <div className="row">
               <div className="col-md-8">
-              <iframe 
-                  frameBorder="0" 
-                  width="100%" 
-                  height="400" 
-                  src={URL} 
-                  allowFullScreen 
+              <iframe
+                  frameBorder="0"
+                  width="100%"
+                  height="400"
+                  src={URL}
+                  allowFullScreen
                   allow="autoplay"></iframe>
               {/*<Media>
                   <div className="media">

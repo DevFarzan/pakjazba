@@ -88,22 +88,22 @@ state = {
                           <p rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'15px'}}>Room Renting</p>
                       </span>*/}
                       <span type="" name='room' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
-                          <p rel="noopener noreferrer" onClick={() => this.renderList('market_roommates')} style={{color:'black',fontSize:'15px', cursor: 'pointer'}}>Room Renting</p>
+                          <p rel="noopener noreferrer" onClick={() => this.renderList('market_roommates')} style={{color:'black',fontSize:'14px', cursor: 'pointer'}}>Room Renting</p>
                       </span>
                       <span type="" name='bussiness' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
-                          <p rel="noopener noreferrer" onClick={() => this.renderList('market_business')} style={{color:'black',fontSize:'15px', cursor: 'pointer'}}>Business Listing</p>
+                          <p rel="noopener noreferrer" onClick={() => this.renderList('market_business')} style={{color:'black',fontSize:'14px', cursor: 'pointer'}}>Business Listing</p>
                       </span>
                       <span type="" name='buySell' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
-                          <p rel="noopener noreferrer" onClick={() => this.renderList('market_classified')} style={{color:'black',fontSize:'15px', cursor: 'pointer'}}>Buy & Sell</p>
+                          <p rel="noopener noreferrer" onClick={() => this.renderList('market_classified')} style={{color:'black',fontSize:'14px', cursor: 'pointer'}}>Buy & Sell</p>
                       </span>
                       <span type="" name='buySell' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
-                          <p rel="noopener noreferrer" onClick={() => this.renderList('market_jobPortal')} style={{color:'black',fontSize:'15px', cursor: 'pointer'}}>Job Portal</p>
+                          <p rel="noopener noreferrer" onClick={() => this.renderList('market_jobPortal')} style={{color:'black',fontSize:'14px', cursor: 'pointer'}}>Job Portal</p>
                       </span>
                       <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
-                          <p rel="noopener noreferrer" onClick={() => this.renderList('market_eventPortal')} style={{color:'black',fontSize:'15px', cursor: 'pointer'}}>Events</p>
+                          <p rel="noopener noreferrer" onClick={() => this.renderList('market_eventPortal')} style={{color:'black',fontSize:'14px', cursor: 'pointer'}}>Events</p>
                       </span>
                       <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
-                          <p rel="noopener noreferrer" onClick={() => this.renderList('entertainment_Home')} style={{color:'black',fontSize:'15px', cursor: 'pointer'}}>Entertainment</p>
+                          <p rel="noopener noreferrer" onClick={() => this.renderList('entertainment_Home')} style={{color:'black',fontSize:'14px', cursor: 'pointer'}}>Entertainment</p>
                       </span>
 
                       {/*// <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">

@@ -29,12 +29,12 @@ class ProfileMain extends Component{
 
     async componentDidMount(){
         const { userId, profileId } = this.props.allArr.userDetail;
-        if(userId && profileId){            
+        if(userId && profileId){
             this.getprofileData(profileId);
             let obj = await this.handleLocalStorage(profileId);
             this.setState({ userId, profileId });
         }else {
-            this.handleLocalStorage();        
+            this.handleLocalStorage();
         }
     }
 
@@ -47,7 +47,7 @@ class ProfileMain extends Component{
                 this.setState({
                     userId: userObj._id,
                     profileId: userObj.profileId
-                })                
+                })
             }
             if(!!userObj && id !== undefined){
                 let reviewProfile = id === userObj.profileId ? false : true;
@@ -62,7 +62,7 @@ class ProfileMain extends Component{
             for(var elem in req.content){
                 this.setState({ [elem]: req.content[elem] });
             }
-        }        
+        }
     }
 
     onChange = e => {
@@ -91,7 +91,7 @@ class ProfileMain extends Component{
               </div>
           </div>
           <div className="container" style={{width:"80%"}}>
-            <div className="row">
+            <div className="row" style={{marginTop:'-15%'}}>
                 <h2 style={{textAlign:"center", fontWeight:"bold"}}> Your Profile</h2>
               <div className="col-md-3">
                 <ProfileSidebar onChange={this.onChange}/>

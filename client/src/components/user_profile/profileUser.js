@@ -376,7 +376,12 @@ class ProfileUser extends Component{
 
         return(
             <div>
-
+            <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "102px",backgroundSize: 'cover'}}>
+                <div className="visible-xs" style={{marginTop:'-100px'}}></div>
+                <div className="background-image">
+                    <Burgermenu/>
+                </div>
+            </div>
                 <div className="hidden-xs" style={{marginTop:'13%'}}></div>
                 <div className="content">
                     {publicSection && <div>
@@ -384,7 +389,7 @@ class ProfileUser extends Component{
                     </div>}
                     {!publicSection && <div className="container" style={{width:"87%"}}>
                         <div className="hero">
-                            <div className="row">
+                            <div className="row" style={{marginTop:'-15%'}}>
                                 {/*=======================col-md-3============================*/}
                                 <div className="col-md-3">
                                     <nav className="nav flex-column side-nav">

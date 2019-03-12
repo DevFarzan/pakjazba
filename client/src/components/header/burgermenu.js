@@ -129,22 +129,22 @@ state = {
               <div className="row visible-sm">
                      <div style={{background:'rgba(236, 236, 236, 0.48)',width:'96%',height:'42px',marginLeft:'16px'}}>
                        <span type="" name='room' ghost className="button_globalclassName col-md-2 col-sm-2">
-                           <Link  rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'15px'}}>Room Renting</Link>
+                           <Link  rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'14px'}}>Room Renting</Link>
                        </span>
                        <span type="" name='bussiness' ghost className="button_globalclassName col-md-2 col-sm-2">
-                           <Link rel="noopener noreferrer" to={`/market_business`} style={{color:'black',fontSize:'15px'}}>Business Listing</Link>
+                           <Link rel="noopener noreferrer" to={`/market_business`} style={{color:'black',fontSize:'14px'}}>Business Listing</Link>
                        </span>
                        <span type="" name='buySell' ghost className="button_globalclassName col-md-2 col-sm-2">
-                           <Link rel="noopener noreferrer" to={`/market_classified`} style={{color:'black',fontSize:'15px'}}>Buy & Sell</Link>
+                           <Link rel="noopener noreferrer" to={`/market_classified`} style={{color:'black',fontSize:'14px'}}>Buy & Sell</Link>
                        </span>
                        <span type="" name='buySell' ghost className="button_globalclassName col-md-2 col-sm-2">
-                           <Link rel="noopener noreferrer" to={`/market_jobPortal`} style={{color:'black',fontSize:'15px'}}>Job Portal</Link>
+                           <Link rel="noopener noreferrer" to={`/market_jobPortal`} style={{color:'black',fontSize:'14px'}}>Job Portal</Link>
                        </span>
                        <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2">
-                           <Link rel="noopener noreferrer" to={`/market_eventPortal`} style={{color:'black',fontSize:'15px'}}>Events</Link>
+                           <Link rel="noopener noreferrer" to={`/market_eventPortal`} style={{color:'black',fontSize:'14px'}}>Events</Link>
                        </span>
                        <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2">
-                           <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'15px'}}>Entertainment</Link>
+                           <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'14px'}}>Entertainment</Link>
                        </span>
                        {/*// <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
                        //     <Link rel="noopener noreferrer" to={`/user_upload`} style={{color:'black',fontSize:'15px'}}>User</Link>

@@ -5,7 +5,8 @@ import './sliderHome.css'
 class SliderHome extends Component{
   render(){
     return(
-     <div class="container" style={{width:"88%", marginBottom:"125px", marginTop:"20px", padding:"0"}}>
+    <div className="">
+     <div class="container hidden-xs" style={{width:"88%", marginBottom:"125px", marginTop:"20px", padding:"0"}}>
       <div id="myCarousel" class="carousel slide" data-ride="carousel" style={{backgroundColor:"aliceblue"}}>
 
     <ol class="carousel-indicators">
@@ -69,7 +70,11 @@ class SliderHome extends Component{
       </div>
     </div>
   </div>
-</div>
+    </div>
+    <div className="container visible-xs" style={{marginTop:"20px"}}>
+         <h4> </h4>
+       </div>
+    </div>
 
     )
   }

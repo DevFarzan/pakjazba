@@ -4,6 +4,7 @@ import EHeader from '../entertainmenthome/entertainmentHeader';
 import LatestNews from '../entertainmenthome/LatestnewsSec';
 import { HttpUtils } from '../../../Services/HttpUtils';
 import { connect } from 'react-redux';
+// import { Media, Player, controls } from 'react-media-player';
 import Footer from '../../footer/footer';
 import axios from "axios/index";
 import Stories from '../entertainmenthome/LatestStories';
@@ -13,7 +14,7 @@ import './uploadVideo.css';
 import UploadFunction from './uploadFunction';
 //import LatestNews from '../entertainmenthome/LatestnewsSec';
 
-
+const { PlayPause, MuteUnmute } = controls
 
 class UploadVideo extends Component{
   constructor(props) {
@@ -85,6 +86,7 @@ class UploadVideo extends Component{
       const { news, sports, dramas, movies, musics,loader,videoData } = this.state;
       console.log(this.state.preview,'videoooooPreviewwwwwww');
       console.log(videoData, 'videoData')
+
       return(
           <div className="">
               <Burgermenu entertainment={{news, sports, dramas, movies, musics}}/>
@@ -95,6 +97,24 @@ class UploadVideo extends Component{
                     <UploadFunction onLoader={this.getvideos}/>
               <div className="row">
               <div className="col-md-8">
+              <iframe 
+                  frameBorder="0" 
+                  width="100%" 
+                  height="400" 
+                  src={URL} 
+                  allowFullScreen 
+                  allow="autoplay"></iframe>
+              {/*<Media>
+                  <div className="media">
+                      <div className="media-player">
+                          <Player src={this.state.preview} />
+                      </div>
+                      <div className="media-controls">
+                          <PlayPause />
+                          <MuteUnmute />
+                      </div>
+                  </div>
+              </Media>*/}
                   {videoData.map((elem,key) => {
                       return (
                           <div key={key} className="col-md-4 col-sm-4" style={{cursor: 'pointer'}} onClick={this.showModal}>
@@ -124,8 +144,7 @@ class UploadVideo extends Component{
                 <iframe id="cartoonVideo" width="103%" height="274px" src={this.state.preview} frameborder="0" allow="autoplay" allowfullscreen></iframe>
               </Modal>
           </div>
-
-    )
+      )
   }
 }
 

@@ -25,6 +25,7 @@
     "react-google-maps": "^9.4.5",
     "react-google-recaptcha": "^0.8.1",
     "react-loader-advanced": "^1.7.1",
+    "react-media-player": "^0.7.6",
     "react-promise": "^2.0.3",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",

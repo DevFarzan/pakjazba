@@ -106,17 +106,7 @@ class UploadVideo extends Component{
                   src={preview}
                   allowFullScreen
                   allow="autoplay"></iframe>}
-              {/*<Media>
-                  <div className="media">
-                      <div className="media-player">
-                          <Player src={this.state.preview} />
-                      </div>
-                      <div className="media-controls">
-                          <PlayPause />
-                          <MuteUnmute />
-                      </div>
-                  </div>
-              </Media>*/}
+              
                   {videoData.map((elem,key) => {
                       return (
                           <div key={key} className="col-md-4 col-sm-4" style={{cursor: 'pointer'}}>

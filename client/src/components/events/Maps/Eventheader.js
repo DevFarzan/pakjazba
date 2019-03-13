@@ -43,12 +43,12 @@ class EventHeader extends Component{
         return(
             <div className="Backgroundcolor">
                 <div className="row">
-                    <div className="col-md-2 hidden-xs">
-                        <img src={data.images && data.images[0]}/>
+                    <div className="col-md-1 hidden-xs">
+                        <img style={{height: '120px'}} src={data.images && data.images[0]}/>
                     </div>
                     <div className="col-md-6">
-                        <div className="row">
-                            <div className="col-md-9">
+                        <div className="row" style={{marginBottom: '-15px'}}>
+                            <div className="col-md-9" style={{marginBottom: '-15px'}}>
                                 <h3>{data.eventTitle && data.eventTitle}</h3>
                             </div>
                             <div className="col-md-3">

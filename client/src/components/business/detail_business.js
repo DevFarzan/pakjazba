@@ -52,23 +52,26 @@ class DetailBusiness extends Component{
         AsyncStorage.getItem('user')
             .then((obj) => {
                 let userObj = JSON.parse(obj)
-                console.log(userObj, 'objjjjjjj')
                 if(!!userObj) {
-                    this.setState({
-                        userId: userObj._id,
-                        profileId: userObj.profileId,
-                        userImg: userObj.userImage,
-                        userName: userObj.name
-                    })
+                    this.getProfile(userObj);                    
                 }
             })
+    }
+
+    async getProfile(userObj){
+        let req = await HttpUtils.get('getprofile?profileId=' + userObj.profileId)
+        this.setState({
+            userId: userObj._id,
+            profileId: userObj.profileId,
+            userImg: req.content ? req.content.imageurl : '',
+            userName: userObj.name
+        })
     }
 
     async getReviews(data){
         let res = await HttpUtils.get('getreviews')
         if(res.code === 200) {
             let filteredReviews = res.content.filter((elem) => elem.objid === data._id)
-            console.log(filteredReviews, 'reviewsssss')
             this.setState({reviews: filteredReviews})
         }
     }

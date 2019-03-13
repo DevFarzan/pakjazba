@@ -41,13 +41,7 @@ class SalmanKhan extends Component {
 			t1Text: 'matrix(1 0 0 1 26 123)',
 			t1TextSize: '13px',
 			seatArr: [],
-			yourBooking: [],
-			reservedSeats : ['SEC-V_ROW-I_SEAT-83', 
-			                'SEC-V_ROW-I_SEAT-89',
-			                'SEC-VV_ROW-I_SEAT-83',
-			                'SEC-VV_ROW-I_SEAT-89',
-			                'SEC-P_ROW-I_SEAT-77',
-			                'SEC-P_ROW-I_SEAT-78']
+			yourBooking: []
 	    };
     }
 
@@ -174,7 +168,7 @@ class SalmanKhan extends Component {
         	this.basicTooltipText(tooltip, evt)
         }
         var mouse = this.tooltipPosition(evt, CTM, targetTooltip);
-        this.tooltipSize()        
+        // this.tooltipSize()        
         tooltip.setAttributeNS(null, "transform", "translate(" + mouse.X + " " + mouse.Y + ")");
     }
 
@@ -318,14 +312,14 @@ class SalmanKhan extends Component {
     	const { x, y } = this.state;
     	let X, Y,
     		axis = this.centerSVG(evt),
-    		posX = targetTooltip === 'tooltip' ? 240 : targetTooltip === 'tooltip2' ? 200 : 150,
-    		posY = targetTooltip === 'tooltip' ? 100 : targetTooltip === 'tooltip2' ? 0 : 0;
+    		posX = targetTooltip === 'tooltip' ? 230 : targetTooltip === 'tooltip2' ? 185 : 150,
+    		posY = targetTooltip === 'tooltip' ? 90 : targetTooltip === 'tooltip2' ? -30 : 0;
     	if(x <= axis.x && y <= axis.y){
     		X = (evt.x - CTM.e + 10 ) / CTM.a;
         	Y = (evt.y - CTM.f + 80 ) / CTM.d;   		
     	}else if(x >= axis.x && y <= axis.y){
     		X = (evt.x - CTM.e - posX ) / CTM.a;
-        	Y = (evt.y - CTM.f + 70 ) / CTM.d;     		
+        	Y = (evt.y - CTM.f + 80 ) / CTM.d;     		
     	}else if(x < axis.x && y >= axis.y){
 			X = (evt.x - CTM.e + 10 ) / CTM.a;
         	Y = (evt.y - CTM.f - posY) / CTM.d; 
@@ -404,7 +398,7 @@ class SalmanKhan extends Component {
 
     render() {
     	const { t2Height, t2Width, t2Head, t2HeadValue, t1Width, t1Height, t1HeadValue, t1Head } = this.state;
-    	
+    	console.log(this.state.value, 'valueeeeeee')
 	    return (
 	        <div id="thisComponent" style={{width: '800px', textAlign: 'center'}} onMouseMove={this._onMouseMove.bind(this)}>
 	        	<span>
@@ -422,7 +416,7 @@ class SalmanKhan extends Component {
 					ref={Viewer => this.Viewer = Viewer}
 					background='white'
 					toolbarPosition='none'
-					scaleFactorMax={2.36}
+					scaleFactorMax={1.65}
 					scaleFactorMin={0.99}
 					detectAutoPan={true}
 					miniaturePosition='left'

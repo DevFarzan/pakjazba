@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Carousel } from 'antd';
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import './sliderHome.css'
 
 class SliderHome extends Component{
   render(){
     return(
     <div className="">
-     <div class="container hidden-xs" style={{width:"88%", marginBottom:"125px", marginTop:"20px", padding:"0"}}>
+     <div class="container" style={{width: isMobile ? '100%' : "88%", marginBottom: isMobile ? '50px' : "125px", marginTop:"20px", padding:"0"}}>
       <div id="myCarousel" class="carousel slide" data-ride="carousel" style={{backgroundColor:"aliceblue"}}>
 
     <ol class="carousel-indicators">
@@ -17,7 +18,7 @@ class SliderHome extends Component{
     </ol>
 
 
-    <div class="carousel-inner" style={{padding:"40px"}}>
+    <div class="carousel-inner" style={isMobile ? {padding:"15px"} : {padding:"40px"}}>
       <div class="item active">
         <div>
           <h3 style={{textAlign:"center"}}>About Pak Jazba</h3>

@@ -69,14 +69,19 @@ class Roomrenting3contentarea extends Component{
             .then((obj) => {
                 let userObj = JSON.parse(obj)
                 if(!!userObj) {
-                    this.setState({
-                        userId: userObj._id,
-                        profileId: userObj.profileId,
-                        userImg: userObj.userImage,
-                        userName: userObj.name
-                    })
+                    this.getProfile(userObj);                    
                 }
             })
+    }
+
+    async getProfile(userObj){
+        let req = await HttpUtils.get('getprofile?profileId=' + userObj.profileId)
+        this.setState({
+            userId: userObj._id,
+            profileId: userObj.profileId,
+            userImg: req.content ? req.content.imageurl : '',
+            userName: userObj.name
+        })
     }
 
     async getReviews(data){

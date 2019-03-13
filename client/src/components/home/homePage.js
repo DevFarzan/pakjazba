@@ -9,6 +9,7 @@ import BannerHome from './bannerHome';
 import SliderHome from './sliderHome';
 import {HttpUtils} from "../../Services/HttpUtils";
 import CarouselHome from './carouselHome';
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import './homePage.css';
 
 
@@ -83,7 +84,7 @@ class HomePage extends Component{
               </div>
           </div>
           <BannerHome/>
-          <div className="container" style={{width:"70%"}}>
+          <div className="container" style={isMobile && !isTablet ? {width: '92%'} : {width:"70%"}}>
               <SliderHome/>
               <div  className="">
                   <h4 className="headingtext" style={{marginLeft:'-11px',marginTop:'-11%'}}> Business Listing </h4>

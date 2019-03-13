@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BussinesCard from '../business/bussinessCard';
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import './carouselHome.css';
 
 class CarouselHome extends Component{
@@ -7,7 +8,7 @@ class CarouselHome extends Component{
         super(props)
         this.state = {
             arrayListing:[],
-            to:3
+            to: isMobile && isTablet ? 2 : isBrowser ? 3 : 1
         }
     }
 
@@ -21,31 +22,32 @@ class CarouselHome extends Component{
 
     handleFarward = (e) =>{
         const { arrayListing, to } = this.state;
+        let from = isMobile && isTablet ? 2 : isBrowser ? 3 : 1;
         if(to < arrayListing.length){
             this.setState({
-              to : this.state.to+3, backward: false
+              to : to + from, backward: false
             });        
         }else {
             this.setState({ farward: true, backward: false })
         }
     }
 
-
     handleBackward = e => {
         const { arrayListing, to } = this.state;
-        if(to > 3){
+        let from = isMobile && isTablet ? 2 : isBrowser ? 3 : 1;
+        if(to > from){
             this.setState({
-              to : this.state.to-3, farward: false
+              to : to - from, farward: false
             })
         }else {
             this.setState({ backward: true, farward: false })
         }
     }
-
-
+    
     render(){
         const { arrayListing, to, farward, backward } = this.state,
         { detail } = this.props;
+        let from = isMobile && isTablet ? 2 : isBrowser ? 3 : 1;
 
         return(
             <div className="carousel-reviews broun-block">
@@ -54,7 +56,7 @@ class CarouselHome extends Component{
                         <div id="carousel-reviews" className="carousel slide" data-ride="carousel">
                             <div className="carousel-inner">
                                 {arrayListing.map((elem,key) => {
-                                    if(key >= to - 3 && key < to){
+                                    if(key >= to - from && key < to){
                                         return (
                                             <div key={key} className="item active">
                                                 <div className="col-md-4 col-sm-6">

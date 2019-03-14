@@ -60,7 +60,7 @@ class EHeader extends Component{
                    <Link rel="noopener noreferrer" to={{pathname: `/entertainment_Category/${'News'}`, state: {news, entertainment}}} style={{color:'black',fontSize:'17px',margin: '21px'}}>News</Link>
                </span>
                <span type="" name='EcommerceMarket' className="button_globalclassName">
-                   <Link rel="noopener noreferrer" to={`/UploadVideo`} style={{color:'black',fontSize:'17px',margin: '21px'}}>User</Link>
+                   <Link rel="noopener noreferrer" to={`/UploadVideo`} style={{color:'black',fontSize:'17px',margin: '21px'}}>Upload</Link>
                </span>
           </div>
           </div>

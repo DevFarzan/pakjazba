@@ -244,6 +244,9 @@ state = {
             <span style={{marginTop: "8px"}}>
                 <Link rel="noopener noreferrer" to={`/market_jobPortal`}>Job Portal</Link>
             </span>
+            <span style={{marginTop:"8px"}}>
+                <Link rel="noopener noreferrer" to={'/market_eventPortal'}>Events</Link>
+            </span>
             <span style={{marginTop: "8px"}}>
                 <Link rel="noopener noreferrer" to={`/entertainment_Home`}>Entertainment</Link>
             </span>

@@ -53,7 +53,7 @@ class DetailBusiness extends Component{
             .then((obj) => {
                 let userObj = JSON.parse(obj)
                 if(!!userObj) {
-                    this.getProfile(userObj);                    
+                    this.getProfile(userObj);
                 }
             })
     }
@@ -189,7 +189,7 @@ class DetailBusiness extends Component{
                 <div className="container" style={{width:"100%", marginTop:"142px"}}>
                   <div className="backgroundColor" style={{marginTop:'-2%'}}>
                     <div className="container" style={{width:"70%"}}>
-                      <div className="row">
+                      <div className="row" style={{marginTop:"20px"}}>
                           <div className="col-md-7">
                             <div className="card">
                                 <div className="card-body space" style={{padding: "17px"}}>

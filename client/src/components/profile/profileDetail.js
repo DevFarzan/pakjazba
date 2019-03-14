@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Icon } from 'antd';
 import './profileDetail.css';
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 
 class ProfileDetail extends Component{
     constructor(props) {
@@ -18,7 +19,7 @@ class ProfileDetail extends Component{
 
     componentDidUpdate(prevProps, prevState){
         let obj  = this.props.profileDetail;
-        if(prevProps.profileDetail !== obj){        
+        if(prevProps.profileDetail !== obj){
             for(var el in obj){
               this.setState({ [el]: obj[el] });
             }
@@ -34,18 +35,18 @@ class ProfileDetail extends Component{
         let fb = facebooklink.length > 0 ? true : false,
         twitter = twitterlink.length > 0 ? true : false;
         return(
-            <div className="row">
+            <div className="row" >
                 <div className="col-md-4">
                     <img src={imageurl.length > 0 ? imageurl : '../images/images.jpg'} style={{width:"100%"}}/>
                 </div>
                 <div className="col-md-8">
-                    <h2> Hi, I am {name} 
-                        {!reviewProfile && <Icon 
-                            type="edit" size={16} 
-                            style={{marginLeft:'13%', cursor: 'pointer'}} 
+                    <h2> Hi, I am {name}
+                        {!reviewProfile && <Icon
+                            type="edit" size={16}
+                            style={{marginLeft:'13%', cursor: 'pointer'}}
                             onClick={() => {this.onGoBack()}}>
                         </Icon>}
-                    </h2>                    
+                    </h2>
                     <hr className="horizontaildetail"/>
                     <div className="row" style={{padding:"0"}}>
                         <div className="col-md-6">

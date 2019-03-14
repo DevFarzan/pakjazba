@@ -204,7 +204,7 @@ class Forthfold extends Component{
                 {this.state.loader && <div className="col-md-12" style={{textAlign: 'center', marginLeft: '-50px', marginBottom: '20px'}}>
                     <Spin indicator={antIcon} />
                 </div>}
-                {(showBuySell.length >= 7) && !(showBuySell.length === buySell.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>}
+                {(showBuySell.length >= 7) && !(showBuySell.length === buySell.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore} style={{backgroundColor:"#37a99b", backgroundImage:"none", borderColor:"#37a99b"}}>View More ...</button></div>}
                 {/*!!showBuySell.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :buySell.length} onChange={this.onChange} /></span>*/}
                 {this.state.visible && <Modal
                     title="Kindly Login first"

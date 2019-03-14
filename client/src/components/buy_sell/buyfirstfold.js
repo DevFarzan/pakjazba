@@ -112,8 +112,8 @@ class Firstfold extends Component{
                         </div>}
                     </div>
                     <div className="col-md-4 col-sm-4 col-xs-12" style={{marginRight:'-30px'}} onClick={this.category}>
-                        <div style={{border:'1px solid black',padding:'10px'}}>
-                            <i className="fa fa-futbol margin_right_c"></i>
+                        <div style={{border:'1px solid black',padding:'6px'}}>
+                            <i className="fa fa-futbol-o margin_right_c"></i>
                             <span className="margin_right_c">Garden</span>
                             <span className="fa fa-chevrson-circle-down visible-xs" onClick={this.dropDown.bind(this, 'garden')} style={{float:'right',fontSize:'27px'}}></span>
                         </div>
@@ -157,7 +157,7 @@ class Firstfold extends Component{
         <div className="row hidden-xs">
             <div className="col-md-12 col-sm-12 col-xs-12 card_border" style={{width:'94%'}}>
                 <div className="col-md-6">
-                    <h1 className="jambo_text"><b>Find your desire item and buy it pakjazba classified</b></h1>
+                    <h1 className="jambo_text" style={{fontSize:"40px"}}><b>Find your desire item and buy it pakjazba classified</b></h1>
                     <p className="under_jumbo_text"><b>Lots of variety availible with vast category</b></p>
                 </div>
                 <div className="col-md-6">

@@ -69,7 +69,7 @@ class Roomrenting3contentarea extends Component{
             .then((obj) => {
                 let userObj = JSON.parse(obj)
                 if(!!userObj) {
-                    this.getProfile(userObj);                    
+                    this.getProfile(userObj);
                 }
             })
     }
@@ -241,14 +241,14 @@ class Roomrenting3contentarea extends Component{
                           </div>
                           <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
                           <h3 style={{marginTop:'9px'}}> Sleeping Arrangments </h3>
-                          <div className="forimage">
+                          <div className="forimage" style={{display:"inline"}}>
                             <div className="row" style={{padding:"0"}}>
-                              <div className="col-md-12 col-sm-4">
+                              <div className="col-md-5 col-sm-4">
                                 <div className="col-md-6 col-sm-5 col-xs-4">
                                   <i class="fa fa-bed" aria-hidden="true" style={{fontSize: '30px'}}></i>
                                 </div>
                                 <div className="col-md-6 col-sm-7 col-xs-8">
-                                  <p> { data.subSubCategory } </p>
+                                  <p style={{marginTop:"15px", marginBottom:"0"}}> { data.subSubCategory } </p>
                                 </div>
                               </div>
                             </div>
@@ -547,7 +547,7 @@ class Roomrenting3contentarea extends Component{
                                </span>
                             </div>
                           </div>
-                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'191px'}}/>
+                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'100%'}}/>
                           <h3 style={{marginTop:'9px'}}> Description </h3>
                           <p>{data.discription || data.description}</p>
                           <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
@@ -578,14 +578,14 @@ class Roomrenting3contentarea extends Component{
                           </div>
                           <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
                           <h3 style={{marginTop:'9px'}}> Sleeping Arrangments </h3>
-                          <div className="forimage">
+                          <div className="forimage" style={{display:"inline"}}>
                             <div className="row" style={{padding:"0"}}>
                               <div className="col-md-12 col-sm-4">
                                 <div className="col-md-6 col-sm-5 col-xs-4">
                                   <i class="fa fa-bed" aria-hidden="true" style={{fontSize: '30px'}}></i>
                                 </div>
                                 <div className="col-md-6 col-sm-7 col-xs-8">
-                                  <p> { data.subSubCategory } </p>
+                                  <p style={{marginTop:"15px", marginBottom:"0"}}> { data.subSubCategory } </p>
                                 </div>
                               </div>
                             </div>

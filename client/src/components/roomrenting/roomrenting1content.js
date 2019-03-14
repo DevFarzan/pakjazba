@@ -63,7 +63,7 @@ class Roomrenting1content extends Component{
         return arrforLoop && arrforLoop.map((elem) => {
             let rate = 0,
             len = 0;
-            rateArr && rateArr.map((el) => {                    
+            rateArr && rateArr.map((el) => {
                 if(elem._id == el.objid){
                     rate += el.star ? +el.star : 0;
                     len++
@@ -181,7 +181,7 @@ class Roomrenting1content extends Component{
                     {this.state.loader && <div className="col-md-12" style={{textAlign: 'center', marginBottom: '20px', marginLeft: '-50px'}}>
                         <Spin indicator={antIcon} />
                     </div>}
-                    {(showroomrents.length >= 7) && !(showroomrents.length === roomrents.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore}>View More ...</button></div>}
+                    {(showroomrents.length >= 7) && !(showroomrents.length === roomrents.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore} style={{backgroundColor:"#37a99b", backgroundImage:"none", borderColor:"#37a99b"}}>View More ...</button></div>}
                 </div>
             </section>
         )

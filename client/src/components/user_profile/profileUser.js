@@ -6,12 +6,14 @@ import superagent from "superagent";
 import AsyncStorage from "@callstack/async-storage";
 import {HttpUtils} from "../../Services/HttpUtils";
 import Burgermenu from '../header/burgermenu';
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import { Link } from "react-router-dom";
 import { Redirect } from 'react-router';
 import PublicProfile from '../profile/profileMainpage';
 const FormItem = Form.Item;
 const { TextArea } = Input;
 const TabPane = Tabs.TabPane;
+
 
 class ProfileUser extends Component{
     constructor(props) {
@@ -389,7 +391,7 @@ class ProfileUser extends Component{
                             <Burgermenu/>
                         </div>
                     </div>
-                        <div className="hero">
+                        <div className="hero" style={isMobile && !isTablet ? {marginTop:"0%"} : {marginTop:"-16%"}  }>
                             <div className="row">
                                 {/*=======================col-md-3============================*/}
                                 <div className="col-md-3">
@@ -582,7 +584,7 @@ class ProfileUser extends Component{
                                                     <div className="row">
                                                         <div className="col-md-12">
                                                             <button className="btn btn-primary"
-                                                                    style={{"float": "right"}}>Save Changes
+                                                                    style={{"float": "right", backgroundColor:"#37a99b", backgroundImage:"none", borderColor:"#37a99b"}}>Save Changes
                                                             </button>
                                                         </div>
                                                     </div>
@@ -663,7 +665,7 @@ class ProfileUser extends Component{
                                                     <div className="single-file-input"
                                                          style={{"padding": "16px", "marginTop": "-6px"}}>
                                                         <Upload {...props} >
-                                                            <div className="btn btn-framed btn-primary small">Upload a
+                                                            <div className="btn btn-framed btn-primary small" style={{backgroundColor:"#37a99b", backgroundImage:"none", borderColor:"#37a99b"}}>Upload a
                                                                 picture
                                                             </div>
                                                         </Upload>

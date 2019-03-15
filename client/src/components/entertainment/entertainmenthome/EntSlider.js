@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import axios from "axios/index";
 import './Entslider.css';
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
+
 
 class EntSlider extends Component{
   constructor(props) {
@@ -76,9 +78,9 @@ class EntSlider extends Component{
         }
 
         return(
-            <div className="container" style={{width:"75%", marginTop:"100px"}}>
-                <div className="row">
-                    <div className="col-md-5" style={{paddingLeft:"0px", paddingRight:"0px"}}>
+            <div className="container" style={isTablet ? {width:"95%"} : {width:"75%"} }>
+                <div className="row" style={{marginTop:"30px"}}>
+                    <div className="col-md-5 col-sm-4" style={{paddingLeft:"0px", paddingRight:"0px"}}>
                         <div className="videobox">
                             <Link to={{pathname: `/entertainment_detail/${news1.id}`, state: {news1, news, entertainment}}}
                                 className="card bg-dark text-white" style={{cursor: 'pointer'}}
@@ -91,14 +93,14 @@ class EntSlider extends Component{
                             </Link>
                         </div>
                     </div>
-                    <div className="col-md-7">
+                    <div className="col-md-7 col-sm-8">
                         <div className="row" style={{padding:"0px"}}>
-                            <div className="col-md-6" style={{paddingLeft:"0px", paddingRight:"0px", cursor: 'pointer'}}>
+                            <div className="col-md-6 col-sm-6" style={{paddingLeft:"0px", paddingRight:"0px", cursor: 'pointer'}}>
                                 <Link to={{pathname: `/entertainment_detail/${final1.id}`, state: {final1, dramas, entertainment}}} className="videobox">
                                     <img src={final1.thumbnail_url} style={{height:"300px", width:"100%"}}/>
                                 </Link>
                             </div>
-                            <div className="col-md-6" style={{paddingLeft:"0px", paddingRight:"0px"}}>
+                            <div className="col-md-6 col-sm-6" style={{paddingLeft:"0px", paddingRight:"0px"}}>
                                 <div className="videobox">
                                     <Link to={{pathname: `/entertainment_detail/${final2.id}`, state: {final2, dramas, entertainment}}}>
                                         <img src={final2.thumbnail_url} style={{height:"150px", width:"100%", cursor: 'pointer'}}/>

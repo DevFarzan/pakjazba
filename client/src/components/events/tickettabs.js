@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Tabs, Radio } from 'antd';
 import { Anchor } from 'antd';
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 
 const { Link } = Anchor;
 
@@ -30,7 +31,7 @@ class TicketTabs extends Component{
     return(
 
       <div className>
-        <div className="container" style={{width:"70%"}}>
+        <div className="container" style={isMobile && isTablet ? {width:"74%"} : {width:"45%"}}>
           <div className="row">
               <div className="col-md-12 hidden-xs">
                   <div className="tab" role="tabpanel">

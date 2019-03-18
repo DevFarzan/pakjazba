@@ -127,7 +127,7 @@ state = {
                 </span>*/}
               </div>
               <div className="row visible-sm">
-                     <div style={{background:'rgba(236, 236, 236, 0.48)',width:'96%',height:'42px',marginLeft:'16px'}}>
+                     <div style={{width:'96%',height:'42px',marginLeft:'16px'}}>
                        <span type="" name='room' ghost className="button_globalclassName col-md-2 col-sm-2">
                            <Link  rel="noopener noreferrer" to={`/market_roommates`} style={{color:'black',fontSize:'14px'}}>Room Renting</Link>
                        </span>
@@ -221,7 +221,7 @@ state = {
                   </div>
               </nav>*/}
 
-           <div id="myNav" className="overlay visible-xs navbar-fixed-top" style={{background:'rgb(3, 42, 48)'}}>
+           <div id="myNav" className="overlay visible-xs navbar-fixed-top" style={{}}>
           <a href="javascript:void(0)" className="closebtn" onClick={this.closeNav} style={{marginTop:'-8%'}}>&times;</a>
           <div className="overlay-content">
           <div className="row">
@@ -254,14 +254,14 @@ state = {
           </div>
         </div>
 
-        <div className="row visible-xs" style={{background:'rgb(3, 42, 48)'}}>
+        <div className="row visible-xs" style={{background:'white'}}>
           <div className="col-md-4 col-xs-4">
-            <i onClick={this.openNav} className="fa fa-bars" style={{color:'white',marginLeft:'8px',fontSize:'24px',marginTop:'10px',cursor:'pointer'}}></i>
+            <i onClick={this.openNav} className="fa fa-bars" style={{color:'rgb(3, 42, 48)',marginLeft:'8px',fontSize:'24px',marginTop:'0px',cursor:'pointer'}}></i>
           </div>
-          <div className="col-md-4 col-xs-4">
-              <Link to={`/`}><img src="../images/logo.png" style={{width:'80%'}} /></Link>
+          <div className="col-md-4 col-xs-5">
+              <Link to={`/`}><img src="../images/pakjazba_new.png" style={{width:'100%'}} /></Link>
           </div>
-          <div className="col-md-4 col-xs-4">
+          <div className="col-md-4 col-xs-3">
             {/*<i class="fas fa-search"></i>*/}
           </div>
 

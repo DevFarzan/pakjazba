@@ -4,6 +4,8 @@ import {Link} from "react-router-dom";
 import { connect } from 'react-redux'
 import LatestNews from './LatestnewsSec';
 import './LatestStories.css';
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
+
 
 
 class Stories extends Component{
@@ -27,9 +29,9 @@ class Stories extends Component{
         let detail = Object.values(this.props.entertainment);
 
         return(
-            <div className="container" style={{width:"75%"}}>
+            <div className="container" style={isTablet ? {width:"95%"} : {width:"75%"}}>
                 <div className="row">
-                    <div className="col-md-8">
+                    <div className="col-md-8 col-sm-8">
                         {Object.keys(this.props.entertainment).map((el, k) => {
                           let arr = detail[k];
                           let str = el.split('')[0].toUpperCase() + el.slice(1, el.length);
@@ -67,7 +69,7 @@ class Stories extends Component{
                             )}
                         })}
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-4 col-sm-4">
                         <LatestNews data={{news, sports}} callRoute={this.nextVideo.bind(this)}/>
                     </div>
                 </div>

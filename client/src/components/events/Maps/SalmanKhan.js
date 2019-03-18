@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Icon } from 'antd';
 import './SalmanKhan.css';
 import {HttpUtils} from "../../../Services/HttpUtils";
-import {ReactSVGPanZoom, TOOL_NONE, fitSelection, zoomOnViewerCenter, fitToViewer, getValue} from 'react-svg-pan-zoom';
+import {ReactSVGPanZoom, TOOL_NONE, fitSelection, zoomOnViewerCenter, fitToViewer, setPointOnViewerCenter, getValue} from 'react-svg-pan-zoom';
 
 class SalmanKhan extends Component {
     constructor(props, context) {
@@ -168,7 +168,7 @@ class SalmanKhan extends Component {
         	this.basicTooltipText(tooltip, evt)
         }
         var mouse = this.tooltipPosition(evt, CTM, targetTooltip);
-        // this.tooltipSize()        
+        this.tooltipSize();        
         tooltip.setAttributeNS(null, "transform", "translate(" + mouse.X + " " + mouse.Y + ")");
     }
 
@@ -349,7 +349,19 @@ class SalmanKhan extends Component {
             }else if(['st10', 'st8', 'st6'].includes(targetFill)) {                 
                 this.onSelectSeat(target, targetId, targetFill);              
             }
+        }else if(targetTagName === 'rect' && ['st18', 'st19', 'st26'].includes(targetFill)){
+        	this.setState({ 
+    			showBasicTooltip: false,
+			}, () => {
+	    		this.setPointOnBlocks(target);
+        	})	        	
         }        
+    }
+
+    setPointOnBlocks(target){
+    	let x = 180 + +(target.getAttribute('x')),
+    	y = 120 + +(target.getAttribute('y'));
+    	this.Viewer.setPointOnViewerCenter(x, y, 2);
     }
 
     onUnSelectSeat(target, targetId){
@@ -398,7 +410,8 @@ class SalmanKhan extends Component {
 
     render() {
     	const { t2Height, t2Width, t2Head, t2HeadValue, t1Width, t1Height, t1HeadValue, t1Head } = this.state;
-    	console.log(this.state.value, 'valueeeeeee')
+    	console.log(this.state.showBasicTooltip, 'showBasicTooltip')
+    	console.log(this.state.value)
 	    return (
 	        <div id="thisComponent" style={{width: '800px', textAlign: 'center'}} onMouseMove={this._onMouseMove.bind(this)}>
 	        	<span>
@@ -408,7 +421,8 @@ class SalmanKhan extends Component {
 		        </span>
 
 		        <hr/>
-
+		        {/*<div style={{width: '40px', height: '40px', position:}}>
+		        </div>*/}
 		        <ReactSVGPanZoom
 		        	className="reactSvgPanZoom"
 					width={800} 
@@ -416,7 +430,7 @@ class SalmanKhan extends Component {
 					ref={Viewer => this.Viewer = Viewer}
 					background='white'
 					toolbarPosition='none'
-					scaleFactorMax={1.65}
+					scaleFactorMax={3}
 					scaleFactorMin={0.99}
 					detectAutoPan={true}
 					miniaturePosition='left'
@@ -426,7 +440,7 @@ class SalmanKhan extends Component {
 					onMouseMove={this.onHoverMouse}
 					// onMouseDown={event => console.log('down', event.x, event.y)}
 					value={this.state.value} 
-					onChangeValue={value => {this.setState({value})}}
+					onChangeValue={value => {console.log(value, 'iiiiiiiiii'), this.setState({value})}}
 					tool={this.state.tool} 
 					// onChangeTool={tool=> this.setState({tool})}
 		        >

@@ -27,3 +27,78 @@
   .st26{fill:#F7941E;}
   .st27{fill:black;}
   .st28{fill:gray;}
+
+
+/*.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  opacity: 1;
+}
+
+#thisComponent .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+#thisComponent .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover #thisComponent .tooltiptext {
+  visibility: visible;
+}*/
+
+
+.bookedTooltip, .availableTooltip, .basicTooltip {
+  pointer-events: none;
+  position: absolute;
+  font-size: 18px;
+  text-align: center;
+  background: white;
+  padding: 10px 15px;
+  z-index: 5;
+  /*height: 80px;*/
+  line-height: 30px;
+  margin: 0 auto;
+  color: #21669e;
+  border-radius: 5px !important;
+  box-shadow: 0 0 0 1px #eee;
+  /*transform(translateX(-50%));*/
+  display: none;
+}
+.active {
+  display: block;
+}
+.bookedTooltip:after, .availableTooltip:after, .basicTooltip:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 0;
+  height: 0;
+  margin-left: -10px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid white;
+}
+.paddingZero{
+  padding: 0px;
+}

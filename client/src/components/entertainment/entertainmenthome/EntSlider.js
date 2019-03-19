@@ -79,7 +79,7 @@ class EntSlider extends Component{
 
         return(
             <div className="container" style={isTablet ? {width:"95%"} : {width:"75%"} }>
-                <div className="row" style={{marginTop:"30px"}}>
+                <div className="row" style={{marginTop:"120px"}}>
                     <div className="col-md-5 col-sm-4" style={{paddingLeft:"0px", paddingRight:"0px"}}>
                         <div className="videobox">
                             <Link to={{pathname: `/entertainment_detail/${news1.id}`, state: {news1, news, entertainment}}}

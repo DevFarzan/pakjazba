@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
 import AsyncStorage from "@callstack/async-storage/lib/index";
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import { Modal } from 'antd';
 
 
@@ -114,7 +115,7 @@ class MarketRoommates extends Component{
                 </div>
 
                 </span>
-                <div className="container" style={{width:"70%"}}>
+                <div className="container" style={isMobile && !isTablet ? {width: '100%'} : {width:"70%"}}>
                     <div className="hidden-xs">
                       <RoomrentingIcon/>
                     </div>

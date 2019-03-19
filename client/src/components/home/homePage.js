@@ -23,6 +23,7 @@ class HomePage extends Component{
         jobPortal:[],
         event:[]
       };
+      
   }
 
 
@@ -36,9 +37,9 @@ class HomePage extends Component{
           let res = await HttpUtils.get('getreviews'),
           business = [],
           roomRenting = [];
-          if(res && res.code && res.code == 200) {                            
-              business = this.addingStarProp(req.business, res.content);   
-              roomRenting = this.addingStarProp(req.roomrentsdata, res.content);       
+          if(res && res.code && res.code == 200) {
+              business = this.addingStarProp(req.business, res.content);
+              roomRenting = this.addingStarProp(req.roomrentsdata, res.content);
           }
           this.setState({
               business,
@@ -47,14 +48,14 @@ class HomePage extends Component{
               jobPortal:req.jobPortalData,
               event:req.eventPortalData
           })
-      }    
+      }
   }
 
   addingStarProp(arrforLoop, rateArr){
       return arrforLoop && arrforLoop.map((elem) => {
           let rate = 0,
               len = 0;
-          rateArr && rateArr.map((el) => {                    
+          rateArr && rateArr.map((el) => {
               if(elem._id == el.objid){
                   rate += el.star ? +el.star : 0;
                   len++

@@ -5,6 +5,7 @@ import Slider from './components/header/Slider';
 import {HttpUtils} from "./Services/HttpUtils";
 
 
+
 class App extends Component {
     constructor(props) {
         super(props)

@@ -420,10 +420,26 @@ class ProfileUser extends Component{
                                 <div className="col-md-9">
                                     <Form onSubmit={this.handleSubmit} className="form">
                                         <div className="row">
+                                            {profileSec && <div className="visible-xs">
+                                                <div className="profile-image">
+                                                    <div className="img-circle">
+                                                        <img className="img-circle"
+                                                             src={imageUrl ? imageUrl : '../images/images.jpg'} alt="" style={{"width":"100%"}} />
+                                                    </div>
+                                                    <div className="single-file-input"
+                                                         style={{"padding": "16px", "marginTop": "-6px"}}>
+                                                        <Upload {...props} >
+                                                            <div className="btn btn-framed btn-primary small" style={{backgroundColor:"#37a99b", backgroundImage:"none", borderColor:"#37a99b"}}>Upload a
+                                                                picture
+                                                            </div>
+                                                        </Upload>
+                                                    </div>
+                                                </div>
+                                            </div>}
                                             {profileSec && <div className="col-md-8">
                                                 <h2>Personal Information</h2>
                                                 <section>
-                                                    <div className="row">
+                                                    <div className="row" style={{padding:"0"}}>
                                                         <div className="col-md-4">
                                                             <div className="form-group">
                                                                 <label htmlFor="sel1">Title:</label>
@@ -455,7 +471,7 @@ class ProfileUser extends Component{
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="row">
+                                                    <div className="row" style={{padding:"0"}}>
                                                         <div className="col-md-12">
                                                             <div className="form-group">
                                                                 <label htmlFor="usr">Your Location:</label>
@@ -475,7 +491,7 @@ class ProfileUser extends Component{
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="row">
+                                                    <div className="row" style={{padding:"0"}}>
                                                         <div className="col-md-12">
                                                             <div className="form-group">
                                                                 <label htmlFor="usr">More About You:</label>
@@ -656,11 +672,11 @@ class ProfileUser extends Component{
                                                     </div>
                                                 </section>
                                             </div>}
-                                            {profileSec && <div className="col-md-4">
+                                            {profileSec && <div className="col-md-4 hidden-xs">
                                                 <div className="profile-image">
                                                     <div className="img-circle">
                                                         <img className="img-circle"
-                                                             src={imageUrl ? imageUrl : '../images/images.jpg'} alt="" style={{"width":"78%"}} />
+                                                             src={imageUrl ? imageUrl : '../images/images.jpg'} alt="" style={{"width":"100%"}} />
                                                     </div>
                                                     <div className="single-file-input"
                                                          style={{"padding": "16px", "marginTop": "-6px"}}>

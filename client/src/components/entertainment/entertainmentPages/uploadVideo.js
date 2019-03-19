@@ -3,6 +3,7 @@ import Burgermenu from '../../header/burgermenu';
 import EHeader from '../entertainmenthome/entertainmentHeader';
 import LatestNews from '../entertainmenthome/LatestnewsSec';
 import { HttpUtils } from '../../../Services/HttpUtils';
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import { connect } from 'react-redux';
 // import { Media, Player, controls } from 'react-media-player';
 import Footer from '../../footer/footer';
@@ -93,11 +94,11 @@ class UploadVideo extends Component{
               {/*<EHeader entertainment={{news, sports, dramas, movies, musics}} {...this.props}/>*/}
               <div style={{width:"100%",height:"67px",marginTop:"100px"}}>
               </div>
-              <div className="container" style={{width:"70%",marginTop:'10px'}}>
+              <div className="container" style={isTablet ? {width:"100%"} : {width:"70%"}}>
                   <UploadFunction onLoader={this.getvideos}/>
               <div className="row">
-              <div className="col-md-8">
-              
+              <div className="col-md-8 col-sm-8">
+
 
               {preview.length > 0 && <iframe
                   frameBorder="0"
@@ -106,12 +107,12 @@ class UploadVideo extends Component{
                   src={preview}
                   allowFullScreen
                   allow="autoplay"></iframe>}
-              
+
                   {videoData.map((elem,key) => {
                       return (
-                          <div key={key} className="col-md-4 col-sm-4" style={{cursor: 'pointer'}}>
-                              <img onClick={this.addInPreview.bind(this, elem)} style={{height:"130px", width:"100%"}} src={elem.thumbnailImageLink} />
-                              <p onClick={this.addInPreview.bind(this, elem)}>{elem.description.slice(0, 23)}</p>
+                          <div key={key} className="col-md-4 col-sm-4" style={{cursor: 'pointer', marginTop:"20px"}}>
+                              <img onClick={this.addInPreview.bind(this, elem)} style={{height:"80px", width:"100%"}} src={elem.thumbnailImageLink} />
+                              <p onClick={this.addInPreview.bind(this, elem)}>{elem.description.slice(0, 15)}</p>
                           </div>
                       );
                   })}

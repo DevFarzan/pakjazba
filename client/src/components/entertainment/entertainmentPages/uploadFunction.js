@@ -29,8 +29,8 @@ class UploadFunction extends Component{
 
   render(){
       return(
-          <div className="row" style={{border:'1px solid #80808033',width:'94%',marginLeft:'28px'}}>
-              <div className="col-md-6">
+          <div className="row" style={{border:'1px solid #80808033',width:'94%',marginLeft:'28px', marginTop:"25px"}}>
+              <div className="col-md-6 col-sm-6">
                   <h2 style={{fontSize:'40px',marginTop:'58px'}}><b>Upload and Share your videos</b></h2>
                   <p style={{marginTop:'2px'}}>videos not longer than 15 minutes
                       By submitting your videos to Pakjazba, you acknowledge that you agree to pakjazba Terms of Service
@@ -48,8 +48,10 @@ class UploadFunction extends Component{
                     <UploadForm onOk={this.handleVideo}/>
                   </Modal>
               </div>
-              <div className="col-md-6">
-                  <img src="../images/ic.png" style={{width:'70%'}} />
+              <div className="col-md-1 col-sm-1">
+              </div>
+              <div className="col-md-4 col-sm-5">
+                  <img src="../images/ic.png" style={{width:'100%', marginTop:"65px"}} />
               </div>
           </div>
       )

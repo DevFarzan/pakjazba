@@ -57,10 +57,10 @@ class EntertainmentHome extends Component{
 
                 <div>
                     <div className="visible-xs" style={{marginTop:'-100px'}}>
-                    <EntSlider entertainment={{news, sports, dramas, movies, musics}} {...this.props} style={{marginTop:'2%'}} />
+                    <EntSlider entertainment={{news, sports, dramas, movies, musics}} {...this.props} style={{marginTop:'20%'}} />
                     </div>
-                    <div className="hidden-xs" style={{marginTop:'133px'}}>
-                    <EntSlider entertainment={{news, sports, dramas, movies, musics}} {...this.props} style={{marginTop:'2%'}} />
+                    <div className="hidden-xs" style={{marginTop:'25px'}}>
+                    <EntSlider entertainment={{news, sports, dramas, movies, musics}} {...this.props} style={{marginTop:'20%'}} />
                     </div>
                     <Stories entertainment={{news, sports, dramas, movies, musics}} {...this.props}/>
                 </div>

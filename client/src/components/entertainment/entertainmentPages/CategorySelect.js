@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import LatestNews from '../entertainmenthome/LatestnewsSec';
 import { connect } from 'react-redux';
 import axios from "axios/index";
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
+
 
 class DramaSection extends Component{
     constructor(props) {
@@ -16,7 +18,7 @@ class DramaSection extends Component{
         const { params } = this.props.match;
         if(params.value === 'Dramas'){
             this.callPlayList()
-        }        
+        }
     }
 
     async callPlayList(){
@@ -30,7 +32,7 @@ class DramaSection extends Component{
         let inputValue = '',
         elem = obj.elem,
         arr = obj.data || obj.arr;
-        dispatch({type: 'SEARCHON', inputValue});        
+        dispatch({type: 'SEARCHON', inputValue});
         this.props.history.push({pathname: `/entertainment_detail/${elem.id}`, state: {elem, arr, entertainment}})
     }
 
@@ -40,20 +42,20 @@ class DramaSection extends Component{
         { news, sports } = entertainment;
 
         return(
-            <div className="container" style={{width:"75%"}}>
+            <div className="container" style={isTablet ? {width:"95%"} : {width:"75%"}}>
                 <div className="row">
-                    <div className="col-md-8">
+                    <div className="col-md-8 col-sm-8">
                         <div className="row" style={{padding:"0px"}}>
                             {data.map((elem, key) => {
                                 let des = elem.description.length ? elem.description : elem.title;
-                                if(des.length > 25){
-                                    des = des.slice(0, 25)
+                                if(des.length > 15){
+                                    des = des.slice(0, 15)
                                     des += '...'
                                 }
                                 if(key <= 17){
                                     return (
                                         <div key={key}
-                                            className="col-md-4 col-sm-4" 
+                                            className="col-md-4 col-sm-4"
                                             style={{cursor: 'pointer'}}
                                             onClick={this.nextVideo.bind(this, {elem, data})}
                                         >
@@ -81,11 +83,11 @@ class DramaSection extends Component{
                                         </div>
                                     )
                                 }
-                            })}                            
+                            })}
                         </div>}
                         {match.params.value == 'Dramas' && <hr style={{margin:"0px"}}/>}
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-4 col-sm-4">
                         <LatestNews data={{news, sports}} callRoute={this.nextVideo.bind(this)}/>
                     </div>
                 </div>

@@ -7,9 +7,9 @@ class BussinesCard extends Component{
     callFunc(cardDetails, detail){
         let to = '';
         if(detail === 'businessData'){
-            to = {pathname: `/detail_business`, state: cardDetails};            
+            to = {pathname: `/detail_business`, state: cardDetails};
         }else if(detail === 'roomRentData'){
-            to = {pathname: `/detail_roomRent`, state: cardDetails};            
+            to = {pathname: `/detail_roomRent`, state: cardDetails};
         }else if(detail === 'buySellData'){
             to = {pathname: `/detail_buySell`, state: cardDetails};
         }else if(detail === 'jobListData'){
@@ -26,7 +26,7 @@ class BussinesCard extends Component{
         locate = cardDetails.city + ", " + cardDetails.state,
         name = cardDetails.businessname || cardDetails.eventTitle || cardDetails.compName || cardDetails.postingtitle || cardDetails.title,
         obj = this.callFunc(cardDetails, detail);
-        
+
         return(
             <Link key={1} to={obj}>
                 <div className=""  style={{'marginBottom': '30px'}}>
@@ -37,14 +37,14 @@ class BussinesCard extends Component{
                                 <b>{name}</b>
                             </h4>
                             <span>
-                                <Rate disabled 
-                                    style={{paddingBottom: '20px', marginTop:"-10px"}} 
+                                <Rate disabled
+                                    style={{paddingBottom: '20px', marginTop:"-10px"}}
                                     allowHalf value={cardDetails.star}
                                 />
-                                {cardDetails.star} 
+                                {cardDetails.star}
                             </span>
                             <p style={{marginTop:"-15px"}}>
-                                <span className="glyphicon glyphicon-map-marker" 
+                                <span className="glyphicon glyphicon-map-marker"
                                     style={{color: "#008080",margin:"2px"}}
                                 ></span>
                                 <span style={{color:"black"}}>{locate}</span>
@@ -59,15 +59,15 @@ class BussinesCard extends Component{
                                 <br/>{'$' + cardDetails.rent + ' ' + cardDetails.pricemode}
                             </p>
                             <span>
-                                <Rate disabled 
-                                    style={{paddingBottom: '20px', marginTop:"-20px",fontFamily: 'Source Sans Pro, sans-serif'}} 
+                                <Rate disabled
+                                    style={{paddingBottom: '20px', marginTop:"-20px",fontFamily: 'Source Sans Pro, sans-serif'}}
                                     allowHalf value={cardDetails.star}
-                                /> 
-                                {cardDetails.star}     
+                                />
+                                {cardDetails.star}
                             </span>
                         </span>}
                         {detail == 'jobListData' && <span>
-                            <p className="companyName" 
+                            <p className="companyName"
                                 style={{marginTop:"15px"}}
                             >
                                 {cardDetails.compName && cardDetails.compName}
@@ -76,7 +76,7 @@ class BussinesCard extends Component{
                                 <b>{cardDetails.jobCat}</b>
                             </h4>
                             <p style={{marginTop:"-10px", marginLeft: '-5px'}}>
-                                <span className="glyphicon glyphicon-map-marker" 
+                                <span className="glyphicon glyphicon-map-marker"
                                     style={{color: "#008080",margin:"2px"}}
                                 ></span>
                                 <span style={{color:"black"}}>{cardDetails.location}</span>
@@ -95,7 +95,7 @@ class BussinesCard extends Component{
                                 <span style={{color:"black"}}>{cardDetails.city}</span>
                             </p>
                             <p>
-                                <span className="glyphicon glyphicon-calendar" 
+                                <span className="glyphicon glyphicon-calendar"
                                     style={{color: "#008080",margin:"-1px"}}
                                 ></span>
                                 <span style={{color:"black", marginLeft:"5px"}}>

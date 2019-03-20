@@ -8,24 +8,30 @@ class EventFilter extends Component{
         this.state ={
             value: [500, 5000],
             min: 500,
-            max: 5000
+            max: 5000,
+            boo: false
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if(this.props.reset !== prevProps.reset){
+            if(this.props.reset){
+               document.getElementById("switchevent").classList.add("ant-switch-checked"); 
+               this.setState({ boo: true });
+            }else{
+                document.getElementById("switchevent").classList.remove("ant-switch-checked");
+                this.setState({ boo: false });
+            }            
         }
     }
 
     onChange = (value) => {
-        // console.log('onChange: ', value);
         this.setState({ value: [500, 5000] })
         this.props.priceRange(value);
     }
 
     onChangeSwitch = (checked) => {
-        if(checked){
-        console.log(this.slider, 'sliderrrrrrrrr');
-            // this.forceUpdate();
-            this.props.switchUnchanged();
-            // this.setState({ min: 500, max: 5000, value: [500, 5000] })
-            
-        }
+        this.props.switchUnchanged(checked);
     }
 
     render(){
@@ -42,7 +48,7 @@ class EventFilter extends Component{
                         <h4><b>Reset</b></h4>
                     </div>
                     <div className="col-md-3">
-                        <Switch id="switchevent" onChange={this.onChangeSwitch} />
+                        <Switch defaultChecked={this.state.boo} id="switchevent" onChange={this.onChangeSwitch} />
                     </div>                    
                 </div>
             </div>

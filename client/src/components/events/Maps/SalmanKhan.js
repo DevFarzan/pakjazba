@@ -16,36 +16,7 @@ class SalmanKhan extends Component {
             seat: '',
             para: '',
             ticketName: '',
-            ticketFee: '',
-			// t2Width: '170px',
-			// t2Height: '46px',
-			// t2Head: '13px',
-			// t2HeadValue: '18px',
-			// sec2Height: 'matrix(1 0 0 1 35 28)',
-			// row2Height: 'matrix(1 0 0 1 90 28)',
-			// seat2Height: 'matrix(1 0 0 1 145 28)',			
-			// sec2Val: 'matrix(1 0 0 1 35 50)',
-			// row2Val: 'matrix(1 0 0 1 90 50)',
-			// seat2Val: 'matrix(1 0 0 1 148 50)',
-			// t1Width: '224px',
-			// t1Height: '150px',
-			// t1Head: '15px',
-			// t1HeadValue: '18px',
-			// sec1Height: 'matrix(1 0 0 1 26 40)',
-			// row1Height: 'matrix(1 0 0 1 110 40)',
-			// seat1Height: 'matrix(1 0 0 1 194 40)',			
-			// sec1Val: 'matrix(1 0 0 1 26 60)',
-			// row1Val: 'matrix(1 0 0 1 115 60)',
-			// seat1Val: 'matrix(1 0 0 1 200 60)',
-			// ticketFee: '14px',
-			// ticketFeeFir: "matrix(1 0 0 1 26 90)",
-			// ticketFeeSec: "matrix(1 0 0 1 129 90)",
-			// hrX1: 26,
-			// hrX2: 218,
-			// hrY1: 70,
-			// hrY2: 106,
-			// t1Text: 'matrix(1 0 0 1 26 123)',
-			// t1TextSize: '13px',
+            ticketFee: '',			
 			seatArr: [],
 			yourBooking: []
 	    };
@@ -142,18 +113,15 @@ class SalmanKhan extends Component {
     		if(this.state.showBasicTooltip){
     			if(['st18', 'st19', 'st26'].includes(targetFill)){
 	        		this.hideTooltip(['availableTooltip', 'bookedTooltip']);
-	        		// this.showTooltip(event, targetId, 'tooltip3')
 	        		this.sectionTooltip(event, 'basicTooltip', targetId, 'tooltip3');
 	        	}
         	}   	
         	else {
         		if(['st10', 'st8', 'st6'].includes(targetFill)){
 	            	this.hideTooltip(['basicTooltip', 'bookedTooltip']);
-	            	// this.showTooltip(event, targetId, 'tooltip')
                     this.sectionTooltip(event, 'availableTooltip', targetId, 'tooltip');
 	        	}else if(targetFill === 'st31'){
 	            	this.hideTooltip(['basicTooltip', 'availableTooltip']);
-	        		// this.showTooltip(event, targetId, 'tooltip2')
                     this.sectionTooltip(event, 'bookedTooltip', targetId, 'tooltip2');
 	        	}
 	        	else {
@@ -189,107 +157,6 @@ class SalmanKhan extends Component {
     	basicText2.innerHTML =  targetFill == 'st19' ? 'AED2000 to AED5000' : targetFill == 'st18' ? 'AED1000' : 'AED500';
     }
 
-    // basicTooltipText(tooltip, evt){    	
-    // 	let basicText1 = '',
-    // 	basicText2 = '',
-    // 	target = evt.originalEvent.target,
-    //     targetFill = target.getAttribute('class'),
-    // 	text1 = tooltip.getElementsByTagName('text');
-    // 	[].map.call(text1, (elem, key) => {
-    // 		if(elem.getAttribute('id') === 'basicText1'){
-    // 			basicText1 = elem;
-    // 		}else if(elem.getAttribute('id') === 'basicText2'){
-    // 			basicText2 = elem;
-    // 		}
-    // 	});
-    // 	basicText1.innerHTML = targetFill == 'st19' ? 'VVIP Seats' : targetFill == 'st18' ? 'VIP Seats' : 'Platinum Seats';
-    // 	basicText2.innerHTML =  targetFill == 'st19' ? 'AED2000 to AED5000' : targetFill == 'st18' ? 'AED1000' : 'AED500';
-    // }
-
-  //   showTooltip(evt, text, targetTooltip) {
-  //       var CTM = evt.SVGViewer.getScreenCTM();
-  //       let svgId = document.getElementById("tooltip-svg");
-  //       let tooltip = document.getElementById(targetTooltip);
-  //       tooltip.setAttributeNS(null, "visibility", "visible");
-  //       if((targetTooltip === 'tooltip' || targetTooltip === "tooltip2") && text !== null){
-  //       	this.tooltipText(tooltip, text)        	
-  //       }else if(targetTooltip === 'tooltip3'){
-  //       	this.basicTooltipText(tooltip, evt)
-  //       }
-  //       var mouse = this.tooltipPosition(evt, CTM, targetTooltip);
-  //       this.tooltipSize();        
-  //       tooltip.setAttributeNS(null, "transform", "translate(" + mouse.X + " " + mouse.Y + ")");
-  //   }
-
-  //   tooltipSize(){
-  //   	const { value } = this.state;
-		// if(value.a >= 1.96){
-		// 	this.setState({
-		// 		t2Head: '9px',
-		// 	    t2HeadValue: '13px',
-		// 	    sec2Height: 'matrix(1 0 0 1 25 23)',
-		// 		row2Height: 'matrix(1 0 0 1 70 23)',
-		// 		seat2Height: 'matrix(1 0 0 1 125 23)',
-		// 		sec2Val: 'matrix(1 0 0 1 25 40)',
-		// 		row2Val: 'matrix(1 0 0 1 75 40)',
-		// 		seat2Val: 'matrix(1 0 0 1 130 40)',
-		// 		t2Width: '140px',
-		// 		t2Height: '30px',
-		// 		t1Width: '140px',
-		// 		t1Height: '110px',
-		// 		t1Head: '9px',
-		// 		t1HeadValue: '13px',
-		// 		sec1Height: 'matrix(1 0 0 1 20 35)',
-		// 		row1Height: 'matrix(1 0 0 1 70 35)',
-		// 		seat1Height: 'matrix(1 0 0 1 125 35)',			
-		// 		sec1Val: 'matrix(1 0 0 1 20 50)',
-		// 		row1Val: 'matrix(1 0 0 1 75 50)',
-		// 		seat1Val: 'matrix(1 0 0 1 130 50)',
-		// 		ticketFee: '8px',
-		// 		ticketFeeFir: "matrix(1 0 0 1 20 74)",
-		// 		ticketFeeSec: "matrix(1 0 0 1 89 74)",
-		// 		hrX1: 20,
-		// 		hrX2: 145,
-		// 		hrY1: 60,
-		// 		hrY2: 80,
-		// 		t1Text: 'matrix(1 0 0 1 20 90)',
-		// 		t1TextSize: '8px'
-		// 	})
-		// }else {
-		// 	this.setState({
-		// 		tt2Head: '13px',
-		// 		t2HeadValue: '18px',
-		// 		sec2Height: 'matrix(1 0 0 1 35 28)',
-		// 		row2Height: 'matrix(1 0 0 1 90 28)',
-		// 		seat2Height: 'matrix(1 0 0 1 145 28)',			
-		// 		sec2Val: 'matrix(1 0 0 1 35 50)',
-		// 		row2Val: 'matrix(1 0 0 1 90 50)',
-		// 		seat2Val: 'matrix(1 0 0 1 148 50)',				
-		// 		t2Width: '170px',
-		// 		t2Height: '46px',
-		// 		t1Width: '224px',
-		// 		t1Height: '150px',
-		// 		t1Head: '15px',
-		// 		t1HeadValue: '18px',
-		// 		sec1Height: 'matrix(1 0 0 1 26 40)',
-		// 		row1Height: 'matrix(1 0 0 1 110 40)',
-		// 		seat1Height: 'matrix(1 0 0 1 194 40)',			
-		// 		sec1Val: 'matrix(1 0 0 1 26 60)',
-		// 		row1Val: 'matrix(1 0 0 1 115 60)',
-		// 		seat1Val: 'matrix(1 0 0 1 200 60)',
-		// 		ticketFee: '14px',
-		// 		ticketFeeFir: "matrix(1 0 0 1 26 90)",
-		// 		ticketFeeSec: "matrix(1 0 0 1 129 90)",
-		// 		hrX1: 26,
-		// 		hrX2: 218,
-		// 		hrY1: 70,
-		// 		hrY2: 106,
-		// 		t1Text: 'matrix(1 0 0 1 26 123)',
-		// 		t1TextSize: '13px'
-		// 	})
-		// }
-  //   }  
-
     tooltipText(tooltip, text){
         let res = text.split("_", 3),
             sec = res[0].slice(res[0].indexOf("-")+1, res[0].length),
@@ -299,107 +166,19 @@ class SalmanKhan extends Component {
             ticketName = sec == 'VV' ? 'VVIP Ticket' : sec == "V" ? 'VIP Ticket' : 'Platinum Ticket',
             ticketFee = sec == 'VV' ? '$2000 + Fees' : sec == 'V' ? '$1000 + Fees' : '$500 + Fees';
         this.setState({ sec, row, seat, para, ticketName, ticketFee });
-
     }  
 
-  //   tooltipText2(tooltip, text){
-  //   	var tooltipId = tooltip.getAttribute('id');
-  //   	if(tooltipId == 'tooltip' || tooltipId == 'tooltip2'){
-	 //    	var ticketName = '',
-		//     	ticketDetail = '',
-		//     	ticketFeeId = '',
-		//     	ticketFee = '$500 + Fees',
-		//     	paraOne = '',
-		//     	paraTwo = '',
-		//     	paraThree = '',		    	
-		//     	text1 = tooltip.getElementsByTagName('text')[1],
-		//     	text2 = tooltip.getElementsByTagName('text')[2],
-		//     	text3 = tooltip.getElementsByTagName('text')[3], 	    	
-		// 		res = text.split("_", 3),
-		//     	sec = res[0].slice(res[0].indexOf("-")+1, res[0].length),
-		//     	row = res[1].slice(-1),
-		// 		seat = res[2].slice(res[2].indexOf("-")+1, res[2].length);
-		// 	text1.innerHTML = tooltipId == 'tooltip' ? row : sec;
-		// 	text2.innerHTML = tooltipId == 'tooltip' ? seat : row;
-		// 	text3.innerHTML = tooltipId == 'tooltip' ? sec : seat;
-		// }
-		// if(tooltipId == 'tooltip'){
-		// 	[].map.call(tooltip.getElementsByTagName('text'), elem => {
-	 //    		if(elem.getAttribute('id') === 'ticketName'){
-	 //    			ticketName = elem;
-	 //    		}else if(elem.getAttribute('id') === 'ticketDetail'){
-	 //    			ticketDetail = elem;
-	 //    			paraOne = ticketDetail.getElementsByTagName('tspan')[0];
-	 //    			paraTwo = ticketDetail.getElementsByTagName('tspan')[1];
-	 //    			paraThree = ticketDetail.getElementsByTagName('tspan')[2];
-	 //    		}else if(elem.getAttribute('id') === 'ticketFeeId'){
-	 //    			ticketFeeId = elem;
-	 //    		}
-	 //    	});
-		// 	paraOne.innerHTML = sec == 'VV' || sec == 'V' ? 'Includes Dinner And Vallet Parking' : 'Not Includes Dinner And Vallet';
-		// 	paraTwo.innerHTML = sec == 'VV' || sec == 'V' ? '' : 'Parking';
-		// 	paraThree.innerHTML = '';
-		// 	ticketName.innerHTML = sec == 'VV' ? 'VVIP Ticket' : sec == "V" ? 'VIP Ticket' : 'Platinum Ticket';
-		// 	ticketFeeId.innerHTML = sec == 'VV' && row == 'A' ? '$5000 + Fees' : sec == 'VV' ? '$2000 + Fees' : sec == 'V' ? '$1000 + Fees' : ticketFee;
-		// }
-  //   }
-
-    centerSVG(evt){
-        evt.persist = () => {}
-        // console.log(evt.originalEvent, 'evttttttt')
-        // console.log(evt.persist(), 'evttttttt123')
-        let box = evt.originalEvent.target,
-        clientX = evt.originalEvent.clientX,
-        clientY = evt.originalEvent.clientY,
-        pageX = evt.originalEvent.pageX,
-        pageY = evt.originalEvent.pageY;
-        // console.log(box, 'evttttttt')
-        // console.log(document.getElementById('thisComponent'), 'ye b haiiii')
-
-    	let bbox2 = document.getElementById('thisComponent').getBoundingClientRect(),
-    	bbox = document.getElementsByClassName('reactSvgPanZoom')[0].getBoundingClientRect(),
-    	x = bbox.x + bbox.width/2,
-    	y = bbox.y + bbox.height/2;
-        // console.log(clientY, 'pehlaaaaaa')
-        // console.log(pageY, 'dosraaaaaaaa')
-        // console.log(clientX, 'bboxxxxxxxxxxxx')
-        // console.log(pageX, 'bboxxxx2222222222')
-    	return {x, y}
-    }
-
     tooltipPosition(evt, CTM, targetTooltip){
-     //    console.log(evt, 'evtttttttt')
-     //    console.log(CTM, 'ctmmmmmmmmm')
-    	// const { x, y } = this.state;
     	let X, Y,
-    	// 	axis = this.centerSVG(evt),
-    	// 	// posX = targetTooltip === 'tooltip' ? 230 : targetTooltip === 'tooltip2' ? 185 : 150,
-    		posX = targetTooltip === 'tooltip' ? 280 : targetTooltip === 'tooltip2' ? 185 : 62,
-    		posY = targetTooltip === 'tooltip' ? 0 : targetTooltip === 'tooltip2' ? -30 : 140;
-        let box = evt.originalEvent.target,
-        clientX = evt.originalEvent.clientX,
-        clientY = evt.originalEvent.clientY,
-        pageX = evt.originalEvent.pageX,
-        pageY = evt.originalEvent.pageY;
-    	    // console.log(axis, 'axisssssssssss')   
-   //      if(x <= axis.x && y <= axis.y){
-   //  		// console.log('aaaaaaaaaaa')
-   //  		X = (clientX - CTM.e ) / CTM.a;
-   //      	// Y = (evt.y - CTM.f + 80 ) / CTM.d;
-   //      	Y = (clientY - CTM.f) / CTM.d;   		
-   //  	}else if(x >= axis.x && y <= axis.y){
-   //  		// console.log(posX, 'bbbbbbbbbbb')
-   //  		X = (clientX - CTM.e ) / CTM.a;
-   //      	Y = (clientY - CTM.f ) / CTM.d;     		
-   //  	}else if(x < axis.x && y >= axis.y){
-   //  		// console.log(posY, 'cccccccccccc')
-			// X = (clientX - CTM.e ) / CTM.a;
-   //      	Y = (clientY - CTM.f) / CTM.d; 
-   //  	}else if(x >= axis.x && y >= axis.y){
-   //  		// console.log('dddddddddddd')
+    		posX = targetTooltip === 'tooltip' ? 120 : targetTooltip === 'tooltip2' ? 120 : 120,
+    		posY = targetTooltip === 'tooltip' ? -90 : targetTooltip === 'tooltip2' ? 15 : 0,
+            box = evt.originalEvent.target,
+            clientX = evt.originalEvent.clientX,
+            clientY = evt.originalEvent.clientY,
+            pageX = evt.originalEvent.pageX,
+            pageY = evt.originalEvent.pageY;    	   
 			X = (clientX - CTM.e - posX ) / CTM.a;
         	Y = (clientY - CTM.f + posY) / CTM.d;
-    	// }
     	return {X, Y}
     }
 
@@ -456,6 +235,7 @@ class SalmanKhan extends Component {
         reserved = this.returnObj(res);      
 		target.setAttribute("class", "st27");  
         yourBooking.push(reserved);
+        this.props.switchUnchanged(false);
         this.props.bookedSeats(yourBooking, false);
         seatArr.push({targetId, targetFill});
         this.setState({seatArr, yourBooking});
@@ -8253,73 +8033,11 @@ class SalmanKhan extends Component {
 <rect x="190.4442291" y="86.7203827" class="st5" width="15" height="14.000001"/>
 <text transform="matrix(1 0 0 1 145 109.8518982)" class="st3 st15">BOOKED SEATS</text>
 
-
 						</g>
-						{/*second Map end*/}
-		                {/*<g id="tooltip2" visibility="hidden" fill='white'>		
-								<rect id="box" x="21" y="14" fill="white" stroke="black" strokeWidth="2" strokeMiterlimit="10" width={t2Width} height={t2Height}/>
-							<g id="XMLID_10_">						
-								<text id="XMLID_142_" transform={this.state.sec2Height} fill="gray" fontFamily="'HelveticaNeueLTCom-Md'" fontSize={t2Head}>SEC</text>
-							</g>
-							<text id="XMLID_15_" transform={this.state.sec2Val} fill="black" fontFamily="'Helvetica-Bold'" fontSize={t2HeadValue}>103</text>
-							<text id="XMLID_16_" transform={this.state.row2Val} fill="black" fontFamily="'Helvetica-Bold'" fontSize={t2HeadValue}>blue</text>
-							<text id="XMLID_17_" transform={this.state.seat2Val} fill="black" fontFamily="'Helvetica-Bold'" fontSize={t2HeadValue}>21</text>
-							<g id="XMLID_13_">						
-								<text id="XMLID_141_" transform={this.state.row2Height} fill="gray" fontFamily="'HelveticaNeueLTCom-Md'" fontSize={t2Head}>ROW</text>
-							</g>
-							<g id="XMLID_14_">						
-								<text id="XMLID_140_" transform={this.state.seat2Height} fill="gray" fontFamily="'HelveticaNeueLTCom-Md'" fontSize={t2Head}>SEAT</text>
-							</g>
-						</g>*/}
-						{/*<g id="tooltip" visibility="hidden" fill='white'>
-							<rect id="XMLID_24_" x="12" y="21" fill="white" stroke="black" strokeWidth="2" strokeMiterlimit="10" width={t1Width} height={t1Height}/>
-							<g id="XMLID_23_">			
-								<text id="XMLID_81_" transform={this.state.sec1Height} fill="#737373" fontFamily="'HelveticaNeueLTCom-Md'" fontSize={t1Head}>SEC</text>
-							</g>
-							<text id="XMLID_22_" transform={this.state.row1Val} fill="black" fontFamily="'Helvetica-Bold'" fontSize={t1HeadValue}>103</text>
-							<text id="XMLID_21_" transform={this.state.seat1Val} fill="black" fontFamily="'Helvetica-Bold'" fontSize={t1HeadValue}>FF</text>
-							<text id="XMLID_20_" transform={this.state.sec1Val} fill="black" fontFamily="'Helvetica-Bold'" fontSize={t1HeadValue}>21</text>
-							<g id="XMLID_19_">			
-								<text id="XMLID_83_" transform={this.state.row1Height} fill="#737373" fontFamily="'HelveticaNeueLTCom-Md'" fontSize={t1Head}>ROW</text>
-							</g>
-							<g id="XMLID_18_">			
-								<text id="XMLID_85_" transform={this.state.seat1Height} fill="#737373" fontFamily="'HelveticaNeueLTCom-Md'" fontSize={t1Head}>SEAT</text>
-							</g>		
-							<line id="XMLID_11_" fill="none" stroke="black" strokeWidth="0.5" strokeMiterlimit="10" x1={this.state.hrX1} y1={this.state.hrY1} x2={this.state.hrX2} y2={this.state.hrY1}/>
-
-							<line id="XMLID_28_" fill="none" stroke="black" strokeWidth="0.5" strokeMiterlimit="10" x1={this.state.hrX1} y1={this.state.hrY2} x2={this.state.hrX2} y2={this.state.hrY2}/>
-							<g id="XMLID_25_">			
-								<text id="ticketName" transform={this.state.ticketFeeFir} fill="#414042" fontFamily="'HelveticaLTStd-Roman'" fontSize={this.state.ticketFee}>Standard Ticket</text>
-							</g>
-							<g id="XMLID_29_">
-								<text id="ticketDetail" transform={this.state.t1Text}>
-									<tspan x="0" y="0" fill="#414042" fontFamily="'HelveticaLTStd-Roman'" fontSize={this.state.t1TextSize}>
-										Plastic Molded Chair Seating 
-									</tspan>
-									<tspan x="0" y="18" fill="#414042" fontFamily="'HelveticaLTStd-Roman'" fontSize={this.state.t1TextSize}>
-										This Section Has A Full View Of 
-									</tspan>
-									<tspan x="0" y="36" fill="#414042" fontFamily="'HelveticaLTStd-Roman'" fontSize={this.state.t1TextSize}>
-										The Event
-									</tspan>
-								</text>
-							</g>
-							<g id="XMLID_27_">			
-								<text id="ticketFeeId" transform={this.state.ticketFeeSec} fill="#414042" fontFamily="'HelveticaLTStd-Roman'" fontSize={this.state.ticketFee}>$37.00 + Fees</text>
-							</g>
-						</g>*/}
-						{/*<g id="tooltip3" visibility="hidden" fill='white'>
-		                    <rect id="box" x="8.1643734" y="8.6129923" fill="white" stroke="black" strokeWidth="2" strokeMiterlimit="10" width="130" height="65"/>				
-		                    <g id="XMLID_70_">                        
-		                        <text id="basicText1" transform="matrix(1 0 0 1 18.4972897 34.2101479)" fill="black" fontFamily="'HelveticaLTStd-Roman'" fontSize="18px">$37.00</text>
-		                    </g>
-		                    <g id="XMLID_32_">                        
-		                        <text id="basicText2" transform="matrix(1 0 0 1 18.497366 57.2101479)" fill="black" fontFamily="'HelveticaNeueLTCom-Md'" fontSize="12px">5 Tickets</text>
-		                    </g>                    
-		                </g>*/}
+						{/*second Map end*/}		                
 					</svg>
 		        </ReactSVGPanZoom>
-		        <div class="basicTooltip row">
+		        <div class="basicTooltip row" style={{width: '270px'}}>
 		        	<div className="col-md-12">VVIP</div>
 		        	<div className="col-md-12">AED2000</div>
 		        </div>

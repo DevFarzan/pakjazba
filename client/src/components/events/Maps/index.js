@@ -30,7 +30,6 @@ class SeatMap extends Component{
 
 	componentWillUnmount(){
 		const { data, booked } = this.state;
-		console.log(this.props, 'kia aaya bhaiii')
 		if(!this.props.route){
 			this.props.history.push({pathname: `/Buyer_Detailpage`, state: {data, booked}})
 		}
@@ -57,7 +56,7 @@ class SeatMap extends Component{
 				this.setState({ booked: [...seatGold, ...book]});
 			}
 		}else {
-			this.setState({booked: book});
+			this.setState({booked: book});				
 		}
 
 	}
@@ -66,8 +65,8 @@ class SeatMap extends Component{
 		this.setState({range});
 	}
 
-	switchUnchanged = () => {
-		this.setState({range: [500, 5000], reset: true})
+	switchUnchanged = (checked) => {
+		this.setState({range: [500, 5000], reset: checked})
 	}
 
 	confirmSeat = e => {
@@ -76,7 +75,7 @@ class SeatMap extends Component{
 
 	render(){
 		const { obj, booked, range, msg, data } = this.state;
-		console.log(data, booked, 'data booked')
+		
 		if(msg) {
             return <Redirect to={{pathname: '/Buyer_Detailpage', state: {data, booked}}} />
         }
@@ -85,20 +84,21 @@ class SeatMap extends Component{
 			<div>
 				<Burgermenu/>
 				<div className ="" style={{"background":"#d8e7e4",backgroundSize: 'cover', marginTop: '90px'}}>
-						<div className="background-image">
-							<EventHeader
-								data={data}
-								bookedSeats={this.bookedSeats}
-								// reset={this.state.reset}
-								{...this.props}
-							/>
-						</div>
-						<div className="">
-							<EventFilter
-								priceRange={this.priceRange}
-								switchUnchanged={this.switchUnchanged}
-							/>
-						</div>
+					<div className="background-image">
+						<EventHeader
+							data={data}
+							bookedSeats={this.bookedSeats}
+							// reset={this.state.reset}
+							{...this.props}
+						/>
+					</div>
+					<div className="">
+						<EventFilter
+							priceRange={this.priceRange}
+							reset={this.state.reset}
+							switchUnchanged={this.switchUnchanged}
+						/>
+					</div>
 				</div>
 				<div className="row">
 					<div className="col-md-8" style={{border: '1px solid black'}}>
@@ -107,6 +107,7 @@ class SeatMap extends Component{
 							availableObj={this.availableSeats}
 							bookedSeats={this.bookedSeats}
 							reset={this.state.reset}
+							switchUnchanged={this.switchUnchanged}
 							{...this.props}
 						/>
 					</div>

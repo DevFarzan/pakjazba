@@ -22,7 +22,7 @@ class LowestPrice extends Component{
     }
 
     filterData(){
-        const { data, range } = this.props;                
+        const { data, range } = this.props;    
         let arr = data.filter((elem) => {
             let str = elem.price.slice(3, elem.price.length)
             if(range[0] <= str && range[1] >= str){
@@ -42,7 +42,9 @@ class LowestPrice extends Component{
     }
 
     render(){
-        const { arr } = this.state;
+        const { arr } = this.state,
+        { data } = this.props,
+        showArr = arr.length > 0 ? arr : data;
         
         return(
             <div
@@ -50,20 +52,20 @@ class LowestPrice extends Component{
                 onScroll={this.onScroll} 
                 className="row" 
                 style={{height: '400px', overflowY: 'overlay'}}>
-                {arr.length > 0 ? arr.map((elem, key) => {
-                  if(key <= this.state.upto){
-                    return(
-                        <div key={key}>
-                            <div className="col-md-8">
-                                <p className="seatsvalue"><b>{elem.str}</b></p>
-                                <p> Verified Resale Ticket </p>
+                {showArr.length > 0 ? showArr.map((elem, key) => {
+                    if(key <= this.state.upto){
+                        return(
+                            <div key={key}>
+                                <div className="col-md-8">
+                                    <p className="seatsvalue"><b>{elem.str}</b></p>
+                                    <p> Verified Resale Ticket </p>
+                                </div>
+                                <div className="col-md-4">
+                                    <p className="pricingvalue">{elem.price}</p>
+                                </div>
                             </div>
-                            <div className="col-md-4">
-                                <p className="pricingvalue">{elem.price}</p>
-                            </div>
-                        </div>
-                    )
-                  }
+                        )
+                    }
                 })
                 : 
                 <h1>no match with this filter</h1>

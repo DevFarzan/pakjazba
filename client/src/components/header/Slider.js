@@ -174,7 +174,37 @@ class Slider extends Component{
                     </div> }
                       {/*<!-- Header End -->*/}
 
-                 {/*=====================roomRenting end====================*/}
+                    {/*=====================Ecommerce start==================*/}
+
+                      {this.props.mainH1 === "Pakjazba Ecommerce" && <div className="row">
+                          <span className="col-md-2"></span>
+                          <div className="col-md-5 col-sm-12 col-xs-12">
+                          <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black',textAlign:'left'}}>{this.props.mainH1}</h3>
+                          <form>
+                              <div className="single">
+                                  <div className="input-group">
+                                      <input type="text" className="form-control" placeholder="Search" style={{height:'40px'}} onChange={this.onChange.bind(this)}/>
+                                      <span className="input-group-btn">
+                                          <button className="btn btn-theme" type="submit" style={{backgroundColor:'#37a99b',color:'white'}} onClick={this.searchText}><Link  rel="noopener noreferrer" to={`/products_GridStyle`} ><i className="fa fa-search"/></Link></button>
+                                      </span>
+                                  </div>
+                                  <div className="row">
+                                    <div className="col-md-7 col-sm-8">
+                                      <h4 style={{marginTop:"4px", marginLeft:"-12px"}}>Your Market hub for all products</h4>
+                                    </div>
+                                    <div className="col-md-5 col-sm-4">
+
+                                    </div>
+                                  </div>
+                              </div>
+                          </form>
+                          </div>
+                          <div className="col-md-5 col-sm-6 hidden-xs hidden-sm">
+                              <img src="../images/room icon/room_header.png" style={{width:'65%'}} />
+                          </div>
+                      </div> }
+
+                 {/*=====================Ecommerce end====================*/}
 
                   {/*  <div className="row">
                         <div className="col-md-6 col-sm-12 col-xs-12" style={{width:"100%", marginTop: "107px", backgroundColor: "aliceblue"}}>

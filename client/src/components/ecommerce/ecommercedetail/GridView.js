@@ -8,10 +8,10 @@ class GridView extends Component{
       <div className="container" style={{width:"100%"}}>
         <div className="row">
           <div className="col-md-12">
-            <div className="col-md-3">
+            <div className="col-md-3 col-sm-3">
               <img src='./images/ecommerce/41pa5T0NGKL._AC_US218_.jpg' style={{width:"100%"}}/>
             </div>
-            <div className="col-md-9">
+            <div className="col-md-9 col-sm-9">
               <div className="textgrid">
                 <h4>Samsung 128GB 100MB/s (U3) MicroSD EVO Select Memory Card with Adaptor (MB-ME128GA/AM)</h4>
                 <p>By Pakjazba</p>
@@ -29,10 +29,10 @@ class GridView extends Component{
 
         <div className="row">
           <div className="col-md-12">
-            <div className="col-md-3">
+            <div className="col-md-3 col-sm-3">
               <img src='./images/ecommerce/41pa5T0NGKL._AC_US218_.jpg' style={{width:"100%"}}/>
             </div>
-            <div className="col-md-9">
+            <div className="col-md-9 col-sm-9">
               <div className="textgrid">
                 <h4>Samsung 128GB 100MB/s (U3) MicroSD EVO Select Memory Card with Adaptor (MB-ME128GA/AM)</h4>
                 <p>By Pakjazba</p>
@@ -50,10 +50,10 @@ class GridView extends Component{
 
         <div className="row">
           <div className="col-md-12">
-            <div className="col-md-3">
+            <div className="col-md-3 col-sm-3">
               <img src='./images/ecommerce/41pa5T0NGKL._AC_US218_.jpg' style={{width:"100%"}}/>
             </div>
-            <div className="col-md-9">
+            <div className="col-md-9 col-sm-9">
               <div className="textgrid">
                 <h4>Samsung 128GB 100MB/s (U3) MicroSD EVO Select Memory Card with Adaptor (MB-ME128GA/AM)</h4>
                 <p>By Pakjazba</p>
@@ -71,10 +71,10 @@ class GridView extends Component{
 
         <div className="row">
           <div className="col-md-12">
-            <div className="col-md-3">
+            <div className="col-md-3 col-sm-3">
               <img src='./images/ecommerce/41pa5T0NGKL._AC_US218_.jpg' style={{width:"100%"}}/>
             </div>
-            <div className="col-md-9">
+            <div className="col-md-9 col-sm-9">
               <div className="textgrid">
                 <h4>Samsung 128GB 100MB/s (U3) MicroSD EVO Select Memory Card with Adaptor (MB-ME128GA/AM)</h4>
                 <p>By Pakjazba</p>
@@ -92,10 +92,10 @@ class GridView extends Component{
 
         <div className="row">
           <div className="col-md-12">
-            <div className="col-md-3">
+            <div className="col-md-3 col-sm-3">
               <img src='./images/ecommerce/41pa5T0NGKL._AC_US218_.jpg' style={{width:"100%"}}/>
             </div>
-            <div className="col-md-9">
+            <div className="col-md-9 col-sm-9">
               <div className="textgrid">
                 <h4>Samsung 128GB 100MB/s (U3) MicroSD EVO Select Memory Card with Adaptor (MB-ME128GA/AM)</h4>
                 <p>By Pakjazba</p>

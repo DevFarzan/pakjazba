@@ -105,6 +105,11 @@ state = {
                       <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
                           <p rel="noopener noreferrer" onClick={() => this.renderList('entertainment_Home')} style={{color:'black',fontSize:'14px', cursor: 'pointer'}}>Entertainment</p>
                       </span>
+                      <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
+                          <p rel="noopener noreferrer" onClick={() => this.renderList('market_ecommerceMarket')} style={{color:'black',fontSize:'14px', cursor: 'pointer'}}>Ecommerce</p>
+                      </span>
+
+
 
                       {/*// <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
                       //     <Link rel="noopener noreferrer" to={`/user_upload`} style={{color:'black',fontSize:'15px'}}>User</Link>
@@ -146,6 +151,7 @@ state = {
                        <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2">
                            <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{color:'black',fontSize:'14px'}}>Entertainment</Link>
                        </span>
+
                        {/*// <span type="" name='events' ghost className="button_globalclassName col-md-2 global_submenu">
                        //     <Link rel="noopener noreferrer" to={`/user_upload`} style={{color:'black',fontSize:'15px'}}>User</Link>
                        // </span>*/}

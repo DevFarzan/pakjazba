@@ -620,7 +620,8 @@ class EventPortal extends Component{
                                                     rules: [{ validator: this.validateDate.bind(this) }],
                                                 })(
                                                     <RangePicker
-                                                        ranges={{ Today: [moment(), moment()], 'This Month': [moment(), moment().endOf('month')] }}
+                                                        ranges={{ Today: [moment(), moment()], 
+                                                            'This Month': [moment(), moment().endOf('month')] }}
                                                         onChange={this.onChangeDate.bind(this)}
                                                     />
                                                 )}

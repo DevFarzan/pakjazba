@@ -16,7 +16,11 @@ class KeywordsForm extends Component{
             <div className="col-md-3">
               <div className="vitalbox">
                 <h4> Listing Assitant </h4>
-                <p> Supply enough information tomake the buying decision easy. Please ensure that all products and content comply with our Selling and Policies restrictions including the Restructed products policy </p>
+                <p> Supply enough information tomake the 
+                  buying decision easy. Please ensure that 
+                  all products and content comply with our 
+                  Selling and Policies restrictions including 
+                  the Restructed products policy </p>
 
                 <p style={{textAlign:"center"}}> *Fields are required </p>
               </div>
@@ -133,7 +137,6 @@ class KeywordsForm extends Component{
                     <Input />
                   </div>
                 </div>
-
               </div>
             </div>
           </div>

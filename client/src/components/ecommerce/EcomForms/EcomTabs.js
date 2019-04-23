@@ -36,11 +36,21 @@ class EcomTabs extends Component{
             <div className="col-md-12 hidden-xs">
                 <div className="tab" role="tabpanel">
                     <ul className="nav nav-tabs" role="tablist">
-                        <li role="presentation" className="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Vital Info</a></li>
-                        <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Offer</a></li>
-                        <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Images</a></li>
-                        <li role="presentation"><a href="#Section4" aria-controls="messages" role="tab" data-toggle="tab">Description</a></li>
-                        <li role="presentation"><a href="#Section5" aria-controls="messages" role="tab" data-toggle="tab">Keywords</a></li>
+                        <li role="presentation" className="active">
+                        <a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">
+                        Vital Info</a></li>
+                        <li role="presentation">
+                        <a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">
+                        Offer</a></li>
+                        <li role="presentation">
+                        <a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">
+                        Images</a></li>
+                        <li role="presentation">
+                        <a href="#Section4" aria-controls="messages" role="tab" data-toggle="tab">
+                        Description</a></li>
+                        <li role="presentation">
+                        <a href="#Section5" aria-controls="messages" role="tab" data-toggle="tab"
+                        >Keywords</a></li>
                     </ul>
                 </div>
             </div>
@@ -51,8 +61,11 @@ class EcomTabs extends Component{
                     defaultActiveKey="1"
                     tabPosition={mode}
                   >
-                    <TabPane tab="Vital Info" key="1"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab"></a></TabPane>
-                    <TabPane tab="Offer" key="2"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab"></a></TabPane>
+                    <TabPane tab="Vital Info" key="1">
+                    <a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">
+                    </a></TabPane>
+                    <TabPane tab="Offer" key="2">
+                    <a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab"></a></TabPane>
                     <TabPane tab="Images" key="3"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Keywords</a></TabPane>
                     <TabPane tab="Description" key="4">Description</TabPane>
                     <TabPane tab="Keywords" key="5"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Keywords</a></TabPane>
@@ -65,9 +78,11 @@ class EcomTabs extends Component{
       <div className="container" style={{width:"100%"}}>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" id="Section1">
-                <VitalInfo/>
+                <VitalInfo 
+                onClick={(e) => this.props.whenClicked(e.target.innerText)}
+                />
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="Section2">
+            <div role="tabpane2" class="tab-pane fade" id="Section2">
               <OfferInfo/>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="Section3">

@@ -4,35 +4,37 @@ import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import './slider.css';
 
-class Slider extends Component{
-    constructor(props){
+class Slider extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             inputValue: ''
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const { dispatch } = this.props;
-        dispatch({type: 'SEARCHOF'});
+        dispatch({ type: 'SEARCHOF' });
     }
 
-    onChange(e){
+    onChange(e) {
         var inputValue = e.target.value;
         this.setState({
             inputValue,
         })
-        if(inputValue === ''){
+        if (inputValue === '') {
             const { dispatch } = this.props;
-            dispatch({type: 'SEARCHON', inputValue})
+            dispatch({ type: 'SEARCHON', inputValue })
         }
     }
 
     searchText = (e) => {
         e.preventDefault();
-        const  { inputValue } = this.state;
+        const { inputValue } = this.state;
         const { dispatch } = this.props;
-        dispatch({type: 'SEARCHON', inputValue})
+        dispatch({ type: 'SEARCHON', inputValue })
+        console.log(inputValue, 'input value');
+
     }
 
     postRoom = (e) => {
@@ -40,7 +42,8 @@ class Slider extends Component{
         this.props.getMethod();
     }
 
-    render(){
+    render() {
+        const { inputValue } = this.state;
 
         return (
             <div>
@@ -48,165 +51,183 @@ class Slider extends Component{
                     {this.props.mainH1 === 'Pakjazba Classified' && <div className="row">
                         <span className="col-md-2"></span>
                         <div className="col-md-5 col-sm-12 col-xs-12">
-                        <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black',textAlign:'left'}}>{this.props.mainH1}</h3>
-                        <form>
-                            <div className="single">
-                                <div className="input-group">
-                                    <input type="text" className="form-control" placeholder="Search" style={{height:'40px'}} onChange={this.onChange.bind(this)}/>
-                                    <span className="input-group-btn">
-                                        <button className="btn btn-theme" type="submit" style={{backgroundColor:'#37a99b',color:'white'}} onClick={this.searchText}><i className="fa fa-search"/></button>
-                                    </span>
+                            <h3 className="text-h1" style={{ fontSize: '36px', fontWeight: 'bold', color: 'black', textAlign: 'left' }}>{this.props.mainH1}</h3>
+                            <form>
+                                <div className="single">
+                                    <div className="input-group">
+                                        <input type="text" className="form-control" placeholder="Search" style={{ height: '40px' }} onChange={this.onChange.bind(this)} />
+                                        <span className="input-group-btn">
+                                            <button className="btn btn-theme" type="submit" style={{ backgroundColor: '#37a99b', color: 'white' }} onClick={this.searchText}><i className="fa fa-search" /></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div className="col-md-5 col-sm-6 hidden-xs hidden-sm">
+                            <img src="../images/buysell/header1.png" style={{ width: '65%' }} />
+                        </div>
+                    </div>}
+
+
+
+                    {this.props.mainH1 === 'Pakjazba Business Listing' && <div className="row">
+                        <div className="col-md-2 col-sm-2"> </div>
+                        <div className="col-md-5 col-sm-12 col-xs-12">
+                            <h3 className="text-h1" style={{ fontSize: '36px', fontWeight: 'bold', color: 'black', textAlign: 'left' }}>{this.props.mainH1}</h3>
+                            <div className="row" style={{ padding: "0" }}>
+                                <div className="col-md-12">
+                                    <form>
+                                        <div className="single">
+                                            <div className="input-group">
+                                                <input type="text" className="form-control" placeholder="Search" style={{ height: '40px' }} onChange={this.onChange.bind(this)} />
+                                                <span className="input-group-btn">
+                                                    <button className="btn btn-theme" type="submit" style={{ backgroundColor: '#37a99b', color: 'white' }} onClick={this.searchText}><i className="fa fa-search" /></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                        </form>
-                        </div>
-                        <div className="col-md-5 col-sm-6 hidden-xs hidden-sm">
-                            <img src="../images/buysell/header1.png" style={{width:'65%'}} />
-                        </div>
-                    </div> }
-
-
-
-                     {this.props.mainH1 === 'Pakjazba Business Listing' && <div className="row">
-                        <div className="col-md-2 col-sm-2"> </div>
-                         <div className="col-md-5 col-sm-12 col-xs-12">
-                         <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black',textAlign:'left'}}>{this.props.mainH1}</h3>
-                         <div className="row" style={{padding:"0"}}>
-                              <div className="col-md-12">
-                                 <form>
-                                    <div className="single">
-                                        <div className="input-group">
-                                            <input type="text" className="form-control" placeholder="Search" style={{height:'40px'}} onChange={this.onChange.bind(this)}/>
-                                            <span className="input-group-btn">
-                                                <button className="btn btn-theme" type="submit" style={{backgroundColor:'#37a99b',color:'white'}} onClick={this.searchText}><i className="fa fa-search"/></button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </form>
-                              </div>
-                          </div>
 
                         </div>
                         <div className="col-md-5 col-sm-6 hidden-xs hidden-sm">
-                          <img src="../images/business/busi-illus-1.png" style={{width:"65%"}}/>
+                            <img src="../images/business/busi-illus-1.png" style={{ width: "65%" }} />
                         </div>
-                      </div>}
-
+                    </div>}
 
                     {/*Slider for Job Portal start*/}
                     {this.props.mainH1 === 'PakJazba Job Portal' && <div className="row">
                         <span className="col-md-2"></span>
                         <div className="col-md-5 col-sm-12 col-xs-12">
-                        <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black',textAlign:'left'}}>{this.props.mainH1}</h3>
-
-                        <form>
-                                    <div className="single">
-                                        <div className="input-group">
-                                            <input type="text" className="form-control" placeholder="Search" style={{height:'40px'}} onChange={this.onChange.bind(this)}/>
-                                            <span className="input-group-btn">
-                                                <button className="btn btn-theme" type="submit" style={{backgroundColor:'#37a99b',color:'white'}} onClick={this.searchText}><i class="fa fa-search"/></button>
-                                            </span>
-                                        </div>
+                            <h3 className="text-h1" style={{ fontSize: '36px', fontWeight: 'bold', color: 'black', textAlign: 'left' }}>{this.props.mainH1}</h3>
+                            <form>
+                                <div className="single">
+                                    <div className="input-group">
+                                        <input type="text" className="form-control" placeholder="Search" style={{ height: '40px' }} onChange={this.onChange.bind(this)} />
+                                        <span className="input-group-btn">
+                                            <button className="btn btn-theme" type="submit" style={{ backgroundColor: '#37a99b', color: 'white' }} onClick={this.searchText}><i class="fa fa-search" /></button>
+                                        </span>
                                     </div>
-                                </form>
+                                </div>
+                            </form>
                         </div>
                         <div className="col-md-5 col-sm-6 hidden-xs hidden-sm">
-                            <img src="../images/job-icons/ilus-1.png" style={{width:'55%'}} />
+                            <img src="../images/job-icons/ilus-1.png" style={{ width: '55%' }} />
                         </div>
-                    </div> }
+                    </div>}
                     {/*Slider for Job Portal start*/}
 
-                  {/*Slider for Event Portal start*/}
+                    {/*Slider for Event Portal start*/}
                     {this.props.mainH1 === 'PakJazba Event Portal' && <div className="row">
                         <span className="col-md-2"></span>
                         <div className="col-md-5 col-sm-12 col-xs-12">
-                        <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black',textAlign:'left'}}>{this.props.mainH1}</h3>
-                        <form>
-                            <div className="single">
-                                <div className="input-group">
-                                    <input type="text" className="form-control" placeholder="Search" onChange={this.onChange.bind(this)}/>
-                                    <span className="input-group-btn">
-                                        <button disabled={this.props.showBtn} className="btn btn-theme" type="submit" style={{backgroundColor:'#37a99b',color:'white', height: '34px'}} onClick={this.searchText}><i class="fa fa-search"/></button>
-                                    </span>
+                            <h3 className="text-h1" style={{ fontSize: '36px', fontWeight: 'bold', color: 'black', textAlign: 'left' }}>{this.props.mainH1}</h3>
+                            <form>
+                                <div className="single">
+                                    <div className="input-group">
+                                        <input type="text" className="form-control" placeholder="Search" onChange={this.onChange.bind(this)} />
+                                        <span className="input-group-btn">
+                                            <button disabled={this.props.showBtn} className="btn btn-theme" type="submit" style={{ backgroundColor: '#37a99b', color: 'white', height: '34px' }} onClick={this.searchText}><i class="fa fa-search" /></button>
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
                         </div>
                         <div className="col-md-5 col-sm-6 hidden-xs">
-                            <img src="../images/job-icons/uper-art.png" style={{width:'55%'}} />
+                            <img src="../images/job-icons/uper-art.png" style={{ width: '55%' }} />
                         </div>
-                    </div> }
+                    </div>}
                     {/*Slider for Event Portal end*/}
 
 
-                   {/*<div className="col-md-5 col-sm-6 hidden-xs">
+                    {/*<div className="col-md-5 col-sm-6 hidden-xs">
                        <img src="../images/business/busi-illus-1.png" style={{width:"50%"}}/>
                    </div>*/}
-                   </div>
-                 {/*=====================roomRenting start==================*/}
-                  {/*<!-- Header Start -->*/}
-                    {this.props.mainH1 === "PakJazba Room Renting" && <div className="row">
-                        <span className="col-md-2"></span>
-                        <div className="col-md-5 col-sm-12 col-xs-12">
-                        <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black',textAlign:'left'}}>{this.props.mainH1}</h3>
+                </div>
+                {/*=====================roomRenting start==================*/}
+                {/*<!-- Header Start -->*/}
+                {this.props.mainH1 === "PakJazba Room Renting" && <div className="row">
+                    <span className="col-md-2"></span>
+                    <div className="col-md-5 col-sm-12 col-xs-12">
+                        <h3 className="text-h1" style={{ fontSize: '36px', fontWeight: 'bold', color: 'black', textAlign: 'left' }}>{this.props.mainH1}</h3>
                         <form>
                             <div className="single">
                                 <div className="input-group">
-                                    <input type="text" className="form-control" placeholder="Search" style={{height:'40px'}} onChange={this.onChange.bind(this)}/>
+                                    <input type="text" className="form-control" placeholder="Search" style={{ height: '40px' }} onChange={this.onChange.bind(this)} />
                                     <span className="input-group-btn">
-                                        <button className="btn btn-theme" type="submit" style={{backgroundColor:'#37a99b',color:'white'}} onClick={this.searchText}><i className="fa fa-search"/></button>
+                                        <button className="btn btn-theme" type="submit" style={{ backgroundColor: '#37a99b', color: 'white' }} onClick={this.searchText}><i className="fa fa-search" /></button>
                                     </span>
                                 </div>
                                 <div className="row">
-                                  <div className="col-md-7 col-sm-8">
-                                    <h4 style={{marginTop:"4px", marginLeft:"-12px"}}>Looking for tenant or a roommate?</h4>
-                                  </div>
-                                  <div className="col-md-5 col-sm-4">
-                                    <button className="header_button" onClick={this.postRoom} style={{backgroundColor:"rgb(55, 169, 155)"}}>Post Your Room</button>
-                                  </div>
+                                    <div className="col-md-7 col-sm-8">
+                                        <h4 style={{ marginTop: "4px", marginLeft: "-12px" }}>Looking for tenant or a roommate?</h4>
+                                    </div>
+                                    <div className="col-md-5 col-sm-4">
+                                        <button className="header_button" onClick={this.postRoom} style={{ backgroundColor: "rgb(55, 169, 155)" }}>Post Your Room</button>
+                                    </div>
                                 </div>
                             </div>
                         </form>
-                        </div>
-                        <div className="col-md-5 col-sm-6 hidden-xs hidden-sm">
-                            <img src="../images/room icon/room_header.png" style={{width:'65%'}} />
-                        </div>
-                    </div> }
-                      {/*<!-- Header End -->*/}
+                    </div>
+                    <div className="col-md-5 col-sm-6 hidden-xs hidden-sm">
+                        <img src="../images/room icon/room_header.png" style={{ width: '65%' }} />
+                    </div>
+                </div>}
+                {/*<!-- Header End -->*/}
 
-                    {/*=====================Ecommerce start==================*/}
+                {/*=====================Ecommerce start==================*/}
 
-                      {this.props.mainH1 === "Pakjazba Ecommerce" && <div className="row">
-                          <span className="col-md-2"></span>
-                          <div className="col-md-5 col-sm-12 col-xs-12">
-                          <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black',textAlign:'left'}}>{this.props.mainH1}</h3>
-                          <form>
-                              <div className="single">
-                                  <div className="input-group">
-                                      <input type="text" className="form-control" placeholder="Search" style={{height:'40px'}} onChange={this.onChange.bind(this)}/>
-                                      <span className="input-group-btn">
-                                          <button className="btn btn-theme" type="submit" style={{backgroundColor:'#37a99b',color:'white'}} onClick={this.searchText}><Link  rel="noopener noreferrer" to={`/products_GridStyle`} ><i className="fa fa-search"/></Link></button>
-                                      </span>
-                                  </div>
-                                  <div className="row">
+                {this.props.mainH1 === "Pakjazba Ecommerce" && <div className="row">
+                    <span className="col-md-2"></span>
+                    <div className="col-md-5 col-sm-12 col-xs-12">
+                        <h3 className="text-h1"
+                            style={{ fontSize: '36px', fontWeight: 'bold', color: 'black', textAlign: 'left' }}
+                        >
+                            {this.props.mainH1}
+                        </h3>
+                        <form>
+                            <div className="single">
+                                <div className="input-group">
+                                    <input type="text" className="form-control"
+                                        placeholder="Search" style={{ height: '40px' }}
+                                        onChange={this.onChange.bind(this)} />
+                                    <span className="input-group-btn">
+                                        <button className="btn btn-theme"
+                                            type="submit"
+                                            style={{ backgroundColor: '#37a99b', color: 'white' }}
+                                            onClick={this.searchText}>
+                                            <Link rel="noopener noreferrer"
+                                                to={`/products_GridStyle`}
+                                                params={{ value: inputValue }} >
+                                                {/* <Link  rel="noopener noreferrer" to={`/${inputValue}`} > */}
+
+                                                <i className="fa fa-search" />
+                                            </Link>
+                                        </button>
+                                    </span>
+                                </div>
+                                <div className="row">
                                     <div className="col-md-7 col-sm-8">
-                                      <h4 style={{marginTop:"4px", marginLeft:"-12px"}}>Your Market hub for all products</h4>
+                                        <h4
+                                            style={{ marginTop: "4px", marginLeft: "-12px" }}
+                                        >
+                                            Your Market hub for all products
+                                        </h4>
                                     </div>
                                     <div className="col-md-5 col-sm-4">
-
                                     </div>
-                                  </div>
-                              </div>
-                          </form>
-                          </div>
-                          <div className="col-md-5 col-sm-6 hidden-xs hidden-sm">
-                              <img src="../images/room icon/room_header.png" style={{width:'65%'}} />
-                          </div>
-                      </div> }
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div className="col-md-5 col-sm-6 hidden-xs hidden-sm">
+                        <img src="../images/room icon/room_header.png" style={{ width: '65%' }} />
+                    </div>
+                </div>}
 
-                 {/*=====================Ecommerce end====================*/}
+                {/*=====================Ecommerce end====================*/}
 
-                  {/*  <div className="row">
+                {/*  <div className="row">
                         <div className="col-md-6 col-sm-12 col-xs-12" style={{width:"100%", marginTop: "107px", backgroundColor: "aliceblue"}}>
                           <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black', marginLeft:"15px"}}>{this.props.mainH1}</h3>
                           <div className="row">
@@ -241,7 +262,7 @@ class Slider extends Component{
 
 
                     </div>*/ }
-                    {/* <div className="row">
+                {/* <div className="row">
                        <div className="col-md-6 col-sm-12 col-xs-12">
                        <h3 className="text-h1" style={{fontSize:'36px',fontWeight:'bold',color:'black'}}>{this.props.mainH1}</h3>
                        <div className="row">
@@ -278,10 +299,10 @@ class Slider extends Component{
 
                 {/*For Business Market*/}
 
-                   {/*Business Market end*/}
+                {/*Business Market end*/}
 
 
-                    {/*<section className="home-newsletter">
+                {/*<section className="home-newsletter">
                         <div className="">
                             <div className="row">
                                 <div className="col-md-2"></div>
@@ -302,14 +323,14 @@ class Slider extends Component{
                         </div>
                     </section>*/}
 
-                </div>
+            </div>
 
         );
     }
 }
 
 const mapStateToProps = (state) => {
-    return({
+    return ({
         text: state.text
     })
 }

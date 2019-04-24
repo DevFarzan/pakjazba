@@ -13,8 +13,6 @@ class EcomForms extends Component{
     return(
       <div className="">
         <Burgermenu/>
-        {/*<div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}>
-        </div>*/}
           <div className="row jobdetail-page" style={ isMobile ? {backgroundColor:"#37a99b", marginTop:"0px"} : {backgroundColor:"#37a99b", marginTop:"100px"} }>
               <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center", marginTop:"25px"}}>
                   <div className="">

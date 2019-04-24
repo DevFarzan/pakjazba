@@ -25,43 +25,21 @@ class VitalInfo extends Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        this.setState({ data: values })
+        // this.setState({ data: values })
+        this.props.handleProps(values)
       }
     });
   }
 
-  handleConfirmBlur = (e) => {
-    const value = e.target.value;
-    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
-  }
-
-  compareToFirstPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!');
-    } else {
-      callback();
-    }
-  }
-  whenClicked = (data) => {
-    this.setState({ data })
-  }
+  // whenClicked = (data) => {
+  //   this.setState({ data })
+  // }
 
   handleSelectChange = (value) => {
     console.log(value);
     this.props.form.setFieldsValue({
       note: `Hi, ${value === 'bundle' ? 'part' : 'preorder'}!`,
     });
-  }
-
-  handleWebsiteChange = (value) => {
-    let autoCompleteResult;
-    if (!value) {
-      autoCompleteResult = [];
-    } else {
-      autoCompleteResult = ['.com', '.org', '.net'].map(domain => `${value}${domain}`);
-    }
-    this.setState({ autoCompleteResult });
   }
 
   // length //
@@ -71,29 +49,29 @@ class VitalInfo extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        this.props.handleProps(values);
+
       }
     });
   }
 
   checkPrice = (rule, value, callback) => {
     if (value.number > 0) {
+      // this.validateNumber.bind(this),
       callback();
       return;
     }
     callback('Value must greater than zero!');
   }
 
-  //  length end //
+  validateNumber(rule, value, callback) {
+    if (isNaN(value)) {
+      callback('Please type Numbers');
+    } else {
+      callback()
+    }
+  }
 
-  // help click button //
-  handleMouseEnter = (event) => {
-    return false;
-  };
-
-  handleMouseLeave = (event) => {
-    return false;
-  };
-  // End //
   render() {
     const { getFieldDecorator } = this.props.form;
     const { autoCompleteResult } = this.state;
@@ -113,7 +91,6 @@ class VitalInfo extends Component {
                   the buying decision easy. Please ensure that all
                   products and content comply with our Selling and Policies
                   restrictions including the Restructed products policy </p>
-
                 <p style={{ textAlign: "center" }}> *Fields are required </p>
               </div>
             </div>
@@ -229,11 +206,13 @@ class VitalInfo extends Component {
                           {getFieldDecorator('pakagequantity', {
                             rules: [{
                               required: true,
-                              message: 'Please enter pakagequantity',
+                              message: 'Please enter pakage quantity',
                               whitespace: true
-                            }],
+                            },
+                            { validator: this.validateNumber.bind(this) }]
                           })(
-                            <Input />
+                            <Input
+                            />
                           )}
                         </FormItem>
                         <p className="margin-top"> Example: 1  </p>
@@ -458,14 +437,19 @@ class VitalInfo extends Component {
                         </div>
                       </div>
                       <div className="col-md-8">
-                        {/* <Form layout="inline" onSubmit={this.handleSubmit}> */}
                         <FormItem>
                           {getFieldDecorator('length', {
                             initialValue: { number: 0, length: 'inch' },
-                            rules: [{ validator: this.checkPrice }],
-                          })(<LengthInput />)}
+                            rules: [{
+                              required: true,
+                              message: 'Please enter length',
+                              whitespace: true
+                            },
+                            { validator: this.checkPrice }]
+                          })(
+                            <LengthInput />
+                          )}
                         </FormItem>
-                        {/* </Form> */}
                         <p className="margin-top" style={{ marginTop: "0px" }}>  Example: 50 pounds, low, medium, high  </p>
                       </div>
                     </div>
@@ -480,10 +464,17 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <Form layout="inline" onSubmit={this.handleSubmit}>
                           <FormItem>
-                            {getFieldDecorator('width', {
-                              initialValue: { number: 0, width: 'inch' },
-                              rules: [{ validator: this.checkPrice }],
-                            })(<WidthInput />)}
+                          {getFieldDecorator('width', {
+                            initialValue: { number: 0, length: 'inch' },
+                            rules: [{
+                              required: true,
+                              message: 'Please enter width',
+                              whitespace: true
+                            },
+                            { validator: this.checkPrice }]
+                          })(
+                            <WidthInput />
+                          )}
                           </FormItem>
                         </Form>
                         <p className="margin-top" style={{ marginTop: "0px" }}>  Example: 50 pounds, low, medium, high  </p>
@@ -500,10 +491,17 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         {/* <Form layout="inline" onSubmit={this.handleSubmit}> */}
                         <FormItem>
-                          {getFieldDecorator('weight', {
-                            initialValue: { number: 0, weight: 'kg' },
-                            rules: [{ validator: this.checkPrice }],
-                          })(<WeightInput />)}
+                        {getFieldDecorator('weight', {
+                            initialValue: { number: 0, length: 'kg' },
+                            rules: [{
+                              required: true,
+                              message: 'Please enter weight',
+                              whitespace: true
+                            },
+                            { validator: this.checkPrice }]
+                          })(
+                            <WeightInput />
+                          )}
                         </FormItem>
                         {/* </Form> */}
                         <p className="margin-top" style={{ marginTop: "0px" }}>  Example: 50 pounds, low, medium, high  </p>

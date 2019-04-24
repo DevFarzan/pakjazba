@@ -616,7 +616,8 @@ class EventPortal extends Component{
                                                 <label htmlFor="sel1">Date Range</label>
                                                 <FormItem>
                                                 {getFieldDecorator('dateRange', {
-                                                    initialValue: [(this.state.startDate), (this.state.endDate)],
+                                                    initialValue: [(this.state.startDate), 
+                                                        (this.state.endDate)],
                                                     rules: [{ validator: this.validateDate.bind(this) }],
                                                 })(
                                                     <RangePicker
@@ -1019,7 +1020,9 @@ class EventPortal extends Component{
                                               <FormItem>
                                               {getFieldDecorator('number', {
                                                   initialValue: this.state.number,
-                                                  rules: [{ required: true, message: 'Please input your Number!', whitespace: true },
+                                                  rules: [{ required: true, 
+                                                    message: 'Please input your Number!', 
+                                                    whitespace: true },
                                                   // { validator: this.validateNumber.bind(this) }
                                                   ],
                                               })(
@@ -1079,7 +1082,8 @@ class EventPortal extends Component{
                                                         className="form-control"
                                                         value={this.state.google}
                                                         onChange={this.onChangeValue.bind(this)}
-                                                        style={{width: '90%', display: 'inline-block', borderRadius: '0px'}}/>
+                                                        style={{width: '90%', 
+                                                        display: 'inline-block', borderRadius: '0px'}}/>
                                                 </div>
                                             </FormItem>
                                         </div>

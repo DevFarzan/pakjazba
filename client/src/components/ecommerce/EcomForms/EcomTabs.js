@@ -10,49 +10,52 @@ import { Tabs, Radio } from 'antd';
 
 const TabPane = Tabs.TabPane;
 
-class EcomTabs extends Component{
+class EcomTabs extends Component {
 
   constructor(props) {
-     super(props);
-     this.state = {
-       mode: 'top',
-     };
-   }
+    super(props);
+    this.state = {
+      mode: 'top',
+    };
+  }
 
-   handleModeChange = (e) => {
-     const mode = e.target.value;
-     this.setState({ mode });
-   }
+  handleModeChange = (e) => {
+    const mode = e.target.value;
+    this.setState({ mode });
+  }
+
+  handleProps = (values) => {
+    console.log(values, 'props value')
+  }
 
 
-  render(){
-
+  render() {
     const { mode } = this.state
 
-    return(
-    <div className>
-      <div className="container" style={{}}>
-        <div className="row">
+    return (
+      <div className>
+        <div className="container" style={{}}>
+          <div className="row">
             <div className="col-md-12 hidden-xs">
-                <div className="tab" role="tabpanel">
-                    <ul className="nav nav-tabs" role="tablist">
-                        <li role="presentation" className="active">
-                        <a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">
-                        Vital Info</a></li>
-                        <li role="presentation">
-                        <a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">
-                        Offer</a></li>
-                        <li role="presentation">
-                        <a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">
-                        Images</a></li>
-                        <li role="presentation">
-                        <a href="#Section4" aria-controls="messages" role="tab" data-toggle="tab">
-                        Description</a></li>
-                        <li role="presentation">
-                        <a href="#Section5" aria-controls="messages" role="tab" data-toggle="tab"
-                        >Keywords</a></li>
-                    </ul>
-                </div>
+              <div className="tab" role="tabpanel">
+                <ul className="nav nav-tabs" role="tablist">
+                  <li role="presentation" className="active">
+                    <a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">
+                      Vital Info</a></li>
+                  <li role="presentation">
+                    <a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">
+                      Offer</a></li>
+                  <li role="presentation">
+                    <a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">
+                      Images</a></li>
+                  <li role="presentation">
+                    <a href="#Section4" aria-controls="messages" role="tab" data-toggle="tab">
+                      Description</a></li>
+                  <li role="presentation">
+                    <a href="#Section5" aria-controls="messages" role="tab" data-toggle="tab"
+                    >Keywords</a></li>
+                </ul>
+              </div>
             </div>
             <div className="visible-xs">
               <div className="tab" role="tabpanel">
@@ -62,10 +65,10 @@ class EcomTabs extends Component{
                     tabPosition={mode}
                   >
                     <TabPane tab="Vital Info" key="1">
-                    <a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">
-                    </a></TabPane>
+                      <a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">
+                      </a></TabPane>
                     <TabPane tab="Offer" key="2">
-                    <a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab"></a></TabPane>
+                      <a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab"></a></TabPane>
                     <TabPane tab="Images" key="3"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Keywords</a></TabPane>
                     <TabPane tab="Description" key="4">Description</TabPane>
                     <TabPane tab="Keywords" key="5"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Keywords</a></TabPane>
@@ -73,30 +76,32 @@ class EcomTabs extends Component{
                 </div>
               </div>
             </div>
+          </div>
         </div>
-      </div>
-      <div className="container" style={{width:"100%"}}>
-        <div class="tab-content">
+        <div className="container" style={{ width: "100%" }}>
+          <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" id="Section1">
-                <VitalInfo 
-                onClick={(e) => this.props.whenClicked(e.target.innerText)}
-                />
+              <VitalInfo
+                // onClick={(e) => this.props.whenClicked(e.target.innerText)}
+                // onClick={(e) => this.props.handleProps()}
+                handleProps={this.handleProps}
+              />
             </div>
             <div role="tabpane2" class="tab-pane fade" id="Section2">
-              <OfferInfo/>
+              <OfferInfo />
             </div>
             <div role="tabpanel" class="tab-pane fade" id="Section3">
-              <ImageForm/>
+              <ImageForm />
             </div>
             <div role="tabpanel" class="tab-pane fade" id="Section4">
-              <DescriptionForm/>
+              <DescriptionForm />
             </div>
             <div role="tabpanel" class="tab-pane fade" id="Section5">
-              <KeywordsForm/>
+              <KeywordsForm />
             </div>
+          </div>
         </div>
       </div>
-    </div>
     )
   }
 }

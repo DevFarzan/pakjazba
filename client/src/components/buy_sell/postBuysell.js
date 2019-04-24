@@ -251,7 +251,6 @@ class Postbuysell extends Component{
 
     async funcForUpload(values){
         const { fileList } = this.state;
-
         Promise.all(fileList.map((val) => {
             return this.uploadFile(val).then((result) => {
                 return result.body.url
@@ -638,7 +637,9 @@ class Postbuysell extends Component{
                                     >
                                         {getFieldDecorator('images', {
                                             initialValues: this.state.imageList,
-                                            rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
+                                            rules: [{ required: true, 
+                                                message: 'Please upload your Images!', 
+                                                whitespace: true }],
                                         })(
                                             <div>
                                                 <Upload
@@ -648,10 +649,13 @@ class Postbuysell extends Component{
                                                     onPreview={this.handlePreview}
                                                     onChange={this.handleChange}
                                                 >
-                                                    {this.state.imageList.length + fileList.length >= 3 ? null : uploadButton}
+                                                    {this.state.imageList.length + fileList.length >= 3 
+                                                        ? null : uploadButton}
                                                 </Upload>
-                                                <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-                                                    <img alt="example" style={{ width: '100%' }} src={previewImage} />
+                                                <Modal visible={previewVisible} 
+                                                footer={null} onCancel={this.handleCancel}>
+                                                    <img alt="example" style={{ width: '100%' }} 
+                                                    src={previewImage} />
                                                 </Modal>
                                                 {uploadedImages}
                                             </div>

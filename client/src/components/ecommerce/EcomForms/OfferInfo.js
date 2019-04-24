@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
 import {
-  Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Menu, AutoComplete, DatePicker 
+  Form, Input, Select, AutoComplete, DatePicker
 } from 'antd';
-// import {  } from 'antd';
 import './Vitalinfo.css';
-import LengthInput from './LengthComponent';
-import WidthInput from './WidthComponent';
-import WeightInput from './WeightComponent';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
-// const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
-
-// initialValue: [(this.state.startDate), (this.state.endDate)],
 
 class OfferInfo extends Component {
   constructor(props) {
@@ -21,7 +14,8 @@ class OfferInfo extends Component {
     this.state = {
       confirmDirty: false,
       autoCompleteResult: [],
-      startDate: ''
+      startDate: '',
+      date: ''
     };
   }
 
@@ -34,35 +28,11 @@ class OfferInfo extends Component {
     });
   }
 
-  handleConfirmBlur = (e) => {
-    const value = e.target.value;
-    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
-  }
-
-  compareToFirstPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!');
-    } else {
-      callback();
-    }
-  }
-
   handleSelectChange = (value) => {
     console.log(value);
     this.props.form.setFieldsValue({
       note: `Hi, ${value === 'bundle' ? 'part' : 'preorder'}!`,
     });
-  }
-
-  handleWebsiteChange = (value) => {
-    let autoCompleteResult;
-    if (!value) {
-      autoCompleteResult = [];
-    } else {
-      autoCompleteResult = ['.com', '.org', '.net'].map(domain => `${value}${domain}`);
-    }
-    this.setState({ autoCompleteResult });
   }
 
   // length //
@@ -72,6 +42,8 @@ class OfferInfo extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        // this.props.handleProps(values);
+
       }
     });
   }
@@ -84,22 +56,23 @@ class OfferInfo extends Component {
     callback('Value must greater than zero!');
   }
 
-  //  length end //
-
   // date picker //
-  datePicker = (date, dateString) => {
+  onChange = (date, dateString) => {
+    this.setState({
+      date: dateString
+    })
     console.log(date, dateString);
-  }
+    console.log(this.state.date);
 
+  }
   //  date picker end //
+
   render() {
     const { getFieldDecorator } = this.props.form;
     const { autoCompleteResult } = this.state;
     const websiteOptions = autoCompleteResult.map(website => (
       <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
     ));
-
-
     return (
       <div className="container" style={{ width: "100%" }}>
         <Form onSubmit={this.handleSubmit}>
@@ -108,8 +81,10 @@ class OfferInfo extends Component {
               <div className="col-md-3">
                 <div className="vitalbox">
                   <h4> Listing Assitant </h4>
-                  <p> Supply enough information tomake the buying decision easy. Please ensure that all products and content comply with our Selling and Policies restrictions including the Restructed products policy </p>
-
+                  <p> Supply enough information tomake the buying decision easy.
+                    Please ensure that all products and content comply with our
+                    Selling and Policies restrictions including the Restructed
+                    products policy </p>
                   <p style={{ textAlign: "center" }}> *Fields are required </p>
                 </div>
               </div>
@@ -133,10 +108,10 @@ class OfferInfo extends Component {
                             }],
                           })(
                             <Input />
-
                           )}
                         </FormItem>
-                        <p className="margin-top"> Example: Olympus Camedia C-50 Digital Camera  </p>
+                        <p className="margin-top">
+                          Example: Olympus Camedia C-50 Digital Camera  </p>
                       </div>
                     </div>
                     {/* condition */}
@@ -176,12 +151,18 @@ class OfferInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('conditionNote', {
-                            rules: [{ required: false, message: 'Please type Condition Note', whitespace: true }],
+                            rules: [{
+                              required: false,
+                              message: 'Please type Condition Note',
+                              whitespace: true
+                            }],
                           })(
                             <Input style={{ height: "200px" }} />
                           )}
                         </FormItem>
-                        <p className="margin-top"> Example: Dust Cover missing, Some scratches on the front. </p>
+                        <p className="margin-top">
+                          Example: Dust Cover missing,
+                        Some scratches on the front. </p>
                       </div>
                     </div>
                     {/* your price */}
@@ -195,7 +176,11 @@ class OfferInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('price', {
-                            rules: [{ required: true, message: 'Please enter price', whitespace: true }],
+                            rules: [{
+                              required: true,
+                              message: 'Please enter price',
+                              whitespace: true
+                            }],
                           })(
                             <Input />
                           )}
@@ -217,20 +202,21 @@ class OfferInfo extends Component {
                             <FormItem>
                               {getFieldDecorator('salePrice', {
                                 // initialValue: [(this.state.startDate)],
-                                // rules: [{
-                                //   required: true,
-                                //   message: 'Please enter Sale Price', whitespace: true
-                                // }],
+                                rules: [{
+                                  required: true,
+                                  message: 'Please enter Sale Price',
+                                  whitespace: true
+                                }],
                               })(
                                 <Input />
                               )}
                             </FormItem>
                           </div>
                           <div className="col-md-4">
-                            <DatePicker onChange={this.datePicker()} />
+                            <DatePicker onChange={this.onChange} />
                           </div>
                           <div className="col-md-4">
-                            <DatePicker onChange={this.datePicker()} />
+                            <DatePicker onChange={this.onChange} />
                           </div>
                         </div>
                       </div>
@@ -249,7 +235,11 @@ class OfferInfo extends Component {
                             <div className="col-md-4">
                               <FormItem>
                                 {getFieldDecorator('quantity', {
-                                  rules: [{ required: true, message: 'Please enter a Quantity', whitespace: true }],
+                                  rules: [{
+                                    required: true,
+                                    message: 'Please enter a Quantity',
+                                    whitespace: true
+                                  }],
                                 })(
                                   <Input style={{ marginLeft: "-14px" }} />
                                 )}
@@ -272,12 +262,18 @@ class OfferInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('legalDesclaimer', {
-                            rules: [{ required: true, message: 'Please type Legal Desclaimer', whitespace: true }],
+                            rules: [{
+                              required: true,
+                              message: 'Please type Legal Desclaimer',
+                              whitespace: true
+                            }],
                           })(
                             <Input style={{ height: "200px" }} />
                           )}
                         </FormItem>
-                        <p className="margin-top"> Example: Must be at least 18 & over to purchase  </p>
+                        <p className="margin-top">
+                          Example: Must be at least 18
+                        & over to purchase  </p>
                       </div>
                     </div>
                     {/* tax code */}
@@ -285,7 +281,8 @@ class OfferInfo extends Component {
                       <div className="col-md-4">
                         <div className="floatright">
                           <label>Tax Code:</label>
-                          <p> (Opptional: applies if you enable Pak Jazba tax collection service,) </p>
+                          <p> (Opptional: applies if you enable
+                            Pak Jazba tax collection service,) </p>
                         </div>
                       </div>
                       <div className="col-md-8">
@@ -294,7 +291,11 @@ class OfferInfo extends Component {
                             <div className="col-md-4">
                               <FormItem>
                                 {getFieldDecorator('taxCode', {
-                                  rules: [{ required: false, message: 'Please enter Tax Code', whitespace: true }],
+                                  rules: [{
+                                    required: false,
+                                    message: 'Please enter Tax Code',
+                                    whitespace: true
+                                  }],
                                 })(
                                   <Input style={{ marginLeft: "-14px" }} />
                                 )}
@@ -320,7 +321,11 @@ class OfferInfo extends Component {
                             <div className="col-md-4">
                               <FormItem>
                                 {getFieldDecorator('handlingTime', {
-                                  rules: [{ required: false, message: 'Please enter Handling time', whitespace: true }],
+                                  rules: [{
+                                    required: false,
+                                    message: 'Please enter Handling time',
+                                    whitespace: true
+                                  }],
                                 })(
                                   <Input style={{ marginLeft: "-14px" }} />
                                 )}
@@ -344,10 +349,14 @@ class OfferInfo extends Component {
                         <FormItem>
                           {getFieldDecorator('sellingDate', {
                             // initialValue: [(this.state.startDate)],
-                            // rules: [{ required: false, message: 'Please select selling date', whitespace: true }],
+                            rules: [{
+                              required: false,
+                              message: 'Please select selling date',
+                              whitespace: true
+                            }],
                           })(
                             <div>
-                              <DatePicker onChange={this.datePicker()} />
+                              <DatePicker onChange={this.onChange} />
                             </div>
                           )}
                         </FormItem>
@@ -366,12 +375,14 @@ class OfferInfo extends Component {
                         <FormItem>
                           {getFieldDecorator('restockdate', {
                             // initialValue: [(this.state.startDate)],
-
-                            // rules: [{ required: false, message: 'Please select Restock date', whitespace: true }],
+                            rules: [{
+                              required: false,
+                              message: 'Please select Restock date',
+                              whitespace: true
+                            }],
                           })(
-                            <div >
-
-                              <DatePicker onChange={this.datePicker()} />
+                            <div>
+                              <DatePicker onChange={this.onChange} />
                             </div>
                           )}
                         </FormItem>
@@ -419,7 +430,11 @@ class OfferInfo extends Component {
                             <div className="col-md-5">
                               <FormItem>
                                 {getFieldDecorator('country', {
-                                  rules: [{ required: false, message: 'Please enter country', whitespace: true }],
+                                  rules: [{
+                                    required: false,
+                                    message: 'Please enter country',
+                                    whitespace: true
+                                  }],
                                 })(
                                   <Input style={{ marginLeft: "-14px" }} />
                                 )}
@@ -442,7 +457,11 @@ class OfferInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('product id', {
-                            rules: [{ required: false, message: 'Please enter Seller Warranty', whitespace: true }],
+                            rules: [{
+                              required: false, message:
+                                'Please enter Seller Warranty',
+                              whitespace: true
+                            }],
                           })(
                             <Input style={{ height: "200px" }} />
                           )}
@@ -460,10 +479,14 @@ class OfferInfo extends Component {
                         <FormItem>
                           {getFieldDecorator('offering', {
                             // initialValue: [(this.state.startDate)],
-                            // rules: [{ required: false, message: 'Please select Offering Date', whitespace: true }],
+                            rules: [{
+                              required: false,
+                              message: 'Please select Offering Date',
+                              whitespace: true
+                            }],
                           })(
                             <div >
-                              <DatePicker onChange={this.datePicker()} />
+                              <DatePicker onChange={this.onChange} />
                             </div>
                           )}
                         </FormItem>
@@ -475,7 +498,8 @@ class OfferInfo extends Component {
                       <div className="col-md-4">
                         <div className="floatright">
                           <label> Country as labeled:</label>
-                          <p> (Complete only if import Designation is "imported" select country shown on product label) </p>
+                          <p> (Complete only if import Designation is
+                            "imported" select country shown on product label) </p>
                         </div>
                       </div>
                       <div className="col-md-8">
@@ -484,7 +508,11 @@ class OfferInfo extends Component {
                             <div className="col-md-5">
                               <FormItem>
                                 {getFieldDecorator('countryLabeled', {
-                                  rules: [{ required: false, message: 'Please enter Country label', whitespace: true }],
+                                  rules: [{
+                                    required: false,
+                                    message: 'Please enter Country label',
+                                    whitespace: true
+                                  }],
                                 })(
                                   <Input style={{ marginLeft: "-14px" }} />
                                 )}
@@ -521,10 +549,7 @@ class OfferInfo extends Component {
             </div>
           </div>
         </Form>
-
       </div>
-
-
     );
   }
 }

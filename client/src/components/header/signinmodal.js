@@ -39,6 +39,9 @@ class Signin extends Component{
 
     componentDidUpdate(prevProps, prevState){
         const { data } = this.props;
+        console.log(data, 'dataaaaa')
+        console.log(prevProps.data, 'prev propsssssss')
+        console.log(prevState, 'stateeeeeeee')
         const { route, obj } = this.state;
         let arr = obj.map((elem) => elem.password)
         if(prevProps.data !== data){
@@ -46,6 +49,7 @@ class Signin extends Component{
                 if(arr.includes(data.id)){
                     obj.map((elem) => {
                         if(elem.password === data.id){
+                            console.log('11111111111111')
                             this.funcLogin({userName: elem.email, password: elem.password})
                         }
                     })
@@ -61,6 +65,7 @@ class Signin extends Component{
                                 password: data.id,
                                 notrobot: true
                             }
+                            console.log('2222222222222')
                             this.funcSignUp(obj)
                         }
                     }
@@ -91,6 +96,7 @@ class Signin extends Component{
 
     async funcLogin(values){
         let response = await HttpUtils.get('usersignin?useremail='+values.userName+'&password='+values.password)
+        console.log(response, 'response login')
         if(response.code === 200){
             this.getProfile(response)
                 .then((data) => {
@@ -118,6 +124,7 @@ class Signin extends Component{
     async getProfile(data){
         let _id = data.profileId ? data.profileId : '';
         let req = await HttpUtils.get('getprofile?profileId=' + _id);
+        console.log(req, 'fun profile iddddddd')
         let allData = {...data, ...{userImage: req ? req.content.imageurl : ''}}
         return allData;
     }
@@ -187,6 +194,7 @@ class Signin extends Component{
 
     async funcSignUp(values){
         let response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
+        console.log(response, 'response sign up')
         if(response) {
             this.getProfileId(response)
         }else {
@@ -203,6 +211,7 @@ class Signin extends Component{
                 profileId: ''
             }
             let req = await HttpUtils.post('profile', obj)
+            console.log(req, 'response sign up func')
             let userInfo = {...response, ...{profileId: req.content}}
             AsyncStorage.setItem('user', JSON.stringify(userInfo))
                 .then(() => {
@@ -322,7 +331,7 @@ class Signin extends Component{
                         </div>}
                         {!secModal && <div className="row">
                             <div className="col-md-5">
-                                <Facebook inRup={'signUp'}/>
+                                <Facebook inRup={'signUp'} />
                             </div>
                             <div className="col-md-1"></div>
                             <div className="col-md-5">

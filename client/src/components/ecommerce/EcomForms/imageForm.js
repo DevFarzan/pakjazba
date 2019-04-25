@@ -16,7 +16,8 @@ class ImageForm extends Component {
     imageList: [],
     firstImg: [],
     secondImg: [],
-    noChooseFile: false
+    noChooseFile: false, 
+    herfSec: ''
   };
   handleCancel = () => this.setState({ previewVisible: false })
 
@@ -92,11 +93,23 @@ class ImageForm extends Component {
   //-----------------cloudnary function end ------------------
 
   async postData(values, response) {
-    console.log(values , response)
+    console.log(values , "values");
+    console.log(response , "response");
+    this.props.handleProps(response);
+    this.props.desStates()
+    if(this.state.herfSec === ''){
+      this.setState({
+        herfSec: '#Section3'
+      },
+        () => {
+          document.getElementById('hrefff').click();
+        })
+    }
+
   }
 
   render() {
-    const { previewVisible, fileList, noChooseFile, previewImage } = this.state,
+    const { previewVisible, fileList, noChooseFile, previewImage , herfSec} = this.state,
       { getFieldDecorator } = this.props.form,
       antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
@@ -369,8 +382,12 @@ class ImageForm extends Component {
                   </div>
                   <div className="col-md-3 col-xs-4">
                     <div className="row center_global row">
-                      <button style={{ textAlign: 'center', width: "70%" }}
-                        className="btn button_custom">Next</button>
+                    <button style={{ textAlign: 'center', width: "70%" }}
+                        className="btn button_custom" onClick={this.handleSubmit}>
+                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id = 'hrefff'>
+                          Next
+                          </a>
+                      </button>
                     </div>
                   </div>
                   <div className="col-md-3">

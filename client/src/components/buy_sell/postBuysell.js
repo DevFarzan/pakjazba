@@ -230,7 +230,6 @@ class Postbuysell extends Component{
             Object.keys(params).forEach((key) =>{
                 uploadRequest.field(key, params[key])
             })
-
             uploadRequest.end((err, resp) =>{
                 err ? rej(err) : res(resp);
             })

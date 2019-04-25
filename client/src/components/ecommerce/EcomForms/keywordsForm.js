@@ -24,6 +24,8 @@ class KeywordsForm extends Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        this.props.handleProps(values);
+
       }
     });
   }

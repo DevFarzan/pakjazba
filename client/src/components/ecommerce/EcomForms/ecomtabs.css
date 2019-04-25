@@ -77,3 +77,9 @@ a:hover,a:focus{
 #rightArr {
   	right:0;
 }
+
+.disableTabs{
+    opacity: 0.5;
+    color: #fa6e6f;
+    cursor: not-allowed;
+}

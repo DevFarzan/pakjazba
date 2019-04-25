@@ -15,17 +15,11 @@ class OfferInfo extends Component {
       confirmDirty: false,
       autoCompleteResult: [],
       startDate: '',
-      date: ''
+      date: '',
+      dateObj: [],
+      offerInfo: [],
+      herfSec: ''
     };
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-      }
-    });
   }
 
   handleSelectChange = (value) => {
@@ -35,7 +29,6 @@ class OfferInfo extends Component {
     });
   }
 
-  // length //
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -43,9 +36,28 @@ class OfferInfo extends Component {
       if (!err) {
         console.log('Received values of form: ', values);
         // this.props.handleProps(values);
-
+        this.offerInfoData(values);
       }
     });
+  }
+
+  offerInfoData = (values) => {
+    const { offerInfo, dateObj , herfSec} = this.state
+    offerInfo.push(values)
+    offerInfo.push(dateObj)
+    console.log(offerInfo)
+    this.props.handleProps(offerInfo);
+    this.props.imgStates();
+
+    if(this.state.herfSec === ''){
+      this.setState({
+        herfSec: '#Section2'
+      },
+        () => {
+          document.getElementById('hrefff').click();
+        })
+    }
+
   }
 
   checkPrice = (rule, value, callback) => {
@@ -59,17 +71,30 @@ class OfferInfo extends Component {
   // date picker //
   onChange = (date, dateString) => {
     this.setState({
-      date: dateString
+      dateObj: {
+        salePriceDate1: dateString,
+        salePriceDate2: dateString,
+        sellingDate: dateString,
+        restockdate: dateString,
+        offering: dateString
+      }
     })
-    console.log(date, dateString);
-    console.log(this.state.date);
-
+    // console.log(date)
+    // console.log(date, dateString);
   }
   //  date picker end //
 
+  validateNumber(rule, value, callback) {
+    if (isNaN(value)) {
+      callback('Please type Numbers');
+    } else {
+      callback()
+    }
+  }
+
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { autoCompleteResult } = this.state;
+    const { autoCompleteResult , herfSec} = this.state;
     const websiteOptions = autoCompleteResult.map(website => (
       <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
     ));
@@ -180,9 +205,11 @@ class OfferInfo extends Component {
                               required: true,
                               message: 'Please enter price',
                               whitespace: true
-                            }],
+                            },
+                            { validator: this.validateNumber.bind(this) }]
                           })(
-                            <Input />
+                            <Input
+                            />
                           )}
                         </FormItem>
                         <p className="margin-top"> Example: 50.00  </p>
@@ -201,14 +228,15 @@ class OfferInfo extends Component {
                           <div className="col-md-4">
                             <FormItem>
                               {getFieldDecorator('salePrice', {
-                                // initialValue: [(this.state.startDate)],
                                 rules: [{
                                   required: true,
                                   message: 'Please enter Sale Price',
                                   whitespace: true
-                                }],
+                                },
+                                { validator: this.validateNumber.bind(this) }]
                               })(
-                                <Input />
+                                <Input
+                                />
                               )}
                             </FormItem>
                           </div>
@@ -237,11 +265,13 @@ class OfferInfo extends Component {
                                 {getFieldDecorator('quantity', {
                                   rules: [{
                                     required: true,
-                                    message: 'Please enter a Quantity',
+                                    message: 'Please enter a quantity',
                                     whitespace: true
-                                  }],
+                                  },
+                                  { validator: this.validateNumber.bind(this) }]
                                 })(
-                                  <Input style={{ marginLeft: "-14px" }} />
+                                  <Input
+                                  />
                                 )}
                               </FormItem>
                             </div>
@@ -322,12 +352,14 @@ class OfferInfo extends Component {
                               <FormItem>
                                 {getFieldDecorator('handlingTime', {
                                   rules: [{
-                                    required: false,
+                                    required: true,
                                     message: 'Please enter Handling time',
                                     whitespace: true
-                                  }],
+                                  },
+                                  { validator: this.validateNumber.bind(this) }]
                                 })(
-                                  <Input style={{ marginLeft: "-14px" }} />
+                                  <Input
+                                  />
                                 )}
                               </FormItem>
                             </div>
@@ -347,7 +379,7 @@ class OfferInfo extends Component {
                       </div>
                       <div className="col-md-8">
                         <FormItem>
-                          {getFieldDecorator('sellingDate', {
+                          {/* {getFieldDecorator('sellingDate', {
                             // initialValue: [(this.state.startDate)],
                             rules: [{
                               required: false,
@@ -358,7 +390,10 @@ class OfferInfo extends Component {
                             <div>
                               <DatePicker onChange={this.onChange} />
                             </div>
-                          )}
+                          )} */}
+                          <div>
+                            <DatePicker onChange={this.onChange} />
+                          </div>
                         </FormItem>
                         <p className="margin-top"> Example: Blue, orange  </p>
                       </div>
@@ -373,7 +408,7 @@ class OfferInfo extends Component {
                       </div>
                       <div className="col-md-8">
                         <FormItem>
-                          {getFieldDecorator('restockdate', {
+                          {/* {getFieldDecorator('restockdate', {
                             // initialValue: [(this.state.startDate)],
                             rules: [{
                               required: false,
@@ -381,10 +416,10 @@ class OfferInfo extends Component {
                               whitespace: true
                             }],
                           })(
-                            <div>
-                              <DatePicker onChange={this.onChange} />
-                            </div>
-                          )}
+                          )} */}
+                          <div>
+                            <DatePicker onChange={this.onChange} />
+                          </div>
                         </FormItem>
                         <p className="margin-top"> Example: Blue, orange  </p>
                       </div>
@@ -477,7 +512,7 @@ class OfferInfo extends Component {
                       </div>
                       <div className="col-md-8">
                         <FormItem>
-                          {getFieldDecorator('offering', {
+                          {/* {getFieldDecorator('offering', {
                             // initialValue: [(this.state.startDate)],
                             rules: [{
                               required: false,
@@ -485,10 +520,10 @@ class OfferInfo extends Component {
                               whitespace: true
                             }],
                           })(
-                            <div >
-                              <DatePicker onChange={this.onChange} />
-                            </div>
-                          )}
+                          )} */}
+                          <div >
+                            <DatePicker onChange={this.onChange} />
+                          </div>
                         </FormItem>
                         <p className="margin-top"> Example: Blue, orange  </p>
                       </div>
@@ -539,8 +574,12 @@ class OfferInfo extends Component {
                   </div>
                   <div className="col-md-3 col-xs-4">
                     <div className="row center_global row">
-                      <button style={{ textAlign: 'center' }} className="btn button_custom">Next</button>
-                    </div>
+                    <button style={{ textAlign: 'center', width: "70%" }}
+                        className="btn button_custom" onClick={this.handleSubmit}>
+                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='hrefff'>
+                          Next
+                          </a>
+                      </button>                    </div>
                   </div>
                   <div className="col-md-3">
                   </div>

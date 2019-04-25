@@ -322,7 +322,7 @@ class Signin extends Component{
                         </div>}
                         {!secModal && <div className="row">
                             <div className="col-md-5">
-                                <Facebook inRup={'signUp'} onClick={this.props.onClickedUser}/>
+                                <Facebook inRup={'signUp'} />
                             </div>
                             <div className="col-md-1"></div>
                             <div className="col-md-5">

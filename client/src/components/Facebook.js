@@ -34,13 +34,13 @@ class Facebook extends Component {
 
     componentClicked = () =>{
         console.log('ye kab chala')
-        // this.setState({clicked: true})
-    }
-
-    faceBookButtonClicked = () => {
-        console.log('ab ye chalaaaaaaaaa')
         this.setState({clicked: true})
     }
+
+    // faceBookButtonClicked = () => {
+    //     console.log('ab ye chalaaaaaaaaa')
+    //     this.setState({clicked: true})
+    // }
 
     render(){
         let fbContent;
@@ -50,10 +50,10 @@ class Facebook extends Component {
         }else{
             fbContent = (<FacebookLogin
                 appId="644559659253564"
-                autoLoad={true}
+                autoLoad={false}
                 fields="name,email,picture"
                 onClick={this.componentClicked}
-                onClickedUser={this.faceBookButtonClicked}
+                // onClickedUser={this.faceBookButtonClicked}
                 callback={this.responseFacebook}
                 scope="email"
                 cssClass="loginBtn loginBtn--facebook"

@@ -34,12 +34,12 @@ class Facebook extends Component {
 
     componentClicked = () =>{
         console.log('ye kab chala')
-        this.setState({clicked: true})
+        // this.setState({clicked: true})
     }
 
     faceBookButtonClicked = () => {
         console.log('ab ye chalaaaaaaaaa')
-        // this.setState({clicked: true})
+        this.setState({clicked: true})
     }
 
     render(){

@@ -8,7 +8,9 @@ const FormItem = Form.Item;
 class DescriptionForm extends Component {
   constructor(props) {
     super(props)
-
+    this.state = {
+      herfSec: ''
+    }
   }
 
   handleSubmit = (e) => {
@@ -16,11 +18,22 @@ class DescriptionForm extends Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        this.props.handleProps(values)
+        this.props.keywordStates()
+        if (this.state.herfSec === '') {
+          this.setState({
+            herfSec: '#Section4'
+          },
+            () => {
+              document.getElementById('hrefff').click();
+            })
+        }
       }
     });
   }
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { herfSec } = this.state
     return (
       <div className="container" style={{ width: "100%" }}>
         <Form onSubmit={this.handleSubmit}>
@@ -111,7 +124,11 @@ class DescriptionForm extends Component {
                   <div className="col-md-3 col-xs-4">
                     <div className="row center_global row">
                       <button style={{ textAlign: 'center', width: "70%" }}
-                        className="btn button_custom">Next</button>
+                        className="btn button_custom" onClick={this.handleSubmit}>
+                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='hrefff'>
+                          Next
+                          </a>
+                      </button>
                     </div>
                   </div>
                   <div className="col-md-3">

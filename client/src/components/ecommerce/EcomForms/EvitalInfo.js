@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Menu, AutoComplete,
+  Form, Input, Select, AutoComplete,
 } from 'antd';
 import './Vitalinfo.css';
 import LengthInput from './LengthComponent';
@@ -17,23 +17,9 @@ class VitalInfo extends Component {
   state = {
     confirmDirty: false,
     autoCompleteResult: [],
-    data: ''
+    data: '',
+    herfSec: ''
   };
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-        // this.setState({ data: values })
-        this.props.handleProps(values)
-      }
-    });
-  }
-
-  // whenClicked = (data) => {
-  //   this.setState({ data })
-  // }
 
   handleSelectChange = (value) => {
     console.log(value);
@@ -45,19 +31,47 @@ class VitalInfo extends Component {
   // length //
 
   handleSubmit = (e) => {
+    // console.log('kya masla hy bhai tjhy')
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
+
       if (!err) {
+        // console.log('kya masla hy bhai tjhy validateFields')
         console.log('Received values of form: ', values);
         this.props.handleProps(values);
+        this.props.offerStates();
+        // console.log(this.state.herfSec);
+
+        if(this.state.herfSec === ''){
+          this.setState({
+            herfSec: '#Section2'
+          },
+            () => {
+              document.getElementById('hrefff').click();
+            })
+        }
+
+
+        // window.location.href='#Section2';
+        // window.location.href("#Section2"); 
+        // return <a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">
+        // </a>
+        // window.location = '#Section2';
+        // window.location.href = '#Section2'
+
 
       }
     });
   }
 
+  // alagFunc(){
+    // const 
+    
+  // }
+
+
   checkPrice = (rule, value, callback) => {
     if (value.number > 0) {
-      // this.validateNumber.bind(this),
       callback();
       return;
     }
@@ -72,13 +86,19 @@ class VitalInfo extends Component {
     }
   }
 
+  // componentWillUnmount() {
+  //   this.setState({
+  //     herfSec: '#Section2'
+  //   })
+  // }
+
+
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { autoCompleteResult } = this.state;
+    const { autoCompleteResult, herfSec } = this.state;
     const websiteOptions = autoCompleteResult.map(website => (
       <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
     ));
-
 
     return (
       <div className="container" style={{ width: "100%" }}>
@@ -440,12 +460,7 @@ class VitalInfo extends Component {
                         <FormItem>
                           {getFieldDecorator('length', {
                             initialValue: { number: 0, length: 'inch' },
-                            rules: [{
-                              required: true,
-                              message: 'Please enter length',
-                              whitespace: true
-                            },
-                            { validator: this.checkPrice }]
+                            rules: [{ validator: this.checkPrice }],
                           })(
                             <LengthInput />
                           )}
@@ -462,19 +477,14 @@ class VitalInfo extends Component {
                         </div>
                       </div>
                       <div className="col-md-8">
-                        <Form layout="inline" onSubmit={this.handleSubmit}>
+                        <Form layout="inline">
                           <FormItem>
-                          {getFieldDecorator('width', {
-                            initialValue: { number: 0, length: 'inch' },
-                            rules: [{
-                              required: true,
-                              message: 'Please enter width',
-                              whitespace: true
-                            },
-                            { validator: this.checkPrice }]
-                          })(
-                            <WidthInput />
-                          )}
+                            {getFieldDecorator('width', {
+                              initialValue: { number: 0, length: 'inch' },
+                              rules: [{ validator: this.checkPrice }],
+                            })(
+                              <WidthInput />
+                            )}
                           </FormItem>
                         </Form>
                         <p className="margin-top" style={{ marginTop: "0px" }}>  Example: 50 pounds, low, medium, high  </p>
@@ -491,14 +501,9 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         {/* <Form layout="inline" onSubmit={this.handleSubmit}> */}
                         <FormItem>
-                        {getFieldDecorator('weight', {
-                            initialValue: { number: 0, length: 'kg' },
-                            rules: [{
-                              required: true,
-                              message: 'Please enter weight',
-                              whitespace: true
-                            },
-                            { validator: this.checkPrice }]
+                          {getFieldDecorator('weight', {
+                            initialValue: { number: 0, length: 'inch' },
+                            rules: [{ validator: this.checkPrice }],
                           })(
                             <WeightInput />
                           )}
@@ -617,7 +622,11 @@ class VitalInfo extends Component {
                   <div className="col-md-3 col-xs-4">
                     <div className="row center_global row">
                       <button style={{ textAlign: 'center', width: "70%" }}
-                        className="btn button_custom" whenClicked={this.whenClicked}>Next</button>
+                        className="btn button_custom" onClick={this.handleSubmit}>
+                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='hrefff'>
+                          Next
+                        </a>
+                      </button>
                     </div>
                   </div>
                   <div className="col-md-3">

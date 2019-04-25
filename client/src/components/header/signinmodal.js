@@ -300,6 +300,7 @@ class Signin extends Component{
 
     render(){
         const { getFieldDecorator } = this.props.form;
+        const { data } = this.props;
         const { visible, secModal, email2, dropdown, msg, termCondition } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 
@@ -329,7 +330,7 @@ class Signin extends Component{
                         {!!this.state.msg && <div style={{marginBottom: '10px'}}>
                             <span style={{ color: 'red', fontWeight: 'bold'}}>{this.state.msg}</span>
                         </div>}
-                        {!secModal && <div className="row">
+                        {!secModal && Object.keys(data).length == 0 && <div className="row">
                             <div className="col-md-5">
                                 <Facebook inRup={'signUp'} />
                             </div>

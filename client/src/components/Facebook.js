@@ -16,6 +16,7 @@ class Facebook extends Component {
         const { clicked } = this.state;
         const { dispatch, inRup } = this.props;
         if(clicked) {
+            console.log(response, 'responseeeeeee')
             let data = response
             // let data = {
             // 	accessToken: 'sdjhfalskjfhajhflakjflkahfja',
@@ -32,7 +33,13 @@ class Facebook extends Component {
     }
 
     componentClicked = () =>{
+        console.log('ye kab chala')
         this.setState({clicked: true})
+    }
+
+    faceBookButtonClicked = () => {
+        console.log('ab ye chalaaaaaaaaa')
+        // this.setState({clicked: true})
     }
 
     render(){
@@ -46,6 +53,7 @@ class Facebook extends Component {
                 autoLoad={true}
                 fields="name,email,picture"
                 onClick={this.componentClicked}
+                onClickedUser={this.faceBookButtonClicked}
                 callback={this.responseFacebook}
                 scope="email"
                 cssClass="loginBtn loginBtn--facebook"

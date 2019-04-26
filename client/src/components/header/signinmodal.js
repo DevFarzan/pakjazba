@@ -229,9 +229,10 @@ class Signin extends Component{
             if(response.err._message == 'User validation failed'){
                 this.funcLogin({userName: values.email, password: values.password})
             }
-            this.setState({
-                msg: response.msg ? response.msg : response.err._message,
-            })
+            // this.setState({
+            let msg = response.msg ? response.msg : response.err._message
+            console.log(msg, '========================================================')
+            // })
         }
     }
 

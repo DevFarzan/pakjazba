@@ -196,13 +196,13 @@ class Signin extends Component{
         let response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
         console.log(response, 'response sign up')
         if(response) {
-            this.getProfileId(response)
+            this.getProfileId(response, values)
         }else {
             this.setState({msg: 'network error'})
         }
     }
 
-    async getProfileId(response){
+    async getProfileId(response, values){
         if(response.code === 200){
             let obj = {
                 name: response.name,
@@ -226,9 +226,13 @@ class Signin extends Component{
                 })
         }//end if
         else{
-            this.setState({
-                msg: response.msg ? response.msg : response.err._message,
-            })
+            if(response.err._message == 'User validation failed'){
+                this.funcLogin({userName: values.email, password: values.password})
+            }
+            // this.setState({
+            let msg = response.msg ? response.msg : response.err._message
+            console.log(msg, '========================================================')
+            // })
         }
     }
 

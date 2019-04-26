@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Form, Input, Select, AutoComplete, DatePicker
+  Form, Input, Select, AutoComplete, DatePicker,notification
 } from 'antd';
 import './Vitalinfo.css';
 
@@ -37,28 +37,43 @@ class OfferInfo extends Component {
         console.log('Received values of form: ', values);
         // this.props.handleProps(values);
         this.offerInfoData(values);
+        console.log(document.getElementById('offerInfo'), 'handle submit');
+        console.log(this.state.herfSec, 'handle submit');
+
       }
     });
   }
 
   offerInfoData = (values) => {
-    const { offerInfo, dateObj , herfSec} = this.state
+    const { offerInfo, dateObj } = this.state
     offerInfo.push(values)
     offerInfo.push(dateObj)
     console.log(offerInfo)
     this.props.handleProps(offerInfo);
     this.props.imgStates();
+    console.log('kya masla hy bhai tjhy validateFields')
+    console.log(this.state.herfSec);
+    // console.log(document.getElementById('offerInfo'));
 
-    if(this.state.herfSec === ''){
+    if (this.state.herfSec === '') {
       this.setState({
-        herfSec: '#Section2'
+        herfSec: '#Section3'
       },
         () => {
-          document.getElementById('hrefff').click();
+          document.getElementById('offerInfo').click();
         })
+      // console.log(this.state.herfSec, 'if condition');
+      // console.log(document.getElementById('offerInfo'), "if condition");
+      this.openNotification()
     }
-
   }
+
+  openNotification() {
+    notification.open({
+        message: 'Success ',
+        description: 'Your offer info Form is submited successfully, Kindly fill next form',
+    });
+};
 
   checkPrice = (rule, value, callback) => {
     if (value.number > 0) {
@@ -94,7 +109,7 @@ class OfferInfo extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { autoCompleteResult , herfSec} = this.state;
+    const { autoCompleteResult, herfSec } = this.state;
     const websiteOptions = autoCompleteResult.map(website => (
       <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
     ));
@@ -574,9 +589,9 @@ class OfferInfo extends Component {
                   </div>
                   <div className="col-md-3 col-xs-4">
                     <div className="row center_global row">
-                    <button style={{ textAlign: 'center', width: "70%" }}
+                      <button style={{ textAlign: 'center', width: "70%" }}
                         className="btn button_custom" onClick={this.handleSubmit}>
-                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='hrefff'>
+                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='offerInfo'>
                           Next
                           </a>
                       </button>                    </div>

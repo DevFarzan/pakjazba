@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Upload, Button, Icon, message, Form, Modal
+  Upload, Button, Icon, message, Form, Modal, notification
 } from 'antd';
 import superagent from "superagent";
 import sha1 from "sha1";
@@ -99,14 +99,20 @@ class ImageForm extends Component {
     this.props.desStates()
     if(this.state.herfSec === ''){
       this.setState({
-        herfSec: '#Section3'
+        herfSec: '#Section4'
       },
         () => {
-          document.getElementById('hrefff').click();
+          document.getElementById('imgForm').click();
         })
+        this.openNotification()
     }
-
   }
+  openNotification() {
+    notification.open({
+        message: 'Success ',
+        description: 'Your images is submited successfully, Kindly fill next form',
+    });
+};
 
   render() {
     const { previewVisible, fileList, noChooseFile, previewImage , herfSec} = this.state,
@@ -384,7 +390,7 @@ class ImageForm extends Component {
                     <div className="row center_global row">
                     <button style={{ textAlign: 'center', width: "70%" }}
                         className="btn button_custom" onClick={this.handleSubmit}>
-                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id = 'hrefff'>
+                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id = 'imgForm'>
                           Next
                           </a>
                       </button>

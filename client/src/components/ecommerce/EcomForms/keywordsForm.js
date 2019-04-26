@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   Checkbox, Form, Input, Row,
-  Col, Icon
+  Col, Icon, notification
 } from 'antd';
 import './keywordforms.css'
 const FormItem = Form.Item
@@ -25,10 +25,16 @@ class KeywordsForm extends Component {
       if (!err) {
         console.log('Received values of form: ', values);
         this.props.handleProps(values);
-
+        this.openNotification()
       }
     });
   }
+  openNotification() {
+    notification.open({
+        message: 'Success ',
+        description: 'Your keyword & product detail is submited successfully, Kindly visit your profile!',
+    });
+};
 
   onChange = (e) => {
     console.log(`checked = ${e.target.checked}`);

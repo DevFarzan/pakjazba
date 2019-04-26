@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Form, Input, Select, AutoComplete,
+  Form, Input, Select, AutoComplete,notification
 } from 'antd';
 import './Vitalinfo.css';
 import LengthInput from './LengthComponent';
@@ -41,14 +41,16 @@ class VitalInfo extends Component {
         this.props.handleProps(values);
         this.props.offerStates();
         // console.log(this.state.herfSec);
+        // console.log(document.getElementById('evitalInfo'));
 
         if(this.state.herfSec === ''){
           this.setState({
             herfSec: '#Section2'
           },
             () => {
-              document.getElementById('hrefff').click();
+              document.getElementById('evitalInfo').click();
             })
+            this.openNotification()
         }
 
 
@@ -64,11 +66,12 @@ class VitalInfo extends Component {
     });
   }
 
-  // alagFunc(){
-    // const 
-    
-  // }
-
+  openNotification() {
+    notification.open({
+        message: 'Success ',
+        description: 'Your vital info Form is submited successfully, Kindly fill next form',
+    });
+};
 
   checkPrice = (rule, value, callback) => {
     if (value.number > 0) {
@@ -623,7 +626,7 @@ class VitalInfo extends Component {
                     <div className="row center_global row">
                       <button style={{ textAlign: 'center', width: "70%" }}
                         className="btn button_custom" onClick={this.handleSubmit}>
-                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='hrefff'>
+                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='evitalInfo'>
                           Next
                         </a>
                       </button>

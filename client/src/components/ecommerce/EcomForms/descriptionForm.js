@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input } from 'antd';
+import { Form, Input , notification} from 'antd';
 import './descriptionforms.css'
 
 const { TextArea } = Input;
@@ -22,15 +22,23 @@ class DescriptionForm extends Component {
         this.props.keywordStates()
         if (this.state.herfSec === '') {
           this.setState({
-            herfSec: '#Section4'
+            herfSec: '#Section5'
           },
             () => {
-              document.getElementById('hrefff').click();
+              document.getElementById('descForm').click();
             })
+            this.openNotification()
         }
       }
     });
   }
+
+  openNotification() {
+    notification.open({
+        message: 'Success ',
+        description: 'Your description is submited successfully, Kindly fill next form',
+    });
+};
   render() {
     const { getFieldDecorator } = this.props.form;
     const { herfSec } = this.state
@@ -125,7 +133,7 @@ class DescriptionForm extends Component {
                     <div className="row center_global row">
                       <button style={{ textAlign: 'center', width: "70%" }}
                         className="btn button_custom" onClick={this.handleSubmit}>
-                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='hrefff'>
+                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='descForm'>
                           Next
                           </a>
                       </button>

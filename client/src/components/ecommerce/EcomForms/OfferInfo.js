@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Form, Input, Select, AutoComplete, DatePicker,notification
+  Form, Input, Select, AutoComplete, DatePicker, notification
 } from 'antd';
 import './Vitalinfo.css';
 
@@ -54,26 +54,27 @@ class OfferInfo extends Component {
     console.log('kya masla hy bhai tjhy validateFields')
     console.log(this.state.herfSec);
     // console.log(document.getElementById('offerInfo'));
-
+    
     if (this.state.herfSec === '') {
       this.setState({
         herfSec: '#Section3'
       },
-        () => {
-          document.getElementById('offerInfo').click();
-        })
+      () => {
+        document.getElementById('offerInfo').click();
+      })
       // console.log(this.state.herfSec, 'if condition');
       // console.log(document.getElementById('offerInfo'), "if condition");
       this.openNotification()
+      this.props.statusFormSubmit();
     }
   }
 
   openNotification() {
     notification.open({
-        message: 'Success ',
-        description: 'Your offer info Form is submited successfully, Kindly fill next form',
+      message: 'Success ',
+      description: 'Your offer info Form is submited successfully, Kindly fill next form',
     });
-};
+  };
 
   checkPrice = (rule, value, callback) => {
     if (value.number > 0) {
@@ -584,7 +585,9 @@ class OfferInfo extends Component {
                   </div>
                   <div className="col-md-3 col-xs-4">
                     <div className="row center_global row">
-                      <button style={{ textAlign: 'center' }} className="btn ecombutton">Save as Draft</button>
+                      <button style={{ textAlign: 'center', width: "70%" }}
+                        className="btn ecombutton" onClick={this.props.statusFormDraft}>
+                        Save as Draft</button>
                     </div>
                   </div>
                   <div className="col-md-3 col-xs-4">
@@ -593,8 +596,9 @@ class OfferInfo extends Component {
                         className="btn button_custom" onClick={this.handleSubmit}>
                         <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='offerInfo'>
                           Next
-                          </a>
-                      </button>                    </div>
+                        </a>
+                      </button>
+                    </div>
                   </div>
                   <div className="col-md-3">
                   </div>

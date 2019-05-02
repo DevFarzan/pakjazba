@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input , notification} from 'antd';
+import { Form, Input, notification } from 'antd';
 import './descriptionforms.css'
 
 const { TextArea } = Input;
@@ -20,14 +20,16 @@ class DescriptionForm extends Component {
         console.log('Received values of form: ', values);
         this.props.handleProps(values)
         this.props.keywordStates()
+        
         if (this.state.herfSec === '') {
           this.setState({
             herfSec: '#Section5'
           },
-            () => {
-              document.getElementById('descForm').click();
-            })
-            this.openNotification()
+          () => {
+            document.getElementById('descForm').click();
+          })
+          this.openNotification()
+          this.props.statusFormSubmit();
         }
       }
     });
@@ -35,10 +37,10 @@ class DescriptionForm extends Component {
 
   openNotification() {
     notification.open({
-        message: 'Success ',
-        description: 'Your description is submited successfully, Kindly fill next form',
+      message: 'Success ',
+      description: 'Your description is submited successfully, Kindly fill next form',
     });
-};
+  };
   render() {
     const { getFieldDecorator } = this.props.form;
     const { herfSec } = this.state
@@ -126,7 +128,8 @@ class DescriptionForm extends Component {
                   <div className="col-md-3 col-xs-4">
                     <div className="row center_global row">
                       <button style={{ textAlign: 'center', width: "70%" }}
-                        className="btn ecombutton">Save as Draft</button>
+                        className="btn ecombutton" onClick={this.props.statusFormDraft}>
+                        Save as Draft</button>
                     </div>
                   </div>
                   <div className="col-md-3 col-xs-4">
@@ -135,7 +138,7 @@ class DescriptionForm extends Component {
                         className="btn button_custom" onClick={this.handleSubmit}>
                         <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='descForm'>
                           Next
-                          </a>
+                        </a>
                       </button>
                     </div>
                   </div>

@@ -31,10 +31,10 @@ class KeywordsForm extends Component {
   }
   openNotification() {
     notification.open({
-        message: 'Success ',
-        description: 'Your keyword & product detail is submited successfully, Kindly visit your profile!',
+      message: 'Success ',
+      description: 'Your keyword & product detail is submited successfully, Kindly visit your profile!',
     });
-};
+  };
 
   onChange = (e) => {
     console.log(`checked = ${e.target.checked}`);
@@ -380,7 +380,7 @@ class KeywordsForm extends Component {
                   <div className="col-md-3 col-xs-4">
                     <div className="row center_global row">
                       <button style={{ textAlign: 'center', width: "70%" }}
-                        className="btn button_custom">Submit</button>
+                        className="btn button_custom" onClick={this.handleSubmit}>Submit</button>
                     </div>
                   </div>
                   <div className="col-md-3">

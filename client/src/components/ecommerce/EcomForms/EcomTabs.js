@@ -9,6 +9,7 @@ import { Tabs, Radio } from 'antd';
 
 
 const TabPane = Tabs.TabPane;
+var steps = 1
 
 class EcomTabs extends Component {
 
@@ -21,12 +22,37 @@ class EcomTabs extends Component {
       images: false,
       description: false,
       keywords: false,
-      herfSec:'',
+      herfSec: '',
+      draftStatus: '',
+      submitStatus: '',
+      formStep: ''
     };
   }
 
   handleProps = (values) => {
     console.log(values, 'props value')
+    console.log(this.state.draftStatus, 'draftStatus value')
+    console.log(this.state.formStep, 'formStep value')
+    console.log(this.state.submitStatus, 'submitStatus value')
+
+  }
+
+  // componentDidUpdate(){
+  // }
+  statusFormDraft = () => {
+    this.setState({
+      draftStatus: "draft",
+      formStep: steps
+    })
+    steps++;
+  }
+
+  statusFormSubmit = () => {
+    this.setState({
+      submitStatus: 'submit',
+      formStep: steps
+    })
+    steps++;
   }
 
   offerStates = () => {
@@ -53,10 +79,10 @@ class EcomTabs extends Component {
       description: false
     })
   }
-  
+
 
   render() {
-    const { mode, evitalInfo, offerInfo, images, description, keywords , herfSec} = this.state;
+    const { mode, evitalInfo, offerInfo, images, description, keywords, herfSec } = this.state;
     // console.log(offerInfo, 'kia aay is main')
     return (
       <div className>
@@ -73,7 +99,7 @@ class EcomTabs extends Component {
                     <li role="presentation" className="disableTabs">
                       <a href="#Section1" aria-controls="home" disabled role="tab" data-toggle="tab">
                         Vital Info</a></li>
-                  }                  
+                  }
                   {offerInfo ?
                     <li role="presentation" className={offerInfo ? "active" : ''}>
                       <a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">
@@ -148,6 +174,8 @@ class EcomTabs extends Component {
                 // onClick={(e) => this.props.handleProps()}
                 handleProps={this.handleProps}
                 offerStates={this.offerStates}
+                statusFormDraft={this.statusFormDraft}
+                statusFormSubmit={this.statusFormSubmit}
               />
             </div>
             {/* // } elseIf(offerInfo){ */}
@@ -155,6 +183,8 @@ class EcomTabs extends Component {
               <OfferInfo
                 handleProps={this.handleProps}
                 imgStates={this.imgStates}
+                statusFormDraft={this.statusFormDraft}
+                statusFormSubmit={this.statusFormSubmit}
               />
             </div>
             {/* // } elseIf(images){ */}
@@ -162,6 +192,8 @@ class EcomTabs extends Component {
               <ImageForm
                 handleProps={this.handleProps}
                 desStates={this.desStates}
+                statusFormDraft={this.statusFormDraft}
+                statusFormSubmit={this.statusFormSubmit}
               />
             </div>
             {/* // }elseIf(description){ */}
@@ -170,12 +202,16 @@ class EcomTabs extends Component {
               <DescriptionForm
                 handleProps={this.handleProps}
                 keywordStates={this.keywordStates}
+                statusFormDraft={this.statusFormDraft}
+                statusFormSubmit={this.statusFormSubmit}
               />
             </div>
             {/* // }else{ */}
             <div role="tabpane5" class="tab-pane fade" id="Section5">
               <KeywordsForm
                 handleProps={this.handleProps}
+                statusFormDraft={this.statusFormDraft}
+                statusFormSubmit={this.statusFormSubmit}
               />
             </div>
             {/* // } */}

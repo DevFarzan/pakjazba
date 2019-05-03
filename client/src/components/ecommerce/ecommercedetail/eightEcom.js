@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './eightecom.css';
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
+
 
 class EightEcom extends Component{
   render(){
@@ -7,55 +9,55 @@ class EightEcom extends Component{
       <div className="container" style={{width:"100%", padding:"0"}}>
         <div className="row">
           <div className="col-md-12">
-            <div className="col-md-4 col-sm-4">
+            <div className="col-md-4 col-sm-4 col-xs-6" style={{padding:"0"}}>
               <div className="ecomImage" style={{cursor: 'pointer'}}>
                           <div className="card2" >
-                          <h4 style={{marginTop:"20px", textAlign:"center"}}> COMPUTER & ACCESSORIES  </h4>
+                          <h4 style={ isMobile ? {marginTop:"20px", textAlign:"center", fontSize:"10px", fontWeight:"bold"} : {marginTop:"20px", textAlign:"center", fontSize:"18"}}> COMPUTER & ACCESSORIES  </h4>
                               <img alt='' src='./images/ecommerce/DURM-230B872E7847D6P7._V535729157_.jpg'/>
                           </div>
               </div>
             </div>
 
-            <div className="col-md-4 col-sm-4">
+            <div className="col-md-4 col-sm-4 col-xs-6"  style={{padding:"0"}}>
               <div className="ecomImage" style={{cursor: 'pointer'}}>
                           <div className="card2" >
-                          <h4 style={{marginTop:"20px", textAlign:"center"}}>CAMERA & PHOTO  </h4>
+                          <h4 style={ isMobile ? {marginTop:"20px", textAlign:"center", fontSize:"10px", fontWeight:"bold"} : {marginTop:"20px", textAlign:"center", fontSize:"18"}}>CAMERA & PHOTO  </h4>
                               <img alt='' src='./images/ecommerce/DURM-230DA9039F21E515._V535729156_.jpg'/>
                           </div>
               </div>
             </div>
 
-            <div className="col-md-4 col-sm-4">
+            <div className="col-md-4 col-sm-4 col-xs-6" style={{padding:"0"}}>
               <div className="ecomImage" style={{cursor: 'pointer'}}>
                           <div className="card2" >
-                            <h4 style={{marginTop:"20px", textAlign:"center"}}> ACCESSORIES & SUPPLIES </h4>
+                            <h4 style={ isMobile ? {marginTop:"20px", textAlign:"center", fontSize:"10px", fontWeight:"bold"} : {marginTop:"20px", textAlign:"center", fontSize:"18"}}> ACCESSORIES & SUPPLIES </h4>
                               <img alt='' src='./images/ecommerce/DURM-230BA9D9F69CEER3._V535729157_.jpg'/>
                           </div>
               </div>
             </div>
 
-            <div className="col-md-4 col-sm-4">
+            <div className="col-md-4 col-sm-4 col-xs-6" style={{padding:"0"}}>
               <div className="ecomImage" style={{cursor: 'pointer'}}>
                           <div className="card2" >
-                            <h4 style={{marginTop:"20px", textAlign:"center"}}> HEADPHONES </h4>
+                            <h4 style={ isMobile ? {marginTop:"20px", textAlign:"center", fontSize:"10px", fontWeight:"bold"} : {marginTop:"20px", textAlign:"center", fontSize:"18"}}> HEADPHONES </h4>
                               <img alt='' src='./images/ecommerce/DURM-2309B35A28833317._V535730076_.jpg'/>
                           </div>
               </div>
             </div>
 
-            <div className="col-md-4 col-sm-4">
+            <div className="col-md-4 col-sm-4 col-xs-6" style={{padding:"0"}}>
               <div className="ecomImage" style={{cursor: 'pointer'}}>
                           <div className="card2" >
-                            <h4 style={{marginTop:"20px", textAlign:"center"}}> HOME AUDIO </h4>
+                            <h4 style={ isMobile ? {marginTop:"20px", textAlign:"center", fontSize:"10px", fontWeight:"bold"} : {marginTop:"20px", textAlign:"center", fontSize:"18"}}> HOME AUDIO </h4>
                               <img alt='' src='./images/ecommerce/DURM-2309C091815868RD._V535730079_.jpg'/>
                           </div>
               </div>
             </div>
 
-            <div className="col-md-4 col-sm-4">
+            <div className="col-md-4 col-sm-4 col-xs-6" style={{padding:"0"}}>
               <div className="ecomImage" style={{cursor: 'pointer'}}>
                           <div className="card2" >
-                            <h4 style={{marginTop:"20px", textAlign:"center"}}> AUDIO DEVICE </h4>
+                            <h4 style={ isMobile ? {marginTop:"20px", textAlign:"center", fontSize:"10px", fontWeight:"bold"} : {marginTop:"20px", textAlign:"center", fontSize:"18"}}> AUDIO DEVICE </h4>
                               <img alt='' src='./images/ecommerce/DURM-2309D07D7CEBFESD._V535730079_.jpg'/>
                           </div>
               </div>

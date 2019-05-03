@@ -15,7 +15,7 @@ class DealsEcom extends Component{
 
                       </div>
                       <div className="col-md-6 col-sm-6">
-                        <img src='./images/ecommerce/81JiWgGRqxL._AC_SY200_.jpg' style={{width:"100%", height:"200px"}}/>
+                        <img src='./images/ecommerce/81JiWgGRqxL._AC_SY200_.jpg' style={{width:"100%", height:"100%", marginTop:"40px"}}/>
                       </div>
                     </div>
                   </div>
@@ -26,7 +26,7 @@ class DealsEcom extends Component{
                         <h4 className="textcard"> Explore Our Daily Deals </h4>
                       </div>
                       <div className="col-md-6 col-sm-6">
-                        <img src='./images/ecommerce/download (4).jpg' style={{width:"100%", height:"200px"}}/>
+                        <img src='./images/ecommerce/download (4).jpg' style={{width:"100%", height:"100%"}}/>
                       </div>
                     </div>
                   </div>

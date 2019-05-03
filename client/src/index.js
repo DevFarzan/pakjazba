@@ -52,6 +52,7 @@ import UploadVideo from './components/entertainment/entertainmentPages/uploadVid
 //import TicketDetail from './components/events/TicketDetail';
 //import TicketDetail from './components/events/TicketDetail'
 import {PrivateRoute} from './components/signin_seperate';
+import AddProduct from './components/ecommerce/addProduct/addProduct';
 
 
 
@@ -142,6 +143,7 @@ ReactDOM.render(
           <Route path="/products_GridStyle" component={GridProducts}></Route>
           <Route path="/products_DetailStyle" component={EproductDetails}></Route>
           <Route path="/Forms_Ecommerce" component={EcomForms}></Route>
+          <Route path="/Forms_addproduct" component={AddProduct}></Route>
           {/*============Ecommerce=============*/}
 
           {/*=============Entertainment====================*/}

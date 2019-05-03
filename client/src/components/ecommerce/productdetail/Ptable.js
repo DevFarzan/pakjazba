@@ -9,10 +9,10 @@ class PTable extends Component{
         <table>
             <tr>
             <th> </th>
-            <th><img src="images/ecommerce/32gb.jpg" /><br /><strong>Samsung 32GB MicroSDHC EVO Slect Memory Card W/ Adapter</strong></th>
-            <th><img src="images/ecommerce/64gb.jpg" /><br /><strong>Samsung 64GB MicroSDHC EVO Slect Memory Card W/ Adapter</strong></th>
-            <th><img src="images/ecommerce/128gb.jpg" /><br /><strong>Samsung 128GB MicroSDHC EVO Slect Memory Card W/ Adapter</strong></th>
-            <th><img src="images/ecommerce/256gb.jpg" /><br /><strong>Samsung 256GB MicroSDHC EVO Slect Memory Card W/ Adapter</strong></th>
+            <th><img src="images/ecommerce/41pa5T0NGKL._AC_US218_.jpg" /><br /><strong>Samsung 32GB MicroSDHC EVO Slect Memory Card W/ Adapter</strong></th>
+            <th><img src="images/ecommerce/41pa5T0NGKL._AC_US218_.jpg" /><br /><strong>Samsung 64GB MicroSDHC EVO Slect Memory Card W/ Adapter</strong></th>
+            <th><img src="images/ecommerce/41pa5T0NGKL._AC_US218_.jpg" /><br /><strong>Samsung 128GB MicroSDHC EVO Slect Memory Card W/ Adapter</strong></th>
+            <th><img src="images/ecommerce/41pa5T0NGKL._AC_US218_.jpg" /><br /><strong>Samsung 256GB MicroSDHC EVO Slect Memory Card W/ Adapter</strong></th>
             </tr>
 
       {/*ideal for*/}

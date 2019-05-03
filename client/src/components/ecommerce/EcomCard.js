@@ -4,7 +4,7 @@ import './EcomCard.css'
 class EcomCard extends Component{
   render(){
     return(
-      <div className="container" style={{width:"100%"}}>
+      <div className="container" style={{width:"95%"}}>
         <div className="row">
           <div className="col-md-12">
             <div className="col-md-3 col-sm-6">

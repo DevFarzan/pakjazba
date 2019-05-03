@@ -15,7 +15,8 @@ class Facebook extends Component {
     responseFacebook = response =>{
         const { clicked } = this.state;
         const { dispatch, inRup } = this.props;
-        if(clicked) {
+        if(clicked && response && response.id && response.id.length > 0) {
+            console.log(response, 'responseeeeeee')
             let data = response
             // let data = {
             // 	accessToken: 'sdjhfalskjfhajhflakjflkahfja',
@@ -32,6 +33,7 @@ class Facebook extends Component {
     }
 
     componentClicked = () =>{
+        console.log('ye kab chala')
         this.setState({clicked: true})
     }
 
@@ -43,9 +45,10 @@ class Facebook extends Component {
         }else{
             fbContent = (<FacebookLogin
                 appId="644559659253564"
-                autoLoad={true}
+                autoLoad={false}
                 fields="name,email,picture"
                 onClick={this.componentClicked}
+                // onClickedUser={this.faceBookButtonClicked}
                 callback={this.responseFacebook}
                 scope="email"
                 cssClass="loginBtn loginBtn--facebook"

@@ -4,7 +4,7 @@ import './ecomadditionalcard.css'
 class Additionalcard extends Component{
   render(){
     return(
-      <div className="container" style={{width:"100%"}}>
+      <div className="container" style={{width:"95%"}}>
         <div className="row" style={{marginTop:"20px"}}>
           <span>
             <h3 className="" style={{fontWeight:"bold", textAlign:"left", marginLeft:"15px"}}> Additional Items to explore  </h3>

@@ -32,7 +32,7 @@ class MobileMenu extends Component{
         mode="inline"
         openKeys={this.state.openKeys}
         onOpenChange={this.onOpenChange}
-        style={{ width: 256 }}
+        style={{ width: 256  }}
       >
       <h3 style={{fontWeight:"bold"}}> Show Result </h3>
         <SubMenu key="sub1" title={<span><span className="headingbold">Electronics</span></span>}>

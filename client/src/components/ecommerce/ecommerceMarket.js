@@ -12,12 +12,13 @@ class EcommerceMarket extends Component{
     return(
       <div>
           <span>
-              <div className ="" style={{"backgroundImage":"url('../images/bgc-images/buy-sell.png')", marginTop : "105px",backgroundSize: 'cover'}}>
-                  <div className="background-image">
-                      <Burgermenu/>
-                      <Slider mainH1="Your Market Hub for all Products" mainH2="Find what you need"/>
-                  </div>
-              </div>
+            <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "102px",backgroundSize: 'cover'}}>
+                <div className="visible-xs" style={{marginTop:'-119px'}}></div>
+                <div className="background-image">
+                    <Burgermenu/>
+                    <Slider mainH1="Pakjazba Ecommerce" mainH2=""/>
+                </div>
+            </div>
           </span>
           <div className="row" style={{marginTop:"20px"}}>
             <h1 className="" style={{fontWeight:"bold", textAlign:"center"}}> Feature Categories  </h1>

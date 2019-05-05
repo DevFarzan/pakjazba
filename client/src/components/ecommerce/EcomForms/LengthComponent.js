@@ -23,27 +23,27 @@ class LengthInput extends React.Component {
 
     const value = props.value || {};
     this.state = {
-      number: value.number || 0,
-      length: value.length || 'inch',
+      itemLengthNumber: value.itemLengthNumber || 0,
+      itemLengthUnit: value.itemLengthUnit || 'inch',
     };
   }
 
   handleNumberChange = (e) => {
-    const number = parseInt(e.target.value || 0, 10);
-    if (Number.isNaN(number)) {
+    const itemLengthNumber = parseInt(e.target.value || 0, 10);
+    if (Number.isNaN(itemLengthNumber)) {
       return;
     }
     if (!('value' in this.props)) {
-      this.setState({ number });
+      this.setState({ itemLengthNumber });
     }
-    this.triggerChange({ number });
+    this.triggerChange({ itemLengthNumber });
   }
 
-  handlelengthChange = (length) => {
+  handlelengthChange = (itemLengthUnit) => {
     if (!('value' in this.props)) {
-      this.setState({ length });
+      this.setState({ itemLengthUnit });
     }
-    this.triggerChange({ length });
+    this.triggerChange({ itemLengthUnit });
   }
 
   triggerChange = (changedValue) => {
@@ -62,12 +62,12 @@ class LengthInput extends React.Component {
         <Input
           type="text"
           size={size}
-          value={state.number}
+          value={state.itemLengthNumber}
           onChange={this.handleNumberChange}
           style={{ width: '65%', marginRight: '3%' }}
         />
         <Select
-          value={state.length}
+          value={state.itemLengthUnit}
           size={size}
           style={{ width: '32%' }}
           onChange={this.handlelengthChange}

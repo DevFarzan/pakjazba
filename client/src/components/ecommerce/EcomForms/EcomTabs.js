@@ -30,10 +30,29 @@ class EcomTabs extends Component {
   }
 
   handleProps = (values) => {
-    console.log(values, 'props value')
-    console.log(this.state.draftStatus, 'draftStatus value')
-    console.log(this.state.formStep, 'formStep value')
-    console.log(this.state.submitStatus, 'submitStatus value')
+    var user = JSON.parse(localStorage.getItem('user'));
+    
+    // console.log(values, 'props value')
+    // console.log(user)
+    // console.log(user.profileId)
+    // console.log(user._id)
+
+    values.user_Id = user._id;
+    values.profileId = user.profileId;
+    // values.status = 
+
+    
+    // console.log(this.state.draftStatus, 'draftStatus value')
+    // console.log(this.state.formStep, 'formStep value')
+    // console.log(this.state.submitStatus, 'submitStatus value')
+    
+    if(this.state.draftStatus === 'draft'){
+      values.status = this.state.draftStatus
+    }
+    else if(this.state.submitStatus=== 'submit'){
+      values.status = this.state.submitStatus
+    }
+    console.log(values , 'values add user information')
 
   }
 

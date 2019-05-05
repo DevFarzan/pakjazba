@@ -37,15 +37,15 @@ class ResetPassword extends Component {
                 isLoading: false,
                 error: true,
                 msg: response.message
-            });        
+            });
         }else if(response.code == 200){
             this.setState({
                 isLoading: false,
                 error: false,
                 msg: response.message,
                 email: response.email
-            });        
-        }          
+            });
+        }
     }
 
     compareToFirstPassword = (rule, value, callback) => {
@@ -78,7 +78,7 @@ class ResetPassword extends Component {
                 if(response.code == 200){
                     this.setState({ updated: true });
                 }
-            }      
+            }
         });
     };
 
@@ -110,7 +110,7 @@ class ResetPassword extends Component {
                         <div className="form-group">
                             <label htmlFor="newPassword" className="col-form-label">
                                 New Password
-                            </label> 
+                            </label>
                             <FormItem>
                                 {getFieldDecorator('password', {
                                     rules: [{
@@ -119,18 +119,18 @@ class ResetPassword extends Component {
                                     }, {
                                         validator: this.validateToNextPassword,
                                     }],
-                                })(               
+                                })(
                                     <Input name="newPassword" type="password"
                                         className="form-control" id="newPassword"
                                         placeholder="New Password"
                                     />
                                 )}
-                            </FormItem>                     
+                            </FormItem>
                         </div>
                         <div className="form-group">
                             <label htmlFor="confirmPassword" className="col-form-label">
                                 Confirm Password
-                            </label> 
+                            </label>
                             <FormItem>
                                 {getFieldDecorator('confirm', {
                                     rules: [{
@@ -139,17 +139,17 @@ class ResetPassword extends Component {
                                     }, {
                                         validator: this.compareToFirstPassword,
                                     }],
-                                })(               
+                                })(
                                     <Input name="confirmPassword" type="password"
                                         className="form-control" id="confirmPassword"
                                         placeholder="Confirm Password"
-                                    /> 
+                                    />
                                 )}
-                            </FormItem>                   
-                        </div>          
+                            </FormItem>
+                        </div>
                         <br/>
-                        <button 
-                            className="btn color_button" 
+                        <button
+                            className="btn color_button"
                             style={{float: 'right'}}
                             onClick={this.updatePassword}
                         >
@@ -162,7 +162,7 @@ class ResetPassword extends Component {
                             <p>
                               Your password has been successfully reset, please try <a onClick={this.goToHome}>logging in</a>
                               again.
-                            </p>            
+                            </p>
                         </div>
                     )}
                 </div>

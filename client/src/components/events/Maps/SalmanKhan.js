@@ -16,15 +16,15 @@ class SalmanKhan extends Component {
             seat: '',
             para: '',
             ticketName: '',
-            ticketFee: '',			
+            ticketFee: '',
 			seatArr: [],
 			yourBooking: []
 	    };
     }
 
-    async componentDidMount() {    	
-    	this.Viewer.fitToViewer();    	    	
-    	const { data } = this.props.location.state;    	
+    async componentDidMount() {
+    	this.Viewer.fitToViewer();
+    	const { data } = this.props.location.state;
     	let req = await HttpUtils.get('getseats?eventId=' + data._id);
     	if(req && req.code && req.code == 200){
     		if(req.finalSeats[0].booked.length > 0){
@@ -76,10 +76,10 @@ class SalmanKhan extends Component {
     		sec = res[0].slice(res[0].indexOf("-")+1, res[0].length),
 	    	row = res[1].slice(-1);
     		if(['st10', 'st8'].includes(targetFill)){
-	    		let obj = this.returnObj(res);	    		
-	    		bestSeats.push(obj);		  		    			 		
+	    		let obj = this.returnObj(res);
+	    		bestSeats.push(obj);
     		}else if(targetFill === 'st6'){
-    			let obj = this.returnObj(res);    			
+    			let obj = this.returnObj(res);
 	    		lowestArr.push(obj);
     		}
     	})
@@ -115,7 +115,7 @@ class SalmanKhan extends Component {
 	        		this.hideTooltip(['availableTooltip', 'bookedTooltip']);
 	        		this.sectionTooltip(event, 'basicTooltip', targetId, 'tooltip3');
 	        	}
-        	}   	
+        	}
         	else {
         		if(['st10', 'st8', 'st6'].includes(targetFill)){
 	            	this.hideTooltip(['basicTooltip', 'bookedTooltip']);
@@ -127,7 +127,7 @@ class SalmanKhan extends Component {
 	        	else {
 	        		this.hideTooltip(['availableTooltip', 'bookedTooltip']);
 	        	}
-        	}            
+        	}
         }
         else {
 			this.hideTooltip(['availableTooltip', 'bookedTooltip', 'basicTooltip']);
@@ -140,15 +140,15 @@ class SalmanKhan extends Component {
     	target.classList.add("active");
     	var mouse = this.tooltipPosition(evt, CTM, targetTooltip);
     	target.style.left = mouse.X + 'px';
-    	target.style.top = mouse.Y + 'px';    
+    	target.style.top = mouse.Y + 'px';
         if(targetTooltip === 'tooltip3'){
-            this.basicTooltipText(target, evt);    
+            this.basicTooltipText(target, evt);
         }else {
             this.tooltipText(target, targetId);
-        }	    	
+        }
     }
 
-    basicTooltipText(tooltip, evt){    	
+    basicTooltipText(tooltip, evt){
     	let basicText1 = tooltip.children[0],
     	basicText2 = tooltip.children[1],
     	target = evt.originalEvent.target,
@@ -166,7 +166,7 @@ class SalmanKhan extends Component {
             ticketName = sec == 'VV' ? 'VVIP Ticket' : sec == "V" ? 'VIP Ticket' : 'Platinum Ticket',
             ticketFee = sec == 'VV' ? '$2000 + Fees' : sec == 'V' ? '$1000 + Fees' : '$500 + Fees';
         this.setState({ sec, row, seat, para, ticketName, ticketFee });
-    }  
+    }
 
     tooltipPosition(evt, CTM, targetTooltip){
     	let X, Y,
@@ -176,7 +176,7 @@ class SalmanKhan extends Component {
             clientX = evt.originalEvent.clientX,
             clientY = evt.originalEvent.clientY,
             pageX = evt.originalEvent.pageX,
-            pageY = evt.originalEvent.pageY;    	   
+            pageY = evt.originalEvent.pageY;
 			X = (clientX - CTM.e - posX ) / CTM.a;
         	Y = (clientY - CTM.f + posY) / CTM.d;
     	return {X, Y}
@@ -193,21 +193,21 @@ class SalmanKhan extends Component {
     	let { seatArr, yourBooking } = this.state,
         target = event.originalEvent.target,
         targetId = target.getAttribute('id'),
-        targetTagName = target.tagName,        
+        targetTagName = target.tagName,
         targetFill = target.getAttribute('class');
         if(targetTagName === 'circle'){
-            if(targetFill === 'st27'){            	
+            if(targetFill === 'st27'){
             	this.onUnSelectSeat(target, targetId)
-            }else if(['st10', 'st8', 'st6'].includes(targetFill)) {                 
-                this.onSelectSeat(target, targetId, targetFill);              
+            }else if(['st10', 'st8', 'st6'].includes(targetFill)) {
+                this.onSelectSeat(target, targetId, targetFill);
             }
         }else if(targetTagName === 'rect' && ['st18', 'st19', 'st26'].includes(targetFill)){
-        	this.setState({ 
+        	this.setState({
     			showBasicTooltip: false,
 			}, () => {
 	    		this.setPointOnBlocks(target);
-        	})	        	
-        }        
+        	})
+        }
     }
 
     setPointOnBlocks(target){
@@ -222,7 +222,7 @@ class SalmanKhan extends Component {
     		if(elem.targetId === targetId){
     			target.setAttribute("class", elem.targetFill);
     		}
-    	})   
+    	})
     	yourBooking = yourBooking.filter((elem) => elem.str.split(', ', 3).join('_') !== targetId);
     	this.props.bookedSeats(yourBooking, false);
     	seatArr = seatArr.filter((elem) => elem.targetId !== targetId);
@@ -230,10 +230,10 @@ class SalmanKhan extends Component {
     }
 
     onSelectSeat(target, targetId, targetFill){
-    	let { seatArr, yourBooking } = this.state,    	
+    	let { seatArr, yourBooking } = this.state,
         res = targetId.split("_", 3),
-        reserved = this.returnObj(res);      
-		target.setAttribute("class", "st27");  
+        reserved = this.returnObj(res);
+		target.setAttribute("class", "st27");
         yourBooking.push(reserved);
         this.props.switchUnchanged(false);
         this.props.bookedSeats(yourBooking, false);
@@ -241,9 +241,9 @@ class SalmanKhan extends Component {
         this.setState({seatArr, yourBooking});
     }
 
-    zoomEffect = (value) => {   
+    zoomEffect = (value) => {
 		if(value.a <= 1.06){
-			this.setState({showBasicTooltip: true})			
+			this.setState({showBasicTooltip: true})
 		}else {
 			this.setState({showBasicTooltip: false})
 		}
@@ -258,11 +258,11 @@ class SalmanKhan extends Component {
     	this.setState({value: zoomOnViewerCenter(this.state.value, 0.9)})
     	this.zoomEffect(zoomOnViewerCenter(this.state.value, 0.9))
     }
-    
+
 
     render() {
     	const { t2Height, t2Width, t2Head, t2HeadValue, t1Width, t1Height, t1HeadValue, t1Head } = this.state;
-    	
+
 	    return (
 	        <div id="thisComponent" style={{width: '800px', textAlign: 'center'}} onMouseMove={this._onMouseMove.bind(this)}>
 	        	<span>
@@ -276,7 +276,7 @@ class SalmanKhan extends Component {
 		        </div>*/}
 		        <ReactSVGPanZoom
 		        	className="reactSvgPanZoom"
-					width={800} 
+					width={800}
 					height={600}
 					ref={Viewer => this.Viewer = Viewer}
 					background='white'
@@ -290,13 +290,13 @@ class SalmanKhan extends Component {
 					// onMouseUp={event => console.log('up', event.x, event.y)}
 					onMouseMove={this.onHoverMouse}
 					// onMouseDown={event => console.log('down', event.x, event.y)}
-					value={this.state.value} 
+					value={this.state.value}
 					onChangeValue={value => {this.setState({value})}}
-					tool={this.state.tool} 
+					tool={this.state.tool}
 					// onChangeTool={tool=> this.setState({tool})}
 		        >
 
-					<svg width={800} height={600} id="SVG">
+					<svg>
 					{/*first Map start*/}
 						<g id="Layer_1" style={!this.state.showBasicTooltip ? {display: 'none'} : {}}>
 							<g id="STAGE">
@@ -8034,7 +8034,7 @@ class SalmanKhan extends Component {
 <text transform="matrix(1 0 0 1 145 109.8518982)" class="st3 st15">BOOKED SEATS</text>
 
 						</g>
-						{/*second Map end*/}		                
+						{/*second Map end*/}
 					</svg>
 		        </ReactSVGPanZoom>
 		        <div class="basicTooltip row" style={{width: '270px'}}>

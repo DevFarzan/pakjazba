@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Form, Input, Select, AutoComplete,
+  Form, Input, Select, AutoComplete, notification
 } from 'antd';
 import './Vitalinfo.css';
 import LengthInput from './LengthComponent';
@@ -18,7 +18,8 @@ class VitalInfo extends Component {
     confirmDirty: false,
     autoCompleteResult: [],
     data: '',
-    herfSec: ''
+    herfSec: '',
+
   };
 
   handleSelectChange = (value) => {
@@ -28,7 +29,11 @@ class VitalInfo extends Component {
     });
   }
 
-  // length //
+
+  // For status & step
+  //   status = (val) => {
+  //     this.props.statusForm()
+  // }
 
   handleSubmit = (e) => {
     // console.log('kya masla hy bhai tjhy')
@@ -41,37 +46,47 @@ class VitalInfo extends Component {
         this.props.handleProps(values);
         this.props.offerStates();
         // console.log(this.state.herfSec);
+        // console.log(document.getElementById('evitalInfo'));
 
-        if(this.state.herfSec === ''){
+        if (this.state.herfSec === '') {
           this.setState({
             herfSec: '#Section2'
           },
             () => {
-              document.getElementById('hrefff').click();
+              document.getElementById('evitalInfo').click();
             })
+          this.openNotification()
+          this.props.statusFormSubmit();
         }
-
-
-        // window.location.href='#Section2';
-        // window.location.href("#Section2"); 
-        // return <a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">
-        // </a>
-        // window.location = '#Section2';
-        // window.location.href = '#Section2'
-
-
       }
     });
   }
 
-  // alagFunc(){
-    // const 
-    
-  // }
+  openNotification() {
+    notification.open({
+      message: 'Success ',
+      description: 'Your vital info Form is submited successfully, Kindly fill next form',
+    });
+  };
 
+  checkWidth = (rule, value, callback) => {
+    if (value.itemWidthNumber > 0) {
+      callback();
+      return;
+    }
+    callback('Value must greater than zero!');
+  }
 
-  checkPrice = (rule, value, callback) => {
-    if (value.number > 0) {
+  checkWeight = (rule, value, callback) => {
+    if (value.itemWeightNumber > 0) {
+      callback();
+      return;
+    }
+    callback('Value must greater than zero!');
+  }
+
+  checkLength = (rule, value, callback) => {
+    if (value.itemLengthNumber > 0) {
       callback();
       return;
     }
@@ -175,10 +190,10 @@ class VitalInfo extends Component {
                       </div>
                       <div className="col-md-8">
                         <FormItem>
-                          {getFieldDecorator('brandname', {
+                          {getFieldDecorator('brandName', {
                             rules: [{
                               required: true,
-                              message: 'Please enter brandname',
+                              message: 'Please enter brandName',
                               whitespace: true
                             }],
                           })(
@@ -200,7 +215,7 @@ class VitalInfo extends Component {
                       </div>
                       <div className="col-md-8">
                         <FormItem>
-                          {getFieldDecorator('manufacturerpart', {
+                          {getFieldDecorator('manufacturerPart', {
                             rules: [{
                               required: true,
                               message: 'Please enter manufacturerpart',
@@ -223,7 +238,7 @@ class VitalInfo extends Component {
                       </div>
                       <div className="col-md-8">
                         <FormItem>
-                          {getFieldDecorator('pakagequantity', {
+                          {getFieldDecorator('pakageQuantity', {
                             rules: [{
                               required: true,
                               message: 'Please enter pakage quantity',
@@ -248,7 +263,7 @@ class VitalInfo extends Component {
                       </div>
                       <div className="col-md-8">
                         <FormItem>
-                          {getFieldDecorator('materialtype', {
+                          {getFieldDecorator('materialType', {
                             rules: [{
                               required: true,
                               message: 'Please enter materialtype',
@@ -317,7 +332,7 @@ class VitalInfo extends Component {
                       </div>
                       <div className="col-md-8">
                         <FormItem>
-                          {getFieldDecorator('lensecolor', {
+                          {getFieldDecorator('lenseColor', {
                             rules: [{
                               required: true,
                               message: 'Please enter lensecolor',
@@ -436,7 +451,7 @@ class VitalInfo extends Component {
                       </div>
                       <div className="col-md-8">
                         <FormItem>
-                          {getFieldDecorator('product id', {
+                          {getFieldDecorator('productId', {
                             rules: [{
                               required: true,
                               message: 'Please enter product id', whitespace: true
@@ -458,9 +473,9 @@ class VitalInfo extends Component {
                       </div>
                       <div className="col-md-8">
                         <FormItem>
-                          {getFieldDecorator('length', {
-                            initialValue: { number: 0, length: 'inch' },
-                            rules: [{ validator: this.checkPrice }],
+                          {getFieldDecorator('itemLength', {
+                            initialValue: { itemLengthNumber: 0, itemLengthUnit: 'inch' },
+                            rules: [{ validator: this.checkLength }],
                           })(
                             <LengthInput />
                           )}
@@ -479,9 +494,9 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <Form layout="inline">
                           <FormItem>
-                            {getFieldDecorator('width', {
-                              initialValue: { number: 0, length: 'inch' },
-                              rules: [{ validator: this.checkPrice }],
+                            {getFieldDecorator('itemWidth', {
+                              initialValue: { itemWidthNumber: 0, itemWidthUnit: 'inch' },
+                              rules: [{ validator: this.checkWidth }],
                             })(
                               <WidthInput />
                             )}
@@ -499,16 +514,14 @@ class VitalInfo extends Component {
                         </div>
                       </div>
                       <div className="col-md-8">
-                        {/* <Form layout="inline" onSubmit={this.handleSubmit}> */}
                         <FormItem>
-                          {getFieldDecorator('weight', {
-                            initialValue: { number: 0, length: 'inch' },
-                            rules: [{ validator: this.checkPrice }],
+                          {getFieldDecorator('itemWeight', {
+                            initialValue: { itemWeightNumber: 0, itemWeightUnit: 'inch' },
+                            rules: [{ validator: this.checkWeight }],
                           })(
                             <WeightInput />
                           )}
                         </FormItem>
-                        {/* </Form> */}
                         <p className="margin-top" style={{ marginTop: "0px" }}>  Example: 50 pounds, low, medium, high  </p>
                       </div>
                     </div>
@@ -522,7 +535,7 @@ class VitalInfo extends Component {
                       </div>
                       <div className="col-md-8">
                         <FormItem>
-                          {getFieldDecorator('maximumweight', {
+                          {getFieldDecorator('maximumWeight', {
                             rules: [{
                               required: false,
                               message: 'Please enter maximum weight', whitespace: true
@@ -616,14 +629,15 @@ class VitalInfo extends Component {
                   <div className="col-md-3 col-xs-4">
                     <div className="row center_global row">
                       <button style={{ textAlign: 'center', width: "70%" }}
-                        className="btn ecombutton">Save as Draft</button>
+                        className="btn ecombutton" onClick={this.props.statusFormDraft}>
+                        Save as Draft</button>
                     </div>
                   </div>
                   <div className="col-md-3 col-xs-4">
                     <div className="row center_global row">
                       <button style={{ textAlign: 'center', width: "70%" }}
                         className="btn button_custom" onClick={this.handleSubmit}>
-                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='hrefff'>
+                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='evitalInfo'>
                           Next
                         </a>
                       </button>

@@ -23,27 +23,27 @@ class WidthInput extends React.Component {
 
     const value = props.value || {};
     this.state = {
-      number: value.number || 0,
-      width: value.width || 'inch',
+      itemWidthNumber: value.itemWidthNumber || 0,
+      itemWidthUnit: value.itemWidthUnit || 'inch',
     };
   }
 
   handleNumberChange = (e) => {
-    const number = parseInt(e.target.value || 0, 10);
-    if (Number.isNaN(number)) {
+    const itemWidthNumber = parseInt(e.target.value || 0, 10);
+    if (Number.isNaN(itemWidthNumber)) {
       return;
     }
     if (!('value' in this.props)) {
-      this.setState({ number });
+      this.setState({ itemWidthNumber });
     }
-    this.triggerChange({ number });
+    this.triggerChange({ itemWidthNumber });
   }
 
-  handlewidthChange = (width) => {
+  handlewidthChange = (itemWidthUnit) => {
     if (!('value' in this.props)) {
-      this.setState({ width });
+      this.setState({ itemWidthUnit });
     }
-    this.triggerChange({ width });
+    this.triggerChange({ itemWidthUnit });
   }
 
   triggerChange = (changedValue) => {
@@ -62,12 +62,12 @@ class WidthInput extends React.Component {
         <Input
           type="text"
           size={size}
-          value={state.number}
+          value={state.itemWidthNumber}
           onChange={this.handleNumberChange}
           style={{ width: '65%', marginRight: '3%' }}
         />
         <Select
-          value={state.width}
+          value={state.itemWidthUnit}
           size={size}
           style={{ width: '32%' }}
           onChange={this.handlewidthChange}

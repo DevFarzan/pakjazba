@@ -23,27 +23,27 @@ class WeightInput extends React.Component {
 
     const value = props.value || {};
     this.state = {
-      number: value.number || 0,
-      weight: value.weight || 'kg',
+      itemWeightNumber: value.itemWeightNumber || 0,
+      itemWeightUnit: value.itemWeightUnit || 'kg',
     };
   }
 
   handleNumberChange = (e) => {
-    const number = parseInt(e.target.value || 0, 10);
-    if (Number.isNaN(number)) {
+    const itemWeightNumber = parseInt(e.target.value || 0, 10);
+    if (Number.isNaN(itemWeightNumber)) {
       return;
     }
     if (!('value' in this.props)) {
-      this.setState({ number });
+      this.setState({ itemWeightNumber });
     }
-    this.triggerChange({ number });
+    this.triggerChange({ itemWeightNumber });
   }
 
-  handleweightChange = (weight) => {
+  handleweightChange = (itemWeightUnit) => {
     if (!('value' in this.props)) {
-      this.setState({ weight });
+      this.setState({ itemWeightUnit });
     }
-    this.triggerChange({ weight });
+    this.triggerChange({ itemWeightUnit });
   }
 
   triggerChange = (changedValue) => {
@@ -62,12 +62,12 @@ class WeightInput extends React.Component {
         <Input
           type="text"
           size={size}
-          value={state.number}
+          value={state.itemWeightNumber}
           onChange={this.handleNumberChange}
           style={{ width: '65%', marginRight: '3%' }}
         />
         <Select
-          value={state.weight}
+          value={state.itemWeightUnit}
           size={size}
           style={{ width: '32%' }}
           onChange={this.handleweightChange}

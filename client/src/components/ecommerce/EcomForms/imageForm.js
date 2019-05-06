@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Upload, Button, Icon, message, Form, Modal
+  Upload, Button, Icon, message, Form, Modal, notification
 } from 'antd';
 import superagent from "superagent";
 import sha1 from "sha1";
@@ -97,16 +97,24 @@ class ImageForm extends Component {
     console.log(response , "response");
     this.props.handleProps(response);
     this.props.desStates()
+    
     if(this.state.herfSec === ''){
       this.setState({
-        herfSec: '#Section3'
+        herfSec: '#Section4'
       },
-        () => {
-          document.getElementById('hrefff').click();
-        })
+      () => {
+        document.getElementById('imgForm').click();
+      })
+      this.openNotification()
+      this.props.statusFormSubmit();
     }
-
   }
+  openNotification() {
+    notification.open({
+        message: 'Success ',
+        description: 'Your images is submited successfully, Kindly fill next form',
+    });
+};
 
   render() {
     const { previewVisible, fileList, noChooseFile, previewImage , herfSec} = this.state,
@@ -377,16 +385,17 @@ class ImageForm extends Component {
                   <div className="col-md-3 col-xs-4">
                     <div className="row center_global row">
                       <button style={{ textAlign: 'center', width: "70%" }}
-                        className="btn ecombutton">Save as Draft</button>
+                        className="btn ecombutton" onClick={this.props.statusFormDraft}>
+                        Save as Draft</button>
                     </div>
                   </div>
                   <div className="col-md-3 col-xs-4">
                     <div className="row center_global row">
-                    <button style={{ textAlign: 'center', width: "70%" }}
+                      <button style={{ textAlign: 'center', width: "70%" }}
                         className="btn button_custom" onClick={this.handleSubmit}>
-                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id = 'hrefff'>
+                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='imgForm'>
                           Next
-                          </a>
+                        </a>
                       </button>
                     </div>
                   </div>

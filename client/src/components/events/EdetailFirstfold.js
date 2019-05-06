@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './EdetailFirstfold.css';
-import DetailSliders from '../events/slider';
-import DateCard from '../events/dateCard';
-import FeaturedCol4 from '../events/FeaturedCol4';
-import FeaturedCol8 from '../events/FeaturedCol8';
+import DetailSliders from './slider';
+import DateCard from './dateCard';
+import FeaturedCol4 from './FeaturedCol4';
+import FeaturedCol8 from './FeaturedCol8';
 import moment from 'moment';
 
 class EdetailFirstfold extends Component{

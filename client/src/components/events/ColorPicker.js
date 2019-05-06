@@ -72,6 +72,97 @@ export class Shareholder extends Component {
     }
 }
 
+export class CustomTickets extends Component {
+    state = {
+        customTicket: [{ name: "", quantity: "", price: "" }],
+    }
+
+    handleAddShareholder = () => {
+        this.setState({
+          customTicket: this.state.customTicket.concat([{ name: "", quantity: "", price: "" }])
+        }, () => {
+            this.props.onChange(this.props.id, this.state.customTicket) 
+        });
+    };
+
+    handleRemoveShareholder = idx => () => {
+        this.setState({
+          customTicket: this.state.customTicket.filter((s, sidx) => idx !== sidx)
+        }, () => {
+            this.props.onChange(this.props.id, this.state.customTicket) 
+        });
+    };
+
+    handleShareholderNameChange = (idx, field) => evt => {
+        const newCustomTicket = this.state.customTicket.map((shareholder, sidx) => {
+            if (idx !== sidx) return shareholder;
+            return { ...shareholder, [field]: evt.target.value };
+        });
+
+        this.setState({ customTicket: newCustomTicket }); 
+        this.props.onChange(this.props.id, newCustomTicket)       
+    };
+
+    render(){
+        return(
+            
+                <div className="col-md-12" style={{paddingLeft: '30px'}}>
+                    <div className="inputBox">
+                        {this.props.value.map((shareholder, idx) => (
+                            <div className="shareholder">
+                                <input
+                                    required={this.props.required}
+                                    type="text"
+                                    placeholder="Ticket Name"
+                                    value={shareholder.name}
+                                    id={this.props.id}
+                                    style={{border: '1px solid #d9d9d9'}}
+                                    className="form-group col-md-3"
+                                    onChange={this.handleShareholderNameChange(idx, 'name')}
+                                />
+                                <input
+                                    required={this.props.required}
+                                    type="text"
+                                    placeholder="Ticket Available"
+                                    value={shareholder.quantity}
+                                    id={this.props.id}
+                                    style={{border: '1px solid #d9d9d9'}}
+                                    className="form-group col-md-3 col-md-offset-1"
+                                    onChange={this.handleShareholderNameChange(idx, 'quantity')}
+                                />
+                                <input
+                                    required={this.props.required}
+                                    type="text"
+                                    placeholder="Ticket Price"
+                                    value={shareholder.price}
+                                    id={this.props.id}
+                                    style={{border: '1px solid #d9d9d9'}}
+                                    className="form-group col-md-3 col-md-offset-1"
+                                    onChange={this.handleShareholderNameChange(idx, 'price')}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={this.handleRemoveShareholder(idx)}
+                                    className="btn btn-sm"
+                                    style={{margin:'0px 0px 11px 11px'}}
+                                >
+                                  X
+                                </button>
+                            </div>
+                    ))}
+                    <button
+                        type="button"
+                        onClick={this.handleAddShareholder}
+                        className="button_add"
+                    >
+                        Add
+                    </button>
+                    </div>
+                </div>
+        )
+    }
+}
+
 export class UploadedImages extends Component {
 	render(){
 	  	return(

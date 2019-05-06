@@ -376,6 +376,14 @@ class ProfileUser extends Component{
             userDetail: detail
         }
 
+        const noData = (
+            <div style={{marginTop: '125px'}}>
+                <h1>
+                    you dont have data to show...
+                </h1>
+            </div>
+        )
+
         return(
             <div>
 
@@ -391,7 +399,7 @@ class ProfileUser extends Component{
                             <Burgermenu/>
                         </div>
                     </div>
-                        <div className="hero" style={isMobile && !isTablet ? {marginTop:"0%"} : {marginTop:"-16%"}  }>
+                        <div className="hero" style={isMobile && !isTablet ? {marginTop:"0%"} : {marginTop:"-12%"}  }>
                             <div className="row">
                                 {/*=======================col-md-3============================*/}
                                 <div className="col-md-3">
@@ -717,11 +725,8 @@ class ProfileUser extends Component{
 
                                                                     )
                                                                 }) :
-                                                                <div style={{marginTop: '25px'}}>
-                                                                    <h1>
-                                                                        you dont have data to show...
-                                                                    </h1>
-                                                                </div>}
+                                                                    noData
+                                                                }
                                                             </div>
                                                             {/*!!listData.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={allData.length} onChange={this.onChange} /></span>*/}
                                                         </div>
@@ -754,11 +759,8 @@ class ProfileUser extends Component{
 
                                                                     )
                                                                 }) :
-                                                                <div style={{marginTop: '25px'}}>
-                                                                    <h1>
-                                                                        you dont have data to show...
-                                                                    </h1>
-                                                                </div>}
+                                                                    noData
+                                                                }
                                                             </div>
                                                             {/*!!listData.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={allData.length} onChange={this.onChange} /></span>*/}
                                                         </div>
@@ -791,11 +793,8 @@ class ProfileUser extends Component{
 
                                                                     )
                                                                 }) :
-                                                                <div style={{marginTop: '25px'}}>
-                                                                    <h1>
-                                                                        you dont have data to show...
-                                                                    </h1>
-                                                                </div>}
+                                                                    noData
+                                                                }
                                                             </div>
                                                             {/*!!listData.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={allData.length} onChange={this.onChange} /></span>*/}
                                                         </div>
@@ -828,11 +827,8 @@ class ProfileUser extends Component{
 
                                                                     )
                                                                 }) :
-                                                                <div style={{marginTop: '25px'}}>
-                                                                    <h1>
-                                                                        you dont have data to show...
-                                                                    </h1>
-                                                                </div>}
+                                                                    noData
+                                                                }
                                                             </div>
                                                             {/*!!listData.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={allData.length} onChange={this.onChange} /></span>*/}
                                                         </div>

@@ -93,7 +93,32 @@ class DateCard extends Component{
             <TicketTabs/>
             <a name="ticketsection"><div className="container widthmobile">
               <h3 style={{fontWeight:"bold",fontFamily: 'Crimson Text, sans-serif',marginTop:'11px'}}><a name="headline1" style={{color: "black"}}>Ticket Information</a></h3>
-                {(earlyBird || normalTicket) &&<div className="ticketbuy">
+                {data.customTicketDetail && data.customTicketDetail.length > 0 && data.customTicketDetail.map((elem) => {
+                    return(
+                        <div className="ticketbuy">
+                            <div className="row" style={{padding:"0"}}>
+                                <div className="col-md-5 col-sm-5">
+                                    <div className="col-md-12" style={{marginTop:"15px"}}>
+                                        <h5 style={{padding:"0"}}><b>{elem.name} :  {" " + elem.quantity}</b></h5>
+                                    </div>
+                                </div>
+                                <div className="col-md-4 col-sm-3 col-xs-6" style={{marginTop:"15px"}}>
+                                    <p style={{margin:"0"}}>{'$' + elem.price}</p>
+                                </div>
+                                <div className="col-md-3 col-sm-4 col-xs-6" style={{marginTop:"13px"}}>
+                                    <InputNumber min={0} max={data && data.earlyBirdAvailableTickets} defaultValue={1} disabled={!earlyBird} onChange={(e) => {this.setState({eBird: e})}} style={{width:"50px", height:"23px"}} />
+
+                                    <Tooltip placement="top" title='Early Bird Ticket is not Available'>
+                                        {!earlyBird && <Icon type="question-circle" theme="filled" style={{fontSize: '16px', marginLeft: '10px'}}/>}
+                                    </Tooltip>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })}
+                
+
+                {(earlyBird || normalTicket) && <div className="ticketbuy">
                   <div className="row" style={{padding:"0"}}>
                     <div className="col-md-5 col-sm-5">
                       <div className="col-md-12" style={{marginTop:"15px"}}>
@@ -113,7 +138,7 @@ class DateCard extends Component{
                   </div>
                 </div>}
 
-                {(earlyBird || normalTicket) &&<div className="ticketbuy">
+                {(earlyBird || normalTicket) && <div className="ticketbuy">
                   <div className="row" style={{padding:"0"}}>
                     <div className="col-md-5 col-sm-5">
                       <div className="col-md-12" style={{marginTop:"15px"}}>
@@ -132,7 +157,7 @@ class DateCard extends Component{
                   </div>
                 </div>}
 
-                {(earlyBird || normalTicket) &&<div className="ticketbuy">
+                {(earlyBird || normalTicket) && <div className="ticketbuy">
                   <div className="row" style={{padding:"0"}}>
                     <div className="col-md-5 col-sm-5 " style={{marginTop:"15px"}}>
                         <h4>Total Amount </h4>
@@ -143,6 +168,26 @@ class DateCard extends Component{
                     <div className="col-md-3 col-sm-4  col-xs-6">
                     <div className="text-center text-md-left" onClick={() => {this.purchaseTicket()}}>
                         <a className="btn button_custom" style={{width: "100%", marginTop:"10px", marginLeft:"-58px", backgroundColor:"rgb(55, 169, 155)"}}>{earlyBird || normalTicket ? 'Purchase Ticket' : 'Collect Ticket'}</a>
+                    </div>
+                    </div>
+                  </div>
+                </div>}
+
+                {data.customTicketDetail && data.customTicketDetail.length > 0 && <div className="ticketbuy">
+                  <div className="row" style={{padding:"0"}}>
+                    <div className="col-md-5 col-sm-5 " style={{marginTop:"15px"}}>
+                        {/*<h4>Total Amount </h4>*/}
+                    </div>
+                    <div className="col-md-4 col-sm-3  col-xs-6" style={{marginTop:"15px"}}>
+                      {/*<p style={{margin:"0"}}>{'$' + totalPrice}</p>*/}
+                    </div>
+                    <div className="col-md-3 col-sm-4  col-xs-6">
+                    <div className="text-center text-md-left" onClick={() => {this.purchaseTicket()}}>
+                        <a 
+                            className="btn button_custom" 
+                            style={{width: "100%", marginTop:"10px", marginLeft:"-58px", backgroundColor:"rgb(55, 169, 155)"}}
+                        >
+                        Purchase Ticket</a>
                     </div>
                     </div>
                   </div>

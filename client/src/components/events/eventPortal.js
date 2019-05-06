@@ -20,7 +20,7 @@ import Footer from '../footer/footer';
 import sha1 from "sha1";
 import superagent from "superagent";
 import {HttpUtils} from "../../Services/HttpUtils";
-import { Shareholder, UploadedImages } from './ColorPicker';
+import { Shareholder, CustomTickets } from './ColorPicker';
 import stateCities from "../../lib/countrycitystatejson";
 
 const FormItem = Form.Item;
@@ -44,6 +44,10 @@ const ticketNames = [
   {
     value: 'Free',
     label: 'Free',
+  },
+  {
+    value: 'Custom Tickets',
+    label: 'Custom Tickets',
   },
 ]
 
@@ -140,7 +144,9 @@ class EventPortal extends Component{
             bannerSrc: '',
             banner: [],
             termsCondition: [{ name: "" }],
-            map: false
+            map: false,
+            customTicket: false,
+            customTicketDetail: [{ name: "", quantity: "", price: "" }],
         }
     }
 
@@ -194,6 +200,8 @@ class EventPortal extends Component{
             this.setState({earlyBird: true, normalTicket: true})
         }else if(value[0] === 'Free'){
             this.setState({earlyBird: false, normalTicket: false})
+        }else if(value[0] === 'Custom Tickets'){
+            this.setState({earlyBird: false, normalTicket: false, customTicket: true})
         }
     }
 
@@ -257,7 +265,7 @@ class EventPortal extends Component{
     async postData(values, response) {
         const {dateObj, userId, profileId, objectId, website, faceBook, linkdIn, google,
             earlyBird, normalTicket, earlyBirdFree, normalTicketFree, openingTime,
-            closingTime, termsCondition, map} = this.state;
+            closingTime, termsCondition, map, customTicketDetail} = this.state;
         let rand = Math.floor((Math.random() * 1000000) + 54),
         image = '',
         cover = '',
@@ -307,6 +315,7 @@ class EventPortal extends Component{
             normalTicketDelivery: values.normalTicketDelivery === undefined ? [] : values.normalTicketDelivery,
             normalTicketPrice: normalTicket === false ? '' : values.normalTicketPrice,
             normalTicketFree,
+            customTicketDetail,
             website,
             faceBook,
             linkdIn,
@@ -317,6 +326,7 @@ class EventPortal extends Component{
             randomKey,
             posted: moment().format('LL')
         }
+        console.log(obj, 'objjjjjjjjjjj')
         let req = await HttpUtils.post('postEventPortal', obj)
         console.log(req, 'responseeeeeeeee')
         if(req.code === 200){
@@ -498,7 +508,7 @@ class EventPortal extends Component{
     render(){
         const { fileList, previewImage, previewVisible, statesUS , citiesUS, msg, objData, randomKey } = this.state;
         const {getFieldDecorator} = this.props.form;
-        console.log(this.state.termsCondition, 'stateeee')
+        
         if (msg === true) {
             return <Redirect to={{pathname: `/detail_eventPortal/${randomKey}`, state: objData}} />
         }
@@ -767,7 +777,7 @@ class EventPortal extends Component{
                                     <div className="row">
                                         <div className="col-md-12">
                                             <div className="col-md-6">
-                                                <label> Select Ticketsl</label>
+                                                <label> Select Tickets </label>
                                                     <FormItem>
                                                     {getFieldDecorator('ticketsCategory', {
                                                         initialValue: this.state.ticketsCategory,
@@ -962,6 +972,14 @@ class EventPortal extends Component{
                                         <div className="col-md-6">
 
                                         </div>
+                                    </div>}
+                                    {this.state.customTicket && <div className="row">
+                                        <CustomTickets 
+                                            label="Custom Ticket" 
+                                            id="customTicketDetail" 
+                                            value={this.state.customTicketDetail}
+                                            onChange={this.handleCard}
+                                        />
                                     </div>}
                                 </section>
                             </div>

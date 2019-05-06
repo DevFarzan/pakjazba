@@ -21,7 +21,6 @@ constructor(props){
             return <Redirect to={{pathname: '/profile_userDetail', state: {userId: data.userid, profileId: data.profileid}}}/>
         }
 
-
         return(
             <div className="">
               {/*<div className="row" style={{padding:"10px",border:'1px solid #80808030'}}>
@@ -56,7 +55,8 @@ constructor(props){
                               <div style={{textAlign:"left"}}>{data.modelname || data.modelName},{data.modelmake || data.make}</div>
                               <div style={{textAlign:"left"}}><i className="fa fa-map-marker"></i>{data.address},{data.state}</div>
                           </div>
-                          <div style={{border:'1px solid #80808030',width:'100%',paddingLeft:'15px', paddingTop:'5px', marginTop:"5px"}}><h3 style={{fontWeight:'bold', textAlign:"left"}}>Contact Seller</h3>
+                          <div style={{border:'1px solid #80808030',width:'100%',paddingLeft:'15px', paddingTop:'5px', marginTop:"5px", paddingBottom: '22px'}}>
+                              <h3 style={{fontWeight:'bold', textAlign:"left"}}>Contact Seller</h3>
                               <div className="row" style={{padding:"0"}}>
                                   <div className="col-md-7" style={{marginLeft:"-30px", paddingLeft:"25px"}}>
                                       <div className="profile_img"><img onClick={() => {this.goToProfile()}} src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="" alt="" style={{width:'70%',cursor:'pointer', marginTop:"-10px", marginBottom:"8px"}} /></div>
@@ -66,6 +66,8 @@ constructor(props){
                                       <a onClick={() => {this.goToProfile()}}  style={{fontSize:'13px',cursor:'pointer',color:'rgb(55, 169, 155)'}}>View Profile</a>
                                   </div>
                               </div>
+                              <h5 style={{width:'100%'}}><span className="glyphicon glyphicon-phone" style={{marginRight: "15px", color:"#36a89f", float: 'left'}}></span><span style={{color: "rgba(0, 0, 0, 0.65)", float: 'left'}}>{data.contactnumber}</span></h5>
+                              <h5 style={{width:'100%'}}><span className="glyphicon glyphicon-globe" style={{marginRight: "15px", color:"#36a89f", float: 'left'}}></span><span style={{color: "rgba(0, 0, 0, 0.65)", float: 'left'}}>{data.contactemail}</span></h5>
                           </div>
                           <div style={{border:'1px solid #80808030',width:'100%',marginTop:'10px'}}>
                               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.6337348509687!2d67.03749541472551!3d24.807992284078704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33da992be1aa7%3A0x7646411a2d8e6ac5!2sKRL+Creatives!5e0!3m2!1sen!2s!4v1536302761580" width="100%" height="100" frameborder="0" style={{"border":"0"}} allowfullscreen></iframe>
@@ -104,6 +106,8 @@ constructor(props){
                                       <a onClick={() => {this.goToProfile()}}  style={{fontSize:'13px',cursor:'pointer',color:'rgb(55, 169, 155)'}}>View Profile</a>
                                   </div>
                               </div>
+                              <h5 style={{width:'100%'}}><span className="glyphicon glyphicon-phone" style={{marginRight: "15px", color:"#36a89f"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{data.contactnumber}</span></h5>
+                              <h5 style={{width:'100%'}}><span className="glyphicon glyphicon-globe" style={{marginRight: "15px", color:"#36a89f"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{data.contactemail}</span></h5>
                           </div>
                           <div style={{border:'1px solid #80808030',marginTop:'28px'}}>
                               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.6337348509687!2d67.03749541472551!3d24.807992284078704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33da992be1aa7%3A0x7646411a2d8e6ac5!2sKRL+Creatives!5e0!3m2!1sen!2s!4v1536302761580" width="100%" height="100" frameborder="0" style={{"border":"0"}} allowfullscreen></iframe>

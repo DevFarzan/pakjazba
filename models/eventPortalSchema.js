@@ -41,7 +41,8 @@ var EventSchema = new mongoose.Schema({
     coverPhotoSrc:{type:String},
     top:{type:String},
     termsCondition:{type:Array},
-    map:{type:Boolean}
+    map:{type:Boolean},
+    customTicketDetail:{type:Array}
 });
 
 mongoose.model('EventSchema',EventSchema);

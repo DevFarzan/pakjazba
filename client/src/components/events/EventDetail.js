@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Burgermenu from '../header/burgermenu';
 import Footer from '../footer/footer';
 import Slider from '../header/Slider';
-import EdetailFirstfold from '../events/EdetailFirstfold';
+import EdetailFirstfold from './EdetailFirstfold';
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
 import './eventdetail.css';

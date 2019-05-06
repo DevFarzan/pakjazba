@@ -91,7 +91,7 @@ class OfferInfo extends Component {
         salePriceDate1: dateString,
         salePriceDate2: dateString,
         sellingDate: dateString,
-        restockdate: dateString,
+        restockDate: dateString,
         offering: dateString
       }
     })
@@ -507,7 +507,7 @@ class OfferInfo extends Component {
                       </div>
                       <div className="col-md-8">
                         <FormItem>
-                          {getFieldDecorator('product id', {
+                          {getFieldDecorator('productId', {
                             rules: [{
                               required: false, message:
                                 'Please enter Seller Warranty',

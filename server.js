@@ -1481,7 +1481,8 @@ app.post('/api/postEventPortal', (req, res) => {
             coverPhotoSrc:postEventPortal.coverPhotoSrc,
             top:postEventPortal.top,
             termsCondition:postEventPortal.termsCondition,
-            map:postEventPortal.map
+            map:postEventPortal.map,
+            customTicketDetail: postEventPortal.customTicketDetail
         });
 
         eventData.save((error, response) => {
@@ -1551,6 +1552,7 @@ app.post('/api/postEventPortal', (req, res) => {
             eventData.top=postEventPortal.top;
             eventData.termsCondition=postEventPortal.termsCondition;
             eventData.map=postEventPortal.map;
+            eventData.customTicketDetail = postEventPortal.customTicketDetail;
         });
         eventData.save((error, doc) => {
             if(error){

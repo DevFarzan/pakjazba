@@ -176,7 +176,9 @@ class Roomrenting3contentarea extends Component{
                       <div className="col-md-8">
                           <h3 className="head-space2"> California  </h3>
                           <h1 className="head-space2"><b>{data.postingtitle || data.postingTitle} Available</b></h1>
-                          <h4 style={{marginLeft:"0", marginBottom:"70px"}}> { data.propertylocation || data.propertyLocation } </h4>
+                          <h4 style={{marginLeft:"0"}}> { data.propertylocation || data.propertyLocation } </h4>
+                          <h5><span className="glyphicon glyphicon-phone" style={{marginRight: "15px", color:"#36a89f"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{phone}</span></h5>
+                          <h5 style={{marginBottom:"70px"}}><span className="glyphicon glyphicon-globe" style={{marginRight: "15px", color:"#36a89f"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{email}</span></h5>
                           <div className="row" style={{padding:"0"}}>
                             <div className="col-md-1">
                             <i className="fa fa-home" style={{fontSize:"30px"}}/>
@@ -513,7 +515,9 @@ class Roomrenting3contentarea extends Component{
                       <div className="col-md-8">
                           <h3 className="head-space2"></h3>
                           <h1 className="head-space2" style={{fontSize:'18px'}}><b>{data.postingtitle || data.postingTitle} Available</b></h1>
-                          <h4 style={{marginLeft:"0", marginBottom:"70px",fontSize:'18px'}}> { data.propertylocation || data.propertyLocation } </h4>
+                          <h4 style={{marginLeft:"0",fontSize:'18px'}}> { data.propertylocation || data.propertyLocation } </h4>
+                          <h5><span className="glyphicon glyphicon-phone" style={{marginRight: "15px", color:"#36a89f"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{phone}</span></h5>
+                          <h5 style={{marginBottom:"70px"}}><span className="glyphicon glyphicon-globe" style={{marginRight: "15px", color:"#36a89f"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{email}</span></h5>
                           <div className="row" style={{padding:"0"}}>
                             <div className="col-md-1">
                             <i className="fa fa-home" style={{fontSize:"30px"}}/>

@@ -27,7 +27,8 @@ class DetailBusiness extends Component{
             loader: false,
             goProfile: false,
             previewVisible: false,
-            item: 4
+            item: 4,
+            rating: 0
         }
     }
 
@@ -71,8 +72,12 @@ class DetailBusiness extends Component{
     async getReviews(data){
         let res = await HttpUtils.get('getreviews')
         if(res.code === 200) {
-            let filteredReviews = res.content.filter((elem) => elem.objid === data._id)
-            this.setState({reviews: filteredReviews})
+            let filteredReviews = res.content.filter((elem) => elem.objid === data._id),
+            rating = 0
+            filteredReviews.map((elem) => rating += +elem.star)
+            rating = rating / filteredReviews.length; 
+
+            this.setState({reviews: filteredReviews, rating})
         }
     }
 
@@ -164,11 +169,11 @@ class DetailBusiness extends Component{
     }
 
     render(){
-        const { isData, data, reviews, goProfile, previewVisible, previewImage, item, reviewUserId, reviewProfileId } = this.state,
+        const { isData, data, reviews, goProfile, previewVisible, previewImage, item, reviewUserId, reviewProfileId, rating } = this.state,
         hide = true,
         antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
         let images = data.businessImages || data.arr_url;
-
+        console.log(data, 'dataaaaaaaaa')
         if(!isData){
             return <Redirect to='/' />
         }
@@ -195,7 +200,7 @@ class DetailBusiness extends Component{
                                 <div className="card-body space" style={{padding: "17px"}}>
                                   <h1 style={{fontWeight:"bold"}}>{data.businessName || data.businessname}</h1>
                                   <span>
-                                  <Rate disabled style={{paddingBottom: '20px', marginTop:"-10px", fontSize:"19px"}} allowHalf value={5}/> 5.0
+                                  <Rate disabled style={{paddingBottom: '20px', marginTop:"-10px", fontSize:"19px"}} allowHalf value={rating}/> {rating}
                                   </span>
                                     <h5><span className="glyphicon glyphicon-home" style={{marginRight: "15px", color:"#36a89f"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{data.address || data.businessAddress}</span></h5>
 
@@ -371,7 +376,7 @@ class DetailBusiness extends Component{
                                     )
                                 })}
                             </div>}
-                            {reviews.length > item && <div className="">
+                            {reviews.length > item && <div className="" style={{marginBottom: '30px'}}>
                               <a className="btn btndetail-success"
                                 style={{display:"block", margin:"auto0"}}
                                 onClick={() => this.setState({item: item + 4})}>More</a>
@@ -384,7 +389,7 @@ class DetailBusiness extends Component{
                           <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7242.887220253883!2d67.02816338632098!3d24.814498692583676!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x74882ba91beb6409!2sBar.B.Q.+Tonight!5e0!3m2!1sen!2snl!4v1547465385394" width="100%" height="250" frameBorder="0" style={{border:"0"}} allowFullScreen></iframe>
                         </div>
                         <div className="businessinfo">
-                          <h4> More Business Info </h4>
+                          {/*<h4> More Business Info </h4>
                           <div className="row" style={{padding:"0"}}>
                             <div className="col-md-6">
                               <p> Accept Credit Card </p>
@@ -404,12 +409,10 @@ class DetailBusiness extends Component{
                             </div>
                             <div className="col-md-5">
                             </div>
-                          </div>
+                          </div>*/}
                           <br/>
                           <h4> From The Business  </h4>
-                          <p> How are we different: We included everything
-                          you need to move affordably you have us for as long
-                          as you only pay for the time we are working. Take a moment to visualize...</p>
+                          <p>{data.description}</p>
                         </div>
                         <div className="anchor">
                           {/*<span> Is this your business?<a href="">Claim it now </a> </span>*/}

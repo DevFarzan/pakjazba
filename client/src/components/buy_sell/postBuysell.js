@@ -588,7 +588,7 @@ class Postbuysell extends Component{
                                     </FormItem>
                                     <FormItem
                                         {...formItemLayout}
-                                        label="Make"
+                                        label="Brand"
                                     >
                                         {getFieldDecorator('make', {
                                             initialValue: this.state.dataMake,
@@ -610,7 +610,7 @@ class Postbuysell extends Component{
                                     </FormItem>
                                     <FormItem
                                         {...formItemLayout}
-                                        label="Number"
+                                        label="Model Number"
                                     >
                                         {getFieldDecorator('number', {
                                             initialValue: this.state.dataModelNumber,

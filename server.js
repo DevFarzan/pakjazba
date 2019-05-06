@@ -74,6 +74,7 @@ require('./models/eventPortalSchema');
 require('./models/eventTicketSchema');
 require('./models/eventseatvenue');
 require('./models/userVideos');
+require('./models/postyourproduct');
 
 require('./config/passport');
 
@@ -95,6 +96,7 @@ var eventPortal = mongoose.model('EventSchema');
 var eventTicket = mongoose.model('EventTicketSchema');
 var eventSeats  = mongoose.model('EventVenue');
 var uerVideos   = mongoose.model('customData');
+var postecommerce = mongoose.model('postyourproduct');
 var sess;
 
 app.use(passport.initialize());
@@ -401,11 +403,11 @@ app.post('/api/forgotPassword', (req, res) => {
     if (req.body.email === '') {
         res.status(400).send('email required');
     }
-    
+
     var host = req.host,
     protocol = req.protocol;
     User.findOne({
-        email: req.body.email,      
+        email: req.body.email,
     }).then((user) => {
         if (user === null) {
             res.send({
@@ -422,7 +424,7 @@ app.post('/api/forgotPassword', (req, res) => {
             user._id = user._id;
             user.email = user.email;
             user.password = user.password;
-            user.randomno = user.randomno;  
+            user.randomno = user.randomno;
             user.profileId = user.profileId;
             user.resetPasswordToken = token;
             user.resetPasswordExpires = moment().format();
@@ -439,7 +441,7 @@ app.post('/api/forgotPassword', (req, res) => {
                           + `https://pure-hollows-17968.herokuapp.com/reset/${token}\n\n`
                           + 'If you did not request this, please ignore this email and your password will remain unchanged.\n',
                     };
-                    
+
                     smtpTransport.sendMail(mailOptions, (err, response) => {
                       if (err) {
                         res.send({
@@ -453,8 +455,8 @@ app.post('/api/forgotPassword', (req, res) => {
                         })
                       }
                     });
-                }            
-            });                
+                }
+            });
         }
     });
 });
@@ -463,16 +465,16 @@ app.post('/api/forgotPassword', (req, res) => {
 
 /*--------------------Reset password start----------------------------*/
 
-app.get('/api/reset', (req, res) => {    
+app.get('/api/reset', (req, res) => {
     User.findOne({
-        resetPasswordToken: req.query.resetPasswordToken     
+        resetPasswordToken: req.query.resetPasswordToken
     }).then((user) => {
         if(user == null){
             res.send({
                 code: 403,
                 message: 'password reset link is invalid or has expired'
             });
-        }  
+        }
         var time = moment(user.resetPasswordExpires).fromNow();
         if (time == 'an hour ago' || time == "a few seconds ago" || (time.slice(time.indexOf(" ")+1, time.length)) == "minutes ago") {
             res.send({
@@ -480,13 +482,13 @@ app.get('/api/reset', (req, res) => {
                 email: user.email,
                 message: 'password reset link a-ok',
             });
-        } else {        
+        } else {
             res.send({
                 code: 403,
                 message: 'password reset link is invalid or has expired'
             });
         }
-    }).catch((err) => {      
+    }).catch((err) => {
         res.send({
             code: 404,
             message: 'password reset link is invalid or has expired'
@@ -707,7 +709,7 @@ app.post('/api/resetpassword',function(req,res){
     var Email = req.body.email;
     var Password = req.body.password;
     User.findOne({email:Email})
-        .then((user) => {            
+        .then((user) => {
             if(user!=''){
                 user.username = user.username;
                 user.InsertedDate = user.InsertedDate;
@@ -717,19 +719,19 @@ app.post('/api/resetpassword',function(req,res){
                 user._id = user._id;
                 user.email = user.email;
                 user.password = Password;
-                user.randomno = user.randomno;  
+                user.randomno = user.randomno;
                 user.profileId = user.profileId;
                 user.resetPasswordToken = null;
                 user.resetPasswordExpires = null;
-                
-                user.save((err, response) => {                    
+
+                user.save((err, response) => {
                     if(!err){
                         res.send({
                             code: 200,
                             msg: 'Password is updated'
                         });
-                    }                    
-                })                
+                    }
+                })
             }else {
                 res.send({
                     code: 404,
@@ -1570,7 +1572,7 @@ app.post('/api/eventTicket', (req, res) => {
     let ticketInfo = req.body.obj;
     let mailTicket = req.body.data;
     console.log(req.body, 'bodyyyyyyyy')
-    
+
     let ticketData = new eventTicket({
         address: ticketInfo.address,
         city: ticketInfo.city,
@@ -1604,7 +1606,7 @@ app.post('/api/eventTicket', (req, res) => {
                 code:200,
                 msg:'yor request submitted successfully'
             });
-            let title = mailTicket.eventTitle;                
+            let title = mailTicket.eventTitle;
                 allTickets = ticketInfo.booked.map((elem) => Object.values(elem).slice(0, 2).join(", "));
                 ticketOne = "Early Bird $" + mailTicket.earlyBirdPrice;
                 ticketTwo = "Normal Ticket $" + mailTicket.normalTicketPrice;
@@ -1616,19 +1618,19 @@ app.post('/api/eventTicket', (req, res) => {
                 eventDayTime = startDay + ' ' + startDate + ' at ' + mailTicket.openingTime + ' - ' + endDay + ' ' + endDate + ' at ' + mailTicket.closingTime;
                 userDetail =  'Order no. ' + ticketInfo.docId + ', ordered by ';
                 userDetail2 = ticketInfo.firstName + ' ' + ticketInfo.lastName;
-                userDetail3 = ' on ' + moment(ticketInfo.posted, 'LL').format('LLLL');                
+                userDetail3 = ' on ' + moment(ticketInfo.posted, 'LL').format('LLLL');
                 fullName = ticketInfo.firstName + " " + ticketInfo.lastName;
                 description = mailTicket.description;
-                strForURL = userDetail2 + ' Order no. ' + ticketInfo.docId;                
+                strForURL = userDetail2 + ' Order no. ' + ticketInfo.docId;
                 eachTicket = ticketInfo.booked.map((elem) => {
                   return `<h3 style="margin-left: 15px;">
                               ${Object.values(elem).slice(0, 2).join(", ")}
                           </h3>`
                 });
-                showDiv = mailTicket.map === true ? 
+                showDiv = mailTicket.map === true ?
                    `<h2 style="margin-left: 15px;margin-bottom: -35px;">${title}<br>
                       ${eachTicket}
-                    </h2>` :                
+                    </h2>` :
                    `<h2 style="margin-left: 15px;">${title}<br>${ticketOne}<br>${ticketTwo}</h2><br>`
                 ;
                 quantityTicket = mailTicket.map === true ?
@@ -1662,7 +1664,7 @@ app.post('/api/eventTicket', (req, res) => {
                                         <div style="margin-bottom: 10px;">
                                             <span style="color:#37a99b; font-size: 40px; margin-left: 15%;">PakJazba</span>
                                             <span style="margin-left: 40%">Order no:${ticketInfo.docId}</span>
-                                        </div>                                        
+                                        </div>
                                         <div style="width: 70%;height: 940px; border:1px solid gray; margin: auto;">
                                             <div style="width: 50%; display: inline-block;">
                                                 <div>
@@ -1925,7 +1927,7 @@ app.get('/api/getseats',(req,res)=>{
 });
 app.post('/api/customvideo',(req,res) => {
   var videoObject = req.body;
-  console.log(videoObject)
+  //console.log(videoObject)
   const videoData = new uerVideos({
     title:videoObject.title,
     description:videoObject.description,
@@ -1951,6 +1953,99 @@ app.post('/api/customvideo',(req,res) => {
   }
   })
 });
+
+/*===============post ecommerce data=========================*/
+app.post('/api/postecommercedata',(req,res) => {
+  var ecommerceData = req.body;
+  if(ecommerceData.objectId === ''){
+    const postEcommerceData = new postecommerce({
+      user_Id:ecommerceData.user_Id,
+      profileId:ecommerceData.profileId,
+      status:ecommerceData.status,
+      UPC:ecommerceData.UPC,
+      color:ecommerceData.color,
+      gtin:ecommerceData.gtin,
+      itemLengthUnit:ecommerceData.itemLengthUnit,
+      itemLengthNumber:ecommerceData.itemLengthNumber,
+      itemWeightNumber:ecommerceData.itemWeightNumber,
+      itemWeightUnit:ecommerceData.itemWeightUnit,
+      itemWidthNumber:ecommerceData.itemWidthNumber,
+      itemWidthUnit:ecommerceData.itemWidthUnit,
+      lenseColor:ecommerceData.lenseColor,
+      manufacturer:ecommerceData.manufacturer,
+      manufacturerPart:ecommerceData.manufacturerPart,
+      materialType:ecommerceData.materialType,
+      maximumWeight:ecommerceData.maximumWeight,
+      orientation:ecommerceData.orientation,
+      pakageQuantity:ecommerceData.pakageQuantity,
+      product:ecommerceData.product,
+      productId:ecommerceData.productId,
+      shaft:ecommerceData.shaft,
+      shape:ecommerceData.shape,
+      size:ecommerceData.size,
+      tension:ecommerceData.tension,
+      variationTheme:ecommerceData.variationTheme,
+      conditionNote:ecommerceData.conditionNote,
+      country:ecommerceData.country,
+      countryLabeled:ecommerceData.countryLabeled,
+      handlingTime:ecommerceData.handlingTime,
+      importDesignation:ecommerceData.importDesignation,
+      legalDesclaimer:ecommerceData.legalDesclaimer,
+      price:ecommerceData.price,
+      productId:ecommerceData.productId,
+      quantity:ecommerceData.quantity,
+      salePrice:ecommerceData.salePrice,
+      seller:ecommerceData.seller,
+      taxCode:ecommerceData.taxCode,
+      offering:ecommerceData.offering,
+      restockDate:ecommerceData.restockDate,
+      salePriceDate1:ecommerceData.salePriceDate1,
+      salePriceDate2:ecommerceData.salePriceDate2,
+      sellingDate:ecommerceData.sellingDate,
+      images:ecommerceData.images,
+      description:ecommerceData.description,
+      productFeature:ecommerceData.productFeature,
+      IntendedUsekeyWords:ecommerceData.IntendedUsekeyWords,
+      targetAudience:ecommerceData.targetAudience,
+      intendedUse:ecommerceData.intendedUse,
+      platinumKeywords:ecommerceData.platinumKeywords,
+      searchTerms:ecommerceData.searchTerms,
+      subjectMatter:ecommerceData.subjectMatter
+    })
+    postEcommerceData.save(function(err,data){
+      if(err){
+        res.send({
+          code:500,
+          content:'Internal Server Error',
+          msg:'API not called properly'
+      })
+    }
+    else if(data){
+      res.send({
+            code:200,
+            msg:'Data saved successfully',
+            finalSeats:data
+        });
+    }
+    })
+}
+else if(ecommerceData.objectId != ''){
+  postecommerce.updateMany(
+        {"_id":ecommerceData.objectId},
+        {$set: _.omit(ecommerceData, '_id')},
+        {multi:true}
+    ).then(() => {
+        res.send({
+            code:200,
+            data:'data updated successfully'
+        });
+    }).catch(() => res.status(422).send({msg:'okay'}));
+}
+
+})
+
+
+/*==============post ecommerce data=========================*/
 
 app.get('/api/getcustomvideo',(req,res) => {
     uerVideos.find(function(err,videos){

@@ -2026,7 +2026,7 @@ app.post('/api/postecommercedata',(req,res) => {
       res.send({
             code:200,
             msg:'Data saved successfully',
-            content:data._id
+            content:data
         });
     }
     })
@@ -2036,10 +2036,12 @@ else if(ecommerceData.objectId != ''){
         {"_id":ecommerceData.objectId},
         {$set: _.omit(ecommerceData, '_id')},
         {multi:true}
-    ).then(() => {
+    ).then((response) => {
+
         res.send({
             code:200,
-            data:'data updated successfully'
+            data:'data updated successfully',
+            content:response
         });
     }).catch(() => res.status(422).send({msg:'okay'}));
 }

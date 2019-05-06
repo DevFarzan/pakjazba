@@ -2026,7 +2026,7 @@ app.post('/api/postecommercedata',(req,res) => {
       res.send({
             code:200,
             msg:'Data saved successfully',
-            finalSeats:data
+            content:data._id
         });
     }
     })

@@ -2037,13 +2037,23 @@ else if(ecommerceData.objectId != ''){
         {"_id":ecommerceData.objectId},
         {$set: _.omit(ecommerceData, '_id')},
         {multi:true}
-    ).then((response) => {
+    ).then(() => {
+        postecommerce.find(function(err,updateddata){
+          if(err){
+            res.send({
+              code:404,
+              msg:'No record updated some internal server error'
+            })
+          }
+          else if(updateddata){
+            res.send({
+                code:200,
+                data:'data updated successfully',
+                content:updateddata
+            });
+          }
+        })
 
-        res.send({
-            code:200,
-            data:'data updated successfully',
-            content:response
-        });
     }).catch(() => res.status(422).send({msg:'okay'}));
 }
 

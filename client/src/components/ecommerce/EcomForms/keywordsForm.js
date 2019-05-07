@@ -19,20 +19,28 @@ class KeywordsForm extends Component {
     }
   }
 
-  handleSubmit = (e) => {
+  handleSubmit(e, key){
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
         this.props.handleProps(values);
-        this.openNotification()
+        // this.openNotification()
+        if (key === 'submit') {
+        let msg = 'Your keyword & product detail is submited successfully, Kindly visit your profile!'
+        this.openNotification(msg)
+      }
+      else if (key === 'draft') {
+        let msg = 'Your keyword & product detail is saved successfully.'
+        this.openNotification(msg)
+      }
       }
     });
   }
-  openNotification() {
+  openNotification(mgs) {
     notification.open({
       message: 'Success ',
-      description: 'Your keyword & product detail is submited successfully, Kindly visit your profile!',
+      description: mgs,
     });
   };
 
@@ -376,7 +384,7 @@ class KeywordsForm extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="row" style={{ paddingTop: "10px", paddingLeft: "" }}>
+                {/* <div className="row" style={{ paddingTop: "10px", paddingLeft: "" }}>
                   <div className="col-md-3 col-xs-4">
                     <div className="row center_global row">
                       <button style={{ textAlign: 'center', width: "70%" }}
@@ -385,8 +393,33 @@ class KeywordsForm extends Component {
                   </div>
                   <div className="col-md-3">
                   </div>
-                </div>
+                </div> */}
               </Form>
+              <div className="row col-md-9 col-md-offset-3" style={{ paddingTop: "10px", paddingLeft: "" }}>
+                <div className="col-md-3 col-xs-4">
+                  <div className="row center_global row">
+                    <button style={{ textAlign: 'center' }} className="btn ecombutton"
+                      onClick={() => this.props.form.resetFields()}>Cancel</button>
+                  </div>
+                </div>
+                <div className="col-md-3 col-xs-4">
+                  <div className="row center_global row">
+                    <button style={{ textAlign: 'center', width: "70%" }}
+                      className="btn ecombutton" onClick={(e) => this.handleSubmit(e, 'draft')}>
+                      Save as Draft</button>
+                  </div>
+                </div>
+                <div className="col-md-3 col-xs-4">
+                  <div className="row center_global row">
+                    <button style={{ textAlign: 'center', width: "70%" }}
+                      className="btn button_custom" onClick={(e) => this.handleSubmit(e, 'submit')}>
+                      Submit
+              </button>
+                  </div>
+                </div>
+                <div className="col-md-3">
+                </div>
+              </div>
             </div>
           </div>
         </div>

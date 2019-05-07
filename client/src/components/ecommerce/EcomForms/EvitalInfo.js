@@ -29,14 +29,8 @@ class VitalInfo extends Component {
     });
   }
 
-
-  // For status & step
-  //   status = (val) => {
-  //     this.props.statusForm()
-  // }
-
   handleSubmit(e, key) {
-    console.log(key, 'kya masla hy bhai tjhy')
+    // console.log(key, 'kya masla hy bhai tjhy')
     e.preventDefault();
     if(this.state.herfSec === ''){
     this.props.form.validateFields((err, values) => {

@@ -6,7 +6,7 @@ import DescriptionForm from './descriptionForm';
 import KeywordsForm from './keywordsForm';
 import './ecomtabs.css';
 import { Tabs, Radio } from 'antd';
-import {HttpUtils} from '../../../Services/HttpUtils';
+import { HttpUtils } from '../../../Services/HttpUtils';
 
 const TabPane = Tabs.TabPane;
 var steps = 1
@@ -17,8 +17,8 @@ class EcomTabs extends Component {
     super(props);
     this.state = {
       mode: 'top',
-      evitalInfo: false,
-      offerInfo: true,
+      evitalInfo: true,
+      offerInfo: false,
       images: false,
       description: false,
       keywords: false,
@@ -31,10 +31,10 @@ class EcomTabs extends Component {
     };
   }
 
-  handleProps = (values, key) => {
+  handleProps = async (values, key) => {
     let { allTabs } = this.state;
     var user = JSON.parse(localStorage.getItem('user'));
-    
+
     // console.log(values, 'props value')
     // console.log(user)
     // console.log(user.profileId)
@@ -42,28 +42,24 @@ class EcomTabs extends Component {
 
     values.user_Id = user._id;
     values.profileId = user.profileId;
-    // values.status = 
 
-    
-    // console.log(this.state.draftStatus, 'draftStatus value')
-    // console.log(this.state.formStep, 'formStep value')
-    // console.log(this.state.submitStatus, 'submitStatus value')
-    
-    if(this.state.draftStatus === 'draft'){
+    if (this.state.draftStatus === 'draft') {
       values.status = this.state.draftStatus
     }
-    else if(this.state.submitStatus=== 'submit'){
+    else if (this.state.submitStatus === 'submit') {
       values.status = this.state.submitStatus
     }
-    
-    values.objectId = this.state.objectId
-    console.log(values , 'values add user information')
-    // let req = await HttpUtils.post('postecommercedata', obj)
-    // if(req.code === 200){
 
-    // }
-    allTabs.push(key)
-    this.setState({ allTabs})
+    values.objectId = this.state.objectId
+    console.log(values, 'values add user information')
+    let req = await HttpUtils.post('postecommercedata', values)
+
+    console.log(req)
+    if (req.code === 200) {
+      await localStorage.setItem('formData' , req.content);
+      allTabs.push(key)
+      this.setState({ allTabs, objectId: req.content._id })
+    }
   }
 
   // componentDidUpdate(){
@@ -121,46 +117,46 @@ class EcomTabs extends Component {
               <div className="tab" role="tabpanel">
                 <ul className="nav nav-tabs" role="tablist">
                   {/*{evitalInfo ?*/}
-                    <li role="presentation" className={evitalInfo ? 'active' : allTabs.includes('evitalInfo') ? '' : 'disableTabs'}>
-                      <a href="#Section1" aria-controls="home" disabled={allTabs.includes('evitalInfo') ? false : true} role="tab" data-toggle="tab">
-                        Vital Info</a></li>
-                    {/*:
+                  <li role="presentation" className={evitalInfo ? 'active' : allTabs.includes('evitalInfo') ? '' : 'disableTabs'}>
+                    <a href="#Section1" aria-controls="home" disabled={allTabs.includes('evitalInfo') ? false : true} role="tab" data-toggle="tab">
+                      Vital Info</a></li>
+                  {/*:
                     <li role="presentation" className="disableTabs">
                       <a href="#Section1" aria-controls="home" disabled={false} role="tab" data-toggle="tab">
                         Vital Info</a></li>
                   }*/}
                   {/*{offerInfo ?*/}
-                    <li role="presentation" className={offerInfo ? 'active' : allTabs.includes('offerInfo') ? '' : 'disableTabs'}>
-                      <a href="#Section2" aria-controls="profile" disabled={allTabs.includes('offerInfo') ? false : true} role="tab" data-toggle="tab">
-                        Offer</a></li>
-                    {/*:
+                  <li role="presentation" className={offerInfo ? 'active' : allTabs.includes('offerInfo') ? '' : 'disableTabs'}>
+                    <a href="#Section2" aria-controls="profile" disabled={allTabs.includes('offerInfo') ? false : true} role="tab" data-toggle="tab">
+                      Offer</a></li>
+                  {/*:
                     <li role="presentation" className='disableTabs'>
                       <a href="#Section2" aria-controls="profile" disabled role="tab" data-toggle="tab">
                         Offer</a></li>
                   }*/}
                   {/*{images ?*/}
-                    <li role="presentation" className={images ? 'active' : allTabs.includes('images') ? '' : 'disableTabs'}>
-                      <a href="#Section3" aria-controls="messages" disabled={allTabs.includes('images') ? false : true} role="tab" data-toggle="tab">
-                        Images</a></li>
-                    {/*:
+                  <li role="presentation" className={images ? 'active' : allTabs.includes('images') ? '' : 'disableTabs'}>
+                    <a href="#Section3" aria-controls="messages" disabled={allTabs.includes('images') ? false : true} role="tab" data-toggle="tab">
+                      Images</a></li>
+                  {/*:
                     <li role="presentation" className='disableTabs'>
                       <a href="#Section3" aria-controls="messages" disabled role="tab" data-toggle="tab">
                         Images</a></li>
                   }*/}
                   {/*{description ?*/}
-                    <li role="presentation" className={description ? 'active' : allTabs.includes('description') ? '' : 'disableTabs'}>
-                      <a href="#Section4" aria-controls="messages" disabled={allTabs.includes('description') ? false : true} role="tab" data-toggle="tab">
-                        Description</a></li>
-                    {/*:
+                  <li role="presentation" className={description ? 'active' : allTabs.includes('description') ? '' : 'disableTabs'}>
+                    <a href="#Section4" aria-controls="messages" disabled={allTabs.includes('description') ? false : true} role="tab" data-toggle="tab">
+                      Description</a></li>
+                  {/*:
                     <li role="presentation" className='disableTabs'>
                       <a href="#Section4" aria-controls="messages" disabled role="tab" data-toggle="tab">
                         Description</a></li>
                   }*/}
                   {/*{keywords ?*/}
-                    <li role="presentation" className={keywords ? 'active' : allTabs.includes('keywords') ? '' : 'disableTabs'}>
-                      <a href="#Section5" aria-controls="messages" disabled={allTabs.includes('keywords') ? false : true} role="tab" data-toggle="tab"
-                      >Keywords</a></li>
-                    {/*:
+                  <li role="presentation" className={keywords ? 'active' : allTabs.includes('keywords') ? '' : 'disableTabs'}>
+                    <a href="#Section5" aria-controls="messages" disabled={allTabs.includes('keywords') ? false : true} role="tab" data-toggle="tab"
+                    >Keywords</a></li>
+                  {/*:
                     <li role="presentation" className='disableTabs'>
                       <a href="#Section5" aria-controls="messages" disabled role="tab" data-toggle="tab"
                       >Keywords</a></li>
@@ -197,7 +193,7 @@ class EcomTabs extends Component {
         <div className="container" style={{ width: "100%" }}>
           <div class="tab-content">
             {/* if (evitalInfo) { */}
-            <div role="tabpanel" class="tab-pane fade" id="Section1">
+            <div role="tabpanel" class="tab-pane fade in active" id="Section1">
               <VitalInfo
                 // onClick={(e) => this.props.whenClicked(e.target.innerText)}
                 // onClick={(e) => this.props.handleProps()}
@@ -208,7 +204,7 @@ class EcomTabs extends Component {
               />
             </div>
             {/* // } elseIf(offerInfo){ */}
-            <div role="tabpane2" class="tab-pane fade in active" id="Section2">
+            <div role="tabpane2" class="tab-pane fade " id="Section2">
               <OfferInfo
                 handleProps={this.handleProps}
                 imgStates={this.imgStates}
@@ -217,7 +213,7 @@ class EcomTabs extends Component {
               />
             </div>
             {/* // } elseIf(images){ */}
-            <div role="tabpane3" class="tab-pane fade" id="Section3">
+            <div role="tabpane3" class="tab-pane fade " id="Section3">
               <ImageForm
                 handleProps={this.handleProps}
                 desStates={this.desStates}

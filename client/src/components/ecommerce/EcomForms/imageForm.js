@@ -16,7 +16,7 @@ class ImageForm extends Component {
     imageList: [],
     firstImg: [],
     secondImg: [],
-    noChooseFile: false, 
+    noChooseFile: false,
     herfSec: ''
   };
   handleCancel = () => this.setState({ previewVisible: false })
@@ -37,87 +37,95 @@ class ImageForm extends Component {
   handleChange = ({ fileList }) => {
     this.setState({ fileList, noChooseFile: true })
   }
-  handleSubmit = (e) => {
+  handleSubmit(e, key) {
     e.preventDefault();
     const { fileList } = this.state;
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        // console.log(values);
-        // console.log(fileList, 'file list');
-        this.funcForUpload(values)
-      }
-    })
+    if (this.state.herfSec === '') {
+      this.props.form.validateFieldsAndScroll((err, values) => {
+        if (!err) {
+          // console.log(values);
+          // console.log(fileList, 'file list');
+          this.funcForUpload(values, key)
+        }
+      })
+    }
   }
-  
-  async funcForUpload(values){
+
+  async funcForUpload(values, key) {
     const { fileList } = this.state;
     //   console.log(fileList, 'file list');
     //   console.log(values, 'handle submit');
     Promise.all(fileList.map((val) => {
-        return this.uploadFile(val).then((result) => {
-            return result.body.url
-        })
-    })).then((results) => {
-        this.postData(values, results)
-    })
-}
-  
-    //--------------function for cloudnary url ---------------
-    uploadFile = (files) =>{
-      const image = files.originFileObj
-      const cloudName = 'dxk0bmtei'
-      const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/upload'
-      const timestamp = Date.now()/1000
-      const uploadPreset = 'toh6r3p2'
-      const paramsStr = 'timestamp='+timestamp+'&upload_preset='+uploadPreset+'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
-      const signature = sha1(paramsStr)
-      const params = {
-          'api_key':'878178936665133',
-          'timestamp':timestamp,
-          'upload_preset':uploadPreset,
-          'signature':signature
-      }
-      return new Promise((res, rej) => {
-          let uploadRequest = superagent.post(url)
-          uploadRequest.attach('file', image)
-          Object.keys(params).forEach((key) =>{
-              uploadRequest.field(key, params[key])
-          })
-
-          uploadRequest.end((err, resp) =>{
-              err ? rej(err) : res(resp);
-          })
+      return this.uploadFile(val).then((result) => {
+        return result.body.url
       })
+    })).then((results) => {
+      this.postData(values, results, key)
+    })
+  }
+
+  //--------------function for cloudnary url ---------------
+  uploadFile = (files) => {
+    const image = files.originFileObj
+    const cloudName = 'dxk0bmtei'
+    const url = 'https://api.cloudinary.com/v1_1/' + cloudName + '/image/upload'
+    const timestamp = Date.now() / 1000
+    const uploadPreset = 'toh6r3p2'
+    const paramsStr = 'timestamp=' + timestamp + '&upload_preset=' + uploadPreset + 'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
+    const signature = sha1(paramsStr)
+    const params = {
+      'api_key': '878178936665133',
+      'timestamp': timestamp,
+      'upload_preset': uploadPreset,
+      'signature': signature
+    }
+    return new Promise((res, rej) => {
+      let uploadRequest = superagent.post(url)
+      uploadRequest.attach('file', image)
+      Object.keys(params).forEach((key) => {
+        uploadRequest.field(key, params[key])
+      })
+
+      uploadRequest.end((err, resp) => {
+        err ? rej(err) : res(resp);
+      })
+    })
   }
 
   //-----------------cloudnary function end ------------------
 
-  async postData(values, response) {
-    console.log(values , "values");
-    console.log(response , "response");
-    this.props.handleProps(response);
+  async postData(values, response, key) {
+    // console.log(values, "values");
+    console.log(response, "response");
+    this.props.handleProps(response , 'description');
     this.props.desStates()
-    
-    if(this.state.herfSec === ''){
+    if (key === 'submit') {
       this.setState({
         herfSec: '#Section4'
       },
-      () => {
-        document.getElementById('imgForm').click();
-      })
-      this.openNotification()
-      this.props.statusFormSubmit();
+        () => {
+          document.getElementById('imgForm').click();
+        })
+      let msg = 'Your Images is submited successfully, Kindly fill next form'
+      this.openNotification(msg)
     }
+    else if (key === 'draft') {
+      let msg = 'Your Images is saved successfully.'
+      this.openNotification(msg)
+    }
+    // this.props.statusFormSubmit();
   }
-  openNotification() {
+
+  openNotification(msg) {
     notification.open({
-        message: 'Success ',
-        description: 'Your images is submited successfully, Kindly fill next form',
+      message: 'Success ',
+      description: msg
     });
-};
+  };
+
 
   render() {
-    const { previewVisible, fileList, noChooseFile, previewImage , herfSec} = this.state,
+    const { previewVisible, fileList, noChooseFile, previewImage, herfSec } = this.state,
       { getFieldDecorator } = this.props.form,
       antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
@@ -155,14 +163,18 @@ class ImageForm extends Component {
               <a>
                 <img alt='img1' src={elem} />
                 <span>
-                  <a><Icon title='Preview file' onClick={() => 
-                    this.handlePreview(elem)} type="eye" theme="outlined" 
-                    style={{ zIndex: 10, transition: 'all .3s', fontSize: '16px', 
-                    width: '30px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px' }} /></a>
-                  <Icon title='Remove file' type='delete' 
-                  onClick={this.deleteImage.bind(this, elem)} 
-                  style={{ zIndex: 10, transition: 'all .3s', fontSize: '16px', 
-                  width: '30px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px' }} />
+                  <a><Icon title='Preview file' onClick={() =>
+                    this.handlePreview(elem)} type="eye" theme="outlined"
+                    style={{
+                      zIndex: 10, transition: 'all .3s', fontSize: '16px',
+                      width: '30px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'
+                    }} /></a>
+                  <Icon title='Remove file' type='delete'
+                    onClick={this.deleteImage.bind(this, elem)}
+                    style={{
+                      zIndex: 10, transition: 'all .3s', fontSize: '16px',
+                      width: '30px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'
+                    }} />
                 </span>
               </a>
             </div>
@@ -375,38 +387,39 @@ class ImageForm extends Component {
                     </div>
                   </div> */}
                 </div>
-                <div className="row" style={{ paddingTop: "10px", paddingLeft: "" }}>
-                  <div className="col-md-3 col-xs-4">
-                    <div className="row center_global row">
-                      <button style={{ textAlign: 'center', width: "50%" }}
-                        className="btn ecombutton">Cancel</button>
-                    </div>
-                  </div>
-                  <div className="col-md-3 col-xs-4">
-                    <div className="row center_global row">
-                      <button style={{ textAlign: 'center', width: "70%" }}
-                        className="btn ecombutton" onClick={this.props.statusFormDraft}>
-                        Save as Draft</button>
-                    </div>
-                  </div>
-                  <div className="col-md-3 col-xs-4">
-                    <div className="row center_global row">
-                      <button style={{ textAlign: 'center', width: "70%" }}
-                        className="btn button_custom" onClick={this.handleSubmit}>
-                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='imgForm'>
-                          Next
-                        </a>
-                      </button>
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                  </div>
-                </div>
+
               </div>
             </div>
           </div>
           {/* </div> */}
         </Form>
+        <div className="row col-md-9 col-md-offset-3" style={{ paddingTop: "10px", paddingLeft: "" }}>
+          <div className="col-md-3 col-xs-4">
+            <div className="row center_global row">
+              <button style={{ textAlign: 'center' }} className="btn ecombutton"
+                onClick={() => this.props.form.resetFields()}>Cancel</button>
+            </div>
+          </div>
+          <div className="col-md-3 col-xs-4">
+            <div className="row center_global row">
+              <button style={{ textAlign: 'center', width: "70%" }}
+                className="btn ecombutton" onClick={(e) => this.handleSubmit(e, 'draft')}>
+                Save as Draft</button>
+            </div>
+          </div>
+          <div className="col-md-3 col-xs-4">
+            <div className="row center_global row">
+              <button style={{ textAlign: 'center', width: "70%" }}
+                className="btn button_custom" onClick={(e) => this.handleSubmit(e, 'submit')}>
+                <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='imgForm'>
+                  Next
+                </a>
+              </button>
+            </div>
+          </div>
+          <div className="col-md-3">
+          </div>
+        </div>
       </div>
     )
   }

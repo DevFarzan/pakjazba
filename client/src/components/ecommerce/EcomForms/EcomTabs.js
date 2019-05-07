@@ -56,7 +56,7 @@ class EcomTabs extends Component {
 
     console.log(req)
     if (req.code === 200) {
-      await localStorage.setItem('formData' , req.content);
+      await localStorage.setItem('formData', JSON.stringify(req.content));
       allTabs.push(key)
       this.setState({ allTabs, objectId: req.content._id })
     }

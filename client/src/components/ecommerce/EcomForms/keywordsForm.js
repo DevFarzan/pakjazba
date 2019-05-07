@@ -238,7 +238,7 @@ class KeywordsForm extends Component {
                         </div>
                       </div>
                       <p style={{ marginTop: "15px", marginBottom: "0px" }}>Provide your own term</p>
-                      <FormItem
+                      {/* <FormItem
                       >
                         {getFieldDecorator('targetAudience', {
                           initialValue: this.state.dataLocation,
@@ -250,7 +250,7 @@ class KeywordsForm extends Component {
                         })(
                           <Input />
                         )}
-                      </FormItem>
+                      </FormItem> */}
                     </div>
                   </div>
                   <div className="row">
@@ -266,7 +266,7 @@ class KeywordsForm extends Component {
                         <div className="col-md-6">
                           <FormItem
                           >
-                            {getFieldDecorator('subjectmatter', {
+                            {getFieldDecorator('subjectMatter', {
                               rules: [{ validator: this.checkCheckBox }],
                             })(
                               <CheckboxGroup style={{ width: '100%' }}
@@ -321,7 +321,7 @@ class KeywordsForm extends Component {
                         </div>
                       </div>
                       <p style={{ marginTop: "15px", marginBottom: "0px" }}>Provide your own term</p>
-                      <FormItem
+                      {/* <FormItem
                       >
                         {getFieldDecorator('subjectMatter', {
                           initialValue: this.state.dataLocation,
@@ -333,7 +333,7 @@ class KeywordsForm extends Component {
                         })(
                           <Input />
                         )}
-                      </FormItem>
+                      </FormItem> */}
                     </div>
                   </div>
                   <div className="row">

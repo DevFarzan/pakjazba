@@ -59,7 +59,7 @@ class OfferInfo extends Component {
 
     if (key === 'submit') {
       this.setState({
-        herfSec: '#Section2'
+        herfSec: '#Section3'
       },
         () => {
           document.getElementById('evitalInfo').click();

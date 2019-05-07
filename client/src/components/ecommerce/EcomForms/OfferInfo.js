@@ -36,47 +36,46 @@ class OfferInfo extends Component {
 
   handleSubmit(e, key) {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-        // this.props.handleProps(values);
-        this.offerInfoData(values, key);
-        console.log(document.getElementById('offerInfo'), 'handle submit');
-        console.log(this.state.herfSec, 'handle submit');
-
-      }
-    });
-  }
-
-  offerInfoData = (values, key) => {
-    const { offerInfo, dateObj } = this.state
-    offerInfo.push(values)
-    offerInfo.push(dateObj)
-    console.log(offerInfo)
-    this.props.handleProps(offerInfo);
-    this.props.imgStates();
-    console.log('kya masla hy bhai tjhy validateFields')
-    console.log(this.state.herfSec);
-    // console.log(document.getElementById('offerInfo'));
-    
     if (this.state.herfSec === '') {
-      this.setState({
-        herfSec: '#Section3'
-      },
-      () => {
-        document.getElementById('offerInfo').click();
-      })
-      // console.log(this.state.herfSec, 'if condition');
-      // console.log(document.getElementById('offerInfo'), "if condition");
-      this.openNotification()
-      this.props.statusFormSubmit();
+      this.props.form.validateFields((err, values) => {
+        if (!err) {
+          console.log('Received values of form: ', values);
+          this.offerInfoData(values, key);
+        }
+      });
     }
   }
 
-  openNotification() {
+  offerInfoData = (values, key) => {
+    let { salePriceDate1 , salePriceDate2 ,  sellingDate , restockDate , offering} = this.state;
+    values.salePriceDate1 = salePriceDate1;
+    values.salePriceDate2 = salePriceDate2;
+    values.sellingDate = sellingDate;
+    values.restockDate = restockDate;
+    values.offering = offering;
+
+    this.props.handleProps(values, 'images');
+    this.props.imgStates();
+
+    if (key === 'submit') {
+      this.setState({
+        herfSec: '#Section2'
+      },
+        () => {
+          document.getElementById('evitalInfo').click();
+        })
+      let msg = 'Your Offer info Form is submited successfully, Kindly fill next form'
+      this.openNotification(msg)
+    }
+    else if (key === 'draft') {
+      let msg = 'Your Offer info Form is saved successfully.'
+      this.openNotification(msg)
+    }
+  }
+  openNotification(msg) {
     notification.open({
       message: 'Success ',
-      description: 'Your offer info Form is submited successfully, Kindly fill next form',
+      description: msg
     });
   };
 
@@ -91,10 +90,10 @@ class OfferInfo extends Component {
   // date picker //
   onChange(date, dateString, key) {
     this.setState({
-        [key]: dateString,        
+      [key]: dateString,
     })
-    console.log(date)
-    console.log(date, dateString);
+    // console.log(date)
+    // console.log(date, dateString);
   }
   //  date picker end //
 
@@ -107,7 +106,7 @@ class OfferInfo extends Component {
   }
 
   render() {
-    console.log(this.state, 'kia aaya is main ')
+    // console.log(this.state, 'kia aaya is main ')
     const { getFieldDecorator } = this.props.form;
     const { autoCompleteResult, herfSec } = this.state;
     const websiteOptions = autoCompleteResult.map(website => (
@@ -407,7 +406,7 @@ class OfferInfo extends Component {
                             </div>
                           )} */}
                           <div>
-                            <DatePicker onChange={this.onChange} />
+                            <DatePicker onChange={(date, dateString) => this.onChange(date, dateString, 'sellingDate')} />
                           </div>
                         </FormItem>
                         <p className="margin-top"> Example: Blue, orange  </p>
@@ -433,7 +432,8 @@ class OfferInfo extends Component {
                           })(
                           )} */}
                           <div>
-                            <DatePicker onChange={this.onChange} />
+                            <DatePicker onChange={(date, dateString) => this.onChange(date, dateString, 'restockDate')}
+                            />
                           </div>
                         </FormItem>
                         <p className="margin-top"> Example: Blue, orange  </p>
@@ -537,7 +537,8 @@ class OfferInfo extends Component {
                           })(
                           )} */}
                           <div >
-                            <DatePicker onChange={this.onChange} />
+                            <DatePicker onChange={(date, dateString) => this.onChange(date, dateString, 'offering')}
+                            />
                           </div>
                         </FormItem>
                         <p className="margin-top"> Example: Blue, orange  </p>
@@ -576,7 +577,7 @@ class OfferInfo extends Component {
                     </div>
                   </div>
                 </div>
-                
+
               </div>
             </div>
           </div>
@@ -585,7 +586,7 @@ class OfferInfo extends Component {
           <div className="col-md-3 col-xs-4">
             <div className="row center_global row">
               <button style={{ textAlign: 'center' }} className="btn ecombutton"
-              onClick={() => this.props.form.resetFields()}>Cancel</button>
+                onClick={() => this.props.form.resetFields()}>Cancel</button>
             </div>
           </div>
           <div className="col-md-3 col-xs-4">

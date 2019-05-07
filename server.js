@@ -16,6 +16,7 @@ const QRCode = require('qrcode');
 var session = require('express-session');
 var Sequelize = require('sequelize');
 const winston = require('winston');
+const _ = require("underscore");
 //const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const Op = Sequelize.Op;

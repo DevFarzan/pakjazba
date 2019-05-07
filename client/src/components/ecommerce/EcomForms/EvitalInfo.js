@@ -35,37 +35,44 @@ class VitalInfo extends Component {
   //     this.props.statusForm()
   // }
 
-  handleSubmit = (e) => {
-    // console.log('kya masla hy bhai tjhy')
+  handleSubmit(e, key) {
+    console.log(key, 'kya masla hy bhai tjhy')
     e.preventDefault();
+    if(this.state.herfSec === ''){
     this.props.form.validateFields((err, values) => {
 
       if (!err) {
         // console.log('kya masla hy bhai tjhy validateFields')
         console.log('Received values of form: ', values);
-        this.props.handleProps(values);
+        this.props.handleProps(values, 'offerInfo');
         this.props.offerStates();
         // console.log(this.state.herfSec);
         // console.log(document.getElementById('evitalInfo'));
 
-        if (this.state.herfSec === '') {
+        if (key === 'submit') {
           this.setState({
             herfSec: '#Section2'
           },
             () => {
               document.getElementById('evitalInfo').click();
             })
-          this.openNotification()
-          this.props.statusFormSubmit();
+          let msg = 'Your vital info Form is submited successfully, Kindly fill next form'
+          this.openNotification(msg)
+          // this.props.statusFormSubmit();
+        }
+        else if(key === 'draft'){
+          let msg = 'Your vital info Form is saved successfully.'
+            this.openNotification(msg)
         }
       }
     });
   }
+  }
 
-  openNotification() {
+  openNotification(msg) {
     notification.open({
       message: 'Success ',
-      description: 'Your vital info Form is submited successfully, Kindly fill next form',
+      description: msg
     });
   };
 
@@ -129,7 +136,7 @@ class VitalInfo extends Component {
                 <p style={{ textAlign: "center" }}> *Fields are required </p>
               </div>
             </div>
-            <Form onSubmit={this.handleSubmit}>
+            <Form>
               <div className="col-md-9">
                 <div className="vitalbox">
                   <div className="row">
@@ -618,37 +625,41 @@ class VitalInfo extends Component {
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="row" style={{ paddingTop: "10px", paddingLeft: "" }}>
-                  <div className="col-md-3 col-xs-4">
-                    <div className="row center_global row">
-                      <button style={{ textAlign: 'center', width: "50%" }}
-                        className="btn ecombutton">Cancel</button>
-                    </div>
-                  </div>
-                  <div className="col-md-3 col-xs-4">
-                    <div className="row center_global row">
-                      <button style={{ textAlign: 'center', width: "70%" }}
-                        className="btn ecombutton" onClick={this.props.statusFormDraft}>
-                        Save as Draft</button>
-                    </div>
-                  </div>
-                  <div className="col-md-3 col-xs-4">
-                    <div className="row center_global row">
-                      <button style={{ textAlign: 'center', width: "70%" }}
-                        className="btn button_custom" onClick={this.handleSubmit}>
-                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='evitalInfo'>
-                          Next
-                        </a>
-                      </button>
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                  </div>
-                </div>
+                </div>                
               </div>
             </Form>
+
           </div>
+          <div className="col-md-12">
+          <div className="row col-md-9 col-md-offset-3" style={{ paddingTop: "10px", paddingLeft: "" }}>
+              <div className="col-md-3 col-xs-4">
+                <div className="row center_global row">
+                  <button style={{ textAlign: 'center', width: "50%" }}
+                    className="btn ecombutton"
+                    onClick={() => this.props.form.resetFields()}>Cancel</button>
+                </div>
+              </div>
+              <div className="col-md-3 col-xs-4">
+                <div className="row center_global row">
+                  <button style={{ textAlign: 'center', width: "70%" }}
+                    className="btn ecombutton" onClick={(e) => this.handleSubmit(e, 'draft')}>
+                    Save as Draft</button>
+                </div>
+              </div>
+              <div className="col-md-3 col-xs-4">
+                <div className="row center_global row">
+                  <button style={{ textAlign: 'center', width: "70%" }}
+                    className="btn button_custom" onClick={(e) => this.handleSubmit(e, 'submit')}>
+                    <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='evitalInfo'>
+                      Next
+                    </a>
+                  </button>
+                </div>
+              </div>
+              <div className="col-md-3">
+              </div>
+            </div>
+            </div>
         </div>
       </div>
     );

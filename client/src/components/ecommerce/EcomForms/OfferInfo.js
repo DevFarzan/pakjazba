@@ -16,7 +16,11 @@ class OfferInfo extends Component {
       autoCompleteResult: [],
       startDate: '',
       date: '',
-      dateObj: [],
+      salePriceDate1: '',
+      salePriceDate2: '',
+      sellingDate: '',
+      restockDate: '',
+      offering: '',
       offerInfo: [],
       herfSec: ''
     };
@@ -30,13 +34,13 @@ class OfferInfo extends Component {
   }
 
 
-  handleSubmit = (e) => {
+  handleSubmit(e, key) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
         // this.props.handleProps(values);
-        this.offerInfoData(values);
+        this.offerInfoData(values, key);
         console.log(document.getElementById('offerInfo'), 'handle submit');
         console.log(this.state.herfSec, 'handle submit');
 
@@ -44,7 +48,7 @@ class OfferInfo extends Component {
     });
   }
 
-  offerInfoData = (values) => {
+  offerInfoData = (values, key) => {
     const { offerInfo, dateObj } = this.state
     offerInfo.push(values)
     offerInfo.push(dateObj)
@@ -85,18 +89,12 @@ class OfferInfo extends Component {
   }
 
   // date picker //
-  onChange = (date, dateString) => {
+  onChange(date, dateString, key) {
     this.setState({
-      dateObj: {
-        salePriceDate1: dateString,
-        salePriceDate2: dateString,
-        sellingDate: dateString,
-        restockDate: dateString,
-        offering: dateString
-      }
+        [key]: dateString,        
     })
-    // console.log(date)
-    // console.log(date, dateString);
+    console.log(date)
+    console.log(date, dateString);
   }
   //  date picker end //
 
@@ -109,6 +107,7 @@ class OfferInfo extends Component {
   }
 
   render() {
+    console.log(this.state, 'kia aaya is main ')
     const { getFieldDecorator } = this.props.form;
     const { autoCompleteResult, herfSec } = this.state;
     const websiteOptions = autoCompleteResult.map(website => (
@@ -116,7 +115,7 @@ class OfferInfo extends Component {
     ));
     return (
       <div className="container" style={{ width: "100%" }}>
-        <Form onSubmit={this.handleSubmit}>
+        <Form>
           <div className="row">
             <div className="col-md-12">
               <div className="col-md-3">
@@ -257,10 +256,10 @@ class OfferInfo extends Component {
                             </FormItem>
                           </div>
                           <div className="col-md-4">
-                            <DatePicker onChange={this.onChange} />
+                            <DatePicker onChange={(date, dateString) => this.onChange(date, dateString, 'salePriceDate1')} />
                           </div>
                           <div className="col-md-4">
-                            <DatePicker onChange={this.onChange} />
+                            <DatePicker onChange={(date, dateString) => this.onChange(date, dateString, 'salePriceDate2')} />
                           </div>
                         </div>
                       </div>
@@ -577,36 +576,38 @@ class OfferInfo extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="row" style={{ paddingTop: "10px", paddingLeft: "" }}>
-                  <div className="col-md-3 col-xs-4">
-                    <div className="row center_global row">
-                      <button style={{ textAlign: 'center' }} className="btn ecombutton">Cancel</button>
-                    </div>
-                  </div>
-                  <div className="col-md-3 col-xs-4">
-                    <div className="row center_global row">
-                      <button style={{ textAlign: 'center', width: "70%" }}
-                        className="btn ecombutton" onClick={this.props.statusFormDraft}>
-                        Save as Draft</button>
-                    </div>
-                  </div>
-                  <div className="col-md-3 col-xs-4">
-                    <div className="row center_global row">
-                      <button style={{ textAlign: 'center', width: "70%" }}
-                        className="btn button_custom" onClick={this.handleSubmit}>
-                        <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='offerInfo'>
-                          Next
-                        </a>
-                      </button>
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>
         </Form>
+        <div className="row col-md-9 col-md-offset-3" style={{ paddingTop: "10px", paddingLeft: "" }}>
+          <div className="col-md-3 col-xs-4">
+            <div className="row center_global row">
+              <button style={{ textAlign: 'center' }} className="btn ecombutton"
+              onClick={() => this.props.form.resetFields()}>Cancel</button>
+            </div>
+          </div>
+          <div className="col-md-3 col-xs-4">
+            <div className="row center_global row">
+              <button style={{ textAlign: 'center', width: "70%" }}
+                className="btn ecombutton" onClick={(e) => this.handleSubmit(e, 'draft')}>
+                Save as Draft</button>
+            </div>
+          </div>
+          <div className="col-md-3 col-xs-4">
+            <div className="row center_global row">
+              <button style={{ textAlign: 'center', width: "70%" }}
+                className="btn button_custom" onClick={(e) => this.handleSubmit(e, 'submit')}>
+                <a href={herfSec} aria-controls="profile" role="tab" data-toggle="tab" id='offerInfo'>
+                  Next
+                </a>
+              </button>
+            </div>
+          </div>
+          <div className="col-md-3">
+          </div>
+        </div>
       </div>
     );
   }

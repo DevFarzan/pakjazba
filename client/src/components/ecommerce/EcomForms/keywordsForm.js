@@ -11,11 +11,9 @@ class KeywordsForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
       intendedUsekeyWords: [],
       targetAudience: [],
       subjectMatter: [],
-
     }
   }
 
@@ -25,7 +23,6 @@ class KeywordsForm extends Component {
       if (!err) {
         console.log('Received values of form: ', values);
         this.props.handleProps(values);
-        // this.openNotification()
         if (key === 'submit') {
         let msg = 'Your keyword & product detail is submited successfully, Kindly visit your profile!'
         this.openNotification(msg)
@@ -149,10 +146,6 @@ class KeywordsForm extends Component {
                             )}
                           </FormItem>
                         </div>
-                        {/* <div className="col-md-6">
-                          <Checkbox onChange={this.onChange}>Exercise & Fitness </Checkbox>
-                          <Checkbox onChange={this.onChange}>Exercise & Fitness </Checkbox>
-                        </div> */}
                       </div>
                       <p style={{ marginTop: "15px", marginBottom: "0px" }}>Provide your own term</p>
                       <FormItem
@@ -183,11 +176,10 @@ class KeywordsForm extends Component {
                         <div className="col-md-6">
                           <FormItem
                           >
-                            {getFieldDecorator('TargetAudience', {
+                            {getFieldDecorator('targetAudience', {
                               rules: [{ validator: this.checkCheckBox }],
                             })(
                               <CheckboxGroup style={{ width: '100%' }}
-                                // onChange={this.onChange}
                                 onChange={this.onChangekeyWords.bind(this)}
                               >
                                 <Row>
@@ -238,19 +230,6 @@ class KeywordsForm extends Component {
                         </div>
                       </div>
                       <p style={{ marginTop: "15px", marginBottom: "0px" }}>Provide your own term</p>
-                      {/* <FormItem
-                      >
-                        {getFieldDecorator('targetAudience', {
-                          initialValue: this.state.dataLocation,
-                          rules: [{
-                            required: false,
-                            message: 'Please enter your Target Audience',
-                            whitespace: true
-                          }],
-                        })(
-                          <Input />
-                        )}
-                      </FormItem> */}
                     </div>
                   </div>
                   <div className="row">
@@ -270,7 +249,6 @@ class KeywordsForm extends Component {
                               rules: [{ validator: this.checkCheckBox }],
                             })(
                               <CheckboxGroup style={{ width: '100%' }}
-                                // onChange={this.onChange}
                                 onChange={this.onChangekeyWords.bind(this)}
                               >
                                 <Row>
@@ -321,19 +299,6 @@ class KeywordsForm extends Component {
                         </div>
                       </div>
                       <p style={{ marginTop: "15px", marginBottom: "0px" }}>Provide your own term</p>
-                      {/* <FormItem
-                      >
-                        {getFieldDecorator('subjectMatter', {
-                          initialValue: this.state.dataLocation,
-                          rules: [{
-                            required: false,
-                            message: 'Please enter your Subject Matter',
-                            whitespace: true
-                          }],
-                        })(
-                          <Input />
-                        )}
-                      </FormItem> */}
                     </div>
                   </div>
                   <div className="row">
@@ -384,16 +349,6 @@ class KeywordsForm extends Component {
                     </div>
                   </div>
                 </div>
-                {/* <div className="row" style={{ paddingTop: "10px", paddingLeft: "" }}>
-                  <div className="col-md-3 col-xs-4">
-                    <div className="row center_global row">
-                      <button style={{ textAlign: 'center', width: "70%" }}
-                        className="btn button_custom" onClick={this.handleSubmit}>Submit</button>
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                  </div>
-                </div> */}
               </Form>
               <div className="row col-md-9 col-md-offset-3" style={{ paddingTop: "10px", paddingLeft: "" }}>
                 <div className="col-md-3 col-xs-4">

@@ -1960,6 +1960,7 @@ app.post('/api/customvideo',(req,res) => {
 /*===============post ecommerce data=========================*/
 app.post('/api/postecommercedata',(req,res) => {
   var ecommerceData = req.body;
+  // console.log(req.body.images,'iiiimmmmaaggessss')
   if(ecommerceData.objectId === ''){
     const postEcommerceData = new postecommerce({
       user_Id:ecommerceData.user_Id,

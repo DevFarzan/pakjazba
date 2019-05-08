@@ -116,7 +116,6 @@ class DescriptionForm extends Component {
                             autosize={false}
                             rows={6}
                           />
-                          // <TextArea rows={6} />
                         )}
                       </FormItem>
                       <p> Example: Featuring the sweet spot suspension

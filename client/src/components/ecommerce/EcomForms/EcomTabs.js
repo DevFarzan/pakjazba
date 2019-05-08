@@ -12,7 +12,6 @@ const TabPane = Tabs.TabPane;
 var steps = 1
 
 class EcomTabs extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -35,13 +34,11 @@ class EcomTabs extends Component {
     let { allTabs } = this.state;
     var user = JSON.parse(localStorage.getItem('user'));
 
-    // console.log(values, 'props value')
-    // console.log(user)
-    // console.log(user.profileId)
-    // console.log(user._id)
+    console.log(values, 'props value')
 
     values.user_Id = user._id;
     values.profileId = user.profileId;
+    values.objectId = this.state.objectId
 
     if (this.state.draftStatus === 'draft') {
       values.status = this.state.draftStatus
@@ -50,20 +47,23 @@ class EcomTabs extends Component {
       values.status = this.state.submitStatus
     }
 
-    values.objectId = this.state.objectId
-    console.log(values, 'values add user information')
     let req = await HttpUtils.post('postecommercedata', values)
-
     console.log(req)
+
     if (req.code === 200) {
       await localStorage.setItem('formData', JSON.stringify(req.content));
       allTabs.push(key)
-      this.setState({ allTabs, objectId: req.content._id })
+      if (this.state.objectId === '') {
+        this.setState({ allTabs, objectId: req.content._id })
+      }
+      else {
+        req.content.map((k, index) => {
+          this.setState({ allTabs, objectId: req.content[index]._id })
+        })
+      }
     }
   }
 
-  // componentDidUpdate(){
-  // }
   statusFormDraft = () => {
     this.setState({
       draftStatus: "draft",
@@ -108,7 +108,6 @@ class EcomTabs extends Component {
 
   render() {
     const { mode, allTabs, evitalInfo, offerInfo, images, description, keywords, herfSec } = this.state;
-    // console.log(offerInfo, 'kia aay is main')
     return (
       <div className>
         <div className="container">
@@ -116,51 +115,37 @@ class EcomTabs extends Component {
             <div className="col-md-12 hidden-xs">
               <div className="tab" role="tabpanel">
                 <ul className="nav nav-tabs" role="tablist">
-                  {/*{evitalInfo ?*/}
+
                   <li role="presentation" className={evitalInfo ? 'active' : allTabs.includes('evitalInfo') ? '' : 'disableTabs'}>
-                    <a href="#Section1" aria-controls="home" disabled={allTabs.includes('evitalInfo') ? false : true} role="tab" data-toggle="tab">
-                      Vital Info</a></li>
-                  {/*:
-                    <li role="presentation" className="disableTabs">
-                      <a href="#Section1" aria-controls="home" disabled={false} role="tab" data-toggle="tab">
-                        Vital Info</a></li>
-                  }*/}
-                  {/*{offerInfo ?*/}
+                    <a href="#Section1" aria-controls="home"
+                      disabled={allTabs.includes('evitalInfo') ? false : true}
+                      role="tab" data-toggle="tab">
+                      Vital Info</a>
+                  </li>
                   <li role="presentation" className={offerInfo ? 'active' : allTabs.includes('offerInfo') ? '' : 'disableTabs'}>
-                    <a href="#Section2" aria-controls="profile" disabled={allTabs.includes('offerInfo') ? false : true} role="tab" data-toggle="tab">
-                      Offer</a></li>
-                  {/*:
-                    <li role="presentation" className='disableTabs'>
-                      <a href="#Section2" aria-controls="profile" disabled role="tab" data-toggle="tab">
-                        Offer</a></li>
-                  }*/}
-                  {/*{images ?*/}
+                    <a href="#Section2" aria-controls="profile"
+                      disabled={allTabs.includes('offerInfo') ? false : true}
+                      role="tab" data-toggle="tab">
+                      Offer</a>
+                  </li>
                   <li role="presentation" className={images ? 'active' : allTabs.includes('images') ? '' : 'disableTabs'}>
-                    <a href="#Section3" aria-controls="messages" disabled={allTabs.includes('images') ? false : true} role="tab" data-toggle="tab">
-                      Images</a></li>
-                  {/*:
-                    <li role="presentation" className='disableTabs'>
-                      <a href="#Section3" aria-controls="messages" disabled role="tab" data-toggle="tab">
-                        Images</a></li>
-                  }*/}
-                  {/*{description ?*/}
+                    <a href="#Section3" aria-controls="messages"
+                      disabled={allTabs.includes('images') ? false : true}
+                      role="tab" data-toggle="tab">
+                      Images</a>
+                  </li>
                   <li role="presentation" className={description ? 'active' : allTabs.includes('description') ? '' : 'disableTabs'}>
-                    <a href="#Section4" aria-controls="messages" disabled={allTabs.includes('description') ? false : true} role="tab" data-toggle="tab">
-                      Description</a></li>
-                  {/*:
-                    <li role="presentation" className='disableTabs'>
-                      <a href="#Section4" aria-controls="messages" disabled role="tab" data-toggle="tab">
-                        Description</a></li>
-                  }*/}
-                  {/*{keywords ?*/}
+                    <a href="#Section4" aria-controls="messages"
+                      disabled={allTabs.includes('description') ? false : true}
+                      role="tab" data-toggle="tab">
+                      Description</a>
+                  </li>
                   <li role="presentation" className={keywords ? 'active' : allTabs.includes('keywords') ? '' : 'disableTabs'}>
-                    <a href="#Section5" aria-controls="messages" disabled={allTabs.includes('keywords') ? false : true} role="tab" data-toggle="tab"
-                    >Keywords</a></li>
-                  {/*:
-                    <li role="presentation" className='disableTabs'>
-                      <a href="#Section5" aria-controls="messages" disabled role="tab" data-toggle="tab"
-                      >Keywords</a></li>
-                  }*/}
+                    <a href="#Section5" aria-controls="messages"
+                      disabled={allTabs.includes('keywords') ? false : true}
+                      role="tab" data-toggle="tab"
+                    >Keywords</a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -192,18 +177,14 @@ class EcomTabs extends Component {
         </div>
         <div className="container" style={{ width: "100%" }}>
           <div class="tab-content">
-            {/* if (evitalInfo) { */}
             <div role="tabpanel" class="tab-pane fade in active" id="Section1">
               <VitalInfo
-                // onClick={(e) => this.props.whenClicked(e.target.innerText)}
-                // onClick={(e) => this.props.handleProps()}
                 handleProps={this.handleProps}
                 offerStates={this.offerStates}
                 statusFormDraft={this.statusFormDraft}
                 statusFormSubmit={this.statusFormSubmit}
               />
             </div>
-            {/* // } elseIf(offerInfo){ */}
             <div role="tabpane2" class="tab-pane fade " id="Section2">
               <OfferInfo
                 handleProps={this.handleProps}
@@ -212,7 +193,6 @@ class EcomTabs extends Component {
                 statusFormSubmit={this.statusFormSubmit}
               />
             </div>
-            {/* // } elseIf(images){ */}
             <div role="tabpane3" class="tab-pane fade " id="Section3">
               <ImageForm
                 handleProps={this.handleProps}
@@ -221,8 +201,6 @@ class EcomTabs extends Component {
                 statusFormSubmit={this.statusFormSubmit}
               />
             </div>
-            {/* // }elseIf(description){ */}
-
             <div role="tabpane4" class="tab-pane fade" id="Section4">
               <DescriptionForm
                 handleProps={this.handleProps}
@@ -231,7 +209,6 @@ class EcomTabs extends Component {
                 statusFormSubmit={this.statusFormSubmit}
               />
             </div>
-            {/* // }else{ */}
             <div role="tabpane5" class="tab-pane fade" id="Section5">
               <KeywordsForm
                 handleProps={this.handleProps}
@@ -239,7 +216,6 @@ class EcomTabs extends Component {
                 statusFormSubmit={this.statusFormSubmit}
               />
             </div>
-            {/* // } */}
           </div>
         </div>
       </div>

@@ -11,15 +11,12 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
 
-
 class VitalInfo extends Component {
-
   state = {
     confirmDirty: false,
     autoCompleteResult: [],
     data: '',
     herfSec: '',
-
   };
 
   handleSelectChange = (value) => {
@@ -28,47 +25,6 @@ class VitalInfo extends Component {
       note: `Hi, ${value === 'bundle' ? 'part' : 'preorder'}!`,
     });
   }
-
-  handleSubmit(e, key) {
-    // console.log(key, 'kya masla hy bhai tjhy')
-    e.preventDefault();
-    if(this.state.herfSec === ''){
-    this.props.form.validateFields((err, values) => {
-
-      if (!err) {
-        // console.log('kya masla hy bhai tjhy validateFields')
-        console.log('Received values of form: ', values);
-        this.props.handleProps(values, 'offerInfo');
-        this.props.offerStates();
-        // console.log(this.state.herfSec);
-        // console.log(document.getElementById('evitalInfo'));
-
-        if (key === 'submit') {
-          this.setState({
-            herfSec: '#Section2'
-          },
-            () => {
-              document.getElementById('evitalInfo').click();
-            })
-          let msg = 'Your vital info Form is submited successfully, Kindly fill next form'
-          this.openNotification(msg)
-          // this.props.statusFormSubmit();
-        }
-        else if(key === 'draft'){
-          let msg = 'Your vital info Form is saved successfully.'
-            this.openNotification(msg)
-        }
-      }
-    });
-  }
-  }
-
-  openNotification(msg) {
-    notification.open({
-      message: 'Success ',
-      description: msg
-    });
-  };
 
   checkWidth = (rule, value, callback) => {
     if (value.itemWidthNumber > 0) {
@@ -102,12 +58,40 @@ class VitalInfo extends Component {
     }
   }
 
-  // componentWillUnmount() {
-  //   this.setState({
-  //     herfSec: '#Section2'
-  //   })
-  // }
+  handleSubmit(e, key) {
+    e.preventDefault();
+    if (this.state.herfSec === '') {
+      this.props.form.validateFields((err, values) => {
+        if (!err) {
+          // console.log('Received values of form: ', values);
+          this.props.handleProps(values, 'offerInfo');
+          this.props.offerStates();
 
+          if (key === 'submit') {
+            this.setState({
+              herfSec: '#Section2'
+            },
+              () => {
+                document.getElementById('evitalInfo').click();
+              })
+            let msg = 'Your vital info Form is submited successfully, Kindly fill next form'
+            this.openNotification(msg)
+          }
+          else if (key === 'draft') {
+            let msg = 'Your vital info Form is saved successfully.'
+            this.openNotification(msg)
+          }
+        }
+      });
+    }
+  }
+
+  openNotification(msg) {
+    notification.open({
+      message: 'Success ',
+      description: msg
+    });
+  };
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -153,7 +137,6 @@ class VitalInfo extends Component {
                               }],
                           })(
                             <Input />
-
                           )}
                         </FormItem>
                         <p className="margin-top"> Example: Olympus camedia C-50 Digital Camera </p>
@@ -619,13 +602,13 @@ class VitalInfo extends Component {
                       </div>
                     </div>
                   </div>
-                </div>                
+                </div>
               </div>
             </Form>
 
           </div>
           <div className="col-md-12">
-          <div className="row col-md-9 col-md-offset-3" style={{ paddingTop: "10px", paddingLeft: "" }}>
+            <div className="row col-md-9 col-md-offset-3" style={{ paddingTop: "10px", paddingLeft: "" }}>
               <div className="col-md-3 col-xs-4">
                 <div className="row center_global row">
                   <button style={{ textAlign: 'center', width: "50%" }}
@@ -653,7 +636,7 @@ class VitalInfo extends Component {
               <div className="col-md-3">
               </div>
             </div>
-            </div>
+          </div>
         </div>
       </div>
     );

@@ -54,7 +54,6 @@ class ImageForm extends Component {
   async funcForUpload(values, key) {
     const { fileList } = this.state;
     //   console.log(fileList, 'file list');
-    //   console.log(values, 'handle submit');
     Promise.all(fileList.map((val) => {
       return this.uploadFile(val).then((result) => {
         return result.body.url
@@ -95,9 +94,9 @@ class ImageForm extends Component {
   //-----------------cloudnary function end ------------------
 
   async postData(values, response, key) {
-    // console.log(values, "values");
     console.log(response, "response");
-    this.props.handleProps(response , 'description');
+    
+    this.props.handleProps({images: response} , 'description');
     this.props.desStates()
     if (key === 'submit') {
       this.setState({
@@ -113,7 +112,6 @@ class ImageForm extends Component {
       let msg = 'Your Images is saved successfully.'
       this.openNotification(msg)
     }
-    // this.props.statusFormSubmit();
   }
 
   openNotification(msg) {
@@ -136,25 +134,6 @@ class ImageForm extends Component {
       </div>
     );
 
-    // const props = {
-    //   onRemove: (file) => {
-    //     this.setState((state) => {
-    //       const index = state.fileList.indexOf(file);
-    //       const newFileList = state.fileList.slice();
-    //       newFileList.splice(index, 1);
-    //       return {
-    //         fileList: newFileList,
-    //       };
-    //     });
-    //   },
-    //   beforeUpload: (file) => {
-    //     this.setState(state => ({
-    //       fileList: [...state.fileList, file],
-    //     }));
-    //     return false;
-    //   },
-    //   fileList,
-    // };
     const uploadedImages = (
       <div style={{ display: 'flex' }}>
         {this.state.imageList.map((elem) => {
@@ -273,125 +252,10 @@ class ImageForm extends Component {
                       </ul>
                     </div>
                   </div>
-                  {/* <div className="row">
-                    <div className="col-md-4">
-                      <div className="vitalbox">
-                        <img src='./images/ecommerce/photo-camera-icon-01-.jpg' />
-                        <div className="row" style={{ padding: "0px", marginTop: "20px" }}>
-                          <div className="col-md-6">
-                            <FormItem
-                              {...formItemLayout}
-                              label="Images"
-                            >
-                              {getFieldDecorator('images', {
-                                // initialValues: this.state.imageList,
-                                rules: [{
-                                  required: true,
-                                  message: 'Please upload your Images!',
-                                  whitespace: true
-                                }],
-                              })(
-                                <div className="clearfix">
-                                  <Upload
-                                    action="//jsonplaceholder.typicode.com/posts/"
-                                    listType="picture-card"
-                                    fileList={secondImg}
-                                    onPreview={this.handlePreview}
-                                    onChange={this.handleChange}
-                                  >
-                                    {secondImg.length >= 3 ? null : uploadButton}
-                                  </Upload>
-                                  <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-                                  </Modal>
-                                  {uploadedImages}
-                                </div>
-                              )}
-                            </FormItem>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-md-4">
-                      <div className="vitalbox">
-                        <img src='./images/ecommerce/photo-camera-icon-01-.jpg' />
-                        <div className="row" style={{ padding: "0px", marginTop: "20px" }}>
-                          <div className="col-md-6">
-                            <Upload>
-                              <Button>
-                                <Icon type="upload" /> Select File
-                            </Button>
-                            </Upload>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-md-4">
-                      <div className="vitalbox">
-                        <img src='./images/ecommerce/photo-camera-icon-01-.jpg' />
-                        <div className="row" style={{ padding: "0px", marginTop: "20px" }}>
-                          <div className="col-md-6">
-                            <Upload>
-                              <Button>
-                                <Icon type="upload" /> Select File
-                            </Button>
-                            </Upload>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> */}
-                  {/* <div className="row">
-                    <div className="col-md-4">
-                      <div className="vitalbox">
-                        <img src='./images/ecommerce/photo-camera-icon-01-.jpg' />
-                        <div className="row" style={{ padding: "0px", marginTop: "20px" }}>
-                          <div className="col-md-6">
-                            <Upload >
-                              <Button>
-                                <Icon type="upload" /> Select File
-                            </Button>
-                            </Upload>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> */}
-                  {/* <div className="col-md-4">
-                      <div className="vitalbox">
-                        <img src='./images/ecommerce/photo-camera-icon-01-.jpg' />
-                        <div className="row" style={{ padding: "0px", marginTop: "20px" }}>
-                          <div className="col-md-6">
-                            <Upload>
-                              <Button>
-                                <Icon type="upload" /> Select File
-                            </Button>
-                            </Upload>
-                          </div>
-                        </div>
-                      </div>
-                    </div> */}
-                  {/* <div className="row">
-                    <div className="col-md-4">
-                      <div className="vitalbox">
-                        <img src='./images/ecommerce/photo-camera-icon-01-.jpg' />
-                        <div className="row" style={{ padding: "0px", marginTop: "20px" }}>
-                          <div className="col-md-6">
-                            <Upload >
-                              <Button>
-                                <Icon type="upload" /> Select File
-                            </Button>
-                            </Upload>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> */}
                 </div>
-
               </div>
             </div>
           </div>
-          {/* </div> */}
         </Form>
         <div className="row col-md-9 col-md-offset-3" style={{ paddingTop: "10px", paddingLeft: "" }}>
           <div className="col-md-3 col-xs-4">

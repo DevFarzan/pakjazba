@@ -47,12 +47,12 @@ var postyourproduct = new mongoose.Schema({
   images:{type:Array},
   description:{type:String},
   productFeature:{type:String},
-  IntendedUsekeyWords:{type:String},
-  targetAudience:{type:String},
+  IntendedUsekeyWords:{type:Array},
+  targetAudience:{type:Array},
   intendedUse:{type:String},
   platinumKeywords:{type:String},
   searchTerms:{type:String},
-  subjectMatter:{type:String},
+  subjectMatter:{type:Array},
 
 });
 

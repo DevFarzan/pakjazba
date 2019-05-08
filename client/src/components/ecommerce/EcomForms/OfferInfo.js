@@ -25,14 +25,38 @@ class OfferInfo extends Component {
       herfSec: ''
     };
   }
+  
+  checkPrice = (rule, value, callback) => {
+    if (value.number > 0) {
+      callback();
+      return;
+    }
+    callback('Value must greater than zero!');
+  }
+
+  // date picker //
+  onChange(date, dateString, key) {
+    this.setState({
+      [key]: dateString,
+    })
+    // console.log(date)
+    // console.log(date, dateString);
+  }
+  //  date picker end //
+
+  validateNumber(rule, value, callback) {
+    if (isNaN(value)) {
+      callback('Please type Numbers');
+    } else {
+      callback()
+    }
+  }
 
   handleSelectChange = (value) => {
-    console.log(value);
     this.props.form.setFieldsValue({
       note: `Hi, ${value === 'bundle' ? 'part' : 'preorder'}!`,
     });
   }
-
 
   handleSubmit(e, key) {
     e.preventDefault();
@@ -62,7 +86,7 @@ class OfferInfo extends Component {
         herfSec: '#Section3'
       },
         () => {
-          document.getElementById('evitalInfo').click();
+          document.getElementById('offerInfo').click();
         })
       let msg = 'Your Offer info Form is submited successfully, Kindly fill next form'
       this.openNotification(msg)
@@ -79,34 +103,7 @@ class OfferInfo extends Component {
     });
   };
 
-  checkPrice = (rule, value, callback) => {
-    if (value.number > 0) {
-      callback();
-      return;
-    }
-    callback('Value must greater than zero!');
-  }
-
-  // date picker //
-  onChange(date, dateString, key) {
-    this.setState({
-      [key]: dateString,
-    })
-    // console.log(date)
-    // console.log(date, dateString);
-  }
-  //  date picker end //
-
-  validateNumber(rule, value, callback) {
-    if (isNaN(value)) {
-      callback('Please type Numbers');
-    } else {
-      callback()
-    }
-  }
-
   render() {
-    // console.log(this.state, 'kia aaya is main ')
     const { getFieldDecorator } = this.props.form;
     const { autoCompleteResult, herfSec } = this.state;
     const websiteOptions = autoCompleteResult.map(website => (
@@ -393,18 +390,6 @@ class OfferInfo extends Component {
                       </div>
                       <div className="col-md-8">
                         <FormItem>
-                          {/* {getFieldDecorator('sellingDate', {
-                            // initialValue: [(this.state.startDate)],
-                            rules: [{
-                              required: false,
-                              message: 'Please select selling date',
-                              whitespace: true
-                            }],
-                          })(
-                            <div>
-                              <DatePicker onChange={this.onChange} />
-                            </div>
-                          )} */}
                           <div>
                             <DatePicker onChange={(date, dateString) => this.onChange(date, dateString, 'sellingDate')} />
                           </div>
@@ -422,15 +407,6 @@ class OfferInfo extends Component {
                       </div>
                       <div className="col-md-8">
                         <FormItem>
-                          {/* {getFieldDecorator('restockdate', {
-                            // initialValue: [(this.state.startDate)],
-                            rules: [{
-                              required: false,
-                              message: 'Please select Restock date',
-                              whitespace: true
-                            }],
-                          })(
-                          )} */}
                           <div>
                             <DatePicker onChange={(date, dateString) => this.onChange(date, dateString, 'restockDate')}
                             />
@@ -527,15 +503,6 @@ class OfferInfo extends Component {
                       </div>
                       <div className="col-md-8">
                         <FormItem>
-                          {/* {getFieldDecorator('offering', {
-                            // initialValue: [(this.state.startDate)],
-                            rules: [{
-                              required: false,
-                              message: 'Please select Offering Date',
-                              whitespace: true
-                            }],
-                          })(
-                          )} */}
                           <div >
                             <DatePicker onChange={(date, dateString) => this.onChange(date, dateString, 'offering')}
                             />
@@ -577,7 +544,6 @@ class OfferInfo extends Component {
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>

@@ -28,6 +28,7 @@ var postyourproduct = new mongoose.Schema({
   tension:{type:String},
   variationTheme:{type:String},
   conditionNote:{type:String},
+  condition:{type:String},
   country:{type:String},
   countryLabeled:{type:String},
   handlingTime:{type:String},

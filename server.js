@@ -1988,6 +1988,7 @@ app.post('/api/postecommercedata',(req,res) => {
       tension:ecommerceData.tension,
       variationTheme:ecommerceData.variationTheme,
       conditionNote:ecommerceData.conditionNote,
+      condition:ecommerceData.condition,
       country:ecommerceData.country,
       countryLabeled:ecommerceData.countryLabeled,
       handlingTime:ecommerceData.handlingTime,

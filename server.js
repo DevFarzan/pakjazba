@@ -1981,7 +1981,7 @@ app.post('/api/postecommercedata',(req,res) => {
       orientation:ecommerceData.orientation,
       pakageQuantity:ecommerceData.pakageQuantity,
       product:ecommerceData.product,
-      productId:ecommerceData.productId,
+      warrantyDescription:ecommerceData.warrantyDescription,
       shaft:ecommerceData.shaft,
       shape:ecommerceData.shape,
       size:ecommerceData.size,

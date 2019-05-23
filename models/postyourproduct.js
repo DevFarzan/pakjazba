@@ -21,7 +21,7 @@ var postyourproduct = new mongoose.Schema({
   orientation:{type:String},
   pakageQuantity:{type:String},
   product:{type:String},
-  productId:{type:String},
+  warrantyDescription:{type:String},
   shaft:{type:String},
   shape:{type:String},
   size:{type:String},

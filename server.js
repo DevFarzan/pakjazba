@@ -1086,6 +1086,15 @@ app.get('/api/marketplace',function(req,res){
                 eventPortalData.push(eventData[m])
               }
             }
+          postecommerce.find(function(err,ecommerceData){
+            if(ecommerceData != ''){
+              var ecommerceArray = [];
+              for(var l=0; l<ecommerceData.length; i++){
+                ecommerceArray.push(ecommerceData[i]);
+              }
+            }
+
+
             res.send({
               code:200,
               business:businesses,
@@ -1093,11 +1102,13 @@ app.get('/api/marketplace',function(req,res){
               roomrentsdata:roomrentsdata,
               jobPortalData: jobPortalData,
               eventPortalData: eventPortalData,
+              ecommerceData:ecommerceArray,
               msg:'data recieve successfully'
             });
           });
         });
       });
+    });
     });
   });
 });

@@ -21,7 +21,7 @@ const _ = require("underscore");
 const saltRounds = 10;
 const Op = Sequelize.Op;
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 if (process.stdout._handle) process.stdout._handle.setBlocking(true);
 const app = express();
 app.use(bodyParser.json()) // handle json data
@@ -1091,8 +1091,8 @@ app.get('/api/marketplace',function(req,res){
           postecommerce.find(function(err,ecommerceData){
             if(ecommerceData != ''){
               var ecommerceArray = [];
-              for(var l=0; l<ecommerceData.length; i++){
-                ecommerceArray.push(ecommerceData[i]);
+              for(var k=0; k<ecommerceData.length; k++){
+                ecommerceArray.push(ecommerceData[k]);
               }
             }
 
@@ -1104,7 +1104,7 @@ app.get('/api/marketplace',function(req,res){
               roomrentsdata:roomrentsdata,
               jobPortalData: jobPortalData,
               eventPortalData: eventPortalData,
-              ecommerceData:ecommerceArray,
+              ecommerce:ecommerceArray,
               msg:'data recieve successfully'
             });
           });

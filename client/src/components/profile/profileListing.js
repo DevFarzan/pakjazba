@@ -12,7 +12,7 @@ class ProfileListing extends Component{
               jobListData: [],
               eventPortalData: [],
               education: [],
-              shopData:[]
+              ecommerce:[]
           }
     }
 
@@ -25,8 +25,9 @@ class ProfileListing extends Component{
 
     async getAllBusiness(){
         let { userId } = this.props,
-        { businessData, roomRentData, buySellData, jobListData , eventPortalData , shopData} = this.state,
+        { businessData, roomRentData, buySellData, jobListData , eventPortalData , ecommerce} = this.state,
         res = await HttpUtils.get('getreviews');
+        console.log(userId , 'userid')
         console.log(res, 'getreviews')
         if(res && res.code && res.code == 200) {
             let req = await HttpUtils.get('marketplace');
@@ -70,20 +71,22 @@ class ProfileListing extends Component{
 
                     }
                 })
-                req.shopData && req.shopData.map((elem) => {
-                    if(elem.userId === userId){
-                        let data = {...elem, ...{route: 'shop'}}
-                        shopData.push(data)
+                req.ecommerce && req.ecommerce.map((elem) => {
+                
+                    if(elem.user_Id === userId){
+                        let data = {...elem, ...{route: 'ecommerces'}}
+                        ecommerce.push(data);
+                        console.log(ecommerce,'temperory data')
                     }
                 })            
             }
             this.setState({
                 buySellData,
+                ecommerce ,
                 businessData: this.addingStarProp(businessData, res.content),
                 roomRentData: this.addingStarProp(roomRentData, res.content),
                 jobListData,
                 eventPortalData,
-                shopData
             });
         }
     }
@@ -110,8 +113,10 @@ class ProfileListing extends Component{
         // const { buySellData, businessData, roomRentData, jobListData, eventPortalData } = this.state;
         console.log(this.props.listing , 'listing value')
         let listOf = this.props.listing.length > 0 ? this.props.listing : 'businessData',
-        // console.log(listOf)
         mapTo = this.state[listOf];
+        console.log(listOf , 'listOf')
+        console.log(this.state[listOf] , 'this.state[listOf]');
+        console.log(mapTo,'checking');
 
         return(            
             <div className="row">

@@ -25,7 +25,7 @@ class ProfileSidebar extends Component {
                     <Menu.Item key="3" id="buySellData">Buy & Sell</Menu.Item>
                     <Menu.Item key="4" id="jobListData">Job Listing</Menu.Item>
                     <Menu.Item key="5" id="eventPortalData">Event Portal</Menu.Item>
-                    <Menu.Item key="6" id="shop">Shop</Menu.Item>
+                    <Menu.Item key="6" id="ecommerce">Shop</Menu.Item>
                 </SubMenu>
             </Menu>
         )

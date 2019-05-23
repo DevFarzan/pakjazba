@@ -43,7 +43,7 @@ class ProfileUser extends Component {
             business: false,
             rooms: false,
             jobPortal: false,
-            shop: false,
+            ecommerce: false,
             data: [],
             publicSection: true
         };
@@ -118,9 +118,9 @@ class ProfileUser extends Component {
                 arr4.push(data)
             }
         })
-        req.jobPortalData && req.jobPortalData.map((elem) => {
-            if (elem.user_id === id) {
-                let data = { ...elem, ...{ route: 'shop' } }
+        req.ecommerce && req.ecommerce.map((elem) => {
+            if (elem.user_Id === id) {
+                let data = { ...elem, ...{ route: 'ecommerces' } }
                 arr5.push(data)
             }
         })
@@ -333,9 +333,9 @@ class ProfileUser extends Component {
                 data: e,
             })
         }
-        else if (e.route === "shop") {
+        else if (e.route === "ecommerces") {
             this.setState({
-                shop: true,
+                ecommerce: true,
                 data: e,
             })
         }
@@ -358,8 +358,9 @@ class ProfileUser extends Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { imageUrl, profileSec, changePass, name, email, description, phone, twitter, facebook, location, listing, listData1, listData2, listData3, listData4, listData5, buySell, business, rooms, jobPortal, shop, data, allData, publicSection } = this.state;
+        const { imageUrl, profileSec, changePass, name, email, description, phone, twitter, facebook, location, listing, listData1, listData2, listData3, listData4, listData5, buySell, business, rooms, jobPortal, ecommerce, data, allData, publicSection } = this.state;
 
+        console.log(listData5, 'e comrece data')
         if (buySell) {
             return (
                 <Redirect to={{ pathname: '/postad_buysell', state: data }} />
@@ -377,7 +378,7 @@ class ProfileUser extends Component {
                 <Redirect to={{ pathname: '/postad_jobPortal', state: data }} />
             )
         }
-        else if (shop) {
+        else if (ecommerce) {
             return (
                 <Redirect to={{ pathname: '/Forms_Ecommerce', state: data }} />
             )
@@ -403,7 +404,7 @@ class ProfileUser extends Component {
         const noData = (
             <div style={{ marginTop: '125px' }}>
                 <h1>
-                    you dont have data to show...
+                    You dont have data to show...
                 </h1>
             </div>
         )
@@ -724,7 +725,7 @@ class ProfileUser extends Component {
                                             {listing && <Tabs defaultActiveKey="2">
                                                 <TabPane tab='Room Renting' key="1">
                                                     <div className="secondfold" style={{ backgroundColor: '#FBFAFA' }}>
-                                                        <div className="index-content" style={{ marginTop: '-125px' }}>
+                                                        <div className="index-content" style={{ marginTop: '20px' }}>
                                                             <div className="row">
                                                                 {listData1.length ? listData1.map((elem) => {
                                                                     let img = elem.imageurl && elem.imageurl[0] ||
@@ -736,7 +737,11 @@ class ProfileUser extends Component {
                                                                         str = str + '...'
                                                                     }
                                                                     return (
-                                                                        <div className="col-md-6" style={{ 'marginBottom': '30px', marginTop: '30px' }}>
+                                                                        <div className="col-md-4"
+                                                                            style={{
+                                                                                marginBottom: '20px',
+                                                                                marginTop: '20px'
+                                                                            }}>
                                                                             <div className="card">
                                                                                 <Link to={{ pathname: `/detail_roomRent`, state: elem }}>
                                                                                     <img alt='' src={img} />
@@ -759,9 +764,10 @@ class ProfileUser extends Component {
                                                 </TabPane>
                                                 <TabPane tab='Bussiness Listing' key="2">
                                                     <div className="secondfold" style={{ backgroundColor: '#FBFAFA' }}>
-                                                        <div className="index-content" style={{ marginTop: '-125px' }}>
+                                                        <div className="index-content" style={{ marginTop: '20px' }}>
                                                             <div className="row">
                                                                 {listData2.length ? listData2.map((elem) => {
+                                                                    console.log(elem, 'elemt bussiens')
                                                                     let img = elem.businessImages && elem.businessImages[0] || '../images/images.jpg';
                                                                     let title = elem.businessname || ''
                                                                     let str = elem.description || '';
@@ -770,7 +776,11 @@ class ProfileUser extends Component {
                                                                         str = str + '...'
                                                                     }
                                                                     return (
-                                                                        <div className="col-md-6" style={{ 'marginBottom': '30px', marginTop: '30px' }}>
+                                                                        <div className="col-md-4"
+                                                                            style={{
+                                                                                marginBottom: '20px',
+                                                                                marginTop: '20px'
+                                                                            }}>
                                                                             <div className="card">
                                                                                 <Link to={{ pathname: `/detail_business`, state: elem }}>
                                                                                     <img alt='' src={img} />
@@ -793,7 +803,7 @@ class ProfileUser extends Component {
                                                 </TabPane>
                                                 <TabPane tab='Buy & Sell' key="3">
                                                     <div className="secondfold" style={{ backgroundColor: '#FBFAFA' }}>
-                                                        <div className="index-content" style={{ marginTop: '-125px' }}>
+                                                        <div className="index-content" style={{ marginTop: '20px' }}>
                                                             <div className="row">
                                                                 {listData3.length ? listData3.map((elem) => {
                                                                     let img = elem.images && elem.images[0] || '../images/images.jpg';
@@ -804,7 +814,11 @@ class ProfileUser extends Component {
                                                                         str = str + '...'
                                                                     }
                                                                     return (
-                                                                        <div className="col-md-6" style={{ 'marginBottom': '30px', marginTop: '30px' }}>
+                                                                        <div className="col-md-4"
+                                                                            style={{
+                                                                                marginBottom: '20px',
+                                                                                marginTop: '20px'
+                                                                            }}>
                                                                             <div className="card">
                                                                                 <Link to={{ pathname: `/detail_buySell`, state: elem }}>
                                                                                     <img alt='' src={img} />
@@ -826,9 +840,10 @@ class ProfileUser extends Component {
                                                 </TabPane>
                                                 <TabPane tab='Job Portal' key="4">
                                                     <div className="secondfold" style={{ backgroundColor: '#FBFAFA' }}>
-                                                        <div className="index-content" style={{ marginTop: '-125px' }}>
+                                                        <div className="index-content" style={{ marginTop: '20px' }}>
                                                             <div className="row">
                                                                 {listData4.length ? listData4.map((elem) => {
+                                                                    console.log(elem, 'elem')
                                                                     let img = elem.arr_url && elem.arr_url[0] || '../images/images.jpg';
                                                                     let title = elem.compName || ''
                                                                     let str = elem.compDescription || '';
@@ -837,18 +852,26 @@ class ProfileUser extends Component {
                                                                         str = str + '...'
                                                                     }
                                                                     return (
-                                                                        <div className="col-md-6" style={{ 'marginBottom': '30px', marginTop: '30px' }}>
+                                                                        <div className="col-md-4"
+                                                                            style={{
+                                                                                marginBottom: '20px',
+                                                                                marginTop: '20px'
+                                                                            }}>
                                                                             <div className="card">
                                                                                 <Link to={{ pathname: `/detail_jobPortal`, state: elem }}>
                                                                                     <img alt='' src={img} />
                                                                                     <h4>{title}</h4>
                                                                                     <p>{str}</p>
                                                                                 </Link>
-                                                                                <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{ padding: "16px", marginTop: "8px", color: "gray" }}><span style={{ margin: "7px" }}>Edit</span></i></a>
-                                                                                <i className="glyphicon glyphicon-trash" style={{ padding: "16px", marginTop: "8px", float: "right", color: "gray" }}><span style={{ margin: "7px" }}>Remove</span></i>
+                                                                                <a onClick={this.editBusiness.bind(this, elem)}>
+                                                                                    <i className="glyphicon glyphicon-edit"
+                                                                                        style={{ padding: "16px", marginTop: "8px", color: "gray" }}>
+                                                                                        <span style={{ margin: "7px" }}>Edit</span></i></a>
+                                                                                <i className="glyphicon glyphicon-trash"
+                                                                                    style={{ padding: "16px", marginTop: "8px", float: "right", color: "gray" }}>
+                                                                                    <span style={{ margin: "7px" }}>Remove</span></i>
                                                                             </div>
                                                                         </div>
-
                                                                     )
                                                                 }) :
                                                                     noData
@@ -857,23 +880,24 @@ class ProfileUser extends Component {
                                                         </div>
                                                     </div>
                                                 </TabPane>
-                                                <TabPane tab='Shop' key="5">
+                                                <TabPane tab='E Commerce' key="5">
                                                     <div className="secondfold" style={{ backgroundColor: '#FBFAFA' }}>
-                                                        <div className="index-content" style={{ marginTop: '-125px' }}>
+                                                        <div className="index-content" style={{ marginTop: '20px' }}>
                                                             <div className="row">
                                                                 {listData5.length ? listData5.map((elem) => {
-                                                                    let img = elem.arr_url && elem.arr_url[0] || '../images/images.jpg';
-                                                                    let title = elem.compName || ''
-                                                                    let str = elem.compDescription || '';
+                                                                    let img = elem.images && elem.images[0] || '../images/images.jpg';
+
+                                                                    let title = elem.product || ''
+                                                                    let str = elem.brandName || '';
                                                                     if (str.length > 45) {
                                                                         str = str.substring(0, 45);
                                                                         str = str + '...'
                                                                     }
                                                                     return (
-                                                                        <div className="col-md-6"
+                                                                        <div className="col-md-4"
                                                                             style={{
-                                                                                'marginBottom': '30px',
-                                                                                marginTop: '30px'
+                                                                                marginBottom: '20px',
+                                                                                marginTop: '20px'
                                                                             }}>
                                                                             <div className="card">
                                                                                 <Link to={{

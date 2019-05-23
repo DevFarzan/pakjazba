@@ -19,6 +19,13 @@ class VitalInfo extends Component {
     herfSec: '',
   };
 
+  componentDidMount(){
+    // window.scrollTo(0,0);
+    // this.handleLocalStorage();
+    // let data = this.props.location.state;
+    // console.log(data , 'data')
+}
+
   handleSelectChange = (value) => {
     console.log(value);
     this.props.form.setFieldsValue({
@@ -94,6 +101,7 @@ class VitalInfo extends Component {
   };
 
   render() {
+    // console.log(this.props.location.state)
     const { getFieldDecorator } = this.props.form;
     const { autoCompleteResult, herfSec } = this.state;
     const websiteOptions = autoCompleteResult.map(website => (

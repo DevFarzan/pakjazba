@@ -22,9 +22,15 @@ class BussinesCard extends Component{
 
     render(){
         const { cardDetails, detail } = this.props;
-        let src = cardDetails.imageurl && cardDetails.imageurl[0] || cardDetails.businessImages && cardDetails.businessImages[0] || cardDetails.arr_url && cardDetails.arr_url[0] || cardDetails.images && cardDetails.images[0],
+        
+        let src = cardDetails.imageurl && cardDetails.imageurl[0] || 
+        cardDetails.businessImages && cardDetails.businessImages[0] || 
+        cardDetails.arr_url && cardDetails.arr_url[0] || 
+        cardDetails.images && cardDetails.images[0],
         locate = cardDetails.city + ", " + cardDetails.state,
-        name = cardDetails.businessname || cardDetails.eventTitle || cardDetails.compName || cardDetails.postingtitle || cardDetails.title,
+
+        name = cardDetails.businessname || cardDetails.eventTitle || 
+        cardDetails.compName || cardDetails.postingtitle || cardDetails.title,
         obj = this.callFunc(cardDetails, detail);
 
         return(

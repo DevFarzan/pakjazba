@@ -37,6 +37,7 @@ class ImageForm extends Component {
   handleChange = ({ fileList }) => {
     this.setState({ fileList, noChooseFile: true })
   }
+  
   handleSubmit(e, key) {
     e.preventDefault();
     const { fileList } = this.state;

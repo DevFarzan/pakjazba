@@ -43,8 +43,10 @@ class ProfileTabs extends Component{
                       defaultActiveKey="1"
                       tabPosition={mode}
                     >
-                      <TabPane tab="Contact" key="1"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab"></a></TabPane>
-                      <TabPane tab="Listing" key="2"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab"></a></TabPane>
+                      <TabPane tab="Contact" key="1"><a href="#Section1" 
+                      aria-controls="home" role="tab" data-toggle="tab"></a></TabPane>
+                      <TabPane tab="Listing" key="2"><a href="#Section2" 
+                      aria-controls="profile" role="tab" data-toggle="tab"></a></TabPane>
                     </Tabs>
                   </div>
                 </div>

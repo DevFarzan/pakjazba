@@ -482,7 +482,7 @@ class OfferInfo extends Component {
                       </div>
                       <div className="col-md-8">
                         <FormItem>
-                          {getFieldDecorator('productId', {
+                          {getFieldDecorator('warrantyDescription', {
                             rules: [{
                               required: false, message:
                                 'Please enter Seller Warranty',

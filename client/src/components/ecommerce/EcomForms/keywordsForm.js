@@ -6,6 +6,7 @@ import {
 import './keywordforms.css'
 const FormItem = Form.Item
 const CheckboxGroup = Checkbox.Group;
+// const plainOptions = ['Gym/Fitness Center','Swimming Pool','Car Park','Visitors Parking','Power Backup','Garbage Disposal','Private Lawn','Water Heater Plant','Security System','Laundry Service', 'Elevator', 'Club House'];
 
 class KeywordsForm extends Component {
   constructor(props) {
@@ -14,23 +15,56 @@ class KeywordsForm extends Component {
       intendedUsekeyWords: [],
       targetAudience: [],
       subjectMatter: [],
+      intendedUse: '',
+      searchTerms: '',
+      platinumKeywords: ''
     }
   }
 
-  handleSubmit(e, key){
+
+  componentDidMount() {
+    let data = this.props.data;
+    const { intendedUsekeyWords, targetAudience, subjectMatter } = this.state;
+    console.log(data, 'data in keyword')
+    if (data) {
+
+      for (var i = 0; i < data.IntendedUsekeyWords.length; i++) {
+        intendedUsekeyWords.push(data.IntendedUsekeyWords[i])
+      }
+      for (var i = 0; i < data.targetAudience.length; i++) {
+        targetAudience.push(data.targetAudience[i])
+      }
+      for (var i = 0; i < data.subjectMatter.length; i++) {
+        subjectMatter.push(data.subjectMatter[i])
+      }
+      this.setState({
+        intendedUse: data.intendedUse,
+        searchTerms: data.searchTerms,
+        platinumKeywords: data.platinumKeywords,
+        targetAudience: [...targetAudience],
+        subjectMatter: [...subjectMatter],
+        intendedUsekeyWords: [...intendedUsekeyWords]
+      })
+    }
+    // console.log(this.state.intendedUsekeyWords ,'intendedUsekeyWords')
+    // console.log(this.state.targetAudience ,'intendedUsekeyWords')
+    // console.log(this.state.subjectMatter ,'intendedUsekeyWords')
+
+  }
+  handleSubmit(e, key) {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
         this.props.handleProps(values);
         if (key === 'submit') {
-        let msg = 'Your keyword & product detail is submited successfully, Kindly visit your profile!'
-        this.openNotification(msg)
-      }
-      else if (key === 'draft') {
-        let msg = 'Your keyword & product detail is saved successfully.'
-        this.openNotification(msg)
-      }
+          let msg = 'Your keyword & product detail is submited successfully, Kindly visit your profile!'
+          this.openNotification(msg)
+        }
+        else if (key === 'draft') {
+          let msg = 'Your keyword & product detail is saved successfully.'
+          this.openNotification(msg)
+        }
       }
     });
   }
@@ -94,15 +128,18 @@ class KeywordsForm extends Component {
                           <FormItem
                           >
                             {getFieldDecorator('IntendedUsekeyWords', {
+                              initialValue: this.state.intendedUsekeyWords,
+                              defaultValue: Option.initialValue,
                               rules: [{ validator: this.checkCheckBox }],
                             })(
                               <CheckboxGroup style={{ width: '100%' }}
                                 // onChange={this.onChange}
+                                setFieldsValue={this.state.intendedUsekeyWords}
                                 onChange={this.onChangekeyWords.bind(this)}
                               >
                                 <Row>
+                                  <Checkbox value="Gym/Fitness Center">Gym/Fitness Center</Checkbox>
                                   <Col >
-                                    <Checkbox value="Gym/Fitness Center">Gym/Fitness Center</Checkbox>
                                   </Col>
                                   <Col >
                                     <Checkbox value="Swimming Pool">Swimming Pool</Checkbox>
@@ -151,7 +188,7 @@ class KeywordsForm extends Component {
                       <FormItem
                       >
                         {getFieldDecorator('intendedUse', {
-                          initialValue: this.state.dataLocation,
+                          initialValue: this.state.intendedUse,
                           rules: [{
                             required: false,
                             message: 'Please enter your intended Use',
@@ -177,9 +214,12 @@ class KeywordsForm extends Component {
                           <FormItem
                           >
                             {getFieldDecorator('targetAudience', {
+                              initialValue: this.state.targetAudience,
+                              defaultValue: Option.initialValue,
                               rules: [{ validator: this.checkCheckBox }],
                             })(
                               <CheckboxGroup style={{ width: '100%' }}
+                                setFieldsValue={this.state.targetAudience}
                                 onChange={this.onChangekeyWords.bind(this)}
                               >
                                 <Row>
@@ -246,9 +286,12 @@ class KeywordsForm extends Component {
                           <FormItem
                           >
                             {getFieldDecorator('subjectMatter', {
+                              initialValue: this.state.subjectMatter,
+                              defaultValue: Option.initialValue,
                               rules: [{ validator: this.checkCheckBox }],
                             })(
                               <CheckboxGroup style={{ width: '100%' }}
+                                setFieldsValue={this.state.subjectMatter}
                                 onChange={this.onChangekeyWords.bind(this)}
                               >
                                 <Row>
@@ -312,7 +355,7 @@ class KeywordsForm extends Component {
                       <FormItem
                       >
                         {getFieldDecorator('searchTerms', {
-                          initialValue: this.state.dataLocation,
+                          initialValue: this.state.searchTerms,
                           rules: [{
                             required: false,
                             message: 'Please enter your Search Terms',
@@ -336,7 +379,7 @@ class KeywordsForm extends Component {
                       <FormItem
                       >
                         {getFieldDecorator('platinumKeywords', {
-                          initialValue: this.state.dataLocation,
+                          initialValue: this.state.platinumKeywords,
                           rules: [{
                             required: false,
                             message: 'Please enter your Platinum Keywords',

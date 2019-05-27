@@ -17,6 +17,20 @@ class ImageForm extends Component {
     noChooseFile: false,
     herfSec: ''
   };
+
+  componentDidMount() {
+    let data = this.props.data;
+    console.log(data, 'images form')
+    if (data) {
+      this.setState({
+        imageList: data.images,
+      })
+    }
+  }
+
+
+
+
   handleCancel = () => this.setState({ previewVisible: false })
 
   handlePreview = (file) => {
@@ -35,7 +49,7 @@ class ImageForm extends Component {
   handleChange = ({ fileList }) => {
     this.setState({ fileList, noChooseFile: true })
   }
-  
+
   handleSubmit(e, key) {
     e.preventDefault();
     const { fileList } = this.state;
@@ -94,8 +108,8 @@ class ImageForm extends Component {
 
   async postData(values, response, key) {
     console.log(response, "response");
-    
-    this.props.handleProps({images: response} , 'description');
+
+    this.props.handleProps({ images: response }, 'description');
     this.props.desStates()
     if (key === 'submit') {
       this.setState({
@@ -136,6 +150,7 @@ class ImageForm extends Component {
     const uploadedImages = (
       <div style={{ display: 'flex' }}>
         {this.state.imageList.map((elem) => {
+          console.log(elem , 'elem')
           return (
             <div className='insideDiv'>
               <a>
@@ -146,7 +161,8 @@ class ImageForm extends Component {
                     style={{
                       zIndex: 10, transition: 'all .3s', fontSize: '16px',
                       width: '30px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'
-                    }} /></a>
+                    }} />
+      </a>
                   <Icon title='Remove file' type='delete'
                     onClick={this.deleteImage.bind(this, elem)}
                     style={{
@@ -216,7 +232,7 @@ class ImageForm extends Component {
                                     onChange={this.handleChange}
                                   >
                                     {/* {this.state.imageList.length + fileList.length >= 3 ? null : uploadButton} */}
-                                    {fileList.length >= 6 ? null : uploadButton}
+                                    {this.state.imageList.length + fileList.length >= 3 ? null : uploadButton}
                                   </Upload>
                                   <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
                                     <img alt="example" style={{ width: '100%' }} src={previewImage} />

@@ -120,7 +120,7 @@ class ProfileUser extends Component {
         })
         req.ecommerce && req.ecommerce.map((elem) => {
             if (elem.user_Id === id) {
-                let data = { ...elem, ...{ route: 'ecommerces' } }
+                let data = { ...elem, ...{ route: 'ecommerce' } }
                 arr5.push(data)
             }
         })
@@ -312,6 +312,8 @@ class ProfileUser extends Component {
     }
 
     editBusiness = (e) => {
+        console.log(e ,'edit business');
+        console.log(e.route , 'show me the route')
         if (e.route === "buySell") {
             this.setState({
                 buySell: true,
@@ -333,7 +335,7 @@ class ProfileUser extends Component {
                 data: e,
             })
         }
-        else if (e.route === "ecommerces") {
+        else if (e.route === "ecommerce") {
             this.setState({
                 ecommerce: true,
                 data: e,
@@ -360,7 +362,7 @@ class ProfileUser extends Component {
         const { getFieldDecorator } = this.props.form;
         const { imageUrl, profileSec, changePass, name, email, description, phone, twitter, facebook, location, listing, listData1, listData2, listData3, listData4, listData5, buySell, business, rooms, jobPortal, ecommerce, data, allData, publicSection } = this.state;
 
-        console.log(listData5, 'e comrece data')
+        // console.log(ecommerce, 'e comrece data')
         if (buySell) {
             return (
                 <Redirect to={{ pathname: '/postad_buysell', state: data }} />
@@ -748,8 +750,18 @@ class ProfileUser extends Component {
                                                                                     <h4>{title}</h4>
                                                                                     <p>{str}</p>
                                                                                 </Link>
-                                                                                <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{ padding: "16px", marginTop: "8px", color: "gray" }}><span style={{ margin: "7px" }}>Edit</span></i></a>
-                                                                                <i className="glyphicon glyphicon-trash" style={{ padding: "16px", marginTop: "8px", float: "right", color: "gray" }}><span style={{ margin: "7px" }}>Remove</span></i>
+                                                                                <a onClick={this.editBusiness.bind(this, elem)}>
+                                                                                    <i className="glyphicon glyphicon-edit"
+                                                                                        style={{ padding: "16px", marginTop: "8px", color: "gray" }}>
+                                                                                        <span style={{ margin: "7px" }}>
+                                                                                            Edit</span>
+                                                                                    </i></a>
+                                                                                <i className="glyphicon glyphicon-trash"
+                                                                                    style={{
+                                                                                        padding: "16px", marginTop: "8px", float: "right",
+                                                                                        color: "gray"
+                                                                                    }}><span style={{ margin: "7px" }}>
+                                                                                        Remove</span></i>
                                                                             </div>
                                                                         </div>
 
@@ -767,7 +779,7 @@ class ProfileUser extends Component {
                                                         <div className="index-content" style={{ marginTop: '20px' }}>
                                                             <div className="row">
                                                                 {listData2.length ? listData2.map((elem) => {
-                                                                    console.log(elem, 'elemt bussiens')
+                                                                    // console.log(elem, 'elemt bussiens')
                                                                     let img = elem.businessImages && elem.businessImages[0] || '../images/images.jpg';
                                                                     let title = elem.businessname || ''
                                                                     let str = elem.description || '';
@@ -787,8 +799,13 @@ class ProfileUser extends Component {
                                                                                     <h4>{title}</h4>
                                                                                     <p>{str}</p>
                                                                                 </Link>
-                                                                                <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{ padding: "16px", marginTop: "8px", color: "gray" }}><span style={{ margin: "7px" }}>Edit</span></i></a>
-                                                                                <i className="glyphicon glyphicon-trash" style={{ padding: "16px", marginTop: "8px", float: "right", color: "gray" }}><span style={{ margin: "7px" }}>Remove</span></i>
+                                                                                <a onClick={this.editBusiness.bind(this, elem)}>
+                                                                                <i className="glyphicon glyphicon-edit" 
+                                                                                style={{ padding: "16px", marginTop: "8px", color: "gray" }}>
+                                                                                <span style={{ margin: "7px" }}>Edit</span></i></a>
+                                                                                <i className="glyphicon glyphicon-trash" 
+                                                                                style={{ padding: "16px", marginTop: "8px", float: "right", color: "gray" }}>
+                                                                                <span style={{ margin: "7px" }}>Remove</span></i>
                                                                             </div>
                                                                         </div>
 
@@ -885,6 +902,7 @@ class ProfileUser extends Component {
                                                         <div className="index-content" style={{ marginTop: '20px' }}>
                                                             <div className="row">
                                                                 {listData5.length ? listData5.map((elem) => {
+                                                                    console.log(elem , 'elemnt of the e comrece')
                                                                     let img = elem.images && elem.images[0] || '../images/images.jpg';
 
                                                                     let title = elem.product || ''

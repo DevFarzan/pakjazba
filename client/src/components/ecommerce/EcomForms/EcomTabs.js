@@ -26,7 +26,11 @@ class EcomTabs extends Component {
       submitStatus: '',
       formStep: '',
       objectId: '',
-      allTabs: ['evitalInfo']
+      // allTabs: ['evitalInfo'],
+      allTabs: ['evitalInfo'],
+
+      isData: true,
+      // data: {},
     };
   }
 
@@ -38,7 +42,10 @@ class EcomTabs extends Component {
 
     values.user_Id = user._id;
     values.profileId = user.profileId;
-    values.objectId = this.state.objectId
+    values.objectId = this.state.objectId;
+    // allTabs.push(key);
+    values.allTabs = allTabs;
+    console.log(values , 'add all tabs or not')
 
     if (this.state.draftStatus === 'draft') {
       values.status = this.state.draftStatus
@@ -62,6 +69,11 @@ class EcomTabs extends Component {
         })
       }
     }
+  }
+
+  componentDidMount() {
+    // let data = this.props.data;
+    // console.log(this.props.data , 'data in ecom tab') 
   }
 
   statusFormDraft = () => {
@@ -108,6 +120,7 @@ class EcomTabs extends Component {
 
   render() {
     const { mode, allTabs, evitalInfo, offerInfo, images, description, keywords, herfSec } = this.state;
+    // console.log(this.props.location.state , 'props state')
     return (
       <div className>
         <div className="container">
@@ -183,6 +196,7 @@ class EcomTabs extends Component {
                 offerStates={this.offerStates}
                 statusFormDraft={this.statusFormDraft}
                 statusFormSubmit={this.statusFormSubmit}
+                data ={this.props.data}
               />
             </div>
             <div role="tabpane2" class="tab-pane fade " id="Section2">
@@ -191,6 +205,7 @@ class EcomTabs extends Component {
                 imgStates={this.imgStates}
                 statusFormDraft={this.statusFormDraft}
                 statusFormSubmit={this.statusFormSubmit}
+                data ={this.props.data}
               />
             </div>
             <div role="tabpane3" class="tab-pane fade " id="Section3">
@@ -199,6 +214,7 @@ class EcomTabs extends Component {
                 desStates={this.desStates}
                 statusFormDraft={this.statusFormDraft}
                 statusFormSubmit={this.statusFormSubmit}
+                data ={this.props.data}
               />
             </div>
             <div role="tabpane4" class="tab-pane fade" id="Section4">

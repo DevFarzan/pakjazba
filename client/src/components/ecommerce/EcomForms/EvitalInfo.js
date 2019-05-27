@@ -17,14 +17,65 @@ class VitalInfo extends Component {
     autoCompleteResult: [],
     data: '',
     herfSec: '',
+    product: '',
+    manufacturer: '',
+    brandName: '',
+    manufacturerPart: '',
+    pakageQuantity: '',
+    materialType: '',
+    color: '',
+    shape: '',
+    lenseColor: '',
+    size: '',
+    orientation: '',
+    tension: '',
+    gtin: '',
+    productId: '',
+    maximumWeight: '',
+    shaft: '',
+    UPC: '',
+    variationTheme: '',
+    itemLengthNumber: 0,
+    itemLengthUnit: "inch",
+    itemWeightNumber: 0,
+    itemWeightUnit: "kg",
+    itemWidthNumber: 0,
+    itemWidthUnit: "inch"
   };
 
-  componentDidMount(){
+  componentDidMount() {
     // window.scrollTo(0,0);
-    // this.handleLocalStorage();
-    // let data = this.props.location.state;
+    let data = this.props.data;
+    if (data) {
+      this.setState({
+        product: data.product,
+        manufacturer: data.manufacturer,
+        brandName: data.brandName,
+        manufacturerPart: data.manufacturerPart,
+        pakageQuantity: data.pakageQuantity,
+        materialType: data.materialType,
+        color: data.color,
+        shape: data.shape,
+        lenseColor: data.lenseColor,
+        size: data.size,
+        orientation: data.orientation,
+        tension: data.tension,
+        productId: data.productId,
+        maximumWeight: data.maximumWeight,
+        shaft: data.shaft,
+        UPC: data.UPC,
+        gtin: data.gtin,
+        variationTheme: data.variationTheme,
+        itemLengthNumber: data.itemLength.itemLengthNumber,
+        itemLengthUnit: data.itemLength.itemLengthUnit,
+        itemWeightNumber: data.itemWeight.itemWeightNumber,
+        itemWeightUnit: data.itemWeight.itemWeightUnit,
+        itemWidthNumber: data.itemWidth.itemWidthNumber,
+        itemWidthUnit: data.itemWidth.itemWidthUnit
+      })
+    }
     // console.log(data , 'data')
-}
+  }
 
   handleSelectChange = (value) => {
     console.log(value);
@@ -137,6 +188,7 @@ class VitalInfo extends Component {
                       <div className="col-md-8 col-xs-8">
                         <FormItem>
                           {getFieldDecorator('product', {
+                            initialValue: this.state.product,
                             rules:
                               [{
                                 required: true,
@@ -160,6 +212,7 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('manufacturer', {
+                            initialValue: this.state.manufacturer,
                             rules: [{
                               required: true,
                               message: 'Please enter Manufacturer',
@@ -183,6 +236,7 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('brandName', {
+                            initialValue: this.state.brandName,
                             rules: [{
                               required: true,
                               message: 'Please enter brandName',
@@ -208,6 +262,7 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('manufacturerPart', {
+                            initialValue: this.state.manufacturerPart,
                             rules: [{
                               required: true,
                               message: 'Please enter manufacturerpart',
@@ -231,6 +286,7 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('pakageQuantity', {
+                            initialValue: this.state.pakageQuantity,
                             rules: [{
                               required: true,
                               message: 'Please enter pakage quantity',
@@ -256,6 +312,7 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('materialType', {
+                            initialValue: this.state.materialType,
                             rules: [{
                               required: true,
                               message: 'Please enter materialtype',
@@ -279,6 +336,7 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('color', {
+                            initialValue: this.state.color,
                             rules: [{
                               required: true,
                               message: 'Please enter color',
@@ -302,6 +360,7 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('shape', {
+                            initialValue: this.state.shape,
                             rules: [{
                               required: true,
                               message: 'Please enter shape',
@@ -325,6 +384,7 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('lenseColor', {
+                            initialValue: this.state.lenseColor,
                             rules: [{
                               required: true,
                               message: 'Please enter lensecolor',
@@ -348,6 +408,7 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('size', {
+                            initialValue: this.state.size,
                             rules: [{
                               required: true,
                               message: 'Please enter size',
@@ -371,6 +432,7 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('orientation', {
+                            initialValue: this.state.orientation,
                             rules: [{
                               required: true,
                               message: 'Please enter orientation',
@@ -394,6 +456,7 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('tension', {
+                            initialValue: this.state.tension,
                             rules: [{
                               required: true,
                               message: 'Please enter tension', whitespace: true
@@ -418,6 +481,8 @@ class VitalInfo extends Component {
                           wrapperCol={{ span: 12 }}
                         >
                           {getFieldDecorator('gtin', {
+                            initialValue: this.state.gtin,
+                            defaultValue: Option.initialValue,
                             rules: [{ required: true, message: 'Please select GTIN' }],
                           })(
                             <Select
@@ -444,6 +509,7 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('productId', {
+                            initialValue: this.state.productId,
                             rules: [{
                               required: true,
                               message: 'Please enter product id', whitespace: true
@@ -466,7 +532,7 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('itemLength', {
-                            initialValue: { itemLengthNumber: 0, itemLengthUnit: 'inch' },
+                            initialValue: { itemLengthNumber: this.state.itemLengthNumber, itemLengthUnit: this.state.itemLengthUnit },
                             rules: [{ validator: this.checkLength }],
                           })(
                             <LengthInput />
@@ -487,7 +553,7 @@ class VitalInfo extends Component {
                         <Form layout="inline">
                           <FormItem>
                             {getFieldDecorator('itemWidth', {
-                              initialValue: { itemWidthNumber: 0, itemWidthUnit: 'inch' },
+                              initialValue: { itemWidthNumber: this.state.itemWidthNumber, itemWidthUnit: this.state.itemWidthUnit },
                               rules: [{ validator: this.checkWidth }],
                             })(
                               <WidthInput />
@@ -508,7 +574,7 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('itemWeight', {
-                            initialValue: { itemWeightNumber: 0, itemWeightUnit: 'inch' },
+                            initialValue: { itemWeightNumber: this.state.itemWeightNumber, itemWeightUnit: this.state.itemWeightUnit },
                             rules: [{ validator: this.checkWeight }],
                           })(
                             <WeightInput />
@@ -528,6 +594,7 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('maximumWeight', {
+                            initialValue: this.state.maximumWeight,
                             rules: [{
                               required: false,
                               message: 'Please enter maximum weight', whitespace: true
@@ -550,6 +617,7 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('shaft', {
+                            initialValue: this.state.shaft,
                             rules: [{
                               required: true,
                               message: 'Please enter shaft', whitespace: true
@@ -574,6 +642,8 @@ class VitalInfo extends Component {
                           wrapperCol={{ span: 12 }}
                         >
                           {getFieldDecorator('variationTheme', {
+                            initialValue: this.state.variationTheme,
+                            defaultValue: Option.initialValue,
                             rules: [{ required: false, message: 'Please select variation Theme' }],
                           })(
                             <Select
@@ -599,6 +669,7 @@ class VitalInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('UPC', {
+                            initialValue: this.state.UPC,
                             rules: [{
                               required: true,
                               message: 'Please Enter UPC or EAN', whitespace: true

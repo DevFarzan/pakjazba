@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import {
   Form, Input, Select, AutoComplete, DatePicker, notification
 } from 'antd';
+import moment from 'moment';
 import './Vitalinfo.css';
+
 
 const FormItem = Form.Item;
 const Option = Select.Option;
+const dateFormat = 'YYYY/MM/DD';
 const AutoCompleteOption = AutoComplete.Option;
+
 
 class OfferInfo extends Component {
   constructor(props) {
@@ -16,16 +20,50 @@ class OfferInfo extends Component {
       autoCompleteResult: [],
       startDate: '',
       date: '',
-      salePriceDate1: '',
+      salePriceDatesStart: '',
       salePriceDate2: '',
       sellingDate: '',
       restockDate: '',
       offering: '',
       offerInfo: [],
-      herfSec: ''
+      herfSec: '',
+      seller: '',
+      condition: '',
+      conditionNote: '',
+      price: '',
+      salePrice: '',
+      quantity: '',
+      legalDesclaimer: '',
+      taxCode: '',
+      handlingTime: '',
+      importDesignation: '',
+      country: '',
+      warrantyDescription: '',
+      countryLabeled: '',
     };
   }
-  
+
+  componentDidMount() {
+    let data = this.props.data;
+    if (data) {
+      this.setState({
+        seller: data.seller,
+        condition: data.condition,
+        conditionNote: data.conditionNote,
+        price: data.price,
+        salePrice: data.salePrice,
+        quantity: data.quantity,
+        legalDesclaimer: data.legalDesclaimer,
+        taxCode: data.taxCode,
+        handlingTime: data.handlingTime,
+        importDesignation: data.importDesignation,
+        country: data.country,
+        warrantyDescription: data.warrantyDescription,
+        countryLabeled: data.countryLabeled,
+        salePriceDatesStart: data.salePriceDate1
+      })
+    }
+  }
   checkPrice = (rule, value, callback) => {
     if (value.number > 0) {
       callback();
@@ -71,7 +109,7 @@ class OfferInfo extends Component {
   }
 
   offerInfoData = (values, key) => {
-    let { salePriceDate1 , salePriceDate2 ,  sellingDate , restockDate , offering} = this.state;
+    let { salePriceDate1, salePriceDate2, sellingDate, restockDate, offering } = this.state;
     values.salePriceDate1 = salePriceDate1;
     values.salePriceDate2 = salePriceDate2;
     values.sellingDate = sellingDate;
@@ -104,6 +142,7 @@ class OfferInfo extends Component {
   };
 
   render() {
+    console.log(this.state.salePriceDatesStart)
     const { getFieldDecorator } = this.props.form;
     const { autoCompleteResult, herfSec } = this.state;
     const websiteOptions = autoCompleteResult.map(website => (
@@ -138,6 +177,7 @@ class OfferInfo extends Component {
                       <div className="col-md-8 col-xs-4">
                         <FormItem>
                           {getFieldDecorator('seller', {
+                            initialValue: this.state.seller,
                             rules: [{
                               required: false, message: 'Please enter seller',
                               whitespace: true
@@ -162,6 +202,8 @@ class OfferInfo extends Component {
                           wrapperCol={{ span: 8 }}
                         >
                           {getFieldDecorator('condition', {
+                            initialValue: this.state.condition,
+                            defaultValue: Option.initialValue,
                             rules: [{ required: true, message: 'Please select Condition' }],
                           })(
                             <Select
@@ -187,6 +229,7 @@ class OfferInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('conditionNote', {
+                            initialValue: this.state.conditionNote,
                             rules: [{
                               required: false,
                               message: 'Please type Condition Note',
@@ -212,6 +255,7 @@ class OfferInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('price', {
+                            initialValue: this.state.price,
                             rules: [{
                               required: true,
                               message: 'Please enter price',
@@ -239,6 +283,7 @@ class OfferInfo extends Component {
                           <div className="col-md-4">
                             <FormItem>
                               {getFieldDecorator('salePrice', {
+                                initialValue: this.state.salePrice,
                                 rules: [{
                                   required: true,
                                   message: 'Please enter Sale Price',
@@ -252,7 +297,14 @@ class OfferInfo extends Component {
                             </FormItem>
                           </div>
                           <div className="col-md-4">
-                            <DatePicker onChange={(date, dateString) => this.onChange(date, dateString, 'salePriceDate1')} />
+                            <DatePicker
+                              // defaultValue={moment(this.state.salePriceDatesStart, 
+                              //   dateFormat)}
+                              // defaultValue={moment( dateFormat)}
+                              // format={dateFormat}
+                              onChange={(date, dateString) =>
+                                this.onChange(date, dateString, 'salePriceDate1')}
+                            />
                           </div>
                           <div className="col-md-4">
                             <DatePicker onChange={(date, dateString) => this.onChange(date, dateString, 'salePriceDate2')} />
@@ -274,6 +326,7 @@ class OfferInfo extends Component {
                             <div className="col-md-4">
                               <FormItem>
                                 {getFieldDecorator('quantity', {
+                                  initialValue: this.state.quantity,
                                   rules: [{
                                     required: true,
                                     message: 'Please enter a quantity',
@@ -303,6 +356,7 @@ class OfferInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('legalDesclaimer', {
+                            initialValue: this.state.legalDesclaimer,
                             rules: [{
                               required: true,
                               message: 'Please type Legal Desclaimer',
@@ -332,6 +386,7 @@ class OfferInfo extends Component {
                             <div className="col-md-4">
                               <FormItem>
                                 {getFieldDecorator('taxCode', {
+                                  initialValue: this.state.taxCode,
                                   rules: [{
                                     required: false,
                                     message: 'Please enter Tax Code',
@@ -362,6 +417,7 @@ class OfferInfo extends Component {
                             <div className="col-md-4">
                               <FormItem>
                                 {getFieldDecorator('handlingTime', {
+                                  initialValue: this.state.handlingTime,
                                   rules: [{
                                     required: true,
                                     message: 'Please enter Handling time',
@@ -429,6 +485,8 @@ class OfferInfo extends Component {
                           wrapperCol={{ span: 8 }}
                         >
                           {getFieldDecorator('importDesignation', {
+                            initialValue: this.state.importDesignation,
+                            defaultValue: Option.initialValue,
                             rules: [{ required: false, message: 'Please select Import Designation' }],
                           })(
                             <Select
@@ -456,6 +514,7 @@ class OfferInfo extends Component {
                             <div className="col-md-5">
                               <FormItem>
                                 {getFieldDecorator('country', {
+                                  initialValue: this.state.country,
                                   rules: [{
                                     required: false,
                                     message: 'Please enter country',
@@ -483,6 +542,7 @@ class OfferInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           {getFieldDecorator('warrantyDescription', {
+                            initialValue: this.state.warrantyDescription,
                             rules: [{
                               required: false, message:
                                 'Please enter Seller Warranty',
@@ -504,7 +564,9 @@ class OfferInfo extends Component {
                       <div className="col-md-8">
                         <FormItem>
                           <div >
-                            <DatePicker onChange={(date, dateString) => this.onChange(date, dateString, 'offering')}
+                            <DatePicker
+                              onChange={(date, dateString) =>
+                                this.onChange(date, dateString, 'offering')}
                             />
                           </div>
                         </FormItem>
@@ -526,6 +588,7 @@ class OfferInfo extends Component {
                             <div className="col-md-5">
                               <FormItem>
                                 {getFieldDecorator('countryLabeled', {
+                                  initialValue: this.state.countryLabeled,
                                   rules: [{
                                     required: false,
                                     message: 'Please enter Country label',

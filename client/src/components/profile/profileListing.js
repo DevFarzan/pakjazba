@@ -74,7 +74,7 @@ class ProfileListing extends Component{
                 req.ecommerce && req.ecommerce.map((elem) => {
                 
                     if(elem.user_Id === userId){
-                        let data = {...elem, ...{route: 'ecommerces'}}
+                        let data = {...elem, ...{route: 'ecommerce'}}
                         ecommerce.push(data);
                         console.log(ecommerce,'temperory data')
                     }

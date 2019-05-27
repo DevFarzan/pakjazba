@@ -27,7 +27,7 @@ class EcomTabs extends Component {
       formStep: '',
       objectId: '',
       // allTabs: ['evitalInfo'],
-      allTabs: ['evitalInfo'],
+      allTabs: ['evitalInfo' ,  'offerInfo', 'images' , 'description' ,'keywords'],
 
       isData: true,
       // data: {},
@@ -45,7 +45,7 @@ class EcomTabs extends Component {
     values.objectId = this.state.objectId;
     // allTabs.push(key);
     values.allTabs = allTabs;
-    console.log(values , 'add all tabs or not')
+    // console.log(values , 'add all tabs or not')
 
     if (this.state.draftStatus === 'draft') {
       values.status = this.state.draftStatus

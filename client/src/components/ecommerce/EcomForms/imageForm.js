@@ -14,8 +14,6 @@ class ImageForm extends Component {
     previewImage: '',
     fileList: [],
     imageList: [],
-    firstImg: [],
-    secondImg: [],
     noChooseFile: false,
     herfSec: ''
   };

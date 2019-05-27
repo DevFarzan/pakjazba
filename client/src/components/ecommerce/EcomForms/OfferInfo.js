@@ -45,6 +45,7 @@ class OfferInfo extends Component {
 
   componentDidMount() {
     let data = this.props.data;
+    // console.log(data.salePriceDate1)
     if (data) {
       this.setState({
         seller: data.seller,
@@ -142,11 +143,11 @@ class OfferInfo extends Component {
   };
 
   render() {
-    console.log(this.state.salePriceDatesStart)
     const { getFieldDecorator } = this.props.form;
-    const { autoCompleteResult, herfSec } = this.state;
+    const { autoCompleteResult, herfSec, salePriceDatesStart } = this.state;
+    console.log(salePriceDatesStart , 'date')
     const websiteOptions = autoCompleteResult.map(website => (
-      <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
+      < AutoCompleteOption key = { website } > { website }</AutoCompleteOption >
     ));
     return (
       <div className="container" style={{ width: "100%" }}>
@@ -297,14 +298,39 @@ class OfferInfo extends Component {
                             </FormItem>
                           </div>
                           <div className="col-md-4">
-                            <DatePicker
-                              // defaultValue={moment(this.state.salePriceDatesStart, 
-                              //   dateFormat)}
+                          {/* <FormItem>
+                              {getFieldDecorator('salePriceDate1', {
+                                initialValue= {moment(salePriceDatesStart, dateFormat)},
+                                rules: [{
+                                  required: true,
+                                  message: 'Please enter Sale Price',
+                                  whitespace: true
+                                },
+                                { validator: this.validateNumber.bind(this) }]
+                              })(
+                                <DatePicker
+                                  onChange={(date, dateString) =>
+                                    this.onChange(date, dateString,)}
+                                />
+                              )}
+                            </FormItem> */}
+                            {/* <DatePicker
+                              defaultValue={moment(this.state.salePriceDatesStart, 
+                                dateFormat)}
                               // defaultValue={moment( dateFormat)}
-                              // format={dateFormat}
+                              format={dateFormat}
                               onChange={(date, dateString) =>
                                 this.onChange(date, dateString, 'salePriceDate1')}
-                            />
+                            /> */}
+                            {/* <DatePicker 
+                            // defaultValue={moment(salePriceDatesStart, dateFormat)} format={dateFormat}
+                            // initialValue= {moment(salePriceDatesStart, 'YYYY/MM/DD')}
+                            dateFormat="YYYY/MM/DD"
+                            selected={salePriceDatesStart}
+                            // value={salePriceDatesStart}
+                              onChange={(date, dateString) =>
+                                this.onChange(date, dateString, 'salePriceDate1')}
+                            /> */}
                           </div>
                           <div className="col-md-4">
                             <DatePicker onChange={(date, dateString) => this.onChange(date, dateString, 'salePriceDate2')} />

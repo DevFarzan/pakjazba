@@ -1981,6 +1981,7 @@ app.post('/api/postecommercedata',(req,res) => {
       UPC:ecommerceData.UPC,
       color:ecommerceData.color,
       gtin:ecommerceData.gtin,
+      allTabs:ecommerceData.allTabs,
       itemLength:ecommerceData.itemLength,
       itemWeight:ecommerceData.itemWeight,
       itemWidth:ecommerceData.itemWidth,

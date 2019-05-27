@@ -10,6 +10,7 @@ var postyourproduct = new mongoose.Schema({
   color:{type:String},
   gtin:{type:String},
   brandName:{type:String},
+  allTabs:{type:String},
   itemLength:{type:Object},
   itemWeight:{type:Object},
   itemWidth:{type:Object},

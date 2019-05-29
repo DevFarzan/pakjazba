@@ -572,6 +572,7 @@ class Postbusiness extends Component {
 
     async postData(values, response) {
         const { userId, socLin, socGoo, socFac, profileId, openingTime, closingTime, objectId, imageList } = this.state;
+        console.log(values , 'in busines');
         let obj = {
             user_id: userId,
             profileId: profileId,

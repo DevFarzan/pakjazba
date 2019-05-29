@@ -27,7 +27,7 @@ class EcomTabs extends Component {
       formStep: '',
       objectId: '',
       // allTabs: ['evitalInfo'],
-      allTabs: ['evitalInfo','offerInfo'],
+      allTabs: ['evitalInfo',],
 
       isData: true,
       // data: {},
@@ -37,12 +37,18 @@ class EcomTabs extends Component {
   handleProps = async (values, key) => {
     let { allTabs } = this.state;
     var user = JSON.parse(localStorage.getItem('user'));
+    var updateData = JSON.parse(localStorage.getItem('updateData'));
 
     console.log(values, 'props value')
 
     values.user_Id = user._id;
     values.profileId = user.profileId;
-    values.objectId = this.state.objectId;
+    if (updateData !== undefined) {
+      values.objectId = updateData.objectId;
+
+    } else {
+      values.objectId = this.state.objectId;
+    }
     allTabs.push(key);
     values.allTabs = allTabs;
     // console.log(values , 'add all tabs or not')
@@ -58,7 +64,6 @@ class EcomTabs extends Component {
     console.log(req)
 
     if (req.code === 200) {
-      await localStorage.setItem('formData', JSON.stringify(req.content));
       // allTabs.push(key)
       if (this.state.objectId === '') {
         this.setState({ allTabs, objectId: req.content._id })
@@ -68,20 +73,33 @@ class EcomTabs extends Component {
           this.setState({ allTabs, objectId: req.content[index]._id })
         })
       }
+      req.content.objectId = this.state.objectId
+      // console.log(req.content , 'req.content')
+      await localStorage.setItem('formData', JSON.stringify(req.content));
+      // console.log(this.state.objectId)
     }
+    // console.log(this.state.objectId)
+
   }
 
   componentDidMount() {
     const { allTabs } = this.state
     let data = this.props.data;
-    console.log(this.props.data, 'data in ecom tab')
-    if (data) {
-      allTabs.length = 0
-      for (var i = 0; i < data.allTabs.length; i++) {
-        allTabs.push(data.allTabs[i])
+    // this.setState({
+      //   objectId: data._id
+      // })
+      // console.log(data.objectId)
+      // console.log(this.state.objectId, 'object id')
+      console.log(this.props.data, 'data in ecom tab')
+      if (data) {
+        data.objectId = data._id
+        allTabs.length = 0
+        for (var i = 0; i < data.allTabs.length; i++) {
+          allTabs.push(data.allTabs[i])
+        }
+        this.setState({ allTabs: [...allTabs] })
       }
-      this.setState({ allTabs: [...allTabs] })
-    }
+      localStorage.setItem('updateData', JSON.stringify(data));
   }
 
   statusFormDraft = () => {

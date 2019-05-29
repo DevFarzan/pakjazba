@@ -22,6 +22,8 @@ class OfferInfo extends Component {
       date: '',
       salePriceDatesStart: '',
       salePriceDatesEnd: '',
+      salePriceDate1: '',
+      salePriceDate2: '',
       sellingDate: '',
       restockDate: '',
       offering: '',
@@ -40,6 +42,7 @@ class OfferInfo extends Component {
       country: '',
       warrantyDescription: '',
       countryLabeled: '',
+      datePicker: true
     };
   }
 
@@ -66,7 +69,7 @@ class OfferInfo extends Component {
         sellingDate: data.sellingDate,
         restockDate: data.restockDate,
         offering: data.offering,
-
+        datePicker: false
       })
     }
   }
@@ -115,8 +118,8 @@ class OfferInfo extends Component {
   }
 
   offerInfoData = (values, key) => {
-    let { salePriceDate1, salePriceDate2, sellingDate, restockDate, offering } = this.state;
-    if(offering === ''){
+    let { salePriceDate1, salePriceDate2, sellingDate, restockDate, offering ,datePicker } = this.state;
+    if (datePicker) {
       values.salePriceDate1 = salePriceDate1;
       values.salePriceDate2 = salePriceDate2;
       values.sellingDate = sellingDate;
@@ -152,7 +155,7 @@ class OfferInfo extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { autoCompleteResult, herfSec, salePriceDatesStart, salePriceDatesEnd, sellingDate, restockDate, offering } = this.state;
+    const { autoCompleteResult, herfSec, salePriceDatesStart, salePriceDatesEnd, sellingDate, restockDate, offering , datePicker} = this.state;
     // console.log(salePriceDatesStart, 'date')
     const websiteOptions = autoCompleteResult.map(website => (
       < AutoCompleteOption key={website} > {website}</AutoCompleteOption >
@@ -306,7 +309,7 @@ class OfferInfo extends Component {
                             </FormItem>
                           </div>
                           <div className="col-md-4">
-                            {salePriceDatesStart === '' ? <DatePicker
+                            {datePicker  ? <DatePicker
                               // defaultValue={moment(salePriceDatesStart, dateFormat)} format={dateFormat}
                               // initialValue= {moment(salePriceDatesStart, 'YYYY/MM/DD')}
                               onChange={(date, dateString) =>
@@ -331,7 +334,7 @@ class OfferInfo extends Component {
                             }
                           </div>
                           <div className="col-md-4">
-                            {salePriceDatesEnd === '' ?
+                            {datePicker ?
                               <DatePicker onChange={(date, dateString) =>
                                 this.onChange(date, dateString, 'salePriceDate2')} />
                               :
@@ -488,7 +491,7 @@ class OfferInfo extends Component {
                         </div>
                       </div>
                       <div className="col-md-8">
-                        {sellingDate === "" ?
+                        {datePicker ?
                           <FormItem>
                             <div>
                               <DatePicker onChange={(date, dateString) =>
@@ -525,7 +528,7 @@ class OfferInfo extends Component {
                         </div>
                       </div>
                       <div className="col-md-8">
-                        {restockDate === '' ?
+                        {datePicker  ?
                           <FormItem>
                             <div>
                               <DatePicker onChange={(date, dateString) =>
@@ -644,7 +647,7 @@ class OfferInfo extends Component {
                         </div>
                       </div>
                       <div className="col-md-8">
-                        {offering === '' ?
+                        {datePicker ?
                           <FormItem>
                             <div >
                               <DatePicker
@@ -656,7 +659,7 @@ class OfferInfo extends Component {
                           :
                           <FormItem>
                             {getFieldDecorator('offering', {
-                              initialValue: moment(offering || '', 'YYYY/MM/DD'),
+                              initialValue: moment(offering , 'YYYY/MM/DD'),
                               // rules: [{
                               //   required: true,
                               //   message: 'Please enter Sale Price',

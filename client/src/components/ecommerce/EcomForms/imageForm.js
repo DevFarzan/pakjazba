@@ -19,6 +19,7 @@ class ImageForm extends Component {
   };
 
   componentDidMount() {
+    const { fileList } = this.state;
     let data = this.props.data;
     console.log(data, 'images form')
     if (data) {
@@ -47,7 +48,12 @@ class ImageForm extends Component {
   }
 
   handleChange = ({ fileList }) => {
-    this.setState({ fileList, noChooseFile: true })
+    this.setState({ fileList
+      , noChooseFile: true })
+      // this.setState({
+      //   fileList: [...fileList, ...imageList]
+      //   , noChooseFile: true
+      // })
   }
 
   handleSubmit(e, key) {
@@ -107,9 +113,14 @@ class ImageForm extends Component {
   //-----------------cloudnary function end ------------------
 
   async postData(values, response, key) {
-    console.log(response, "response");
+    const {imageList} = this.state
+    // this.setState({
+    //   imageList: [...data.images,...response]
+    // })
+    let respons= [...imageList , ... response]
+    console.log(respons, "response");
 
-    this.props.handleProps({ images: response }, 'description');
+    this.props.handleProps({ images: respons }, 'description');
     this.props.desStates()
     if (key === 'submit') {
       this.setState({
@@ -148,13 +159,14 @@ class ImageForm extends Component {
     );
 
     const uploadedImages = (
-      <div style={{ display: 'flex' }}>
+      <div style={{ height: '100%' }}>
+
         {this.state.imageList.map((elem) => {
-          console.log(elem , 'elem')
+          console.log(elem, 'elem')
           return (
             <div className='insideDiv'>
               <a>
-                <img alt='img1' src={elem} />
+                <img alt='img1' src={elem} style={{ height: '100%' }} />
                 <span>
                   <a><Icon title='Preview file' onClick={() =>
                     this.handlePreview(elem)} type="eye" theme="outlined"
@@ -162,7 +174,7 @@ class ImageForm extends Component {
                       zIndex: 10, transition: 'all .3s', fontSize: '16px',
                       width: '30px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'
                     }} />
-      </a>
+                  </a>
                   <Icon title='Remove file' type='delete'
                     onClick={this.deleteImage.bind(this, elem)}
                     style={{
@@ -231,8 +243,7 @@ class ImageForm extends Component {
                                     onPreview={this.handlePreview}
                                     onChange={this.handleChange}
                                   >
-                                    {/* {this.state.imageList.length + fileList.length >= 3 ? null : uploadButton} */}
-                                    {this.state.imageList.length + fileList.length >= 3 ? null : uploadButton}
+                                    {this.state.imageList.length + fileList.length >= 6 ? null : uploadButton}
                                   </Upload>
                                   <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
                                     <img alt="example" style={{ width: '100%' }} src={previewImage} />
@@ -241,6 +252,26 @@ class ImageForm extends Component {
                                 </div>
                               )}
                             </FormItem>
+                            {/* <div className="panel panel-default">
+                              <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px' }}>
+                                <Icon type="info-circle" /><span
+                                  className="margin_font_location">Upload</span></div>
+                              <div className="panel-body">
+                                <Upload
+                                  action="//jsonplaceholder.typicode.com/posts/"
+                                  listType="picture-card"
+                                  fileList={fileList}
+                                  onPreview={this.handlePreview}
+                                  onChange={this.handleChange}
+                                >
+                                  {this.state.imageList.length + fileList.length >= 3 ? null : uploadButton}
+                                </Upload>
+                                <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+                                  <img alt="example" style={{ width: '100%' }} src={previewImage} />
+                                </Modal>
+                                {uploadedImages}
+                              </div>
+                            </div> */}
                           </div>
                           {noChooseFile ?
                             null

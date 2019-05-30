@@ -663,7 +663,7 @@ class Postroommates extends Component{
                                                 label="Date Range"
                                             >
                                                 {getFieldDecorator('dateRange', {
-                                                    // initialValue: [moment(this.state.dataStart), moment(this.state.dataEnd)],
+                                                    initialValue: [moment(this.state.dataStart), moment(this.state.dataEnd)],
                                                     rules: [{ validator: this.validateDate.bind(this) }],
                                                 })(
                                                     <RangePicker

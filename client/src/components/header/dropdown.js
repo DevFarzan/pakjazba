@@ -36,7 +36,7 @@ class Dropdowns extends Component{
         }
 
         const onClick = function ({ key }) {
-            console.log(key)
+            // console.log(key)
             let msg = '';
             if(key == 1){
                 msg = 'Profile'

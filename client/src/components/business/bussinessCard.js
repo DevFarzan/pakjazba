@@ -16,14 +16,16 @@ class BussinesCard extends Component{
             to = {pathname: `/detail_jobPortal`, state: {...cardDetails, sec: 'mainPart', user: true}};
         }else if(detail === 'eventPortalData'){
             to = {pathname: `/detail_eventPortal/${cardDetails.randomKey}`, state: cardDetails};
-        }else if(detail === 'ecommerceData'){
-            to = {pathname: `//${cardDetails.randomKey}`, state: cardDetails};
+        }else if(detail === 'ecommerce'){
+            to = {pathname: `/`, state: cardDetails};
         }
         return to;
     }
 
     render(){
         const { cardDetails, detail } = this.props;
+        console.log(cardDetails , 'cardDetails')
+        console.log(detail , 'detail')
         
         let src = cardDetails.imageurl && cardDetails.imageurl[0] || 
         cardDetails.businessImages && cardDetails.businessImages[0] || 
@@ -111,18 +113,18 @@ class BussinesCard extends Component{
                                 </span>
                             </p>
                         </span>}
-                        {/* {detail == 'ecommerceData' && <span>
+                        {detail == 'ecommerce' && <span>
                             <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}>
-                                {cardDetails.postingtitle}
+                                {cardDetails.product}
                             </p>
                             <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}>
-                                <b>{cardDetails.propertylocation.slice(0, 35)}</b>
-                                <br/>{'$' + cardDetails.rent + ' ' + cardDetails.pricemode}
+                                <b>{cardDetails.country}</b>
+                                <br/>{'$' + cardDetails.price }
                             </p>
                             <span>
                                
                             </span>
-                        </span>} */}
+                        </span>}
                     </div>
                 </div>
             </Link>

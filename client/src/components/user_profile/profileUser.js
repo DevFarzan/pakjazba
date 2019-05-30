@@ -312,8 +312,8 @@ class ProfileUser extends Component {
     }
 
     editBusiness = (e) => {
-        console.log(e ,'edit business');
-        console.log(e.route , 'show me the route')
+        // console.log(e ,'edit business');
+        // console.log(e.route , 'show me the route')
         if (e.route === "buySell") {
             this.setState({
                 buySell: true,
@@ -860,7 +860,7 @@ class ProfileUser extends Component {
                                                         <div className="index-content" style={{ marginTop: '20px' }}>
                                                             <div className="row">
                                                                 {listData4.length ? listData4.map((elem) => {
-                                                                    console.log(elem, 'elem')
+                                                                    // console.log(elem, 'elem')
                                                                     let img = elem.arr_url && elem.arr_url[0] || '../images/images.jpg';
                                                                     let title = elem.compName || ''
                                                                     let str = elem.compDescription || '';
@@ -902,7 +902,7 @@ class ProfileUser extends Component {
                                                         <div className="index-content" style={{ marginTop: '20px' }}>
                                                             <div className="row">
                                                                 {listData5.length ? listData5.map((elem) => {
-                                                                    console.log(elem , 'elemnt of the e comrece')
+                                                                    // console.log(elem , 'elemnt of the e comrece')
                                                                     let img = elem.images && elem.images[0] || '../images/images.jpg';
 
                                                                     let title = elem.product || ''

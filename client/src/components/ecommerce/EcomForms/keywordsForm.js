@@ -25,7 +25,7 @@ class KeywordsForm extends Component {
   componentDidMount() {
     let data = this.props.data;
     const { intendedUsekeyWords, targetAudience, subjectMatter } = this.state;
-    console.log(data, 'data in keyword')
+    // console.log(data, 'data in keyword')
     if (data) {
 
       for (var i = 0; i < data.IntendedUsekeyWords.length; i++) {

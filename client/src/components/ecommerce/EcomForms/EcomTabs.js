@@ -38,13 +38,13 @@ class EcomTabs extends Component {
     let { allTabs } = this.state;
     var user = JSON.parse(localStorage.getItem('user'));
     var updateData = localStorage.getItem('updateData');
-    console.log(updateData , 'local storage')
-    console.log(values, 'props value')
+    // console.log(updateData , 'local storage')
+    // console.log(values, 'props value')
 
     values.user_Id = user._id;
     values.profileId = user.profileId;
     if (updateData !== undefined && updateData !== 'undefined') {
-      console.log('insert obj id' , updateData.objectId)
+      // console.log('insert obj id' , updateData.objectId)
       var updateData = JSON.parse(localStorage.getItem('updateData'));
       values.objectId = updateData.objectId;
 
@@ -98,7 +98,7 @@ class EcomTabs extends Component {
     // })
     // console.log(data.objectId)
     // console.log(this.state.objectId, 'object id')
-    console.log(this.props.data, 'data in ecom tab')
+    // console.log(this.props.data, 'data in ecom tab')
     if (data) {
       data.objectId = data._id
       allTabs.length = 0

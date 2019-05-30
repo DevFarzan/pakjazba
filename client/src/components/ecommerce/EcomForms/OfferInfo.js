@@ -126,7 +126,7 @@ class OfferInfo extends Component {
       values.restockDate = restockDate;
       values.offering = offering;
     }
-    console.log(values, 'in the ofeering tab check for date values')
+    // console.log(values, 'in the ofeering tab check for date values')
 
     this.props.handleProps(values, 'images');
     this.props.imgStates();

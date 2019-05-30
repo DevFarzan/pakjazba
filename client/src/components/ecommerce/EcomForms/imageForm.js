@@ -21,7 +21,7 @@ class ImageForm extends Component {
   componentDidMount() {
     const { fileList } = this.state;
     let data = this.props.data;
-    console.log(data, 'images form')
+    // console.log(data, 'images form')
     if (data) {
       this.setState({
         imageList: data.images,
@@ -118,7 +118,7 @@ class ImageForm extends Component {
     //   imageList: [...data.images,...response]
     // })
     let respons= [...imageList , ... response]
-    console.log(respons, "response");
+    // console.log(respons, "response");
 
     this.props.handleProps({ images: respons }, 'description');
     this.props.desStates()
@@ -162,7 +162,7 @@ class ImageForm extends Component {
       <div style={{ height: '100%' }}>
 
         {this.state.imageList.map((elem) => {
-          console.log(elem, 'elem')
+          // console.log(elem, 'elem')
           return (
             <div className='insideDiv'>
               <a>

@@ -49,6 +49,12 @@ class EcomTabs extends Component {
     } else {
       values.objectId = this.state.objectId;
     }
+    // if (allTabs.includes('evitalInfo', "offerInfo", "images", "description", "keywords")) {
+    //   values.allTabs = allTabs;
+    // } else {
+    //   allTabs.push(key);
+    //   values.allTabs = allTabs;
+    // }
     allTabs.push(key);
     values.allTabs = allTabs;
     // console.log(values , 'add all tabs or not')
@@ -86,20 +92,20 @@ class EcomTabs extends Component {
     const { allTabs } = this.state
     let data = this.props.data;
     // this.setState({
-      //   objectId: data._id
-      // })
-      // console.log(data.objectId)
-      // console.log(this.state.objectId, 'object id')
-      console.log(this.props.data, 'data in ecom tab')
-      if (data) {
-        data.objectId = data._id
-        allTabs.length = 0
-        for (var i = 0; i < data.allTabs.length; i++) {
-          allTabs.push(data.allTabs[i])
-        }
-        this.setState({ allTabs: [...allTabs] })
+    //   objectId: data._id
+    // })
+    // console.log(data.objectId)
+    // console.log(this.state.objectId, 'object id')
+    console.log(this.props.data, 'data in ecom tab')
+    if (data) {
+      data.objectId = data._id
+      allTabs.length = 0
+      for (var i = 0; i < data.allTabs.length; i++) {
+        allTabs.push(data.allTabs[i])
       }
-      localStorage.setItem('updateData', JSON.stringify(data));
+      this.setState({ allTabs: [...allTabs] })
+    }
+    localStorage.setItem('updateData', JSON.stringify(data));
   }
 
   statusFormDraft = () => {

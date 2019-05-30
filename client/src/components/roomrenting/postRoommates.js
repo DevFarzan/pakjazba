@@ -227,6 +227,9 @@ class Postroommates extends Component{
         window.scrollTo(0,0);
         this.handleLocalStorage();
         let data = this.props.location.state;
+        // console.log(data.startdate , 'startdate')
+        // console.log(data.enddate , 'startdate')
+
         if(data) {
             this.setState({
                 dataState: [data.state],
@@ -660,7 +663,7 @@ class Postroommates extends Component{
                                                 label="Date Range"
                                             >
                                                 {getFieldDecorator('dateRange', {
-                                                    initialValue: [(this.state.dataStart), (this.state.dataEnd)],
+                                                    // initialValue: [moment(this.state.dataStart), moment(this.state.dataEnd)],
                                                     rules: [{ validator: this.validateDate.bind(this) }],
                                                 })(
                                                     <RangePicker

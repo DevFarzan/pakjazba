@@ -37,13 +37,15 @@ class EcomTabs extends Component {
   handleProps = async (values, key) => {
     let { allTabs } = this.state;
     var user = JSON.parse(localStorage.getItem('user'));
-    var updateData = JSON.parse(localStorage.getItem('updateData'));
-
+    var updateData = localStorage.getItem('updateData');
+    console.log(updateData , 'local storage')
     console.log(values, 'props value')
 
     values.user_Id = user._id;
     values.profileId = user.profileId;
-    if (updateData !== undefined) {
+    if (updateData !== undefined && updateData !== 'undefined') {
+      console.log('insert obj id' , updateData.objectId)
+      var updateData = JSON.parse(localStorage.getItem('updateData'));
       values.objectId = updateData.objectId;
 
     } else {

@@ -2053,10 +2053,9 @@ else if(ecommerceData.objectId != ''){
         {new: true}
     ).then(() => {
         postecommerce.find({"_id":ecommerceData.objectId},function (err, documents) {
-        res.send({ error: err, affected: documents });
+        res.send({ error: err, content: documents });
         //db.close();
     })
-
 
 
     }).catch(() => res.status(422).send({msg:'okay'}));

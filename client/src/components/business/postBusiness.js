@@ -18,7 +18,7 @@ import sha1 from "sha1";
 import superagent from "superagent";
 // import axios from "axios";
 import { Redirect } from 'react-router';
-import {HttpUtils} from '../../Services/HttpUtils';
+import { HttpUtils } from '../../Services/HttpUtils';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 import moment from 'moment';
 import stateCities from "../../lib/countrycitystatejson";
@@ -27,272 +27,272 @@ import stateCities from "../../lib/countrycitystatejson";
 const { TextArea } = Input;
 const FormItem = Form.Item
 const category = [{
-	value: 'Advertising Agency',
+    value: 'Advertising Agency',
     label: 'Advertising Agency'
-},{
+}, {
     value: 'Answering Service',
     label: 'Answering Service',
-},{
+}, {
     value: 'Audio Visual Equipment Hire',
     label: 'Audio Visual Equipment Hire',
-},{value:'Branding Consultant',label:'Branding Consultant'},{
-    value:'Business Advisor',
-    label:'Business Advisor',
-},{
-    value:'Business Consultant',
-    label:'Business Consultant',
-},{
-    label:'Business Franchise Consultant',
-    value:'Business Franchise Consultant',
-},{
-    label:'Business Training Service',
-    value:'Business Training Service',
-},{
-    value:'Car Body Shop',
-    label:'Car Body Shop',
-},{
-    value:'Car Detailer',
-    label:'Car Detailer',
-},{
-    value:'Car Sales Showroom',
-    label:'Car Sales Showroom',
-},{
-    value:'Caterer',
-    label:'Caterer',
-},{
-    value:'Charity',
-    label:'Charity',
-},{
-    value:'Chauffeur',
-    label:'Chauffeur',
-},{
-    value:'Chef',
-    label:'Chef',
-},{
-    value:'Clothing Supplier',
-    label:'Clothing Supplier',
-},{
-    value:'Computer Networks Installer',
-    label:'Computer Networks Installer',
-},{
-    value:'Computer Repair Centre',
-    label:'Computer Repair Centre',
-},{
-    value:'Computer Software Developer',
-    label:'Computer Software Developer',
-},{
-    value:'Computer Software Sales',
-    label:'Computer Software Sales',
-},{
-    value:'Computer Training Provider',
-    label:'Computer Training Provider',
-},{
-    value:'Concierge',
-    label:'Concierge',
-},{
-    value:'Copywriter',
-    label:'Copywriter',
-},{
-    value:'Courier',
-    label:'Courier',
-},{
-    value:'Custom Clothing Company',
-    label:'Custom Clothing Company',
-},{
-    value:'Data Cabling Installer',
-    label:'Data Cabling Installer',
-},{
-   value:'Detective Agency',
-   label:'Detective Agency'
-},{
-    value:'Email Marketing Service',
-    label:'Email Marketing Service',
-},{
-    value:'Executive Coach',
-    label:'Executive Coach',
-},{
-    value:'Fire Safety Training Provider',
-    label:'Fire Safety Training Provider',
-},{
-    value:'Furniture Shop',
-    label:'Furniture Shop',
-},{
-    value:'Graphic Designer',
-    label:'Graphic Designer',
-},{
-    value:'Hotel',
-    label:'Hotel',
-},{
-    value:'Human Resources Consultant',
-    label:'Human Resources Consultant',
-},{
-    value:'Illustrator',
-    label:'Illustrator',
-},{
-    value:'Information Technology Consultant',
-    label:'Information Technology Consultant',
-},{
-    value:'Internet Marketing Consultant',
-    label:'Internet Marketing Consultant',
-},{
-    value:'Internet Service Provider',
-    label:'Internet Service Provider',
-},{
-    value:'IT Support Services',
-    label:'IT Support Services',
-},{
-    value:'Language Tutor',
-    label:'Language Tutor',
-},{
-    value:'Leadership Development Consultant',
-    label:'Leadership Development Consultant',
-},{
-    value:'Limousine Service',
-    label:'Limousine Service',
-},{
-    value:'Local Magazine or Directory',
-    label:'Local Magazine or Directory',
-},{
-    value:'Mailing Service',
-    label:'Mailing Service',
-},{
-    value:'Management Consultant',
-    label:'Management Consultant',
-},{
-    value:'Market Research Agency',
-    label:'Market Research Agency',
-},{
-    value:'Marketing Consultant',
-    label:'Marketing Consultant',
-},{
-    value:'Mediation Service',
-    label:'Mediation Service',
-},{
-    value:'Mobile Phone Supplier',
-    label:'Mobile Phone Supplier',
-},{
-    value:'Office Equipment Leasing',
-    label:'Office Equipment Leasing',
-},{
-    value:'Office Furnisher',
-    label:'Office Furnisher',
-},{
-    value:'Office Machines Company',
-    label:'Office Machines Company',
-},{
-    value:'Office Products Supplier',
-    label:'Office Products Supplier',
-},{
-    value:'Personal Assistant',
-    label:'Personal Assistant',
-},{
-    value:'Printer',
-    label:'Printer',
-},{
-    value:'Printer Ink Cartridges Supplier',
-    label:'Printer Ink Cartridges Supplier',
-},{
-    value:'Professional Organiser',
-    label:'Professional Organiser',
-},{
-    value:'Professional Speaker',
-    label:'Professional Speaker',
-},{
-    value:'Promotional Goods Supplier',
-    label:'Promotional Goods Supplier',
-},{
-    value:'Public Relations Agency',
-    label:'Public Relations Agency',
-},{
-    value:'Public Speaking Coach',
-    label:'Public Speaking Coach',
-},{
-    value:'Publicist',
-    label:'Publicist',
-},{
-    value:'Radio Station',
-    label:'Radio Station',
-},{
-    value:'Recruitment Agency',
-    label:'Recruitment Agency',
-},{
-    value:'Restaurant',
-    label:'Restaurant',
-},{
-    value:'Sales Training Consultant',
-    label:'Sales Training Consultant',
-},{
-    value:'Search Engine Optimisation Consultant',
-    label:'Search Engine Optimisation Consultant',
-},{
-    value:'Security Guarding Agency',
-    label:'Security Guarding Agency',
-},{
-    value:'Security Personnel Agency',
-    label:'Security Personnel Agency',
-},{
-    value:'Shop Fitter',
-    label:'Shop Fitter',
-},{
-    value:'Sign Company',
-    label:'Sign Company',
-},{
-    value:'Social Media Marketing Agency',
-    label:'Social Media Marketing Agency',
-},{
-    value:'Solicitor',
-    label:'Solicitor',
-},{
-    value:'Storage Facility',
-    label:'Storage Facility',
-},{
-    value:'Tailor',
-    label:'Tailor',
-},{
-    value:'Taxi Service',
-    label:'Taxi Service',
-},{
-    value:'Telecommunications Service',
-    label:'Telecommunications Service',
-},{
-    value:'Telemarketing Service',
-    label:'Telemarketing Service',
-},{
-    value:'Tour Operator',
-    label:'Tour Operator',
-},{
-    value:'Translator',
-    label:'Translator',
-},{
-    value:'Trophie Supplier',
-    label:'Trophie Supplier',
-},{
-    value:'Utilities Broker',
-    label:'Utilities Broker',
-},{
-    value:'Vending Machine Supplier',
-    label:'Vending Machine Supplier',
-},{
-    value:'Video Production Service',
-    label:'Video Production Service',
-},{
-    value:'Virtual Assistant',
-    label:'Virtual Assistant',
-},{
-    value:'Water Cooler Supplier',
-    label:'Water Cooler Supplier',
-},{
-    value:'Web Designer',
-    label:'Web Designer',
-},{
-    value:'Web Developer',
-    label:'Web Developer',
-},{
-    value:'Web Hosting Provider',
-    label:'Web Hosting Provider',
-},{
-    value:'Writer',
-    label:'Writer',
+}, { value: 'Branding Consultant', label: 'Branding Consultant' }, {
+    value: 'Business Advisor',
+    label: 'Business Advisor',
+}, {
+    value: 'Business Consultant',
+    label: 'Business Consultant',
+}, {
+    label: 'Business Franchise Consultant',
+    value: 'Business Franchise Consultant',
+}, {
+    label: 'Business Training Service',
+    value: 'Business Training Service',
+}, {
+    value: 'Car Body Shop',
+    label: 'Car Body Shop',
+}, {
+    value: 'Car Detailer',
+    label: 'Car Detailer',
+}, {
+    value: 'Car Sales Showroom',
+    label: 'Car Sales Showroom',
+}, {
+    value: 'Caterer',
+    label: 'Caterer',
+}, {
+    value: 'Charity',
+    label: 'Charity',
+}, {
+    value: 'Chauffeur',
+    label: 'Chauffeur',
+}, {
+    value: 'Chef',
+    label: 'Chef',
+}, {
+    value: 'Clothing Supplier',
+    label: 'Clothing Supplier',
+}, {
+    value: 'Computer Networks Installer',
+    label: 'Computer Networks Installer',
+}, {
+    value: 'Computer Repair Centre',
+    label: 'Computer Repair Centre',
+}, {
+    value: 'Computer Software Developer',
+    label: 'Computer Software Developer',
+}, {
+    value: 'Computer Software Sales',
+    label: 'Computer Software Sales',
+}, {
+    value: 'Computer Training Provider',
+    label: 'Computer Training Provider',
+}, {
+    value: 'Concierge',
+    label: 'Concierge',
+}, {
+    value: 'Copywriter',
+    label: 'Copywriter',
+}, {
+    value: 'Courier',
+    label: 'Courier',
+}, {
+    value: 'Custom Clothing Company',
+    label: 'Custom Clothing Company',
+}, {
+    value: 'Data Cabling Installer',
+    label: 'Data Cabling Installer',
+}, {
+    value: 'Detective Agency',
+    label: 'Detective Agency'
+}, {
+    value: 'Email Marketing Service',
+    label: 'Email Marketing Service',
+}, {
+    value: 'Executive Coach',
+    label: 'Executive Coach',
+}, {
+    value: 'Fire Safety Training Provider',
+    label: 'Fire Safety Training Provider',
+}, {
+    value: 'Furniture Shop',
+    label: 'Furniture Shop',
+}, {
+    value: 'Graphic Designer',
+    label: 'Graphic Designer',
+}, {
+    value: 'Hotel',
+    label: 'Hotel',
+}, {
+    value: 'Human Resources Consultant',
+    label: 'Human Resources Consultant',
+}, {
+    value: 'Illustrator',
+    label: 'Illustrator',
+}, {
+    value: 'Information Technology Consultant',
+    label: 'Information Technology Consultant',
+}, {
+    value: 'Internet Marketing Consultant',
+    label: 'Internet Marketing Consultant',
+}, {
+    value: 'Internet Service Provider',
+    label: 'Internet Service Provider',
+}, {
+    value: 'IT Support Services',
+    label: 'IT Support Services',
+}, {
+    value: 'Language Tutor',
+    label: 'Language Tutor',
+}, {
+    value: 'Leadership Development Consultant',
+    label: 'Leadership Development Consultant',
+}, {
+    value: 'Limousine Service',
+    label: 'Limousine Service',
+}, {
+    value: 'Local Magazine or Directory',
+    label: 'Local Magazine or Directory',
+}, {
+    value: 'Mailing Service',
+    label: 'Mailing Service',
+}, {
+    value: 'Management Consultant',
+    label: 'Management Consultant',
+}, {
+    value: 'Market Research Agency',
+    label: 'Market Research Agency',
+}, {
+    value: 'Marketing Consultant',
+    label: 'Marketing Consultant',
+}, {
+    value: 'Mediation Service',
+    label: 'Mediation Service',
+}, {
+    value: 'Mobile Phone Supplier',
+    label: 'Mobile Phone Supplier',
+}, {
+    value: 'Office Equipment Leasing',
+    label: 'Office Equipment Leasing',
+}, {
+    value: 'Office Furnisher',
+    label: 'Office Furnisher',
+}, {
+    value: 'Office Machines Company',
+    label: 'Office Machines Company',
+}, {
+    value: 'Office Products Supplier',
+    label: 'Office Products Supplier',
+}, {
+    value: 'Personal Assistant',
+    label: 'Personal Assistant',
+}, {
+    value: 'Printer',
+    label: 'Printer',
+}, {
+    value: 'Printer Ink Cartridges Supplier',
+    label: 'Printer Ink Cartridges Supplier',
+}, {
+    value: 'Professional Organiser',
+    label: 'Professional Organiser',
+}, {
+    value: 'Professional Speaker',
+    label: 'Professional Speaker',
+}, {
+    value: 'Promotional Goods Supplier',
+    label: 'Promotional Goods Supplier',
+}, {
+    value: 'Public Relations Agency',
+    label: 'Public Relations Agency',
+}, {
+    value: 'Public Speaking Coach',
+    label: 'Public Speaking Coach',
+}, {
+    value: 'Publicist',
+    label: 'Publicist',
+}, {
+    value: 'Radio Station',
+    label: 'Radio Station',
+}, {
+    value: 'Recruitment Agency',
+    label: 'Recruitment Agency',
+}, {
+    value: 'Restaurant',
+    label: 'Restaurant',
+}, {
+    value: 'Sales Training Consultant',
+    label: 'Sales Training Consultant',
+}, {
+    value: 'Search Engine Optimisation Consultant',
+    label: 'Search Engine Optimisation Consultant',
+}, {
+    value: 'Security Guarding Agency',
+    label: 'Security Guarding Agency',
+}, {
+    value: 'Security Personnel Agency',
+    label: 'Security Personnel Agency',
+}, {
+    value: 'Shop Fitter',
+    label: 'Shop Fitter',
+}, {
+    value: 'Sign Company',
+    label: 'Sign Company',
+}, {
+    value: 'Social Media Marketing Agency',
+    label: 'Social Media Marketing Agency',
+}, {
+    value: 'Solicitor',
+    label: 'Solicitor',
+}, {
+    value: 'Storage Facility',
+    label: 'Storage Facility',
+}, {
+    value: 'Tailor',
+    label: 'Tailor',
+}, {
+    value: 'Taxi Service',
+    label: 'Taxi Service',
+}, {
+    value: 'Telecommunications Service',
+    label: 'Telecommunications Service',
+}, {
+    value: 'Telemarketing Service',
+    label: 'Telemarketing Service',
+}, {
+    value: 'Tour Operator',
+    label: 'Tour Operator',
+}, {
+    value: 'Translator',
+    label: 'Translator',
+}, {
+    value: 'Trophie Supplier',
+    label: 'Trophie Supplier',
+}, {
+    value: 'Utilities Broker',
+    label: 'Utilities Broker',
+}, {
+    value: 'Vending Machine Supplier',
+    label: 'Vending Machine Supplier',
+}, {
+    value: 'Video Production Service',
+    label: 'Video Production Service',
+}, {
+    value: 'Virtual Assistant',
+    label: 'Virtual Assistant',
+}, {
+    value: 'Water Cooler Supplier',
+    label: 'Water Cooler Supplier',
+}, {
+    value: 'Web Designer',
+    label: 'Web Designer',
+}, {
+    value: 'Web Developer',
+    label: 'Web Developer',
+}, {
+    value: 'Web Hosting Provider',
+    label: 'Web Hosting Provider',
+}, {
+    value: 'Writer',
+    label: 'Writer',
 }];
 
 class Postbusiness extends Component {
@@ -324,11 +324,11 @@ class Postbusiness extends Component {
         };
     }
 
-    componentDidMount(){
-        window.scrollTo(0,0);
+    componentDidMount() {
+        window.scrollTo(0, 0);
         this.handleLocalStorage();
         let data = this.props.location.state;
-        if(data) {
+        if (data) {
             this.setState({
                 dataAddress: data.address,
                 dataCity: [data.city],
@@ -355,13 +355,13 @@ class Postbusiness extends Component {
         }
     }
 
-    deleteImage(e){
+    deleteImage(e) {
         let { imageList } = this.state;
         imageList = imageList.filter((elem) => elem !== e)
-        this.setState({imageList: imageList})
+        this.setState({ imageList: imageList })
     }
 
-    handleLocalStorage = () =>{
+    handleLocalStorage = () => {
         let states = stateCities.getStatesByShort('US');
         states = states.map((elem) => {
             return {
@@ -372,7 +372,7 @@ class Postbusiness extends Component {
         AsyncStorage.getItem('user')
             .then((obj) => {
                 let userObj = JSON.parse(obj)
-                if(!!userObj) {
+                if (!!userObj) {
                     this.setState({
                         userId: userObj._id,
                         profileId: userObj.profileId,
@@ -437,7 +437,7 @@ class Postbusiness extends Component {
     }
 
     handleChange = ({ fileList }) => {
-        this.setState({fileList})
+        this.setState({ fileList })
     }
     //--------------upload functions end ---------------------
 
@@ -450,58 +450,58 @@ class Postbusiness extends Component {
     //     const paramsStr = 'timestamp='+timestamp+'&public_id='+publicId+'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
     //     const signature = sha1(paramsStr)
     //     console.log(signature.toString(),' signatureeeeeeeeeeee')
-        // const signature = "f32d42d4c15b560b49ead0878aaefb71016ca04d"
-        // const params = {
-        //     'api_key':'878178936665133',
-        //     'timestamp':timestamp,
-        //     'public_id':publicId,
-        //     'signature':signature.toString()
-        // }
+    // const signature = "f32d42d4c15b560b49ead0878aaefb71016ca04d"
+    // const params = {
+    //     'api_key':'878178936665133',
+    //     'timestamp':timestamp,
+    //     'public_id':publicId,
+    //     'signature':signature.toString()
+    // }
 
-        // axios.post('https://api.cloudinary.com/v1_1/'+cloudName+'/image/destroy?'+'public_id='+publicId+'&timestamp='+timestamp+'&api_key=878178936665133'+'&signature='+signature,{}).then((res) => {
-        //     console.log(res, 'resssssssssss')
-        // }).catch((err) => {
-        //     console.log(err, 'errrrrrrrrrr')
-        // })
+    // axios.post('https://api.cloudinary.com/v1_1/'+cloudName+'/image/destroy?'+'public_id='+publicId+'&timestamp='+timestamp+'&api_key=878178936665133'+'&signature='+signature,{}).then((res) => {
+    //     console.log(res, 'resssssssssss')
+    // }).catch((err) => {
+    //     console.log(err, 'errrrrrrrrrr')
+    // })
 
-        // let deleteRequest = superagent.post(url)
-        // console.log(deleteRequest, 'urlllllllll')
-        // Object.keys(params).forEach((key) =>{
-        //     deleteRequest.field(key, params[key])
-        // })
-        // deleteRequest.end((err, resp) =>{
-        //     console.log(err, 'errrrrrrrrrr')
-        //     console.log(resp, 'respppppppp')
-        //     err ? rej(err) : res(resp);
-        // })
+    // let deleteRequest = superagent.post(url)
+    // console.log(deleteRequest, 'urlllllllll')
+    // Object.keys(params).forEach((key) =>{
+    //     deleteRequest.field(key, params[key])
+    // })
+    // deleteRequest.end((err, resp) =>{
+    //     console.log(err, 'errrrrrrrrrr')
+    //     console.log(resp, 'respppppppp')
+    //     err ? rej(err) : res(resp);
+    // })
 
     // }
     //--------------delete uploaded image end-------------------
 
     //--------------function for cloudnary url ---------------
-    uploadFile = (files) =>{
+    uploadFile = (files) => {
         const image = files.originFileObj
         const cloudName = 'dxk0bmtei'
-        const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/upload'
-        const timestamp = Date.now()/1000
+        const url = 'https://api.cloudinary.com/v1_1/' + cloudName + '/image/upload'
+        const timestamp = Date.now() / 1000
         const uploadPreset = 'toh6r3p2'
-        const paramsStr = 'timestamp='+timestamp+'&upload_preset='+uploadPreset+'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
+        const paramsStr = 'timestamp=' + timestamp + '&upload_preset=' + uploadPreset + 'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
         const signature = sha1(paramsStr)
         const params = {
-            'api_key':'878178936665133',
-            'timestamp':timestamp,
-            'upload_preset':uploadPreset,
-            'signature':signature
+            'api_key': '878178936665133',
+            'timestamp': timestamp,
+            'upload_preset': uploadPreset,
+            'signature': signature
         }
 
         return new Promise((res, rej) => {
             let uploadRequest = superagent.post(url)
             uploadRequest.attach('file', image)
-            Object.keys(params).forEach((key) =>{
+            Object.keys(params).forEach((key) => {
                 uploadRequest.field(key, params[key])
             })
 
-            uploadRequest.end((err, resp) =>{
+            uploadRequest.end((err, resp) => {
                 err ? rej(err) : res(resp);
             })
         })
@@ -514,7 +514,7 @@ class Postbusiness extends Component {
         const { fileList } = this.state;
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                this.setState({loader: true})
+                this.setState({ loader: true })
                 if (fileList.length) {
                     this.postDataWithURL(values)
                 } else {
@@ -524,25 +524,25 @@ class Postbusiness extends Component {
         })
     }
 
-    onChangeSocial(e){
+    onChangeSocial(e) {
         let target = e.target.id;
         let value = e.target.value;
-        if(target === 'socFac'){
+        if (target === 'socFac') {
             this.setState({
                 socFac: value
             })
-        }else if(target === 'socGoo'){
+        } else if (target === 'socGoo') {
             this.setState({
                 socGoo: value
             })
-        }else if(target === 'socLin'){
+        } else if (target === 'socLin') {
             this.setState({
                 socLin: value
             })
         }
     }
 
-    async postDataWithURL(values){
+    async postDataWithURL(values) {
         const { fileList } = this.state;
 
         Promise.all(fileList.map((val) => {
@@ -554,7 +554,7 @@ class Postbusiness extends Component {
         })
     }
 
-    validateTime(rule, value, callback){
+    validateTime(rule, value, callback) {
         if (!(!!value)) {
             callback('Please select your Time!');
         } else {
@@ -562,16 +562,17 @@ class Postbusiness extends Component {
         }
     }
 
-    validateNumber(rule, value, callback){
-        if(isNaN(value)){
+    validateNumber(rule, value, callback) {
+        if (isNaN(value)) {
             callback('Please type Numbers');
-        }else {
+        } else {
             callback()
         }
     }
 
-    async postData(values, response){
+    async postData(values, response) {
         const { userId, socLin, socGoo, socFac, profileId, openingTime, closingTime, objectId, imageList } = this.state;
+        console.log(values , 'in busines');
         let obj = {
             user_id: userId,
             profileId: profileId,
@@ -581,8 +582,8 @@ class Postbusiness extends Component {
             businessEmail: values.businessEmail,
             businessId: values.businessId,
             businessName: values.businessName,
-            firstName:values.firstName,
-            lastName:values.lastName,
+            firstName: values.firstName,
+            lastName: values.lastName,
             businessNumber: values.businessNumber,
             businessOwner: values.businessOwner,
             description: values.description,
@@ -599,7 +600,7 @@ class Postbusiness extends Component {
             posted: moment().format('LL')
         }
         let req = await HttpUtils.post('postbusinessdata', obj)
-        if(req.code === 200){
+        if (req.code === 200) {
             this.props.form.resetFields();
             this.openNotification()
             this.setState({
@@ -615,13 +616,13 @@ class Postbusiness extends Component {
         }
     }
 
-    onOpeningTime(time, timeString){
+    onOpeningTime(time, timeString) {
         this.setState({
             openingTime: timeString,
         })
     }
 
-    onClosingTime(time, timeString){
+    onClosingTime(time, timeString) {
         this.setState({
             closingTime: timeString,
         })
@@ -650,8 +651,8 @@ class Postbusiness extends Component {
     }
 
     checkValue(rule, value, callback) {
-        if(value){
-            this.setState({desLength: value.length && value.length})
+        if (value) {
+            this.setState({ desLength: value.length && value.length })
             callback();
         }
         else {
@@ -662,23 +663,35 @@ class Postbusiness extends Component {
 
     render() {
         const { previewVisible, previewImage, fileList, desLength, socFac, socGoo, socLin, statesUS, citiesUS, objData } = this.state;
-        const {getFieldDecorator} = this.props.form;
+        const { getFieldDecorator } = this.props.form;
 
         if (this.state.msg === true) {
-            return <Redirect to={{pathname: '/detail_business', state: objData}} />
+            return <Redirect to={{ pathname: '/detail_business', state: objData }} />
         }
 
         const uploadedImages = (
-            <div style={{display: 'flex'}}>
+            <div style={{ display: 'flex' }}>
                 {this.state.imageList.map((elem) => {
-                    return(
+                    console.log(elem, 'elem in businees')
+                    return (
                         <div className='insideDiv'>
                             <a>
-                            <img alt='img1' src={elem} />
-                            <span>
-                                <a><Icon title='Preview file' onClick={() => this.handlePreview(elem)} type="eye" theme="outlined" style={{zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'}} /></a>
-                                <Icon title='Remove file' type='delete' onClick={this.deleteImage.bind(this, elem)} style={{zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'}}/>
-                            </span>
+                                <img alt='img1' src={elem} />
+                                <span>
+                                    <a><Icon title='Preview file'
+                                        onClick={() => this.handlePreview(elem)} type="eye" theme="outlined"
+                                        style={{
+                                            zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px',
+                                            color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'
+                                        }} />
+                                    </a>
+                                    <Icon title='Remove file' type='delete'
+                                        onClick={this.deleteImage.bind(this, elem)}
+                                        style={{
+                                            zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px',
+                                            color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'
+                                        }} />
+                                </span>
                             </a>
                         </div>
                     )
@@ -701,48 +714,48 @@ class Postbusiness extends Component {
 
         const formItemLayout = {
             labelCol: {
-            	md:{span:6},
-                xs: {span: 24},
-                sm: {span: 5},
+                md: { span: 6 },
+                xs: { span: 24 },
+                sm: { span: 5 },
             },
             wrapperCol: {
-            	md:{span:12},
-                xs: {span: 24},
-                sm: {span: 16},
+                md: { span: 12 },
+                xs: { span: 24 },
+                sm: { span: 16 },
             },
         };
 
         return (
             <div>
                 {/*================================App component include Start===========================*/}
-                <Burgermenu/>
+                <Burgermenu />
                 {/*================================post business form start============================*/}
-                <div className="hidden-xs" style={{width:"100%",height:"67px",marginTop:"3px"}}></div>
+                <div className="hidden-xs" style={{ width: "100%", height: "67px", marginTop: "3px" }}></div>
                 <div className="">
                     <Form onSubmit={this.handleSubmit} className="login-form">
-                        <div className="panel-group" style={{paddingTop:"37px"}}>
+                        <div className="panel-group" style={{ paddingTop: "37px" }}>
                             <div className="panel panel-default">
-                                <div className="main_c_panel" style={{backgroundColor:'#37a99b',color:'white',textAlign:'center'}}>Submit your Business<br/>
+                                <div className="main_c_panel" style={{ backgroundColor: '#37a99b', color: 'white', textAlign: 'center' }}>Submit your Business<br />
 
                                 </div>
                                 <div className="panel-body">
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
                                     <div className="panel panel-default" >
-                                        <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}><Icon type="info-circle"/><span
+                                        <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}><Icon type="info-circle" /><span
                                             className="margin_font_location">Location</span></div>
                                         <div className="panel-body">
-											<FormItem
+                                            <FormItem
                                                 {...formItemLayout}
-												label="Address"
-											>
-                                            {getFieldDecorator('address', {
-                                                initialValue: this.state.dataAddress,
-                                                rules: [{ required: true, message: 'Please input your Address!', whitespace: true }],
-                                            })(
-                                                <Input  />
-                                            )}
-                                        	</FormItem>
+                                                label="Address"
+                                            >
+                                                {getFieldDecorator('address', {
+                                                    initialValue: this.state.dataAddress,
+                                                    rules: [{ required: true, message: 'Please input your Address!', whitespace: true }],
+                                                })(
+                                                    <Input />
+                                                )}
+                                            </FormItem>
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="State"
@@ -751,7 +764,7 @@ class Postbusiness extends Component {
                                                     initialValue: this.state.dataState,
                                                     rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
                                                 })(
-                                                    <Cascader options={statesUS} onChange={this.onChangeCat.bind(this)} showSearch={{ filter }}/>
+                                                    <Cascader options={statesUS} onChange={this.onChangeCat.bind(this)} showSearch={{ filter }} />
                                                 )}
                                             </FormItem>
                                             <FormItem
@@ -762,30 +775,30 @@ class Postbusiness extends Component {
                                                     initialValue: this.state.dataCity,
                                                     rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
                                                 })(
-                                                    <Cascader options={citiesUS} showSearch={{ filter }}/>
+                                                    <Cascader options={citiesUS} showSearch={{ filter }} />
                                                 )}
                                             </FormItem>
-											<FormItem
+                                            <FormItem
                                                 {...formItemLayout}
-												label="Zip"
-											>
-                                            {getFieldDecorator('zip', {
-                                                initialValue: this.state.dataZip,
-                                                rules: [{ required: true, message: 'Please input your Zip!', whitespace: true }],
-                                            })(
-                                                <Input  />
-                                            )}
-                                        	</FormItem>
-										</div>
+                                                label="Zip"
+                                            >
+                                                {getFieldDecorator('zip', {
+                                                    initialValue: this.state.dataZip,
+                                                    rules: [{ required: true, message: 'Please input your Zip!', whitespace: true }],
+                                                })(
+                                                    <Input />
+                                                )}
+                                            </FormItem>
+                                        </div>
                                     </div>
-                                    <br/>
+                                    <br />
                                     {/*==========location panel end===========*/}
                                     {/*==========Business panel start=========*/}
                                     <div className="panel panel-default">
-                                        <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}><Icon type="info-circle"/><span
+                                        <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}><Icon type="info-circle" /><span
                                             className="margin_font_location">Business</span></div>
                                         <div className="panel-body">
-                                        <FormItem
+                                            <FormItem
                                                 {...formItemLayout}
                                                 label="First Name"
                                             >
@@ -793,7 +806,7 @@ class Postbusiness extends Component {
                                                     initialValue: this.state.dataFname,
                                                     rules: [{ required: true, message: 'Please input your  First Name!', whitespace: true }],
                                                 })(
-                                                    <Input  />
+                                                    <Input />
                                                 )}
                                             </FormItem>
                                             <FormItem
@@ -804,7 +817,7 @@ class Postbusiness extends Component {
                                                     initialValue: this.state.dataLname,
                                                     rules: [{ required: true, message: 'Please input your Last Name!', whitespace: true }],
                                                 })(
-                                                    <Input  />
+                                                    <Input />
                                                 )}
                                             </FormItem>
                                             <FormItem
@@ -814,15 +827,15 @@ class Postbusiness extends Component {
                                                 {getFieldDecorator('businessName', {
                                                     initialValue: this.state.dataBname,
                                                     rules: [
-                                                    { required: true, message: 'Please input your Business Name!', whitespace: true },
+                                                        { required: true, message: 'Please input your Business Name!', whitespace: true },
                                                     ],
                                                 })(
-                                                    <Input  />
+                                                    <Input />
                                                 )}
                                             </FormItem>
                                             <div className='row'>
                                                 <div className="col-md-3">
-                                                    <label htmlFor="email" style={{fontColor: 'black', float: 'right'}}>Opening & closing Time:</label>
+                                                    <label htmlFor="email" style={{ fontColor: 'black', float: 'right' }}>Opening & closing Time:</label>
                                                 </div>
                                                 <div className="col-md-3">
                                                     <FormItem>
@@ -830,7 +843,7 @@ class Postbusiness extends Component {
                                                             initialValue: moment(this.state.dataOtime, 'HH:mm:ss'),
                                                             rules: [{ validator: this.validateTime.bind(this) }],
                                                         })(
-                                                            <TimePicker placeholder="Opening Time"  onChange={this.onOpeningTime.bind(this)} />
+                                                            <TimePicker placeholder="Opening Time" onChange={this.onOpeningTime.bind(this)} />
                                                         )}
                                                     </FormItem>
                                                 </div>
@@ -853,9 +866,9 @@ class Postbusiness extends Component {
                                                 {getFieldDecorator('businessNumber', {
                                                     initialValue: this.state.dataBnumber,
                                                     rules: [{ required: true, message: 'Please input your Business Number!', whitespace: true },
-                                                            { validator: this.validateNumber.bind(this) }]
+                                                    { validator: this.validateNumber.bind(this) }]
                                                 })(
-                                                    <Input  />
+                                                    <Input />
                                                 )}
                                             </FormItem>
                                             <FormItem
@@ -865,9 +878,9 @@ class Postbusiness extends Component {
                                                 {getFieldDecorator('businessId', {
                                                     initialValue: this.state.dataBemailId,
                                                     rules: [{ required: true, message: 'Please input your Business Email id!', whitespace: true },
-                                                            {type: 'email', message: 'The input is not valid E-mail!'}]
+                                                    { type: 'email', message: 'The input is not valid E-mail!' }]
                                                 })(
-                                                    <Input  />
+                                                    <Input />
                                                 )}
                                             </FormItem>
                                             <FormItem
@@ -878,10 +891,10 @@ class Postbusiness extends Component {
                                                     initialValue: this.state.dataBaddress,
                                                     rules: [{ required: true, message: 'Please input your Business Address!', whitespace: true }],
                                                 })(
-                                                    <Input  />
+                                                    <Input />
                                                 )}
                                             </FormItem>
-											<FormItem
+                                            <FormItem
                                                 {...formItemLayout}
                                                 label="Business Owner Name"
                                             >
@@ -889,21 +902,21 @@ class Postbusiness extends Component {
                                                     initialValue: this.state.dataBOwnernamae,
                                                     rules: [{ required: true, message: 'Please input your Business Owner Name!', whitespace: true }],
                                                 })(
-                                                    <Input  />
+                                                    <Input />
                                                 )}
                                             </FormItem>
-											<FormItem
+                                            <FormItem
                                                 {...formItemLayout}
                                                 label="Business Email"
                                             >
                                                 {getFieldDecorator('businessEmail', {
                                                     initialValue: this.state.dataBemail,
                                                     rules: [
-                                                    	{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true },
-														{ required: true, message: 'Please input your E-mail!',}
-														],
+                                                        { type: 'email', message: 'The input is not valid E-mail!', whitespace: true },
+                                                        { required: true, message: 'Please input your E-mail!', }
+                                                    ],
                                                 })(
-                                                    <Input  />
+                                                    <Input />
                                                 )}
                                             </FormItem>
                                             <FormItem
@@ -914,7 +927,7 @@ class Postbusiness extends Component {
                                                     initialValue: this.state.dataCategory,
                                                     rules: [{ type: 'array', required: true, message: 'Please select your Business Category!' }],
                                                 })(
-                                                    <Cascader options={category} showSearch={{ filter }}/>
+                                                    <Cascader options={category} showSearch={{ filter }} />
                                                 )}
                                             </FormItem>
                                             <FormItem
@@ -931,7 +944,7 @@ class Postbusiness extends Component {
                                                             validator: this.checkValue.bind(this)
                                                         }],
                                                 })(
-                                                    <TextArea style={{"marginBottom": "12px"}}
+                                                    <TextArea style={{ "marginBottom": "12px" }}
                                                         rows={6}
                                                         maxLength="500"
                                                     />
@@ -939,20 +952,20 @@ class Postbusiness extends Component {
                                                 <br /><br />
                                                 <span className="text-area_business">{500 - desLength} Words</span>
                                             </FormItem>
-										</div>
+                                        </div>
                                     </div>
-                                    <br/>
+                                    <br />
                                     {/*==========Business panel end===========*/}
                                     {/*==========social links box start===========*/}
-                                        <div className="panel panel-default">
-                                        <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}><Icon type="info-circle"/><span
+                                    <div className="panel panel-default">
+                                        <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}><Icon type="info-circle" /><span
                                             className="margin_font_location">Social Links</span></div>
                                         <div className="panel-body">
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Facebook"
                                             >
-                                                <Input id='socFac' value={socFac} onChange={this.onChangeSocial.bind(this)}/>
+                                                <Input id='socFac' value={socFac} onChange={this.onChangeSocial.bind(this)} />
                                             </FormItem>
                                             <FormItem
                                                 {...formItemLayout}
@@ -971,7 +984,8 @@ class Postbusiness extends Component {
                                     {/*==========social links box end===========*/}
                                     {/*==========upload panel start=========*/}
                                     <div className="panel panel-default">
-                                        <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px'}}><Icon type="info-circle"/><span
+                                        <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px' }}>
+                                            <Icon type="info-circle" /><span
                                             className="margin_font_location">Upload</span></div>
                                         <div className="panel-body">
                                             <Upload
@@ -993,7 +1007,7 @@ class Postbusiness extends Component {
                                 </div>
                                 <div className="row center_global">
                                     {this.state.loader && <Spin indicator={antIcon} />}
-                                    <button disabled={!!this.state.loader} className="btn color_button" style={{width:'19%'}}>Submit</button>
+                                    <button disabled={!!this.state.loader} className="btn color_button" style={{ width: '19%' }}>Submit</button>
                                 </div>
                                 {/*main panel content*/}
                             </div>
@@ -1018,7 +1032,7 @@ export default WrappedRegistrationForm;
 //     {label: 'Tokyo', location: {lat: 35.673343, lng: 139.710388}}
 // ];
 
-{/*<Geosuggest*/}
+{/*<Geosuggest*/ }
 // fixtures={fixtures}
 // onFocus={this.onFocus}
 // onBlur={this.onBlur}

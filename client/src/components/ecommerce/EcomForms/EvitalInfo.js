@@ -78,7 +78,7 @@ class VitalInfo extends Component {
   }
 
   handleSelectChange = (value) => {
-    console.log(value);
+    // console.log(value);
     this.props.form.setFieldsValue({
       note: `Hi, ${value === 'bundle' ? 'part' : 'preorder'}!`,
     });

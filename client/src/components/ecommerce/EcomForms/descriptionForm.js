@@ -9,34 +9,46 @@ class DescriptionForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      herfSec: ''
+      herfSec: '',
+      productFeature: '',
+      description: ''
     }
   }
 
-  handleSubmit (e , key){
+  componentDidMount() {
+    let data = this.props.data;
+    if (data) {
+      this.setState({
+        productFeature: data.productFeature,
+        description: data.description
+      })
+    }
+  }
+
+  handleSubmit(e, key) {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         if (this.state.herfSec === '') {
-          this.props.handleProps(values , 'keywords')
-          this.props.keywordStates() 
+          this.props.handleProps(values, 'keywords')
+          this.props.keywordStates()
           if (key === 'submit') {
             this.setState({
               herfSec: '#Section5'
             },
-            () => {
-              document.getElementById('descForm').click();
-            })
-          let msg = 'Your description Form is submited successfully, Kindly fill next form'
-          this.openNotification(msg)
-        }
-        else if (key === 'draft') {
-          let msg = 'Your description Form is saved successfully.'
-          this.openNotification(msg)
+              () => {
+                document.getElementById('descForm').click();
+              })
+            let msg = 'Your description Form is submited successfully, Kindly fill next form'
+            this.openNotification(msg)
+          }
+          else if (key === 'draft') {
+            let msg = 'Your description Form is saved successfully.'
+            this.openNotification(msg)
+          }
         }
       }
-    }
-      console.log('Received values of form: ', values);
+      // console.log('Received values of form: ', values);
     });
   }
 
@@ -80,6 +92,7 @@ class DescriptionForm extends Component {
                     <div className="col-md-7">
                       <FormItem>
                         {getFieldDecorator('productFeature', {
+                          initialValue: this.state.productFeature,
                           rules: [{
                             required: false,
                             message: 'Please enter Product Feature',
@@ -104,6 +117,7 @@ class DescriptionForm extends Component {
                     <div className="col-md-7">
                       <FormItem>
                         {getFieldDecorator('description', {
+                          initialValue: this.state.description,
                           rules: [{
                             required: false,
                             message: 'Please enter description',

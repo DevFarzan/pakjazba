@@ -2051,8 +2051,8 @@ else if(ecommerceData.objectId != ''){
         {"_id":ecommerceData.objectId},
         {$set: _.omit(ecommerceData, '_id')},
         {multi:true}
-    )
-        /*postecommerce.find({_id:ecommerceData.objectId},function(err,updateddata){
+    ).then(() => {
+        postecommerce.find({_id:ecommerceData.objectId},function(err,updateddata){
           if(err){
             res.send({
               code:404,
@@ -2066,23 +2066,9 @@ else if(ecommerceData.objectId != ''){
                 content:updateddata
             });
           }
-        })*/
-
-    postecommerce.find({"_id":ecommerceData.objectId},function(err,data){
-      if(err){
-        res.send({
-          code:404,
-          msg:'No record updated some internal server error'
         })
-      }
-      else if(data){
-        res.send({
-            code:200,
-            data:'data updated successfully',
-            content:data
-        });
-      }
-    })
+
+    }).catch(() => res.status(422).send({msg:'okay'}));
 }
 
 })

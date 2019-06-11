@@ -65,6 +65,7 @@ class KeywordsForm extends Component {
           let msg = 'Your keyword & product detail is saved successfully.'
           this.openNotification(msg)
         }
+        this.props.redirectPage();
       }
     });
   }
@@ -73,6 +74,7 @@ class KeywordsForm extends Component {
       message: 'Success ',
       description: mgs,
     });
+    
   };
 
   onChange = (e) => {

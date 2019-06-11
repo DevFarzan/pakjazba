@@ -919,7 +919,7 @@ class ProfileUser extends Component {
                                                                             }}>
                                                                             <div className="card">
                                                                                 <Link to={{
-                                                                                    pathname: `/Forms_Ecommerce`,
+                                                                                    pathname: `/products_DetailStyle`,
                                                                                     state: elem
                                                                                 }}>
                                                                                     <img alt='' src={img} />

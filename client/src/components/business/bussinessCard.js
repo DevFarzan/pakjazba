@@ -17,7 +17,7 @@ class BussinesCard extends Component{
         }else if(detail === 'eventPortalData'){
             to = {pathname: `/detail_eventPortal/${cardDetails.randomKey}`, state: cardDetails};
         }else if(detail === 'ecommerce'){
-            to = {pathname: `/`, state: cardDetails};
+            to = {pathname: `/products_DetailStyle`, state: cardDetails};
         }
         return to;
     }
@@ -60,6 +60,18 @@ class BussinesCard extends Component{
                                 <span style={{color:"black"}}>{locate}</span>
                             </p>
                         </span>}
+                        {/* {detail == 'ecommerce' && <span>
+                            <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}>
+                                {cardDetails.product}
+                            </p>
+                            <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}>
+                                <b>{cardDetails.country}</b>
+                                <br/>{'$' + cardDetails.price }
+                            </p>
+                            <span>
+                               
+                            </span>
+                        </span>} */}
                         {detail == 'roomRentData' && <span>
                             <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}>
                                 {cardDetails.postingtitle}

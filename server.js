@@ -2056,13 +2056,10 @@ else if(ecommerceData.objectId != ''){
         res.send({ error: err, affected: documents });
         //db.close();
     })
-<<<<<<< HEAD
+
 
 
     }).catch(() => res.status(422).send({msg:'okay'}));
-=======
-            }).catch(() => res.status(422).send({msg:'okay'}));
->>>>>>> 9f24382dd4654005fbfafd0a1e63e9489edad0d4
 }
 
 })

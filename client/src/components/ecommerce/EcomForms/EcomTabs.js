@@ -7,6 +7,8 @@ import KeywordsForm from './keywordsForm';
 import './ecomtabs.css';
 import { Tabs, Radio } from 'antd';
 import { HttpUtils } from '../../../Services/HttpUtils';
+import { Redirect } from 'react-router';
+
 
 const TabPane = Tabs.TabPane;
 var steps = 1
@@ -28,8 +30,9 @@ class EcomTabs extends Component {
       objectId: '',
       // allTabs: ['evitalInfo'],
       allTabs: ['evitalInfo',],
-
+      msg: false,
       isData: true,
+      objData: {}
       // data: {},
     };
   }
@@ -68,22 +71,22 @@ class EcomTabs extends Component {
       values.status = this.state.submitStatus
     }
 
-    let req = await HttpUtils.post('postecommercedata', values)
-    console.log(req)
-
-    if (req.code === 200) {
+    let responseEcommreceData = await HttpUtils.post('postecommercedata', values)
+    console.log(responseEcommreceData)
+    // let obj = values
+    if (responseEcommreceData.code === 200) {
       // allTabs.push(key)
       if (this.state.objectId === '') {
-        this.setState({ allTabs, objectId: req.content._id })
+        this.setState({ allTabs, objectId: responseEcommreceData.content._id, objData: responseEcommreceData.content })
       }
       else {
-        req.content.map((k, index) => {
-          this.setState({ allTabs, objectId: req.content[index]._id })
+        responseEcommreceData.content.map((k, index) => {
+          this.setState({ allTabs, objectId: responseEcommreceData.content[index]._id })
         })
       }
-      req.content.objectId = this.state.objectId
-      // console.log(req.content , 'req.content')
-      await localStorage.setItem('formData', JSON.stringify(req.content));
+      responseEcommreceData.content.objectId = this.state.objectId
+      // console.log(responseEcommreceData.content , 'responseEcommreceData.content')
+      await localStorage.setItem('formData', JSON.stringify(responseEcommreceData.content));
       // console.log(this.state.objectId)
     }
     // console.log(this.state.objectId)
@@ -105,8 +108,9 @@ class EcomTabs extends Component {
       for (var i = 0; i < data.allTabs.length; i++) {
         allTabs.push(data.allTabs[i])
       }
-      this.setState({ allTabs: [...allTabs] })
+      this.setState({ allTabs: [...allTabs], objData: data[0] })
     }
+    // console.log(this.state.objData)
     localStorage.setItem('updateData', JSON.stringify(data));
   }
 
@@ -150,11 +154,20 @@ class EcomTabs extends Component {
       description: false
     })
   }
+  redirectPage = () => {
+    this.setState({
+      msg: true
+    })
+  }
 
 
   render() {
-    const { mode, allTabs, evitalInfo, offerInfo, images, description, keywords, herfSec } = this.state;
+    const { mode, allTabs, evitalInfo, offerInfo, images, description, keywords, herfSec, objData } = this.state;
+    console.log(objData, 'objData')
     // console.log(this.props.location.state , 'props state')
+    if (this.state.msg === true) {
+      return <Redirect to={{ pathname: '/products_DetailStyle', state: objData }} />
+    }
     return (
       <div className>
         <div className="container">
@@ -266,6 +279,7 @@ class EcomTabs extends Component {
                 statusFormDraft={this.statusFormDraft}
                 statusFormSubmit={this.statusFormSubmit}
                 data={this.props.data}
+                redirectPage={this.redirectPage}
               />
             </div>
           </div>

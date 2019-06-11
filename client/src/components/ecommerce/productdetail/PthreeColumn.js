@@ -35,13 +35,15 @@ class PthreeColumn extends Component {
       this.setState({
         isData: true,
         data: data,
-        images: data.images
+        images: data.images,
+        imgUrl: data.images[0]
       })
     }
+    console.log(this.state.images , 'images')
   }
 
-  renderImagesinLi(img) {
-    console.log(img)
+  renderImagesinLi = (img) => {
+    // console.log(img)
     this.setState({
       imgUrl: img
     })
@@ -54,31 +56,31 @@ class PthreeColumn extends Component {
     return (
 
       <div class="container" style={{ width: "100%", padding: "0px" }}>
-        {/* {images.map((item) =>
-           console.log(item)
-          // <ListItem key={number.toString()}
-          //           value={number} />
-
-        )} */}
         <div class="card-three-column">
           <div class="row" style={{ padding: "0px" }}>
             <div class="preview col-md-4">
               <div className="row">
                 <div className="col-md-2">
                   <ul class="preview-thumbnail enavigation enav-tabs">
-                    {this.state.images.map(function (img) {
+                    {/* rendering li in dom & show images */}
+                    {this.state.images.map(img => <li onClick={() => this.renderImagesinLi(img)}><a ><img src={img} /></a></li>)}
+                    {/* {this.state.images.map(function (img) {
                       // console.log(img)
-                      return <li class="active" ><a onClick={this.renderImagesinLi.bind(this,"img")}>
+                    //   return <li class="active" ><a onClick={this.renderImagesinLi.bind(this,"img")}>
+                    //   <img src={img} />
+                    // </a></li>
+                      return <li class="active"
+                      onClick={this.renderImagesinLi}
+                      // onClick={(e) => {this.renderImagesinLi(e, "someParameter")}}
+                      // onClick={() => this.renderImagesinLi("index")}
+                      // onClick={this.renderImagesinLi.bind(this,"img")}
+                      // onClick={() => this.renderImagesinLi("e")} 
+                      >
+                        <a >
                         <img src={img} />
-                      </a></li>
-                    })}
-                    {/* {images.map(function(item, i){
-                      console.log('test' , item);
-                    // return <li class="active"><a data-target="#pic-1" data-toggle="tab">
-                    //   <img src={item} />
-                    //  </a></li>
-                    // <li key={i}>Test</li> */}
-                    {/* }) */}
+                      </a>
+                      </li>
+                    })} */}
 
                     {/* // <li class="active"><a data-target="#pic-1" data-toggle="tab">
                     //   <img src="./images/ecommerce/41pa5T0NGKL._AC_US218_.jpg" />
@@ -112,7 +114,9 @@ class PthreeColumn extends Component {
             <div className="col-md-8">
               <div className="row">
                 <div class="details col-md-7">
-                  <h3 class="product-title">{data.product}</h3>
+                  <h3 class="product-title"
+                  // onClick={(e) => {this.renderImagesinLi(e, "someParameter")}}
+                  >{data.product}</h3>
                   <p> By PakJazba </p>
                   {/* <div class="rating">
                     <div className="ratingstars">

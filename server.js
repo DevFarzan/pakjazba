@@ -2047,9 +2047,17 @@ app.post('/api/postecommercedata',(req,res) => {
     })
 }
 else if(ecommerceData.objectId != ''){
-  postecommerce.updateMany(
+  postecommerce.findOneAndUpdate(
         {"_id":ecommerceData.objectId},
         {$set: _.omit(ecommerceData, '_id')},
+<<<<<<< HEAD
+        {new: true}
+    ).then(() => {
+        postecommerce.find(function (err, documents) {
+        res.send({ error: err, affected: documents });
+        //db.close();
+    })
+=======
         {multi:true}
     ).then(() => {
         postecommerce.find({_id:ecommerceData.objectId},function(err,updateddata){
@@ -2067,6 +2075,7 @@ else if(ecommerceData.objectId != ''){
             });
           }
         })
+>>>>>>> d487338fa4fe8c6f23aca1970d696c5cc182f5a6
 
     }).catch(() => res.status(422).send({msg:'okay'}));
 }

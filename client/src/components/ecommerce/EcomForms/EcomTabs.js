@@ -76,17 +76,19 @@ class EcomTabs extends Component {
     // let obj = values
     if (responseEcommreceData.code === 200) {
       // allTabs.push(key)
+      // console.log("aaaaaa")
       if (this.state.objectId === '') {
-        this.setState({ allTabs, objectId: responseEcommreceData.content._id, objData: responseEcommreceData.content })
+        // console.log('ghjgjh')
+        this.setState({ allTabs, objectId: responseEcommreceData.content._id, objData: responseEcommreceData.content[0] })
       }
       else {
         responseEcommreceData.content.map((k, index) => {
-          this.setState({ allTabs, objectId: responseEcommreceData.content[index]._id })
+          this.setState({ allTabs, objectId: responseEcommreceData.content[index]._id, objData: responseEcommreceData.content[0]})
         })
       }
       responseEcommreceData.content.objectId = this.state.objectId
       // console.log(responseEcommreceData.content , 'responseEcommreceData.content')
-      await localStorage.setItem('formData', JSON.stringify(responseEcommreceData.content));
+      await localStorage.setItem('formData', JSON.stringify(responseEcommreceData.content[0]));
       // console.log(this.state.objectId)
     }
     // console.log(this.state.objectId)
@@ -163,7 +165,7 @@ class EcomTabs extends Component {
 
   render() {
     const { mode, allTabs, evitalInfo, offerInfo, images, description, keywords, herfSec, objData } = this.state;
-    // console.log(objData, 'objData')
+    console.log(objData, 'objData')
     // console.log(this.props.location.state , 'props state')
     if (this.state.msg === true) {
       return <Redirect to={{ pathname: '/products_DetailStyle', state: objData }} />

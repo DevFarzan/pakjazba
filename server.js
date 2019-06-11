@@ -2052,7 +2052,7 @@ else if(ecommerceData.objectId != ''){
         {$set: _.omit(ecommerceData, '_id')},
         {multi:true}
     ).then(() => {
-        postecommerce.find(function(err,updateddata){
+        postecommerce.find({_id:ecommerceData.objectId},function(err,updateddata){
           if(err){
             res.send({
               code:404,

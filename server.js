@@ -2047,42 +2047,17 @@ app.post('/api/postecommercedata',(req,res) => {
     })
 }
 else if(ecommerceData.objectId != ''){
-  postecommerce.updateMany(
+  postecommerce.findOneAndUpdate(
         {"_id":ecommerceData.objectId},
         {$set: _.omit(ecommerceData, '_id')},
-        {multi:true}
-    )
-        /*postecommerce.find({_id:ecommerceData.objectId},function(err,updateddata){
-          if(err){
-            res.send({
-              code:404,
-              msg:'No record updated some internal server error'
-            })
-          }
-          else if(updateddata){
-            res.send({
-                code:200,
-                data:'data updated successfully',
-                content:updateddata
-            });
-          }
-        })*/
-
-    postecommerce.find({"_id":ecommerceData.objectId},function(err,data){
-      if(err){
-        res.send({
-          code:404,
-          msg:'No record updated some internal server error'
-        })
-      }
-      else if(data){
-        res.send({
-            code:200,
-            data:'data updated successfully',
-            content:data
-        });
-      }
+        {new: true}
+    ).then(() => {
+        postecommerce.find(function (err, documents) {
+        res.send({ error: err, affected: documents });
+        //db.close();
     })
+
+    }).catch(() => res.status(422).send({msg:'okay'}));
 }
 
 })

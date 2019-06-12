@@ -138,9 +138,9 @@ class PthreeColumn extends Component {
                   </div> */}
 
                   <div style={{ marginTop: "20px" }}>
-                    <p> {data.productFeature} </p>
+                    <p>Product Feature: {data.productFeature} </p>
                     <ul className="margins">
-                      <li>{data.description}</li>
+                      <p>Description: {data.description}</p>
                       {/* <li> Up to 100MB/s & 90MB/s read & write speeds respectively; Class 10 UHS-1</li> */}
                       {/* <li> UHS-1 High-performance for 4K UHD video recording, high resolution pictures, mobile gaming and music, for use in Smartphones, Drones, Android Tablets, Tablet PCs, Action Cameras, DSLRs and more</li>
                       <li> Includes: Full-Size adapter for use in Cameras and Laptop/Desktop Computers</li>
@@ -150,7 +150,7 @@ class PthreeColumn extends Component {
                   </div>
 
                   <div>
-                    <h4> From The Manufacturer </h4>
+                    <h4 className="margin"> From The Manufacturer </h4>
                     <h5>{data.manufacturer} <br />{data.manufacturerPart}</h5>
                     {/* <p>With stunning speed and reliability, the Samsung 256GB MicroSDXC EVO Select memory card lets you get the most out of your devices.
                     Ultra-fast read & write speeds of up to 100MB/s & 90MB/s and backed by 4-proof protection,

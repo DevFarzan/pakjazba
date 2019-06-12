@@ -400,10 +400,12 @@ Version:3.3.3  ▾    / assets / stylesheets / bootstrap / _navbar.scss
 
 
 .button_globalclass{
-  color:#f2fff;
+  color:"#f2fff";
   border-color:#e2eaea;
+  margin-right: -50px !important
 }
 .button_globalclass > a:hover{
 color:#008080;
 border-color:#F7F7F7;
 }
+

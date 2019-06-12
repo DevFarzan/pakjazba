@@ -41,20 +41,6 @@ img {
       border-bottom-color: transparent;
       padding: 2px;
   }
-{/*.preview-thumbnail.nav-tabs {
-  border: none;
-  margin-top: 15px; }
-  .preview-thumbnail.nav-tabs li {
-    width: 18%;
-    margin-right: 2.5%; }
-
-    .preview-thumbnail.nav-tabs li a {
-      padding: 0;
-      margin: 0; }
-    .preview-thumbnail.nav-tabs li:last-of-type {
-      margin-right: 0; }
-
-    */}
 .tab-content {
   overflow: hidden; }
   .tab-content img {
@@ -196,7 +182,7 @@ border: 1px solid black;
 padding: 15px;
 text-align: center;
 text-align: left;
-height: 450px;
+height: 400px;
 }
 
 .efontcolor{
@@ -205,5 +191,9 @@ height: 450px;
 }
 .margins{
   margin-top: -20px;
-  margin-left: -22px
+  margin-left: -42px
+}
+.margin{
+  margin-top: -20px;
+  margin-left: -3px
 }

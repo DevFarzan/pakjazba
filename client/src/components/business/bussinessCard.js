@@ -24,8 +24,8 @@ class BussinesCard extends Component{
 
     render(){
         const { cardDetails, detail } = this.props;
-        console.log(cardDetails , 'cardDetails')
-        console.log(detail , 'detail')
+        // console.log(cardDetails , 'cardDetails')
+        // console.log(detail , 'detail')
         
         let src = cardDetails.imageurl && cardDetails.imageurl[0] || 
         cardDetails.businessImages && cardDetails.businessImages[0] || 

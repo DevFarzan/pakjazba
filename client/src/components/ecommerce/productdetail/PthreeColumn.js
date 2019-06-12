@@ -51,10 +51,7 @@ class PthreeColumn extends Component {
 
   render() {
     const { data } = this.state
-    // let images = data.images
-    // console.log(images)
     return (
-
       <div class="container" style={{ width: "100%", padding: "0px" }}>
         <div class="card-three-column">
           <div class="row" style={{ padding: "0px" }}>
@@ -115,19 +112,8 @@ class PthreeColumn extends Component {
               <div className="row">
                 <div class="details col-md-7">
                   <h3 class="product-title"
-                  // onClick={(e) => {this.renderImagesinLi(e, "someParameter")}}
                   >{data.product}</h3>
                   <p> By PakJazba </p>
-                  {/* <div class="rating">
-                    <div className="ratingstars">
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star"></span>
-                      <span class="fa fa-star"></span>
-                      <span class="review-no" style={{ marginLeft: "5px" }}>Ratings</span>
-                    </div>
-                  </div> */}
                   <h3>{'$' + data.price} & Free Shipping</h3>
                   <p class="vote">Size: <strong>{data.size}</strong></p>
                   {/* <div className="row">
@@ -181,7 +167,6 @@ class PthreeColumn extends Component {
                     <span>
                       <h4>{'$' + data.price} </h4>
                       <h4> & Free Shipping </h4>
-                      {/* <h4> want it tommorow, Nov 20? Order within 12 hr 8 min and choose One day shipping at checkout. </h4> */}
                     </span>
                     <span>
                       <h4 className="efontcolor"> In Stock </h4>

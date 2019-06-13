@@ -6,9 +6,6 @@ import ProductInformation from './ProductInformation'
 import ProductReviews from './ProductReviews'
 import ProductFaq from './ProductFaq';
 
-function onChange(value) {
-  console.log('changed', value);
-}
 
 
 class PthreeColumn extends Component {
@@ -18,7 +15,8 @@ class PthreeColumn extends Component {
       isData: true,
       data: {},
       images: [],
-      imgUrl: ''
+      imgUrl: '',
+      count: 0
     }
 
   }
@@ -39,7 +37,7 @@ class PthreeColumn extends Component {
         imgUrl: data.images[0]
       })
     }
-    console.log(this.state.images , 'images')
+    console.log(this.state.images, 'images')
   }
 
   renderImagesinLi = (img) => {
@@ -49,8 +47,16 @@ class PthreeColumn extends Component {
     })
   }
 
+  onChange = (value) => {
+    console.log('changed', value);
+    this.setState({
+      count: value
+    })
+  }
+
+
   render() {
-    const { data } = this.state
+    const { data, count } = this.state
     return (
       <div class="container" style={{ width: "100%", padding: "0px" }}>
         <div class="card-three-column">
@@ -174,10 +180,12 @@ class PthreeColumn extends Component {
                     </span>
                     <div>
                       <span>Qty:</span>
-                      <span> <InputNumber min={1} max={10} defaultValue={0} onChange={onChange} /></span>
+                      <span> <InputNumber min={1} max={10} defaultValue={0} onChange={this.onChange} /></span>
                     </div>
                     <div className="row center_global row">
-                      <button style={{ textAlign: 'center', width: "90%", marginTop: "20px" }} className="btn button_custom">Add to cart</button>
+                      <button style={{ textAlign: 'center', width: "90%", marginTop: "20px" }} className="btn button_custom"
+                        onClick={() => this.props.shoppingCartCount(count)}
+                      >Add to cart</button>
                     </div>
                   </div>
                 </div>

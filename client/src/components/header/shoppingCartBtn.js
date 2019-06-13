@@ -3,10 +3,15 @@ import './shoppingCartStyle.css';
 
 
 class CartButton extends Component {
+    constructor(props) {
+        super(props)
+    }
     render() {
         return (
             <div>
-                <div  className="shoppingCart fa fa-shopping-cart" ></div>
+                <div className="shoppingCart fa fa-shopping-cart" onClick={this.props.shoppingCart}>
+                    <div className="badge shoppingBadges">{this.props.cartCount}</div>
+                </div>
                 {/* <div class="icon-cart" style="float: left">
                     <div class="cart-line-1" style="background-color: #E5E9EA"></div>
                     <div class="cart-line-2" style="background-color: #E5E9EA"></div>

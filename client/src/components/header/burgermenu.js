@@ -7,14 +7,22 @@ import { Link, withRouter } from "react-router-dom";
 import { Menu, Icon, Button } from 'antd';
 import { connect } from "react-redux";
 import { Redirect } from 'react-router';
-import CartButton from './shoppingCartBtn'
+import CartButton from './shoppingCartBtn';
 
 const SubMenu = Menu.SubMenu;
 
 class Burgermenu extends Component {
-    state = {
-        collapsed: false,
-        hidemenu: false
+    constructor(props) {
+        super(props)
+        this.state = {
+            collapsed: false,
+            hidemenu: false,
+            shoppingCartValue: false
+        }
+    }
+    componentDidMount() {
+        // let data = this.props.location.state;
+        // console.log(data)
     }
 
     toggleCollapsed = () => {
@@ -41,11 +49,21 @@ class Burgermenu extends Component {
         }
     }
 
+    shoppingCart = () => {
+        console.log('shoppingCartValue')
+        this.setState({
+            shoppingCartValue: true
+        })
+    }
+
     render() {
         //const hidemenu = false;
-        const { selectRoute, route } = this.state;
+        const { selectRoute, route, shoppingCartValue } = this.state;
         if (selectRoute) {
             return <Redirect to={`/${route}`} />
+        }
+        if (shoppingCartValue) {
+            return <Redirect to={{ pathname: '/checkOutProduct' }} />
         }
         return (
             <div>
@@ -80,7 +98,7 @@ class Burgermenu extends Component {
                                     <Category />
                                 </div>{/*col-md-4*/}
                                 <div className="col-md-1 col-sm-4 col-xs-12" style={{ marginTop: "21px" }}>
-                                    <CartButton />
+                                    <CartButton cartCount={this.props.cartCount} shoppingCart={this.shoppingCart} />
                                 </div>
                             </div>{/*row*/}
                         </div>
@@ -242,7 +260,7 @@ class Burgermenu extends Component {
                                 <Category />
                             </div>{/*col-md-4*/}
                             <div className="col-xs-6">
-                                <CartButton />
+                                <CartButton cartCount={this.props.cartCount} onClick={this.shoppingCart} />
                             </div>
                         </div>{/*row*/}
                         <span>

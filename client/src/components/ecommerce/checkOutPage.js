@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Burgermenu from '../header/burgermenu';
+import { InputNumber } from 'antd';
 import './checkOutpage.css'
 
 class CheckOutPage extends Component {
@@ -7,38 +8,70 @@ class CheckOutPage extends Component {
         super(props)
     }
 
+
+    onChange = (value) => {
+        console.log('changed', value);
+    }
+
     render() {
         return (
             <div className="">
                 <Burgermenu />
-                {/* <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br /> */}
-                <div className="col-md-12 col-sm-12 col-xs-12" style={{ textAlign: "center", marginTop: "25px" }}>
-                    <div className="">
+                <div className='row'>
+                    <div className="" style={{ textAlign: "center", marginTop: "25px" }}>
                         <h1 style={{ fontFamily: 'Crimson Text, serif', fontWeight: "bold", color: "white" }}></h1>
-                        <br />
-                        <br />
-                        <br />
-                        <h2 className='cartHeader'>Check Out Product</h2>
-                        <div className='cart'>Cart()</div>
-                        <button className='checkoutbtn ant-btn post_need'>Checkout</button>
-                        <button className='checkoutbtn ant-btn post_need'>Browse more</button>
-                    </div>
-                    <div className='product'>
-                        <img className='cartDetailImg' src='http://placekitten.com/200/126' />
-                        <div className='cartDetail'>
-                            <span className='productName'>Product Name</span>
-                            <span className='date'>Date</span>
-                            <span className='removeProduct'>Remove product</span>
+                        <div className="div">
+                            <h2 className='cartHeader'>Check Out Product</h2>
+                            <div className='cart'>Cart()</div>
+                            <button className='checkoutbtn ant-btn post_need'>Checkout</button>
+                            <button className='checkoutbtn ant-btn post_need'>Browse more</button>
                         </div>
-                        <div className='price'>$ 90</div>
+                    </div>
+                </div>
+                <div className='container'>
+                    <div className='panel-body'>
+                        <div className='row'>
+                            <div className="col-md-3 col-sm-3 col-xs-12">
+                                <img className='' src='http://placekitten.com/200/126' />
+                            </div>
+                            <div className="col-md-6 col-sm-3 col-xs-12">
+                                <ul className='cartDetail'>
+                                    <li>Product Name</li>
+                                    <li>Date</li>
+                                    <li>Remove Product</li>
+                                </ul>
+                            </div>
+                            <div className="col-md-3 cartPrice">
+                                adsadsad
+                    </div>
+                            <div col-md-3>
+                                <span> <InputNumber min={1} max={10} defaultValue={0} onChange={this.onChange} /></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='panel-body'>
+                        <div className='row'>
+                            <div className="col-md-3 col-sm-3 col-xs-12">
+                                <img className='' src='http://placekitten.com/200/126' />
+                            </div>
+                            <div className="col-md-6 col-sm-3 col-xs-12">
+                                <ul className='cartDetail'>
+                                    <li>Product Name</li>
+                                    <li>Date</li>
+                                    <li>Remove Product</li>
+                                </ul>
+                            </div>
+                            <div className="col-md-3 cartPrice">
+                                adsadsad
+                    </div>
+                            <div col-md-3>
+                                <span> <InputNumber min={1} max={10} defaultValue={0} onChange={this.onChange} /></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div >
+
         )
     }
 }

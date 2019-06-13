@@ -37,7 +37,7 @@ class PthreeColumn extends Component {
         imgUrl: data.images[0]
       })
     }
-    console.log(this.state.images, 'images')
+    // console.log(this.state.images, 'images')
   }
 
   renderImagesinLi = (img) => {
@@ -53,10 +53,20 @@ class PthreeColumn extends Component {
       count: value
     })
   }
-
+  addTocart = () => {
+    const { count } = this.state;
+    let user = JSON.parse(localStorage.getItem('user'));
+    if (user === undefined) {
+      
+    }
+    else {
+      this.props.shoppingCartCount(count)
+    }
+  }
 
   render() {
     const { data, count } = this.state
+
     return (
       <div class="container" style={{ width: "100%", padding: "0px" }}>
         <div class="card-three-column">
@@ -184,7 +194,8 @@ class PthreeColumn extends Component {
                     </div>
                     <div className="row center_global row">
                       <button style={{ textAlign: 'center', width: "90%", marginTop: "20px" }} className="btn button_custom"
-                        onClick={() => this.props.shoppingCartCount(count)}
+                        // onClick={() => this.props.shoppingCartCount(count)}
+                        onClick={this.addTocart}
                       >Add to cart</button>
                     </div>
                   </div>

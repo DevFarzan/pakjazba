@@ -11,27 +11,7 @@ import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 class EcomForms extends Component {
   constructor(props) {
     super(props)
-
-    // this.state = {
-    //   isData: true,
-    //   data: {},
-    // }
   }
-  // componentDidMount() {
-  //   // window.scrollTo(0, 0);
-  //   let data = this.props.location.state;
-  //   console.log(data, 'props.location.state')
-  //   if (data === undefined) {
-  //     this.setState({
-  //       isData: false
-  //     })
-  //   } else {
-  //     this.setState({
-  //       isData: true,
-  //       data: data
-  //     })
-  //   }
-  // }
   render() {
     return (
       <div className="">
@@ -40,7 +20,6 @@ class EcomForms extends Component {
           <div className="col-md-12 col-sm-12 col-xs-12" style={{ textAlign: "center", marginTop: "25px" }}>
             <div className="">
               <h1 style={{ fontFamily: 'Crimson Text, serif', fontWeight: "bold", color: "white" }}>Add Your Product</h1>
-
             </div>
           </div>
         </div>
@@ -49,8 +28,6 @@ class EcomForms extends Component {
         </div>
         <Footer />
       </div>
-
-
     )
   }
 }

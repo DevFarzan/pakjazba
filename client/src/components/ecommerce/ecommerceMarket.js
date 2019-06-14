@@ -7,51 +7,41 @@ import Eshopcard from './EcomShopcard';
 import Additionalcard from './EcomAdditionalcard';
 import DealsEcom from './EcomDeals';
 
-class EcommerceMarket extends Component{
-  render(){
-    return(
+class EcommerceMarket extends Component {
+  render() {
+    return (
       <div>
-          <span>
-            <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "102px",backgroundSize: 'cover'}}>
-                <div className="visible-xs" style={{marginTop:'-119px'}}></div>
-                <div className="background-image">
-                    <Burgermenu/>
-                    <Slider mainH1="Pakjazba Ecommerce" mainH2=""/>
-                </div>
+        <span>
+          <div className="vissible-xs" style={{ "background": "#d8e7e4", marginTop: "102px", backgroundSize: 'cover' }}>
+            <div className="visible-xs" style={{ marginTop: '-119px' }}></div>
+            <div className="background-image">
+              <Burgermenu />
+              <Slider mainH1="Pakjazba Ecommerce" mainH2="" />
             </div>
-          </span>
-          <div className="row" style={{marginTop:"20px"}}>
-            <h1 className="" style={{fontWeight:"bold", textAlign:"center"}}> Feature Categories  </h1>
           </div>
-          <div className="row" style={{marginTop:"-10px"}}>
-                <EcomCard/>
+        </span>
+        <div className="row" style={{ marginTop: "20px" }}>
+          <h1 className="" style={{ fontWeight: "bold", textAlign: "center" }}> Feature Categories  </h1>
+        </div>
+        <div className="row" style={{ marginTop: "-10px" }}>
+          <EcomCard />
+        </div>
+        <div className="row">
+          <Eshopcard />
+        </div>
+        <div className="row">
+          <Additionalcard />
+        </div>
+        <div className="row" style={{ marginTop: "-70px" }}>
+          <DealsEcom />
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <img src="../images/businesslistingimage.png" style={{ width: '100%' }} />
           </div>
-
-
-
-          <div className="row">
-
-              <Eshopcard/>
-          </div>
-
-          <div className="row">
-            <Additionalcard/>
-          </div>
-
-          <div className="row" style={{marginTop:"-70px"}}>
-            <DealsEcom/>
-          </div>
-
-          <div className="row">
-              <div className="col-md-12">
-                  <img src="../images/businesslistingimage.png" style={{width:'100%'}} />
-              </div>
-          </div>
-
-
-          <Footer />
+        </div>
+        <Footer />
       </div>
-
     )
   }
 }

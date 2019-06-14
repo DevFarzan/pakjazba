@@ -6,8 +6,6 @@ import ProductInformation from './ProductInformation'
 import ProductReviews from './ProductReviews'
 import ProductFaq from './ProductFaq';
 
-
-
 class PthreeColumn extends Component {
   constructor(props) {
     super(props)
@@ -18,7 +16,6 @@ class PthreeColumn extends Component {
       imgUrl: '',
       count: 0
     }
-
   }
 
   componentDidMount() {
@@ -55,16 +52,13 @@ class PthreeColumn extends Component {
     const { count } = this.state;
     let user = JSON.parse(localStorage.getItem('user'));
     if (user === undefined) {
-
     }
     else {
       this.props.shoppingCartCount(count)
     }
   }
-
   render() {
     const { data, count } = this.state
-
     return (
       <div class="container" style={{ width: "100%", padding: "0px" }}>
         <div class="card-three-column">
@@ -103,7 +97,6 @@ class PthreeColumn extends Component {
                     <h5>{data.manufacturer} <br />{data.manufacturerPart}</h5>
                     <p>Warranty Description: {data.warrantyDescription}</p>
                   </div>
-
                 </div>
                 <div className="col-md-5">
                   <p style={{ marginBottom: "0px" }}> Share: Email, Facebook, Twitter, Pinterest </p>
@@ -136,8 +129,6 @@ class PthreeColumn extends Component {
               <ProductFaq />
               <ProductReviews />
             </div>
-
-
           </div>
         </div>
       </div>

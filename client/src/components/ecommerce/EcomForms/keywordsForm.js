@@ -6,7 +6,6 @@ import {
 import './keywordforms.css'
 const FormItem = Form.Item
 const CheckboxGroup = Checkbox.Group;
-// const plainOptions = ['Gym/Fitness Center','Swimming Pool','Car Park','Visitors Parking','Power Backup','Garbage Disposal','Private Lawn','Water Heater Plant','Security System','Laundry Service', 'Elevator', 'Club House'];
 
 class KeywordsForm extends Component {
   constructor(props) {
@@ -25,9 +24,7 @@ class KeywordsForm extends Component {
   componentDidMount() {
     let data = this.props.data;
     const { intendedUsekeyWords, targetAudience, subjectMatter } = this.state;
-    // console.log(data, 'data in keyword')
     if (data) {
-
       for (var i = 0; i < data.IntendedUsekeyWords.length; i++) {
         intendedUsekeyWords.push(data.IntendedUsekeyWords[i])
       }
@@ -46,11 +43,8 @@ class KeywordsForm extends Component {
         intendedUsekeyWords: [...intendedUsekeyWords]
       })
     }
-    // console.log(this.state.intendedUsekeyWords ,'intendedUsekeyWords')
-    // console.log(this.state.targetAudience ,'intendedUsekeyWords')
-    // console.log(this.state.subjectMatter ,'intendedUsekeyWords')
-
   }
+
   handleSubmit(e, key) {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
@@ -74,7 +68,6 @@ class KeywordsForm extends Component {
       message: 'Success ',
       description: mgs,
     });
-    
   };
 
   onChange = (e) => {
@@ -135,7 +128,6 @@ class KeywordsForm extends Component {
                               rules: [{ validator: this.checkCheckBox }],
                             })(
                               <CheckboxGroup style={{ width: '100%' }}
-                                // onChange={this.onChange}
                                 setFieldsValue={this.state.intendedUsekeyWords}
                                 onChange={this.onChangekeyWords.bind(this)}
                               >

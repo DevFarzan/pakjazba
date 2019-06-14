@@ -126,11 +126,8 @@ class OfferInfo extends Component {
       values.restockDate = restockDate;
       values.offering = offering;
     }
-    // console.log(values, 'in the ofeering tab check for date values')
-
     this.props.handleProps(values, 'images');
     this.props.imgStates();
-
     if (key === 'submit') {
       this.setState({
         herfSec: '#Section3'
@@ -156,7 +153,6 @@ class OfferInfo extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     const { autoCompleteResult, herfSec, salePriceDatesStart, salePriceDatesEnd, sellingDate, restockDate, offering, datePicker } = this.state;
-    // console.log(salePriceDatesStart, 'date')
     const websiteOptions = autoCompleteResult.map(website => (
       < AutoCompleteOption key={website} > {website}</AutoCompleteOption >
     ));
@@ -317,15 +313,7 @@ class OfferInfo extends Component {
                             /> :
                               <FormItem>
                                 {getFieldDecorator('salePriceDate1', {
-                                  // initialValue: moment(salePriceDatesStart).format('YYYY/MM/DD'),
-
                                   initialValue: moment(salePriceDatesStart, 'YYYY/MM/DD'),
-                                  // rules: [{
-                                  //   required: true,
-                                  //   message: 'Please enter Sale Price',
-                                  //   whitespace: true
-                                  // },
-                                  // { validator: this.validateNumber.bind(this) }]
                                 })(
                                   <DatePicker
                                     onChange={(date, dateString) =>
@@ -344,12 +332,6 @@ class OfferInfo extends Component {
                               <FormItem>
                                 {getFieldDecorator('salePriceDate2', {
                                   initialValue: moment(salePriceDatesEnd, 'YYYY/MM/DD'),
-                                  // rules: [{
-                                  //   required: true,
-                                  //   message: 'Please enter Sale Price',
-                                  //   whitespace: true
-                                  // },
-                                  // { validator: this.validateNumber.bind(this) }]
                                 })(
                                   <DatePicker onChange={(date, dateString) =>
                                     this.onChange(date, dateString)} />
@@ -504,20 +486,12 @@ class OfferInfo extends Component {
                           <FormItem>
                             {getFieldDecorator('sellingDate', {
                               initialValue: moment(sellingDate, 'YYYY/MM/DD'),
-                              // rules: [{
-                              //   required: true,
-                              //   message: 'Please enter Sale Price',
-                              //   whitespace: true
-                              // },
-                              // { validator: this.validateNumber.bind(this) }]
                             })(
                               <DatePicker onChange={(date, dateString) =>
                                 this.onChange(date, dateString)} />
                             )}
                           </FormItem>
                         }
-
-
                         <p className="margin-top"> Example: Blue, orange  </p>
                       </div>
                     </div>
@@ -542,12 +516,6 @@ class OfferInfo extends Component {
                           <FormItem>
                             {getFieldDecorator('restockDate', {
                               initialValue: moment(restockDate, 'YYYY/MM/DD'),
-                              // rules: [{
-                              //   required: true,
-                              //   message: 'Please enter Sale Price',
-                              //   whitespace: true
-                              // },
-                              // { validator: this.validateNumber.bind(this) }]
                             })(
                               <DatePicker onChange={(date, dateString) =>
                                 this.onChange(date, dateString)} />
@@ -662,12 +630,6 @@ class OfferInfo extends Component {
                           <FormItem>
                             {getFieldDecorator('offering', {
                               initialValue: moment(offering, 'YYYY/MM/DD'),
-                              // rules: [{
-                              //   required: true,
-                              //   message: 'Please enter Sale Price',
-                              //   whitespace: true
-                              // }
-                              // { validator: this.validateNumber.bind(this) }]
                             })(
                               <DatePicker onChange={(date, dateString) =>
                                 this.onChange(date, dateString)} />

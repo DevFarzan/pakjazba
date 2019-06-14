@@ -121,10 +121,8 @@ class VitalInfo extends Component {
     if (this.state.herfSec === '') {
       this.props.form.validateFields((err, values) => {
         if (!err) {
-          // console.log('Received values of form: ', values);
           this.props.handleProps(values, 'offerInfo');
           this.props.offerStates();
-
           if (key === 'submit') {
             this.setState({
               herfSec: '#Section2'
@@ -152,13 +150,11 @@ class VitalInfo extends Component {
   };
 
   render() {
-    // console.log(this.props.location.state)
     const { getFieldDecorator } = this.props.form;
     const { autoCompleteResult, herfSec } = this.state;
     const websiteOptions = autoCompleteResult.map(website => (
       <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
     ));
-
     return (
       <div className="container" style={{ width: "100%" }}>
         <div className="row">
@@ -684,7 +680,6 @@ class VitalInfo extends Component {
                 </div>
               </div>
             </Form>
-
           </div>
           <div className="col-md-12">
             <div className="row col-md-9 col-md-offset-3" style={{ paddingTop: "10px", paddingLeft: "" }}>

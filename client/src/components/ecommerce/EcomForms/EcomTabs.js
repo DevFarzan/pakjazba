@@ -28,12 +28,10 @@ class EcomTabs extends Component {
       submitStatus: '',
       formStep: '',
       objectId: '',
-      // allTabs: ['evitalInfo'],
       allTabs: ['evitalInfo',],
       msg: false,
       isData: true,
       objData: {}
-      // data: {},
     };
   }
 
@@ -41,28 +39,17 @@ class EcomTabs extends Component {
     let { allTabs } = this.state;
     var user = JSON.parse(localStorage.getItem('user'));
     var updateData = localStorage.getItem('updateData');
-    // console.log(updateData , 'local storage')
-    // console.log(values, 'props value')
-
     values.user_Id = user._id;
     values.profileId = user.profileId;
     if (updateData !== undefined && updateData !== 'undefined') {
-      // console.log('insert obj id' , updateData.objectId)
       var updateData = JSON.parse(localStorage.getItem('updateData'));
       values.objectId = updateData.objectId;
 
     } else {
       values.objectId = this.state.objectId;
     }
-    // if (allTabs.includes('evitalInfo', "offerInfo", "images", "description", "keywords")) {
-    //   values.allTabs = allTabs;
-    // } else {
-    //   allTabs.push(key);
-    //   values.allTabs = allTabs;
-    // }
     allTabs.push(key);
     values.allTabs = allTabs;
-    // console.log(values , 'add all tabs or not')
 
     if (this.state.draftStatus === 'draft') {
       values.status = this.state.draftStatus
@@ -73,37 +60,23 @@ class EcomTabs extends Component {
 
     let responseEcommreceData = await HttpUtils.post('postecommercedata', values)
     console.log(responseEcommreceData)
-    // let obj = values
     if (responseEcommreceData.code === 200) {
-      // allTabs.push(key)
-      // console.log("aaaaaa")
       if (this.state.objectId === '') {
-        // console.log('ghjgjh')
         this.setState({ allTabs, objectId: responseEcommreceData.content._id, objData: responseEcommreceData.content[0] })
       }
       else {
         responseEcommreceData.content.map((k, index) => {
-          this.setState({ allTabs, objectId: responseEcommreceData.content[index]._id, objData: responseEcommreceData.content[0]})
+          this.setState({ allTabs, objectId: responseEcommreceData.content[index]._id, objData: responseEcommreceData.content[0] })
         })
       }
       responseEcommreceData.content.objectId = this.state.objectId
-      // console.log(responseEcommreceData.content , 'responseEcommreceData.content')
       await localStorage.setItem('formData', JSON.stringify(responseEcommreceData.content[0]));
-      // console.log(this.state.objectId)
     }
-    // console.log(this.state.objectId)
-
   }
 
   componentDidMount() {
     const { allTabs } = this.state
     let data = this.props.data;
-    // this.setState({
-    //   objectId: data._id
-    // })
-    // console.log(data.objectId)
-    // console.log(this.state.objectId, 'object id')
-    // console.log(this.props.data, 'data in ecom tab')
     if (data) {
       data.objectId = data._id
       allTabs.length = 0
@@ -112,7 +85,6 @@ class EcomTabs extends Component {
       }
       this.setState({ allTabs: [...allTabs], objData: data[0] })
     }
-    // console.log(this.state.objData)
     localStorage.setItem('updateData', JSON.stringify(data));
   }
 
@@ -162,11 +134,9 @@ class EcomTabs extends Component {
     })
   }
 
-
   render() {
     const { mode, allTabs, evitalInfo, offerInfo, images, description, keywords, herfSec, objData } = this.state;
-    console.log(objData, 'objData')
-    // console.log(this.props.location.state , 'props state')
+    // console.log(objData, 'objData')
     if (this.state.msg === true) {
       return <Redirect to={{ pathname: '/products_DetailStyle', state: objData }} />
     }
@@ -177,7 +147,6 @@ class EcomTabs extends Component {
             <div className="col-md-12 hidden-xs">
               <div className="tab" role="tabpanel">
                 <ul className="nav nav-tabs" role="tablist">
-
                   <li role="presentation" className={evitalInfo ? 'active' : allTabs.includes('evitalInfo') ? '' : 'disableTabs'}>
                     <a href="#Section1" aria-controls="home"
                       disabled={allTabs.includes('evitalInfo') ? false : true}

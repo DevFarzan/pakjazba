@@ -21,7 +21,6 @@ class EproductDetail extends Component {
       description: ''
     }
   }
-
   componentDidMount() {
     let data = this.props.location.state;
     // console.log(data, 'data')
@@ -53,7 +52,6 @@ class EproductDetail extends Component {
     addToCartObj.description = description;
     console.log('aaaaaaaaaaaa', addToCartObj)
   }
-
   render() {
     return (
       <div>

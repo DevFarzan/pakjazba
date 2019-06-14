@@ -23,15 +23,12 @@ class ProductInformation extends Component {
         data: data
       })
     }
-
   }
   render() {
     const { data } = this.state;
     let length = data.itemLength;
     let weight = data.itemWeight;
     let width = data.itemWidth;
-
-    // console.log(weight, '...........')
     return (
       <div class="container" style={{ width: "85%" }}>
         <h4><strong>Product Information</strong>  </h4>
@@ -237,13 +234,9 @@ class ProductInformation extends Component {
                 <td>{data.offering}</td>
               </tr>
               : null}
-            {/*subjectMatter: []
-            targetAudience: [] */}
-
           </tbody>
         </table>
       </div>
-
     )
   }
 }

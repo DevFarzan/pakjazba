@@ -7,12 +7,9 @@ class CheckOutPage extends Component {
     constructor(props) {
         super(props)
     }
-
-
     onChange = (value) => {
         console.log('changed', value);
     }
-
     render() {
         return (
             <div className="">
@@ -85,7 +82,6 @@ class CheckOutPage extends Component {
                     </div>
                 </div>
             </div >
-
         )
     }
 }

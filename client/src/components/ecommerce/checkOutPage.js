@@ -12,7 +12,7 @@ class CheckOutPage extends Component {
     }
     render() {
         return (
-            <div className="">
+            <div >
                 <Burgermenu />
                 <div >
                     <div className="" style={{ textAlign: "center", marginTop: "25px" }}>
@@ -37,7 +37,7 @@ class CheckOutPage extends Component {
                             <div className="col-md-4 col-sm-4 col-xs-12">
                                 <ul className='cartDetail'>
                                     <li>Product Name</li>
-                                    <li>Quanitity</li>
+                                    <li>Quantity</li>
                                     <li>Description</li>
                                 </ul>
                             </div>
@@ -62,7 +62,7 @@ class CheckOutPage extends Component {
                             <div className="col-md-4 col-sm-4 col-xs-12">
                                 <ul className='cartDetail'>
                                     <li>Product Name</li>
-                                    <li>Quanitity</li>
+                                    <li>Quantity</li>
                                     <li>Description</li>
                                 </ul>
                             </div>

@@ -31,10 +31,10 @@ class CheckOutPage extends Component {
                 <div className='container'>
                     <div className='panel-body'>
                         <div className='row'>
-                            <div className="col-md-2 col-sm-2 col-xs-12">
+                            <div className="col-md-3 col-sm-3 col-xs-12">
                                 <img className='' src='http://placekitten.com/200/126' />
                             </div>
-                            <div className="col-md-4 col-sm-4 col-xs-12">
+                            <div className="col-md-3 col-sm-3 col-xs-12">
                                 <ul className='cartDetail'>
                                     <li>Product Name</li>
                                     <li>Quantity</li>
@@ -56,10 +56,10 @@ class CheckOutPage extends Component {
                     </div>
                     <div className='panel-body'>
                         <div className='row'>
-                            <div className="col-md-2 col-sm-2 col-xs-12">
+                            <div className="col-md-3 col-sm-3 col-xs-12">
                                 <img className='' src='http://placekitten.com/200/126' />
                             </div>
-                            <div className="col-md-4 col-sm-4 col-xs-12">
+                            <div className="col-md-3 col-sm-3 col-xs-12">
                                 <ul className='cartDetail'>
                                     <li>Product Name</li>
                                     <li>Quantity</li>

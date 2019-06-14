@@ -37,16 +37,16 @@ class CheckOutPage extends Component {
                             <div className="col-md-4 col-sm-4 col-xs-12">
                                 <ul className='cartDetail'>
                                     <li>Product Name</li>
-                                    <li>Date</li>
-                                    {/* <li>Remove Product</li> */}
+                                    <li>Quanitity</li>
+                                    <li>Description</li>
                                 </ul>
                             </div>
                             <div className="col-md-6 col-sm-6 col-xs-12 cartPrice text-right">
-                                <div className="col-md-2 col-sm-3 col-xs-12">$ 90</div>
-                                <div className="col-md-2 col-sm-3 col-xs-12">
+                                <div className="col-md-4 col-sm-4 col-xs-12">$ 90</div>
+                                <div className="col-md-4 col-sm-4 col-xs-12">
                                     <span> <InputNumber min={1} max={10} defaultValue={0} onChange={this.onChange} /></span>
                                 </div>
-                                <div className='col-md-2 col-sm-3 col-xs-12'>
+                                <div className='col-md-4 col-sm-4 col-xs-12'>
                                     <button type="button" class="btn btn-link btn-xs">
                                         <span class="glyphicon glyphicon-trash"> </span>
                                     </button>
@@ -62,17 +62,16 @@ class CheckOutPage extends Component {
                             <div className="col-md-4 col-sm-4 col-xs-12">
                                 <ul className='cartDetail'>
                                     <li>Product Name</li>
-                                    <li>Date 
-                                    </li>
-                                    {/* <li>Remove Product</li> */}
+                                    <li>Quanitity</li>
+                                    <li>Description</li>
                                 </ul>
                             </div>
                             <div className="col-md-6 col-sm-6 col-xs-12 cartPrice text-right">
-                                <div className="col-md-2 col-sm-3 col-xs-12">$ 90</div>
-                                <div className="col-md-2 col-sm-3 col-xs-12">
+                                <div className="col-md-4 col-sm-4 col-xs-12">$ 90</div>
+                                <div className="col-md-4 col-sm-4 col-xs-12">
                                     <span> <InputNumber min={1} max={10} defaultValue={0} onChange={this.onChange} /></span>
                                 </div>
-                                <div className='col-md-2 col-sm-3 col-xs-12'>
+                                <div className='col-md-4 col-sm-4 col-xs-12'>
                                     <button type="button" class="btn btn-link btn-xs">
                                         <span class="glyphicon glyphicon-trash"> </span>
                                     </button>

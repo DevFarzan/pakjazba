@@ -17,7 +17,7 @@ class Burgermenu extends Component {
         this.state = {
             collapsed: false,
             hidemenu: false,
-            shoppingCartValue: false
+            // shoppingCartValue: false
         }
     }
     componentDidMount() {
@@ -49,12 +49,12 @@ class Burgermenu extends Component {
         }
     }
 
-    shoppingCart = () => {
-        console.log('shoppingCartValue')
-        this.setState({
-            shoppingCartValue: true
-        })
-    }
+    // shoppingCart = () => {
+    //     console.log('shoppingCartValue')
+    //     this.setState({
+    //         shoppingCartValue: true
+    //     })
+    // }
 
     render() {
         //const hidemenu = false;
@@ -62,9 +62,11 @@ class Burgermenu extends Component {
         if (selectRoute) {
             return <Redirect to={`/${route}`} />
         }
-        if (shoppingCartValue) {
-            return <Redirect to={{ pathname: '/checkOutProduct' }} />
-        }
+        // if (shoppingCartValue) {
+        //     // return <Redirect to={{ pathname: '/checkOutProduct' }} />
+
+
+        // }
         return (
             <div>
                 <nav className="navbar navbar-fixed-top hidden-xs"
@@ -98,7 +100,9 @@ class Burgermenu extends Component {
                                     <Category />
                                 </div>{/*col-md-4*/}
                                 <div className="col-md-1 col-sm-2 col-xs-12" style={{ marginTop: "21px" }}>
-                                    <CartButton cartCount={this.props.cartCount} shoppingCart={this.shoppingCart} />
+                                    <Link rel="noopener noreferrer" to={`checkOutProduct`} style={{ color: 'black', fontSize: '14px' }}>
+                                        <CartButton cartCount={this.props.cartCount} />
+                                    </Link>
                                 </div>
                             </div>{/*row*/}
                         </div>
@@ -170,7 +174,9 @@ class Burgermenu extends Component {
                                 <Category />
                             </div>{/*col-md-4*/}
                             <div className="col-xs-6">
-                                <CartButton cartCount={this.props.cartCount} onClick={this.shoppingCart} />
+                                <Link rel="noopener noreferrer" to={`checkOutProduct`} style={{ color: 'black', fontSize: '14px' }}>
+                                    <CartButton cartCount={this.props.cartCount} />
+                                </Link>
                             </div>
                         </div>{/*row*/}
                         <span>

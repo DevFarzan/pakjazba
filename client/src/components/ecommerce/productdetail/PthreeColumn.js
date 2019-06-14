@@ -21,7 +21,7 @@ class PthreeColumn extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     let data = this.props.data;
-    console.log(data, 'dataaaaa')
+    // console.log(data, 'dataaaaa')
     if (data === undefined) {
       this.setState({
         isData: false

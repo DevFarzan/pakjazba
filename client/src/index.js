@@ -49,8 +49,6 @@ import EntMusic from './components/entertainment/entertainmentPages/EntMusic';
 import MusicBrowse from './components/entertainment/EntDetailpages/MusicBrowse';
 import VideoBox from './components/entertainment/EntDetailpages/VideoBox';
 import UploadVideo from './components/entertainment/entertainmentPages/uploadVideo';
-//import TicketDetail from './components/events/TicketDetail';
-//import TicketDetail from './components/events/TicketDetail'
 import {PrivateRoute} from './components/signin_seperate';
 import AddProduct from './components/ecommerce/addProduct/addProduct';
 import CheckOutPage from './components/ecommerce/checkOutPage';

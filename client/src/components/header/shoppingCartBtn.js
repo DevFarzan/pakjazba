@@ -12,13 +12,6 @@ class CartButton extends Component {
                 <div className="shoppingCart fa fa-shopping-cart" onClick={this.props.shoppingCart}>
                     <div className="badge shoppingBadges">{this.props.cartCount}</div>
                 </div>
-                {/* <div class="icon-cart" style="float: left">
-                    <div class="cart-line-1" style="background-color: #E5E9EA"></div>
-                    <div class="cart-line-2" style="background-color: #E5E9EA"></div>
-                    <div class="cart-line-3" style="background-color: #E5E9EA"></div>
-                    <div class="cart-wheel" style="background-color: #E5E9EA"></div>
-                </div> */}
-                {/* <i class="far fa-shopping-cart"></i> */}
             </div>
         )
     }

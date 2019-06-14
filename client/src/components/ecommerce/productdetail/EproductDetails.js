@@ -14,7 +14,11 @@ class EproductDetail extends Component {
       user_Id: '',
       profileId: '',
       objectId: '',
-      addToCartObj: {}
+      addToCartObj: {},
+      images: [],
+      productName: '',
+      price: '',
+      description: ''
     }
   }
 
@@ -24,14 +28,16 @@ class EproductDetail extends Component {
     this.setState({
       user_Id: data.user_Id,
       profileId: data.profileId,
-      objectId: data._id
+      objectId: data._id,
+      images: data.images,
+      productName: data.product,
+      price: data.price,
+      description: data.description
     })
   }
 
   shoppingCartCount = (countCart) => {
-
-    const { user_Id, profileId, objectId, cartCount, addToCartObj } = this.state;
-    // console.log(cartCount)
+    const { user_Id, profileId, objectId, images, productName, price, description, cartCount, addToCartObj } = this.state;
     let count = cartCount + countCart;
     this.setState({
       cartCount: count
@@ -41,6 +47,10 @@ class EproductDetail extends Component {
     addToCartObj.profileId = profileId;
     addToCartObj.objectId = objectId;
     addToCartObj.cartCount = count;
+    addToCartObj.images = images;
+    addToCartObj.productName = productName;
+    addToCartObj.price = price;
+    addToCartObj.description = description;
     console.log('aaaaaaaaaaaa', addToCartObj)
   }
 

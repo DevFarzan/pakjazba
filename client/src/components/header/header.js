@@ -30,9 +30,9 @@ class Header extends Component {
 						<div className="col-md-3" style={{ marginTop: "21px" }}>
 							<Category />
 						</div>
-						<div className="shoppingCart col-md-2">
+						{/* <div className="shoppingCart col-md-2">
 							<CartButton />
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>

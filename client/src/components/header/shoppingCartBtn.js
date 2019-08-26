@@ -8,9 +8,9 @@ class CartButton extends Component {
     render() {
         return (
             <div>
-                <div className="shoppingCart fa fa-shopping-cart">
+                {/* <div className="shoppingCart fa fa-shopping-cart">
                     <div className="badge shoppingBadges">{this.props.cartCount}</div>
-                </div>
+                </div> */}
             </div>
         )
     }

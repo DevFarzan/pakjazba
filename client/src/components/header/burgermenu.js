@@ -38,26 +38,16 @@ class Burgermenu extends Component {
     }
 
     renderList = e => {
-        //   console.log(this.props, 'propsssss')
         let str = this.props.match.path,
             path = str.slice(str.indexOf('/') + 1, str.length);
-        //   console.log(path, 'pathhhhhhhh')
         if (path !== e) {
             this.props.dispatch({ type: 'GOROUTE', route: true });
-            // this.props.history.push(`/market_roommates`);
             this.setState({ selectRoute: true, route: e });
         }
     }
 
-    // shoppingCart = () => {
-    //     console.log('shoppingCartValue')
-    //     this.setState({
-    //         shoppingCartValue: true
-    //     })
-    // }
 
     render() {
-        //const hidemenu = false;
         const { selectRoute, route, shoppingCartValue } = this.state;
         if (selectRoute) {
             return <Redirect to={`/${route}`} />
@@ -128,9 +118,9 @@ class Burgermenu extends Component {
                             <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
                                 <p rel="noopener noreferrer" onClick={() => this.renderList('entertainment_Home')} style={{ color: 'black', fontSize: '14px', cursor: 'pointer' }}>Entertainment</p>
                             </span>
-                            <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
+                            {/* <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
                                 <p rel="noopener noreferrer" onClick={() => this.renderList('market_ecommerceMarket')} style={{ color: 'black', fontSize: '14px', cursor: 'pointer' }}>Ecommerce</p>
-                            </span>
+                            </span> */}
                         </div>
                         {this.props.entertainment && <div className="row" className="hidden-sm">
                             <EHeader entertainment={this.props.entertainment} />

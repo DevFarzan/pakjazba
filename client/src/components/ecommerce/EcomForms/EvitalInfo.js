@@ -44,7 +44,6 @@ class VitalInfo extends Component {
   };
 
   componentDidMount() {
-    // window.scrollTo(0,0);
     let data = this.props.data;
     if (data) {
       this.setState({
@@ -74,11 +73,9 @@ class VitalInfo extends Component {
         itemWidthUnit: data.itemWidth.itemWidthUnit
       })
     }
-    // console.log(data , 'data')
   }
 
   handleSelectChange = (value) => {
-    // console.log(value);
     this.props.form.setFieldsValue({
       note: `Hi, ${value === 'bundle' ? 'part' : 'preorder'}!`,
     });

@@ -48,7 +48,6 @@ class OfferInfo extends Component {
 
   componentDidMount() {
     let data = this.props.data;
-    // console.log(data.salePriceDate1)
     if (data) {
       this.setState({
         seller: data.seller,
@@ -86,8 +85,6 @@ class OfferInfo extends Component {
     this.setState({
       [key]: dateString,
     })
-    // console.log(date)
-    // console.log(date, dateString);
   }
   //  date picker end //
 

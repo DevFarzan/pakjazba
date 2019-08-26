@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Upload, Button, Icon, message, Form, Modal, notification
+  Upload, Icon,Form, Modal, notification
 } from 'antd';
 import superagent from "superagent";
 import sha1 from "sha1";
@@ -17,9 +17,7 @@ class ImageForm extends Component {
     herfSec: ''
   };
   componentDidMount() {
-    const { fileList } = this.state;
     let data = this.props.data;
-    // console.log(data, 'images form')
     if (data) {
       this.setState({
         imageList: data.images,

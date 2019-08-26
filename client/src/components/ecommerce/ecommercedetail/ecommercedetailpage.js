@@ -15,7 +15,6 @@ class EcomDetail extends Component{
                 <div className="">
                 <h1 style={{fontFamily: 'Crimson Text, serif', fontWeight:"bold", color:"white"}}>Electronics</h1>
                 <p style={{fontFamily: 'Crimson Text, serif', color:"white"}}> Shop home entertainment, TVs, home audio, headphones, cameras, assessories and more </p>
-
                 </div>
             </div>
         </div>
@@ -24,7 +23,6 @@ class EcomDetail extends Component{
               <div className="col-md-3">
                 <FourEcom/>
               </div>
-
               <div className="col-md-9">
                 <EightEcom/>
               </div>

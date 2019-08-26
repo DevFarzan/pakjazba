@@ -63,15 +63,12 @@ class EproductDetail extends Component {
             </div>
           </div>
         </span>
-
         <div className="row">
           <div className="col-md-12">
-
             <PthreeColumn data={this.props.location.state}
               shoppingCartCount={this.shoppingCartCount}
             />
           </div>
-
         </div>
       </div>
 

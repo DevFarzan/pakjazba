@@ -102,6 +102,10 @@ class ProfileUser extends Component {
         })
         req.business && req.business.map((elem) => {
             if (elem.user_id === id) {
+                console.log(elem.user_id , 'database user id')
+                console.log(id , 'local storage id')
+
+                console.log(elem, 'elem')
                 let data = { ...elem, ...{ route: 'business' } }
                 arr2.push(data)
             }

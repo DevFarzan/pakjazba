@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { Carousel, Rate, notification, Icon, Spin, Modal } from 'antd';
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 
 
 class ProductReviews extends Component {
     render() {
         return (
-            <div className="container" style={{ width: "85%" }}>
+            <div className="container" style={isMobile ? { width: "92%", paddingLeft: "5px" } : {width: "85%"}}>
                 <div class="vitalbox">
                     <div class="">
-                        <div class="row" style={{ paddingRight: "80px", paddingLeft: "80px" }}>
-                            <div class="col-md-2">
+                        <div class="row" style={isMobile ? { paddingRight: "10px", paddingLeft: "10px" } : { paddingRight: "80px", paddingLeft: "80px" } }>
+                            <div class="col-md-2 col-xs-3">
                                 <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
                             </div>
                             <div class="col-md-10">
@@ -27,8 +28,8 @@ class ProductReviews extends Component {
                             </div>
                         </div>
                         <hr />
-                        <div class="row" style={{ paddingRight: "80px", paddingLeft: "80px" }}>
-                            <div class="col-md-2">
+                        <div class="row" style={isMobile ? { paddingRight: "10px", paddingLeft: "10px" } : { paddingRight: "80px", paddingLeft: "80px" }}>
+                            <div class="col-md-2 col-xs-3">
                                 <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
                             </div>
                             <div class="col-md-10">
@@ -47,7 +48,9 @@ class ProductReviews extends Component {
                         </div>
                         <hr />
                     </div>
-                    <div className="row">
+                    <div className="row" style={isMobile ?
+                        
+                        { paddingRight: "10px", paddingLeft: "10px" } : { paddingRight: "80px", paddingLeft: "80px" }}>
                         <div className="col-md-12">
                             {/*Section: Contact v.2*/}
                             <div>
@@ -56,7 +59,7 @@ class ProductReviews extends Component {
                                 </h4>
                                 <div className="row">
                                     {/*Grid column*/}
-                                    <div className="col-md-9 mb-md-0 mb-5">
+                                    <div className="col-md-12 mb-md-0 mb-5">
                                         <form id="contact-form" name="contact-form" action="mail.php" method="POST">
                                             {/*Grid row*/}
                                             <div className="row">

@@ -6,6 +6,7 @@ import ProductInformation from './ProductInformation'
 import ProductReviews from './ProductReviews'
 import ProductFaq from './ProductFaq';
 
+
 class PthreeColumn extends Component {
   constructor(props) {
     super(props)
@@ -62,22 +63,22 @@ class PthreeColumn extends Component {
       <div class="container" style={{ width: "100%", padding: "0px" }}>
         <div class="card-three-column">
           <div class="row" style={{ padding: "0px" }}>
-            <div class="preview col-md-4">
-              <div className="row">
-                <div className="col-md-2">
-                  <ul class="preview-thumbnail enavigation enav-tabs">
+            <div class="preview col-md-5">
+              <div className="row" style={{padding: '0px'}}>
+                <div className="col-md-3 col-xs-3">
+                  <ul class="preview-thumbnail enavigation enav-tabs" style={{listStyle: 'none'}}>
                     {/* rendering li in dom & show images */}
                     {this.state.images.map(img => <li onClick={() => this.renderImagesinLi(img)}><a ><img src={img} /></a></li>)}
                   </ul>
                 </div>
-                <div className="col-md-10">
+                <div className="col-md-9 col-xs-9">
                   <div class="preview-pic tab-content">
                     <div class="tab-pane active" id="pic-1"><img src={this.state.imgUrl} /></div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-md-8">
+            <div className="col-md-7">
               <div className="row">
                 <div class="details col-md-7">
                   <h3 class="product-title"

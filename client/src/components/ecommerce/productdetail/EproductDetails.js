@@ -4,6 +4,7 @@ import Slider from '../../header/Slider';
 import Footer from '../../footer/footer';
 import PthreeColumn from './PthreeColumn';
 import PeightColumn from './PeightColumn';
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 
 
 class EproductDetail extends Component {
@@ -56,7 +57,7 @@ class EproductDetail extends Component {
     return (
       <div>
         <span>
-          <div className="" style={{ "backgroundImage": "url('../images/bgc-images/buy-sell.png')", marginTop: "105px", backgroundSize: 'cover' }}>
+          <div className="" style={isMobile ? { "backgroundImage": "url('../images/bgc-images/buy-sell.png')", marginTop: "10px", backgroundSize: 'cover' } : { "backgroundImage": "url('../images/bgc-images/buy-sell.png')", marginTop: "105px", backgroundSize: 'cover' }}>
             <div className="background-image">
               <Burgermenu cartCount={this.state.cartCount} />
               <Slider mainH1="Your Market Hub for all Products" mainH2="Find what you need" />

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Rate } from 'antd';
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 
 class ProductInformation extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class ProductInformation extends Component {
     let weight = data.itemWeight;
     let width = data.itemWidth;
     return (
-      <div class="container" style={{ width: "85%" }}>
+      <div class="container" style={isMobile? { width: "92%" } : {width: '85%'} }>
         <h4><strong>Product Information</strong>  </h4>
         <table class="table table-bordered">
           <tbody>

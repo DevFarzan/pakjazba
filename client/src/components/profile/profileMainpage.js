@@ -3,9 +3,12 @@ import Burgermenu from '../header/burgermenu';
 import ProfileSidebar from './sideBarprofile';
 import ProfileDetail from './profileDetail';
 import ProfileTabs from './profileTabs';
+import ProfileContactDisplay from './profileContactDisplay';
 import Footer from '../footer/footer';
 import AsyncStorage from "@callstack/async-storage";
 import {HttpUtils} from "../../Services/HttpUtils";
+import TestComponent from './testComponent';
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 
 class ProfileMain extends Component{
     constructor(props) {
@@ -58,6 +61,7 @@ class ProfileMain extends Component{
 
     async getprofileData(profileId){
         let req = await HttpUtils.get('getprofile?profileId=' + profileId);
+        console.log(req , 'res')
         if(req && req.code && req.code === 200){
             for(var elem in req.content){
                 this.setState({ [elem]: req.content[elem] });
@@ -79,7 +83,7 @@ class ProfileMain extends Component{
           name, location, facebooklink, twitterlink, imageurl, description, reviewProfile
       },
       profileTab = {
-        email, phone
+        email, phone, facebooklink, twitterlink, 
       };
 
       return(
@@ -90,15 +94,16 @@ class ProfileMain extends Component{
 
               </div>
           </div>
-          <div className="container" style={{width:"80%"}}>
-            <div className="row" style={{marginTop:'-5%'}}>
+          <div className="container" style={isMobile ? {width:"100%", marginTop: "10px", marginLeft: "0", marginRight:"0", padding: "0"} : {width: "85%", marginTop: "10px"}}>
+            <div className="row" style={{marginTop:'-2%'}}>
                 <h2 style={{textAlign:"center", fontWeight:"bold"}}> Your Profile</h2>
-              <div className="col-md-3">
-                <ProfileSidebar onChange={this.onChange}/>
-              </div>
-              <div className="col-md-9">
-                <ProfileDetail profileDetail={profileDetail} callPublicSection={this.callPublicSection}/>
-                <ProfileTabs profileTabData={{...profileTab, userId, listing}}/>
+              {/* <div className="col-md-3">
+                <ProfileSidebar onChange={this.onChange}/> 
+              </div> */}
+              <div className="col-md-12">
+                <ProfileDetail profileDetail={{profileTab , profileDetail}} callPublicSection={this.callPublicSection}/>
+                 <ProfileContactDisplay profileTabData={{...profileTab, userId, listing}}/> 
+                <TestComponent/>
               </div>
             </div>
           </div>

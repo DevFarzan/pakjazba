@@ -2093,6 +2093,30 @@ app.get('/api/getcustomvideo',(req,res) => {
         }
     })
 })
+
+
+/*===================================getEcommerce API===================================================*/
+app.get('/api/getecommercedata' ,(req,res) =>{
+  postecommerce.find(function(err,ecommerceData){
+    if(err){
+      res.send({
+        code:404,
+        msg:'Something went wrong'
+      })
+    }
+    else if(ecommerceData){
+      res.send({
+        code:200,
+        msg:'All Ecommerce Data',
+        content:ecommerceData
+      })
+    }
+  })
+})
+
+
+
+
 /*===================event seats arrangment API end================================================================*/
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files

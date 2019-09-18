@@ -72,6 +72,7 @@ class Footer extends Component{
                         </div>
                         <div className="col-md-6" style={{textAlign:'left'}}>
                            <span><b>Find expert service providers</b></span>
+                           
                         </div>
                     </div>
                     <div className="row" style={{padding:'0px'}}>
@@ -79,7 +80,8 @@ class Footer extends Component{
                             <span style={{marginLeft:'55%'}}><b>+01 456 7890</b></span>
                         </div>
                         <div className="col-md-6" style={{textAlign:'left'}}>
-                           {/*<span style={{marginLeft:"160px"}}><b>For All Your Local Need</b></span>*/}
+                        <span><Link to={`/privacypolicy`} target="blank"><b>privacy policy</b></Link></span>
+                           <span style={{marginLeft: '10px'}}><Link to="/termofservice" target="blank"><b>term of service</b></Link></span>
                         </div>
                     </div>
                     {/*<div className="row" style={{padding:'0px'}}>
@@ -118,6 +120,8 @@ class Footer extends Component{
                         </div>
                         <div className="col-xs-6" style={{textAlign:'left'}}>
                            <span style={{marginRight:'0'}}><b>Find expert service providers</b></span>
+                           <span><Link to={`/privacypolicy`} target="blank">privacy policy</Link></span>
+                           <span><Link to="/termofservice" target="blank">term of service</Link></span>
                         </div>
                     </div>
                     <div className="row" style={{padding:'0px'}}>

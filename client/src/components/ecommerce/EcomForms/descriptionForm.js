@@ -48,7 +48,6 @@ class DescriptionForm extends Component {
           }
         }
       }
-      // console.log('Received values of form: ', values);
     });
   }
 
@@ -172,7 +171,6 @@ class DescriptionForm extends Component {
     )
   }
 }
-
 
 const WrappedBusinessForm = Form.create()(DescriptionForm);
 export default WrappedBusinessForm;

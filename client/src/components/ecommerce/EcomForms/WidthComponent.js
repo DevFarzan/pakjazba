@@ -17,7 +17,6 @@ class WidthInput extends React.Component {
     }
     return null;
   }
-
   constructor(props) {
     super(props);
 
@@ -81,8 +80,6 @@ class WidthInput extends React.Component {
     );
   }
 }
-
-
 
 const WrappedDemo = Form.create()(WidthInput);
 export default WidthInput;

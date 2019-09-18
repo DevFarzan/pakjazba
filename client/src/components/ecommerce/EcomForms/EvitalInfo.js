@@ -44,7 +44,6 @@ class VitalInfo extends Component {
   };
 
   componentDidMount() {
-    // window.scrollTo(0,0);
     let data = this.props.data;
     if (data) {
       this.setState({
@@ -74,11 +73,9 @@ class VitalInfo extends Component {
         itemWidthUnit: data.itemWidth.itemWidthUnit
       })
     }
-    // console.log(data , 'data')
   }
 
   handleSelectChange = (value) => {
-    // console.log(value);
     this.props.form.setFieldsValue({
       note: `Hi, ${value === 'bundle' ? 'part' : 'preorder'}!`,
     });
@@ -121,10 +118,8 @@ class VitalInfo extends Component {
     if (this.state.herfSec === '') {
       this.props.form.validateFields((err, values) => {
         if (!err) {
-          // console.log('Received values of form: ', values);
           this.props.handleProps(values, 'offerInfo');
           this.props.offerStates();
-
           if (key === 'submit') {
             this.setState({
               herfSec: '#Section2'
@@ -152,13 +147,11 @@ class VitalInfo extends Component {
   };
 
   render() {
-    // console.log(this.props.location.state)
     const { getFieldDecorator } = this.props.form;
     const { autoCompleteResult, herfSec } = this.state;
     const websiteOptions = autoCompleteResult.map(website => (
       <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
     ));
-
     return (
       <div className="container" style={{ width: "100%" }}>
         <div className="row">
@@ -253,7 +246,7 @@ class VitalInfo extends Component {
                     <div className="col-md-12">
                       <div className="col-md-4">
                         <div className="floatright">
-                          <label>* Manufacturer Part Number:</label>
+                          <label>Manufacturer Part Number:</label>
                           <p> (for most products, this will be identical to
                             the model number some manufacturers
                             distinguish part number from model number) </p>
@@ -264,7 +257,7 @@ class VitalInfo extends Component {
                           {getFieldDecorator('manufacturerPart', {
                             initialValue: this.state.manufacturerPart,
                             rules: [{
-                              required: true,
+                              required: false,
                               message: 'Please enter manufacturerpart',
                               whitespace: true
                             }],
@@ -353,7 +346,7 @@ class VitalInfo extends Component {
                     <div className="col-md-12">
                       <div className="col-md-4">
                         <div className="floatright">
-                          <label>* Shape:</label>
+                          <label>Shape:</label>
                           <p> (the shape of the item) </p>
                         </div>
                       </div>
@@ -362,7 +355,7 @@ class VitalInfo extends Component {
                           {getFieldDecorator('shape', {
                             initialValue: this.state.shape,
                             rules: [{
-                              required: true,
+                              required: false,
                               message: 'Please enter shape',
                               whitespace: true
                             }],
@@ -377,7 +370,7 @@ class VitalInfo extends Component {
                     <div className="col-md-12">
                       <div className="col-md-4">
                         <div className="floatright">
-                          <label>* Lens Color:</label>
+                          <label>Lens Color:</label>
                           <p> (color of the lense in the item) </p>
                         </div>
                       </div>
@@ -386,7 +379,7 @@ class VitalInfo extends Component {
                           {getFieldDecorator('lenseColor', {
                             initialValue: this.state.lenseColor,
                             rules: [{
-                              required: true,
+                              required: false,
                               message: 'Please enter lensecolor',
                               whitespace: true
                             }],
@@ -425,7 +418,7 @@ class VitalInfo extends Component {
                     <div className="col-md-12">
                       <div className="col-md-4">
                         <div className="floatright">
-                          <label>* Hand orientation:</label>
+                          <label>Hand orientation:</label>
                           <p> (is this item for lefties or for fighties) </p>
                         </div>
                       </div>
@@ -434,7 +427,7 @@ class VitalInfo extends Component {
                           {getFieldDecorator('orientation', {
                             initialValue: this.state.orientation,
                             rules: [{
-                              required: true,
+                              required: false,
                               message: 'Please enter orientation',
                               whitespace: true
                             }],
@@ -449,7 +442,7 @@ class VitalInfo extends Component {
                     <div className="col-md-12">
                       <div className="col-md-4">
                         <div className="floatright">
-                          <label>* Tension Supported:</label>
+                          <label>Tension Supported:</label>
                           <p> (the tension that can be supported bu this item) </p>
                         </div>
                       </div>
@@ -458,8 +451,9 @@ class VitalInfo extends Component {
                           {getFieldDecorator('tension', {
                             initialValue: this.state.tension,
                             rules: [{
-                              required: true,
-                              message: 'Please enter tension', whitespace: true
+                              required: false,
+                              message: 'Please enter tension', 
+                              whitespace: true
                             }],
                           })(
                             <Input />
@@ -538,7 +532,7 @@ class VitalInfo extends Component {
                             <LengthInput />
                           )}
                         </FormItem>
-                        <p className="margin-top" style={{ marginTop: "0px" }}>  Example: 50 pounds, low, medium, high  </p>
+                        <p className="margin-top" style={{ marginTop: "0px" }}>  Example: 50 cm, 5 inch, 500 mm    </p>
                       </div>
                     </div>
                     {/*Width*/}
@@ -560,7 +554,7 @@ class VitalInfo extends Component {
                             )}
                           </FormItem>
                         </Form>
-                        <p className="margin-top" style={{ marginTop: "0px" }}>  Example: 50 pounds, low, medium, high  </p>
+                        <p className="margin-top" style={{ marginTop: "0px" }}>  Example: Example: 50 cm, 5 inch, 500 mm   </p>
                       </div>
                     </div>
                     {/*Item Display Weight*/}
@@ -587,7 +581,7 @@ class VitalInfo extends Component {
                     <div className="col-md-12">
                       <div className="col-md-4">
                         <div className="floatright">
-                          <label> Display Maximum Weight Recommendation:</label>
+                          <label>* Display Maximum Weight Recommendation:</label>
                           <p> (is this item buit for leftless or rightless?) </p>
                         </div>
                       </div>
@@ -610,7 +604,7 @@ class VitalInfo extends Component {
                     <div className="col-md-12">
                       <div className="col-md-4">
                         <div className="floatright">
-                          <label>* Shaft Length:</label>
+                          <label>Shaft Length:</label>
                           <p> (is this item buikt for leftles or rightles?) </p>
                         </div>
                       </div>
@@ -619,7 +613,7 @@ class VitalInfo extends Component {
                           {getFieldDecorator('shaft', {
                             initialValue: this.state.shaft,
                             rules: [{
-                              required: true,
+                              required: false,
                               message: 'Please enter shaft', whitespace: true
                             }],
                           })(
@@ -684,7 +678,6 @@ class VitalInfo extends Component {
                 </div>
               </div>
             </Form>
-
           </div>
           <div className="col-md-12">
             <div className="row col-md-9 col-md-offset-3" style={{ paddingTop: "10px", paddingLeft: "" }}>

@@ -49,10 +49,9 @@ import EntMusic from './components/entertainment/entertainmentPages/EntMusic';
 import MusicBrowse from './components/entertainment/EntDetailpages/MusicBrowse';
 import VideoBox from './components/entertainment/EntDetailpages/VideoBox';
 import UploadVideo from './components/entertainment/entertainmentPages/uploadVideo';
-//import TicketDetail from './components/events/TicketDetail';
-//import TicketDetail from './components/events/TicketDetail'
 import {PrivateRoute} from './components/signin_seperate';
 import AddProduct from './components/ecommerce/addProduct/addProduct';
+import CheckOutPage from './components/ecommerce/checkOutPage';
 
 
 
@@ -144,6 +143,8 @@ ReactDOM.render(
           <Route path="/products_DetailStyle" component={EproductDetails}></Route>
           <Route path="/Forms_Ecommerce" component={EcomForms}></Route>
           <Route path="/Forms_addproduct" component={AddProduct}></Route>
+          <Route path="/checkOutProduct" component={CheckOutPage}></Route>
+
           {/*============Ecommerce=============*/}
 
           {/*=============Entertainment====================*/}

@@ -21,14 +21,18 @@ img {
       -ms-flex-positive: 1;
           flex-grow: 1; }
 
+.preview-thumbnail enavigation enav-tabs{
+  list-style: none;
+  
+}
 .preview-thumbnail.enav-tabs li img {
     width: 100%;
     display: inline-block;;
   }
 
   .enavigation>li>a {
-    position: relative;
-    display: block;
+    position: initial;
+    display: inline-block;
     margin-bottom: 10px;
     width: 100%;
     padding: 0 !important;
@@ -41,20 +45,6 @@ img {
       border-bottom-color: transparent;
       padding: 2px;
   }
-{/*.preview-thumbnail.nav-tabs {
-  border: none;
-  margin-top: 15px; }
-  .preview-thumbnail.nav-tabs li {
-    width: 18%;
-    margin-right: 2.5%; }
-
-    .preview-thumbnail.nav-tabs li a {
-      padding: 0;
-      margin: 0; }
-    .preview-thumbnail.nav-tabs li:last-of-type {
-      margin-right: 0; }
-
-    */}
 .tab-content {
   overflow: hidden; }
   .tab-content img {
@@ -63,13 +53,9 @@ img {
             animation-name: opacity;
     -webkit-animation-duration: .3s;
             animation-duration: .3s;
-    height: 200px;
+    height: auto;
 }
-.card-three-column {
-  margin-top: 50px;
-  background: white;
-  padding: 3em;
-  line-height: 1.5em; }
+
 
 @media screen and (min-width: 997px) {
   .wrapper {
@@ -77,6 +63,7 @@ img {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex; } }
+
 
 .details {
   display: -webkit-box;
@@ -196,7 +183,7 @@ border: 1px solid black;
 padding: 15px;
 text-align: center;
 text-align: left;
-height: 450px;
+height: 400px;
 }
 
 .efontcolor{
@@ -205,5 +192,31 @@ height: 450px;
 }
 .margins{
   margin-top: -20px;
-  margin-left: -22px
+  margin-left: -42px
 }
+.margin{
+  margin-top: -20px;
+  margin-left: -3px
+}
+
+@media screen
+  and (min-device-width: 1200px)
+  and (max-device-width: 1600px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .card-three-column {
+      margin-top: 50px;
+      background: white;
+      padding: 3em;
+      line-height: 1.5em; }
+
+  }
+
+  @media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 4) {
+    .card-three-column {
+      margin-top: 50px;
+      background: white;
+      line-height: 1.5em; }
+  }

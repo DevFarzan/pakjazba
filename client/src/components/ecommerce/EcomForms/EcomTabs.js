@@ -137,7 +137,7 @@ class EcomTabs extends Component {
   render() {
     const { mode, allTabs, evitalInfo, offerInfo, images, description, keywords, herfSec, objData } = this.state;
     if (this.state.msg === true) {
-      return <Redirect to={{ pathname: '/products_DetailStyle', state: objData }} />
+      return <Redirect to={{ pathname: `/products_DetailStyle/${objData._id}`, state: objData }} />
     }
     return (
       <div className>

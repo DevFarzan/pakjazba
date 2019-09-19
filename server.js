@@ -78,6 +78,8 @@ require('./models/eventTicketSchema');
 require('./models/eventseatvenue');
 require('./models/userVideos');
 require('./models/postyourproduct');
+require('./models/ecommercereview');
+
 
 require('./config/passport');
 
@@ -100,6 +102,7 @@ var eventTicket = mongoose.model('EventTicketSchema');
 var eventSeats  = mongoose.model('EventVenue');
 var uerVideos   = mongoose.model('customData');
 var postecommerce = mongoose.model('postyourproduct');
+var ecommerceProductReview = mongoose.model('ecommercereview');
 var sess;
 
 app.use(passport.initialize());
@@ -2113,6 +2116,8 @@ app.get('/api/getecommercedata' ,(req,res) =>{
     }
   })
 })
+/*===================================get Ecommerce API ====================================================*/
+/*===================================post Rating Ecommerce API==============================================*/
 
 
 

@@ -91,6 +91,7 @@ class MarketRoommates extends Component{
 
     render(){
         const { goForLogin, goDetail } = this.state;
+        console.log(this.props.text , 'this.props.text room rent')
         if (goForLogin) {
             return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/postad_Roommates" }}}}/>;
         }

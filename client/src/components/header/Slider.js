@@ -3,12 +3,17 @@ import 'antd/dist/antd.css';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import './slider.css';
+import { HttpUtils } from "../../Services/HttpUtils";
+import { Redirect } from 'react-router';
 
 class Slider extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputValue: ''
+            inputValue: '',
+            ecomSerchValue: '',
+            ecommreceFilterData: [],
+            redirectToEcomFilterPage: false
         }
     }
 
@@ -36,6 +41,29 @@ class Slider extends Component {
         console.log(inputValue, 'input value');
 
     }
+    serachEcom = async (e) => {
+        const { ecomSerchValue } = this.state;
+        e.preventDefault();
+        let res = await HttpUtils.get('getecommercedata');
+        let data = res.content
+        let ecommreceFilterData = [];
+        let obj = {
+            searchValue: ecomSerchValue
+        }
+        for (let i in data) {
+            if (ecomSerchValue == data[i].product || ecomSerchValue == data[i].productFeature ||
+                ecomSerchValue == data[i].brandName || ecomSerchValue == data[i].description ||
+                ecomSerchValue == data[i].legalDesclaimer || ecomSerchValue == data[i].manufacturer ||
+                ecomSerchValue == data[i].manufacturerPart) {
+                ecommreceFilterData.push(data[i])
+            }
+        }
+        obj.ecommreceFilterData = ecommreceFilterData
+        this.setState({
+            ecommreceFilterData: obj,
+            redirectToEcomFilterPage: true
+        })
+    }
 
     postRoom = (e) => {
         e.preventDefault();
@@ -43,8 +71,10 @@ class Slider extends Component {
     }
 
     render() {
-        const { inputValue } = this.state;
-
+        const { inputValue, redirectToEcomFilterPage, ecommreceFilterData } = this.state;
+        if (redirectToEcomFilterPage) {
+            return <Redirect to={{ pathname: '/products_GridStyle', state: ecommreceFilterData }} />
+        }
         return (
             <div>
                 <div>
@@ -79,9 +109,12 @@ class Slider extends Component {
                                     <form>
                                         <div className="single">
                                             <div className="input-group">
-                                                <input type="text" className="form-control" placeholder="Search" style={{ height: '40px' }} onChange={this.onChange.bind(this)} />
+                                                <input type="text" className="form-control" placeholder="Search" style={{ height: '40px' }}
+                                                    onChange={this.onChange.bind(this)} />
                                                 <span className="input-group-btn">
-                                                    <button className="btn btn-theme" type="submit" style={{ backgroundColor: '#37a99b', color: 'white' }} onClick={this.searchText}><i className="fa fa-search" /></button>
+                                                    <button className="btn btn-theme" type="submit"
+                                                        style={{ backgroundColor: '#37a99b', color: 'white' }}
+                                                        onClick={this.searchText}><i className="fa fa-search" /></button>
                                                 </span>
                                             </div>
                                         </div>
@@ -153,9 +186,15 @@ class Slider extends Component {
                         <form>
                             <div className="single">
                                 <div className="input-group">
-                                    <input type="text" className="form-control" placeholder="Search" style={{ height: '40px' }} onChange={this.onChange.bind(this)} />
+                                    <input type="text" className="form-control" placeholder="Search"
+                                        style={{ height: '40px' }}
+                                        onChange={this.onChange.bind(this)} />
                                     <span className="input-group-btn">
-                                        <button className="btn btn-theme" type="submit" style={{ backgroundColor: '#37a99b', color: 'white' }} onClick={this.searchText}><i className="fa fa-search" /></button>
+                                        <button className="btn btn-theme" type="submit"
+                                            style={{ backgroundColor: '#37a99b', color: 'white' }}
+                                            onClick={this.searchText}>
+                                            <i className="fa fa-search" />
+                                        </button>
                                     </span>
                                 </div>
                                 <div className="row">
@@ -190,19 +229,18 @@ class Slider extends Component {
                                 <div className="input-group">
                                     <input type="text" className="form-control"
                                         placeholder="Search" style={{ height: '40px' }}
-                                        onChange={this.onChange.bind(this)} />
+                                        onChange={(e => this.setState({ ecomSerchValue: e.target.value }))} />
                                     <span className="input-group-btn">
                                         <button className="btn btn-theme"
                                             type="submit"
                                             style={{ backgroundColor: '#37a99b', color: 'white' }}
-                                            onClick={this.searchText}>
-                                            <Link rel="noopener noreferrer"
+                                            onClick={this.serachEcom}>
+                                            <i className="fa fa-search" />
+                                            {/* <Link rel="noopener noreferrer"
                                                 to={`/products_GridStyle`}
                                                 params={{ value: inputValue }} >
-                                                {/* <Link  rel="noopener noreferrer" to={`/${inputValue}`} > */}
 
-                                                <i className="fa fa-search" />
-                                            </Link>
+                                            </Link> */}
                                         </button>
                                     </span>
                                 </div>

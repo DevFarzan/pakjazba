@@ -2120,6 +2120,24 @@ app.get('/api/getecommercedata' ,(req,res) =>{
 /*===================================post Rating Ecommerce API==============================================*/
 
 
+app.get('/api/getspecificproductbyid' ,(req,res) =>{
+  let productId = req.body.productId;
+  postecommerce.find({"_id":productId},function(err,ecommerceData){
+    if(err){
+      res.send({
+        code:404,
+        msg:'Something went wrong'
+      })
+    }
+    else if(ecommerceData){
+      res.send({
+        code:200,
+        msg:'All Ecommerce Data',
+        content:ecommerceData
+      })
+    }
+  })
+})
 
 
 /*===================event seats arrangment API end================================================================*/

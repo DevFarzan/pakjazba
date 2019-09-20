@@ -78,7 +78,7 @@ require('./models/eventTicketSchema');
 require('./models/eventseatvenue');
 require('./models/userVideos');
 require('./models/postyourproduct');
-require('./models/ecommercereview');
+require('./models/ecommerceProductRating');
 
 
 require('./config/passport');
@@ -2139,6 +2139,34 @@ app.get('/api/getspecificproductbyid' ,(req,res) =>{
   })
 })
 
+app.post('/api/postecommercecomment',(req,res)=>{
+  let ecommerceRatingReview = req.body;
+  const ecommerceObj = new ecommerceProductReview({
+    userId:req.body.userId,
+    date:req.body.date,
+    time:req.body.time,
+    name:req.body.name,
+    email:req.body.email,
+    message:req.body.message,
+    productId:req.body.productId,
+  })
+  ecommerceObj.save(function(err,data){
+    if(err){
+      res.send({
+        code:404,
+        msg:'something went wrong'
+      })
+    }
+    else if(data){
+      res.send({
+        code:200,
+        msg:'Ecommerce rating posted',
+        content:data
+      })
+    }
+  })
+
+})
 
 /*===================event seats arrangment API end================================================================*/
 if (process.env.NODE_ENV === 'production') {

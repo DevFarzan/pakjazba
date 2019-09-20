@@ -127,7 +127,7 @@ class PthreeColumn extends Component {
             <div>
               {/* <PTable /> */}
               <ProductInformation data={this.props.data} />
-              <ProductFaq />
+              {/* <ProductFaq /> */}
               <ProductReviews productId={this.props.productId} />
             </div>
           </div>

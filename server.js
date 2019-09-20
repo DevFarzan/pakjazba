@@ -2150,6 +2150,8 @@ app.post('/api/postecommercecomment',(req,res)=>{
     email:req.body.email,
     message:req.body.message,
     productId:req.body.productId,
+    rating:req.body.rating,
+
   })
   ecommerceObj.save(function(err,data){
     if(err){
@@ -2166,7 +2168,27 @@ app.post('/api/postecommercecomment',(req,res)=>{
       })
     }
   })
+})
 
+
+app.post('/api/getecommercecomment' ,(req,res) =>{
+  let productId = req.body.productId;
+  //res.send(product);
+  ecommerceProductReview.find({"_id":productId},function(err,ecommerceData){
+    if(err){
+      res.send({
+        code:404,
+        msg:'Something went wrong'
+      })
+    }
+    else if(ecommerceData){
+      res.send({
+        code:200,
+        msg:'All Ecommerce Comment',
+        content:ecommerceData
+      })
+    }
+  })
 })
 
 /*===================event seats arrangment API end================================================================*/

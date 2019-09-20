@@ -9,5 +9,7 @@ var ecommerceProductRating = new mongoose.Schema({
     email:{type:String},
     message:{type:String},
     productId:{type:String},
+    rating:{type:Number},
+
 });
 mongoose.model('ecommercereview',ecommerceProductRating);

@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Carousel, Rate, notification, Icon, Spin, Modal } from 'antd';
 import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import { HttpUtils } from "../../../Services/HttpUtils";
+import StarRatings from 'react-star-ratings';
 
+const desc = ['Terrible', 'Bad', 'Normal', 'Good', 'Wonderful'];
 
 class ProductReviews extends Component {
     constructor(props) {
@@ -12,19 +14,52 @@ class ProductReviews extends Component {
             name: '',
             email: '',
             message: '',
-            rating: '',
+            rating: 0,
             date: '',
-            time: ''
+            time: '',
         }
     }
+    componentDidMount() {
+        const date = new Date().getDate();
+        let month = new Date().getMonth() + 1;
+        const year = new Date().getFullYear();
+        const hours = new Date().getHours();
+        const min = new Date().getMinutes();
+        const sec = new Date().getSeconds();
+        const userData = JSON.parse(localStorage.getItem('user'));
+        this.setState({
+            date: date + '-' + month + '-' + year,
+            time: hours + ':' + min + ':' + sec,
+            userId: userData._id
+        })
+
+    }
     sendComment = async (e) => {
+        const { name, email, message, rating, date, time, userId } = this.state;
+        const { productId } = this.props;
         e.preventDefault();
-        console.log('sned comment')
-        // let res = await HttpUtils.post('getspecificproductbyid', obj);
+        let objComment = {
+            name: name,
+            email: email,
+            message: message,
+            rating: rating,
+            date: date,
+            time: time,
+            userId: userId,
+            productId: productId
+        }
+        console.log(objComment, 'sned comment')
+        let res = await HttpUtils.post('postecommercecomment', objComment);
+        console.log(res, 'res')
+    }
+    changeRating = (newRating, name) => {
+        console.log(newRating, 'newRating')
+        this.setState({
+            rating: newRating
+        });
     }
     render() {
-        const { productId } = this.props;
-        console.log(productId, ' productId')
+        const { rating, message, date, time } = this.state;
         return (
             <div className="container" style={isMobile ? { width: "92%", paddingLeft: "5px" } : { width: "85%" }}>
                 <div class="vitalbox">
@@ -61,7 +96,7 @@ class ProductReviews extends Component {
                                         <p style={{ marginBottom: "0px", textAlign: "right" }}> Written on 2018 </p>
                                     </div>
                                 </div>
-                                <Rate allowHalf defaultValue={2.5} />
+                                <Rate allowHalf defaultValue={0} />
                                 <div class="clearfix"></div>
                                 <p>Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                             </div>
@@ -74,8 +109,22 @@ class ProductReviews extends Component {
                         <div className="col-md-12">
                             {/*Section: Contact v.2*/}
                             <div>
-                                <h4>Your Rating:
-                                    <Rate allowHalf value />
+                                <h4>Your Rating :
+                                {/* <StarRatings
+                                        rating={0}
+                                        starRatedColor="blue"
+                                        changeRating={this.changeRating}
+                                        numberOfStars={5}
+                                        starRatedColor="rgb(109, 122, 130)"
+                                        starEmptyColor='rgb(203, 211, 227)'
+                                        starDimension = '50px'
+                                        name='rating'
+                                    /> */}
+                                    {/* <Rate allowHalf defaultValue={0} /> */}
+                                    <span style={{ paddingLeft: "10px" }}>
+                                        <Rate tooltips={desc} onChange={this.changeRating} value={rating} />
+                                        {rating ? <span className="ant-rate-text">{desc[rating - 1]}</span> : ''}
+                                    </span>
                                 </h4>
                                 <div className="row">
                                     {/*Grid column*/}
@@ -87,7 +136,8 @@ class ProductReviews extends Component {
                                                 <div className="col-md-6">
                                                     <div className="md-form mb-0">
                                                         <label className="">Your name</label>
-                                                        <input type="text" id="name1" name="name" className="form-control" />
+                                                        <input type="text" id="name1" name="name" className="form-control"
+                                                            onChange={e => this.setState({ name: e.target.value })} />
                                                     </div>
                                                 </div>
                                                 {/*Grid column*/}
@@ -95,7 +145,8 @@ class ProductReviews extends Component {
                                                 <div className="col-md-6">
                                                     <div className="md-form mb-0">
                                                         <label className="">Your email</label>
-                                                        <input type="text" id="email1" name="email" className="form-control" />
+                                                        <input type="text" id="email1" name="email" className="form-control"
+                                                            onChange={e => this.setState({ email: e.target.value })} />
                                                     </div>
                                                 </div>
                                                 {/*Grid column*/}
@@ -107,7 +158,8 @@ class ProductReviews extends Component {
                                                 <div className="col-md-12">
                                                     <div className="md-form">
                                                         <label>Your message</label>
-                                                        <textarea type="text" id="message1" name="message" rows="2" className="form-control md-textarea"></textarea>
+                                                        <textarea type="text" id="message1" name="message" rows="2" className="form-control md-textarea"
+                                                            onChange={e => this.setState({ message: e.target.value })}></textarea>
                                                     </div>
                                                 </div>
                                             </div>

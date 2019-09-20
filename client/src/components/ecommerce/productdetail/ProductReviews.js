@@ -17,6 +17,7 @@ class ProductReviews extends Component {
             rating: 0,
             date: '',
             time: '',
+            // commentData:[]
         }
     }
     componentDidMount() {
@@ -34,6 +35,20 @@ class ProductReviews extends Component {
         })
 
     }
+    // async componentWillMount() {
+    //     const { productId } = this.props;
+    //     if (productId) {
+    //       let getCommentObj = {
+    //         productId: productId
+    //       }
+    //       let res = await HttpUtils.post('getecommercecomment', getCommentObj);
+    //       this.setState({
+    //         commentData: res.content
+    //       })
+    //     }
+    
+    
+    //   }
     sendComment = async (e) => {
         const { name, email, message, rating, date, time, userId } = this.state;
         const { productId } = this.props;
@@ -51,6 +66,14 @@ class ProductReviews extends Component {
         console.log(objComment, 'sned comment')
         let res = await HttpUtils.post('postecommercecomment', objComment);
         console.log(res, 'res')
+        if (res.code == 200) {
+            this.setState({
+                name: '',
+                email: '',
+                message: '',
+                rating: 0
+            })
+        }
     }
     changeRating = (newRating, name) => {
         console.log(newRating, 'newRating')
@@ -59,7 +82,7 @@ class ProductReviews extends Component {
         });
     }
     render() {
-        const { rating } = this.state;
+        const { rating, name, email, message } = this.state;
         const { commentData } = this.props;
         return (
             <div className="container" style={isMobile ? { width: "92%", paddingLeft: "5px" } : { width: "85%" }}>
@@ -150,7 +173,9 @@ class ProductReviews extends Component {
                                                     <div className="md-form mb-0">
                                                         <label className="">Your name</label>
                                                         <input type="text" id="name1" name="name" className="form-control"
-                                                            onChange={e => this.setState({ name: e.target.value })} />
+                                                            onChange={e => this.setState({ name: e.target.value })}
+                                                            value={name}
+                                                        />
                                                     </div>
                                                 </div>
                                                 {/*Grid column*/}
@@ -159,7 +184,8 @@ class ProductReviews extends Component {
                                                     <div className="md-form mb-0">
                                                         <label className="">Your email</label>
                                                         <input type="text" id="email1" name="email" className="form-control"
-                                                            onChange={e => this.setState({ email: e.target.value })} />
+                                                            onChange={e => this.setState({ email: e.target.value })}
+                                                            value={email} />
                                                     </div>
                                                 </div>
                                                 {/*Grid column*/}
@@ -172,7 +198,8 @@ class ProductReviews extends Component {
                                                     <div className="md-form">
                                                         <label>Your message</label>
                                                         <textarea type="text" id="message1" name="message" rows="2" className="form-control md-textarea"
-                                                            onChange={e => this.setState({ message: e.target.value })}></textarea>
+                                                            onChange={e => this.setState({ message: e.target.value })}
+                                                            value={message}></textarea>
                                                     </div>
                                                 </div>
                                             </div>

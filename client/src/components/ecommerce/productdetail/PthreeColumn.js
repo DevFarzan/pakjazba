@@ -75,7 +75,6 @@ class PthreeColumn extends Component {
   }
   render() {
     const { data, count, commentData } = this.state
-    console.log(commentData, 'commentData')
     return (
       <div class="container" style={{ width: "100%", padding: "0px" }}>
         <div class="card-three-column">

@@ -5,6 +5,7 @@ import PTable from './Ptable'
 import ProductInformation from './ProductInformation'
 import ProductReviews from './ProductReviews'
 import ProductFaq from './ProductFaq';
+import { HttpUtils } from "../../../Services/HttpUtils";
 
 
 class PthreeColumn extends Component {
@@ -15,7 +16,8 @@ class PthreeColumn extends Component {
       data: {},
       images: [],
       imgUrl: '',
-      count: 0
+      count: 0,
+      commentData: []
     }
   }
 
@@ -34,6 +36,20 @@ class PthreeColumn extends Component {
         imgUrl: data.images[0]
       })
     }
+  }
+  async componentWillMount() {
+    const { productId } = this.props;
+    if (productId) {
+      let getCommentObj = {
+        productId: productId
+      }
+      let res = await HttpUtils.post('getecommercecomment', getCommentObj);
+      this.setState({
+        commentData: res.content
+      })
+    }
+
+
   }
 
   renderImagesinLi = (img) => {
@@ -58,8 +74,8 @@ class PthreeColumn extends Component {
     }
   }
   render() {
-    const { data, count } = this.state
-
+    const { data, count, commentData } = this.state
+    console.log(commentData, 'commentData')
     return (
       <div class="container" style={{ width: "100%", padding: "0px" }}>
         <div class="card-three-column">
@@ -128,7 +144,7 @@ class PthreeColumn extends Component {
               {/* <PTable /> */}
               <ProductInformation data={this.props.data} />
               {/* <ProductFaq /> */}
-              <ProductReviews productId={this.props.productId} />
+              <ProductReviews productId={this.props.productId} commentData={commentData} />
             </div>
           </div>
         </div>

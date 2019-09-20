@@ -59,12 +59,13 @@ class ProductReviews extends Component {
         });
     }
     render() {
-        const { rating, message, date, time } = this.state;
+        const { rating } = this.state;
+        const { commentData } = this.props;
         return (
             <div className="container" style={isMobile ? { width: "92%", paddingLeft: "5px" } : { width: "85%" }}>
                 <div class="vitalbox">
                     <div class="">
-                        <div class="row" style={isMobile ? { paddingRight: "10px", paddingLeft: "10px" } : { paddingRight: "80px", paddingLeft: "80px" }}>
+                        {/* <div class="row" style={isMobile ? { paddingRight: "10px", paddingLeft: "10px" } : { paddingRight: "80px", paddingLeft: "80px" }}>
                             <div class="col-md-2 col-xs-3">
                                 <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
                             </div>
@@ -82,26 +83,38 @@ class ProductReviews extends Component {
                                 <p>Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                             </div>
                         </div>
-                        <hr />
-                        <div class="row" style={isMobile ? { paddingRight: "10px", paddingLeft: "10px" } : { paddingRight: "80px", paddingLeft: "80px" }}>
-                            <div class="col-md-2 col-xs-3">
-                                <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
-                            </div>
-                            <div class="col-md-10">
-                                <div className="row" style={{ padding: "0px" }}>
-                                    <div className="col-md-6">
-                                        <h4><strong>Maniruzzaman Akash</strong></h4>
+                        <hr /> */}
+                        {commentData && commentData.map((elem, key) => {
+
+                            return (
+                                <div>
+                                    <div class="row" style={isMobile ? { paddingRight: "10px", paddingLeft: "10px" } : { paddingRight: "80px", paddingLeft: "80px" }}>
+                                        <div class="col-md-2 col-xs-3">
+                                            <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div className="row" style={{ padding: "0px" }}>
+                                                <div className="col-md-6">
+                                                    <h4><strong>{elem.name}</strong></h4>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <p style={{ marginBottom: "0px", textAlign: "right" }}> Written on {elem.date} </p>
+                                                </div>
+                                            </div>
+                                            <span style={{ paddingLeft: "10px" }}>
+                                                <Rate tooltips={desc} value={elem.rating} />
+                                                {elem.rating ? <span className="ant-rate-text">{desc[elem.rating - 1]}</span> : ''}
+                                            </span>
+                                            {/* <Rate allowHalf defaultValue={0} /> */}
+                                            <div class="clearfix"></div>
+                                            <p>{elem.message}</p>
+                                        </div>
                                     </div>
-                                    <div className="col-md-6">
-                                        <p style={{ marginBottom: "0px", textAlign: "right" }}> Written on 2018 </p>
-                                    </div>
+                                    <hr />
                                 </div>
-                                <Rate allowHalf defaultValue={0} />
-                                <div class="clearfix"></div>
-                                <p>Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                            </div>
-                        </div>
-                        <hr />
+                            )
+                        })}
+
                     </div>
                     <div className="row" style={isMobile ?
 

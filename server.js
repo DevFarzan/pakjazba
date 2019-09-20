@@ -2170,11 +2170,12 @@ app.post('/api/postecommercecomment',(req,res)=>{
   })
 })
 
+/*===================================Get Rating Ecommerce API==============================================*/
 
 app.post('/api/getecommercecomment' ,(req,res) =>{
   let productId = req.body.productId;
   //res.send(product);
-  ecommerceProductReview.find({"_id":productId},function(err,ecommerceData){
+  ecommerceProductReview.find({"productId":productId},function(err,ecommerceData){
     if(err){
       res.send({
         code:404,

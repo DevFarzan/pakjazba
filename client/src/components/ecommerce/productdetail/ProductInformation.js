@@ -13,7 +13,6 @@ class ProductInformation extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     let data = this.props.data;
-    console.log(data, 'in child compenent')
     if (data === undefined) {
       this.setState({
         isData: false

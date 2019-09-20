@@ -2115,8 +2115,9 @@ app.get('/api/getecommercedata' ,(req,res) =>{
 })
 
 
-app.get('/api/getspecificproductbyid' ,(req,res) =>{
+app.post('/api/getspecificproductbyid' ,(req,res) =>{
   let productId = req.body.productId;
+  //res.send(product);
   postecommerce.find({"_id":productId},function(err,ecommerceData){
     if(err){
       res.send({

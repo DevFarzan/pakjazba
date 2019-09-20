@@ -59,14 +59,15 @@ class PthreeColumn extends Component {
   }
   render() {
     const { data, count } = this.state
+
     return (
       <div class="container" style={{ width: "100%", padding: "0px" }}>
         <div class="card-three-column">
           <div class="row" style={{ padding: "0px" }}>
             <div class="preview col-md-5">
-              <div className="row" style={{padding: '0px'}}>
+              <div className="row" style={{ padding: '0px' }}>
                 <div className="col-md-3 col-xs-3">
-                  <ul class="preview-thumbnail enavigation enav-tabs" style={{listStyle: 'none'}}>
+                  <ul class="preview-thumbnail enavigation enav-tabs" style={{ listStyle: 'none' }}>
                     {/* rendering li in dom & show images */}
                     {this.state.images.map(img => <li onClick={() => this.renderImagesinLi(img)}><a ><img src={img} /></a></li>)}
                   </ul>
@@ -127,7 +128,7 @@ class PthreeColumn extends Component {
               {/* <PTable /> */}
               <ProductInformation data={this.props.data} />
               <ProductFaq />
-              <ProductReviews />
+              <ProductReviews productId={this.props.productId} />
             </div>
           </div>
         </div>

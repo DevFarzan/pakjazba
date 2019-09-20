@@ -1,15 +1,35 @@
 import React, { Component } from 'react';
 import { Carousel, Rate, notification, Icon, Spin, Modal } from 'antd';
 import { isMobile, isTablet, isBrowser } from 'react-device-detect';
+import { HttpUtils } from "../../../Services/HttpUtils";
 
 
 class ProductReviews extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            userId: '',
+            name: '',
+            email: '',
+            message: '',
+            rating: '',
+            date: '',
+            time: ''
+        }
+    }
+    sendComment = async (e) => {
+        e.preventDefault();
+        console.log('sned comment')
+        // let res = await HttpUtils.post('getspecificproductbyid', obj);
+    }
     render() {
+        const { productId } = this.props;
+        console.log(productId, ' productId')
         return (
-            <div className="container" style={isMobile ? { width: "92%", paddingLeft: "5px" } : {width: "85%"}}>
+            <div className="container" style={isMobile ? { width: "92%", paddingLeft: "5px" } : { width: "85%" }}>
                 <div class="vitalbox">
                     <div class="">
-                        <div class="row" style={isMobile ? { paddingRight: "10px", paddingLeft: "10px" } : { paddingRight: "80px", paddingLeft: "80px" } }>
+                        <div class="row" style={isMobile ? { paddingRight: "10px", paddingLeft: "10px" } : { paddingRight: "80px", paddingLeft: "80px" }}>
                             <div class="col-md-2 col-xs-3">
                                 <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
                             </div>
@@ -49,13 +69,13 @@ class ProductReviews extends Component {
                         <hr />
                     </div>
                     <div className="row" style={isMobile ?
-                        
+
                         { paddingRight: "10px", paddingLeft: "10px" } : { paddingRight: "80px", paddingLeft: "80px" }}>
                         <div className="col-md-12">
                             {/*Section: Contact v.2*/}
                             <div>
                                 <h4>Your Rating:
-                          <Rate allowHalf value />
+                                    <Rate allowHalf value />
                                 </h4>
                                 <div className="row">
                                     {/*Grid column*/}
@@ -95,7 +115,7 @@ class ProductReviews extends Component {
                                         </form>
                                         <div className="text-center text-md-left">
 
-                                            <a className="btn button_custom" style={{ width: "35%" }}>Send</a>
+                                            <a className="btn button_custom" style={{ width: "35%" }} onClick={this.sendComment}>Send</a>
                                         </div>
                                         <div className="status"></div>
                                     </div>

@@ -5,7 +5,7 @@ import Footer from '../../footer/footer';
 import PthreeColumn from './PthreeColumn';
 import PeightColumn from './PeightColumn';
 import { isMobile, isTablet, isBrowser } from 'react-device-detect';
-
+import { HttpUtils } from "../../../Services/HttpUtils";
 
 class EproductDetail extends Component {
   constructor(props) {
@@ -19,21 +19,51 @@ class EproductDetail extends Component {
       images: [],
       productName: '',
       price: '',
-      description: ''
+      description: '',
+      data: '',
+      productId: '',
+      dataShow: false
     }
   }
-  componentDidMount() {
+  async componentDidMount() {
     let data = this.props.location.state;
-    // console.log(data, 'data')
-    this.setState({
-      user_Id: data.user_Id,
-      profileId: data.profileId,
-      objectId: data._id,
-      images: data.images,
-      productName: data.product,
-      price: data.price,
-      description: data.description
-    })
+    // console.log(this.props.location.pathname.slice(22), 'this.props.location')
+    console.log(data, 'this.props.location')
+    if (data) {
+      this.setState({
+        user_Id: data.user_Id,
+        profileId: data.profileId,
+        objectId: data._id,
+        images: data.images,
+        productName: data.product,
+        price: data.price,
+        description: data.description,
+        productId: data._id,
+        data: data,
+        dataShow: true
+      })
+    }
+    else {
+      let obj = {
+        productId: this.props.location.pathname.slice(22)
+      }
+
+      let res = await HttpUtils.post('getspecificproductbyid', obj);
+      let data = res.content[0]
+      console.log(data, 'data from api')
+      this.setState({
+        user_Id: data.user_Id,
+        profileId: data.profileId,
+        objectId: data._id,
+        images: data.images,
+        productName: data.product,
+        price: data.price,
+        description: data.description,
+        data: data,
+        productId: data._id,
+        dataShow: true
+      })
+    }
   }
 
   shoppingCartCount = (countCart) => {
@@ -54,6 +84,9 @@ class EproductDetail extends Component {
     console.log('aaaaaaaaaaaa', addToCartObj)
   }
   render() {
+    const { dataShow, data, productId } = this.state;
+    console.log(data, 'data')
+
     return (
       <div>
         <span>
@@ -66,9 +99,12 @@ class EproductDetail extends Component {
         </span>
         <div className="row">
           <div className="col-md-12">
-            <PthreeColumn data={this.props.location.state}
-              shoppingCartCount={this.shoppingCartCount}
-            />
+            {dataShow ?
+              <PthreeColumn data={data}
+                shoppingCartCount={this.shoppingCartCount}
+                productId={productId}
+              />
+              : null}
           </div>
         </div>
       </div>

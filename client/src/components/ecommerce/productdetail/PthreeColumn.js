@@ -48,8 +48,6 @@ class PthreeColumn extends Component {
         commentData: res.content
       })
     }
-
-
   }
 
   renderImagesinLi = (img) => {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Burgermenu from '../header/burgermenu';
 import { InputNumber } from 'antd';
+import { Link } from "react-router-dom";
+
 import './checkOutpage.css'
 
 class CheckOutPage extends Component {
@@ -22,7 +24,10 @@ class CheckOutPage extends Component {
                             <div className='row'>
                                 <div className='cart col-md-5 col-sm-5 col-xs-12'>Cart()</div>
                                 <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12'>Checkout</button>
-                                <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12'>Browse more</button>
+                                <Link rel="noopener noreferrer" to={`/market_ecommerceMarket`} style={{ color: 'black', fontSize: '14px' }}>
+                                    {/* <CartButton cartCount={this.props.cartCount} /> */}
+                                    <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12'>Browse more</button>
+                                </Link>
                                 <div className='col-md-3 col-sm-3 col-xs-12'></div>
                             </div>
                         </div>

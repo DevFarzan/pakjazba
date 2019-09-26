@@ -90,7 +90,7 @@ class Burgermenu extends Component {
                                     <Category />
                                 </div>{/*col-md-4*/}
                                 <div className="col-md-1 col-sm-2 col-xs-12" style={{ marginTop: "21px" }}>
-                                    <Link rel="noopener noreferrer" to={`checkOutProduct`} style={{ color: 'black', fontSize: '14px' }}>
+                                    <Link rel="noopener noreferrer" to={`/checkOutProduct`} style={{ color: 'black', fontSize: '14px' }}>
                                         <CartButton cartCount={this.props.cartCount} />
                                     </Link>
                                 </div>

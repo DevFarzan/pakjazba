@@ -6,11 +6,28 @@ import EcomCard from './EcomCard';
 import Eshopcard from './EcomShopcard';
 import Additionalcard from './EcomAdditionalcard';
 import DealsEcom from './EcomDeals';
+<<<<<<< HEAD
 import CarouselHome from '../home/carouselHome';
 
+
+
 class EcommerceMarket extends Component {
-  
+  constructor(props) {
+    super(props);
+    this.state = {
+      productsData: ''
+    }
+  }
+
+  async componentWillMount() {
+    let res = await HttpUtils.get('getecommercedata');
+    this.setState({
+      productsData: res.content
+    })
+  }
+
   render() {
+    const { productsData } = this.state;
     return (
       <div>
         <span>
@@ -36,11 +53,11 @@ class EcommerceMarket extends Component {
           <EcomCard />
         </div>
         <div className="row">
-          <Eshopcard />
+          <Eshopcard productsData={productsData} />
         </div>
-        <div className="row">
+        {/* <div className="row">
           <Additionalcard />
-        </div>
+        </div> */}
         <div className="row" style={{ marginTop: "-70px" }}>
           <DealsEcom />
         </div>

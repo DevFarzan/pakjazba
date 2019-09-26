@@ -140,7 +140,7 @@ ReactDOM.render(
           <Route path="/market_ecommerceMarket" component={EcommerceMarket}></Route>
           <Route path="/detail_ecommercedetail" component={EcomDetail}></Route>
           <Route path="/products_GridStyle" component={GridProducts}></Route>
-          <Route path="/products_DetailStyle" component={EproductDetails}></Route>
+          <Route path="/products_DetailStyle/:value" component={EproductDetails}></Route>
           <Route path="/Forms_Ecommerce" component={EcomForms}></Route>
           <Route path="/Forms_addproduct" component={AddProduct}></Route>
           <Route path="/checkOutProduct" component={CheckOutPage}></Route>

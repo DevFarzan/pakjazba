@@ -386,7 +386,7 @@ class ProfileUser extends Component {
         }
         else if (ecommerce) {
             return (
-                <Redirect to={{ pathname: '/Forms_Ecommerce', state: data }} />
+                <Redirect to={{ pathname: `/products_DetailStyle/${data._id}`,state: data }} />
             )
         }
 
@@ -923,7 +923,8 @@ class ProfileUser extends Component {
                                                                             }}>
                                                                             <div className="card">
                                                                                 <Link to={{
-                                                                                    pathname: `/products_DetailStyle`,
+                                                                                    // pathname: `/products_DetailStyle`,
+                                                                                    pathname: `/products_DetailStyle/${elem._id}`,
                                                                                     state: elem
                                                                                 }}>
                                                                                     <img alt='' src={img} />

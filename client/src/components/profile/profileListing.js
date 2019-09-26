@@ -80,6 +80,7 @@ class ProfileListing extends Component{
                     }
                 })            
             }
+            
             this.setState({
                 buySellData,
                 ecommerce ,

@@ -78,6 +78,8 @@ require('./models/eventTicketSchema');
 require('./models/eventseatvenue');
 require('./models/userVideos');
 require('./models/postyourproduct');
+require('./models/ecommerceProductRating');
+
 
 require('./config/passport');
 
@@ -100,6 +102,7 @@ var eventTicket = mongoose.model('EventTicketSchema');
 var eventSeats  = mongoose.model('EventVenue');
 var uerVideos   = mongoose.model('customData');
 var postecommerce = mongoose.model('postyourproduct');
+var ecommerceProductReview = mongoose.model('ecommercereview');
 var sess;
 
 app.use(passport.initialize());
@@ -2093,6 +2096,102 @@ app.get('/api/getcustomvideo',(req,res) => {
         }
     })
 })
+
+
+/*===================================getEcommerce API===================================================*/
+app.get('/api/getecommercedata' ,(req,res) =>{
+  postecommerce.find(function(err,ecommerceData){
+    if(err){
+      res.send({
+        code:404,
+        msg:'Something went wrong'
+      })
+    }
+    else if(ecommerceData){
+      res.send({
+        code:200,
+        msg:'All Ecommerce Data',
+        content:ecommerceData
+      })
+    }
+  })
+})
+/*===================================get Ecommerce API ====================================================*/
+/*===================================post Rating Ecommerce API==============================================*/
+
+
+app.post('/api/getspecificproductbyid' ,(req,res) =>{
+  let productId = req.body.productId;
+  //res.send(product);
+  postecommerce.find({"_id":productId},function(err,ecommerceData){
+    if(err){
+      res.send({
+        code:404,
+        msg:'Something went wrong'
+      })
+    }
+    else if(ecommerceData){
+      res.send({
+        code:200,
+        msg:'All Ecommerce Data',
+        content:ecommerceData
+      })
+    }
+  })
+})
+
+app.post('/api/postecommercecomment',(req,res)=>{
+  let ecommerceRatingReview = req.body;
+  const ecommerceObj = new ecommerceProductReview({
+    userId:req.body.userId,
+    date:req.body.date,
+    time:req.body.time,
+    name:req.body.name,
+    email:req.body.email,
+    message:req.body.message,
+    productId:req.body.productId,
+    rating:req.body.rating,
+
+  })
+  ecommerceObj.save(function(err,data){
+    if(err){
+      res.send({
+        code:404,
+        msg:'something went wrong'
+      })
+    }
+    else if(data){
+      res.send({
+        code:200,
+        msg:'Ecommerce rating posted',
+        content:data
+      })
+    }
+  })
+})
+
+/*===================================Get Rating Ecommerce API==============================================*/
+
+app.post('/api/getecommercecomment' ,(req,res) =>{
+  let productId = req.body.productId;
+  //res.send(product);
+  ecommerceProductReview.find({"productId":productId},function(err,ecommerceData){
+    if(err){
+      res.send({
+        code:404,
+        msg:'Something went wrong'
+      })
+    }
+    else if(ecommerceData){
+      res.send({
+        code:200,
+        msg:'All Ecommerce Comment',
+        content:ecommerceData
+      })
+    }
+  })
+})
+
 /*===================event seats arrangment API end================================================================*/
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files

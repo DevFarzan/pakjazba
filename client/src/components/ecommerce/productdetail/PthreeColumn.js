@@ -37,19 +37,6 @@ class PthreeColumn extends Component {
       })
     }
   }
-  async componentWillMount() {
-    const { productId } = this.props;
-    if (productId) {
-      let getCommentObj = {
-        productId: productId
-      }
-      let res = await HttpUtils.post('getecommercecomment', getCommentObj);
-      this.setState({
-        commentData: res.content
-      })
-    }
-  }
-
   renderImagesinLi = (img) => {
     this.setState({
       imgUrl: img

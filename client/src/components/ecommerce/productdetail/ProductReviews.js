@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Carousel, Rate, notification, Icon, Spin, Modal } from 'antd';
+import { Rate, notification } from 'antd';
 import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import { HttpUtils } from "../../../Services/HttpUtils";
 import StarRatings from 'react-star-ratings';
@@ -17,7 +17,7 @@ class ProductReviews extends Component {
             rating: 0,
             date: '',
             time: '',
-            // commentData:[]
+            commentData: []
         }
     }
     componentDidMount() {
@@ -28,29 +28,28 @@ class ProductReviews extends Component {
         const min = new Date().getMinutes();
         const sec = new Date().getSeconds();
         const userData = JSON.parse(localStorage.getItem('user'));
-        this.setState({
-            date: date + '-' + month + '-' + year,
-            time: hours + ':' + min + ':' + sec,
-            userId: userData._id
-        })
-
+        if (userData) {
+            this.setState({
+                date: date + '-' + month + '-' + year,
+                time: hours + ':' + min + ':' + sec,
+                userId: userData._id
+            })
+        }
     }
-    // async componentWillMount() {
-    //     const { productId } = this.props;
-    //     if (productId) {
-    //       let getCommentObj = {
-    //         productId: productId
-    //       }
-    //       let res = await HttpUtils.post('getecommercecomment', getCommentObj);
-    //       this.setState({
-    //         commentData: res.content
-    //       })
-    //     }
-    
-    
-    //   }
+    async componentWillMount() {
+        const { productId } = this.props;
+        if (productId) {
+            let getCommentObj = {
+                productId: productId
+            }
+            let res = await HttpUtils.post('getecommercecomment', getCommentObj);
+            this.setState({
+                commentData: res.content
+            })
+        }
+    }
     sendComment = async (e) => {
-        const { name, email, message, rating, date, time, userId } = this.state;
+        const { name, email, message, rating, date, time, userId, commentData } = this.state;
         const { productId } = this.props;
         e.preventDefault();
         let objComment = {
@@ -63,50 +62,36 @@ class ProductReviews extends Component {
             userId: userId,
             productId: productId
         }
-        console.log(objComment, 'sned comment')
         let res = await HttpUtils.post('postecommercecomment', objComment);
-        console.log(res, 'res')
         if (res.code == 200) {
             this.setState({
                 name: '',
                 email: '',
                 message: '',
-                rating: 0
+                rating: 0,
+                commentData: [...commentData, objComment]
             })
+            notification.open({
+                message: 'Your Review',
+                description:
+                    'Post your review about product',
+                onClick: () => {
+                    console.log('Notification Clicked!');
+                },
+            });
         }
     }
     changeRating = (newRating, name) => {
-        console.log(newRating, 'newRating')
         this.setState({
             rating: newRating
         });
     }
     render() {
-        const { rating, name, email, message } = this.state;
-        const { commentData } = this.props;
+        const { rating, name, email, message, commentData } = this.state;
         return (
             <div className="container" style={isMobile ? { width: "92%", paddingLeft: "5px" } : { width: "85%" }}>
                 <div class="vitalbox">
                     <div class="">
-                        {/* <div class="row" style={isMobile ? { paddingRight: "10px", paddingLeft: "10px" } : { paddingRight: "80px", paddingLeft: "80px" }}>
-                            <div class="col-md-2 col-xs-3">
-                                <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
-                            </div>
-                            <div class="col-md-10">
-                                <div className="row" style={{ padding: "0px" }}>
-                                    <div className="col-md-6">
-                                        <h4><strong>Maniruzzaman Akash</strong></h4>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <p style={{ marginBottom: "0px", textAlign: "right" }}> Written on 2018 </p>
-                                    </div>
-                                </div>
-                                <Rate allowHalf defaultValue={2.5} />
-                                <div class="clearfix"></div>
-                                <p>Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                            </div>
-                        </div>
-                        <hr /> */}
                         {commentData && commentData.map((elem, key) => {
 
                             return (
@@ -146,17 +131,6 @@ class ProductReviews extends Component {
                             {/*Section: Contact v.2*/}
                             <div>
                                 <h4>Your Rating :
-                                {/* <StarRatings
-                                        rating={0}
-                                        starRatedColor="blue"
-                                        changeRating={this.changeRating}
-                                        numberOfStars={5}
-                                        starRatedColor="rgb(109, 122, 130)"
-                                        starEmptyColor='rgb(203, 211, 227)'
-                                        starDimension = '50px'
-                                        name='rating'
-                                    /> */}
-                                    {/* <Rate allowHalf defaultValue={0} /> */}
                                     <span style={{ paddingLeft: "10px" }}>
                                         <Rate tooltips={desc} onChange={this.changeRating} value={rating} />
                                         {rating ? <span className="ant-rate-text">{desc[rating - 1]}</span> : ''}

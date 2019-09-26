@@ -6,8 +6,8 @@ import EcomCard from './EcomCard';
 import Eshopcard from './EcomShopcard';
 import Additionalcard from './EcomAdditionalcard';
 import DealsEcom from './EcomDeals';
-<<<<<<< HEAD
 import CarouselHome from '../home/carouselHome';
+import { HttpUtils } from "../../Services/HttpUtils";
 
 
 

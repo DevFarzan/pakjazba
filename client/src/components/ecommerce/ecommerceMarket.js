@@ -6,8 +6,10 @@ import EcomCard from './EcomCard';
 import Eshopcard from './EcomShopcard';
 import Additionalcard from './EcomAdditionalcard';
 import DealsEcom from './EcomDeals';
+import CarouselHome from '../home/carouselHome';
 
 class EcommerceMarket extends Component {
+  
   render() {
     return (
       <div>
@@ -20,6 +22,13 @@ class EcommerceMarket extends Component {
             </div>
           </div>
         </span>
+        <div  className="" style={{marginTop: '40px'}}>
+                  <h4 className="headingtext"> Featured Listing </h4>
+                  <hr />
+                  <div>
+                      <CarouselHome/>
+                  </div>
+              </div>
         <div className="row" style={{ marginTop: "20px" }}>
           <h1 className="" style={{ fontWeight: "bold", textAlign: "center" }}> Feature Categories  </h1>
         </div>

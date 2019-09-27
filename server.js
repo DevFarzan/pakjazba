@@ -79,6 +79,7 @@ require('./models/eventseatvenue');
 require('./models/userVideos');
 require('./models/postyourproduct');
 require('./models/ecommerceProductRating');
+require('./models/ecommercePayment');
 
 
 require('./config/passport');
@@ -103,6 +104,7 @@ var eventSeats  = mongoose.model('EventVenue');
 var uerVideos   = mongoose.model('customData');
 var postecommerce = mongoose.model('postyourproduct');
 var ecommerceProductReview = mongoose.model('ecommercereview');
+var ecommercerPayment = mongoose.model('ecommercepayment');
 var sess;
 
 app.use(passport.initialize());
@@ -2199,6 +2201,71 @@ app.post('/api/getecommercereview',(req,res) =>{
         
       }
   })
+})
+
+app.post('/api/postecommercepayment',(req,res) =>{
+  let data = req.body;
+  
+  console.log(data,'stripe data');
+  
+   stripe.customers.create({
+    email: data.email,
+    source: data.token
+  })
+  .then(customer => 
+    stripe.charges.create({
+      amount: data.amount, // Unit: cents
+      //currency: data.currency,
+      customer: customer.id,
+      source: customer.default_source.id,
+      description: 'Test payment',
+    }))
+  .then(function(charge){
+    var stripeResponse = charge;
+    res.send({
+      code:200,
+      amount:charge.amount,
+      billing_details:charge.billing_details,
+      created:charge.created,
+      currency:charge.currency,
+      description:charge.description,
+      paid:charge.paid,
+      status:charge.status
+    })
+    if(stripeResponse.status == "succeeded"){
+      const paymentFinalModal = new ecommercerPayment({
+          name: data.name,
+         email: data.email,
+         //serviceName: data.serviceName,
+         //paymentMonth: data.paymentMonth,
+         amount: data.amount,
+         //currency: data.currency,
+         //transactionId: data.transactionId,
+         //receiptImg: data.receiptImg,
+         objectIds:data.objectIds,
+         userId:data.userId,
+      });
+      ecommercerPayment.save(function(err,successData){
+        if(err){
+          // res.send({
+          //   code:404,
+          //   msg:'Error in API'
+          // })
+        }
+        else if(successData){
+          // res.send({
+          //   code:200,
+          //   msg:'payment data successfully saved'
+          // })
+        }
+      })
+    }
+    
+  }) 
+  .catch(err => {
+    console.log("Error:", err);
+    res.status(500).send({error: err.code});
+  });
 })
 
 /*===================event seats arrangment API end================================================================*/

@@ -4,8 +4,11 @@ import Slider from '../../header/Slider';
 import Footer from '../../footer/footer';
 import PthreeColumn from './PthreeColumn';
 import PeightColumn from './PeightColumn';
-import { isMobile, isTablet, isBrowser } from 'react-device-detect';
+import { Redirect } from 'react-router';
+import { isMobile } from 'react-device-detect';
 import { HttpUtils } from "../../../Services/HttpUtils";
+import { Modal } from 'antd';
+import { connect } from "react-redux";
 
 class EproductDetail extends Component {
   constructor(props) {
@@ -21,16 +24,23 @@ class EproductDetail extends Component {
       description: '',
       data: '',
       productId: '',
-      dataShow: false
+      dataShow: false,
+      visible: false,
+      goForLogin: false
     }
   }
   async componentDidMount() {
     let data = this.props.location.state;
     const userData = JSON.parse(localStorage.getItem('user'));
-    if (data) {
+    if (userData) {
       this.setState({
+        visible: false,
         user_Id: userData._id,
         profileId: userData.profileId,
+      })
+    }
+    if (data) {
+      this.setState({
         objectId: data._id,
         images: data.images,
         productName: data.product,
@@ -63,89 +73,106 @@ class EproductDetail extends Component {
   //add to cart funtion
   shoppingCartCount = (countCart) => {
     const { user_Id, profileId, objectId, images, productName, price, description, cartCount } = this.state;
-    //get local storage data
-    const addToCartData = JSON.parse(localStorage.getItem('addToCart'));
+    const userData = JSON.parse(localStorage.getItem('user'));
 
-    //create obj for values
-    let addToCartObj = {};
-    let cartArr = [];
-    let previousCartData = addToCartData;
-    let combineArr = [];
-    addToCartObj.user_Id = user_Id;
-    addToCartObj.profileId = profileId;
-    addToCartObj.objectId = objectId;
-    addToCartObj.cartCount = countCart;
-    addToCartObj.images = images;
-    addToCartObj.productName = productName;
-    addToCartObj.price = price;
-    addToCartObj.description = description;
-    //set state for props
+    if (userData) {
+      //get local storage data
+      const addToCartData = JSON.parse(localStorage.getItem('addToCart'));
 
-    //get array if user previves record or new record
-    if (addToCartData) {
-      for (var i = 0; i < addToCartData.length; i++) {
-        if (addToCartData[i].objectId == objectId &&
-          addToCartData[i].user_Id == user_Id &&
-          addToCartData[i].productName == productName &&
-          addToCartData[i].price == price &&
-          addToCartData[i].description == description) {
-          // if user add same data of the previes record
-          addToCartData[i].cartCount = countCart;
-          cartArr.push(addToCartData[i])
-          break;
+      //create obj for values
+      let addToCartObj = {};
+      let cartArr = [];
+      let previousCartData = addToCartData;
+      let combineArr = [];
+      addToCartObj.user_Id = user_Id;
+      addToCartObj.profileId = profileId;
+      addToCartObj.objectId = objectId;
+      addToCartObj.cartCount = countCart;
+      addToCartObj.images = images;
+      addToCartObj.productName = productName;
+      addToCartObj.price = price;
+      addToCartObj.description = description;
+      //set state for props
+
+      //get array if user previves record or new record
+      if (addToCartData) {
+        for (var i = 0; i < addToCartData.length; i++) {
+          if (addToCartData[i].objectId == objectId &&
+            addToCartData[i].user_Id == user_Id &&
+            addToCartData[i].productName == productName &&
+            addToCartData[i].price == price &&
+            addToCartData[i].description == description) {
+            // if user add same data of the previes record
+            addToCartData[i].cartCount = countCart;
+            cartArr.push(addToCartData[i])
+            break;
+          }
+          else if (addToCartData[i].objectId != objectId &&
+            addToCartData[i].user_Id == user_Id &&
+            addToCartData[i].productName != productName &&
+            addToCartData[i].price != price &&
+            addToCartData[i].description != description) {
+            //if user add to cart newe product
+            cartArr.push(addToCartObj)
+            break;
+          }
         }
-        else if (addToCartData[i].objectId != objectId &&
-          addToCartData[i].user_Id == user_Id &&
-          addToCartData[i].productName != productName &&
-          addToCartData[i].price != price &&
-          addToCartData[i].description != description) {
-          //if user add to cart newe product
-          cartArr.push(addToCartObj)
-          break;
+        // console.log(cartArr)
+        this.setState({
+          cartCount: cartArr[0].cartCount
+        })
+      }
+      else {
+        //if user add 1st time data 
+        cartArr.push(addToCartObj)
+        this.setState({
+          cartCount: addToCartObj.cartCount
+        })
+      }
+      let dataPush = false;
+      var children;
+      if (previousCartData) {
+        for (var j = 0; j < previousCartData.length; j++) {
+          if (previousCartData[j].objectId == cartArr[0].objectId) {
+            //if user same record of the previous record
+            combineArr.push(cartArr[0])
+            dataPush = true;
+          }
+          else {
+            // user previos record pus to array
+            combineArr.push(previousCartData[j])
+          }
+        }
+        if (!dataPush) {
+          // combine array
+          children = combineArr.concat(cartArr);
+          localStorage.setItem('addToCart', JSON.stringify(children));
+        } else {
+          //all record
+          localStorage.setItem('addToCart', JSON.stringify(combineArr));
         }
       }
-      // console.log(cartArr)
+      else {
+        //add to local storage data in 1st time
+        localStorage.setItem('addToCart', JSON.stringify(cartArr));
+      }
+    } else {
       this.setState({
-        cartCount: cartArr[0].cartCount
+        visible: true
       })
-    }
-    else {
-      //if user add 1st time data 
-      cartArr.push(addToCartObj)
-      this.setState({
-        cartCount: addToCartObj.cartCount
-      })
-    }
-    let dataPush = false;
-    var children;
-    if (previousCartData) {
-      for (var j = 0; j < previousCartData.length; j++) {
-        if (previousCartData[j].objectId == cartArr[0].objectId) {
-          //if user same record of the previous record
-          combineArr.push(cartArr[0])
-          dataPush = true;
-        }
-        else {
-          // user previos record pus to array
-          combineArr.push(previousCartData[j])
-        }
-      }
-      if (!dataPush) {
-        // combine array
-        children = combineArr.concat(cartArr);
-        localStorage.setItem('addToCart', JSON.stringify(children));
-      } else {
-        //all record
-        localStorage.setItem('addToCart', JSON.stringify(combineArr));
-      }
-    }
-    else {
-      //add to local storage data in 1st time
-      localStorage.setItem('addToCart', JSON.stringify(cartArr));
     }
   }
+  handleLogin = (e) => {
+    this.setState({ goForLogin: true, visible: false })
+  }
+  handleCancel = (e) => {
+    this.setState({ visible: false });
+  }
   render() {
-    const { dataShow, data, productId, cartCount } = this.state;
+    const { dataShow, data, productId, cartCount, goForLogin } = this.state;
+    if (goForLogin) {
+      return <Redirect to={{ pathname: '/sigin', state: { from: { pathname: `/products_DetailStyle/${productId}` }, state: data } }} />;
+    }
     return (
       <div>
         <span>
@@ -164,6 +191,17 @@ class EproductDetail extends Component {
                 productId={productId}
               />
               : null}
+            {this.state.visible && <Modal
+              title="Kindly Login first"
+              visible={this.state.visible}
+              onOk={this.handleOk}
+              onCancel={this.handleCancel}
+            >
+              <div className="row">
+                <div className="col-md-6" style={{ textAlign: 'center' }}><button className="btn btn-sm btn2-success" style={{ width: '100%' }} onClick={this.handleLogin}>Login</button></div>
+                <div className="col-md-6" style={{ textAlign: 'center' }}><button className="btn btn-sm btn2-success" style={{ width: '100%' }} onClick={this.handleCancel}>Cancel</button></div>
+              </div>
+            </Modal>}
           </div>
         </div>
       </div>
@@ -171,5 +209,11 @@ class EproductDetail extends Component {
     )
   }
 }
+const mapStateToProps = (state) => {
+  return ({
+    otherData: state.otherData
+  })
+}
+export default connect(mapStateToProps)(EproductDetail);
 
-export default EproductDetail;
+// export default EproductDetail;

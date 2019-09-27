@@ -229,12 +229,16 @@ class Slider extends Component {
                                 <div className="input-group">
                                     <input type="text" className="form-control"
                                         placeholder="Search" style={{ height: '40px' }}
-                                        onChange={(e => this.setState({ ecomSerchValue: e.target.value }))} />
+                                        onChange=
+                                        // {(e => 
+                                        {e => this.props.searcProduct(e)}
+                                    // this.setState({ ecomSerchValue: e.target.value }))} 
+                                    />
                                     <span className="input-group-btn">
                                         <button className="btn btn-theme"
                                             type="submit"
                                             style={{ backgroundColor: '#37a99b', color: 'white' }}
-                                            onClick={this.serachEcom}>
+                                            onClick={this.props.searchProduct}>
                                             <i className="fa fa-search" />
                                             {/* <Link rel="noopener noreferrer"
                                                 to={`/products_GridStyle`}

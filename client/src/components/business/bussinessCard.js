@@ -17,7 +17,7 @@ class BussinesCard extends Component{
         }else if(detail === 'eventPortalData'){
             to = {pathname: `/detail_eventPortal/${cardDetails.randomKey}`, state: cardDetails};
         }else if(detail === 'ecommerce'){
-            to = {pathname: `/products_DetailStyle`, state: cardDetails};
+            to = {pathname:`/products_DetailStyle/${cardDetails._id}`, state: cardDetails};
         }
         return to;
     }

@@ -2120,8 +2120,9 @@ app.get('/api/getecommercedata' ,(req,res) =>{
 /*===================================post Rating Ecommerce API==============================================*/
 
 
-app.get('/api/getspecificproductbyid' ,(req,res) =>{
+app.post('/api/getspecificproductbyid' ,(req,res) =>{
   let productId = req.body.productId;
+  //res.send(product);
   postecommerce.find({"_id":productId},function(err,ecommerceData){
     if(err){
       res.send({
@@ -2149,6 +2150,8 @@ app.post('/api/postecommercecomment',(req,res)=>{
     email:req.body.email,
     message:req.body.message,
     productId:req.body.productId,
+    rating:req.body.rating,
+
   })
   ecommerceObj.save(function(err,data){
     if(err){
@@ -2165,7 +2168,28 @@ app.post('/api/postecommercecomment',(req,res)=>{
       })
     }
   })
+})
 
+/*===================================Get Rating Ecommerce API==============================================*/
+
+app.post('/api/getecommercecomment' ,(req,res) =>{
+  let productId = req.body.productId;
+  //res.send(product);
+  ecommerceProductReview.find({"productId":productId},function(err,ecommerceData){
+    if(err){
+      res.send({
+        code:404,
+        msg:'Something went wrong'
+      })
+    }
+    else if(ecommerceData){
+      res.send({
+        code:200,
+        msg:'All Ecommerce Comment',
+        content:ecommerceData
+      })
+    }
+  })
 })
 
 app.post('/api/getecommercereview',(req,res) =>{

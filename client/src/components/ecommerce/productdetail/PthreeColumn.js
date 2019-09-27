@@ -5,6 +5,7 @@ import PTable from './Ptable'
 import ProductInformation from './ProductInformation'
 import ProductReviews from './ProductReviews'
 import ProductFaq from './ProductFaq';
+import { HttpUtils } from "../../../Services/HttpUtils";
 
 
 class PthreeColumn extends Component {
@@ -15,7 +16,8 @@ class PthreeColumn extends Component {
       data: {},
       images: [],
       imgUrl: '',
-      count: 0
+      count: 0,
+      commentData: []
     }
   }
 
@@ -35,7 +37,6 @@ class PthreeColumn extends Component {
       })
     }
   }
-
   renderImagesinLi = (img) => {
     this.setState({
       imgUrl: img
@@ -58,15 +59,15 @@ class PthreeColumn extends Component {
     }
   }
   render() {
-    const { data, count } = this.state
+    const { data, count, commentData } = this.state
     return (
       <div class="container" style={{ width: "100%", padding: "0px" }}>
         <div class="card-three-column">
           <div class="row" style={{ padding: "0px" }}>
             <div class="preview col-md-5">
-              <div className="row" style={{padding: '0px'}}>
+              <div className="row" style={{ padding: '0px' }}>
                 <div className="col-md-3 col-xs-3">
-                  <ul class="preview-thumbnail enavigation enav-tabs" style={{listStyle: 'none'}}>
+                  <ul class="preview-thumbnail enavigation enav-tabs" style={{ listStyle: 'none' }}>
                     {/* rendering li in dom & show images */}
                     {this.state.images.map(img => <li onClick={() => this.renderImagesinLi(img)}><a ><img src={img} /></a></li>)}
                   </ul>
@@ -126,8 +127,8 @@ class PthreeColumn extends Component {
             <div>
               {/* <PTable /> */}
               <ProductInformation data={this.props.data} />
-              <ProductFaq />
-              <ProductReviews />
+              {/* <ProductFaq /> */}
+              <ProductReviews productId={this.props.productId} commentData={commentData} />
             </div>
           </div>
         </div>

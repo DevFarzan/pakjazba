@@ -382,7 +382,7 @@ class TestComponent extends Component {
                                                     }}>
                                                     <div className="card">
                                                         <Link to={{
-                                                            pathname: `/products_DetailStyle`,
+                                                            pathname: `/products_DetailStyle/${elem._id}`,
                                                             state: elem
                                                         }}>
                                                             <img alt='' src={img} />

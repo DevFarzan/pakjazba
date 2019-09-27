@@ -23,3 +23,6 @@
 .panel-body{    
     border: 1px solid #80808052
 }
+.imgClass{
+    max-width: 55%
+}

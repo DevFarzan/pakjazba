@@ -17,14 +17,8 @@ class Burgermenu extends Component {
         this.state = {
             collapsed: false,
             hidemenu: false,
-            // shoppingCartValue: false
         }
     }
-    componentDidMount() {
-        // let data = this.props.location.state;
-        // console.log(data)
-    }
-
     toggleCollapsed = () => {
         this.setState({
             collapsed: !this.state.collapsed,
@@ -48,15 +42,10 @@ class Burgermenu extends Component {
 
 
     render() {
-        const { selectRoute, route, shoppingCartValue } = this.state;
+        const { selectRoute, route } = this.state;
         if (selectRoute) {
             return <Redirect to={`/${route}`} />
         }
-        // if (shoppingCartValue) {
-        //     // return <Redirect to={{ pathname: '/checkOutProduct' }} />
-
-
-        // }
         return (
             <div>
                 <nav className="navbar navbar-fixed-top hidden-xs"
@@ -90,7 +79,7 @@ class Burgermenu extends Component {
                                     <Category />
                                 </div>{/*col-md-4*/}
                                 <div className="col-md-1 col-sm-2 col-xs-12" style={{ marginTop: "21px" }}>
-                                    <Link rel="noopener noreferrer" to={`checkOutProduct`} style={{ color: 'black', fontSize: '14px' }}>
+                                    <Link rel="noopener noreferrer" to={`/checkOutProduct`} style={{ color: 'black', fontSize: '14px' }}>
                                         <CartButton cartCount={this.props.cartCount} />
                                     </Link>
                                 </div>

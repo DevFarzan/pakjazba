@@ -2168,6 +2168,15 @@ app.post('/api/postecommercecomment',(req,res)=>{
 
 })
 
+app.post('/api/getecommercereview',(req,res) =>{
+  let productId = req.body.productId
+  ecommerceProductReview.find({"_id":productId},function(err,ecommerceData){
+      if(err){
+        
+      }
+  })
+})
+
 /*===================event seats arrangment API end================================================================*/
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files

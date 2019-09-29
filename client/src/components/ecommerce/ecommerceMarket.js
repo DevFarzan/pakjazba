@@ -4,12 +4,10 @@ import Footer from '../footer/footer';
 import Slider from '../header/Slider';
 import EcomCard from './EcomCard';
 import Eshopcard from './EcomShopcard';
-import Additionalcard from './EcomAdditionalcard';
 import DealsEcom from './EcomDeals';
-import CarouselHome from '../home/carouselHome';
 import { HttpUtils } from "../../Services/HttpUtils";
-
-
+import CarouselHome from '../home/carouselHome';
+import Additionalcard from './EcomAdditionalcard';
 
 class EcommerceMarket extends Component {
   constructor(props) {
@@ -18,7 +16,10 @@ class EcommerceMarket extends Component {
       productsData: '',
       featureData: '',
       allData: '',
-      ecomSerchValue: ''
+      ecomSerchValue: '',
+      featuredCategories: true,
+      noRecordFound: false,
+      recordFound: true,
     }
   }
 
@@ -28,7 +29,6 @@ class EcommerceMarket extends Component {
     for (var i = 0; i < 4; i++) {
       featureData.push(res.content[i])
     }
-    console.log(featureData, 'featureData')
     this.setState({
       productsData: res.content,
       featureData: featureData,
@@ -43,7 +43,10 @@ class EcommerceMarket extends Component {
     })
     if (e.target.value == '') {
       this.setState({
-        productsData: allData
+        productsData: allData,
+        featuredCategories: true,
+        noRecordFound: false,
+        recordFound: true
       })
     }
   }
@@ -63,19 +66,42 @@ class EcommerceMarket extends Component {
           ecommreceFilterData.push(data[i])
         }
       }
-      this.setState({
-        productsData: ecommreceFilterData,
-      })
+      if (ecommreceFilterData.length == 0) {
+        this.setState({
+          recordFound: false,
+          noRecordFound: true,
+          featuredCategories: false
+        })
+      }
+      else {
+        this.setState({
+          productsData: ecommreceFilterData,
+          featuredCategories: false,
+          recordFound: true,
+          noRecordFound: false
+        })
+      }
     }
     else {
       this.setState({
-        productsData: allData
+        productsData: allData,
+        featuredCategories: true,
+        recordFound: true,
+        noRecordFound: false
       })
     }
-    // console.log(ecomSerchValue, 'search value')
+  }
+  onAddMore = () => {
+    const { allData } = this.state;
+    this.setState({
+      productsData: allData,
+      featuredCategories: true,
+      recordFound: true,
+      noRecordFound: false
+    })
   }
   render() {
-    const { productsData, featureData } = this.state;
+    const { productsData, featureData, featuredCategories, noRecordFound, recordFound } = this.state;
     return (
       <div>
         <span>
@@ -87,25 +113,34 @@ class EcommerceMarket extends Component {
             </div>
           </div>
         </span>
-        <div className="" style={{ marginTop: '40px' }}>
+        {/* <div className="" style={{ marginTop: '40px' }}>
           <h4 className="headingtext"> Featured Listing </h4>
           <hr />
           <div>
             <CarouselHome />
           </div>
-        </div>
-        <div className="row" style={{ marginTop: "20px" }}>
-          <h1 className="" style={{ fontWeight: "bold", textAlign: "center" }}> Feature Categories  </h1>
-        </div>
-        <div className="row" style={{ marginTop: "-10px" }}>
-          <EcomCard featureData={featureData} />
-        </div>
-        <div className="row">
+        </div> */}
+        {featuredCategories ?
+          <div>
+            <div className="row" style={{ marginTop: "20px" }}>
+              <h1 className="" style={{ fontWeight: "bold", textAlign: "center" }}> Feature Categories  </h1>
+            </div>
+            <div className="row" style={{ marginTop: "-10px" }}>
+              <EcomCard featureData={featureData} />
+            </div>
+          </div>
+          : null
+        }
+        {noRecordFound && <span style={{ textAlign: "center" }}><h1>Not found....</h1></span>}
+        {noRecordFound && <span style={{ textAlign: "center" }}><h5>you can find your search by type</h5></span>}
+        {noRecordFound && <div className="col-md-12" style={{ textAlign: "center" }}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
+        {recordFound ? <div className="row">
           <Eshopcard productsData={productsData} />
-        </div>
+        </div> : null}
         {/* <div className="row">
           <Additionalcard />
         </div> */}
+
         <div className="row" style={{ marginTop: "-70px" }}>
           <DealsEcom />
         </div>

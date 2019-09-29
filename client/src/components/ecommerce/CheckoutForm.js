@@ -26,7 +26,6 @@ class CheckoutForm extends Component {
         //             name: receivedData.firstName
         //         }
         //     });
-        //     this.props.onChange(response);
         // } else {
         //     this.props.onError(error.message);
         // }

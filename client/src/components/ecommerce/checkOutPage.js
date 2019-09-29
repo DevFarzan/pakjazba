@@ -7,6 +7,7 @@ import { Elements, StripeProvider } from 'react-stripe-elements';
 import CheckoutForm from './CheckoutForm';
 import { HttpUtils } from "../../Services/HttpUtils";
 import './checkOutpage.css';
+import { Redirect } from 'react-router';
 
 class CheckOutPage extends Component {
     constructor(props) {
@@ -21,17 +22,29 @@ class CheckOutPage extends Component {
             name: '',
             chechkOutObj: '',
             objectIds: '',
+            noRecordFound: false,
+            goProductpage: false,
+            hideBtn: true
         }
     }
     componentDidMount() {
         const userData = JSON.parse(localStorage.getItem('user'));
         let addToCartData = JSON.parse(localStorage.getItem('addToCart'))
-        this.setState({
-            cartValue: addToCartData,
-            email: userData.email,
-            name: userData.name,
-            userId: userData._id
-        })
+        if (addToCartData) {
+            this.setState({
+                cartValue: addToCartData,
+                email: userData.email,
+                name: userData.name,
+                userId: userData._id,
+                hideBtn: true
+            })
+        }
+        else {
+            this.setState({
+                noRecordFound: true,
+                hideBtn: false
+            })
+        }
         this.capturedKeys();
     }
 
@@ -58,6 +71,7 @@ class CheckOutPage extends Component {
         localStorage.setItem('addToCart', JSON.stringify(updateCartData));
         this.setState({
             cartValue: updateCartData,
+            hideBtn: true
         })
     }
     removeCartData = (data, index) => {
@@ -73,7 +87,18 @@ class CheckOutPage extends Component {
         localStorage.setItem('addToCart', JSON.stringify(updateCartData));
         this.setState({
             cartValue: updateCartData,
+            hideBtn: true
         })
+        console.log(updateCartData.length, 'updateCartData.length ')
+        console.log(updateCartData, 'updateCartData ')
+
+        if (updateCartData.length == 0) {
+            this.setState({
+                noRecordFound: true,
+                hideBtn: false
+            })
+            localStorage.removeItem('addToCart');
+        }
     }
 
     checkOutFunc = () => {
@@ -116,9 +141,17 @@ class CheckOutPage extends Component {
             });
         }
     }
+    onAddMore = () => {
+        this.setState({
+            goProductpage: true
+        })
+    }
 
     render() {
-        const { cartValue, stripe, chechkOutObj } = this.state;
+        const { cartValue, stripe, chechkOutObj, noRecordFound, goProductpage, hideBtn } = this.state;
+        if (goProductpage) {
+            return <Redirect to={{ pathname: `/market_ecommerceMarket` }} />
+        }
         return (
             <div >
                 <Burgermenu />
@@ -127,15 +160,16 @@ class CheckOutPage extends Component {
                         <h1 style={{ fontFamily: 'Crimson Text, serif', fontWeight: "bold", color: "white" }}></h1>
                         <div className="div">
                             <h2 className='cartHeader'>Check Out Product</h2>
-                            <div className='row'>
-                                <div className='cart col-md-5 col-sm-5 col-xs-12'></div>
-                                <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12' onClick={this.checkOutFunc}>Checkout</button>
-                                <Link rel="noopener noreferrer" to={`/market_ecommerceMarket`} style={{ color: 'black', fontSize: '14px' }}>
-                                    {/* <CartButton cartCount={this.props.cartCount} /> */}
-                                    <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12'>Browse more</button>
-                                </Link>
-                                <div className='col-md-3 col-sm-3 col-xs-12'></div>
-                            </div>
+                            {hideBtn ?
+                                <div className='row'>
+                                    <div className='cart col-md-5 col-sm-5 col-xs-12'></div>
+                                    <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12' onClick={this.checkOutFunc}>Checkout</button>
+                                    <Link rel="noopener noreferrer" to={`/market_ecommerceMarket`} style={{ color: 'black', fontSize: '14px' }}>
+                                        {/* <CartButton cartCount={this.props.cartCount} /> */}
+                                        <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12'>Browse more</button>
+                                    </Link>
+                                    <div className='col-md-3 col-sm-3 col-xs-12'></div>
+                                </div> : null}
                         </div>
                     </div>
                 </div>
@@ -169,6 +203,9 @@ class CheckOutPage extends Component {
                             </div>
                         )
                     })}
+                    {noRecordFound && <span style={{ textAlign: "center" }}><h1>Not found....</h1></span>}
+                    {noRecordFound && <span style={{ textAlign: "center" }}><h5>you can find your search by type</h5></span>}
+                    {noRecordFound && <div className="col-md-12" style={{ textAlign: "center" }}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
                     {this.state.visible &&
                         <Modal
                             title="Kindly enter credit cart detail"

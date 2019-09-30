@@ -1983,6 +1983,7 @@ app.post('/api/postecommercedata',(req,res) => {
     const postEcommerceData = new postecommerce({
       user_Id:ecommerceData.user_Id,
       profileId:ecommerceData.profileId,
+      category:ecommerceData.category,
       status:ecommerceData.status,
       brandName:ecommerceData.brandName,
       UPC:ecommerceData.UPC,
@@ -2206,22 +2207,24 @@ app.post('/api/getecommercereview',(req,res) =>{
 app.post('/api/postecommercepayment',(req,res) =>{
   let data = req.body;
   
-  console.log(data,'stripe data');
+  //console.log(data,'stripe data');
   
    stripe.customers.create({
     email: data.email,
     source: data.token
   })
-  .then(customer => 
-    stripe.charges.create({
-      amount: data.amount, // Unit: cents
-      //currency: data.currency,
+   .then(customer =>
+    //console.log(data,'asdaasdsadasd');
+     stripe.charges.create({
+      amount: Math.round(data.amount*100), // Unit: cents
+      currency: data.currency,
       customer: customer.id,
       source: customer.default_source.id,
       description: 'Test payment',
     }))
   .then(function(charge){
     var stripeResponse = charge;
+    console.log(charge,'hfdhffhgfhgf')
     res.send({
       code:200,
       amount:charge.amount,
@@ -2239,13 +2242,13 @@ app.post('/api/postecommercepayment',(req,res) =>{
          //serviceName: data.serviceName,
          //paymentMonth: data.paymentMonth,
          amount: data.amount,
-         //currency: data.currency,
+         currency: data.currency,
          //transactionId: data.transactionId,
          //receiptImg: data.receiptImg,
          objectIds:data.objectIds,
          userId:data.userId,
       });
-      ecommercerPayment.save(function(err,successData){
+      paymentFinalModal.save(function(err,successData){
         if(err){
           // res.send({
           //   code:404,

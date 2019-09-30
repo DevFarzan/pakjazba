@@ -8,6 +8,7 @@ import CheckoutForm from './CheckoutForm';
 import { HttpUtils } from "../../Services/HttpUtils";
 import './checkOutpage.css';
 import { Redirect } from 'react-router';
+import imgSucces from './images/succes.gif';
 
 class CheckOutPage extends Component {
     constructor(props) {
@@ -24,7 +25,12 @@ class CheckOutPage extends Component {
             objectIds: '',
             noRecordFound: false,
             goProductpage: false,
-            hideBtn: true
+            hideBtn: true,
+            succes: false,
+            userCheckOut: false,
+            totalAmount: '',
+            pakjazbafee: '',
+            gst: ''
         }
     }
     componentDidMount() {
@@ -46,6 +52,7 @@ class CheckOutPage extends Component {
             })
         }
         this.capturedKeys();
+        this.calculateAmount(addToCartData)
     }
 
     onChange = (data, cartCount) => {
@@ -68,6 +75,7 @@ class CheckOutPage extends Component {
                 updateCartData.push(addToCartData[i])
             }
         }
+        this.calculateAmount(updateCartData);
         localStorage.setItem('addToCart', JSON.stringify(updateCartData));
         this.setState({
             cartValue: updateCartData,
@@ -84,14 +92,12 @@ class CheckOutPage extends Component {
                 updateCartData.push(addToCartData[i])
             }
         }
+        this.calculateAmount(updateCartData);
         localStorage.setItem('addToCart', JSON.stringify(updateCartData));
         this.setState({
             cartValue: updateCartData,
             hideBtn: true
         })
-        console.log(updateCartData.length, 'updateCartData.length ')
-        console.log(updateCartData, 'updateCartData ')
-
         if (updateCartData.length == 0) {
             this.setState({
                 noRecordFound: true,
@@ -102,22 +108,19 @@ class CheckOutPage extends Component {
     }
 
     checkOutFunc = () => {
-        const { name, email, amount, userId } = this.state;
+        const { name, email, userId, totalAmount } = this.state;
         let addToCartData = JSON.parse(localStorage.getItem('addToCart'))
-        let totalAmount = 0;
         let objIds = []
         for (var i = 0; i < addToCartData.length; i++) {
-            let amount = Number(addToCartData[i].price);
-            let count = Number(addToCartData[i].cartCount)
-            totalAmount = (amount * count) + totalAmount;
             objIds.push(addToCartData[i].objectId)
         }
         let chechkOutObj = {
             name: name,
             email: email,
-            amount: totalAmount,
+            amount: totalAmount.toString(),
             objectIds: objIds,
-            userId: userId
+            userId: userId,
+            currency: 'usd'
         }
         this.setState({
             visible: true,
@@ -127,8 +130,40 @@ class CheckOutPage extends Component {
     }
 
     handleCancel = (e) => {
-        this.setState({ visible: false });
+        this.setState({
+            visible: false,
+        });
     }
+    handleCancelPayment = () => {
+        this.setState({
+            succes: false
+        });
+    }
+
+    calculateAmount = (amountObj) => {
+        console.log(amountObj, 'amountObj')
+        let amountValue = 0;
+        let pakjazbafee = 0;
+        let gst = 0;
+        let totalAmount = 0;
+        if (amountObj) {
+            for (var i = 0; i < amountObj.length; i++) {
+                let amount = Number(amountObj[i].price);
+                let count = Number(amountObj[i].cartCount)
+                amountValue = Math.round((amount * count) + amountValue);
+            }
+            pakjazbafee = Math.round((amountValue / 100) * 10);
+            gst = Math.round((amountValue / 100) * 10);
+            totalAmount = Math.round(amountValue + pakjazbafee + gst);
+            this.setState({
+                amount: amountValue,
+                pakjazbafee: pakjazbafee,
+                gst: gst,
+                totalAmount: totalAmount
+            })
+        }
+    }
+
 
     async capturedKeys() {
         let res = await HttpUtils.get('keys');
@@ -141,17 +176,39 @@ class CheckOutPage extends Component {
             });
         }
     }
+
+
     onAddMore = () => {
         this.setState({
             goProductpage: true
         })
     }
 
+
+    modalsHideAndShow = (res) => {
+        console.log(res, 'respone from payment')
+        if (res.status) {
+            localStorage.removeItem('addToCart');
+            this.setState({
+                succes: true,
+                visible: false
+            })
+            setTimeout(() => {
+                this.setState({
+                    succes: false,
+                    goProductpage: true
+                })
+            }, 5000)
+        }
+    }
     render() {
-        const { cartValue, stripe, chechkOutObj, noRecordFound, goProductpage, hideBtn } = this.state;
+        const { cartValue, stripe, chechkOutObj, noRecordFound, goProductpage, hideBtn, succes, amount, pakjazbafee, gst, totalAmount } = this.state;
         if (goProductpage) {
             return <Redirect to={{ pathname: `/market_ecommerceMarket` }} />
         }
+        // if (userCheckOut) {
+        //     return <Redirect to={{ pathname: `/market_ecommerceMarket` }} />
+        // }
         return (
             <div >
                 <Burgermenu />
@@ -174,7 +231,7 @@ class CheckOutPage extends Component {
                     </div>
                 </div>
                 <div className='container'>
-                    {cartValue.map((elem, key) => {
+                    {cartValue && cartValue.map((elem, key) => {
                         return (
                             <div className='panel-body'>
                                 <div className='row'>
@@ -203,6 +260,20 @@ class CheckOutPage extends Component {
                             </div>
                         )
                     })}
+                    {totalAmount != '' ? <div className='panel-body'>
+                        <div className='row'>
+                            <div className="col-md-7 col-sm-6 col-xs-12">
+                            </div>
+                            <div className="col-md-5 col-sm-6 col-xs-12">
+                                <ul className='cartDetail'>
+                                    <li style={{ marginTop: "15px" }}>Amount : $ {amount} </li>
+                                    <li style={{ marginTop: "15px" }}>GST 10% : $ {gst}</li>
+                                    <li style={{ marginTop: "15px" }}>Pakjazba Fee 10% : $ {pakjazbafee}</li>
+                                    <li style={{ marginTop: "15px" }}>Total Amount: $ {totalAmount}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> : null}
                     {noRecordFound && <span style={{ textAlign: "center" }}><h1>Not found....</h1></span>}
                     {noRecordFound && <span style={{ textAlign: "center" }}><h5>you can find your search by type</h5></span>}
                     {noRecordFound && <div className="col-md-12" style={{ textAlign: "center" }}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
@@ -219,12 +290,23 @@ class CheckOutPage extends Component {
                                     <StripeProvider stripe={stripe}>
                                         <div className="example">
                                             <Elements style={{ boxSizing: 'border-box' }}>
-                                                <CheckoutForm chechkOutObj={chechkOutObj} />
+                                                <CheckoutForm chechkOutObj={chechkOutObj} modalsHideAndShow={this.modalsHideAndShow} />
                                             </Elements>
                                         </div>
                                     </StripeProvider>
                                 </div>
                             </div>
+                        </Modal>
+                    }
+                    {succes &&
+                        <Modal
+                            title="Payment Succeeded"
+                            visible={this.state.succes}
+                            onOk={this.handleOk}
+                            onCancel={this.handleCancelPayment}
+                            width="400px"
+                        >
+                            <img src={imgSucces} style={{ height: "350px" }} />
                         </Modal>
                     }
                     <div>

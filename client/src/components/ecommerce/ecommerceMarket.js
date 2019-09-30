@@ -56,7 +56,7 @@ class EcommerceMarket extends Component {
     e.preventDefault();
     if (ecomSerchValue != '') {
       let res = await HttpUtils.get('getecommercedata');
-      let data = res.content
+      let data = res.content;
       let ecommreceFilterData = [];
       for (let i in data) {
         if (ecomSerchValue == data[i].product || ecomSerchValue == data[i].productFeature ||
@@ -102,6 +102,8 @@ class EcommerceMarket extends Component {
   }
   render() {
     const { productsData, featureData, featuredCategories, noRecordFound, recordFound } = this.state;
+    console.log(productsData , 'productsData')
+
     return (
       <div>
         <span>

@@ -37,6 +37,7 @@ class EcomTabs extends Component {
 
   handleProps = async (values, key) => {
     let { allTabs } = this.state;
+    console.log(values, 'values')
     var user = JSON.parse(localStorage.getItem('user'));
     var updateData = localStorage.getItem('updateData');
     values.user_Id = user._id;

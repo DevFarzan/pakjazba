@@ -84,7 +84,7 @@ class PthreeColumn extends Component {
                 <div class="details col-md-7">
                   <h3 class="product-title"
                   >{data.product}</h3>
-                  <p> By PakJazba </p>
+                  {/* <p> By PakJazba </p> */}
                   <h3>{'$' + data.price} & Free Shipping</h3>
                   <p class="vote">Size: <strong>{data.size}</strong></p>
                   <div style={{ marginTop: "20px" }}>

@@ -96,7 +96,14 @@
         text-align: center;
     }
 }
-
+.fixedPositionOnCheckOutPage{
+    padding-top: 10px;
+    padding-bottom: 0px;
+    position:fixed;
+    bottom:0;
+    width:100%;
+  
+}
 
 
 /* CSS used for positioning the footers at the bottom of the page. */

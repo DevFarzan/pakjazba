@@ -10,7 +10,9 @@ class CheckoutForm extends Component {
         super(props);
         this.state = {
             succes: false,
-            failed: false
+            failed: false,
+            btnDisabeld: false,
+            mgs: ''
         }
         this.submit = this.submit.bind(this);
     }
@@ -18,7 +20,11 @@ class CheckoutForm extends Component {
     async submit() {
         const { chechkOutObj } = this.props;
         let { token, error } = await this.props.stripe.createToken({ name: chechkOutObj.firstName });
-        console.log(token, 'token')
+        this.setState({
+            btnDisabeld: true
+        })
+        this.props.loaderFunc()
+        // console.log(token, 'token')
         if (token) {
             chechkOutObj.token = token.id;
         }
@@ -26,35 +32,18 @@ class CheckoutForm extends Component {
             console.log(chechkOutObj, 'receivedData')
 
             let res = await HttpUtils.post('postecommercepayment', chechkOutObj);
-            console.log(res, 'response')
             this.props.modalsHideAndShow(res)
-            // if (res.status) {
-            //     this.setState({
-            //         succes: true
-            //     }, setTimeout(() => {
-            //         this.setState({
-            //             succes: false
-
-            //         })
-            //     }, 5000))
-            // }
-            // let response = await HttpUtils.post("charge", {
-            //     method: "POST",
-            //     headers: { "Content-Type": "text/plain" },
-            //     body: {
-            //         token: token.id,
-            //         email: receivedData.email,
-            //         amount: receivedData.total,
-            //         name: receivedData.firstName
-            //     }
-            // });
-        } else {
-            // this.props.onError(error.message);
+            if (res.error) {
+                this.setState({
+                    mgs: res.error,
+                    btnDisabeld: false
+                })
+            }
         }
     }
 
     render() {
-        const { succes } = this.state;
+        const { btnDisabeld, mgs } = this.state;
         return (
             <div className="checkout">
                 <div className="panel-body">
@@ -86,26 +75,23 @@ class CheckoutForm extends Component {
                                         </div>
                                         <div className="col-md-4" ></div>
                                     </div>
-                                    {/* {succes && <Modal
-                                        title="Kindly enter credit cart detail"
-                                        visible={this.state.succes}
-                                        onOk={this.handleOk}
-                                        onCancel={this.handleCancel}
-                                        width="800px"
-                                    >
-                                        <img src='./images/succes.png' style={{ height: "35px" }} />
-                                    </Modal>} */}
-                                    {/* <div className="col-md-12">
-                                        <div className="col-md-8">
-                                            <p style={{ marginTop: '20px', fontWeight: 'bold', color: 'red' }}>{this.state.msg}</p>
-                                        </div>
-                                    </div> */}
                                 </div>
                             </section>
                         </div>
-                        <button
+                        {btnDisabeld ? <button
                             className='checkoutbtn ant-btn post_need'
-                            onClick={this.submit}>Purchase</button>
+                            disabled
+                            onClick={this.submit}>Purchase</button> :
+                            <button
+                                className='checkoutbtn ant-btn post_need'
+                                onClick={this.submit}>Purchase</button>}
+                    </div>
+                    <div className="col-md-12">
+                        <div className="col-md-4"></div>
+                        <div className="col-md-4">
+                            {mgs.length > 0 && <p style={{ marginTop: '20px', fontWeight: 'bold', color: 'red' }}>{mgs}</p>}
+                        </div>
+                        <div className="col-md-4"></div>
                     </div>
                 </div>
             </div>

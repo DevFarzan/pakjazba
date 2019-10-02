@@ -6,6 +6,7 @@ import EcomCard from './EcomCard';
 import Eshopcard from './EcomShopcard';
 import DealsEcom from './EcomDeals';
 import { HttpUtils } from "../../Services/HttpUtils";
+import { Spin, Icon } from 'antd';
 import CarouselHome from '../home/carouselHome';
 import Additionalcard from './EcomAdditionalcard';
 
@@ -20,6 +21,7 @@ class EcommerceMarket extends Component {
       featuredCategories: true,
       noRecordFound: false,
       recordFound: true,
+      loader: true
     }
   }
 
@@ -32,7 +34,8 @@ class EcommerceMarket extends Component {
     this.setState({
       productsData: res.content,
       featureData: featureData,
-      allData: res.content
+      allData: res.content,
+      loader: false
     })
   }
 
@@ -101,8 +104,8 @@ class EcommerceMarket extends Component {
     })
   }
   render() {
-    const { productsData, featureData, featuredCategories, noRecordFound, recordFound } = this.state;
-    console.log(productsData , 'productsData')
+    const { productsData, featureData, featuredCategories, noRecordFound, recordFound, loader } = this.state;
+    const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
     return (
       <div>
@@ -122,6 +125,9 @@ class EcommerceMarket extends Component {
             <CarouselHome />
           </div>
         </div> */}
+        {loader && <div style={{ textAlign: 'center', marginLeft: '-100px', marginBottom: '15px' }}>
+          <Spin indicator={antIcon} />
+        </div>}
         {featuredCategories ?
           <div>
             <div className="row" style={{ marginTop: "20px" }}>

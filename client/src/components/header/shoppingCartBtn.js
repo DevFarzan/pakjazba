@@ -9,7 +9,6 @@ class CartButton extends Component {
         }
     }
     componentWillMount() {
-        console.log('component will mount')
         const addToCartData = JSON.parse(localStorage.getItem('addToCart'));
         var count = 0;
         if (addToCartData) {

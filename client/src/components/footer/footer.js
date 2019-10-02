@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 import './footer.css'
 
 class Footer extends Component{
+    constructor(props){
+        super(props);
+    }
     render(){
+        
         return(
-            <footer className="jazba_footer">
+            <footer className={`jazba_footer ${this.props.footerPosition}`}>
                 {/*<div className="">
                     <div className="row">
                         <div className="col-sm-3" style={{textAlign:'center'}}>

@@ -49,26 +49,36 @@ class ProfileUser extends Component {
         };
     }
 
-    componentDidMount() {
+    componentWillMount() {
         window.scrollTo(0, 0);
+        // console.log('component will mount')
         this.handleLocalStorage();
     }
 
-    handleLocalStorage = () => {
-        AsyncStorage.getItem('user')
-            .then((obj) => {
-                let userObj = JSON.parse(obj)
-                if (!!userObj) {
-                    this.getprofileData(userObj.profileId, userObj._id)
-                    this.setState({
-                        userId: userObj._id,
-                        profileId: userObj.profileId
-                    })
-                }
+    handleLocalStorage = async () => {
+        let userObj = JSON.parse(localStorage.getItem('user'))
+        let profileIdFromPath = this.props.location.pathname.slice(14)
+        if (userObj.profileId == profileIdFromPath) {
+            console.log('user and path id same')
+            this.getprofileData(userObj.profileId, userObj._id)
+            this.setState({
+                userId: userObj._id,
+                profileId: userObj.profileId
             })
+        }
+        else {
+            console.log('user and path id don,t same')
+            let req = await HttpUtils.get('getprofile?profileId=' + profileIdFromPath)
+            // let data = req.content
+            // console.log(req, 'elese render')
+            await this.getprofileData(profileIdFromPath, req.content.user_id)
+        }
     }
 
     async getprofileData(id, userId) {
+        // console.log(id, 'profileId')
+        // console.log(userId, 'userId')
+
         let req = await HttpUtils.get('getprofile?profileId=' + id)
         let user = req.content;
         this.setState({
@@ -94,25 +104,21 @@ class ProfileUser extends Component {
         let arr5 = [];
 
         let req = await HttpUtils.get('marketplace')
-        req.busell && req.busell.map((elem) => {
-            if (elem.userid === id) {
-                let data = { ...elem, ...{ route: 'buySell' } }
+        req.roomrentsdata && req.roomrentsdata.map((elem) => {
+            if (elem.user_id === id) {
+                let data = { ...elem, ...{ route: 'rooms' } }
                 arr1.push(data)
             }
         })
         req.business && req.business.map((elem) => {
             if (elem.user_id === id) {
-                console.log(elem.user_id , 'database user id')
-                console.log(id , 'local storage id')
-
-                console.log(elem, 'elem')
                 let data = { ...elem, ...{ route: 'business' } }
                 arr2.push(data)
             }
         })
-        req.roomrentsdata && req.roomrentsdata.map((elem) => {
-            if (elem.user_id === id) {
-                let data = { ...elem, ...{ route: 'rooms' } }
+        req.busell && req.busell.map((elem) => {
+            if (elem.userid === id) {
+                let data = { ...elem, ...{ route: 'buySell' } }
                 arr3.push(data)
             }
         })
@@ -129,9 +135,9 @@ class ProfileUser extends Component {
             }
         })
         this.setState({
-            listData1: arr3,
+            listData1: arr1,
             listData2: arr2,
-            listData3: arr1,
+            listData3: arr3,
             listData4: arr4,
             listData5: arr5
         })
@@ -366,7 +372,11 @@ class ProfileUser extends Component {
         const { getFieldDecorator } = this.props.form;
         const { imageUrl, profileSec, changePass, name, email, description, phone, twitter, facebook, location, listing, listData1, listData2, listData3, listData4, listData5, buySell, business, rooms, jobPortal, ecommerce, data, allData, publicSection } = this.state;
 
-        // console.log(ecommerce, 'e comrece data')
+        // console.log(name, 'name')
+        // console.log(email, 'email')
+        // console.log(phone, 'phone')
+
+
         if (buySell) {
             return (
                 <Redirect to={{ pathname: '/postad_buysell', state: data }} />
@@ -386,7 +396,7 @@ class ProfileUser extends Component {
         }
         else if (ecommerce) {
             return (
-                <Redirect to={{ pathname: `/products_DetailStyle/${data._id}`,state: data }} />
+                <Redirect to={{ pathname: `/products_DetailStyle/${data._id}`, state: data }} />
             )
         }
 
@@ -403,10 +413,10 @@ class ProfileUser extends Component {
             arr3: listData1,
             arr4: listData4,
             arr5: listData5,
-            arr6: { imageUrl, name, description, twitter, facebook },
+            arr6: { imageUrl, name, description, twitter, facebook, email, phone },
             userDetail: detail
         }
-
+        // console.log(passObj, "passObj")
         const noData = (
             <div style={{ marginTop: '125px' }}>
                 <h1>
@@ -417,7 +427,6 @@ class ProfileUser extends Component {
 
         return (
             <div>
-
                 <div className="hidden-xs" style={{ marginTop: '13%' }}></div>
                 <div className="content">
                     {publicSection && <div>
@@ -804,12 +813,12 @@ class ProfileUser extends Component {
                                                                                     <p>{str}</p>
                                                                                 </Link>
                                                                                 <a onClick={this.editBusiness.bind(this, elem)}>
-                                                                                <i className="glyphicon glyphicon-edit" 
-                                                                                style={{ padding: "16px", marginTop: "8px", color: "gray" }}>
-                                                                                <span style={{ margin: "7px" }}>Edit</span></i></a>
-                                                                                <i className="glyphicon glyphicon-trash" 
-                                                                                style={{ padding: "16px", marginTop: "8px", float: "right", color: "gray" }}>
-                                                                                <span style={{ margin: "7px" }}>Remove</span></i>
+                                                                                    <i className="glyphicon glyphicon-edit"
+                                                                                        style={{ padding: "16px", marginTop: "8px", color: "gray" }}>
+                                                                                        <span style={{ margin: "7px" }}>Edit</span></i></a>
+                                                                                <i className="glyphicon glyphicon-trash"
+                                                                                    style={{ padding: "16px", marginTop: "8px", float: "right", color: "gray" }}>
+                                                                                    <span style={{ margin: "7px" }}>Remove</span></i>
                                                                             </div>
                                                                         </div>
 

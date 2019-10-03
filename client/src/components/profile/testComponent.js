@@ -160,11 +160,11 @@ class TestComponent extends Component {
     render() {
         // const { listing, listData1, listData2, listData3, listData4, listData5, listData6, buySell, business, rooms, jobPortal, ecommerce, entertainment, data } = this.state;
         const {arr1 , arr2 ,arr3 ,arr4 ,arr5 } = this.props.listing;
-        console.log(arr1 , 'arr1')
-        console.log(arr2 , 'arr2')
-        console.log(arr3 , 'arr3')
-        console.log(arr4 , 'arr4')
-        console.log(arr5 , 'arr5')
+        // console.log(arr1 , 'arr1')
+        // console.log(arr2 , 'arr2')
+        // console.log(arr3 , 'arr3')
+        // console.log(arr4 , 'arr4')
+        // console.log(arr5 , 'arr5')
 
 
         // console.log(listData3, 'listData3')

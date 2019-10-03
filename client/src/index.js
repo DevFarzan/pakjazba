@@ -67,7 +67,10 @@ const initialState = {
 }
 
 function reducer(state = initialState, action) {
+  // console.log(state, 'state')
+  // console.log(initialState, 'initialState')
   // console.log(action, 'actionnnnn')
+
   switch (action.type) {
     case 'SEARCHON':
       return { ...state, text: action.inputValue }
@@ -159,7 +162,7 @@ ReactDOM.render(
 
 
 
-        <PrivateRoute path="/profile_user/:value" component={ProfileUser}></PrivateRoute>
+        <Route path="/profile_user/:value" component={ProfileUser}></Route>
         <Route path="/profile_userDetail" component={ProfileUser}></Route>
 
 

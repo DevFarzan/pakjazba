@@ -66,6 +66,7 @@ class Signin extends Component{
 
     async getSignData(){
         let res = await HttpUtils.get('facebookdata')
+        console.log(res ,'res')
         if(res){
             this.setState({obj: res.data})
         }

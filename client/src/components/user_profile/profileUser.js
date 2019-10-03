@@ -52,20 +52,32 @@ class ProfileUser extends Component {
 
     componentWillMount() {
         window.scrollTo(0, 0);
-        // console.log('component will mount')
+        console.log('component will mount')
         this.handleLocalStorage();
     }
 
     handleLocalStorage = async () => {
         let userObj = JSON.parse(localStorage.getItem('user'))
+        console.log(userObj, 'userObj')
         let profileIdFromPath = this.props.location.pathname.slice(14)
-        if (userObj.profileId == profileIdFromPath) {
-            console.log('user and path id same')
-            this.getprofileData(userObj.profileId, userObj._id)
-            this.setState({
-                userId: userObj._id,
-                profileId: userObj.profileId
-            })
+        console.log(profileIdFromPath, 'profileIdFromPath')
+        if (userObj != null) {
+            if (userObj.profileId == profileIdFromPath) {
+                console.log('user and path id same')
+                this.getprofileData(userObj.profileId, userObj._id)
+                this.setState({
+                    userId: userObj._id,
+                    profileId: userObj.profileId
+                })
+            }
+            else {
+                console.log('user and path id don,t same')
+                let req = await HttpUtils.get('getprofile?profileId=' + profileIdFromPath)
+                await this.getprofileData(profileIdFromPath, req.content.user_id)
+                this.setState({
+                    reviewProfile: false
+                })
+            }
         }
         else {
             console.log('user and path id don,t same')

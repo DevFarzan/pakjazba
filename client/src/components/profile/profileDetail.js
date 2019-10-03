@@ -19,6 +19,9 @@ class ProfileDetail extends Component {
             reviewProfile: false,
         }
     }
+    onGoBack() {
+        this.props.callPublicSection();
+    }
     render() {
         const { imageurl, name, location, description, reviewProfile } = this.props.profileDetail.profileDetail;
         return (

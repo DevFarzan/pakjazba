@@ -394,7 +394,7 @@ class ProfileUser extends Component {
         }
         else if (ecommerce) {
             return (
-                <Redirect to={{ pathname: `/products_DetailStyle/${data._id}`, state: data }} />
+                <Redirect to={{ pathname: `/Forms_Ecommerce`, state: data }} />
             )
         }
 

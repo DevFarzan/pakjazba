@@ -97,12 +97,19 @@
     }
 }
 .fixedPositionOnCheckOutPage{
-    padding-top: 10px;
+    /* padding-top: 10px; */
     padding-bottom: 0px;
     position:fixed;
     bottom:0;
     width:100%;
-  
+    
+}
+.fixedPositionOnCheckOutPage2{
+    /* padding-top: 10px; */
+    padding-bottom: 0px;
+    /* position:fixed; */
+    bottom:0;
+    width:100%;  
 }
 
 

@@ -45,7 +45,8 @@ class ProfileUser extends Component {
             jobPortal: false,
             ecommerce: false,
             data: [],
-            publicSection: true
+            publicSection: true,
+            reviewProfile: true
         };
     }
 
@@ -69,9 +70,10 @@ class ProfileUser extends Component {
         else {
             console.log('user and path id don,t same')
             let req = await HttpUtils.get('getprofile?profileId=' + profileIdFromPath)
-            // let data = req.content
-            // console.log(req, 'elese render')
             await this.getprofileData(profileIdFromPath, req.content.user_id)
+            this.setState({
+                reviewProfile: false
+            })
         }
     }
 
@@ -370,13 +372,9 @@ class ProfileUser extends Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { imageUrl, profileSec, changePass, name, email, description, phone, twitter, facebook, location, listing, listData1, listData2, listData3, listData4, listData5, buySell, business, rooms, jobPortal, ecommerce, data, allData, publicSection } = this.state;
-
-        // console.log(name, 'name')
-        // console.log(email, 'email')
-        // console.log(phone, 'phone')
-
-
+        const { imageUrl, profileSec, changePass, name, email, description, phone, twitter, facebook, location,
+            listing, listData1, listData2, listData3, listData4, listData5, buySell, business, rooms, jobPortal,
+            ecommerce, data, allData, publicSection, reviewProfile } = this.state;
         if (buySell) {
             return (
                 <Redirect to={{ pathname: '/postad_buysell', state: data }} />
@@ -413,8 +411,8 @@ class ProfileUser extends Component {
             arr3: listData1,
             arr4: listData4,
             arr5: listData5,
-            arr6: { imageUrl, name, description, twitter, facebook, email, phone },
-            userDetail: detail
+            arr6: { imageUrl, name, description, twitter, facebook, email, phone, reviewProfile },
+
         }
         // console.log(passObj, "passObj")
         const noData = (

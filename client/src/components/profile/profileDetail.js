@@ -30,7 +30,7 @@ class ProfileDetail extends Component {
                     </div>
                     <div className="col-md-7 col-sm-9">
                         <h2> Hi, I am {name}
-                            {!reviewProfile && <Icon
+                            {reviewProfile && <Icon
                                 type="edit" size={16}
                                 style={{ marginLeft: '10%', cursor: 'pointer' }}
                                 onClick={() => { this.onGoBack() }}>

@@ -276,23 +276,23 @@ class CheckOutPage extends Component {
                         )
                     })}
                     {hideBtn ?
-                                <div className='row'>
-                                    <div className='cart col-md-8 col-sm-8 col-xs-12'></div>
-                                    {/* <div className='col-md-3 col-sm-3 col-xs-12'></div> */}
-                                    <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12' onClick={this.checkOutFunc}>Checkout</button>
-                                    <Link rel="noopener noreferrer" to={`/market_ecommerceMarket`} style={{ color: 'black', fontSize: '14px' }}>
-                                        {/* <CartButton cartCount={this.props.cartCount} /> */}
-                                        <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12'>Browse more</button>
-                                    </Link>
-                                    {/* <div className='col-md-1 col-sm-1 col-xs-12'></div> */}
+                        <div className='row'>
+                            <div className='cart col-md-8 col-sm-8 col-xs-12'></div>
+                            {/* <div className='col-md-3 col-sm-3 col-xs-12'></div> */}
+                            <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12' onClick={this.checkOutFunc}>Checkout</button>
+                            <Link rel="noopener noreferrer" to={`/market_ecommerceMarket`} style={{ color: 'black', fontSize: '14px' }}>
+                                {/* <CartButton cartCount={this.props.cartCount} /> */}
+                                <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12'>Browse more</button>
+                            </Link>
+                            {/* <div className='col-md-1 col-sm-1 col-xs-12'></div> */}
 
-                                </div> : null}
+                        </div> : null}
                     {totalAmount != '' ? <div className='panel-body'>
                         <div className='row'>
                             <div className="col-md-7 col-sm-7 col-xs-12">
                             </div>
-                            
-                            <div className="col-md-5 col-sm-5 col-xs-12" style={{ marginBottom: '18%' }}>
+
+                            <div className="col-md-5 col-sm-5 col-xs-12">
                                 <ul className='cartDetail'>
                                     <h2 style={{ fontWeight: 'bold' }}>Total Amount</h2>
                                     <hr style={{ width: '400px' }}></hr>
@@ -338,9 +338,9 @@ class CheckOutPage extends Component {
                             visible={this.state.succes}
                             onOk={this.handleOk}
                             onCancel={this.handleCancelPayment}
-                            width="400px"
+                            width="300px"
                         >
-                            <img src={imgSucces} style={{ height: "350px" }} />
+                            <img src={imgSucces} style={{ height: "250px" }} />
                         </Modal>
                     }
                     <div>
@@ -348,7 +348,13 @@ class CheckOutPage extends Component {
                     </div>
                 </div>
                 <footer>
-                    <Footer footerPosition="fixedPositionOnCheckOutPage" />
+                    {totalAmount == '' ?
+                        <Footer footerPosition="fixedPositionOnCheckOutPage" />
+                        :
+                        <Footer footerPosition='fixedPositionOnCheckOutPage2' />
+                    }
+                    {/* // {totalAmount != '' ? footerPosition="fixedPositionOnCheckOutPage": footerPosition = 'fixedPositionOnCheckOutPage2' } */}
+
                 </footer>
             </div>
         )

@@ -26,6 +26,7 @@ class ProfileMain extends Component {
             name: allArr.arr6.name,
             imageurl: allArr.arr6.imageUrl,
             description: allArr.arr6.description,
+            reviewProfile:allArr.arr6.reviewProfile
         }
         let profileTab = {
             email: allArr.arr6.email,

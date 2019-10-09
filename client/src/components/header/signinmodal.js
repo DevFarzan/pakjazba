@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import { Form, Input, Icon, Checkbox, Modal, Spin  } from 'antd';
+import { Form, Input, Icon, Checkbox, Modal, Spin } from 'antd';
 import Dropdowns from './dropdown';
 import Facebook from '../Facebook';
 import Google from '../Google';
 import AsyncStorage from "@callstack/async-storage";
-import {HttpUtils} from "../../Services/HttpUtils";
-import {connect} from "react-redux";
+import { HttpUtils } from "../../Services/HttpUtils";
+import { connect } from "react-redux";
 
 const FormItem = Form.Item;
-const ip = require('ip');
 
-class Signin extends Component{
+class Signin extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -28,30 +27,30 @@ class Signin extends Component{
             email2: '',
             route: 'signUp',
             obj: [],
-            termCondition:false
+            termCondition: false
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.handleLocalStorage();
         this.getSignData();
     }
 
-    componentDidUpdate(prevProps, prevState){
+    componentDidUpdate(prevProps, prevState) {
         const { data } = this.props;
         const { route, obj } = this.state;
         let arr = obj.map((elem) => elem.password)
-        if(prevProps.data !== data){
-            if(data && data.route === route) {
-                if(arr.includes(data.id)){
+        if (prevProps.data !== data) {
+            if (data && data.route === route) {
+                if (arr.includes(data.id)) {
                     obj.map((elem) => {
-                        if(elem.password === data.id){
-                            this.funcLogin({userName: elem.email, password: elem.password})
+                        if (elem.password === data.id) {
+                            this.funcLogin({ userName: elem.email, password: elem.password })
                         }
                     })
-                }else {
+                } else {
                     if (data && data.email === undefined) {
-                        this.setState({secModal: true})
+                        this.setState({ secModal: true })
                     }
                     else {
                         if (data) {
@@ -69,56 +68,56 @@ class Signin extends Component{
         }
     }
 
-    componentWillUnmount(){
-        this.setState({_isMount: false})
+    componentWillUnmount() {
+        this.setState({ _isMount: false })
     }
 
-    async getSignData(){
+    async getSignData() {
         let res = await HttpUtils.get('facebookdata')
-        if(res){
-            this.setState({obj: res.data})
+        if (res) {
+            this.setState({ obj: res.data })
         }
         this.getAllUsers()
     }
 
-    async getAllUsers(){
+    async getAllUsers() {
         // console.log(ip.address(), 'ipAddressssssss')
         let response = await HttpUtils.get('allusers')
-        if(response){
-            this.setState({allUser: response && response.content, _isMount: true})
+        if (response) {
+            this.setState({ allUser: response && response.content, _isMount: true })
         }
     }
 
-    async funcLogin(values){
-        let response = await HttpUtils.get('usersignin?useremail='+values.userName+'&password='+values.password)
-        if(response.code === 200){
+    async funcLogin(values) {
+        let response = await HttpUtils.get('usersignin?useremail=' + values.userName + '&password=' + values.password)
+        if (response.code === 200) {
             this.getProfile(response)
                 .then((data) => {
                     AsyncStorage.setItem('user', JSON.stringify(data))
                         .then(() => {
                             this.props.modalContent();
                             this.setState({
-                                loader:false,
-                                visible:false,
-                                showloader:false
+                                loader: false,
+                                visible: false,
+                                showloader: false
                             })
                         })
                 })
         }//end if
-        else{
+        else {
             this.setState({
                 msg: response.msg,
-                loader:false,
+                loader: false,
                 // visible:false,
-                showloader:false
+                showloader: false
             })
         }
     }
 
-    async getProfile(data){
+    async getProfile(data) {
         let _id = data.profileId ? data.profileId : '';
         let req = await HttpUtils.get('getprofile?profileId=' + _id);
-        let allData = {...data, ...{userImage: req ? req.content.imageurl : ''}}
+        let allData = { ...data, ...{ userImage: req ? req.content.imageurl : '' } }
         return allData;
     }
 
@@ -136,7 +135,7 @@ class Signin extends Component{
     }
 
     handleBlur = () => {
-        this.setState({validating: true});
+        this.setState({ validating: true });
     }
 
     handleCancel = () => {
@@ -144,16 +143,16 @@ class Signin extends Component{
     }
     renderPasswordConfirmError = (e) => {
         this.setState({
-            passwordValidator:true
+            passwordValidator: true
         })
     }
 
     /*===============form signup coding====================================*/
-    handleLocalStorage = () =>{
+    handleLocalStorage = () => {
         AsyncStorage.getItem('user')
             .then((obj) => {
                 let userObj = JSON.parse(obj)
-                if(!!userObj){
+                if (!!userObj) {
                     this.setState({
                         dropdown: true,
                     })
@@ -165,9 +164,9 @@ class Signin extends Component{
                 }
             })
     }//end handleLocalStorage function
-     onChange = (e) => {
+    onChange = (e) => {
         this.setState({
-          termCondition:e.target.checked
+            termCondition: e.target.checked
         })
 
     }
@@ -176,25 +175,25 @@ class Signin extends Component{
 
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-              this.setState({
-                  loader:true
-              })
+                this.setState({
+                    loader: true
+                })
                 this.funcSignUp(values)
             }
         });
     }//end handleSubmit
 
-    async funcSignUp(values){
-        let response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
-        if(response) {
+    async funcSignUp(values) {
+        let response = await HttpUtils.get('userregister?nickname=' + values.nickname + '&email=' + values.email + '&password=' + values.password + '&notrobot=' + values.notrobot)
+        if (response) {
             this.getProfileId(response, values)
-        }else {
-            this.setState({msg: 'network error'})
+        } else {
+            this.setState({ msg: 'network error' })
         }
     }
 
-    async getProfileId(response, values){
-        if(response.code === 200){
+    async getProfileId(response, values) {
+        if (response.code === 200) {
             let obj = {
                 name: response.name,
                 email: response.email,
@@ -202,22 +201,22 @@ class Signin extends Component{
                 profileId: ''
             }
             let req = await HttpUtils.post('profile', obj)
-            let userInfo = {...response, ...{profileId: req.content}}
+            let userInfo = { ...response, ...{ profileId: req.content } }
             AsyncStorage.setItem('user', JSON.stringify(userInfo))
                 .then(() => {
                     this.props.modalContent();
                     this.props.form.resetFields();
                     this.setState({
-                        loader:false,
-                        visible:false,
+                        loader: false,
+                        visible: false,
                         secModal: false,
                         dropdown: true
                     })
                 })
         }//end if
-        else{
-            if(response.err._message == 'User validation failed'){
-                this.funcLogin({userName: values.email, password: values.password})
+        else {
+            if (response.err._message == 'User validation failed') {
+                this.funcLogin({ userName: values.email, password: values.password })
             }
             // this.setState({
             let msg = response.msg ? response.msg : response.err._message
@@ -228,7 +227,7 @@ class Signin extends Component{
 
     handleConfirmBlur = (e) => {
         const value = e.target.value;
-        this.setState({ confirmDirty:this.state.confirmDirty || !!value});
+        this.setState({ confirmDirty: this.state.confirmDirty || !!value });
     }
 
     compareToFirstPassword = (rule, value, callback) => {
@@ -248,38 +247,38 @@ class Signin extends Component{
         callback();
     }
 
-    checkEmail(rule, value, callback){
-        if(this.state.allUser.includes(value)){
+    checkEmail(rule, value, callback) {
+        if (this.state.allUser.includes(value)) {
             callback('This email is already been used')
             return;
-        }else {
-            this.setState({email2: value})
+        } else {
+            this.setState({ email2: value })
             callback()
         }
     }
 
-    checkValue(rule, value, callback){
-        if(this.state.allUser.includes(value)){
+    checkValue(rule, value, callback) {
+        if (this.state.allUser.includes(value)) {
             callback('This email is already been used')
             return;
-        }else {
+        } else {
             callback()
         }
     }
 
     checkName = (rule, value, callback) => {
-        if(value !== undefined && (value.includes('<') || value.includes('>') || value.includes('/'))){
+        if (value !== undefined && (value.includes('<') || value.includes('>') || value.includes('/'))) {
             callback('Name should be string')
             return;
-        }else if(value !== undefined && value.length == 0){
+        } else if (value !== undefined && value.length == 0) {
             callback('Please input your Name!')
         }
-        else{
-          callback();
+        else {
+            callback();
         }
     }
 
-    socialSignUp(){
+    socialSignUp() {
         const { email2 } = this.state;
         const { data } = this.props;
         let obj = {
@@ -288,41 +287,28 @@ class Signin extends Component{
             password: data.id,
             notrobot: true
         }
-        this.setState({email2: ''})
+        this.setState({ email2: '' })
         this.funcSignUp(obj)
     }
 
-    render(){
+    render() {
         const { getFieldDecorator } = this.props.form;
         const { data } = this.props;
-        const { visible, secModal, email2, dropdown, msg, termCondition } = this.state;
+        const { visible, secModal, email2, dropdown, termCondition } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
-
-        const tailFormItemLayout = {
-            wrapperCol: {
-                xs: {
-                    span: 24,
-                    offset: 0,
-                },
-                sm: {
-                    span: 16,
-                    offset: 8,
-                },
-            },
-        };
-
-        return(
+        
+        return (
             <div className="">
                 <span>
-                    {dropdown ? <span style={{}}><Dropdowns style={{paddingLeft: '10px'}} modalContent={this.props.modalContent}/></span> : <span onClick={this.showModal} className="signuphover">Sign Up</span>}
+                    {dropdown ? <span style={{}}><Dropdowns style={{ paddingLeft: '10px' }} modalContent={this.props.modalContent} /></span> : <span onClick={this.showModal} className="signuphover">Sign Up</span>}
                     <Modal
                         visible={visible}
                         title="Sign Up"
                         onOk={this.handleOk}
                         onCancel={this.handleCancel}
                     >
-                        {!!this.state.msg && <div style={{marginBottom: '10px'}}>
-                            <span style={{ color: 'red', fontWeight: 'bold'}}>{this.state.msg}</span>
+                        {!!this.state.msg && <div style={{ marginBottom: '10px' }}>
+                            <span style={{ color: 'red', fontWeight: 'bold' }}>{this.state.msg}</span>
                         </div>}
                         {!secModal && Object.keys(data).length == 0 && <div className="row">
                             <div className="col-md-5">
@@ -330,10 +316,10 @@ class Signin extends Component{
                             </div>
                             <div className="col-md-1"></div>
                             <div className="col-md-5">
-                                <Google inRup={'signUp'}/>
+                                <Google inRup={'signUp'} />
                             </div>
                         </div>}
-                        <br/>
+                        <br />
                         {!secModal && <div className="">
                             <Form onSubmit={this.handleSubmit}>
                                 <FormItem label="Name">
@@ -344,7 +330,7 @@ class Signin extends Component{
                                             validator: this.checkName
                                         }],
                                     })(
-                                        <Input  />
+                                        <Input />
                                     )}
                                 </FormItem>
                                 <FormItem label="E-mail">
@@ -357,7 +343,7 @@ class Signin extends Component{
                                             validator: this.checkValue.bind(this)
                                         }],
                                     })(
-                                        <Input  />
+                                        <Input />
                                     )}
                                 </FormItem>
                                 <FormItem label="Password">
@@ -368,7 +354,7 @@ class Signin extends Component{
                                             validator: this.validateToNextPassword,
                                         }],
                                     })(
-                                        <Input type="password"  />
+                                        <Input type="password" />
                                     )}
                                 </FormItem>
                                 <FormItem label="Confirm Password" >
@@ -379,14 +365,14 @@ class Signin extends Component{
                                             validator: this.compareToFirstPassword,
                                         }],
                                     })(
-                                        <Input type="password"  onBlur={this.handleConfirmBlur} />
+                                        <Input type="password" onBlur={this.handleConfirmBlur} />
                                     )}
                                 </FormItem>
                                 <Checkbox onChange={this.onChange}>
-                                  (By clicking register, you agree to our
+                                    (By clicking register, you agree to our
                                   <Link to={`/privacypolicy`} target="blank">privacy policy</Link>,
                                   our <Link to="/termofservice" target="blank">term of service</Link>
-                                  and cookies use)
+                                    and cookies use)
                                 </Checkbox>
                                 <div className="row center_global">
                                     {this.state.loader ? antIcon : null} <button className="btn color_button" disabled={!termCondition}>Sign up</button>
@@ -410,13 +396,13 @@ class Signin extends Component{
                                             validator: this.checkEmail.bind(this)
                                         }],
                                     })(
-                                        <Input  />
+                                        <Input />
                                     )}
                                 </FormItem>
                                 <button className="btn color_button" disabled={!email2} onClick={this.socialSignUp.bind(this)}><Spin indicator={antIcon} />Sign up</button>
                             </Form>
                         </div>}
-                     </Modal>
+                    </Modal>
                 </span>
             </div>
         )
@@ -424,7 +410,7 @@ class Signin extends Component{
 }
 
 const mapStateToProps = (state) => {
-    return({
+    return ({
         data: state.data
     })
 }

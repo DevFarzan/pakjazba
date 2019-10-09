@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
 import AsyncStorage from "@callstack/async-storage/lib/index";
-import { isMobile, isTablet, isBrowser } from 'react-device-detect';
+import { isMobile, isTablet } from 'react-device-detect';
 import { Modal } from 'antd';
 
 
@@ -31,7 +31,7 @@ class MarketRoommates extends Component{
         let res = await HttpUtils.get('marketplace'),
         req = await HttpUtils.get('getreviews'),
         data = [];
-        if(res && res.code && res.code == 200 && req && req.code && req.code === 200){
+        if(res && res.code && res.code === 200 && req && req.code && req.code === 200){
             data = this.addingStarProp(res.roomrentsdata, req.content);
             this.setState({ data });
         }
@@ -114,7 +114,6 @@ class MarketRoommates extends Component{
                         <Slider mainH1="PakJazba Room Renting" mainH2="" getMethod={this.postRoom}/>
                     </div>
                 </div>
-
                 </span>
                 <div className="container" style={isMobile && !isTablet ? {width: '100%'} : {width:"70%"}}>
                     <div className="hidden-xs">

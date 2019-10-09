@@ -337,7 +337,7 @@ class CheckOutPage extends Component {
                             onCancel={this.handleCancelPayment}
                             width="300px"
                         >
-                            <img src={imgSucces} style={{ height: "250px" }} />
+                            <img src={imgSucces} alt="img" style={{ height: "250px" }} />
                         </Modal>
                     }
                     <div>

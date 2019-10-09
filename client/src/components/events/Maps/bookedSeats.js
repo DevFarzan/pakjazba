@@ -12,7 +12,6 @@ class Sittingarrangements extends Component{
                 style={{height: '400px', overflowY: 'overlay'}}>
                 <h3>Your Booking</h3>
                 {data && data.map((elem, key) => {
-                  {/*if(key <= this.state.upto){*/}
                     return(
                         <div key={key}>
                             <div className="col-md-8">
@@ -24,7 +23,6 @@ class Sittingarrangements extends Component{
                             </div>
                         </div>
                     )
-                  {/*}*/}
                 })}                
             </div>
         )

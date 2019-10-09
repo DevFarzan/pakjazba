@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Form, Input, Select, AutoComplete, notification, Cascader,
+  Form, Input, Select, notification, Cascader,
 } from 'antd';
 import './Vitalinfo.css';
 import LengthInput from './LengthComponent';
@@ -10,7 +10,6 @@ import WeightInput from './WeightComponent';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
-const AutoCompleteOption = AutoComplete.Option;
 const electronics = [{
   value: 'Electronic',
   label: 'Electronics Devices',
@@ -2260,10 +2259,7 @@ class VitalInfo extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { autoCompleteResult, herfSec, category } = this.state;
-    const websiteOptions = autoCompleteResult.map(website => (
-      <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-    ));
+    const { herfSec, category } = this.state;
     return (
       <div className="container" style={{ width: "100%" }}>
         <div className="row">

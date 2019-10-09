@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import {
-  Form, Input, Select, Button,
+  Input, Select,
 } from 'antd';
 
-const FormItem = Form.Item;
 const Option = Select.Option;
 
 class LengthInput extends React.Component {
@@ -82,7 +81,4 @@ class LengthInput extends React.Component {
   }
 }
 
-
-
-const WrappedDemo = Form.create()(LengthInput);
 export default LengthInput;

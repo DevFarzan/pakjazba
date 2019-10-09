@@ -14,18 +14,18 @@ class App extends Component {
         };
     }
 
-    componentDidMount() {
-        this.getAllBusiness();
-        // this.callApi()
-        //     .then(res => this.setState({ response: res.express }))
-        //     .catch(err => console.log(err));
+    // componentDidMount() {
+    //     this.getAllBusiness();
+    //     // this.callApi()
+    //     //     .then(res => this.setState({ response: res.express }))
+    //     //     .catch(err => console.log(err));
 
-    }
+    // }
 
-    async getAllBusiness(){
-        var req = await HttpUtils.get('marketplace')
-        //console.log(req, 'reqqqqqqqqqqqq Appppppppppp')
-    }
+    // async getAllBusiness(){
+    //     var req = await HttpUtils.get('marketplace')
+    //     //console.log(req, 'reqqqqqqqqqqqq Appppppppppp')
+    // }
 
     // callApi = async () => {
         // const response = await fetch('/api/hello');
@@ -40,7 +40,6 @@ class App extends Component {
     // };
 
     render() {
-        console.log(this.props, 'paramssssssss')
         const hide=true;
         return (
             <div >

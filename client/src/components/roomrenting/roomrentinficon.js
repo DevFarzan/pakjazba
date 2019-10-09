@@ -65,7 +65,7 @@ class RoomrentingIcon extends Component{
                                     <p><b>more than 100 of Rent and Sale Property Available</b></p>
                                 </div>
                                 <div className="col-md-6">
-                                    <img src="../images/room icon/jumbport.png" className="img-responsive jambo_img" />
+                                    <img src="../images/room icon/jumbport.png" alt="img" className="img-responsive jambo_img" />
                                 </div>
                             </div>
                         </div>

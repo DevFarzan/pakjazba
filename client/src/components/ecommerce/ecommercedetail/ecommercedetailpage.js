@@ -3,7 +3,7 @@ import Burgermenu from '../../header/burgermenu';
 import Footer from '../../footer/footer';
 import EightEcom from './eightEcom';
 import FourEcom from './fourEcom';
-import { isMobile, isTablet, isBrowser } from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 
 class EcomDetail extends Component{
   render(){

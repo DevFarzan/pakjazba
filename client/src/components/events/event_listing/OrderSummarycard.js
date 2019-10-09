@@ -21,9 +21,9 @@ class OrderCard extends Component{
         let eBirdVal = val === 'EarlyBird' ? e : eBird,
         nTicketVal = val === 'NormalTicket' ? e : nTicket,
         eBirdPrice = '',
-        nTicketPrice = '',
-        earlyBird = data && data.earlyBird,
-        normalTicket = data && data.normalTicket;
+        nTicketPrice = '';
+        // earlyBird = data && data.earlyBird,
+        // normalTicket = data && data.normalTicket;
 
         if(data){
             eBirdPrice = data.earlyBirdPrice * eBirdVal;

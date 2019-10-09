@@ -5,7 +5,7 @@ import ImageForm from './imageForm';
 import DescriptionForm from './descriptionForm';
 import KeywordsForm from './keywordsForm';
 import './ecomtabs.css';
-import { Tabs, Radio } from 'antd';
+import { Tabs } from 'antd';
 import { HttpUtils } from '../../../Services/HttpUtils';
 import { Redirect } from 'react-router';
 
@@ -42,7 +42,7 @@ class EcomTabs extends Component {
     values.user_Id = user._id;
     values.profileId = user.profileId;
     if (updateData !== undefined && updateData !== 'undefined') {
-      var updateData = JSON.parse(localStorage.getItem('updateData'));
+      // var updateData = JSON.parse(localStorage.getItem('updateData'));
       values.objectId = updateData.objectId;
 
     } else {

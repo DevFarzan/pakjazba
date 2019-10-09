@@ -19,18 +19,10 @@ class ProductScrolltwo extends Component{
   }
 }
   render(){
-    console.log(this.state[this.props.item], 'item a gya bhai')
-    console.log(Object.keys(this.state))
-    let arr = [];
-    for (var elem in this.state){
-      console.log(elem, 'elem')
-    }
     return(
       <div className="productsscroll">
         {this.state[this.props.item].map((item, key) => (
-
           <span onClick={() => this.props.whenSecondClicked(item)}> {item} </span>
-
          ))}
       </div>
     );

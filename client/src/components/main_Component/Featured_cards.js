@@ -15,7 +15,7 @@ class FeaturedCards extends Component{
       <div className="col-md-12">
         <div className="row" style={{padding:"0px"}}>
           <div className="col-md-4">
-            <img src="../images/shutterstock_310512815.jpg" style={{width:"100%", height:"70px"}}/>
+            <img src="../images/shutterstock_310512815.jpg" alt='img' style={{width:"100%", height:"70px"}}/>
           </div>
           <div className="col-md-8" style={{marginLeft:"-15px"}}>
           <h4 className="font-style"><b>{data.eventTitle}</b></h4>

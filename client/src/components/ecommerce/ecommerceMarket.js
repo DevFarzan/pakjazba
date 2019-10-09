@@ -7,8 +7,6 @@ import Eshopcard from './EcomShopcard';
 import DealsEcom from './EcomDeals';
 import { HttpUtils } from "../../Services/HttpUtils";
 import { Spin, Icon } from 'antd';
-import CarouselHome from '../home/carouselHome';
-import Additionalcard from './EcomAdditionalcard';
 
 class EcommerceMarket extends Component {
   constructor(props) {
@@ -118,13 +116,6 @@ class EcommerceMarket extends Component {
             </div>
           </div>
         </span>
-        {/* <div className="" style={{ marginTop: '40px' }}>
-          <h4 className="headingtext"> Featured Listing </h4>
-          <hr />
-          <div>
-            <CarouselHome />
-          </div>
-        </div> */}
         {loader && <div style={{ textAlign: 'center', marginLeft: '-100px', marginBottom: '15px' }}>
           <Spin indicator={antIcon} />
         </div>}
@@ -145,16 +136,12 @@ class EcommerceMarket extends Component {
         {recordFound ? <div className="row">
           <Eshopcard productsData={productsData} />
         </div> : null}
-        {/* <div className="row">
-          <Additionalcard />
-        </div> */}
-
         <div className="row" style={{ marginTop: "-70px" }}>
           <DealsEcom />
         </div>
         <div className="row">
           <div className="col-md-12">
-            <img src="../images/businesslistingimage.png" style={{ width: '100%' }} />
+            <img src="../images/businesslistingimage.png" style={{ width: '100%' }} alt = 'img'/>
           </div>
         </div>
         <Footer />

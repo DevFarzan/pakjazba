@@ -2,14 +2,8 @@ import React, { Component } from 'react';
 import { Checkbox, InputNumber } from 'antd';
 import './OrderSummarycard.css';
 
-
-
 function onChange(e) {
   console.log(`checked = ${e.target.checked}`);
-}
-
-function onChange(value) {
-  console.log('changed', value);
 }
 
 class ModalOrderCard extends Component{

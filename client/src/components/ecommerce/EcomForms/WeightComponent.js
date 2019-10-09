@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import {
-  Form, Input, Select, Button,
+  Input, Select,
 } from 'antd';
 
-const FormItem = Form.Item;
 const Option = Select.Option;
 
 class WeightInput extends React.Component {
@@ -83,7 +82,4 @@ class WeightInput extends React.Component {
   }
 }
 
-
-
-const WrappedDemo = Form.create()(WeightInput);
 export default WeightInput;

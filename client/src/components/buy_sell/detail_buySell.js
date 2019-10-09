@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import Buydetailfirstfold from './buydetail/buydetailfirstfold'
-
 import { Redirect } from 'react-router';
 import Burgermenu from '../header/burgermenu';
-import Slider from '../header/Slider';
 import Footer from '../footer/footer';
 import {HttpUtils} from "../../Services/HttpUtils";
 
 class DetailBuySell extends Component{
     constructor(props){
-        super()
+        super(props)
         this.state = {
             isData: true,
             data: {}
@@ -44,7 +42,6 @@ class DetailBuySell extends Component{
         if(!isData){
             return <Redirect to='/' />
         }
-
         return(
             <div>
                 <span>

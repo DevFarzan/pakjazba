@@ -144,7 +144,6 @@ class CheckOutPage extends Component {
     }
 
     calculateAmount = (amountObj) => {
-        console.log(amountObj, 'amountObj')
         let amountValue = 0;
         let pakjazbafee = 0;
         let gst = 0;
@@ -170,7 +169,6 @@ class CheckOutPage extends Component {
 
     async capturedKeys() {
         let res = await HttpUtils.get('keys');
-        console.log(res, 'res')
         if (window.Stripe) {
             this.setState({ stripe: window.Stripe(res.keys) });
         } else {
@@ -194,7 +192,6 @@ class CheckOutPage extends Component {
     }
 
     modalsHideAndShow = (res) => {
-        console.log(res, 'respone from payment')
         if (res.status) {
             localStorage.removeItem('addToCart');
             this.setState({

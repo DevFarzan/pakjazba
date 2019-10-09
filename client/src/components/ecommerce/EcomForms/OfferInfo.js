@@ -107,7 +107,6 @@ class OfferInfo extends Component {
     if (this.state.herfSec === '') {
       this.props.form.validateFields((err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values);
           this.offerInfoData(values, key);
         }
       });

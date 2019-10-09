@@ -49,7 +49,6 @@ class KeywordsForm extends Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
         this.props.handleProps(values);
         if (key === 'submit') {
           let msg = 'Your keyword & product detail is submited successfully, Kindly visit your profile!'

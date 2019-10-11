@@ -50,6 +50,7 @@ import UploadVideo from './components/entertainment/entertainmentPages/uploadVid
 import { PrivateRoute } from './components/signin_seperate';
 import AddProduct from './components/ecommerce/addProduct/addProduct';
 import CheckOutPage from './components/ecommerce/checkOutPage';
+import ShopForm from './components/ecommerce/shops/ShopForm'
 
 
 
@@ -145,8 +146,9 @@ ReactDOM.render(
         <Route path="/Forms_Ecommerce" component={EcomForms}></Route>
         <Route path="/Forms_addproduct" component={AddProduct}></Route>
         <Route path="/checkOutProduct" component={CheckOutPage}></Route>
-
+        <Route path="/shopForm" component={ShopForm}></Route>
         {/*============Ecommerce=============*/}
+
 
         {/*=============Entertainment====================*/}
         <Route path="/entertainment_Home" component={EntertainmentHome}></Route>
@@ -155,7 +157,6 @@ ReactDOM.render(
         <Route path="/entertainment_detail/:value" component={VideoBox}></Route>
         <Route path="/music_detail" component={MusicBrowse}></Route>
         <Route path="/UploadVideo" component={UploadVideo}></Route>
-
         {/*===============Entertainement end===============================*/}
 
 

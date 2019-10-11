@@ -1,13 +1,12 @@
-import React, { Component } from   'react';
+import React, { Component } from 'react';
 import { Form, Input, Icon, Checkbox } from 'antd';
 import AsyncStorage from "@callstack/async-storage";
-import {HttpUtils} from "../../Services/HttpUtils";
+import { HttpUtils } from "../../Services/HttpUtils";
 import { withRouter, Redirect, } from 'react-router-dom';
 
 const FormItem = Form.Item;
-const ip = require('ip');
 
-class Form_signup extends Component{
+class Form_signup extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -23,22 +22,21 @@ class Form_signup extends Component{
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.handleLocalStorage();
         this.getAllUsers();
     }
 
-    async getAllUsers(){
-        // console.log(ip.address(), 'ipAddressssssss')
+    async getAllUsers() {
         let response = await HttpUtils.get('allusers')
-        this.setState({allUser: response.content})
+        this.setState({ allUser: response.content })
     }
 
-    handleLocalStorage = () =>{
+    handleLocalStorage = () => {
         AsyncStorage.getItem('user')
             .then((obj) => {
                 let userObj = JSON.parse(obj)
-                if(!!userObj){
+                if (!!userObj) {
                     this.setState({
                         dropdown: true,
                     })
@@ -54,7 +52,7 @@ class Form_signup extends Component{
     handleSubmit = (e) => {
         e.preventDefault();
         this.setState({
-            loader:true
+            loader: true
         })
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
@@ -63,13 +61,13 @@ class Form_signup extends Component{
         });
     }//end handleSubmit
 
-    async funcSignUp(values){
-        let response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
+    async funcSignUp(values) {
+        let response = await HttpUtils.get('userregister?nickname=' + values.nickname + '&email=' + values.email + '&password=' + values.password + '&notrobot=' + values.notrobot)
         this.getProfileId(response)
     }
 
-    async getProfileId(response){
-        if(response.code === 200){
+    async getProfileId(response) {
+        if (response.code === 200) {
             let obj = {
                 name: response.name,
                 email: response.email,
@@ -77,47 +75,47 @@ class Form_signup extends Component{
                 profileId: ''
             }
             let req = await HttpUtils.post('profile', obj)
-            let userInfo = {...response, ...{profileId: req.content}}
+            let userInfo = { ...response, ...{ profileId: req.content } }
             AsyncStorage.setItem('user', JSON.stringify(userInfo))
                 .then(() => {
                     this.props.form.resetFields();
                     this.setState({
-                        loader:false,
+                        loader: false,
                         redirectToReferrer: true
                     })
                 })
         }//end if
-        else{
+        else {
             this.setState({
                 msg: response.data.msg,
             })
         }
     }
 
-    checkValue(rule, value, callback){
-        if(this.state.allUser.includes(value)){
+    checkValue(rule, value, callback) {
+        if (this.state.allUser.includes(value)) {
             callback('This email is already been used')
             return;
-        }else {
+        } else {
             callback()
         }
     }
 
-    checkName(rule, value, callback){
-        if(value.includes('<') || value.includes('>') || value.includes('/')){
+    checkName(rule, value, callback) {
+        if (value.includes('<') || value.includes('>') || value.includes('/')) {
             callback('Name should be string')
             return;
-        }else {
+        } else {
             callback()
         }
     }
 
-    render(){
+    render() {
         const { to } = this.props;
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
         const { getFieldDecorator } = this.props.form;
-        const { from } = this.props.location.state ? this.props.location.state : to ? to : { from: { pathname: "/" }};
-        let {redirectToReferrer} = this.state;
+        const { from } = this.props.location.state ? this.props.location.state : to ? to : { from: { pathname: "/" } };
+        let { redirectToReferrer } = this.state;
 
         if (redirectToReferrer) {
             return <Redirect to={from} />;
@@ -136,7 +134,7 @@ class Form_signup extends Component{
             },
         };
 
-        return(
+        return (
             <div>
                 <Form onSubmit={this.handleSubmit}>
                     <FormItem label="Name">
@@ -147,7 +145,7 @@ class Form_signup extends Component{
                                 validator: this.checkName.bind(this)
                             }],
                         })(
-                            <Input  />
+                            <Input />
                         )}
                     </FormItem>
                     <FormItem label="E-mail">
@@ -160,7 +158,7 @@ class Form_signup extends Component{
                                 validator: this.checkValue.bind(this)
                             }],
                         })(
-                            <Input  />
+                            <Input />
                         )}
                     </FormItem>
                     <FormItem label="Password">
@@ -171,7 +169,7 @@ class Form_signup extends Component{
                                 validator: this.validateToNextPassword,
                             }],
                         })(
-                            <Input type="password"  />
+                            <Input type="password" />
                         )}
                     </FormItem>
                     <FormItem label="Confirm Password" >
@@ -182,7 +180,7 @@ class Form_signup extends Component{
                                 validator: this.compareToFirstPassword,
                             }],
                         })(
-                            <Input type="password"  onBlur={this.handleConfirmBlur} />
+                            <Input type="password" onBlur={this.handleConfirmBlur} />
                         )}
                     </FormItem>
                     <FormItem {...tailFormItemLayout}>
@@ -192,10 +190,10 @@ class Form_signup extends Component{
                             <Checkbox>I'm not a Robot</Checkbox>
                         )}
                     </FormItem>
-                    {this.state.msg.length > 0 && <div style={{marginBottom: '5px'}}>
-                        <span style={{ color: 'red', fontWeight: 'bold'}}>{this.state.msg}</span>
+                    {this.state.msg.length > 0 && <div style={{ marginBottom: '5px' }}>
+                        <span style={{ color: 'red', fontWeight: 'bold' }}>{this.state.msg}</span>
                     </div>}
-                    <div style={{marginTop: '5px'}} className="row center_global">
+                    <div style={{ marginTop: '5px' }} className="row center_global">
                         {this.state.loader ? antIcon : null} <button className="btn color_button">Sign up</button>
                     </div>{/*row*/}
                     <div className="row term_condition">
@@ -205,7 +203,7 @@ class Form_signup extends Component{
             </div>
         )
     }
-	
+
 }
 
 const WrappedRegistrationForm = Form.create()(Form_signup);

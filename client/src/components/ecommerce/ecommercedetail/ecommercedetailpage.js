@@ -7,6 +7,8 @@ import FourEcom from './fourEcom';
 import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import { Tabs, Radio } from 'antd';
 const { TabPane } = Tabs;
+import { isMobile } from 'react-device-detect';
+
 class EcomDetail extends Component{
   render(){
     return(

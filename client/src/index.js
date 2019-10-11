@@ -5,10 +5,8 @@ import { createStore, applyMiddleware } from 'redux';
 import promiseMiddleware from 'redux-promise';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Favicon from 'react-favicon';
-// import reducers from './reducers';
 
 //component
-import Home from './components/home/home1';
 import Privacy from './components/home/privacyPolicy';
 import TermOfServices from './components/home/termsofservices';
 import HomePage from './components/home/homePage';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Form, Input, Select, AutoComplete, notification, Cascader,
+  Form, Input, Select, notification, Cascader,
 } from 'antd';
 import './Vitalinfo.css';
 import LengthInput from './LengthComponent';
@@ -10,7 +10,6 @@ import WeightInput from './WeightComponent';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
-const AutoCompleteOption = AutoComplete.Option;
 const electronics = [{
   value: 'Electronic',
   label: 'Electronics Devices',
@@ -2156,7 +2155,6 @@ class VitalInfo extends Component {
 
   componentDidMount() {
     let data = this.props.data;
-    console.log(data, 'data')
     if (data) {
       this.setState({
         product: data.product,
@@ -2183,44 +2181,8 @@ class VitalInfo extends Component {
         itemWeightUnit: data.itemWeight.itemWeightUnit,
         itemWidthNumber: data.itemWidth.itemWidthNumber,
         itemWidthUnit: data.itemWidth.itemWidthUnit,
-        // category: [
-        //   {
-        //     value: data.category[0],
-        //     label: data.category[0],
-        //     children: [
-        //       {
-        //         value: data.category[1],
-        //         label: data.category[1],
-        //         children: [
-        //           {
-        //             value: data.category[2],
-        //             label: data.category[2],
-        //           },
-        //         ],
-        //       },
-        //     ],
-        //   }]
-
-
-
+        category: data.category
       })
-      // electronics = [
-      //   {
-      //     value: data.category[0],
-      //     label: data.category[0],
-      //     children: [
-      //       {
-      //         value: data.category[1],
-      //         label: data.category[1],
-      //         children: [
-      //           {
-      //             value: data.category[2],
-      //             label: data.category[2],
-      //           },
-      //         ],
-      //       },
-      //     ],
-      //   }]
     }
   }
 
@@ -2297,11 +2259,7 @@ class VitalInfo extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { autoCompleteResult, herfSec, category } = this.state;
-    console.log(category, 'category')
-    const websiteOptions = autoCompleteResult.map(website => (
-      <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-    ));
+    const { herfSec, category } = this.state;
     return (
       <div className="container" style={{ width: "100%" }}>
         <div className="row">
@@ -2359,7 +2317,10 @@ class VitalInfo extends Component {
                           label="Category"
                         >
                           {getFieldDecorator('category', {
-                            // initialValue: { category:category },
+                            // initialValue: { category: category },
+
+                            initialValue: category,
+                            defaultValue: Option.initialValue,
                             rules:
                               [{
                                 type: 'array', required: true,
@@ -2369,7 +2330,7 @@ class VitalInfo extends Component {
                             <Cascader
                               // defaultValue={option.initialValue}
                               style={{ height: 'auto' }}
-                              options={ electronics} />
+                              options={electronics} />
                           )}
                         </FormItem>
                         <p className="margin-top">  Electronic Devices/Mobile Phones/Apple Iphone  </p>

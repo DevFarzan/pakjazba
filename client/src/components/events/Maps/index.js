@@ -8,13 +8,13 @@ import BookedSeats from './bookedSeats';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 
-class SeatMap extends Component{
-	constructor(props){
+class SeatMap extends Component {
+	constructor(props) {
 		super(props);
 		this.state = {
 			obj: {
 				lowestArr: [],
-    			bestSeats: []
+				bestSeats: []
 			},
 			booked: [],
 			range: [500, 5000],
@@ -23,67 +23,67 @@ class SeatMap extends Component{
 		}
 	}
 
-	componentDidMount(){
-		const {data, objData} = this.props.location.state;
-        this.setState({ data });
+	componentDidMount() {
+		const { data } = this.props.location.state;
+		this.setState({ data });
 	}
 
-	componentWillUnmount(){
+	componentWillUnmount() {
 		const { data, booked } = this.state;
-		if(!this.props.route){
-			this.props.history.push({pathname: `/Buyer_Detailpage`, state: {data, booked}})
+		if (!this.props.route) {
+			this.props.history.push({ pathname: `/Buyer_Detailpage`, state: { data, booked } })
 		}
 	}
 
 	availableSeats = (obj) => {
 		obj.bestSeats.sort((a, b) => {
 			let c = a.price.slice(3, a.price.length),
-			d = b.price.slice(3, b.price.length)
+				d = b.price.slice(3, b.price.length)
 			return +d - +c
 		})
-		this.setState({obj});
+		this.setState({ obj });
 	}
 
 	bookedSeats = (book, golden) => {
 		let { booked } = this.state;
-		if(booked.length > 0){
+		if (booked.length > 0) {
 			let seatGold = booked.filter((elem) => Object.values(elem)[0] == "Golden Seat"),
-			seatMap = booked.filter((elem) => Object.values(elem)[0] !== "Golden Seat");
-			if(!!golden){
-				this.setState({ booked: [...seatMap, ...book]});
+				seatMap = booked.filter((elem) => Object.values(elem)[0] !== "Golden Seat");
+			if (!!golden) {
+				this.setState({ booked: [...seatMap, ...book] });
 			}
-			if(!golden){
-				this.setState({ booked: [...seatGold, ...book]});
+			if (!golden) {
+				this.setState({ booked: [...seatGold, ...book] });
 			}
-		}else {
-			this.setState({booked: book});				
+		} else {
+			this.setState({ booked: book });
 		}
 
 	}
 
 	priceRange = (range) => {
-		this.setState({range});
+		this.setState({ range });
 	}
 
 	switchUnchanged = (checked) => {
-		this.setState({range: [500, 5000], reset: checked})
+		this.setState({ range: [500, 5000], reset: checked })
 	}
 
 	confirmSeat = e => {
-		this.setState({ msg : true })
+		this.setState({ msg: true })
 	}
 
-	render(){
+	render() {
 		const { obj, booked, range, msg, data } = this.state;
-		
-		if(msg) {
-            return <Redirect to={{pathname: '/Buyer_Detailpage', state: {data, booked}}} />
-        }
+
+		if (msg) {
+			return <Redirect to={{ pathname: '/Buyer_Detailpage', state: { data, booked } }} />
+		}
 
 		return (
 			<div>
-				<Burgermenu/>
-				<div className ="" style={{"background":"#d8e7e4",backgroundSize: 'cover', marginTop: '90px'}}>
+				<Burgermenu />
+				<div className="" style={{ "background": "#d8e7e4", backgroundSize: 'cover', marginTop: '90px' }}>
 					<div className="background-image">
 						<EventHeader
 							data={data}
@@ -101,7 +101,7 @@ class SeatMap extends Component{
 					</div>
 				</div>
 				<div className="row">
-					<div className="col-md-8" style={{border: '1px solid black'}}>
+					<div className="col-md-8" style={{ border: '1px solid black' }}>
 						<SalmanKhan
 							// data={data}
 							availableObj={this.availableSeats}
@@ -112,8 +112,8 @@ class SeatMap extends Component{
 						/>
 					</div>
 					<div className="col-md-4 col-sm-12">
-						{!(!!booked.length) && <Sittingarrangements data={obj} range={range}/>}
-						<hr className="col-md-12" style={{marginLeft: '-10px'}}/>
+						{!(!!booked.length) && <Sittingarrangements data={obj} range={range} />}
+						<hr className="col-md-12" style={{ marginLeft: '-10px' }} />
 						<BookedSeats data={booked} />
 					</div>
 					<div className="col-md-4 col-sm-12">
@@ -130,9 +130,9 @@ class SeatMap extends Component{
 }
 
 const mapStateToProps = (state) => {
-    return({
-        route: state.route
-    });
+	return ({
+		route: state.route
+	});
 }
 
 export default connect(mapStateToProps)(SeatMap);

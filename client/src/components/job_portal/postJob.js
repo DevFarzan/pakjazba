@@ -8,7 +8,6 @@ import {
     notification,
     Upload,
     Modal,
-    TimePicker
 } from 'antd';
 import { Redirect } from 'react-router';
 import AsyncStorage from "@callstack/async-storage/lib/index";
@@ -203,7 +202,7 @@ class JobPortal extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { fileList, faceBook, Google, LinkdIn, Tagline, Website } = this.state;
+        const { fileList } = this.state;
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 this.setState({loader: true})
@@ -229,7 +228,7 @@ class JobPortal extends Component {
     }
 
     async postData(values, response){
-        const {userId, profileId, fileList, faceBook, LinkdIn, Google, Website, Tagline, objectId} = this.state;
+        const {userId, profileId, faceBook, LinkdIn, Google, Website, Tagline, objectId} = this.state;
         let obj = {
             user_id: userId,
             profileId: profileId,
@@ -311,7 +310,7 @@ class JobPortal extends Component {
 
     render(){
         const {getFieldDecorator} = this.props.form;
-        const { email, jobTitle, jobType, jobCat, salary, compDescription, jobDescription, experience, compEmail, jobBanner, location, previewVisible, previewImage, fileList, objData } = this.state;
+        const { email, jobTitle, jobType, jobCat, salary, compDescription, jobDescription, experience, compEmail, location, previewVisible, previewImage, fileList, objData } = this.state;
 
         if (this.state.msg === true) {
             return <Redirect to={{pathname: '/detail_jobPortal', state: {...objData, user: false}}} />

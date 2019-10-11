@@ -13,7 +13,6 @@ class EcomForms extends Component {
     super(props)
   }
   render() {
-    console.log(this.props.location.state , 'this.props.location.state')
     return (
       <div className="">
         <Burgermenu />

@@ -1870,11 +1870,11 @@ color: #fff;
 }
 
 .ant-tabs-nav .ant-tabs-tab-active {
-  color: white !important;
-  background-color: rgb(55, 169, 155) !important;
+  color: white ;
+  background-color: rgb(55, 169, 155);
 }
 .ant-tabs-nav .ant-tabs-tab:active{
-  color:white !important;
+  color:white ;
 }
 .ant-tabs-nav .ant-tabs-tab{
   color:white

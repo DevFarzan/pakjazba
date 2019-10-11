@@ -41,6 +41,7 @@ import EcomDetail from './components/ecommerce/ecommercedetail/ecommercedetailpa
 import GridProducts from './components/ecommerce/ecommercedetail/GridProducts';
 import EproductDetails from './components/ecommerce/productdetail/EproductDetails';
 import EcomForms from './components/ecommerce/EcomForms/EcomForms';
+import ProfileBuilder from './components/ecommerce/EcommerceProfile/ecommerceProfile';
 import EntertainmentHome from './components/entertainment/entertainmenthome/EntertainmentHome';
 import EntCategory from './components/entertainment/entertainmentPages/EntCategory';
 import EntMusic from './components/entertainment/entertainmentPages/EntMusic';
@@ -51,6 +52,7 @@ import { PrivateRoute } from './components/signin_seperate';
 import AddProduct from './components/ecommerce/addProduct/addProduct';
 import CheckOutPage from './components/ecommerce/checkOutPage';
 import ShopForm from './components/ecommerce/shops/ShopForm'
+import EcomProile from './components/ecommerce/EcommerceProfile/ecommerceProfile';
 
 
 
@@ -147,6 +149,8 @@ ReactDOM.render(
         <Route path="/Forms_addproduct" component={AddProduct}></Route>
         <Route path="/checkOutProduct" component={CheckOutPage}></Route>
         <Route path="/shopForm" component={ShopForm}></Route>
+        <Route path="/EcommerceProfile" component={EcomProile}></Route>
+
         {/*============Ecommerce=============*/}
 
 

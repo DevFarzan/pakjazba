@@ -2,21 +2,17 @@ import React, { Component } from 'react';
 import Burgermenu from '../../header/burgermenu';
 import Footer from '../../footer/footer';
 import { Link } from "react-router-dom";
-import EightEcom from './eightEcom';
-import FourEcom from './fourEcom';
+import EcomNine from './ecomNine';
+import FourEcom from '../ecommercedetail/fourEcom';
 import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import { Tabs, Radio } from 'antd';
 const { TabPane } = Tabs;
-import { isMobile } from 'react-device-detect';
 
-class EcomDetail extends Component{
+class ProfileProducts extends Component{
   render(){
     return(
       <div className="">
-        <Burgermenu/>
-        <div className="row jobdetail-page" style={{ marginTop:"100px"}}>
-        </div>
-          <div className="row">
+          <div className="row" style={{padding: '0px'}}>
             <div className="col-md-12">
               <div className="col-md-3" style={{backgroundColor:"whitesmoke"}}>
                   <div className="row">
@@ -25,15 +21,14 @@ class EcomDetail extends Component{
                   </div>
               </div>
               <div className="col-md-9">
-                <EightEcom/>
+                <EcomNine/>
               </div>
             </div>
           </div>
-        <Footer/>
       </div>
 
     )
   }
 }
 
-export default EcomDetail;
+export default ProfileProducts;

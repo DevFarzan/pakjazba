@@ -16,9 +16,6 @@ class ProfileHome extends Component {
                     <ProfileCarousel/>
                 </div>
                 <div>
-                    <ProfileCarousel/>
-                </div>
-                <div>
                     <ProfileCatologe/>
                 </div>
             </div>

@@ -876,7 +876,7 @@ color: #fff;
     color: white;
 }
 .font-style{
-  font-family: 'Source Sans Pro', sans-serif !important;
+  font-family: 'Product Sans', sans-serif !important;
 }
 .signuphover{
 
@@ -2070,8 +2070,17 @@ color: #fff;
     .global_submenu{
       padding-left:76px;
       padding-top:8px;
+      font-weight: 600;
     }
 
+}
+@media (min-width: 992px){
+  .global_submenu{
+    padding-left: 85px;
+    padding-top: 8px;
+    margin-right: -75px;
+    font-weight: 600;
+  }
 }
 
 @media only screen
@@ -2082,8 +2091,9 @@ color: #fff;
     .global_submenu{
       padding-left: 64px;
     padding-top: 8px;
-    margin-right: -19px;
-    margin-left: 5px;
+    margin-right: -25px;
+    font-weight: 600;
+    margin-left: -22px;
     }
 
 }
@@ -2094,9 +2104,10 @@ color: #fff;
   and (-webkit-min-device-pixel-ratio: 1) {
 
     .global_submenu{
-      padding-left: 103px;
-    padding-top: 8px;
-    margin-right: -53px;
+      padding-left: 85px;
+      padding-top: 8px;
+      margin-right: -75px;
+      font-weight: 600;
 }
 }
 

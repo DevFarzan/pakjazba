@@ -222,6 +222,14 @@ font-family: 'Crimson Text', serif !important;
   background-color:#8cbc40;
   color:white;
 }*/
+
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
 .errorLabel{
   color:red;
   padding: 32%;

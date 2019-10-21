@@ -877,7 +877,9 @@ class Postbusiness extends Component {
                                             >
                                                 {getFieldDecorator('businessId', {
                                                     initialValue: this.state.dataBemailId,
-                                                    rules: [{ required: true, message: 'Please input your Business Email id!', whitespace: true },
+                                                    rules: [{
+                                                         required: true, 
+                                                        message: 'Please input your Business Email id!', whitespace: true },
                                                     { type: 'email', message: 'The input is not valid E-mail!' }]
                                                 })(
                                                     <Input />
@@ -913,7 +915,8 @@ class Postbusiness extends Component {
                                                     initialValue: this.state.dataBemail,
                                                     rules: [
                                                         { type: 'email', message: 'The input is not valid E-mail!', whitespace: true },
-                                                        { required: true, message: 'Please input your E-mail!', }
+                                                        { required: true, 
+                                                            message: 'Please input your E-mail!', }
                                                     ],
                                                 })(
                                                     <Input />

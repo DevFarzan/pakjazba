@@ -15,6 +15,7 @@ import Burgermenu from '../../header/burgermenu';
 import sha1 from "sha1";
 import superagent from "superagent";
 import Footer from '../../footer/footer';
+import './shopForm.css'
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -321,7 +322,7 @@ class ShopForm extends Component {
         );
 
         const gridImage = (
-            <div style={{ height: '190px', width: '150px', border: '1px dotted black' }}>
+            <div className="shopcataloge">
                 <Icon type="plus-square" />
                 <div className="ant-upload-text">Upload Grid Image</div>
             </div>
@@ -335,17 +336,18 @@ class ShopForm extends Component {
                     required={false}
                     key={k}
                 >
-                    <div className="col-md-8"
+                     <div className='row' style={{paddingTop: '0px', paddingBottom: '0px'}}>
+                    <div className="col-md-10 col-sm-10 col-xs-10"
                         // style={{ textAlign: 'left', display: 'grid' }} 
-                        key={index}>
+                        key={index} style={{marginTop:'10px'}}>
                         <label htmlFor="Category"> Category </label>
-                        <FormItem>
+                        <FormItem style={{marginTop:'10px'}}>
                             {getFieldDecorator(`shopCategories${index}`, {
                                 // initialValue: this.state.shopCategory,
                                 rules: [{
                                     type: 'array',
                                     required: true,
-                                    message: 'Please select your Shop Category!'
+                                    message: 'Please select your Shop Category!',
                                 }],
                             })(
                                 <Cascader
@@ -355,11 +357,23 @@ class ShopForm extends Component {
                         </FormItem>
                     </div>
                     {keys.length > 1 ? (
-                        <Icon
-                            className="dynamic-delete-button btn btn-danger iconBtn fa fa-minus"
+                       <div className='col-md-2 col-sm-2 col-xs-2'>
+                        <button
+                            type="button"
                             onClick={() => this.removeForm(k)}
-                        />
+                            className="btn btn-fb"
+                            style={{marginTop: '24px', backgroundColor: 'white', marginLeft:'-20px'}}
+                        >
+                            <i className="fa fa-minus" style={{color: 'gray', width:'100%', border:'1px solid', padding: '8px'}}></i>
+                        </button>
+                        </div>
+                    
+                    //     <Icon
+                    //         className="dynamic-delete-button btn btn-danger iconBtn fa fa-minus"
+                    //         onClick={() => this.removeForm(k)}
+                    //     />
                     ) : null}
+                    </div>
                 </Form.Item>
             )
         })
@@ -395,7 +409,7 @@ class ShopForm extends Component {
                             </div>
                             <div className="container" style={{ width: '80%' }}>
                                 <section>
-                                    <div className="row">
+                                    <div className="row" style={{padding: '0px', marginTop: '10px'}}>
                                         <div className="col-md-12">
                                             <div className="col-md-6">
                                                 <div className="form-group">
@@ -469,16 +483,30 @@ class ShopForm extends Component {
                                             </div>
                                         </div>
                                         <div className="col-md-6">
-                                            <div className="row">
-                                                {formItems}
-                                                <div className="col-md-4" style={{ paddingLeft: '0.6%' }}>
-                                                    <Form.Item >
-                                                        <Button type="dashed" onClick={this.addForm}
-                                                            className='btn btn-primary iconBtn up'
-                                                        >
-                                                            <Icon className='glyphicon glyphicon-plus' />
-                                                        </Button>
-                                                    </Form.Item>
+                                            <div className="row" style={{padding:'0px'}}>
+                                                <div className="col-md-12" style={{padding:'0px'}}>
+                                                    <div className="col-md-8 col-sm-10 col-xs-10" style={{padding:'0px'}}>
+                                                        {formItems}
+                                                    </div>
+                                                    <div className="col-md-4 col-sm-2 col-xs-2" style={{ paddingLeft: '0.6%' }}>
+                                                        <Form.Item >
+                                                            {/* <Button type="dashed" onClick={this.addForm}
+                                                                className='btn btn-primary iconBtn up'
+                                                            >
+                                                                <Icon className='glyphicon glyphicon-plus' />
+                                                            </Button> */}
+                                                            <div className='row' style={{paddingTop: '0px', paddingBottom: '0px'}}>
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={this.addForm}
+                                                                    className="btn btn-fb"
+                                                                    style={{marginTop: '24px', backgroundColor: 'white'}}
+                                                                >
+                                                                    <i className="fa fa-plus" style={{color: 'gray', width:'100%', border:'1px solid', padding: '8px'}}></i>
+                                                                </button>
+                                                            </div>
+                                                        </Form.Item>
+                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -528,9 +556,9 @@ class ShopForm extends Component {
                                 <span className="margin_font_location">Upload</span>
                             </div>
 
-                            <div className="container" style={{ width: '80%' }}>
+                            <div className="container" style={{ width: '95%' }}>
                                 <section className="row">
-                                    <div className="col-md-6">
+                                    <div className="col-md-12" style={{padding: '0px'}}>
                                         <FormItem>
                                             {getFieldDecorator('banner', {
                                                 rules: [{
@@ -567,57 +595,144 @@ class ShopForm extends Component {
                             </div>
                             <div className="container" style={{ width: '80%' }}>
                                 <section className="row">
-                                    <div className="col-md-3">
-                                        <FormItem>
-                                            {getFieldDecorator('gridImage', {
-                                                rules: [{
-                                                    required: true,
-                                                    message: 'Please upload your Images!',
-                                                    whitespace: true
-                                                }],
-                                            })(
-                                                <span>
-                                                    {this.state.bannerSrc.length == 0 && <Upload
-                                                        action="//jsonplaceholder.typicode.com/posts/"
-                                                        onPreview={this.handlePreview}
-                                                        onChange={this.onChangeBanner}
-                                                    >
-                                                        {gridImage}
-                                                    </Upload>}
-                                                    {this.state.bannerSrc.length > 0 && <div>
-                                                        <img alt="example"
-                                                            src={this.state.bannerSrc}
-                                                            style={{ height: '190px' }} />
-                                                    </div>}
-                                                </span>
-                                            )}
-                                        </FormItem>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <FormItem>
-                                            {getFieldDecorator('images', {
-                                                rules: [{
-                                                    required: true,
-                                                    message: 'Please upload your Images!',
-                                                    whitespace: true
-                                                }],
-                                            })(
-                                                <div>
-                                                    <Upload
-                                                        action="//jsonplaceholder.typicode.com/posts/"
-                                                        listType="picture-card"
-                                                        fileList={fileList}
-                                                        onPreview={this.handlePreview}
-                                                        onChange={this.handleChange}
-                                                    >
-                                                        {fileList.length > 3 ? null : uploadButton}
-                                                    </Upload>
-                                                    <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-                                                        <img alt="example" style={{ width: '100%' }} src={previewImage} />
-                                                    </Modal>
+                                    <div className="col-md-12">
+                                        <div className="col-md-6 col-sm-6">
+                                            <FormItem style={{width:'100%'}}>
+                                                {getFieldDecorator('gridImage', {
+                                                    rules: [{
+                                                        required: true,
+                                                        message: 'Please upload your Images!',
+                                                        whitespace: true
+                                                    }],
+                                                })(
+                                                    <span style={{width:'100%'}}>
+                                                        {this.state.bannerSrc.length == 0 && <Upload
+                                                            action="//jsonplaceholder.typicode.com/posts/"
+                                                            onPreview={this.handlePreview}
+                                                            onChange={this.onChangeBanner}
+                                                        >
+                                                            {gridImage}
+                                                        </Upload>}
+                                                        {this.state.bannerSrc.length > 0 && <div>
+                                                            <img alt="example"
+                                                                src={this.state.bannerSrc}
+                                                                className="shopcataloge" />
+                                                        </div>}
+                                                    </span>
+                                                )}
+                                            </FormItem>
+                                        </div>
+                                        <div className="col-md-6 col-sm-6">
+                                        <div className="row" style={{padding: '0px'}}>
+                                            <div className="col-md-12">
+                                                <div className="col-md-6 col-sm-6 col-xs-6" style={{marginBottom: '20px'}}>
+                                                    <FormItem>
+                                                        {getFieldDecorator('images', {
+                                                            rules: [{
+                                                                required: true,
+                                                                message: 'Please upload your Images!',
+                                                                whitespace: true
+                                                            }],
+                                                        })(
+                                                            <div>
+                                                                <Upload
+                                                                    action="//jsonplaceholder.typicode.com/posts/"
+                                                                    listType="picture-card"
+                                                                    fileList={fileList}
+                                                                    onPreview={this.handlePreview}
+                                                                    onChange={this.handleChange}
+                                                                >
+                                                                    {fileList.length > 3 ? null : uploadButton}
+                                                                </Upload>
+                                                                <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+                                                                    <img alt="example" style={{ width: '100%' }} src={previewImage} />
+                                                                </Modal>
+                                                            </div>
+                                                        )}
+                                                    </FormItem>
                                                 </div>
-                                            )}
-                                        </FormItem>
+                                                <div className="col-md-6 col-sm-6 col-xs-6" style={{marginBottom: '20px'}}>
+                                                    <FormItem>
+                                                        {getFieldDecorator('images', {
+                                                            rules: [{
+                                                                required: true,
+                                                                message: 'Please upload your Images!',
+                                                                whitespace: true
+                                                            }],
+                                                        })(
+                                                            <div>
+                                                                <Upload
+                                                                    action="//jsonplaceholder.typicode.com/posts/"
+                                                                    listType="picture-card"
+                                                                    fileList={fileList}
+                                                                    onPreview={this.handlePreview}
+                                                                    onChange={this.handleChange}
+                                                                >
+                                                                    {fileList.length > 3 ? null : uploadButton}
+                                                                </Upload>
+                                                                <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+                                                                    <img alt="example" style={{ width: '100%' }} src={previewImage} />
+                                                                </Modal>
+                                                            </div>
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-md-6 col-sm-6 col-xs-6" style={{marginBottom: '20px'}}>
+                                                    <FormItem>
+                                                        {getFieldDecorator('images', {
+                                                            rules: [{
+                                                                required: true,
+                                                                message: 'Please upload your Images!',
+                                                                whitespace: true
+                                                            }],
+                                                        })(
+                                                            <div>
+                                                                <Upload
+                                                                    action="//jsonplaceholder.typicode.com/posts/"
+                                                                    listType="picture-card"
+                                                                    fileList={fileList}
+                                                                    onPreview={this.handlePreview}
+                                                                    onChange={this.handleChange}
+                                                                >
+                                                                    {fileList.length > 3 ? null : uploadButton}
+                                                                </Upload>
+                                                                <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+                                                                    <img alt="example" style={{ width: '100%' }} src={previewImage} />
+                                                                </Modal>
+                                                            </div>
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-md-6 col-sm-6 col-xs-6" style={{marginBottom: '20px'}}>
+                                                    <FormItem>
+                                                        {getFieldDecorator('images', {
+                                                            rules: [{
+                                                                required: true,
+                                                                message: 'Please upload your Images!',
+                                                                whitespace: true
+                                                            }],
+                                                        })(
+                                                            <div>
+                                                                <Upload
+                                                                    action="//jsonplaceholder.typicode.com/posts/"
+                                                                    listType="picture-card"
+                                                                    fileList={fileList}
+                                                                    onPreview={this.handlePreview}
+                                                                    onChange={this.handleChange}
+                                                                >
+                                                                    {fileList.length > 3 ? null : uploadButton}
+                                                                </Upload>
+                                                                <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+                                                                    <img alt="example" style={{ width: '100%' }} src={previewImage} />
+                                                                </Modal>
+                                                            </div>
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
                                     </div>
                                 </section>
                             </div>

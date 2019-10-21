@@ -55,7 +55,7 @@ class CarouselHome extends Component{
                     <div className="row" style={{padding:"0"}}>
                         <div id="carousel-reviews" className="carousel slide" data-ride="carousel">
                             <div className="carousel-inner">
-                                {arrayListing.map((elem,key) => {
+                                {/* {arrayListing.map((elem,key) => {
                                     if(key >= to - from && key < to){
                                         return (
                                             <div key={key} className="item active">
@@ -67,7 +67,7 @@ class CarouselHome extends Component{
                                             </div>
                                         )
                                     }
-                                })}
+                                })} */}
                             </div>
                             <a disabled={backward} className="left carousel-control" href="#carousel-reviews" role="button" data-slide="prev">
                                 <span className="glyphicon glyphicon-chevron-left" id="left" onClick={e => this.handleBackward(e)}></span>

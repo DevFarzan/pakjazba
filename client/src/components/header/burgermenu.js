@@ -108,9 +108,9 @@ class Burgermenu extends Component {
                             <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
                                 <p rel="noopener noreferrer" onClick={() => this.renderList('market_ecommerceMarket')} style={{ color: 'black', fontSize: '14px', cursor: 'pointer' }}>Ecommerce</p>
                             </span>
-                            <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
+                            {/* <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
                                 <p rel="noopener noreferrer" onClick={() => this.renderList('EcommerceProfile')} style={{ color: 'black', fontSize: '14px', cursor: 'pointer' }}>Profile</p>
-                            </span>
+                            </span> */}
                         </div>
                         {this.props.entertainment && <div className="row" className="hidden-sm">
                             <EHeader entertainment={this.props.entertainment} />

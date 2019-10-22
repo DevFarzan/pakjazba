@@ -34,8 +34,11 @@ class EcommerceMarket extends Component {
     // console.log('user request data >>>', requestData)
     let res = await HttpUtils.get('getecommercedata');
     let featureData = [];
-    for (var i = 0; i < 4; i++) {
-      featureData.push(res.content[i])
+    console.log(res.content.length, 'res.content.length')
+    if (res.content.length >= 4) {
+      for (var i = 0; i < 4; i++) {
+        featureData.push(res.content[i])
+      }
     }
     this.setState({
       productsData: res.content,

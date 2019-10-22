@@ -8,7 +8,7 @@ class EcomCard extends Component {
   }
   render() {
     const { featureData } = this.props;
-    // console.log(featureData, 'featureData')
+    console.log(featureData, 'featureData')
     return (
       <div className="container" style={{ width: "95%" }}>
         <div className="row">

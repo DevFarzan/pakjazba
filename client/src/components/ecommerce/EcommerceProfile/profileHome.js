@@ -6,17 +6,23 @@ import ProfileCarousel from './profileCarousel';
 import ProfileBanner from './profileBanner';
 
 class ProfileHome extends Component {
-    render(){
-        return(
+    constructor(props) {
+        super(props)
+    }
+    render() {
+        const { obj } = this.props;
+        console.log(obj, 'obj')
+
+        return (
             <div className="">
                 <div>
-                    <ProfileBanner/>
+                    <ProfileBanner obj={obj}/>
                 </div>
                 <div>
-                    <ProfileCarousel/>
+                    <ProfileCarousel />
                 </div>
                 <div>
-                    <ProfileCatologe/>
+                    <ProfileCatologe obj={obj}/>
                 </div>
             </div>
         )

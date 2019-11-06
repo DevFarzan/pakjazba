@@ -36,9 +36,9 @@ class getCategory extends Component{
                 <Menu.Item>
                     <Link  rel="noopener noreferrer" to={`/postad_eventPortal`}>Organize an Event</Link>
                 </Menu.Item>
-                <Menu.Item>
+                {/* <Menu.Item>
                     <Link  rel="noopener noreferrer" to={`/Forms_Ecommerce`}>Publish Your Product</Link>
-                </Menu.Item>
+                </Menu.Item> */}
                 <Menu.Item>
                     <Link  rel="noopener noreferrer" to={`/shopForm`}>Publish Shop</Link>
                 </Menu.Item>

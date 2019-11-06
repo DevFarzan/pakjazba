@@ -9,7 +9,8 @@ import {
     notification,
     Upload,
     Modal,
-    Button
+    Button,
+    Radio
 } from 'antd';
 import Burgermenu from '../../header/burgermenu';
 import sha1 from "sha1";
@@ -85,7 +86,11 @@ class ShopForm extends Component {
             previewImage: '',
             coverPhotoSrc: '',
             bannerSrc: '',
-            keyFor: ''
+            keyFor: '',
+            shopPurpose: '',
+            fileListLogo: [],
+            previewVisibleLogo: false,
+            previewImageLogo: '',
         }
     }
 
@@ -124,6 +129,9 @@ class ShopForm extends Component {
     handleCancel = () => {
         this.setState({ previewVisible: false })
     }
+    handleCancelLogo = () => {
+        this.setState({ previewVisibleLogo: false })
+    }
 
     handlePreview = (file) => {
         this.setState({
@@ -132,8 +140,21 @@ class ShopForm extends Component {
         });
     }
 
+    handlePreviewLogo = (file) => {
+        this.setState({
+            previewImageLogo: file.url || file.thumbUrl || file,
+            previewVisibleLogo: true,
+        });
+    }
+
     handleChange = ({ fileList }) => {
+        console.log(fileList, 'fileList')
         this.setState({ fileList })
+    }
+
+    handleChangeLogo = ({ fileList }) => {
+        console.log(fileList, 'fileListLogo')
+        this.setState({ fileListLogo: fileList })
     }
 
     onChangeCoverPhoto = info => {
@@ -205,16 +226,16 @@ class ShopForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let { fileList, coverPhoto, banner } = this.state,
-            arr = [],
-            coverImg = { ...coverPhoto[0], ...{ id: 'banner' } },
-            bannerImg = { ...banner[0], ...{ id: 'gridImage' } };
-        arr.push(coverImg, bannerImg)
-        // fileLists.push(image)
+        let { fileList, coverPhoto, banner, fileListLogo } = this.state;
+        let arr = [];
+        let coverImg;
+        let bannerImg;
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                // this.setState({ loader: true })
-                this.funcForUpload(values, arr, fileList)
+                coverImg = { ...coverPhoto[0], ...{ id: 'banner' } },
+                    bannerImg = { ...banner[0], ...{ id: 'gridImage' } };
+                arr.push(coverImg, bannerImg)
+                this.funcForUpload(values, arr, fileList, fileListLogo)
             }
         })
     }
@@ -247,7 +268,7 @@ class ShopForm extends Component {
         })
     }
 
-    async funcForUpload(values, arr, fileList) {
+    async funcForUpload(values, arr, fileList, fileListLogo) {
         Promise.all(arr.map((val) => {
             return this.uploadFile(val).then((result) => {
                 let id = val.id;
@@ -260,18 +281,28 @@ class ShopForm extends Component {
                         return result.body.url
                     })
                 })).then((images) => {
+                    if (images) {
+                        Promise.all(fileListLogo.map((val) => {
+                            return this.uploadFile(val).then((result) => {
+                                return result.body.url
+                            })
+                        })).then((logo) => {
 
-                    this.postData(values, results, images);
+                            this.postData(values, results, images, logo);
+                        })
+                    }
+                    // this.postData(values, results, images);
                 })
             }
         })
     }
 
-    async postData(values, response, images) {
-        const { keyFor } = this.state;
+    async postData(values, response, images, logo) {
+        const { keyFor, shopPurpose } = this.state;
         let cetogires = [];
         let cover = '';
         let banner = '';
+        console.log(values, 'values')
         response.map((elem) => {
             if (Object.keys(elem)[0] == 'banner') {
                 cover = elem['banner']
@@ -298,6 +329,8 @@ class ShopForm extends Component {
             images: images,
             gridImageSrc: banner,
             bannerPhotoSrc: cover,
+            shopPurpose: shopPurpose,
+            shopLogo: logo
         }
         console.log(obj, 'objjjjjjjjjjj')
         // let req = await HttpUtils.post('postEventPortal', obj)
@@ -307,20 +340,31 @@ class ShopForm extends Component {
         // }
     }
 
+    onChangeShop = e => {
+        console.log('radio checked', e.target.value);
+        this.setState({
+            shopPurpose: e.target.value,
+        });
+    };
 
 
     render() {
-        const { fileList, previewImage, previewVisible, keyFor } = this.state;
+        const { fileList, previewImage, previewVisible, keyFor, fileListLogo, previewImageLogo, previewVisibleLogo } = this.state;
         const { getFieldDecorator, getFieldValue } = this.props.form;
 
-        console.log(keyFor, 'keyFor')
+        console.log(this.state.fileListLogo, 'this.state.shopPurpose')
         const uploadButton = (
             <div>
                 <Icon type="plus" />
                 <div className="ant-upload-text">Upload</div>
             </div>
         );
-
+        const uploadButtonLogo = (
+            <div>
+                <Icon type="plus" />
+                <div className="ant-upload-text">Upload</div>
+            </div>
+        );
         const gridImage = (
             <div className="shopcataloge">
                 <Icon type="plus-square" />
@@ -336,43 +380,43 @@ class ShopForm extends Component {
                     required={false}
                     key={k}
                 >
-                     <div className='row' style={{paddingTop: '0px', paddingBottom: '0px'}}>
-                    <div className="col-md-10 col-sm-10 col-xs-10"
-                        // style={{ textAlign: 'left', display: 'grid' }} 
-                        key={index} style={{marginTop:'10px'}}>
-                        <label htmlFor="Category"> Category </label>
-                        <FormItem style={{marginTop:'10px'}}>
-                            {getFieldDecorator(`shopCategories${index}`, {
-                                // initialValue: this.state.shopCategory,
-                                rules: [{
-                                    type: 'array',
-                                    required: true,
-                                    message: 'Please select your Shop Category!',
-                                }],
-                            })(
-                                <Cascader
-                                    options={category}
-                                />
-                            )}
-                        </FormItem>
-                    </div>
-                    {keys.length > 1 ? (
-                       <div className='col-md-2 col-sm-2 col-xs-2'>
-                        <button
-                            type="button"
-                            onClick={() => this.removeForm(k)}
-                            className="btn btn-fb"
-                            style={{marginTop: '24px', backgroundColor: 'white', marginLeft:'-20px'}}
-                        >
-                            <i className="fa fa-minus" style={{color: 'gray', width:'100%', border:'1px solid', padding: '8px'}}></i>
-                        </button>
+                    <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
+                        <div className="col-md-10 col-sm-10 col-xs-10"
+                            // style={{ textAlign: 'left', display: 'grid' }} 
+                            key={index} style={{ marginTop: '10px' }}>
+                            <label htmlFor="Category"> Category </label>
+                            <Form.Item style={{ marginTop: '10px' }}>
+                                {getFieldDecorator(`shopCategories${index}`, {
+                                    // initialValue: this.state.shopCategory,
+                                    rules: [{
+                                        type: 'array',
+                                        required: true,
+                                        message: 'Please select your Shop Category!',
+                                    }],
+                                })(
+                                    <Cascader
+                                        options={category}
+                                    />
+                                )}
+                            </Form.Item>
                         </div>
-                    
-                    //     <Icon
-                    //         className="dynamic-delete-button btn btn-danger iconBtn fa fa-minus"
-                    //         onClick={() => this.removeForm(k)}
-                    //     />
-                    ) : null}
+                        {keys.length > 1 ? (
+                            <div className='col-md-2 col-sm-2 col-xs-2'>
+                                <button
+                                    type="button"
+                                    onClick={() => this.removeForm(k)}
+                                    className="btn btn-fb"
+                                    style={{ marginTop: '24px', backgroundColor: 'white', marginLeft: '-20px' }}
+                                >
+                                    <i className="fa fa-minus" style={{ color: 'gray', width: '100%', border: '1px solid', padding: '8px' }}></i>
+                                </button>
+                            </div>
+
+                            //     <Icon
+                            //         className="dynamic-delete-button btn btn-danger iconBtn fa fa-minus"
+                            //         onClick={() => this.removeForm(k)}
+                            //     />
+                        ) : null}
                     </div>
                 </Form.Item>
             )
@@ -396,7 +440,7 @@ class ShopForm extends Component {
                     </div>
                 </div>
 
-                <Form onSubmit={this.handleSubmit.bind(this)}>
+                <Form onSubmit={this.handleSubmit}>
                     <div className="panel-body">
                         <div className="panel panel-default">
                             <div className="bold_c_text"
@@ -409,12 +453,12 @@ class ShopForm extends Component {
                             </div>
                             <div className="container" style={{ width: '80%' }}>
                                 <section>
-                                    <div className="row" style={{padding: '0px', marginTop: '10px'}}>
+                                    <div className="row" style={{ padding: '0px', marginTop: '10px' }}>
                                         <div className="col-md-12">
                                             <div className="col-md-6">
                                                 <div className="form-group">
                                                     <label htmlFor="sel1">Shop Title</label>
-                                                    <FormItem>
+                                                    <Form.Item>
                                                         {getFieldDecorator('shopTitle', {
                                                             // initialValue: this.state.shopTitle,
                                                             rules: [{
@@ -425,13 +469,13 @@ class ShopForm extends Component {
                                                         })(
                                                             <input type="text" className="form-control" />
                                                         )}
-                                                    </FormItem>
+                                                    </Form.Item>
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
                                                 <div className="form-group">
                                                     <label htmlFor="sel1">Address</label>
-                                                    <FormItem>
+                                                    <Form.Item>
                                                         {getFieldDecorator('shopAddress', {
                                                             // initialValue: this.state.shopAddress,
                                                             rules: [{
@@ -442,7 +486,7 @@ class ShopForm extends Component {
                                                         })(
                                                             <Input />
                                                         )}
-                                                    </FormItem>
+                                                    </Form.Item>
                                                 </div>
                                             </div>
                                         </div>
@@ -452,7 +496,7 @@ class ShopForm extends Component {
                                             <div className="row" style={{ padding: '0px' }}>
                                                 <div className="col-md-7" style={{ display: 'grid' }}>
                                                     <label> City </label>
-                                                    <FormItem>
+                                                    <Form.Item>
                                                         {getFieldDecorator('shopCity', {
                                                             // initialValue: this.state.shopCity,
                                                             rules: [{
@@ -463,11 +507,11 @@ class ShopForm extends Component {
                                                         })(
                                                             <Input />
                                                         )}
-                                                    </FormItem>
+                                                    </Form.Item>
                                                 </div>
                                                 <div className="col-md-5">
                                                     <label> State </label>
-                                                    <FormItem>
+                                                    <Form.Item>
                                                         {getFieldDecorator('shopState', {
                                                             // initialValue: this.state.shopState,
                                                             rules: [{
@@ -478,35 +522,107 @@ class ShopForm extends Component {
                                                         })(
                                                             <Input />
                                                         )}
-                                                    </FormItem>
+                                                    </Form.Item>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="col-md-6">
-                                            <div className="row" style={{padding:'0px'}}>
-                                                <div className="col-md-12" style={{padding:'0px'}}>
-                                                    <div className="col-md-8 col-sm-10 col-xs-10" style={{padding:'0px'}}>
-                                                        {formItems}
-                                                    </div>
-                                                    <div className="col-md-4 col-sm-2 col-xs-2" style={{ paddingLeft: '0.6%' }}>
-                                                        <Form.Item >
-                                                            {/* <Button type="dashed" onClick={this.addForm}
-                                                                className='btn btn-primary iconBtn up'
-                                                            >
-                                                                <Icon className='glyphicon glyphicon-plus' />
-                                                            </Button> */}
-                                                            <div className='row' style={{paddingTop: '0px', paddingBottom: '0px'}}>
-                                                                <button
-                                                                    type="button"
-                                                                    onClick={this.addForm}
-                                                                    className="btn btn-fb"
-                                                                    style={{marginTop: '24px', backgroundColor: 'white'}}
+                                            <div className="row" style={{ padding: '0px' }}>
+                                                <div className="col-md-6" className="form-group">
+                                                    <label htmlFor="sel1">Shop Purpose</label>
+                                                    <Form.Item>
+                                                        {getFieldDecorator('shopPurpose', {
+                                                            // initialValue: this.state.shopAddress,
+                                                            rules: [{
+                                                                required: true,
+                                                                message: 'Please select your Shop Purpose!',
+                                                                whitespace: true
+                                                            }],
+                                                        })(
+                                                            // <Input />
+                                                            <Radio.Group onChange={this.onChangeShop} value={this.state.shopPurpose}>
+                                                                <Radio value={"Gift Shop"}>Gift Shop</Radio>
+                                                                <Radio value={"Shop"}>Shop</Radio>
+                                                            </Radio.Group>
+                                                        )}
+                                                    </Form.Item>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <Form.Item>
+                                                        {getFieldDecorator('shopLogo', {
+                                                            rules: [{
+                                                                required: true,
+                                                                message: 'Please upload your shop logo!',
+                                                                whitespace: true
+                                                            }],
+                                                        })(
+                                                            <div>
+                                                                <Upload
+                                                                    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                                                                    listType="picture-card"
+                                                                    fileList={fileListLogo}
+                                                                    onPreview={this.handlePreviewLogo}
+                                                                    onChange={this.handleChangeLogo}
                                                                 >
-                                                                    <i className="fa fa-plus" style={{color: 'gray', width:'100%', border:'1px solid', padding: '8px'}}></i>
-                                                                </button>
+                                                                    {/* {uploadButtonLogo} */}
+                                                                    {fileListLogo.length > 1 ? null : uploadButtonLogo}
+                                                                </Upload>
+                                                                <div>
+                                                                    <Modal visible={previewVisibleLogo} footer={null} onCancel={this.handleCancelLogo}>
+                                                                        <img alt="example" style={{ width: '100%' }} src={previewImageLogo} />
+                                                                    </Modal>
+                                                                </div>
                                                             </div>
-                                                        </Form.Item>
-                                                     </div>
+                                                        )}
+                                                    </Form.Item>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {/* <div className="col-md-6"> */}
+                                        {/* <div className="form-group" style={{ padding: '0px' }}> */}
+                                        {/* <label htmlFor="sel1"></label> */}
+                                        {/* <FormItem>
+                                                    {getFieldDecorator('shopCity', {
+                                                        // initialValue: this.state.shopCity,
+                                                        rules: [{
+                                                            whitespace: true,
+                                                            required: true,
+                                                            message: 'Please select your City!'
+                                                        }],
+                                                    })( */}
+                                        {/* <Radio.Group onChange={this.onChangeShop} value={this.state.shopPurpose}>
+                                                    <Radio value={"Gift Shop"}>Gift Shop</Radio>
+                                                    <Radio value={"Shop"}>Shop</Radio>
+                                                </Radio.Group> */}
+                                        {/* )}
+                                                    <FormItem> */}
+
+                                        {/* </div> */}
+                                        {/* </div> */}
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-12">
+                                            <div className="col-md-4">
+                                                <div className="row" style={{ padding: '0px' }}>
+                                                    <div className="col-md-12" style={{ padding: '0px' }}>
+                                                        <div className="col-md-8 col-sm-10 col-xs-10" style={{ padding: '0px' }}>
+                                                            {formItems}
+                                                        </div>
+                                                        <div className="col-md-4 col-sm-2 col-xs-2" style={{ paddingLeft: '0.6%' }}>
+                                                            <Form.Item >
+                                                                <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
+                                                                    <button
+                                                                        type="button"
+                                                                        onClick={this.addForm}
+                                                                        className="btn btn-fb"
+                                                                        style={{ marginTop: '24px', backgroundColor: 'white' }}
+                                                                    >
+                                                                        <i className="fa fa-plus" style={{ color: 'gray', width: '100%', border: '1px solid', padding: '8px' }}></i>
+                                                                    </button>
+                                                                </div>
+                                                            </Form.Item>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -516,7 +632,7 @@ class ShopForm extends Component {
                                             <div className="col-md-6">
                                                 <div className="form-group">
                                                     <label htmlFor="sel1">Description</label>
-                                                    <FormItem>
+                                                    <Form.Item>
                                                         {getFieldDecorator('shopDescription', {
                                                             // initialValue: this.state.shopDescription,
                                                             rules: [
@@ -535,7 +651,7 @@ class ShopForm extends Component {
                                                         <span style={{ "float": "right" }}>
                                                             {/* {500 - this.state.desLength} Words */}
                                                         </span>
-                                                    </FormItem>
+                                                    </Form.Item>
                                                 </div>
                                             </div>
 
@@ -558,8 +674,8 @@ class ShopForm extends Component {
 
                             <div className="container" style={{ width: '95%' }}>
                                 <section className="row">
-                                    <div className="col-md-12" style={{padding: '0px'}}>
-                                        <FormItem>
+                                    <div className="col-md-12" style={{ padding: '0px' }}>
+                                        <Form.Item>
                                             {getFieldDecorator('banner', {
                                                 rules: [{
                                                     required: true,
@@ -586,7 +702,7 @@ class ShopForm extends Component {
                                                     </div>}
                                                 </span>
                                             )}
-                                        </FormItem>
+                                        </Form.Item>
                                     </div>
                                     <div className="col-md-6">
                                         {/* <img src=''/> */}
@@ -597,7 +713,7 @@ class ShopForm extends Component {
                                 <section className="row">
                                     <div className="col-md-12">
                                         <div className="col-md-6 col-sm-6">
-                                            <FormItem style={{width:'100%'}}>
+                                            <Form.Item style={{ width: '100%' }}>
                                                 {getFieldDecorator('gridImage', {
                                                     rules: [{
                                                         required: true,
@@ -605,7 +721,7 @@ class ShopForm extends Component {
                                                         whitespace: true
                                                     }],
                                                 })(
-                                                    <span style={{width:'100%'}}>
+                                                    <span style={{ width: '100%' }}>
                                                         {this.state.bannerSrc.length == 0 && <Upload
                                                             action="//jsonplaceholder.typicode.com/posts/"
                                                             onPreview={this.handlePreview}
@@ -620,12 +736,41 @@ class ShopForm extends Component {
                                                         </div>}
                                                     </span>
                                                 )}
-                                            </FormItem>
+                                            </Form.Item>
                                         </div>
                                         <div className="col-md-6 col-sm-6">
-                                        <div className="row" style={{padding: '0px'}}>
-                                            <div className="col-md-12">
-                                                <div className="col-md-6 col-sm-6 col-xs-6" style={{marginBottom: '20px'}}>
+                                            <div className="row" style={{ padding: '0px' }}>
+                                                <div className="col-md-12">
+                                                    <div className="col-md-6 col-sm-6 col-xs-6 clearfix" style={{ marginBottom: '20px' }}>
+                                                        <Form.Item>
+                                                            {getFieldDecorator('images', {
+                                                                rules: [{
+                                                                    required: true,
+                                                                    message: 'Please upload your Images!',
+                                                                    whitespace: true
+                                                                }],
+                                                            })(
+                                                                <div>
+                                                                    <Upload
+                                                                        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                                                                        listType="picture-card"
+                                                                        fileList={fileList}
+                                                                        onPreview={this.handlePreview}
+                                                                        onChange={this.handleChange}
+                                                                    >
+                                                                        {fileList.length > 3 ? null : uploadButton}
+                                                                    </Upload>
+
+                                                                </div>
+                                                            )}
+                                                        </Form.Item>
+                                                    </div>
+                                                    <div className="col-md-6 col-sm-6 col-xs-6" style={{ marginBottom: '20px' }}>
+                                                        <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+                                                            <img alt="example" style={{ width: '100%' }} src={previewImage} />
+                                                        </Modal>
+                                                    </div>
+                                                    {/* <div className="col-md-6 col-sm-6 col-xs-6" style={{marginBottom: '20px'}}>
                                                     <FormItem>
                                                         {getFieldDecorator('images', {
                                                             rules: [{
@@ -702,37 +847,11 @@ class ShopForm extends Component {
                                                             </div>
                                                         )}
                                                     </FormItem>
-                                                </div>
-                                                <div className="col-md-6 col-sm-6 col-xs-6" style={{marginBottom: '20px'}}>
-                                                    <FormItem>
-                                                        {getFieldDecorator('images', {
-                                                            rules: [{
-                                                                required: true,
-                                                                message: 'Please upload your Images!',
-                                                                whitespace: true
-                                                            }],
-                                                        })(
-                                                            <div>
-                                                                <Upload
-                                                                    action="//jsonplaceholder.typicode.com/posts/"
-                                                                    listType="picture-card"
-                                                                    fileList={fileList}
-                                                                    onPreview={this.handlePreview}
-                                                                    onChange={this.handleChange}
-                                                                >
-                                                                    {fileList.length > 3 ? null : uploadButton}
-                                                                </Upload>
-                                                                <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-                                                                    <img alt="example" style={{ width: '100%' }} src={previewImage} />
-                                                                </Modal>
-                                                            </div>
-                                                        )}
-                                                    </FormItem>
+                                                </div> */}
                                                 </div>
                                             </div>
+
                                         </div>
-                                        
-                                    </div>
                                     </div>
                                 </section>
                             </div>

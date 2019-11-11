@@ -3,13 +3,12 @@ import Burgermenu from '../header/burgermenu';
 import Slider from '../header/Slider';
 import Footer from '../footer/footer';
 import { connect } from 'react-redux';
-import EventCategories from '../main_Component/EventCategories';
 import EventFeatured from './Eventfeaturedcard';
 import EventBanner from './bannerAndtop';
-import {HttpUtils} from "../../Services/HttpUtils";
+import { HttpUtils } from "../../Services/HttpUtils";
 
-class MarketEvent extends Component{
-    constructor(props){
+class MarketEvent extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             events: []
@@ -17,14 +16,14 @@ class MarketEvent extends Component{
     }
 
     componentDidMount() {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
         this.setState({ showBtn: true });
         this.getAllBusiness();
     }
 
-    async getAllBusiness(){
+    async getAllBusiness() {
         var res = await HttpUtils.get('marketplace');
-        if(res.code === 200){
+        if (res.code === 200) {
             let data = res.eventPortalData;
             this.setState({
                 events: data ? data : [],
@@ -34,30 +33,30 @@ class MarketEvent extends Component{
         // this.handleLocalStorage();
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         let inputValue = '';
-        if(this.props.text.length){
+        if (this.props.text.length) {
             const { dispatch } = this.props;
-            dispatch({type: 'SEARCHON', inputValue})
+            dispatch({ type: 'SEARCHON', inputValue })
         }
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 <span>
-                    <div className ="vissible-xs" style={{"background":"#d8e7e4", marginTop : "102px",backgroundSize: 'cover'}}>
-                    <div className="visible-xs" style={{marginTop:'-119px'}}></div>
+                    <div className="vissible-xs" style={{ "background": "#d8e7e4", marginTop: "102px", backgroundSize: 'cover' }}>
+                        <div className="visible-xs" style={{ marginTop: '-119px' }}></div>
                         <div className="background-image">
-                            <Burgermenu/>
-                            <Slider mainH1="PakJazba Event Portal" mainH2="Find what you need" showBtn={this.state.showBtn}/>
+                            <Burgermenu />
+                            <Slider mainH1="PakJazba Event Portal" mainH2="Find what you need" showBtn={this.state.showBtn} />
                         </div>
                     </div>
                 </span>
-                {!this.props.text && <EventBanner events={this.state.events}/>}
+                {!this.props.text && <EventBanner events={this.state.events} />}
                 {/*{!this.props.text && <EventCategories/>}*/}
-                <EventFeatured events={this.state.events}/>
-                <Footer/>
+                <EventFeatured events={this.state.events} />
+                <Footer />
             </div>
 
         )
@@ -65,7 +64,7 @@ class MarketEvent extends Component{
 }
 
 const mapStateToProps = (state) => {
-    return({
+    return ({
         text: state.text
     })
 }

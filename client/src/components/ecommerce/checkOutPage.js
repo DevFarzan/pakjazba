@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Burgermenu from '../header/burgermenu';
-import { InputNumber, Modal } from 'antd';
+import { InputNumber, Modal, Spin, Icon } from 'antd';
 import { Link } from "react-router-dom";
 // import CardDetail from '../../components/events/event_listing/CardDetail';
 import { Elements, StripeProvider } from 'react-stripe-elements';
@@ -9,6 +9,7 @@ import { HttpUtils } from "../../Services/HttpUtils";
 import './checkOutpage.css';
 import { Redirect } from 'react-router';
 import imgSucces from './images/succes.gif';
+import Footer from '../footer/footer';
 
 class CheckOutPage extends Component {
     constructor(props) {
@@ -30,7 +31,8 @@ class CheckOutPage extends Component {
             userCheckOut: false,
             totalAmount: '',
             pakjazbafee: '',
-            gst: ''
+            gst: '',
+            loader: false
         }
     }
     componentDidMount() {
@@ -120,12 +122,13 @@ class CheckOutPage extends Component {
             amount: totalAmount.toString(),
             objectIds: objIds,
             userId: userId,
-            currency: 'usd'
+            currency: 'usd',
+            loader: false
         }
         this.setState({
             visible: true,
-            amount: totalAmount,
-            chechkOutObj: chechkOutObj
+            // amount: totalAmount,
+            chechkOutObj: chechkOutObj,
         })
     }
 
@@ -141,7 +144,6 @@ class CheckOutPage extends Component {
     }
 
     calculateAmount = (amountObj) => {
-        console.log(amountObj, 'amountObj')
         let amountValue = 0;
         let pakjazbafee = 0;
         let gst = 0;
@@ -167,7 +169,6 @@ class CheckOutPage extends Component {
 
     async capturedKeys() {
         let res = await HttpUtils.get('keys');
-        console.log(res, 'res')
         if (window.Stripe) {
             this.setState({ stripe: window.Stripe(res.keys) });
         } else {
@@ -184,33 +185,42 @@ class CheckOutPage extends Component {
         })
     }
 
+    loaderFunc = () => {
+        this.setState({
+            loader: true
+        })
+    }
 
     modalsHideAndShow = (res) => {
-        console.log(res, 'respone from payment')
         if (res.status) {
             localStorage.removeItem('addToCart');
             this.setState({
                 succes: true,
-                visible: false
+                visible: false,
+                loader: false
             })
             setTimeout(() => {
                 this.setState({
                     succes: false,
-                    goProductpage: true
+                    goProductpage: true,
+                    loader: false
                 })
             }, 5000)
         }
+        else {
+            this.setState({
+                loader: false
+            })
+        }
     }
     render() {
-        const { cartValue, stripe, chechkOutObj, noRecordFound, goProductpage, hideBtn, succes, amount, pakjazbafee, gst, totalAmount } = this.state;
+        const { cartValue, stripe, chechkOutObj, noRecordFound, goProductpage, hideBtn, succes, amount, pakjazbafee, gst, totalAmount, loader } = this.state;
         if (goProductpage) {
             return <Redirect to={{ pathname: `/market_ecommerceMarket` }} />
         }
-        // if (userCheckOut) {
-        //     return <Redirect to={{ pathname: `/market_ecommerceMarket` }} />
-        // }
+        const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
         return (
-            <div >
+            <div>
                 <Burgermenu />
                 <div >
                     <div className="" style={{ textAlign: "center", marginTop: "25px" }}>
@@ -219,13 +229,15 @@ class CheckOutPage extends Component {
                             <h2 className='cartHeader'>Check Out Product</h2>
                             {hideBtn ?
                                 <div className='row'>
-                                    <div className='cart col-md-5 col-sm-5 col-xs-12'></div>
+                                    <div className='cart col-md-7 col-sm-7 col-xs-12'></div>
+                                    {/* <div className='col-md-3 col-sm-3 col-xs-12'></div> */}
                                     <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12' onClick={this.checkOutFunc}>Checkout</button>
                                     <Link rel="noopener noreferrer" to={`/market_ecommerceMarket`} style={{ color: 'black', fontSize: '14px' }}>
                                         {/* <CartButton cartCount={this.props.cartCount} /> */}
                                         <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12'>Browse more</button>
                                     </Link>
-                                    <div className='col-md-3 col-sm-3 col-xs-12'></div>
+                                    <div className='col-md-1 col-sm-1 col-xs-12'></div>
+
                                 </div> : null}
                         </div>
                     </div>
@@ -260,16 +272,32 @@ class CheckOutPage extends Component {
                             </div>
                         )
                     })}
+                    {hideBtn ?
+                        <div className='row'>
+                            <div className='cart col-md-8 col-sm-8 col-xs-12'></div>
+                            {/* <div className='col-md-3 col-sm-3 col-xs-12'></div> */}
+                            <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12' onClick={this.checkOutFunc}>Checkout</button>
+                            <Link rel="noopener noreferrer" to={`/market_ecommerceMarket`} style={{ color: 'black', fontSize: '14px' }}>
+                                {/* <CartButton cartCount={this.props.cartCount} /> */}
+                                <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12'>Browse more</button>
+                            </Link>
+                            {/* <div className='col-md-1 col-sm-1 col-xs-12'></div> */}
+
+                        </div> : null}
                     {totalAmount != '' ? <div className='panel-body'>
                         <div className='row'>
-                            <div className="col-md-7 col-sm-6 col-xs-12">
+                            <div className="col-md-7 col-sm-7 col-xs-12">
                             </div>
-                            <div className="col-md-5 col-sm-6 col-xs-12">
+
+                            <div className="col-md-5 col-sm-5 col-xs-12">
                                 <ul className='cartDetail'>
+                                    <h2 style={{ fontWeight: 'bold' }}>Total Amount</h2>
+                                    <hr style={{ width: '400px' }}></hr>
                                     <li style={{ marginTop: "15px" }}>Amount : $ {amount} </li>
                                     <li style={{ marginTop: "15px" }}>GST 10% : $ {gst}</li>
                                     <li style={{ marginTop: "15px" }}>Pakjazba Fee 10% : $ {pakjazbafee}</li>
                                     <li style={{ marginTop: "15px" }}>Total Amount: $ {totalAmount}</li>
+                                    <hr style={{ width: '400px' }}></hr>
                                 </ul>
                             </div>
                         </div>
@@ -290,12 +318,15 @@ class CheckOutPage extends Component {
                                     <StripeProvider stripe={stripe}>
                                         <div className="example">
                                             <Elements style={{ boxSizing: 'border-box' }}>
-                                                <CheckoutForm chechkOutObj={chechkOutObj} modalsHideAndShow={this.modalsHideAndShow} />
+                                                <CheckoutForm chechkOutObj={chechkOutObj} modalsHideAndShow={this.modalsHideAndShow} loaderFunc={this.loaderFunc} />
                                             </Elements>
                                         </div>
                                     </StripeProvider>
                                 </div>
                             </div>
+                            {loader && <div style={{ textAlign: 'center', marginLeft: '-100px', marginBottom: '15px' }}>
+                                <Spin indicator={antIcon} />
+                            </div>}
                         </Modal>
                     }
                     {succes &&
@@ -304,16 +335,25 @@ class CheckOutPage extends Component {
                             visible={this.state.succes}
                             onOk={this.handleOk}
                             onCancel={this.handleCancelPayment}
-                            width="400px"
+                            width="300px"
                         >
-                            <img src={imgSucces} style={{ height: "350px" }} />
+                            <img src={imgSucces} alt="img" style={{ height: "250px" }} />
                         </Modal>
                     }
                     <div>
 
                     </div>
                 </div>
-            </div >
+                <footer>
+                    {totalAmount == '' ?
+                        <Footer footerPosition="fixedPositionOnCheckOutPage" />
+                        :
+                        <Footer footerPosition='fixedPositionOnCheckOutPage2' />
+                    }
+                    {/* // {totalAmount != '' ? footerPosition="fixedPositionOnCheckOutPage": footerPosition = 'fixedPositionOnCheckOutPage2' } */}
+
+                </footer>
+            </div>
         )
     }
 }

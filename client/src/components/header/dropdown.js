@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
-import { Menu, Dropdown, Icon, message  } from 'antd';
+import { Menu, Dropdown, Icon, message } from 'antd';
 import AsyncStorage from '@callstack/async-storage';
 import { Redirect } from 'react-router';
 
-class Dropdowns extends Component{
+class Dropdowns extends Component {
     constructor(props) {
         super(props)
         this.state = {
             toDashboard: false,
-            logout: false
+            logout: false,
+            profileId: ''
         }
     }
 
-    handleChangeLogout = () =>{
+    componentWillMount() {
+        let userObj = JSON.parse(localStorage.getItem('user'))
+        // console.log(userObj)
+        if (userObj) {
+            this.setState({
+                profileId: userObj.profileId
+            })
+            // console.log('user has data')
+        }
+    }
+    handleChangeLogout = () => {
         AsyncStorage.removeItem('user')
             .then(() => {
                 this.props.modalContent();
@@ -23,41 +34,43 @@ class Dropdowns extends Component{
     }
 
     profilePage = () => {
-        this.setState({toDashboard: true})
+        this.setState({ toDashboard: true })
     }
 
-    render(){
+    render() {
+        const { profileId } = this.state;
         if (this.state.toDashboard === true) {
-            return <Redirect to='/profile_user' />
+            return <Redirect
+                to={{ pathname: `/profile_user/${profileId}` }} />
         }
 
-        if(this.state.logout === true) {
-            return <Redirect to='/'/>
+        if (this.state.logout === true) {
+            return <Redirect to='/' />
         }
 
         const onClick = function ({ key }) {
             // console.log(key)
             let msg = '';
-            if(key == 1){
+            if (key == 1) {
                 msg = 'Profile'
-            }else if(key == 2){
+            } else if (key == 2) {
                 msg = 'Settings'
-            }else {
+            } else {
                 msg = "User Logout"
             }
             message.info(msg);
         };
 
         const menu = (
-            <Menu onClick={onClick} style={{color:'black'}}>
+            <Menu onClick={onClick} style={{ color: 'black' }}>
                 <Menu.Item key="1" onClick={this.profilePage}>My Profile</Menu.Item>
                 <Menu.Item key="2">Settings</Menu.Item>
                 <Menu.Item key="3" onClick={this.handleChangeLogout}>Logout</Menu.Item>
             </Menu>
         );
 
-        return(
-            <Dropdown overlay={menu} style={{color:'black',marginTop:'-23px'}}>
+        return (
+            <Dropdown overlay={menu} style={{ color: 'black', marginTop: '-23px' }}>
                 <a className="ant-dropdown-link">
                     {localStorage.getItem('name')}<Icon type="down" />
                 </a>

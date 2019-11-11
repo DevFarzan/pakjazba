@@ -5,12 +5,12 @@ import Forgotpassword from '../forgotpassword';
 import Facebook from '../Facebook';
 import Google from '../Google';
 import AsyncStorage from '@callstack/async-storage';
-import {HttpUtils} from "../../Services/HttpUtils";
-import {connect} from "react-redux";
+import { HttpUtils } from "../../Services/HttpUtils";
+import { connect } from "react-redux";
 
 const FormItem = Form.Item;
 
-class Signup extends Component{
+class Signup extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -28,27 +28,27 @@ class Signup extends Component{
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.handleLocalStorage();
         this.getSignData()
     }
 
-    componentDidUpdate(prevProps, prevState){
+    componentDidUpdate(prevProps, prevState) {
         const { data } = this.props;
         const { route, obj } = this.state;
         let arr = obj.map((elem) => elem.password)
-        if(prevProps.data !== data){
-            if(data && data.route === route){
-                if(arr.includes(data.id)){
+        if (prevProps.data !== data) {
+            if (data && data.route === route) {
+                if (arr.includes(data.id)) {
                     obj.map((elem) => {
-                        if(elem.password === data.id){
-                            this.funcLogin({userName: elem.email, password: elem.password})
+                        if (elem.password === data.id) {
+                            this.funcLogin({ userName: elem.email, password: elem.password })
                         }
                     })
-                }else {
+                } else {
                     if (data && data.email === undefined) {
-                        this.setState({ secModal: true})
-                    }else {
+                        this.setState({ secModal: true })
+                    } else {
                         if (data) {
                             let obj = {
                                 nickname: data.name,
@@ -64,32 +64,32 @@ class Signup extends Component{
         }
     }
 
-    async getSignData(){
+    async getSignData() {
         let res = await HttpUtils.get('facebookdata')
-        if(res){
-            this.setState({obj: res.data})
+        if (res) {
+            this.setState({ obj: res.data })
         }
         this.getAllUsers()
     }
 
-    async getAllUsers(){
+    async getAllUsers() {
         let response = await HttpUtils.get('allusers')
-        if(response){
-            this.setState({allUser: response && response.content, _isMount: true})
+        if (response) {
+            this.setState({ allUser: response && response.content, _isMount: true })
         }
     }
 
-    async funcSignUp(values){
-        let response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
-        if(response) {
+    async funcSignUp(values) {
+        let response = await HttpUtils.get('userregister?nickname=' + values.nickname + '&email=' + values.email + '&password=' + values.password + '&notrobot=' + values.notrobot)
+        if (response) {
             this.getProfileId(response)
-        }else {
-            this.setState({msg: 'network error'})
+        } else {
+            this.setState({ msg: 'network error' })
         }
     }
 
-    async getProfileId(response){
-        if(response.code === 200){
+    async getProfileId(response) {
+        if (response.code === 200) {
             let obj = {
                 name: response.name,
                 email: response.email,
@@ -97,13 +97,13 @@ class Signup extends Component{
                 profileId: ''
             }
             let req = await HttpUtils.post('profile', obj)
-            let userInfo = {...response, ...{profileId: req.content}}
+            let userInfo = { ...response, ...{ profileId: req.content } }
             AsyncStorage.setItem('user', JSON.stringify(userInfo))
                 .then(() => {
                     this.props.form.resetFields();
                     this.setState({
-                        loader:false,
-                        visible:false,
+                        loader: false,
+                        visible: false,
                         secModal: false,
                         dropdown: true
                     }, () => {
@@ -111,7 +111,7 @@ class Signup extends Component{
                     })
                 })
         }//end if
-        else{
+        else {
             this.setState({
                 msg: response.msg ? response.msg : response.err._message,
             })
@@ -122,7 +122,7 @@ class Signup extends Component{
         AsyncStorage.getItem('user')
             .then((obj) => {
                 let userObj = JSON.parse(obj)
-                if(!!userObj){
+                if (!!userObj) {
                     this.setState({
                         user: userObj.name
                     })
@@ -134,7 +134,7 @@ class Signup extends Component{
                 }
             }).catch({
 
-        })
+            })
     }
 
     showModal = () => {
@@ -146,69 +146,80 @@ class Signup extends Component{
 
     handleOk = (e) => {
         this.setState({
-            email:this.refs.email,
+            email: this.refs.email,
             visible: false,
         });
     }
 
     handleCancel = (e) => {
-        this.setState({visible: false, secModal: false});
+        this.setState({ visible: false, secModal: false });
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                this.setState({showloader: true})
+                this.setState({ showloader: true })
                 this.funcLogin(values)
             }
         });
     }
 
-    async funcLogin(values){
-        let response = await HttpUtils.get('usersignin?useremail='+values.userName+'&password='+values.password)
-        if(response.code === 200){
-            this.getProfile(response)
-                .then((data) => {
-                    AsyncStorage.setItem('user', JSON.stringify(data))
-                        .then(() => {
-                            this.props.modalContent();
-                            this.setState({
-                                loader:false,
-                                visible:false,
-                                showloader:false
+    async funcLogin(values) {
+        let response = await HttpUtils.get('usersignin?useremail=' + values.userName + '&password=' + values.password)
+        console.log(response , 'response')
+        if (response) {
+            if (response.code === 200) {
+                this.getProfile(response)
+                    .then((data) => {
+                        AsyncStorage.setItem('user', JSON.stringify(data))
+                            .then(() => {
+                                this.props.modalContent();
+                                this.setState({
+                                    loader: false,
+                                    visible: false,
+                                    showloader: false
+                                })
                             })
-                        })
+                    })
+            }//end if
+            else {
+                this.setState({
+                    msg: response.msg,
+                    loader: false,
+                    // visible:false,
+                    showloader: false
                 })
-        }//end if
-        else{
+            }
+        }
+        else {
             this.setState({
-                msg: response.msg,
-                loader:false,
+                msg: "Create an acount first",
+                loader: false,
                 // visible:false,
-                showloader:false
+                showloader: false
             })
         }
     }
 
-    async getProfile(data){
+    async getProfile(data) {
         let _id = data.profileId ? data.profileId : '';
         let req = await HttpUtils.get('getprofile?profileId=' + _id);
-        let allData = {...data, ...{userImage: req ? req.content.imageurl : ''}}
+        let allData = { ...data, ...{ userImage: req ? req.content.imageurl : '' } }
         return allData;
     }
 
-    checkEmail(rule, value, callback){
-        if(this.state.allUser.includes(value)){
+    checkEmail(rule, value, callback) {
+        if (this.state.allUser.includes(value)) {
             callback('This email is already been used')
             return;
-        }else {
-            this.setState({email2: value})
+        } else {
+            this.setState({ email2: value })
             callback()
         }
     }
 
-    socialSignUp(){
+    socialSignUp() {
         const { email2 } = this.state;
         const { data } = this.props;
         let obj = {
@@ -217,7 +228,7 @@ class Signup extends Component{
             password: data.id,
             notrobot: true
         }
-        this.setState({email2: ''})
+        this.setState({ email2: '' })
         this.funcSignUp(obj)
     }
 
@@ -225,12 +236,12 @@ class Signup extends Component{
         this.props.form.resetFields()
     }
 
-    render(){
+    render() {
         const { user, secModal, email2, showloader } = this.state;
         const { getFieldDecorator } = this.props.form;
         const antIcon = <Icon type="loading" style={{ fontSize: 24, color: 'black' }} spin />;
 
-        return(
+        return (
             <div className="paragraph">
                 <span onClick={this.showModal} style={{}}>Sign In</span>
                 {/*===================modal code start==========================*/}
@@ -248,18 +259,18 @@ class Signup extends Component{
                 >
                     {!secModal && <div className="row">
                         <div className="col-md-5">
-                            <Facebook inRup={'signIn'}/>
+                            <Facebook inRup={'signIn'} />
                         </div>
                         <div className="col-md-1"></div>{/*col-md-4*/}
                         <div className="col-md-5">
-                            <Google inRup={'signIn'}/>
+                            <Google inRup={'signIn'} />
                         </div>
                     </div>}
-                    <br/>
+                    <br />
                     {!secModal && <Form onSubmit={this.handleSubmit} className="login-form">
                         <FormItem>
                             {getFieldDecorator('userName', {
-                                rules:[{required: true, message: 'Please input your username!' }],
+                                rules: [{ required: true, message: 'Please input your username!' }],
                             })(
                                 <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Email" />
                             )}
@@ -282,12 +293,12 @@ class Signup extends Component{
                                     )}
                                 </div>
                                 <div className="col-md-6 col-sm-6 col-xs-12 margin_text_align">
-                                    <a className="login-form-forgot" onClick={this.handleCancel}><Forgotpassword/></a>
+                                    <a className="login-form-forgot" onClick={this.handleCancel}><Forgotpassword /></a>
                                 </div>
                             </div>
                         </FormItem>
-                        {this.state.msg.length > 0 && <div style={{marginBottom: '10px'}}>
-                            <span style={{ color: 'red', fontWeight: 'bold'}}>{this.state.msg}</span>
+                        {this.state.msg.length > 0 && <div style={{ marginBottom: '10px' }}>
+                            <span style={{ color: 'red', fontWeight: 'bold' }}>{this.state.msg}</span>
                         </div>}
                         <div className="row">
                             <div className="col-md-3"></div>
@@ -299,7 +310,7 @@ class Signup extends Component{
                             </div>
                             <div className="col-md-3"></div>
                         </div>
-                        Or <a><span onClick={this.handleCancel}><Signin/></span></a>
+                        Or <a><span onClick={this.handleCancel}><Signin /></span></a>
                     </Form>}
                     {secModal && <div>
                         <Form>
@@ -314,7 +325,7 @@ class Signup extends Component{
                                         validator: this.checkEmail.bind(this)
                                     }],
                                 })(
-                                    <Input  />
+                                    <Input />
                                 )}
                             </FormItem>
                             <button className="btn color_button" disabled={!email2} onClick={this.socialSignUp.bind(this)}>Sign up</button>
@@ -327,7 +338,7 @@ class Signup extends Component{
 }
 
 const mapStateToProps = (state) => {
-    return({
+    return ({
         data: state.data
     })
 }

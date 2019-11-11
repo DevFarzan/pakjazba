@@ -5,7 +5,6 @@ import {
     Icon,
     Cascader,
     Spin,
-    notification,
     Upload,
     Modal,
     DatePicker,
@@ -19,7 +18,7 @@ import Burgermenu from '../header/burgermenu';
 import Footer from '../footer/footer';
 import sha1 from "sha1";
 import superagent from "superagent";
-import {HttpUtils} from "../../Services/HttpUtils";
+import { HttpUtils } from "../../Services/HttpUtils";
 import { Shareholder, CustomTickets } from './ColorPicker';
 import stateCities from "../../lib/countrycitystatejson";
 
@@ -29,81 +28,81 @@ const { TextArea } = Input;
 const CheckboxGroup = Checkbox.Group;
 
 const ticketNames = [
-  {
-    value: 'Early Bird',
-    label: 'Early Bird',
-  },
-  {
-    value: 'Normal Ticket',
-    label: 'Normal Ticket',
-  },
-  {
-    value: 'Both',
-    label: 'Both',
-  },
-  {
-    value: 'Free',
-    label: 'Free',
-  },
-  {
-    value: 'Custom Tickets',
-    label: 'Custom Tickets',
-  },
+    {
+        value: 'Early Bird',
+        label: 'Early Bird',
+    },
+    {
+        value: 'Normal Ticket',
+        label: 'Normal Ticket',
+    },
+    {
+        value: 'Both',
+        label: 'Both',
+    },
+    {
+        value: 'Free',
+        label: 'Free',
+    },
+    {
+        value: 'Custom Tickets',
+        label: 'Custom Tickets',
+    },
 ]
 
 const category = [{
-  value: 'art/film',
+    value: 'art/film',
     label: 'art/film'
-},{
+}, {
     value: 'career',
     label: 'career',
-},{
+}, {
     value: 'charitable',
     label: 'charitable',
-},{
-    value:'competition',
-    label:'competition'
-},{
-    value:'dance',
-    label:'dance',
-},{
-    value:'fest/fair',
-    label:'fest/fair',
-},{
-    label:'fitness/health',
-    value:'fitness/health',
-},{
-    label:'food/drink',
-    value:'food/drink',
-},{
-    value:'free',
-    label:'free',
-},{
-    value:'kid friendly',
-    label:'kid friendly',
-},{
-    value:'literary',
-    label:'literary',
-},{
-    value:'music',
-    label:'music',
-},{
-    value:'outdoor',
-    label:'outdoor',
-},{
-    value:'sale',
-    label:'sale',
-},{
-    value:'singles',
-    label:'singles',
-},{
-    value:'tech',
-    label:'tech',
+}, {
+    value: 'competition',
+    label: 'competition'
+}, {
+    value: 'dance',
+    label: 'dance',
+}, {
+    value: 'fest/fair',
+    label: 'fest/fair',
+}, {
+    label: 'fitness/health',
+    value: 'fitness/health',
+}, {
+    label: 'food/drink',
+    value: 'food/drink',
+}, {
+    value: 'free',
+    label: 'free',
+}, {
+    value: 'kid friendly',
+    label: 'kid friendly',
+}, {
+    value: 'literary',
+    label: 'literary',
+}, {
+    value: 'music',
+    label: 'music',
+}, {
+    value: 'outdoor',
+    label: 'outdoor',
+}, {
+    value: 'sale',
+    label: 'sale',
+}, {
+    value: 'singles',
+    label: 'singles',
+}, {
+    value: 'tech',
+    label: 'tech',
 }];
 
 const Dragger = Upload.Dragger;
 
-class EventPortal extends Component{
+class EventPortal extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -126,7 +125,7 @@ class EventPortal extends Component{
             name: '',
             email: '',
             number: '',
-            website  : '',
+            website: '',
             faceBook: '',
             linkdIn: '',
             google: '',
@@ -150,12 +149,12 @@ class EventPortal extends Component{
         }
     }
 
-    componentDidMount(){
-        window.scrollTo(0,0);
+    componentDidMount() {
+        window.scrollTo(0, 0);
         this.handleLocalStorage();
     }
 
-    handleLocalStorage = () =>{
+    handleLocalStorage = () => {
         let states = stateCities.getStatesByShort('US');
         states = states.map((elem) => {
             return {
@@ -166,7 +165,7 @@ class EventPortal extends Component{
         AsyncStorage.getItem('user')
             .then((obj) => {
                 var userObj = JSON.parse(obj)
-                if(!!userObj) {
+                if (!!userObj) {
                     this.setState({
                         userId: userObj._id,
                         profileId: userObj.profileId,
@@ -191,43 +190,43 @@ class EventPortal extends Component{
         }
     }
 
-    onSelectTicket(value){
-        if(value[0] === 'Early Bird'){
-            this.setState({earlyBird: true, normalTicket: false})
-        }else if(value[0] === 'Normal Ticket'){
-            this.setState({earlyBird: false, normalTicket: true})
-        }else if(value[0] === 'Both' || value.length == 0){
-            this.setState({earlyBird: true, normalTicket: true})
-        }else if(value[0] === 'Free'){
-            this.setState({earlyBird: false, normalTicket: false})
-        }else if(value[0] === 'Custom Tickets'){
-            this.setState({earlyBird: false, normalTicket: false, customTicket: true})
+    onSelectTicket(value) {
+        if (value[0] === 'Early Bird') {
+            this.setState({ earlyBird: true, normalTicket: false })
+        } else if (value[0] === 'Normal Ticket') {
+            this.setState({ earlyBird: false, normalTicket: true })
+        } else if (value[0] === 'Both' || value.length == 0) {
+            this.setState({ earlyBird: true, normalTicket: true })
+        } else if (value[0] === 'Free') {
+            this.setState({ earlyBird: false, normalTicket: false })
+        } else if (value[0] === 'Custom Tickets') {
+            this.setState({ earlyBird: false, normalTicket: false, customTicket: true })
         }
     }
 
-    uploadFile = (files) =>{
+    uploadFile = (files) => {
         const image = files.originFileObj
         const cloudName = 'dxk0bmtei'
-        const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/upload'
-        const timestamp = Date.now()/1000
+        const url = 'https://api.cloudinary.com/v1_1/' + cloudName + '/image/upload'
+        const timestamp = Date.now() / 1000
         const uploadPreset = 'toh6r3p2'
-        const paramsStr = 'timestamp='+timestamp+'&upload_preset='+uploadPreset+'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
+        const paramsStr = 'timestamp=' + timestamp + '&upload_preset=' + uploadPreset + 'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
         const signature = sha1(paramsStr)
         const params = {
-            'api_key':'878178936665133',
-            'timestamp':timestamp,
-            'upload_preset':uploadPreset,
-            'signature':signature
+            'api_key': '878178936665133',
+            'timestamp': timestamp,
+            'upload_preset': uploadPreset,
+            'signature': signature
         }
 
         return new Promise((res, rej) => {
             let uploadRequest = superagent.post(url)
             uploadRequest.attach('file', image)
-            Object.keys(params).forEach((key) =>{
+            Object.keys(params).forEach((key) => {
                 uploadRequest.field(key, params[key])
             })
 
-            uploadRequest.end((err, resp) =>{
+            uploadRequest.end((err, resp) => {
                 err ? rej(err) : res(resp);
             })
         })
@@ -236,26 +235,24 @@ class EventPortal extends Component{
     handleSubmit = (e) => {
         e.preventDefault();
         let { fileList, coverPhoto, banner } = this.state,
-        arr = [],
-        image = {...fileList[0], ...{id: 'image'}},
-        coverImg = {...coverPhoto[0], ...{id: 'cover'}},
-        bannerImg = {...banner[0], ...{id: 'banner'}};
+            arr = [],
+            image = { ...fileList[0], ...{ id: 'image' } },
+            coverImg = { ...coverPhoto[0], ...{ id: 'cover' } },
+            bannerImg = { ...banner[0], ...{ id: 'banner' } };
         arr.push(image, coverImg, bannerImg)
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                this.setState({loader: true})
+                this.setState({ loader: true })
                 this.funcForUpload(values, arr)
             }
         })
     }
 
-    async funcForUpload(values, arr){
-        const { fileList } = this.state;
-
+    async funcForUpload(values, arr) {
         Promise.all(arr.map((val) => {
             return this.uploadFile(val).then((result) => {
-            let id = val.id;
-                return {[id]: result.body.url}
+                let id = val.id;
+                return { [id]: result.body.url }
             })
         })).then((results) => {
             this.postData(values, results);
@@ -263,26 +260,26 @@ class EventPortal extends Component{
     }
 
     async postData(values, response) {
-        const {dateObj, userId, profileId, objectId, website, faceBook, linkdIn, google,
+        const { dateObj, userId, profileId, objectId, website, faceBook, linkdIn, google,
             earlyBird, normalTicket, earlyBirdFree, normalTicketFree, openingTime,
-            closingTime, termsCondition, map, customTicketDetail} = this.state;
+            closingTime, termsCondition, map, customTicketDetail } = this.state;
         let rand = Math.floor((Math.random() * 1000000) + 54),
-        image = '',
-        cover = '',
-        banner = '';
+            image = '',
+            cover = '',
+            banner = '';
         response.map((elem) => {
-            if(Object.keys(elem)[0] == 'image'){
+            if (Object.keys(elem)[0] == 'image') {
                 image = elem['image']
             }
-            else if(Object.keys(elem)[0] == 'cover'){
+            else if (Object.keys(elem)[0] == 'cover') {
                 cover = elem['cover']
             }
-            else if(Object.keys(elem)[0] == 'banner'){
+            else if (Object.keys(elem)[0] == 'banner') {
                 banner = elem['banner']
             }
         })
         var randomKey = values.eventTitle + "_" + values.eventCategory[0] + "_" + rand;
-        let obj ={
+        let obj = {
             state: values.state[0],
             city: values.city[0],
             address: values.address,
@@ -329,12 +326,12 @@ class EventPortal extends Component{
         console.log(obj, 'objjjjjjjjjjj')
         let req = await HttpUtils.post('postEventPortal', obj)
         console.log(req, 'responseeeeeeeee')
-        if(req.code === 200){
-            this.setState({objData: obj, msg: true, randomKey})
+        if (req.code === 200) {
+            this.setState({ objData: obj, msg: true, randomKey })
         }
     }
 
-    validateDate(rule, value, callback){
+    validateDate(rule, value, callback) {
         if (!value.length) {
             callback('Please select your Date Range!');
         } else {
@@ -352,7 +349,7 @@ class EventPortal extends Component{
     }
 
     checkValue(rule, value, callback) {
-        this.setState({desLength: value ? value.length : 0})
+        this.setState({ desLength: value ? value.length : 0 })
         callback();
     }
 
@@ -369,16 +366,16 @@ class EventPortal extends Component{
     }
 
     handleChange = ({ fileList }) => {
-        this.setState({fileList})
+        this.setState({ fileList })
     }
     //--------------upload functions end ---------------------
 
     onChangePrice1(e) {
-        this.setState({earlyBirdFree: e.target.checked});
+        this.setState({ earlyBirdFree: e.target.checked });
     }
 
     onChangePrice2(e) {
-        this.setState({normalTicketFree: e.target.checked});
+        this.setState({ normalTicketFree: e.target.checked });
     }
 
     checkCheckBox = (rule, value, callback) => {
@@ -403,17 +400,17 @@ class EventPortal extends Component{
 
     onChangeValue(e) {
         if (e.target.id === 'faceBook') {
-            this.setState({faceBook: e.target.value})
+            this.setState({ faceBook: e.target.value })
         } else if (e.target.id === 'linkdIn') {
-            this.setState({linkdIn: e.target.value})
+            this.setState({ linkdIn: e.target.value })
         } else if (e.target.id === 'google') {
-            this.setState({google: e.target.value})
+            this.setState({ google: e.target.value })
         } else if (e.target.id === 'website') {
-            this.setState({website: e.target.value})
+            this.setState({ website: e.target.value })
         }
     }
 
-    validateTime(rule, value, callback){
+    validateTime(rule, value, callback) {
         if (!(!!value)) {
             callback('Please select your Time!');
         } else {
@@ -421,13 +418,13 @@ class EventPortal extends Component{
         }
     }
 
-    onOpeningTime(time, timeString){
+    onOpeningTime(time, timeString) {
         this.setState({
             openingTime: timeString,
         })
     }
 
-    onClosingTime(time, timeString){
+    onClosingTime(time, timeString) {
         this.setState({
             closingTime: timeString,
         })
@@ -435,9 +432,9 @@ class EventPortal extends Component{
 
     onChangeCoverPhoto = info => {
         let self = this,
-        file = info.file,
-        coverPhoto = [],
-        reader = new FileReader();
+            file = info.file,
+            coverPhoto = [],
+            reader = new FileReader();
 
         //Read the contents of Image File.
         reader.readAsDataURL(info.file.originFileObj);
@@ -452,7 +449,7 @@ class EventPortal extends Component{
             //Validate the File Height and Width.
             image.onload = function () {
                 let height = this.height,
-                width = this.width;
+                    width = this.width;
                 if (height < width) {
                     file.src = e.target.result;
                     coverPhoto.push(file);
@@ -467,11 +464,11 @@ class EventPortal extends Component{
     }
 
     onChangeBanner = info => {
-        if(info.event !== undefined){
+        if (info.event !== undefined) {
             let self = this,
-            file = info.file,
-            banner = [],
-            reader = new FileReader();
+                file = info.file,
+                banner = [],
+                reader = new FileReader();
 
             //Read the contents of Image File.
             reader.readAsDataURL(info.file.originFileObj);
@@ -486,7 +483,7 @@ class EventPortal extends Component{
                 //Validate the File Height and Width.
                 image.onload = function () {
                     let height = this.height,
-                    width = this.width;
+                        width = this.width;
                     if (height > width) {
                         file.src = e.target.result;
                         banner.push(file);
@@ -502,15 +499,15 @@ class EventPortal extends Component{
     }
 
     handleCard = (e, f) => {
-      this.setState({ [e]: f })
+        this.setState({ [e]: f })
     }
 
-    render(){
-        const { fileList, previewImage, previewVisible, statesUS , citiesUS, msg, objData, randomKey } = this.state;
-        const {getFieldDecorator} = this.props.form;
-        
+    render() {
+        const { fileList, previewImage, previewVisible, statesUS, citiesUS, msg, objData, randomKey } = this.state;
+        const { getFieldDecorator } = this.props.form;
+
         if (msg === true) {
-            return <Redirect to={{pathname: `/detail_eventPortal/${randomKey}`, state: objData}} />
+            return <Redirect to={{ pathname: `/detail_eventPortal/${randomKey}`, state: objData }} />
         }
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
         const uploadButton = (
@@ -521,7 +518,7 @@ class EventPortal extends Component{
         );
 
         const bannerButton = (
-            <div style={{height: '190px', width: '150px', border: '1px dotted black'}}>
+            <div style={{ height: '190px', width: '150px', border: '1px dotted black' }}>
                 <Icon type="plus-square" />
                 <div className="ant-upload-text">Upload Banner</div>
             </div>
@@ -545,26 +542,26 @@ class EventPortal extends Component{
         ];
 
 
-        return(
+        return (
             <div>
-              <Burgermenu/>
-              <div className="hidden-sm" style={{marginTop:'10%'}}></div>
-              <div className="visible-sm" style={{marginTop:'15%'}}></div>
-                <div className="row jobdetail-page" style={{backgroundColor:"#37a99b"}}>
-                    <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>
+                <Burgermenu />
+                <div className="hidden-sm" style={{ marginTop: '10%' }}></div>
+                <div className="visible-sm" style={{ marginTop: '15%' }}></div>
+                <div className="row jobdetail-page" style={{ backgroundColor: "#37a99b" }}>
+                    <div className="col-md-12 col-sm-12 col-xs-12" style={{ textAlign: "center" }}>
                         <div className="">
-                            <h1 style={{fontFamily: 'Work Sans, sans-serif', fontWeight:"bold",color:'white'}}>SUBMIT YOUR EVENT</h1>
+                            <h1 style={{ fontFamily: 'Work Sans, sans-serif', fontWeight: "bold", color: 'white' }}>SUBMIT YOUR EVENT</h1>
                         </div>
                     </div>
                 </div>
                 <Form onSubmit={this.handleSubmit} className="login-form">
                     <div className="panel-body">
                         <div className="panel panel-default">
-                            <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}>
-                                <Icon type="info-circle"/>
+                            <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}>
+                                <Icon type="info-circle" />
                                 <span className="margin_font_location">Event Detail</span>
                             </div>
-                            <div className="container" style={{width:'80%'}}>
+                            <div className="container" style={{ width: '80%' }}>
                                 <section>
                                     <div className="row">
                                         <div className="col-md-12">
@@ -572,24 +569,24 @@ class EventPortal extends Component{
                                                 <div className="form-group">
                                                     <label htmlFor="sel1">Event Title</label>
                                                     <FormItem>
-                                                    {getFieldDecorator('eventTitle', {
-                                                        initialValue: this.state.eventTitle,
-                                                        rules: [{ required: true, message: 'Please input your Event Title!', whitespace: true }],
-                                                    })(
-                                                        <input type="text" className="form-control"/>
-                                                    )}
+                                                        {getFieldDecorator('eventTitle', {
+                                                            initialValue: this.state.eventTitle,
+                                                            rules: [{ required: true, message: 'Please input your Event Title!', whitespace: true }],
+                                                        })(
+                                                            <input type="text" className="form-control" />
+                                                        )}
                                                     </FormItem>
                                                 </div>
                                             </div>
-                                            <div className="col-md-6" style={{textAlign: 'left', display:'grid'}}>
+                                            <div className="col-md-6" style={{ textAlign: 'left', display: 'grid' }}>
                                                 <label htmlFor="Price Mode"> Category </label>
                                                 <FormItem>
-                                                {getFieldDecorator('eventCategory', {
-                                                    initialValue: this.state.eventCategory,
-                                                    rules: [{ type: 'array', required: true, message: 'Please select your Event Category!' }],
-                                                })(
-                                                    <Cascader options={category} showSearch={{ filter }}/>
-                                                )}
+                                                    {getFieldDecorator('eventCategory', {
+                                                        initialValue: this.state.eventCategory,
+                                                        rules: [{ type: 'array', required: true, message: 'Please select your Event Category!' }],
+                                                    })(
+                                                        <Cascader options={category} showSearch={{ filter }} />
+                                                    )}
                                                 </FormItem>
                                             </div>
                                         </div>
@@ -597,27 +594,27 @@ class EventPortal extends Component{
                                     <div className="row">
                                         <div className="col-md-12">
                                             <div className="col-md-6">
-                                                <div className="row" style={{padding:'0px'}}>
-                                                    <div className="col-md-7" style={{display:'grid'}}>
+                                                <div className="row" style={{ padding: '0px' }}>
+                                                    <div className="col-md-7" style={{ display: 'grid' }}>
                                                         <label> State </label>
                                                         <FormItem>
-                                                        {getFieldDecorator('state', {
-                                                            initialValue: this.state.state,
-                                                            rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
-                                                        })(
-                                                            <Cascader options={statesUS} showSearch={{ filter }} onChange={this.onChangeState.bind(this)}/>
-                                                        )}
+                                                            {getFieldDecorator('state', {
+                                                                initialValue: this.state.state,
+                                                                rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
+                                                            })(
+                                                                <Cascader options={statesUS} showSearch={{ filter }} onChange={this.onChangeState.bind(this)} />
+                                                            )}
                                                         </FormItem>
                                                     </div>
                                                     <div className="col-md-5">
                                                         <label> City </label>
                                                         <FormItem>
-                                                        {getFieldDecorator('city', {
-                                                            initialValue: this.state.city,
-                                                            rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
-                                                        })(
-                                                            <Cascader options={citiesUS} showSearch={{ filter }}/>
-                                                        )}
+                                                            {getFieldDecorator('city', {
+                                                                initialValue: this.state.city,
+                                                                rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
+                                                            })(
+                                                                <Cascader options={citiesUS} showSearch={{ filter }} />
+                                                            )}
                                                         </FormItem>
                                                     </div>
                                                 </div>
@@ -625,17 +622,19 @@ class EventPortal extends Component{
                                             <div className="col-md-6">
                                                 <label htmlFor="sel1">Date Range</label>
                                                 <FormItem>
-                                                {getFieldDecorator('dateRange', {
-                                                    initialValue: [(this.state.startDate), 
+                                                    {getFieldDecorator('dateRange', {
+                                                        initialValue: [(this.state.startDate),
                                                         (this.state.endDate)],
-                                                    rules: [{ validator: this.validateDate.bind(this) }],
-                                                })(
-                                                    <RangePicker
-                                                        ranges={{ Today: [moment(), moment()], 
-                                                            'This Month': [moment(), moment().endOf('month')] }}
-                                                        onChange={this.onChangeDate.bind(this)}
-                                                    />
-                                                )}
+                                                        rules: [{ validator: this.validateDate.bind(this) }],
+                                                    })(
+                                                        <RangePicker
+                                                            ranges={{
+                                                                Today: [moment(), moment()],
+                                                                'This Month': [moment(), moment().endOf('month')]
+                                                            }}
+                                                            onChange={this.onChangeDate.bind(this)}
+                                                        />
+                                                    )}
                                                 </FormItem>
                                             </div>
                                         </div>
@@ -659,25 +658,25 @@ class EventPortal extends Component{
                                                             <TextArea
                                                                 rows={6}
                                                                 maxLength="500"
-                                                            style={{"marginBottom": "10px"}}/>
+                                                                style={{ "marginBottom": "10px" }} />
                                                         )}
                                                         <br />
-                                                        <span style={{"float": "right"}}>{500 - this.state.desLength} Words</span>
+                                                        <span style={{ "float": "right" }}>{500 - this.state.desLength} Words</span>
                                                     </FormItem>
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
-                                                  <div className="form-group">
-                                                      <label htmlFor="sel1">Address</label>
-                                                      <FormItem>
-                                                      {getFieldDecorator('address', {
-                                                          initialValue: this.state.address,
-                                                          rules: [{ required: true, message: 'Please input your Address!', whitespace: true }],
-                                                      })(
-                                                          <Input  />
-                                                      )}
+                                                <div className="form-group">
+                                                    <label htmlFor="sel1">Address</label>
+                                                    <FormItem>
+                                                        {getFieldDecorator('address', {
+                                                            initialValue: this.state.address,
+                                                            rules: [{ required: true, message: 'Please input your Address!', whitespace: true }],
+                                                        })(
+                                                            <Input />
+                                                        )}
                                                     </FormItem>
-                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -687,109 +686,109 @@ class EventPortal extends Component{
                     </div>
                     <div className="panel-body">
                         <div className="panel panel-default">
-                            <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}>
-                                <Icon type="info-circle"/>
+                            <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}>
+                                <Icon type="info-circle" />
                                 <span className="margin_font_location">Upload</span>
                             </div>
-                            <div className="container" style={{width:'80%'}}>
+                            <div className="container" style={{ width: '80%' }}>
                                 <section className="row">
-                                <div className="col-md-3">
-                                    <FormItem>
-                                        {getFieldDecorator('images', {
-                                            rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
-                                        })(
-                                            <div>
-                                                <Upload
-                                                    action="//jsonplaceholder.typicode.com/posts/"
-                                                    listType="picture-card"
-                                                    fileList={fileList}
-                                                    onPreview={this.handlePreview}
-                                                    onChange={this.handleChange}
-                                                >
-                                                    {fileList.length > 1 ? null : uploadButton}
-                                                </Upload>
-                                                <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-                                                    <img alt="example" style={{ width: '100%' }} src={previewImage} />
-                                                </Modal>
-                                            </div>
-                                          )}
-                                    </FormItem>
-                                </div>
-                                <div className="col-md-6">
-                                    <FormItem>
-                                        {getFieldDecorator('coverPhoto', {
-                                            rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
-                                        })(
-                                            <span>
-                                            {this.state.coverPhotoSrc.length == 0 && <Dragger
-                                                id="coverPhoto"
-                                                name = 'file'
-                                                action="//jsonplaceholder.typicode.com/posts/"
-                                                onChange={this.onChangeCoverPhoto}>
-                                                <p className="ant-upload-drag-icon">
-                                                  <Icon type="inbox" />
-                                                </p>
-                                                <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                                                <p className="ant-upload-hint">Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files</p>
-                                            </Dragger>}
-                                            {this.state.coverPhotoSrc.length > 0 && <div>
-                                            <img alt="example" src={this.state.coverPhotoSrc} style={{height: '190px'}}/>
-                                            </div>}
-                                            </span>
-                                          )}
-                                    </FormItem>
-                                </div>
-                                <div className="col-md-3">
-                                    <FormItem>
-                                        {getFieldDecorator('banner', {
-                                            rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
-                                        })(
-                                            <span>
-                                            {this.state.bannerSrc.length == 0 && <Upload
-                                                    action="//jsonplaceholder.typicode.com/posts/"
-                                                    // listType="picture-card"
-                                                    // style={{border: '1px dotted black'}}
-                                                    // fileList={fileList}
-                                                    onPreview={this.handlePreview}
-                                                    onChange={this.onChangeBanner}
-                                                >
-                                                {bannerButton}
-                                                </Upload>}
-                                            {this.state.bannerSrc.length > 0 && <div>
-                                            <img alt="example" src={this.state.bannerSrc} style={{height: '190px'}}/>
-                                            </div>}
-                                            </span>
-                                          )}
-                                    </FormItem>
-                                </div>
+                                    <div className="col-md-3">
+                                        <FormItem>
+                                            {getFieldDecorator('images', {
+                                                rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
+                                            })(
+                                                <div>
+                                                    <Upload
+                                                        action="//jsonplaceholder.typicode.com/posts/"
+                                                        listType="picture-card"
+                                                        fileList={fileList}
+                                                        onPreview={this.handlePreview}
+                                                        onChange={this.handleChange}
+                                                    >
+                                                        {fileList.length > 1 ? null : uploadButton}
+                                                    </Upload>
+                                                    <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+                                                        <img alt="example" style={{ width: '100%' }} src={previewImage} />
+                                                    </Modal>
+                                                </div>
+                                            )}
+                                        </FormItem>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <FormItem>
+                                            {getFieldDecorator('coverPhoto', {
+                                                rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
+                                            })(
+                                                <span>
+                                                    {this.state.coverPhotoSrc.length == 0 && <Dragger
+                                                        id="coverPhoto"
+                                                        name='file'
+                                                        action="//jsonplaceholder.typicode.com/posts/"
+                                                        onChange={this.onChangeCoverPhoto}>
+                                                        <p className="ant-upload-drag-icon">
+                                                            <Icon type="inbox" />
+                                                        </p>
+                                                        <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                                                        <p className="ant-upload-hint">Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files</p>
+                                                    </Dragger>}
+                                                    {this.state.coverPhotoSrc.length > 0 && <div>
+                                                        <img alt="example" src={this.state.coverPhotoSrc} style={{ height: '190px' }} />
+                                                    </div>}
+                                                </span>
+                                            )}
+                                        </FormItem>
+                                    </div>
+                                    <div className="col-md-3">
+                                        <FormItem>
+                                            {getFieldDecorator('banner', {
+                                                rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
+                                            })(
+                                                <span>
+                                                    {this.state.bannerSrc.length == 0 && <Upload
+                                                        action="//jsonplaceholder.typicode.com/posts/"
+                                                        // listType="picture-card"
+                                                        // style={{border: '1px dotted black'}}
+                                                        // fileList={fileList}
+                                                        onPreview={this.handlePreview}
+                                                        onChange={this.onChangeBanner}
+                                                    >
+                                                        {bannerButton}
+                                                    </Upload>}
+                                                    {this.state.bannerSrc.length > 0 && <div>
+                                                        <img alt="example" src={this.state.bannerSrc} style={{ height: '190px' }} />
+                                                    </div>}
+                                                </span>
+                                            )}
+                                        </FormItem>
+                                    </div>
                                 </section>
                             </div>
                         </div>
                     </div>
                     <div className="panel-body">
                         <div className="panel panel-default">
-                            <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}>
-                                <Icon type="info-circle"/>
+                            <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}>
+                                <Icon type="info-circle" />
                                 <span className="margin_font_location">Ticket Detail</span>
                             </div>
-                            <div className="container" style={{width:'80%'}}>
+                            <div className="container" style={{ width: '80%' }}>
                                 <section>
                                     <div className="row">
                                         <div className="col-md-12">
                                             <div className="col-md-6">
                                                 <label> Select Tickets </label>
-                                                    <FormItem>
+                                                <FormItem>
                                                     {getFieldDecorator('ticketsCategory', {
                                                         initialValue: this.state.ticketsCategory,
                                                         rules: [{ type: 'array', required: true, message: 'Please select your Ticket category!' }],
                                                     })(
-                                                        <Cascader options={ticketNames} showSearch={{ filter }} onChange={this.onSelectTicket.bind(this)}/>
+                                                        <Cascader options={ticketNames} showSearch={{ filter }} onChange={this.onSelectTicket.bind(this)} />
                                                     )}
-                                                    </FormItem>
+                                                </FormItem>
                                             </div>
                                             <div className="col-md-6">
                                                 <label>Opening & closing Time</label>
-                                                <div className="row" style={{marginTop: '-17px'}}>
+                                                <div className="row" style={{ marginTop: '-17px' }}>
                                                     <div className="col-md-6">
                                                         <FormItem>
                                                             {getFieldDecorator('openingTime', {
@@ -817,44 +816,44 @@ class EventPortal extends Component{
                                     {this.state.earlyBird && <div className="row">
                                         <div className="col-md-12">
                                             <div className="col-md-6">
-                                                <label style={{fontSize: '18px'}}>Early Bird</label><br />
+                                                <label style={{ fontSize: '18px' }}>Early Bird</label><br />
                                                 <label> Available Tickets &nbsp;&nbsp;&nbsp;Total</label>
                                                 <div className="row">
-                                                    <div className="col-md-3" style={{paddingLeft: '0px'}}>
+                                                    <div className="col-md-3" style={{ paddingLeft: '0px' }}>
                                                         <FormItem>
-                                                        {getFieldDecorator('earlyBirdAvailableTickets', {
-                                                            initialValue: this.state.earlyBirdAvailableTickets,
-                                                            rules: [{ required: true, message: 'Please input your Available Tickets!', whitespace: true },
-                                                            // { validator: this.validateNumber.bind(this) }
-                                                            ],
-                                                        })(
-                                                            <input type="text" className="form-control"/>
-                                                        )}
+                                                            {getFieldDecorator('earlyBirdAvailableTickets', {
+                                                                initialValue: this.state.earlyBirdAvailableTickets,
+                                                                rules: [{ required: true, message: 'Please input your Available Tickets!', whitespace: true },
+                                                                    // { validator: this.validateNumber.bind(this) }
+                                                                ],
+                                                            })(
+                                                                <input type="text" className="form-control" />
+                                                            )}
                                                         </FormItem>
                                                     </div>
-                                                    <div className="col-md-3" style={{paddingRight: '0px'}}>
+                                                    <div className="col-md-3" style={{ paddingRight: '0px' }}>
                                                         <FormItem>
-                                                        {getFieldDecorator('earlyBirdTotalTickets', {
-                                                            initialValue: this.state.earlyBirdTotalTickets,
-                                                            rules: [{ required: true, message: 'Please input your Total Tickets!', whitespace: true },
-                                                            // { validator: this.validateNumber.bind(this) }
-                                                            ],
-                                                        })(
-                                                            <input type="text" className="form-control"/>
-                                                        )}
+                                                            {getFieldDecorator('earlyBirdTotalTickets', {
+                                                                initialValue: this.state.earlyBirdTotalTickets,
+                                                                rules: [{ required: true, message: 'Please input your Total Tickets!', whitespace: true },
+                                                                    // { validator: this.validateNumber.bind(this) }
+                                                                ],
+                                                            })(
+                                                                <input type="text" className="form-control" />
+                                                            )}
                                                         </FormItem>
                                                     </div>
-                                                    <div className="col-md-3" style={{marginTop:'-27px'}}>
-                                                    <label> Price </label>
+                                                    <div className="col-md-3" style={{ marginTop: '-27px' }}>
+                                                        <label> Price </label>
                                                         <FormItem>
-                                                        {getFieldDecorator('earlyBirdPrice', {
-                                                            initialValue: this.state.earlyBirdPrice,
-                                                            rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
-                                                            // { validator: this.validateNumber.bind(this) }
-                                                            ],
-                                                        })(
-                                                            <input type="text" className="form-control"/>
-                                                        )}
+                                                            {getFieldDecorator('earlyBirdPrice', {
+                                                                initialValue: this.state.earlyBirdPrice,
+                                                                rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
+                                                                    // { validator: this.validateNumber.bind(this) }
+                                                                ],
+                                                            })(
+                                                                <input type="text" className="form-control" />
+                                                            )}
                                                         </FormItem>
                                                     </div>
                                                     <div className="col-md-3">
@@ -864,15 +863,15 @@ class EventPortal extends Component{
                                                     </div>
                                                 </div>
                                             </div>
-                                            {!this.state.earlyBirdFree && <div className="col-md-6" style={{marginTop: '35px'}}>
+                                            {!this.state.earlyBirdFree && <div className="col-md-6" style={{ marginTop: '35px' }}>
                                                 <label> Mode Of Payment </label>
                                                 <FormItem>
-                                                {getFieldDecorator('earlyBirdPaymentMode', {
-                                                    initialValue: this.state.earlyBirdPaymentMode,
-                                                    rules: [{ validator: this.checkCheckBox }],
-                                                })(
-                                                    <CheckboxGroup options={optionsPayment} />
-                                                )}
+                                                    {getFieldDecorator('earlyBirdPaymentMode', {
+                                                        initialValue: this.state.earlyBirdPaymentMode,
+                                                        rules: [{ validator: this.checkCheckBox }],
+                                                    })(
+                                                        <CheckboxGroup options={optionsPayment} />
+                                                    )}
                                                 </FormItem>
                                             </div>}
                                         </div>
@@ -893,48 +892,48 @@ class EventPortal extends Component{
 
                                         </div>
                                     </div>}
-                                    {this.state.normalTicket && this.state.earlyBird && <hr />        }
+                                    {this.state.normalTicket && this.state.earlyBird && <hr />}
                                     {this.state.normalTicket && <div className="row">
                                         <div className="col-md-12">
                                             <div className="col-md-6">
-                                                <label style={{fontSize: '18px'}}>Normal Ticket</label><br />
+                                                <label style={{ fontSize: '18px' }}>Normal Ticket</label><br />
                                                 <label> Available Tickets &nbsp;&nbsp;&nbsp;Total</label>
                                                 <div className="row">
-                                                    <div className="col-md-3" style={{paddingLeft: '0px'}}>
+                                                    <div className="col-md-3" style={{ paddingLeft: '0px' }}>
                                                         <FormItem>
-                                                        {getFieldDecorator('normalTicketAvailableTickets', {
-                                                            initialValue: this.state.normalTicketAvailableTickets,
-                                                            rules: [{ required: true, message: 'Please input your Available Tickets!', whitespace: true },
-                                                            // { validator: this.validateNumber.bind(this) }
-                                                            ],
-                                                        })(
-                                                            <input type="text" className="form-control"/>
-                                                        )}
+                                                            {getFieldDecorator('normalTicketAvailableTickets', {
+                                                                initialValue: this.state.normalTicketAvailableTickets,
+                                                                rules: [{ required: true, message: 'Please input your Available Tickets!', whitespace: true },
+                                                                    // { validator: this.validateNumber.bind(this) }
+                                                                ],
+                                                            })(
+                                                                <input type="text" className="form-control" />
+                                                            )}
                                                         </FormItem>
                                                     </div>
-                                                    <div className="col-md-3" style={{paddingRight: '0px'}}>
+                                                    <div className="col-md-3" style={{ paddingRight: '0px' }}>
                                                         <FormItem>
-                                                        {getFieldDecorator('normalTicketTotalTickets', {
-                                                            initialValue: this.state.normalTicketTotalTickets,
-                                                            rules: [{ required: true, message: 'Please input your Total Tickets!', whitespace: true },
-                                                            // { validator: this.validateNumber.bind(this) }
-                                                            ],
-                                                        })(
-                                                            <input type="text" className="form-control"/>
-                                                        )}
+                                                            {getFieldDecorator('normalTicketTotalTickets', {
+                                                                initialValue: this.state.normalTicketTotalTickets,
+                                                                rules: [{ required: true, message: 'Please input your Total Tickets!', whitespace: true },
+                                                                    // { validator: this.validateNumber.bind(this) }
+                                                                ],
+                                                            })(
+                                                                <input type="text" className="form-control" />
+                                                            )}
                                                         </FormItem>
                                                     </div>
-                                                    <div className="col-md-3" style={{marginTop:'-27px'}}>
-                                                    <label> Price </label>
+                                                    <div className="col-md-3" style={{ marginTop: '-27px' }}>
+                                                        <label> Price </label>
                                                         <FormItem>
-                                                        {getFieldDecorator('normalTicketPrice', {
-                                                            initialValue: this.state.normalTicketPrice,
-                                                            rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
-                                                            // { validator: this.validateNumber.bind(this) }
-                                                            ],
-                                                        })(
-                                                            <input type="text" className="form-control"/>
-                                                        )}
+                                                            {getFieldDecorator('normalTicketPrice', {
+                                                                initialValue: this.state.normalTicketPrice,
+                                                                rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
+                                                                    // { validator: this.validateNumber.bind(this) }
+                                                                ],
+                                                            })(
+                                                                <input type="text" className="form-control" />
+                                                            )}
                                                         </FormItem>
                                                     </div>
                                                     <div className="col-md-3">
@@ -944,15 +943,15 @@ class EventPortal extends Component{
                                                     </div>
                                                 </div>
                                             </div>
-                                            {!this.state.normalTicketFree && <div className="col-md-6" style={{marginTop: '35px'}}>
+                                            {!this.state.normalTicketFree && <div className="col-md-6" style={{ marginTop: '35px' }}>
                                                 <label> Mode Of Payment </label>
                                                 <FormItem>
-                                                {getFieldDecorator('normalTicketPaymentMode', {
-                                                    initialValue: this.state.normalTicketPaymentMode,
-                                                    rules: [{ validator: this.checkCheckBox }],
-                                                })(
-                                                    <CheckboxGroup options={optionsPayment} />
-                                                )}
+                                                    {getFieldDecorator('normalTicketPaymentMode', {
+                                                        initialValue: this.state.normalTicketPaymentMode,
+                                                        rules: [{ validator: this.checkCheckBox }],
+                                                    })(
+                                                        <CheckboxGroup options={optionsPayment} />
+                                                    )}
                                                 </FormItem>
                                             </div>}
                                         </div>
@@ -974,9 +973,9 @@ class EventPortal extends Component{
                                         </div>
                                     </div>}
                                     {this.state.customTicket && <div className="row">
-                                        <CustomTickets 
-                                            label="Custom Ticket" 
-                                            id="customTicketDetail" 
+                                        <CustomTickets
+                                            label="Custom Ticket"
+                                            id="customTicketDetail"
                                             value={this.state.customTicketDetail}
                                             onChange={this.handleCard}
                                         />
@@ -987,11 +986,11 @@ class EventPortal extends Component{
                     </div>
                     <div className="panel-body">
                         <div className="panel panel-default">
-                            <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}>
-                                <Icon type="info-circle"/>
+                            <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}>
+                                <Icon type="info-circle" />
                                 <span className="margin_font_location">Organizer Detail</span>
                             </div>
-                            <div className="container" style={{width:'80%'}}>
+                            <div className="container" style={{ width: '80%' }}>
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="form-group">
@@ -1001,7 +1000,7 @@ class EventPortal extends Component{
                                                     initialValue: this.state.name,
                                                     rules: [{ required: true, message: 'Please input your Contact Name!', whitespace: true }],
                                                 })(
-                                                    <Input  />
+                                                    <Input />
                                                 )}
                                             </FormItem>
                                         </div>
@@ -1013,9 +1012,9 @@ class EventPortal extends Component{
                                                 {getFieldDecorator('email', {
                                                     initialValue: this.state.email,
                                                     rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true },
-                                                            { required: true, message: 'Please input your Contact Email!', whitespace: true }],
+                                                    { required: true, message: 'Please input your Contact Email!', whitespace: true }],
                                                 })(
-                                                    <Input  />
+                                                    <Input />
                                                 )}
                                             </FormItem>
                                         </div>
@@ -1026,7 +1025,7 @@ class EventPortal extends Component{
                                             <FormItem>
                                                 <input type="text" id='website'
                                                     value={this.state.website}
-                                                    className="form-control" onChange={this.onChangeValue.bind(this)}/>
+                                                    className="form-control" onChange={this.onChangeValue.bind(this)} />
                                             </FormItem>
                                         </div>
                                     </div>
@@ -1035,47 +1034,49 @@ class EventPortal extends Component{
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <label htmlFor="sel1">Phone</label>
-                                              <FormItem>
-                                              {getFieldDecorator('number', {
-                                                  initialValue: this.state.number,
-                                                  rules: [{ required: true, 
-                                                    message: 'Please input your Number!', 
-                                                    whitespace: true },
-                                                  // { validator: this.validateNumber.bind(this) }
-                                                  ],
-                                              })(
-                                                  <input type="text" className="form-control"/>
-                                              )}
-                                              </FormItem>
+                                            <FormItem>
+                                                {getFieldDecorator('number', {
+                                                    initialValue: this.state.number,
+                                                    rules: [{
+                                                        required: true,
+                                                        message: 'Please input your Number!',
+                                                        whitespace: true
+                                                    },
+                                                        // { validator: this.validateNumber.bind(this) }
+                                                    ],
+                                                })(
+                                                    <input type="text" className="form-control" />
+                                                )}
+                                            </FormItem>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <label htmlFor="usr">Social Media Links</label>
                                             <FormItem>
-                                                <div className='row' style={{paddingTop: '0px', paddingBottom: '0px'}}>
+                                                <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
                                                     <button
                                                         type="button"
                                                         className="btn btn-fb"
-                                                        style={{width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#3B5999'}}
+                                                        style={{ width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#3B5999' }}
                                                     >
-                                                        <i className="fa fa-facebook" style={{color: 'white'}}></i>
+                                                        <i className="fa fa-facebook" style={{ color: 'white' }}></i>
                                                     </button>
                                                     <input type="text"
                                                         id='faceBook'
                                                         className="form-control"
                                                         value={this.state.faceBook}
                                                         onChange={this.onChangeValue.bind(this)}
-                                                        style={{width: '90%', display: 'inline-block', borderRadius: '0px'}}
-                                                        />
+                                                        style={{ width: '90%', display: 'inline-block', borderRadius: '0px' }}
+                                                    />
                                                 </div>
-                                                <div className='row' style={{paddingTop: '0px', paddingBottom: '0px'}}>
+                                                <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
                                                     <button
                                                         type="button"
                                                         className="btn btn-fb"
-                                                        style={{width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#0077B5'}}
+                                                        style={{ width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#0077B5' }}
                                                     >
-                                                        <i className="fa fa-linkedin" style={{color: 'white'}}></i>
+                                                        <i className="fa fa-linkedin" style={{ color: 'white' }}></i>
                                                     </button>
                                                     <input
                                                         type="text"
@@ -1083,16 +1084,16 @@ class EventPortal extends Component{
                                                         className="form-control"
                                                         value={this.state.linkdIn}
                                                         onChange={this.onChangeValue.bind(this)}
-                                                        style={{width: '90%', display: 'inline-block', borderRadius: '0px'}}
-                                                        />
+                                                        style={{ width: '90%', display: 'inline-block', borderRadius: '0px' }}
+                                                    />
                                                 </div>
-                                                <div className='row' style={{paddingTop: '0px', paddingBottom: '0px'}}>
+                                                <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
                                                     <button
                                                         type="button"
                                                         className="btn btn-fb"
-                                                        style={{width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#DC4E41'}}
+                                                        style={{ width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#DC4E41' }}
                                                     >
-                                                        <i className="fa fa-google-plus" style={{color: 'white'}}></i>
+                                                        <i className="fa fa-google-plus" style={{ color: 'white' }}></i>
                                                     </button>
                                                     <input
                                                         type="text"
@@ -1100,8 +1101,10 @@ class EventPortal extends Component{
                                                         className="form-control"
                                                         value={this.state.google}
                                                         onChange={this.onChangeValue.bind(this)}
-                                                        style={{width: '90%', 
-                                                        display: 'inline-block', borderRadius: '0px'}}/>
+                                                        style={{
+                                                            width: '90%',
+                                                            display: 'inline-block', borderRadius: '0px'
+                                                        }} />
                                                 </div>
                                             </FormItem>
                                         </div>
@@ -1122,10 +1125,10 @@ class EventPortal extends Component{
                     </div>
                     <div className="row center_global row">
                         {this.state.loader && <Spin indicator={antIcon} />}
-                        <button disabled={!!this.state.loader} style={{textAlign: 'center', width:"45%"}} className="btn button_custom">Submit Event</button>
+                        <button disabled={!!this.state.loader} style={{ textAlign: 'center', width: "45%" }} className="btn button_custom">Submit Event</button>
                     </div>
                 </Form>
-              <Footer />
+                <Footer />
             </div>
         )
     }

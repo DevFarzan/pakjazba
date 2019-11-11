@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Rate, notification } from 'antd';
 import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import { HttpUtils } from "../../../Services/HttpUtils";
-import StarRatings from 'react-star-ratings';
 
 const desc = ['Terrible', 'Bad', 'Normal', 'Good', 'Wonderful'];
 

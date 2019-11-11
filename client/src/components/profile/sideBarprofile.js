@@ -3,7 +3,6 @@ import './sideBarprofile.css';
 import { Menu, Icon } from 'antd';
 
 const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
 
 class ProfileSidebar extends Component {
        

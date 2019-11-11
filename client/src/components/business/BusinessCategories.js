@@ -17,7 +17,7 @@ class BusinessCategory extends Component{
         const { dispatch } = this.props;
         var inputValue = item;
         dispatch({type: 'SEARCHON', inputValue});
-        window.scrollTo(0,0);
+      
     }
     /*Category props end*/
 

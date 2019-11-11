@@ -6,7 +6,7 @@ import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import ProfileContactDisplay from './profileContactDisplay';
 
 
-class ProfileDetail extends Component{
+class ProfileDetail extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -19,68 +19,57 @@ class ProfileDetail extends Component{
             reviewProfile: false,
         }
     }
-
-    componentDidUpdate(prevProps, prevState){
-        let obj  = this.props.profileDetail;
-        // console.log(obj , 'obj')
-        if(prevProps.profileDetail !== obj){
-            for(var el in obj){
-              this.setState({ [el]: obj[el] });
-            }
-        }
-    }
-
-    onGoBack(){
+    onGoBack() {
         this.props.callPublicSection();
     }
-
-    render(){
-       
-        const { imageurl, name, location, description, facebooklink, twitterlink, reviewProfile } = this.state;
-        console.log(facebooklink , 'facebooklink')
-        let fb = facebooklink.length > 0 ? true : false,
-        twitter = twitterlink.length > 0 ? true : false;
-        return(
-            <div className="container" style={{width:"90%"}}>
+    render() {
+        const { imageurl, name, location, description, reviewProfile } = this.props.profileDetail.profileDetail;
+        return (
+            <div className="container" style={{ width: "90%" }}>
                 <div className="row" >
-                <div className="col-md-5 col-sm-3">
-                    <img src={imageurl.length > 0 ? imageurl : '../images/images.jpg'} style={{width:"100%"}}/>
-                </div>
-                <div className="col-md-7 col-sm-9">
-                    <h2> Hi, I am {name}
-                        {!reviewProfile && <Icon
-                            type="edit" size={16}
-                            style={{marginLeft:'10%', cursor: 'pointer'}}
-                            onClick={() => {this.onGoBack()}}>
-                        </Icon>}
-                    </h2>
-                    <hr className="horizontaildetail"/>
-                    <div className="row" style={{padding:"0"}}>
-                        <div className="col-md-6">
-                            <p className="detailpara"> Join Date 19-2-2018 </p>
+                    <div className="col-md-5 col-sm-3">
+
+                        <img src={imageurl ? imageurl : '../images/images.jpg'} style={{ width: "100%" }} />
+                    </div>
+                    <div className="col-md-7 col-sm-9">
+                        <h2> Hi, I am {name}
+                            {reviewProfile && <Icon
+                                type="edit" size={16}
+                                style={{ marginLeft: '10%', cursor: 'pointer' }}
+                                onClick={() => { this.onGoBack() }}>
+                            </Icon>}
+                        </h2>
+                        <hr className="horizontaildetail" />
+                        <div className="row" style={{ padding: "0" }}>
+                            <div className="col-md-6">
+                                <p className="detailpara"> Join Date 19-2-2018 </p>
+                            </div>
+                            <div className="col-md-6">
+                                <p className="detailpara">
+                                    <span className="glyphicon glyphicon-map-marker" style={{ color: "#008080", margin: "2px" }}></span>
+                                    <span style={{ color: "black" }}>
+                                        {location}
+                                    </span>
+                                </p>
+                            </div>
                         </div>
-                        <div className="col-md-6">
-                            <p className="detailpara">
-                                <span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}></span>
-                                <span style={{color:"black"}}>
-                                    {location}
-                                </span>
-                            </p>
+                        <p className="detailpara">{description}</p>
+                        <div className="row">
+                            <div className="col-md-6">
+                                {/* <ProfileTabs /> */}
+                            </div>
+                            {/* <div className="col-md-6">
+                                {fb && 
+                                <a href={facebooklink} target="_blank" className="fa fa-facebook"></a>
+                                 }
+                                {twitter && 
+                                <a href={twitterlink} target="_blank" className="fa fa-twitter"></a>
+                                } 
+                            </div> */}
+
                         </div>
                     </div>
-                    <p className="detailpara">{description}</p>
-                    <div className="row">
-                        <div className="col-md-6">
-                            {/* <ProfileTabs /> */}
-                        </div>
-                        <div className="col-md-6">
-                            {fb && <a href={facebooklink} target="_blank" className="fa fa-facebook"></a>}
-                            {twitter && <a href={twitterlink} target="_blank" className="fa fa-twitter"></a>}
-                        </div>
-                        
-                    </div>
                 </div>
-            </div>
             </div>
         )
     }

@@ -55,7 +55,7 @@ class CarouselHome extends Component{
                     <div className="row" style={{padding:"0"}}>
                         <div id="carousel-reviews" className="carousel slide" data-ride="carousel">
                             <div className="carousel-inner">
-                                {arrayListing.map((elem,key) => {
+                                {arrayListing && arrayListing.map((elem,key) => {
                                     if(key >= to - from && key < to){
                                         return (
                                             <div key={key} className="item active">

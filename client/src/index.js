@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware} from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import promiseMiddleware from 'redux-promise';
-import {BrowserRouter, Route} from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Favicon from 'react-favicon';
-// import reducers from './reducers';
 
 //component
-import Home from './components/home/home1';
 import Privacy from './components/home/privacyPolicy';
 import TermOfServices from './components/home/termsofservices';
 import HomePage from './components/home/homePage';
@@ -43,15 +41,18 @@ import EcomDetail from './components/ecommerce/ecommercedetail/ecommercedetailpa
 import GridProducts from './components/ecommerce/ecommercedetail/GridProducts';
 import EproductDetails from './components/ecommerce/productdetail/EproductDetails';
 import EcomForms from './components/ecommerce/EcomForms/EcomForms';
+import ProfileBuilder from './components/ecommerce/EcommerceProfile/ecommerceProfile';
 import EntertainmentHome from './components/entertainment/entertainmenthome/EntertainmentHome';
 import EntCategory from './components/entertainment/entertainmentPages/EntCategory';
 import EntMusic from './components/entertainment/entertainmentPages/EntMusic';
 import MusicBrowse from './components/entertainment/EntDetailpages/MusicBrowse';
 import VideoBox from './components/entertainment/EntDetailpages/VideoBox';
 import UploadVideo from './components/entertainment/entertainmentPages/uploadVideo';
-import {PrivateRoute} from './components/signin_seperate';
+import { PrivateRoute } from './components/signin_seperate';
 import AddProduct from './components/ecommerce/addProduct/addProduct';
 import CheckOutPage from './components/ecommerce/checkOutPage';
+import ShopForm from './components/ecommerce/shops/ShopForm'
+import EcomProile from './components/ecommerce/EcommerceProfile/ecommerceProfile';
 
 
 
@@ -59,118 +60,123 @@ import CheckOutPage from './components/ecommerce/checkOutPage';
 import './app.css';
 
 const initialState = {
-    text: '',
-  	data: {},
-  	otherData: {},
-  	blogData: {},
-    route: false
+  text: '',
+  data: {},
+  otherData: {},
+  blogData: {},
+  route: false
 }
 
-function reducer(state = initialState, action){
-  console.log(action, 'actionnnnn')
-    switch (action.type) {
-        case 'SEARCHON':
-            return {...state, text: action.inputValue}
-        case 'SEARCHOF':
-            return {...state, text: initialState.text}
-    		case 'FACEBOOKSIGNUP':
-    			return {...state, data: action.data}
-    		case 'ANOTHERDATA':
-    			return {...state, otherData: action.otherData}
-    		case 'BLOGDATA':
-    			return {...state, blogData: action.blogData}
-        case 'GOROUTE':
-          return {...state, route: action.route}
-        default:
-            return state;
-    }
+function reducer(state = initialState, action) {
+  // console.log(state, 'state')
+  // console.log(initialState, 'initialState')
+  // console.log(action, 'actionnnnn')
+
+  switch (action.type) {
+    case 'SEARCHON':
+      return { ...state, text: action.inputValue }
+    case 'SEARCHOF':
+      return { ...state, text: initialState.text }
+    case 'FACEBOOKSIGNUP':
+      return { ...state, data: action.data }
+    case 'ANOTHERDATA':
+      return { ...state, otherData: action.otherData }
+    case 'BLOGDATA':
+      return { ...state, blogData: action.blogData }
+    case 'GOROUTE':
+      return { ...state, route: action.route }
+    default:
+      return state;
+  }
 }
 
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware)(createStore)
 
 ReactDOM.render(
-		<Provider store={createStoreWithMiddleware(reducer)}>
-			<BrowserRouter>
-				<div>
-          <Favicon url="https://res.cloudinary.com/dxk0bmtei/image/upload/v1534159021/pakjazba_f3orb0.png" />
-					<Route exact path="/" component={HomePage}></Route>
-					<Route path="/sigin" component={Signin}></Route>
-          <Route exact path="/reset/:token" component={ResetPassword} />
+  <Provider store={createStoreWithMiddleware(reducer)}>
+    <BrowserRouter>
+      <div>
+        <Favicon url="https://res.cloudinary.com/dxk0bmtei/image/upload/v1534159021/pakjazba_f3orb0.png" />
+        <Route exact path="/" component={HomePage}></Route>
+        <Route path="/sigin" component={Signin}></Route>
+        <Route exact path="/reset/:token" component={ResetPassword} />
 
-          {/*============Room Renting=============*/}
-          <PrivateRoute path="/postad_Roommates" component={Postroommates}></PrivateRoute>
-          <Route path="/filter_roomRent" component={Roomrentingtwocontentarea}></Route>
-          <Route path="/market_roommates" component={MarketRoommates}></Route>
-          <Route path="/detail_roomRent" component={DetailRoommates}></Route>
-          {/*============Room Renting End=============*/}
+        {/*============Room Renting=============*/}
+        <PrivateRoute path="/postad_Roommates" component={Postroommates}></PrivateRoute>
+        <Route path="/filter_roomRent" component={Roomrentingtwocontentarea}></Route>
+        <Route path="/market_roommates" component={MarketRoommates}></Route>
+        <Route path="/detail_roomRent" component={DetailRoommates}></Route>
+        {/*============Room Renting End=============*/}
 
-          {/*============Bussiness=============*/}
-          <PrivateRoute path="/postad_business" component={Postbusiness}></PrivateRoute>
-          <Route path="/detail_business" component={DetailBusiness}></Route>
-          <Route path="/market_business" component={MarketBusiness}></Route>
-          {/*============Bussiness End=============*/}
+        {/*============Bussiness=============*/}
+        <PrivateRoute path="/postad_business" component={Postbusiness}></PrivateRoute>
+        <Route path="/detail_business" component={DetailBusiness}></Route>
+        <Route path="/market_business" component={MarketBusiness}></Route>
+        {/*============Bussiness End=============*/}
 
-          {/*============Buy And Sell start=============*/}
-          <PrivateRoute path="/postad_buysell" component={Postbuysell}></PrivateRoute>
-          <Route path="/market_classified" component={MarketClassified}></Route>
-          <Route path="/Buyer_Detailpage" component={BuyerDetail}></Route>
-          <Route path="/detail_buySell" component={DetailBuySell}></Route>
-          <Route path="/filter_buySell" component={FilterBuySell}></Route>
-          {/*============Buy and Sell End=============*/}
-
-
-          {/*============Job=============*/}
-          <PrivateRoute path="/postad_jobPortal" component={JobPortal}></PrivateRoute>
-          <Route path="/market_jobPortal" component={JobClassified}></Route>
-          <Route path="/detail_jobPortal" component={JobDetail}></Route>
-          <Route path="/apply_forJob" component={ApplyJob}></Route>
-          {/*============Job End=============*/}
+        {/*============Buy And Sell start=============*/}
+        <PrivateRoute path="/postad_buysell" component={Postbuysell}></PrivateRoute>
+        <Route path="/market_classified" component={MarketClassified}></Route>
+        <Route path="/Buyer_Detailpage" component={BuyerDetail}></Route>
+        <Route path="/detail_buySell" component={DetailBuySell}></Route>
+        <Route path="/filter_buySell" component={FilterBuySell}></Route>
+        {/*============Buy and Sell End=============*/}
 
 
-          {/*============Events Start=============*/}
-          <PrivateRoute path="/postad_eventPortal" component={EventPortal}></PrivateRoute>
-          <Route path="/market_eventPortal" component={MarketEvent}></Route>
-            <Route path="/detail_eventPortal/:value" component={EventDetail}></Route>
-            <Route path="/Ticket_eventPortals" component={TicketDetail}></Route>
-            <Route path="/seat_map" component={SeatMap}></Route>
-          {/*============Events Start=============*/}
+        {/*============Job=============*/}
+        <PrivateRoute path="/postad_jobPortal" component={JobPortal}></PrivateRoute>
+        <Route path="/market_jobPortal" component={JobClassified}></Route>
+        <Route path="/detail_jobPortal" component={JobDetail}></Route>
+        <Route path="/apply_forJob" component={ApplyJob}></Route>
+        {/*============Job End=============*/}
 
 
-          {/*============Ecommerce=============*/}
-          <Route path="/market_ecommerceMarket" component={EcommerceMarket}></Route>
-          <Route path="/detail_ecommercedetail" component={EcomDetail}></Route>
-          <Route path="/products_GridStyle" component={GridProducts}></Route>
-          <Route path="/products_DetailStyle/:value" component={EproductDetails}></Route>
-          <Route path="/Forms_Ecommerce" component={EcomForms}></Route>
-          <Route path="/Forms_addproduct" component={AddProduct}></Route>
-          <Route path="/checkOutProduct" component={CheckOutPage}></Route>
-
-          {/*============Ecommerce=============*/}
-
-          {/*=============Entertainment====================*/}
-          <Route path="/entertainment_Home" component={EntertainmentHome}></Route>
-          <Route path="/entertainment_Category/:value" component={EntCategory}></Route>
-          <Route path="/entertainment_music" component={EntMusic}></Route>
-          <Route path="/entertainment_detail/:value" component={VideoBox}></Route>
-          <Route path="/music_detail" component={MusicBrowse}></Route>
-          <Route path="/UploadVideo" component={UploadVideo}></Route>
-
-          {/*===============Entertainement end===============================*/}
+        {/*============Events Start=============*/}
+        <PrivateRoute path="/postad_eventPortal" component={EventPortal}></PrivateRoute>
+        <Route path="/market_eventPortal" component={MarketEvent}></Route>
+        <Route path="/detail_eventPortal/:value" component={EventDetail}></Route>
+        <Route path="/Ticket_eventPortals" component={TicketDetail}></Route>
+        <Route path="/seat_map" component={SeatMap}></Route>
+        {/*============Events Start=============*/}
 
 
+        {/*============Ecommerce=============*/}
+        <Route path="/market_ecommerceMarket" component={EcommerceMarket}></Route>
+        <Route path="/detail_ecommercedetail" component={EcomDetail}></Route>
+        <Route path="/products_GridStyle" component={GridProducts}></Route>
+        <Route path="/products_DetailStyle/:value" component={EproductDetails}></Route>
+        <Route path="/Forms_Ecommerce" component={EcomForms}></Route>
+        <Route path="/Forms_addproduct" component={AddProduct}></Route>
+        <Route path="/checkOutProduct" component={CheckOutPage}></Route>
+        <Route path="/shopForm" component={ShopForm}></Route>
+        <Route path="/EcommerceProfile" component={EcomProile}></Route>
 
-					<PrivateRoute path="/profile_user" component={ProfileUser}></PrivateRoute>
-					<Route path="/profile_userDetail" component={ProfileUser}></Route>
+        {/*============Ecommerce=============*/}
 
 
-          <Route path="/user_profile" component={ProfileMain}></Route>
+        {/*=============Entertainment====================*/}
+        <Route path="/entertainment_Home" component={EntertainmentHome}></Route>
+        <Route path="/entertainment_Category/:value" component={EntCategory}></Route>
+        <Route path="/entertainment_music" component={EntMusic}></Route>
+        <Route path="/entertainment_detail/:value" component={VideoBox}></Route>
+        <Route path="/music_detail" component={MusicBrowse}></Route>
+        <Route path="/UploadVideo" component={UploadVideo}></Route>
+        {/*===============Entertainement end===============================*/}
 
-					<Route path="/detail_blog" component={DetailBlog}></Route>
-          <Route path="/privacypolicy" component={Privacy}></Route>
-          <Route path="/termofservice" component={TermOfServices}></Route>
 
 
-					{/*<Route path="/detail_roomRent" component={DetailRoommates}></Route>
+        <Route path="/profile_user/:value" component={ProfileUser}></Route>
+        <Route path="/profile_userDetail" component={ProfileUser}></Route>
+
+
+        <Route path="/user_profile" component={ProfileMain}></Route>
+
+        <Route path="/detail_blog" component={DetailBlog}></Route>
+        <Route path="/privacypolicy" component={Privacy}></Route>
+        <Route path="/termofservice" component={TermOfServices}></Route>
+
+
+        {/*<Route path="/detail_roomRent" component={DetailRoommates}></Route>
 					<Route path="/market_business" component={MarketBusiness}></Route>
 					<Route path="/market_classified" component={MarketClassified}></Route>
 					<Route path="/market_roommates" component={MarketRoommates}></Route>
@@ -181,7 +187,7 @@ ReactDOM.render(
 				    <Route path="/Buyer_Detailpage" component={BuyerDetail}></Route>
 				    <Route path="/market_ecommerceMarket" component={EcommerceMarket}></Route>
 				    <Route path="/detail_ecommercedetail" component={EcomDetail}></Route>*/}
-				</div>
-			</BrowserRouter>
-		</Provider>
-	, document.getElementById('root'));
+      </div>
+    </BrowserRouter>
+  </Provider>
+  , document.getElementById('root'));

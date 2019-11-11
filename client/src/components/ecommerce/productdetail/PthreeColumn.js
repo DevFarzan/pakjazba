@@ -84,7 +84,7 @@ class PthreeColumn extends Component {
                 <div class="details col-md-7">
                   <h3 class="product-title"
                   >{data.product}</h3>
-                  <p> By PakJazba </p>
+                  {/* <p> By PakJazba </p> */}
                   <h3>{'$' + data.price} & Free Shipping</h3>
                   <p class="vote">Size: <strong>{data.size}</strong></p>
                   <div style={{ marginTop: "20px" }}>
@@ -112,7 +112,7 @@ class PthreeColumn extends Component {
                     </span>
                     <div>
                       <span>Qty:</span>
-                      <span> <InputNumber min={1} max={10} defaultValue={0} onChange={this.onChange} /></span>
+                      <span> <InputNumber min={1} max={10} defaultValue={1} onChange={this.onChange} /></span>
                     </div>
                     <div className="row center_global row">
                       <button style={{ textAlign: 'center', width: "90%", marginTop: "20px" }} className="btn button_custom"

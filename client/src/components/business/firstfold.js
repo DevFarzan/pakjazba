@@ -22,19 +22,19 @@ class Firstfold extends Component{
                     <div className="row">
                         <h1 className="text-align" style={{fontWeight:"bold", fontSize:"30px"}}>  Find the Best Business </h1>
                         <div className="col-md-3 col-sm-3 col-xs-6" onClick={() => {this.clickItem('hotels')}}>
-                            <img src="../images/business/home.jpg"/>
+                            <img src="../images/business/home.jpg" alt='img'/>
                             <p style={{textAlign: "center", paddingTop: "5px"}}>Hotels</p>
                         </div>
                         <div className="col-md-3 col-sm-3 col-xs-6" onClick={() => {this.clickItem('massage')}}>
-                            <img src="images/business/shutterstock_1270435183.jpg"/>
+                            <img src="images/business/shutterstock_1270435183.jpg" alt='img'/>
                             <p style={{textAlign: "center", paddingTop: "5px"}}>Massage</p>
                         </div>
                         <div className="col-md-3 col-sm-3 col-xs-6" onClick={() => {this.clickItem('gym')}}>
-                            <img src="images/business/shutterstock_1270450375.jpg"/>
+                            <img src="images/business/shutterstock_1270450375.jpg" alt='img'/>
                             <p style={{textAlign: "center", paddingTop: "5px"}}>Gym</p>
                         </div>
                         <div className="col-md-3 col-sm-3 col-xs-6" onClick={() => {this.clickItem('goldsmith')}}>
-                            <img src="../images/business/shutterstock_1268093062.jpg"/>
+                            <img src="../images/business/shutterstock_1268093062.jpg" alt='img'/>
                             <p style={{textAlign: "center", paddingTop: "5px"}}>Goldsmith</p>
                         </div>
                     </div>
@@ -47,7 +47,7 @@ class Firstfold extends Component{
                                 <p> We will showcase your business to more customers </p>
                             </div>
                             <div className="col-md-6">
-                                <img src="images/business/busi-illus-2.png"/>
+                                <img src="images/business/busi-illus-2.png" alt='img'/>
                             </div>
                         </div>
                     </div>

@@ -4,12 +4,10 @@ import MainLogin from '../header/mainLogin';
 import Category from '../header/getcategory';
 import EHeader from '../entertainment/entertainmenthome/entertainmentHeader';
 import { Link, withRouter } from "react-router-dom";
-import { Menu, Icon, Button } from 'antd';
 import { connect } from "react-redux";
 import { Redirect } from 'react-router';
 import CartButton from './shoppingCartBtn';
 
-const SubMenu = Menu.SubMenu;
 
 class Burgermenu extends Component {
     constructor(props) {
@@ -110,6 +108,9 @@ class Burgermenu extends Component {
                             <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
                                 <p rel="noopener noreferrer" onClick={() => this.renderList('market_ecommerceMarket')} style={{ color: 'black', fontSize: '14px', cursor: 'pointer' }}>Ecommerce</p>
                             </span>
+                            {/* <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
+                                <p rel="noopener noreferrer" onClick={() => this.renderList('EcommerceProfile')} style={{ color: 'black', fontSize: '14px', cursor: 'pointer' }}>Profile</p>
+                            </span> */}
                         </div>
                         {this.props.entertainment && <div className="row" className="hidden-sm">
                             <EHeader entertainment={this.props.entertainment} />
@@ -183,7 +184,7 @@ class Burgermenu extends Component {
                         <i onClick={this.openNav} className="fa fa-bars" style={{ color: 'rgb(3, 42, 48)', marginLeft: '8px', fontSize: '24px', marginTop: '0px', cursor: 'pointer' }}></i>
                     </div>
                     <div className="col-md-4 col-xs-5">
-                        <Link to={`/`}><img src="../images/pakjazba_new.png" style={{ width: '100%' }} /></Link>
+                        <Link to={`/`}><img src="../images/pakjazba_new.png" alt='img' style={{ width: '100%' }} /></Link>
                     </div>
                     <div className="col-md-4 col-xs-3">
                     </div>

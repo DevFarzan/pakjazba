@@ -3,7 +3,7 @@ import Burgermenu from '../../header/burgermenu';
 import Footer from '../../footer/footer';
 import FourEcom from './fourEcom';
 import GridView from './GridView';
-import { isMobile, isTablet, isBrowser } from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 
 class GridProducts extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class GridProducts extends Component {
   }
 
   render() {
-    const { handle, ecommreceFilterData , searchValue} =this.props.location.state;
+    const { ecommreceFilterData, searchValue } = this.props.location.state;
     return (
       <div className="">
         <Burgermenu />
@@ -42,7 +42,7 @@ class GridProducts extends Component {
             <div className="hidden-md col-sm-1">
             </div>
             <div className="col-md-9 col-sm-8">
-              <GridView ecomData = {ecommreceFilterData}/>
+              <GridView ecomData={ecommreceFilterData} />
             </div>
           </div>
         </div>

@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import {HttpUtils} from "../../Services/HttpUtils";
-import { Spin, Icon, Pagination, Rate, Modal } from 'antd';
+import { Spin, Icon, Modal } from 'antd';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-import AsyncStorage from "@callstack/async-storage/lib/index";
 import { Redirect } from 'react-router';
-import _ from 'underscore';
 import moment from 'moment';
 
-class EventFeatured extends Component{
-    constructor(props){
+class EventFeatured extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             loader: true,
@@ -20,17 +17,13 @@ class EventFeatured extends Component{
         }
     }
 
-    // componentDidMount(){
-    //     this.getAllBusiness()
-    // }
-
-    componentDidUpdate(prevProps, prevState){
+    componentDidUpdate(prevProps, prevState) {
         const { text, events } = this.props;
-        if(prevProps.text !== text){
-            if(!!text){
-                this.setState({showEvents: []})
+        if (prevProps.text !== text) {
+            if (!!text) {
+                this.setState({ showEvents: [] })
                 this.searchedArr(text);
-                window.scrollTo(0,300);
+                window.scrollTo(0, 300);
             }
             else {
                 let noTop = events.filter((elem) => !elem.top);
@@ -41,8 +34,8 @@ class EventFeatured extends Component{
                 })
             }
         }
-        if(prevProps.events.length !== events.length){
-          let noTop = events.filter((elem) => !elem.top);
+        if (prevProps.events.length !== events.length) {
+            let noTop = events.filter((elem) => !elem.top);
             this.setState({
                 events: noTop,
                 showEvents: noTop.slice(0, 8),
@@ -53,7 +46,7 @@ class EventFeatured extends Component{
         }
     }
 
-    searchedArr(text){
+    searchedArr(text) {
         const { events } = this.state;
         let filteredArr = events.filter((elem) => {
             return (elem.eventCategory && elem.eventCategory.toLowerCase().includes(text.toLowerCase()))
@@ -67,21 +60,21 @@ class EventFeatured extends Component{
 
     onAddMore = () => {
         const { add, events, filteredArr } = this.state;
-        if(!!filteredArr.length){
+        if (!!filteredArr.length) {
             this.setState({
                 showEvents: filteredArr.slice(0, add + 8),
                 add: add + 8
             });
-        }else {
+        } else {
             this.setState({
                 showEvents: events.slice(0, add + 8),
                 add: add + 8
             });
         }
-        if(this.props.text.length){
+        if (this.props.text.length) {
             let inputValue = '';
             const { dispatch } = this.props;
-            dispatch({type: 'SEARCHON', inputValue})
+            dispatch({ type: 'SEARCHON', inputValue })
         }
     }
 
@@ -125,92 +118,91 @@ class EventFeatured extends Component{
     // }
 
     handleCancel = (e) => {
-        this.setState({visible: false});
+        this.setState({ visible: false });
     }
 
     handleLogin = (e) => {
-        this.setState({goForLogin: true, visible: false})
+        this.setState({ goForLogin: true, visible: false })
     }
 
-    render(){
-      const { events, showEvents, filteredArr, add, goForLogin, goDetail } = this.state;
-      const { text } = this.props;
-      const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
+    render() {
+        const { events, showEvents, filteredArr, goForLogin, goDetail } = this.state;
+        const { text } = this.props;
+        const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
-      if (goForLogin) {
-          return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/postad_eventPortal" }}}}/>;
-      }
-      if(goDetail){
-          return <Redirect to={{pathname: `/postad_eventPortal`}} />
-      }
-      console.log(showEvents)
-      return(
-        <div className="container" style={{width:"70%"}}>
-          {this.state.loader && showEvents == 0 && <h4 style={{textAlign:"center", fontWeight:"bold", marginTop:"20px", marginBottom:"0"}}>No events available</h4>}
-          {showEvents.length > 0 && <h4 style={{textAlign:"left", fontWeight:"bolder", marginTop:"20px", marginBottom:"0", fontSize:"26px"}}>{text ? 'your search' : 'Upcoming Events'}</h4>}
-              {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
-              {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
-              {text && !!filteredArr.length === false && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
-          <div className="row">
-              {/*<div className="col-md-3"  style={{'marginBottom': '30px'}} onClick={() => {this.clickItem()}}>
+        if (goForLogin) {
+            return <Redirect to={{ pathname: '/sigin', state: { from: { pathname: "/postad_eventPortal" } } }} />;
+        }
+        if (goDetail) {
+            return <Redirect to={{ pathname: `/postad_eventPortal` }} />
+        }
+        return (
+            <div className="container" style={{ width: "70%" }}>
+                {this.state.loader && showEvents == 0 && <h4 style={{ textAlign: "center", fontWeight: "bold", marginTop: "20px", marginBottom: "0" }}>No events available</h4>}
+                {showEvents.length > 0 && <h4 style={{ textAlign: "left", fontWeight: "bolder", marginTop: "20px", marginBottom: "0", fontSize: "26px" }}>{text ? 'your search' : 'Upcoming Events'}</h4>}
+                {text && !!filteredArr.length === false && <span style={{ textAlign: "center" }}><h1>Not found....</h1></span>}
+                {text && !!filteredArr.length === false && <span style={{ textAlign: "center" }}><h5>you can find your search by type</h5></span>}
+                {text && !!filteredArr.length === false && <div className="col-md-12" style={{ textAlign: "center" }}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
+                <div className="row">
+                    {/*<div className="col-md-3"  style={{'marginBottom': '30px'}} onClick={() => {this.clickItem()}}>
                   <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '345px', width: '100%', borderRadius: '13px'}}/>
               </div>*/}
-            {showEvents && showEvents.map((elem, key) => {
-                let postedOn = moment(elem.posted, "LL").format('YYYY-MM-DD');
-                return(
-                    <Link key={key} to={{pathname: `/detail_eventPortal/${elem.randomKey}`, state: elem}}>
-                        <div className="col-md-3"  style={{'marginBottom': '10px'}}>
-                            <div className="card">
-                                <img alt='' src={elem.images[0]} style={{height:'120px', width:"100%", borderTopLeftRadius: '12px', borderTopRightRadius: '12px'}}/>
-                                <p style={{marginTop:'5px', marginLeft:"0", marginBottom:"5px", fontSize:"17px", color:"black"}}><b>{elem.eventTitle}</b></p>
-                                    <p style={{marginBottom:"0px"}}>
-                                        <span style={{color:"black"}}>{elem.city}</span>
-                                    </p>
+                    {showEvents && showEvents.map((elem, key) => {
+                        let postedOn = moment(elem.posted, "LL").format('YYYY-MM-DD');
+                        return (
+                            <Link key={key} to={{ pathname: `/detail_eventPortal/${elem.randomKey}`, state: elem }}>
+                                <div className="col-md-3" style={{ 'marginBottom': '10px' }}>
+                                    <div className="card">
+                                        <img alt='' src={elem.images[0]} style={{ height: '120px', width: "100%", borderTopLeftRadius: '12px', borderTopRightRadius: '12px' }} />
+                                        <p style={{ marginTop: '5px', marginLeft: "0", marginBottom: "5px", fontSize: "17px", color: "black" }}><b>{elem.eventTitle}</b></p>
+                                        <p style={{ marginBottom: "0px" }}>
+                                            <span style={{ color: "black" }}>{elem.city}</span>
+                                        </p>
 
-                                    <p>
-                                        <span className="glyphicon glyphicon-calendar" style={{color: "#008080",margin:"-1px"}}></span>
-                                        <span style={{color:"black", marginLeft:"5px"}}>{postedOn}</span>
-                                    </p>
-                            </div>
-                        </div>
-                    </Link>
-                )
-            })}
-          </div>
-          {this.state.loader &&  <div  style={{textAlign: 'center', marginLeft:'-100px', marginBottom: '15px'}}>
-              <Spin indicator={antIcon} />
-          </div>}
-          {this.state.visible && <Modal
-              title="Kindly Login first"
-              visible={this.state.visible}
-              onOk={this.handleOk}
-              onCancel={this.handleCancel}
-          >
-              <div className="row">
-                  <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleLogin}>Login</button></div>
-                  <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleCancel}>Cancel</button></div>
-              </div>
-          </Modal>}
-          {(events > showEvents || filteredArr > showEvents) && <div className="row">
-              <div className="col-md-3"></div>
-                <div className="col-md-6" style={{textAlign:'center'}}>
-                    <button
-                        className="btn btn-sm btn2-success"
-                        style={{width:'100%'}}
-                        onClick={this.onAddMore}
-                    >
-                        Veiw More
-                    </button>
+                                        <p>
+                                            <span className="glyphicon glyphicon-calendar" style={{ color: "#008080", margin: "-1px" }}></span>
+                                            <span style={{ color: "black", marginLeft: "5px" }}>{postedOn}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </Link>
+                        )
+                    })}
                 </div>
-              <div className="col-md-3"></div>
-          </div>}
-        </div>
-      )
+                {this.state.loader && <div style={{ textAlign: 'center', marginLeft: '-100px', marginBottom: '15px' }}>
+                    <Spin indicator={antIcon} />
+                </div>}
+                {this.state.visible && <Modal
+                    title="Kindly Login first"
+                    visible={this.state.visible}
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
+                >
+                    <div className="row">
+                        <div className="col-md-6" style={{ textAlign: 'center' }}><button className="btn btn-sm btn2-success" style={{ width: '100%' }} onClick={this.handleLogin}>Login</button></div>
+                        <div className="col-md-6" style={{ textAlign: 'center' }}><button className="btn btn-sm btn2-success" style={{ width: '100%' }} onClick={this.handleCancel}>Cancel</button></div>
+                    </div>
+                </Modal>}
+                {(events > showEvents || filteredArr > showEvents) && <div className="row">
+                    <div className="col-md-3"></div>
+                    <div className="col-md-6" style={{ textAlign: 'center' }}>
+                        <button
+                            className="btn btn-sm btn2-success"
+                            style={{ width: '100%' }}
+                            onClick={this.onAddMore}
+                        >
+                            Veiw More
+                    </button>
+                    </div>
+                    <div className="col-md-3"></div>
+                </div>}
+            </div>
+        )
     }
 }
 
 const mapStateToProps = (state) => {
-    return({
+    return ({
         text: state.text
     })
 }

@@ -78,7 +78,6 @@ class EproductDetail extends Component {
     if (userData) {
       //get local storage data
       const addToCartData = JSON.parse(localStorage.getItem('addToCart'));
-
       //create obj for values
       let addToCartObj = {};
       let cartArr = [];
@@ -97,27 +96,32 @@ class EproductDetail extends Component {
       //get array if user previves record or new record
       if (addToCartData) {
         for (var i = 0; i < addToCartData.length; i++) {
+          console.log(addToCartData[i])
           if (addToCartData[i].objectId == objectId &&
             addToCartData[i].user_Id == user_Id &&
             addToCartData[i].productName == productName &&
             addToCartData[i].price == price &&
             addToCartData[i].description == description) {
+            console.log('iffff')
             // if user add same data of the previes record
             addToCartData[i].cartCount = countCart;
             cartArr.push(addToCartData[i])
             break;
           }
-          else if (addToCartData[i].objectId != objectId &&
-            addToCartData[i].user_Id == user_Id &&
-            addToCartData[i].productName != productName &&
-            addToCartData[i].price != price &&
-            addToCartData[i].description != description) {
+          else 
+          // if (addToCartData[i].objectId != objectId &&
+          //   addToCartData[i].user_Id == user_Id &&
+          //   addToCartData[i].productName != productName &&
+          //   addToCartData[i].price != price &&
+          //   addToCartData[i].description != description) 
+            {
             //if user add to cart newe product
             cartArr.push(addToCartObj)
+            console.log('elezs')
             break;
           }
         }
-        // console.log(cartArr)
+        console.log(cartArr)
         this.setState({
           cartCount: cartArr[0].cartCount
         })

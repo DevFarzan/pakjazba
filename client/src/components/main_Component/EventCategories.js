@@ -24,7 +24,7 @@ class EventCategories extends Component{
                         <div className="wrimagecard wrimagecard-topimage">
                             <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('exhibition')}}>
                                 <center>
-                                    <img src="../images/new event icons/exibition.png" style={{width: "100%"}}/>
+                                    <img src="../images/new event icons/exibition.png" alt='img' style={{width: "100%"}}/>
                                 </center>
                             </div>
                         </div>
@@ -33,7 +33,7 @@ class EventCategories extends Component{
                         <div className="wrimagecard wrimagecard-topimage">
                             <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('fashion')}}>
                                 <center>
-                                    <img src="../images/new event icons/fashion.png" style={{width: "100%"}}/>
+                                    <img src="../images/new event icons/fashion.png" alt='img' style={{width: "100%"}}/>
                                 </center>
                             </div>
                         </div>
@@ -42,7 +42,7 @@ class EventCategories extends Component{
                         <div className="wrimagecard wrimagecard-topimage">
                             <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('film')}}>
                                 <center>
-                                    <img src="../images/new event icons/film.png"style={{width: "100%"}}/>
+                                    <img src="../images/new event icons/film.png" alt='img' style={{width: "100%"}}/>
                                 </center>
                             </div>
                         </div>
@@ -51,7 +51,7 @@ class EventCategories extends Component{
                         <div className="wrimagecard wrimagecard-topimage">
                             <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('food')}}>
                                 <center>
-                                    <img src="../images/new event icons/food.png"style={{width: "100%"}}/>
+                                    <img src="../images/new event icons/food.png" alt='img' style={{width: "100%"}}/>
                                 </center>
                             </div>
                         </div>
@@ -60,7 +60,7 @@ class EventCategories extends Component{
                         <div className="wrimagecard wrimagecard-topimage">
                             <div className="wrimagecard-topimage_header" onClick={() => {this.clickItem('music')}}>
                                 <center>
-                                    <img src="../images/new event icons/music.png"style={{width: "100%"}}/>
+                                    <img src="../images/new event icons/music.png" alt='img' style={{width: "100%"}}/>
                                 </center>
                             </div>
                         </div>

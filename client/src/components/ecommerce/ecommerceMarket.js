@@ -6,8 +6,7 @@ import EcomCard from './EcomCard';
 import Eshopcard from './EcomShopcard';
 import DealsEcom from './EcomDeals';
 import { HttpUtils } from "../../Services/HttpUtils";
-import CarouselHome from '../home/carouselHome';
-import Additionalcard from './EcomAdditionalcard';
+import { Spin, Icon } from 'antd';
 
 class EcommerceMarket extends Component {
   constructor(props) {
@@ -20,19 +19,32 @@ class EcommerceMarket extends Component {
       featuredCategories: true,
       noRecordFound: false,
       recordFound: true,
+      loader: true
     }
   }
 
   async componentWillMount() {
+    // let userObj = {
+    //   name: 'Masood Bukhari',
+    //   email: 'bukhari@gmail.com',
+    //   number: '+1358698774588'
+    // }
+    // console.log('user send data >>>', userObj)
+    // let requestData = await HttpUtils.post('email', userObj)
+    // console.log('user request data >>>', requestData)
     let res = await HttpUtils.get('getecommercedata');
     let featureData = [];
-    for (var i = 0; i < 4; i++) {
-      featureData.push(res.content[i])
+    console.log(res.content.length, 'res.content.length')
+    if (res.content.length >= 4) {
+      for (var i = 0; i < 4; i++) {
+        featureData.push(res.content[i])
+      }
     }
     this.setState({
       productsData: res.content,
       featureData: featureData,
-      allData: res.content
+      allData: res.content,
+      loader: false
     })
   }
 
@@ -101,8 +113,8 @@ class EcommerceMarket extends Component {
     })
   }
   render() {
-    const { productsData, featureData, featuredCategories, noRecordFound, recordFound } = this.state;
-    console.log(productsData , 'productsData')
+    const { productsData, featureData, featuredCategories, noRecordFound, recordFound, loader } = this.state;
+    const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
     return (
       <div>
@@ -115,13 +127,9 @@ class EcommerceMarket extends Component {
             </div>
           </div>
         </span>
-        {/* <div className="" style={{ marginTop: '40px' }}>
-          <h4 className="headingtext"> Featured Listing </h4>
-          <hr />
-          <div>
-            <CarouselHome />
-          </div>
-        </div> */}
+        {loader && <div style={{ textAlign: 'center', marginLeft: '-100px', marginBottom: '15px' }}>
+          <Spin indicator={antIcon} />
+        </div>}
         {featuredCategories ?
           <div>
             <div className="row" style={{ marginTop: "20px" }}>
@@ -139,16 +147,12 @@ class EcommerceMarket extends Component {
         {recordFound ? <div className="row">
           <Eshopcard productsData={productsData} />
         </div> : null}
-        {/* <div className="row">
-          <Additionalcard />
-        </div> */}
-
         <div className="row" style={{ marginTop: "-70px" }}>
           <DealsEcom />
         </div>
         <div className="row">
           <div className="col-md-12">
-            <img src="../images/businesslistingimage.png" style={{ width: '100%' }} />
+            <img src="../images/businesslistingimage.png" style={{ width: '100%' }} alt='img' />
           </div>
         </div>
         <Footer />

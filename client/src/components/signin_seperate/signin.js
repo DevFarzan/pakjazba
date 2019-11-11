@@ -1,18 +1,17 @@
-import React, { Component } from   'react';
+import React, { Component } from 'react';
 import Formsignin from '../signin_seperate/form_signin';
 import Facebook from '../Facebook';
 import Google from '../Google';
 import Form_signup from './form_signup.js';
-import {HttpUtils} from "../../Services/HttpUtils";
+import { HttpUtils } from "../../Services/HttpUtils";
 import AsyncStorage from "@callstack/async-storage/lib/index";
-import {connect} from "react-redux";
-// import {Form} from "antd/lib/index";
+import { connect } from "react-redux";
 import { Modal, Form, Input } from 'antd'
-import { withRouter, Redirect, } from 'react-router-dom';
+import { Redirect, } from 'react-router-dom';
 
 const FormItem = Form.Item;
 
-class Signin extends Component{
+class Signin extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -25,28 +24,28 @@ class Signin extends Component{
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         console.log(this.props.location.state, '123456')
-        this.setState({to: this.props.location.state})
+        this.setState({ to: this.props.location.state })
         this.handleLocalStorage();
         this.getSignData();
     }
 
-    componentDidUpdate(prevProps, prevState){
+    componentDidUpdate(prevProps, prevState) {
         const { data } = this.props;
         const { route, obj } = this.state;
         let arr = obj.map((elem) => elem.password)
-        if(prevProps.data !== data){
-            if(data && data.route === route) {
-                if(arr.includes(data.id)){
+        if (prevProps.data !== data) {
+            if (data && data.route === route) {
+                if (arr.includes(data.id)) {
                     obj.map((elem) => {
-                        if(elem.password === data.id){
-                            this.funcLogin({userName: elem.email, password: elem.password})
+                        if (elem.password === data.id) {
+                            this.funcLogin({ userName: elem.email, password: elem.password })
                         }
                     })
-                }else {
+                } else {
                     if (data && data.email === undefined) {
-                        this.setState({visible: true})
+                        this.setState({ visible: true })
                     }
                     else {
                         if (data) {
@@ -64,19 +63,20 @@ class Signin extends Component{
         }
     }
 
-    async getSignData(){
+    async getSignData() {
         let res = await HttpUtils.get('facebookdata')
-        if(res){
-            this.setState({obj: res.data})
+        console.log(res, 'res')
+        if (res) {
+            this.setState({ obj: res.data })
         }
         this.getAllUsers()
     }
 
-    handleLocalStorage = () =>{
+    handleLocalStorage = () => {
         AsyncStorage.getItem('user')
             .then((obj) => {
                 let userObj = JSON.parse(obj)
-                if(!!userObj){
+                if (!!userObj) {
                     this.setState({
                         dropdown: true,
                     })
@@ -89,55 +89,54 @@ class Signin extends Component{
             })
     }
 
-    async getAllUsers(){
+    async getAllUsers() {
         let response = await HttpUtils.get('allusers')
-        if(response){
-            this.setState({allUser: response && response.content, _isMount: true})
+        if (response) {
+            this.setState({ allUser: response && response.content, _isMount: true })
         }
     }
 
-    async funcLogin(values){
-        let response = await HttpUtils.get('usersignin?useremail='+values.userName+'&password='+values.password)
-        if(response.code === 200){
+    async funcLogin(values) {
+        let response = await HttpUtils.get('usersignin?useremail=' + values.userName + '&password=' + values.password)
+        if (response.code === 200) {
             this.getProfile(response)
                 .then((data) => {
                     AsyncStorage.setItem('user', JSON.stringify(data))
                         .then(() => {
-                            // this.props.modalContent();
                             this.setState({
-                                loader:false,
-                                visible:false,
-                                showloader:false,
+                                loader: false,
+                                visible: false,
+                                showloader: false,
                                 redirectToReferrer: true
                             })
                         })
                 })
-        }//end if
-        else{
+        }
+        else {
             this.setState({
                 msg: response.msg,
             })
         }
     }
 
-    async getProfile(data){
+    async getProfile(data) {
         let _id = data.profileId ? data.profileId : '';
         let req = await HttpUtils.get('getprofile?profileId=' + _id);
-        let allData = {...data, ...{userImage: req ? req.content.imageurl : ''}}
+        let allData = { ...data, ...{ userImage: req ? req.content.imageurl : '' } }
         return allData;
     }
 
-    async funcSignUp(values){
-        let response = await HttpUtils.get('userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
-        if(response) {
+    async funcSignUp(values) {
+        let response = await HttpUtils.get('userregister?nickname=' + values.nickname + '&email=' + values.email + '&password=' + values.password + '&notrobot=' + values.notrobot)
+        if (response) {
             this.getProfileId(response)
-        }else {
-            this.setState({msg: 'network error'})
+        } else {
+            this.setState({ msg: 'network error' })
         }
     }
 
-    async getProfileId(response){
-        if(response.code === 200){
+    async getProfileId(response) {
+        if (response.code === 200) {
             let obj = {
                 name: response.name,
                 email: response.email,
@@ -145,18 +144,18 @@ class Signin extends Component{
                 profileId: ''
             }
             let req = await HttpUtils.post('profile', obj)
-            let userInfo = {...response, ...{profileId: req.content}}
+            let userInfo = { ...response, ...{ profileId: req.content } }
             AsyncStorage.setItem('user', JSON.stringify(userInfo))
                 .then(() => {
                     this.setState({
-                        loader:false,
-                        visible:false,
+                        loader: false,
+                        visible: false,
                         dropdown: true,
                         redirectToReferrer: true
                     })
                 })
         }//end if
-        else{
+        else {
             this.setState({
                 msg: response.msg ? response.msg : response.err._message,
             })
@@ -165,16 +164,16 @@ class Signin extends Component{
 
     handleOk = (e) => {
         this.setState({
-            email:this.refs.email,
+            email: this.refs.email,
             visible: false,
         });
     }
 
     handleCancel = (e) => {
-        this.setState({visible: false});
+        this.setState({ visible: false });
     }
 
-    socialSignUp(){
+    socialSignUp() {
         const { email2 } = this.state;
         const { data } = this.props;
         let obj = {
@@ -183,52 +182,52 @@ class Signin extends Component{
             password: data.id,
             notrobot: true
         }
-        this.setState({email2: ''})
+        this.setState({ email2: '' })
         this.funcSignUp(obj)
     }
 
-    checkEmail(rule, value, callback){
-        if(this.state.allUser.includes(value)){
+    checkEmail(rule, value, callback) {
+        if (this.state.allUser.includes(value)) {
             callback('This email is already been used')
             return;
-        }else {
-            this.setState({email2: value})
+        } else {
+            this.setState({ email2: value })
             callback()
         }
     }
 
-    render(){
+    render() {
         const { from } = this.props.location.state || { from: { pathname: "/" } };
         const { getFieldDecorator } = this.props.form;
-        let {redirectToReferrer, email2, to} = this.state;
+        let { redirectToReferrer, email2, to } = this.state;
         if (redirectToReferrer) {
             return <Redirect to={from} />;
         }
 
-		return(
-			<div>
-				<span></span>
-				<div className="row">
-					<div className="col-md-2"></div>
-					<div className="col-md-8 signin_background">
-						<span><img alt='' src="../images/logo.png"/></span>
-					</div>
-					<div className="col-md-2"></div>
-				</div>{/*row*/}<br/>
-				<div className="row">
-					<div className="col-md-2"></div>
-					<div className="col-md-3">
-							<span className="font_weight_signin_seperate_he">Sign in to your Pakjazba account</span><br/><br/>
-							<div className="main_seperate_div">
-								<Formsignin to={to}/>
-							</div>
-					</div>
-					<div className="col-md-3">
-						<span className="font_weight_signin_seperate_he">Sign in using any of the following</span><br/><br/>
-						<div className="main_seperate_div">
-							<span><Facebook inRup={'seperate'}/></span><br/>
-							<span><Google inRup={'seperate'}/></span>
-						</div>
+        return (
+            <div>
+                <span></span>
+                <div className="row">
+                    <div className="col-md-2"></div>
+                    <div className="col-md-8 signin_background">
+                        <span><img alt='' src="../images/logo.png" /></span>
+                    </div>
+                    <div className="col-md-2"></div>
+                </div>{/*row*/}<br />
+                <div className="row">
+                    <div className="col-md-2"></div>
+                    <div className="col-md-3">
+                        <span className="font_weight_signin_seperate_he">Sign in to your Pakjazba account</span><br /><br />
+                        <div className="main_seperate_div">
+                            <Formsignin to={to} />
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <span className="font_weight_signin_seperate_he">Sign in using any of the following</span><br /><br />
+                        <div className="main_seperate_div">
+                            <span><Facebook inRup={'seperate'} /></span><br />
+                            <span><Google inRup={'seperate'} /></span>
+                        </div>
                         <Modal
                             title="Email"
                             visible={this.state.visible}
@@ -247,28 +246,28 @@ class Signin extends Component{
                                                 validator: this.checkEmail.bind(this)
                                             }],
                                         })(
-                                            <Input  />
+                                            <Input />
                                         )}
                                     </FormItem>
                                     <button className="btn color_button" disabled={!email2} onClick={this.socialSignUp.bind(this)}>Sign up</button>
                                 </Form>
                             </div>
                         </Modal>
-					</div>
-					<div className="col-md-3">
-						<span className="font_weight_signin_seperate_he">Create a new Pakjazba account</span><br/><br/>
-						<div className="main_seperate_div">
-							<Form_signup to={to}/>
-						</div>
-					</div>
-				</div>
-			</div>
-		)
-	}
+                    </div>
+                    <div className="col-md-3">
+                        <span className="font_weight_signin_seperate_he">Create a new Pakjazba account</span><br /><br />
+                        <div className="main_seperate_div">
+                            <Form_signup to={to} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 }
 
 const mapStateToProps = (state) => {
-    return({
+    return ({
         data: state.data
     })
 }

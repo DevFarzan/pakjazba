@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Upload, Icon,Form, Modal, notification
+  Upload, Icon, Form, Modal, notification
 } from 'antd';
 import superagent from "superagent";
 import sha1 from "sha1";
@@ -129,8 +129,7 @@ class ImageForm extends Component {
 
   render() {
     const { previewVisible, fileList, noChooseFile, previewImage, herfSec } = this.state,
-      { getFieldDecorator } = this.props.form,
-      antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
+      { getFieldDecorator } = this.props.form;
     const uploadButton = (
       <div>
         <Icon type="plus" />

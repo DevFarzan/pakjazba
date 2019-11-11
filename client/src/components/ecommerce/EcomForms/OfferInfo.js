@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import {
-  Form, Input, Select, AutoComplete, DatePicker, notification
+  Form, Input, Select, DatePicker, notification
 } from 'antd';
 import moment from 'moment';
 import './Vitalinfo.css';
 
-
 const FormItem = Form.Item;
 const Option = Select.Option;
-const dateFormat = 'YYYY/MM/DD';
-const AutoCompleteOption = AutoComplete.Option;
-
 
 class OfferInfo extends Component {
   constructor(props) {
@@ -107,7 +103,6 @@ class OfferInfo extends Component {
     if (this.state.herfSec === '') {
       this.props.form.validateFields((err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values);
           this.offerInfoData(values, key);
         }
       });
@@ -149,10 +144,7 @@ class OfferInfo extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { autoCompleteResult, herfSec, salePriceDatesStart, salePriceDatesEnd, sellingDate, restockDate, offering, datePicker } = this.state;
-    const websiteOptions = autoCompleteResult.map(website => (
-      < AutoCompleteOption key={website} > {website}</AutoCompleteOption >
-    ));
+    const { herfSec, salePriceDatesStart, salePriceDatesEnd, sellingDate, restockDate, offering, datePicker } = this.state;
     return (
       <div className="container" style={{ width: "100%" }}>
         <Form>

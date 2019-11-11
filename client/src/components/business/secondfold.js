@@ -173,7 +173,7 @@ class Secondfold extends Component{
 
 
     render(){
-        const { business, showBusiness, filteredArr, add, goForLogin, goDetail } = this.state;
+        const { business, showBusiness, filteredArr, goForLogin, goDetail } = this.state;
         const { text } = this.props;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 

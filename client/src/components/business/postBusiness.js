@@ -877,7 +877,9 @@ class Postbusiness extends Component {
                                             >
                                                 {getFieldDecorator('businessId', {
                                                     initialValue: this.state.dataBemailId,
-                                                    rules: [{ required: true, message: 'Please input your Business Email id!', whitespace: true },
+                                                    rules: [{
+                                                         required: true, 
+                                                        message: 'Please input your Business Email id!', whitespace: true },
                                                     { type: 'email', message: 'The input is not valid E-mail!' }]
                                                 })(
                                                     <Input />
@@ -913,7 +915,8 @@ class Postbusiness extends Component {
                                                     initialValue: this.state.dataBemail,
                                                     rules: [
                                                         { type: 'email', message: 'The input is not valid E-mail!', whitespace: true },
-                                                        { required: true, message: 'Please input your E-mail!', }
+                                                        { required: true, 
+                                                            message: 'Please input your E-mail!', }
                                                     ],
                                                 })(
                                                     <Input />
@@ -1025,20 +1028,3 @@ class Postbusiness extends Component {
 
 const WrappedRegistrationForm = Form.create()(Postbusiness);
 export default WrappedRegistrationForm;
-
-// var fixtures = [
-//     {label: 'New York', location: {lat: 40.7033127, lng: -73.979681}},
-//     {label: 'Rio', location: {lat: -22.066452, lng: -42.9232368}},
-//     {label: 'Tokyo', location: {lat: 35.673343, lng: 139.710388}}
-// ];
-
-{/*<Geosuggest*/ }
-// fixtures={fixtures}
-// onFocus={this.onFocus}
-// onBlur={this.onBlur}
-// onChange={this.onChange}
-// onSuggestSelect={this.onSuggestSelect}
-// onSuggestNoResults={this.onSuggestNoResults}
-// location={new google.maps.LatLng(53.558572, 9.9278215)}
-// radius="20"
-// />

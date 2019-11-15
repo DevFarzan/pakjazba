@@ -106,7 +106,7 @@ class ProfileUser extends Component {
         let arr2 = [];
         let arr3 = [];
         let arr4 = [];
-        let arr5 = [];
+        let arr5 ;
 
         let req = await HttpUtils.get('marketplace')
         req.roomrentsdata && req.roomrentsdata.map((elem) => {
@@ -133,12 +133,23 @@ class ProfileUser extends Component {
                 arr4.push(data)
             }
         })
-        req.ecommerce && req.ecommerce.map((elem) => {
-            if (elem.user_Id === id) {
-                let data = { ...elem, ...{ route: 'ecommerce' } }
-                arr5.push(data)
-            }
-        })
+        // req.ecommerce && req.ecommerce.map((elem) => {
+        //     if (elem.user_Id === id) {
+        //         let data = { ...elem, ...{ route: 'ecommerce' } }
+        //         arr5.push(data)
+        //     }
+        // })
+        const userData = JSON.parse(localStorage.getItem('user'));
+        let obj = {
+            userId: userData._id
+        }
+        let reqShopData = await HttpUtils.post('getShopById', obj)
+        if (reqShopData.code == 200){
+            arr5 = reqShopData.content
+        }
+        console.log(reqShopData, 'responseeeeeeeee')
+        console.log(arr5, 'arr5')
+
         this.setState({
             listData1: arr1,
             listData2: arr2,
@@ -932,7 +943,7 @@ class ProfileUser extends Component {
                                                                             <div className="card">
                                                                                 <Link to={{
                                                                                     // pathname: `/products_DetailStyle`,
-                                                                                    pathname: `/products_DetailStyle/${elem._id}`,
+                                                                                    pathname: `/EcommerceProfile`,
                                                                                     state: elem
                                                                                 }}>
                                                                                     <img alt='' src={img} />

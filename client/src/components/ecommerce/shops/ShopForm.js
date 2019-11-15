@@ -17,10 +17,9 @@ import sha1 from "sha1";
 import superagent from "superagent";
 import Footer from '../../footer/footer';
 import './shopForm.css'
+import { HttpUtils } from "../../../Services/HttpUtils";
 
-const FormItem = Form.Item;
 const { TextArea } = Input;
-const CheckboxGroup = Checkbox.Group;
 const Dragger = Upload.Dragger;
 
 
@@ -91,6 +90,9 @@ class ShopForm extends Component {
             fileListLogo: [],
             previewVisibleLogo: false,
             previewImageLogo: '',
+            btnDisabeld: false,
+            mgs: '',
+            loader: false
         }
     }
 
@@ -148,12 +150,10 @@ class ShopForm extends Component {
     }
 
     handleChange = ({ fileList }) => {
-        console.log(fileList, 'fileList')
         this.setState({ fileList })
     }
 
     handleChangeLogo = ({ fileList }) => {
-        console.log(fileList, 'fileListLogo')
         this.setState({ fileListLogo: fileList })
     }
 
@@ -227,6 +227,10 @@ class ShopForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         let { fileList, coverPhoto, banner, fileListLogo } = this.state;
+        this.setState({
+            loader: true,
+            btnDisabeld: true
+        })
         let arr = [];
         let coverImg;
         let bannerImg;
@@ -291,7 +295,6 @@ class ShopForm extends Component {
                             this.postData(values, results, images, logo);
                         })
                     }
-                    // this.postData(values, results, images);
                 })
             }
         })
@@ -302,7 +305,6 @@ class ShopForm extends Component {
         let cetogires = [];
         let cover = '';
         let banner = '';
-        console.log(values, 'values')
         response.map((elem) => {
             if (Object.keys(elem)[0] == 'banner') {
                 cover = elem['banner']
@@ -319,7 +321,10 @@ class ShopForm extends Component {
                 cetogires.push(values[`shopCategories${i}`][0])
             }
         }
-        let obj = {
+        const userData = JSON.parse(localStorage.getItem('user'));
+        console.log(userData, 'userData')
+
+        let shopObj = {
             shopTitle: values.shopTitle,
             shopCategories: cetogires,
             shopAddress: values.shopAddress,
@@ -330,29 +335,50 @@ class ShopForm extends Component {
             gridImageSrc: banner,
             bannerPhotoSrc: cover,
             shopPurpose: shopPurpose,
-            shopLogo: logo
+            shopLogo: logo,
+            objectId: '',
+            profileId: userData.profileId,
+            userId: userData._id
         }
-        console.log(obj, 'objjjjjjjjjjj')
-        // let req = await HttpUtils.post('postEventPortal', obj)
-        // console.log(req, 'responseeeeeeeee')
-        // if (req.code === 200) {
-        //     this.setState({ objData: obj, msg: true, randomKey })
-        // }
+        console.log(shopObj, 'objjjjjjjjjjj')
+        let reqShopObj = await HttpUtils.post('postshop', shopObj)
+        console.log(reqShopObj, 'responseeeeeeeee')
+        if (reqShopObj.code === 200) {
+            this.setState({
+                loader: false,
+                btnDisabeld: false,
+                mgs: reqShopObj.mgs
+            })
+            this.openNotification()
+
+        }
+        else {
+            this.setState({
+                loader: false,
+                btnDisabeld: false,
+                mgs: reqShopObj.msg
+
+            })
+        }
     }
 
     onChangeShop = e => {
-        console.log('radio checked', e.target.value);
         this.setState({
             shopPurpose: e.target.value,
         });
     };
 
+    openNotification() {
+        notification.open({
+            message: 'Shop Created Success ',
+            description: "Your shop has been created successfully"
+        });
+    };
 
     render() {
-        const { fileList, previewImage, previewVisible, keyFor, fileListLogo, previewImageLogo, previewVisibleLogo } = this.state;
+        const { fileList, previewImage, previewVisible, fileListLogo, previewImageLogo, previewVisibleLogo, btnDisabeld, mgs, loader } = this.state;
         const { getFieldDecorator, getFieldValue } = this.props.form;
 
-        console.log(this.state.fileListLogo, 'this.state.shopPurpose')
         const uploadButton = (
             <div>
                 <Icon type="plus" />
@@ -372,6 +398,9 @@ class ShopForm extends Component {
             </div>
         )
 
+        const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
+
+
         { getFieldDecorator('keys', { initialValue: [keys] }) };
         const keys = getFieldValue('keys');
         const formItems = keys.map((k, index) => {
@@ -382,7 +411,6 @@ class ShopForm extends Component {
                 >
                     <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
                         <div className="col-md-10 col-sm-10 col-xs-10"
-                            // style={{ textAlign: 'left', display: 'grid' }} 
                             key={index} style={{ marginTop: '10px' }}>
                             <label htmlFor="Category"> Category </label>
                             <Form.Item style={{ marginTop: '10px' }}>
@@ -411,11 +439,6 @@ class ShopForm extends Component {
                                     <i className="fa fa-minus" style={{ color: 'gray', width: '100%', border: '1px solid', padding: '8px' }}></i>
                                 </button>
                             </div>
-
-                            //     <Icon
-                            //         className="dynamic-delete-button btn btn-danger iconBtn fa fa-minus"
-                            //         onClick={() => this.removeForm(k)}
-                            //     />
                         ) : null}
                     </div>
                 </Form.Item>
@@ -532,15 +555,14 @@ class ShopForm extends Component {
                                                     <label htmlFor="sel1">Shop Purpose</label>
                                                     <Form.Item>
                                                         {getFieldDecorator('shopPurpose', {
-                                                            // initialValue: this.state.shopAddress,
+                                                            initialValue: this.state.shopAddress,
                                                             rules: [{
                                                                 required: true,
                                                                 message: 'Please select your Shop Purpose!',
                                                                 whitespace: true
                                                             }],
                                                         })(
-                                                            // <Input />
-                                                            <Radio.Group onChange={this.onChangeShop} value={this.state.shopPurpose}>
+                                                            <Radio.Group onChange={this.onChangeShop}>
                                                                 <Radio value={"Gift Shop"}>Gift Shop</Radio>
                                                                 <Radio value={"Shop"}>Shop</Radio>
                                                             </Radio.Group>
@@ -564,7 +586,6 @@ class ShopForm extends Component {
                                                                     onPreview={this.handlePreviewLogo}
                                                                     onChange={this.handleChangeLogo}
                                                                 >
-                                                                    {/* {uploadButtonLogo} */}
                                                                     {fileListLogo.length > 1 ? null : uploadButtonLogo}
                                                                 </Upload>
                                                                 <div>
@@ -578,27 +599,6 @@ class ShopForm extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                        {/* <div className="col-md-6"> */}
-                                        {/* <div className="form-group" style={{ padding: '0px' }}> */}
-                                        {/* <label htmlFor="sel1"></label> */}
-                                        {/* <FormItem>
-                                                    {getFieldDecorator('shopCity', {
-                                                        // initialValue: this.state.shopCity,
-                                                        rules: [{
-                                                            whitespace: true,
-                                                            required: true,
-                                                            message: 'Please select your City!'
-                                                        }],
-                                                    })( */}
-                                        {/* <Radio.Group onChange={this.onChangeShop} value={this.state.shopPurpose}>
-                                                    <Radio value={"Gift Shop"}>Gift Shop</Radio>
-                                                    <Radio value={"Shop"}>Shop</Radio>
-                                                </Radio.Group> */}
-                                        {/* )}
-                                                    <FormItem> */}
-
-                                        {/* </div> */}
-                                        {/* </div> */}
                                     </div>
                                     <div className="row">
                                         <div className="col-md-12">
@@ -649,7 +649,6 @@ class ShopForm extends Component {
                                                         )}
                                                         <br />
                                                         <span style={{ "float": "right" }}>
-                                                            {/* {500 - this.state.desLength} Words */}
                                                         </span>
                                                     </Form.Item>
                                                 </div>
@@ -705,7 +704,6 @@ class ShopForm extends Component {
                                         </Form.Item>
                                     </div>
                                     <div className="col-md-6">
-                                        {/* <img src=''/> */}
                                     </div>
                                 </section>
                             </div>
@@ -770,101 +768,41 @@ class ShopForm extends Component {
                                                             <img alt="example" style={{ width: '100%' }} src={previewImage} />
                                                         </Modal>
                                                     </div>
-                                                    {/* <div className="col-md-6 col-sm-6 col-xs-6" style={{marginBottom: '20px'}}>
-                                                    <FormItem>
-                                                        {getFieldDecorator('images', {
-                                                            rules: [{
-                                                                required: true,
-                                                                message: 'Please upload your Images!',
-                                                                whitespace: true
-                                                            }],
-                                                        })(
-                                                            <div>
-                                                                <Upload
-                                                                    action="//jsonplaceholder.typicode.com/posts/"
-                                                                    listType="picture-card"
-                                                                    fileList={fileList}
-                                                                    onPreview={this.handlePreview}
-                                                                    onChange={this.handleChange}
-                                                                >
-                                                                    {fileList.length > 3 ? null : uploadButton}
-                                                                </Upload>
-                                                                <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-                                                                    <img alt="example" style={{ width: '100%' }} src={previewImage} />
-                                                                </Modal>
-                                                            </div>
-                                                        )}
-                                                    </FormItem>
-                                                </div>
-                                                <div className="col-md-6 col-sm-6 col-xs-6" style={{marginBottom: '20px'}}>
-                                                    <FormItem>
-                                                        {getFieldDecorator('images', {
-                                                            rules: [{
-                                                                required: true,
-                                                                message: 'Please upload your Images!',
-                                                                whitespace: true
-                                                            }],
-                                                        })(
-                                                            <div>
-                                                                <Upload
-                                                                    action="//jsonplaceholder.typicode.com/posts/"
-                                                                    listType="picture-card"
-                                                                    fileList={fileList}
-                                                                    onPreview={this.handlePreview}
-                                                                    onChange={this.handleChange}
-                                                                >
-                                                                    {fileList.length > 3 ? null : uploadButton}
-                                                                </Upload>
-                                                                <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-                                                                    <img alt="example" style={{ width: '100%' }} src={previewImage} />
-                                                                </Modal>
-                                                            </div>
-                                                        )}
-                                                    </FormItem>
-                                                </div>
-                                                <div className="col-md-6 col-sm-6 col-xs-6" style={{marginBottom: '20px'}}>
-                                                    <FormItem>
-                                                        {getFieldDecorator('images', {
-                                                            rules: [{
-                                                                required: true,
-                                                                message: 'Please upload your Images!',
-                                                                whitespace: true
-                                                            }],
-                                                        })(
-                                                            <div>
-                                                                <Upload
-                                                                    action="//jsonplaceholder.typicode.com/posts/"
-                                                                    listType="picture-card"
-                                                                    fileList={fileList}
-                                                                    onPreview={this.handlePreview}
-                                                                    onChange={this.handleChange}
-                                                                >
-                                                                    {fileList.length > 3 ? null : uploadButton}
-                                                                </Upload>
-                                                                <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-                                                                    <img alt="example" style={{ width: '100%' }} src={previewImage} />
-                                                                </Modal>
-                                                            </div>
-                                                        )}
-                                                    </FormItem>
-                                                </div> */}
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </section>
                             </div>
                         </div>
-
                     </div>
                     <div className="row center_global row">
-                        <button style={{ textAlign: 'center', width: "45%" }} className="btn button_custom">Submit Shop</button>
+                        {btnDisabeld ?
+                            <button
+                                disabled
+                                style={{ textAlign: 'center', width: "45%" }}
+                                className="btn button_custom">
+                                Submit Shop
+                                </button>
+
+                            :
+                            <button
+                                style={{ textAlign: 'center', width: "45%" }}
+                                className="btn button_custom">
+                                Submit Shop
+                            </button>
+                        }
                     </div>
-                    {/* <div className="row center_global row">
-                        {this.state.loader && <Spin indicator={antIcon} />}
-                        <button disabled={!!this.state.loader} style={{ textAlign: 'center', width: "45%" }} className="btn button_custom">Submit Event</button>
-                    </div> */}
+                    <div className="col-md-12">
+                        <div className="col-md-4"></div>
+                        <div className="col-md-4">
+                            {mgs != "" && <p style={{ marginTop: '20px', fontWeight: 'bold', color: 'red' }}>{mgs}</p>}
+                        </div>
+                        <div className="col-md-4"></div>
+                    </div>
+                    {loader && <div style={{ textAlign: 'center', marginLeft: '-100px', marginBottom: '15px' }}>
+                        <Spin indicator={antIcon} />
+                    </div>}
                 </Form>
                 <Footer />
             </div >

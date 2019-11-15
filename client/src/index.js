@@ -149,7 +149,7 @@ ReactDOM.render(
         <Route path="/Forms_addproduct" component={AddProduct}></Route>
         <Route path="/checkOutProduct" component={CheckOutPage}></Route>
         <Route path="/shopForm" component={ShopForm}></Route>
-        <Route path="/EcommerceProfile" component={EcomProile}></Route>
+        <Route path="/EcommerceProfile/:value" component={EcomProile}></Route>
 
         {/*============Ecommerce=============*/}
 

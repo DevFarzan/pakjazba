@@ -39,7 +39,7 @@ class Signin extends Component {
     componentDidUpdate(prevProps, prevState) {
         const { data } = this.props;
         const { route, obj } = this.state;
-        let arr = obj.map((elem) => elem.password)
+        let arr = obj && obj.map((elem) => elem.password)
         if (prevProps.data !== data) {
             if (data && data.route === route) {
                 if (arr.includes(data.id)) {

@@ -2285,7 +2285,9 @@ app.post('/api/postshop', (req, res) => {
       shopTitle: shopData.shopTitle,
       profileId: shopData.profileId,
       userId: shopData.userId,
-      shopType: shopData.shopType
+      shopPurpose: shopData.shopPurpose,
+      shopLogo: shopData.shopLogo
+
     })
     postShopData.save(function (err, data) {
       if (err) {
@@ -2319,8 +2321,6 @@ app.post('/api/postshop', (req, res) => {
         });
         //db.close();
       })
-
-
     }).catch(() => res.status(422).send({ msg: 'Internal server error' }));
   }
 })
@@ -2328,7 +2328,7 @@ app.post('/api/postshop', (req, res) => {
 app.post('/api/getShopById', (req, res) => {
   let userId = req.body.userId;
   //res.send(product);
-  postShopCollection.find({ "_id": userId }, function (err, shopSpecificData) {
+  postShopCollection.find({ "userId": userId }, function (err, shopSpecificData) {
     if (err) {
       res.send({
         code: 404,

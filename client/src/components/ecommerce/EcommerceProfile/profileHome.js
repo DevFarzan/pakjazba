@@ -10,19 +10,17 @@ class ProfileHome extends Component {
         super(props)
     }
     render() {
-        const { obj } = this.props;
-        console.log(obj, 'obj')
-
+        const { shopData } = this.props;
         return (
             <div className="">
                 <div>
-                    <ProfileBanner obj={obj}/>
+                    <ProfileBanner shopData={shopData}/>
                 </div>
                 <div>
                     <ProfileCarousel />
                 </div>
                 <div>
-                    <ProfileCatologe obj={obj}/>
+                    <ProfileCatologe shopData={shopData}/>
                 </div>
             </div>
         )

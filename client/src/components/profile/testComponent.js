@@ -159,12 +159,13 @@ class TestComponent extends Component {
 
     render() {
         // const { listing, listData1, listData2, listData3, listData4, listData5, listData6, buySell, business, rooms, jobPortal, ecommerce, entertainment, data } = this.state;
-        const {arr1 , arr2 ,arr3 ,arr4 ,arr5 } = this.props.listing;
+        const { arr1, arr2, arr3, arr4, arr5 } = this.props.listing;
+
         // console.log(arr1 , 'arr1')
         // console.log(arr2 , 'arr2')
         // console.log(arr3 , 'arr3')
         // console.log(arr4 , 'arr4')
-        // console.log(arr5 , 'arr5')
+        console.log(arr5, 'arr5')
 
 
         // console.log(listData3, 'listData3')
@@ -372,6 +373,7 @@ class TestComponent extends Component {
                                 <div className="index-content" style={{ marginTop: '20px' }}>
                                     <div className="row">
                                         {arr5 && arr5.length ? arr5.map((elem) => {
+                                            console.log(elem, 'elem')
                                             let img = elem.images && elem.images[0] || '../images/images.jpg';
 
                                             let title = elem.product || ''
@@ -381,20 +383,26 @@ class TestComponent extends Component {
                                                 str = str + '...'
                                             }
                                             return (
-                                                <div className="col-md-4"
-                                                    style={{
-                                                        marginBottom: '20px',
-                                                        marginTop: '20px'
-                                                    }}>
-                                                    <div className="card">
-                                                        <Link to={{
-                                                            pathname: `/products_DetailStyle/${elem._id}`,
-                                                            state: elem
-                                                        }}>
-                                                            <img alt='' src={img} />
-                                                            <h4>{title}</h4>
-                                                            <p>{str}</p>
-                                                        </Link>
+                                                <div className="col-md-3 col-sm-4" style={{
+                                                    marginBottom: '20px',
+                                                    marginTop: '20px'
+                                                }}>
+                                                    <div className="sellercardopacity" style={{ cursor: 'pointer' }}>
+                                                        <div className="overlay1">
+                                                            <Link to={{
+                                                                pathname: `/EcommerceProfile/${elem._id}`,
+                                                                state: elem
+                                                            }}>
+                                                                <div className="sellerstorecard" >
+                                                                    <img alt='img' src={img} />
+                                                                </div>
+                                                                <h4 style={{ marginTop: "20px", textAlign: "left" }}>{elem.shopTitle}</h4>
+                                                                <div class="middle">
+                                                                    <div class="text">View Shop</div>
+                                                                </div>
+                                                            </Link>
+                                                        </div>
+
                                                     </div>
                                                 </div>
 
@@ -406,53 +414,7 @@ class TestComponent extends Component {
                                 </div>
                             </div>
                         </TabPane>
-
                     </Tabs>}
-
-                    {/* <div className="col-md-12 hidden-xs" style={{marginLeft:"-10px"}}>
-                  <div className="tab" role="tabpanel">
-                      <ul className="nav nav-tabs" role="tablist">
-                          <li role="presentation" className="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Business</a></li>
-                          <li role="presentation"><a href="#Section2" aria-controls="listing" role="tab" data-toggle="tab">Room Rental</a></li>
-                          <li role="presentation"><a href="#Section3" aria-controls="listing" role="tab" data-toggle="tab">Buy & Sell</a></li>
-                          <li role="presentation"><a href="#Section4" aria-controls="listing" role="tab" data-toggle="tab">Jobs</a></li>
-                          <li role="presentation"><a href="#Section5" aria-controls="listing" role="tab" data-toggle="tab">Education</a></li>
-                          <li role="presentation"><a href="#Section6" aria-controls="listing" role="tab" data-toggle="tab">Entertainment</a></li>
-                      </ul>
-                  </div>
-              </div>
-              <div className="visible-xs">
-                <div className="tab" role="tabpanel">
-                  <div className="nav nav-tabs" role="tablist">
-                    <Tabs
-                      defaultActiveKey="1"
-                      tabPosition={mode}
-                    >
-                      <TabPane tab="Business" key="1"><a href="#Section1" 
-                      aria-controls="home" role="tab" data-toggle="tab"></a></TabPane>
-                      <TabPane tab="Room Rental" key="2"><a href="#Section2" 
-                      aria-controls="profile" role="tab" data-toggle="tab"></a></TabPane>
-                      <TabPane tab="Buy & Sell" key="2"><a href="#Section3" 
-                      aria-controls="profile" role="tab" data-toggle="tab"></a></TabPane>
-                      <TabPane tab="Jobs" key="2"><a href="#Section4" 
-                      aria-controls="profile" role="tab" data-toggle="tab"></a></TabPane>
-                      <TabPane tab="Education" key="2"><a href="#Section5" 
-                      aria-controls="profile" role="tab" data-toggle="tab"></a></TabPane>
-                      <TabPane tab="Entertainment" key="2"><a href="#Section6" 
-                      aria-controls="profile" role="tab" data-toggle="tab"></a></TabPane>
-                    </Tabs>
-                  </div>
-                </div>
-              </div>
-          </div>
-        
-          <div className="tab-content" style={{marginLeft:"30px"}}>
-              <div role="tabpanel" className="tab-pane fade in active" id="Section1">
-                <ProfileContact contactDetail={{ email, phone }}/>
-              </div>
-              <div role="tabpanel" className="tab-pane fade" id="Section2">
-                <ProfileListing userId={userId} listing={listing}/>
-              </div> */}
                 </div>
             </div>
         )

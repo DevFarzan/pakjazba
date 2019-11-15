@@ -8,12 +8,12 @@ class ProfileBanner extends Component {
         super(props)
     }
     render() {
-        const { obj } = this.props;
+        const { shopData } = this.props;
 
         return (
             <div className="">
                 <div className="profileBanner">
-                    <img alt='img' src={obj.bannerPhotoSrc} style={{ width: "100%", height: '450px' }} />
+                    <img alt='img' src={shopData.bannerPhotoSrc} style={{ width: "100%", height: '450px' }} />
                 </div>
             </div>
         )

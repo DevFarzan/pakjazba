@@ -24,14 +24,6 @@ class EcommerceMarket extends Component {
   }
 
   async componentWillMount() {
-    // let userObj = {
-    //   name: 'Masood Bukhari',
-    //   email: 'bukhari@gmail.com',
-    //   number: '+1358698774588'
-    // }
-    // console.log('user send data >>>', userObj)
-    // let requestData = await HttpUtils.post('email', userObj)
-    // console.log('user request data >>>', requestData)
     let res = await HttpUtils.get('getecommercedata');
     let featureData = [];
     console.log(res.content.length, 'res.content.length')

@@ -8,6 +8,8 @@ import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import { Tabs, Radio } from 'antd';
 import ProfileHome from './profileHome';
 import ProfileProducts from './profileProducts';
+import { HttpUtils } from "../../../Services/HttpUtils";
+
 const { TabPane } = Tabs;
 class EcomProfile extends Component {
   constructor(props) {
@@ -16,18 +18,37 @@ class EcomProfile extends Component {
       shopData: '',
       shopId: '',
       shopEdit: false,
-      addProduct: false
+      addProduct: false,
+      profileId: ''
     }
 
   }
 
-  componentWillMount() {
+  async componentWillMount() {
     let shopId = this.props.location.pathname.slice(18)
     let shopData = this.props.location.state;
-    this.setState({
-      shopData: shopData,
-      shopId: shopId
-    })
+    const userData = JSON.parse(localStorage.getItem('user'));
+    if(userData){
+      this.setState({
+        profileId: userData.profileId
+      })
+    }
+    if (shopData) {
+      this.setState({
+        shopData: shopData,
+        shopId: shopId,
+      })
+    }
+    else {
+      let obj = {
+        shopId: shopId
+      }
+      let reqShopData = await HttpUtils.post('getSpecificShopById', obj)
+      this.setState({
+        shopData: reqShopData.content[0],
+        shopId: shopId,
+      })
+    }
   }
 
   editShop = () => {
@@ -41,9 +62,7 @@ class EcomProfile extends Component {
     })
   }
   render() {
-    const { shopData, shopId, shopEdit, addProduct } = this.state;
-    // console.log(shopData, 'shopData')
-    // console.log(shopId, 'shopId')
+    const { shopData, shopId, shopEdit, addProduct, profileId } = this.state;
     if (shopEdit) {
       return (
         <Redirect to={{ pathname: '/shopForm', state: shopData }} />
@@ -64,67 +83,71 @@ class EcomProfile extends Component {
         </span>
         <div className="row jobdetail-page" style={{ marginTop: "100px" }}>
         </div>
-        <div className>
-          <div className="row">
-            <div className="col-md-12">
-              <div className="col-md-8 col-sm-7">
-                <div className="row" style={{ padding: '0px' }}>
-                  <div className="col-md-12">
-                    <div className="col-md-2 col-sm-3 col-xs-3">
-                      <div className="" style={{ borderRadius: '50px black' }}>
-                        <img alt='' src={shopData.shopLogo} style={{ borderRadius: '50px !important' }} />
+        {shopData &&
+          <div className>
+            <div className="row">
+              <div className="col-md-12">
+                <div className="col-md-8 col-sm-7">
+                  <div className="row" style={{ padding: '0px' }}>
+                    <div className="col-md-12">
+                      <div className="col-md-2 col-sm-3 col-xs-3">
+                        <div className="" style={{ borderRadius: '50px black' }}>
+                          <img alt='' src={shopData.shopLogo} style={{ borderRadius: '50px !important' }} />
+                        </div>
+                      </div>
+                      <div className="col-md-10 col-sm-9 col-xs-9">
+                        <h2 style={isTablet ? { margin: "0", fontSize: '27px' } : { margin: '0', fontSize: '36px' }}>{shopData.shopTitle}</h2>
+                        <p>73% postive seller ratings</p>
                       </div>
                     </div>
-                    <div className="col-md-10 col-sm-9 col-xs-9">
-                      <h2 style={isTablet ? { margin: "0", fontSize: '27px' } : { margin: '0', fontSize: '36px' }}>{shopData.shopTitle}</h2>
-                      <p>73% postive seller ratings</p>
+                  </div>
+                </div>
+                {shopData.profileId == profileId &&
+                  <div className="col-md-4 col-sm-5">
+                    <div className="col-md-6 col-sm-6 col-xs-6">
+                      <div className="buttontoleft">
+                        <button type="button" className="btn btn-sm btn-editprofile" style={{ width: "100%" }}
+                          onClick={this.editShop}>
+                          {/* Edit Home */}
+                          <div className="font-style fontClolor">
+                            Edit Home
+                        </div>
+                        </button>
+                      </div>
+                    </div>
+                    <div className="col-md-6 col-sm-6 col-xs-6">
+                      <div className="buttontoleft">
+                        <button type="button" className="btn btn-sm btn-editprofile" style={{ width: "100%" }}
+                          onClick={this.addProductOnShop}>
+                          {/* Add Product */}
+                          <div className="font-style fontClolor">
+                            Publish Your Product
+                        </div>
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div className="col-md-4 col-sm-5">
-                <div className="col-md-6 col-sm-6 col-xs-6">
-                  <div className="buttontoleft">
-                    <button type="button" className="btn btn-sm btn-editprofile" style={{ width: "100%" }}
-                      onClick={this.editShop}>
-                      {/* Edit Home */}
-                      {/* <Link className="font-style fontClolor" rel="noopener noreferrer" to={`/shopForm`}> */}
-                      <div className="font-style fontClolor">
-                        Edit Home
-                        </div>
-                      {/* </Link> */}
-                    </button>
-                  </div>
-                </div>
-                <div className="col-md-6 col-sm-6 col-xs-6">
-                  <div className="buttontoleft">
-                    <button type="button" className="btn btn-sm btn-editprofile" style={{ width: "100%" }}
-                      onClick={this.addProductOnShop}>
-                      {/* Add Product */}
-                      {/* <Link className="font-style fontClolor" rel="noopener noreferrer" to={`/Forms_Ecommerce`}>Publish Your Product</Link> */}
-                      <div className="font-style fontClolor">
-                        Publish Your Product
-                        </div>
-                    </button>
-                  </div>
-                </div>
+                }
               </div>
             </div>
           </div>
-        </div>
+        }
         <div className="container" style={{ width: '98%' }}>
           <div className="row">
             <div className="col-md-12">
               <Tabs defaultActiveKey="1">
                 <TabPane tab="Home" key="1">
-                  <ProfileHome shopData={shopData} />
+                  {
+                    shopData && <ProfileHome shopData={shopData} />
+
+                  }
                 </TabPane>
                 <TabPane tab="All Products" key="2">
                   <ProfileProducts />
                 </TabPane>
                 <TabPane tab="Profile" key="3">
                   Content of Tab Pane 3
-                    </TabPane>
+                </TabPane>
               </Tabs>
             </div>
           </div>

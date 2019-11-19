@@ -147,9 +147,6 @@ class ProfileUser extends Component {
         if (reqShopData.code == 200){
             arr5 = reqShopData.content
         }
-        console.log(reqShopData, 'responseeeeeeeee')
-        console.log(arr5, 'arr5')
-
         this.setState({
             listData1: arr1,
             listData2: arr2,

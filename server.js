@@ -2031,7 +2031,8 @@ app.post('/api/postecommercedata', (req, res) => {
       intendedUse: ecommerceData.intendedUse,
       platinumKeywords: ecommerceData.platinumKeywords,
       searchTerms: ecommerceData.searchTerms,
-      subjectMatter: ecommerceData.subjectMatter
+      subjectMatter: ecommerceData.subjectMatter,
+      shopId: ecommerceData.shopId
     })
     postEcommerceData.save(function (err, data) {
       if (err) {
@@ -2329,6 +2330,27 @@ app.post('/api/getShopById', (req, res) => {
   let userId = req.body.userId;
   //res.send(product);
   postShopCollection.find({ "userId": userId }, function (err, shopSpecificData) {
+    if (err) {
+      res.send({
+        code: 404,
+        msg: 'Something went wrong'
+      })
+    }
+    else if (shopSpecificData) {
+      res.send({
+        code: 200,
+        msg: 'Specific shop Data',
+        content: shopSpecificData
+      })
+    }
+  })
+})
+
+
+app.post('/api/getSpecificShopById', (req, res) => {
+  let shopId = req.body.shopId;
+  //res.send(product);
+  postShopCollection.find({ "_id": shopId }, function (err, shopSpecificData) {
     if (err) {
       res.send({
         code: 404,

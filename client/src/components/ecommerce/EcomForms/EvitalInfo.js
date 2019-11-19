@@ -2155,7 +2155,7 @@ class VitalInfo extends Component {
 
   componentDidMount() {
     let data = this.props.data;
-    if (data) {
+    if (data.product != undefined) {
       this.setState({
         product: data.product,
         manufacturer: data.manufacturer,

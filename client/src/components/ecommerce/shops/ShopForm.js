@@ -18,6 +18,8 @@ import superagent from "superagent";
 import Footer from '../../footer/footer';
 import './shopForm.css'
 import { HttpUtils } from "../../../Services/HttpUtils";
+import { Redirect } from "react-router-dom";
+
 
 const { TextArea } = Input;
 const Dragger = Upload.Dragger;
@@ -92,10 +94,38 @@ class ShopForm extends Component {
             previewImageLogo: '',
             btnDisabeld: false,
             mgs: '',
-            loader: false
+            loader: false,
+            shopData: '',
+            shopId: '',
+            goShop: false,
+            shopTitle: '',
+            shopAddress: '',
+            shopCity: '',
+            shopState: '',
+            shopCategories: '',
+            shopDescription: '',
+            shopCategories: [],
+            objectId: '',
+            showAlert: false
         }
     }
 
+    componentDidMount() {
+        let data = this.props.location.state;
+        console.log(this.props.location.state, 'this.props')
+        if (data) {
+            this.setState({
+                shopTitle: data.shopTitle,
+                shopAddress: data.shopAddress,
+                shopCity: data.shopCity,
+                shopState: data.shopState,
+                shopDescription: data.shopDescription,
+                shopPurpose: data.shopPurpose,
+                shopCategories: data.shopCategories,
+                objectId: data._id
+            })
+        }
+    }
 
     addForm = () => {
         const { form } = this.props;
@@ -227,19 +257,29 @@ class ShopForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         let { fileList, coverPhoto, banner, fileListLogo } = this.state;
-        this.setState({
-            loader: true,
-            btnDisabeld: true
-        })
         let arr = [];
         let coverImg;
         let bannerImg;
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                coverImg = { ...coverPhoto[0], ...{ id: 'banner' } },
-                    bannerImg = { ...banner[0], ...{ id: 'gridImage' } };
-                arr.push(coverImg, bannerImg)
-                this.funcForUpload(values, arr, fileList, fileListLogo)
+                console.log(coverPhoto, 'coverPhoto')
+                console.log(banner, 'banner')
+                if (coverPhoto != undefined && banner != undefined) {
+                    this.setState({
+                        loader: true,
+                        btnDisabeld: true
+                    })
+                    coverImg = { ...coverPhoto[0], ...{ id: 'banner' } },
+                        bannerImg = { ...banner[0], ...{ id: 'gridImage' } };
+
+                    arr.push(coverImg, bannerImg)
+                    this.funcForUpload(values, arr, fileList, fileListLogo)
+                }
+                else {
+                    this.setState({
+                        showAlert: true
+                    })
+                }
             }
         })
     }
@@ -301,7 +341,7 @@ class ShopForm extends Component {
     }
 
     async postData(values, response, images, logo) {
-        const { keyFor, shopPurpose } = this.state;
+        const { keyFor, shopPurpose, objectId } = this.state;
         let cetogires = [];
         let cover = '';
         let banner = '';
@@ -322,7 +362,6 @@ class ShopForm extends Component {
             }
         }
         const userData = JSON.parse(localStorage.getItem('user'));
-        console.log(userData, 'userData')
 
         let shopObj = {
             shopTitle: values.shopTitle,
@@ -336,19 +375,33 @@ class ShopForm extends Component {
             bannerPhotoSrc: cover,
             shopPurpose: shopPurpose,
             shopLogo: logo,
-            objectId: '',
+            objectId: objectId,
             profileId: userData.profileId,
             userId: userData._id
         }
-        console.log(shopObj, 'objjjjjjjjjjj')
         let reqShopObj = await HttpUtils.post('postshop', shopObj)
-        console.log(reqShopObj, 'responseeeeeeeee')
+        console.log(reqShopObj, 'reqShopObj')
         if (reqShopObj.code === 200) {
-            this.setState({
-                loader: false,
-                btnDisabeld: false,
-                mgs: reqShopObj.mgs
-            })
+            if (objectId != '') {
+                this.setState({
+                    loader: false,
+                    btnDisabeld: false,
+                    mgs: reqShopObj.mgs,
+                    shopData: reqShopObj.content[0],
+                    shopId: reqShopObj.content[0]._id,
+                    goShop: true
+                })
+            }
+            else {
+                this.setState({
+                    loader: false,
+                    btnDisabeld: false,
+                    mgs: reqShopObj.mgs,
+                    shopData: reqShopObj.content,
+                    shopId: reqShopObj.content._id,
+                    goShop: true
+                })
+            }
             this.openNotification()
 
         }
@@ -376,9 +429,13 @@ class ShopForm extends Component {
     };
 
     render() {
-        const { fileList, previewImage, previewVisible, fileListLogo, previewImageLogo, previewVisibleLogo, btnDisabeld, mgs, loader } = this.state;
+        const { fileList, previewImage, previewVisible, fileListLogo, previewImageLogo, previewVisibleLogo, btnDisabeld, mgs, loader, shopData, shopId, goShop, showAlert } = this.state;
         const { getFieldDecorator, getFieldValue } = this.props.form;
-
+        if (goShop) {
+            return (
+                <Redirect to={{ pathname: `/EcommerceProfile/${shopId}`, state: shopData }} />
+            )
+        }
         const uploadButton = (
             <div>
                 <Icon type="plus" />
@@ -416,6 +473,8 @@ class ShopForm extends Component {
                             <Form.Item style={{ marginTop: '10px' }}>
                                 {getFieldDecorator(`shopCategories${index}`, {
                                     // initialValue: this.state.shopCategory,
+                                    initialValue: this.state.shopCategories,
+                                    defaultValue: Option.initialValue,
                                     rules: [{
                                         type: 'array',
                                         required: true,
@@ -447,7 +506,7 @@ class ShopForm extends Component {
         return (
             <div>
                 {/*================================App component include Start===========================*/}
-
+                {showAlert && alert("Please Upload required grid & banner")}
                 <Burgermenu />
 
                 <div className="hidden-xs" style={{ width: "100%", height: "67px", marginTop: "3px" }}></div>
@@ -483,7 +542,7 @@ class ShopForm extends Component {
                                                     <label htmlFor="sel1">Shop Title</label>
                                                     <Form.Item>
                                                         {getFieldDecorator('shopTitle', {
-                                                            // initialValue: this.state.shopTitle,
+                                                            initialValue: this.state.shopTitle,
                                                             rules: [{
                                                                 required: true,
                                                                 message: 'Please input your Shop Title!',
@@ -500,7 +559,7 @@ class ShopForm extends Component {
                                                     <label htmlFor="sel1">Address</label>
                                                     <Form.Item>
                                                         {getFieldDecorator('shopAddress', {
-                                                            // initialValue: this.state.shopAddress,
+                                                            initialValue: this.state.shopAddress,
                                                             rules: [{
                                                                 required: true,
                                                                 message: 'Please input your Address!',
@@ -521,7 +580,7 @@ class ShopForm extends Component {
                                                     <label> City </label>
                                                     <Form.Item>
                                                         {getFieldDecorator('shopCity', {
-                                                            // initialValue: this.state.shopCity,
+                                                            initialValue: this.state.shopCity,
                                                             rules: [{
                                                                 whitespace: true,
                                                                 required: true,
@@ -536,7 +595,7 @@ class ShopForm extends Component {
                                                     <label> State </label>
                                                     <Form.Item>
                                                         {getFieldDecorator('shopState', {
-                                                            // initialValue: this.state.shopState,
+                                                            initialValue: this.state.shopState,
                                                             rules: [{
                                                                 whitespace: true,
                                                                 required: true,
@@ -555,7 +614,7 @@ class ShopForm extends Component {
                                                     <label htmlFor="sel1">Shop Purpose</label>
                                                     <Form.Item>
                                                         {getFieldDecorator('shopPurpose', {
-                                                            initialValue: this.state.shopAddress,
+                                                            initialValue: this.state.shopPurpose,
                                                             rules: [{
                                                                 required: true,
                                                                 message: 'Please select your Shop Purpose!',
@@ -617,7 +676,13 @@ class ShopForm extends Component {
                                                                         className="btn btn-fb"
                                                                         style={{ marginTop: '24px', backgroundColor: 'white' }}
                                                                     >
-                                                                        <i className="fa fa-plus" style={{ color: 'gray', width: '100%', border: '1px solid', padding: '8px' }}></i>
+                                                                        <i className="fa fa-plus"
+                                                                            style={{
+                                                                                color: 'gray', width: '100%',
+                                                                                border: '1px solid', padding: '8px'
+                                                                            }}
+                                                                        >
+                                                                        </i>
                                                                     </button>
                                                                 </div>
                                                             </Form.Item>
@@ -634,7 +699,7 @@ class ShopForm extends Component {
                                                     <label htmlFor="sel1">Description</label>
                                                     <Form.Item>
                                                         {getFieldDecorator('shopDescription', {
-                                                            // initialValue: this.state.shopDescription,
+                                                            initialValue: this.state.shopDescription,
                                                             rules: [
                                                                 {
                                                                     required: true,

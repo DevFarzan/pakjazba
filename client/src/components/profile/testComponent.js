@@ -165,8 +165,6 @@ class TestComponent extends Component {
         // console.log(arr2 , 'arr2')
         // console.log(arr3 , 'arr3')
         // console.log(arr4 , 'arr4')
-        console.log(arr5, 'arr5')
-
 
         // console.log(listData3, 'listData3')
         // if (buySell) {
@@ -373,8 +371,7 @@ class TestComponent extends Component {
                                 <div className="index-content" style={{ marginTop: '20px' }}>
                                     <div className="row">
                                         {arr5 && arr5.length ? arr5.map((elem) => {
-                                            console.log(elem, 'elem')
-                                            let img = elem.images && elem.images[0] || '../images/images.jpg';
+                                            let img = elem.images && elem.shopLogo[0] || '../images/images.jpg';
 
                                             let title = elem.product || ''
                                             let str = elem.brandName || '';

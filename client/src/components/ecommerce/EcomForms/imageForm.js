@@ -128,7 +128,7 @@ class ImageForm extends Component {
 
 
   render() {
-    const { previewVisible, fileList, noChooseFile, previewImage, herfSec } = this.state,
+    const { previewVisible, fileList, noChooseFile, previewImage, herfSec, imageList } = this.state,
       { getFieldDecorator } = this.props.form;
     const uploadButton = (
       <div>
@@ -139,7 +139,7 @@ class ImageForm extends Component {
 
     const uploadedImages = (
       <div style={{ height: '100%' }}>
-        {this.state.imageList.map((elem) => {
+        {imageList && this.state.imageList.map((elem) => {
           return (
             <div className='insideDiv'>
               <a>
@@ -220,7 +220,7 @@ class ImageForm extends Component {
                                     onPreview={this.handlePreview}
                                     onChange={this.handleChange}
                                   >
-                                    {this.state.imageList.length + fileList.length >= 6 ? null : uploadButton}
+                                    {imageList && this.state.imageList.length + fileList.length >= 6 ? null : uploadButton}
                                   </Upload>
                                   <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
                                     <img alt="example" style={{ width: '100%' }} src={previewImage} />

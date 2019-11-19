@@ -24,7 +24,7 @@ class KeywordsForm extends Component {
   componentDidMount() {
     let data = this.props.data;
     const { intendedUsekeyWords, targetAudience, subjectMatter } = this.state;
-    if (data) {
+    if (data.IntendedUsekeyWords != undefined) {
       for (var i = 0; i < data.IntendedUsekeyWords.length; i++) {
         intendedUsekeyWords.push(data.IntendedUsekeyWords[i])
       }

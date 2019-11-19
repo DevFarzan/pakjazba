@@ -2032,7 +2032,9 @@ app.post('/api/postecommercedata', (req, res) => {
       platinumKeywords: ecommerceData.platinumKeywords,
       searchTerms: ecommerceData.searchTerms,
       subjectMatter: ecommerceData.subjectMatter,
-      shopId: ecommerceData.shopId
+      shopId: ecommerceData.shopId,
+      shopName: ecommerceData.shopName
+
     })
     postEcommerceData.save(function (err, data) {
       if (err) {

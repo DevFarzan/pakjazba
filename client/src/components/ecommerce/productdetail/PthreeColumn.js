@@ -6,6 +6,7 @@ import ProductInformation from './ProductInformation'
 import ProductReviews from './ProductReviews'
 import ProductFaq from './ProductFaq';
 import { HttpUtils } from "../../../Services/HttpUtils";
+import { Link } from "react-router-dom";
 
 
 class PthreeColumn extends Component {
@@ -84,7 +85,16 @@ class PthreeColumn extends Component {
                 <div class="details col-md-7">
                   <h3 class="product-title"
                   >{data.product}</h3>
-                  {/* <p> By PakJazba </p> */}
+                  <Link to={{
+                    pathname: `/EcommerceProfile/${data.shopId}`,
+                    // state: data.shopId
+                  }}>
+                    <div className="sellerstorecard" >
+                      <p>
+                        {`By ${data.shopName}`}
+                      </p>
+                    </div>
+                  </Link>
                   <h3>{'$' + data.price} & Free Shipping</h3>
                   <p class="vote">Size: <strong>{data.size}</strong></p>
                   <div style={{ marginTop: "20px" }}>

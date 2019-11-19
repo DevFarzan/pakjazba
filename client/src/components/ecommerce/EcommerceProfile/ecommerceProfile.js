@@ -19,18 +19,22 @@ class EcomProfile extends Component {
       shopId: '',
       shopEdit: false,
       addProduct: false,
-      profileId: ''
+      profileId: '',
+      userId: '',
+      addProductObj: {}
     }
 
   }
 
   async componentWillMount() {
+    console.log(this.props , 'this.props ')
     let shopId = this.props.location.pathname.slice(18)
     let shopData = this.props.location.state;
     const userData = JSON.parse(localStorage.getItem('user'));
-    if(userData){
+    if (userData) {
       this.setState({
-        profileId: userData.profileId
+        profileId: userData.profileId,
+        userId: userData._id
       })
     }
     if (shopData) {
@@ -48,6 +52,7 @@ class EcomProfile extends Component {
         shopData: reqShopData.content[0],
         shopId: shopId,
       })
+
     }
   }
 
@@ -57,19 +62,25 @@ class EcomProfile extends Component {
     })
   }
   addProductOnShop = () => {
+    const { shopId, shopData } = this.state;
+    let addProductObj = {
+      shopId: shopId,
+      shopTitle: shopData.shopTitle
+    }
     this.setState({
-      addProduct: true
+      addProduct: true,
+      addProductObj: addProductObj
     })
   }
   render() {
-    const { shopData, shopId, shopEdit, addProduct, profileId } = this.state;
+    const { shopData, shopId, shopEdit, addProduct, profileId, addProductObj } = this.state;
     if (shopEdit) {
       return (
         <Redirect to={{ pathname: '/shopForm', state: shopData }} />
       )
     } else if (addProduct) {
       return (
-        <Redirect to={{ pathname: '/Forms_Ecommerce', state: shopId }} />
+        <Redirect to={{ pathname: '/Forms_Ecommerce', state: addProductObj }} />
       )
     }
     return (

@@ -57,6 +57,7 @@ var postyourproduct = new mongoose.Schema({
   searchTerms: { type: String },
   subjectMatter: { type: Array },
   shopId: { type: String },
+  shopName: { type: String },
 });
 
 mongoose.model('postyourproduct', postyourproduct);

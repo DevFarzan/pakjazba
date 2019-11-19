@@ -932,31 +932,53 @@ class ProfileUser extends Component {
                                                                         str = str + '...'
                                                                     }
                                                                     return (
-                                                                        <div className="col-md-4"
-                                                                            style={{
-                                                                                marginBottom: '20px',
-                                                                                marginTop: '20px'
-                                                                            }}>
-                                                                            <div className="card">
-                                                                                <Link to={{
-                                                                                    // pathname: `/products_DetailStyle`,
-                                                                                    pathname: `/EcommerceProfile`,
-                                                                                    state: elem
-                                                                                }}>
-                                                                                    <img alt='' src={img} />
-                                                                                    <h4>{title}</h4>
-                                                                                    <p>{str}</p>
-                                                                                </Link>
-                                                                                <a onClick={this.editBusiness.bind(this, elem)}>
-                                                                                    <i className="glyphicon glyphicon-edit"
-                                                                                        style={{ padding: "16px", marginTop: "8px", color: "gray" }}>
-                                                                                        <span style={{ margin: "7px" }}>Edit</span></i></a>
-                                                                                <i className="glyphicon glyphicon-trash"
-                                                                                    style={{
-                                                                                        padding: "16px", marginTop: "8px", float: "right",
-                                                                                        color: "gray"
-                                                                                    }}><span style={{ margin: "7px" }}
-                                                                                    >Remove</span></i>
+                                                                        // <div className="col-md-4"
+                                                                        //     style={{
+                                                                        //         marginBottom: '20px',
+                                                                        //         marginTop: '20px'
+                                                                        //     }}>
+                                                                        //     <div className="card">
+                                                                        //         <Link to={{
+                                                                        //             // pathname: `/products_DetailStyle`,
+                                                                        //             pathname: `/EcommerceProfile/:value`,
+                                                                        //             state: elem
+                                                                        //         }}>
+                                                                        //             <img alt='' src={img} />
+                                                                        //             <h4>{title}</h4>
+                                                                        //             <p>{str}</p>
+                                                                        //         </Link>
+                                                                        //         <a onClick={this.editBusiness.bind(this, elem)}>
+                                                                        //             <i className="glyphicon glyphicon-edit"
+                                                                        //                 style={{ padding: "16px", marginTop: "8px", color: "gray" }}>
+                                                                        //                 <span style={{ margin: "7px" }}>Edit</span></i></a>
+                                                                        //         <i className="glyphicon glyphicon-trash"
+                                                                        //             style={{
+                                                                        //                 padding: "16px", marginTop: "8px", float: "right",
+                                                                        //                 color: "gray"
+                                                                        //             }}><span style={{ margin: "7px" }}
+                                                                        //             >Remove</span></i>
+                                                                        //     </div>
+                                                                        // </div>
+                                                                        <div className="col-md-4 col-sm-4" style={{
+                                                                            marginBottom: '20px',
+                                                                            marginTop: '20px'
+                                                                        }}>
+                                                                            <div className="sellercardopacity" style={{ cursor: 'pointer' }}>
+                                                                                <div className="overlay1">
+                                                                                    <Link to={{
+                                                                                        pathname: `/EcommerceProfile/${elem._id}`,
+                                                                                        state: elem
+                                                                                    }}>
+                                                                                        <div className="sellerstorecard" >
+                                                                                            <img alt='img' src={img} />
+                                                                                        </div>
+                                                                                        <h4 style={{ marginTop: "20px", textAlign: "left" }}>{elem.shopTitle}</h4>
+                                                                                        <div class="middle">
+                                                                                            <div class="text">View Shop</div>
+                                                                                        </div>
+                                                                                    </Link>
+                                                                                </div>
+                        
                                                                             </div>
                                                                         </div>
 

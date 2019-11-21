@@ -2,33 +2,15 @@ import React, { Component } from 'react';
 import './ecomNine.css';
 import { Rate } from 'antd';
 import { isMobile, isTablet, isBrowser } from 'react-device-detect';
-import { HttpUtils } from "../../../Services/HttpUtils";
 import { Link } from "react-router-dom";
 
 class EcomNine extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            allProducts: []
-        }
-
     }
-    async componentDidMount() {
-        const { shopId } = this.props;
-        let obj = {
-            shopIdForProduct: shopId
-        }
-        let reqShopData = await HttpUtils.post('getShopProducts', obj)
-        console.log(reqShopData, 'reqShopData')
-        if (reqShopData.code == 200) {
-            this.setState({
-                allProducts: reqShopData.content
-            })
-        }
-    }
+  
     render() {
-        const { allProducts } = this.state;
-        // console.log(allProducts, 'allProducts')
+        const { allProducts } = this.props;
         return (
             <div className="container" style={{ padding: '0px', width: '100%' }}>
                 {/* <div className="row">

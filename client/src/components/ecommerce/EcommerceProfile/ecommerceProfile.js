@@ -21,13 +21,17 @@ class EcomProfile extends Component {
       addProduct: false,
       profileId: '',
       userId: '',
-      addProductObj: {}
+      addProductObj: {},
+      allProducts: [],
+      categories: [],
+      color: [],
+      location: [],
+      brandName: [],
     }
 
   }
 
   async componentWillMount() {
-    console.log(this.props, 'this.props ')
     let shopId = this.props.location.pathname.slice(18)
     let shopData = this.props.location.state;
     const userData = JSON.parse(localStorage.getItem('user'));
@@ -42,6 +46,7 @@ class EcomProfile extends Component {
         shopData: shopData,
         shopId: shopId,
       })
+      this.getShopData(shopId)
     }
     else {
       let obj = {
@@ -52,7 +57,7 @@ class EcomProfile extends Component {
         shopData: reqShopData.content[0],
         shopId: shopId,
       })
-
+      this.getShopData(shopId)
     }
   }
 
@@ -61,6 +66,7 @@ class EcomProfile extends Component {
       shopEdit: true
     })
   }
+
   addProductOnShop = () => {
     const { shopId, shopData } = this.state;
     let addProductObj = {
@@ -72,8 +78,51 @@ class EcomProfile extends Component {
       addProductObj: addProductObj
     })
   }
+
+  getShopData = async (shopId) => {
+    let categoriesArr = [];
+    let colorArr = [];
+    let locationArr = [];
+    let brandNameArr = [];
+    let obj = {
+      shopIdForProduct: shopId
+    }
+    let reqShopData = await HttpUtils.post('getShopProducts', obj)
+    if (reqShopData.code == 200) {
+      let allProducts = reqShopData.content;
+      for (var i = 0; i < allProducts.length; i++) {
+        if (colorArr.indexOf(allProducts[i].color) == -1) {
+          colorArr.push(allProducts[i].color)
+        }
+        if (locationArr.indexOf(allProducts[i].country) == -1) {
+          locationArr.push(allProducts[i].country)
+        }
+        if (brandNameArr.indexOf(allProducts[i].brandName) == -1) {
+          brandNameArr.push(allProducts[i].brandName)
+        }
+        for (var j = 0; j < allProducts[i].category.length; j++) {
+          if (categoriesArr.indexOf(allProducts[i].category[1]) == -1) {
+            categoriesArr.push(allProducts[i].category[1])
+          }
+        }
+      }
+      this.setState({
+        allProducts: reqShopData.content,
+        categories: categoriesArr,
+        color: colorArr,
+        location: locationArr,
+        brandName: brandNameArr,
+      })
+      // console.log(categoriesArr, 'categoriesArr')
+      // console.log(colorArr, 'colorArr')
+      // console.log(locationArr, 'locationArr')
+      // console.log(brandNameArr, 'brandNameArr')
+
+    }
+  }
   render() {
-    const { shopData, shopId, shopEdit, addProduct, profileId, addProductObj } = this.state;
+    const { shopData, shopId, shopEdit, addProduct, profileId, addProductObj,
+      allProducts, categories, color, location, brandName } = this.state;
     if (shopEdit) {
       return (
         <Redirect to={{ pathname: '/shopForm', state: shopData }} />
@@ -154,7 +203,7 @@ class EcomProfile extends Component {
                   }
                 </TabPane>
                 <TabPane tab="All Products" key="2">
-                  <ProfileProducts shopId={shopId} />
+                  <ProfileProducts allProducts={allProducts} categories={categories} color={color} location={location} brandName={brandName} />
                 </TabPane>
                 <TabPane tab="Profile" key="3">
                   Content of Tab Pane 3

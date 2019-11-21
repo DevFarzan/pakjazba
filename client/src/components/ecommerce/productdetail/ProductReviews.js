@@ -16,7 +16,8 @@ class ProductReviews extends Component {
             rating: 0,
             date: '',
             time: '',
-            commentData: []
+            commentData: [],
+            averageRatingProduct: 0
         }
     }
     componentDidMount() {
@@ -36,21 +37,70 @@ class ProductReviews extends Component {
         }
     }
     async componentWillMount() {
-        const { productId } = this.props;
+        const { productId, shopId } = this.props;
+        console.log(shopId, 'shopId')
         if (productId) {
             let getCommentObj = {
                 productId: productId
             }
             let res = await HttpUtils.post('getecommercecomment', getCommentObj);
-            this.setState({
-                commentData: res.content
-            })
+            console.log(res, 'res for comments')
+            console.log(res.content.length, 'res for comments')
+
+            if (res.content.length > 0) {
+                console.log("if")
+                this.setState({
+                    commentData: res.content
+                })
+            }
+            else {
+                // console.log("else")
+                this.setState({
+                    averageRatingProduct: 0
+                })
+            }
         }
     }
     sendComment = async (e) => {
-        const { name, email, message, rating, date, time, userId, commentData } = this.state;
-        const { productId } = this.props;
+        const { name, email, message, rating, date, time, userId, commentData, averageRatingProduct } = this.state;
+        const { productId, shopId } = this.props;
         e.preventDefault();
+        let perOfProductRating;
+        console.log(rating, 'rating')
+        if (rating == 0) {
+            perOfProductRating = 0
+        }
+        else if (rating == 0.5) {
+            perOfProductRating = 10
+        }
+        else if (rating == 1) {
+            perOfProductRating = 20
+        }
+        else if (rating == 1.5) {
+            perOfProductRating = 30
+        }
+        else if (rating == 2) {
+            perOfProductRating = 40
+        }
+        else if (rating == 2.5) {
+            perOfProductRating = 20
+        }
+        else if (rating == 3) {
+            perOfProductRating = 60
+        }
+        else if (rating == 3.5) {
+            perOfProductRating = 70
+        }
+        else if (rating == 4) {
+            perOfProductRating = 80
+        }
+        else if (rating == 4.5) {
+            perOfProductRating = 90
+        }
+        else if (rating == 5) {
+            perOfProductRating = 100
+        }
+        console.log(perOfProductRating, 'perOfProductRating')
         let objComment = {
             name: name,
             email: email,
@@ -59,8 +109,12 @@ class ProductReviews extends Component {
             date: date,
             time: time,
             userId: userId,
-            productId: productId
+            productId: productId,
+            shopId: shopId,
+            averageRatingProduct: perOfProductRating
         }
+        console.log(objComment, 'objComment')
+
         let res = await HttpUtils.post('postecommercecomment', objComment);
         if (res.code == 200) {
             this.setState({
@@ -112,7 +166,6 @@ class ProductReviews extends Component {
                                                 <Rate tooltips={desc} value={elem.rating} />
                                                 {elem.rating ? <span className="ant-rate-text">{desc[elem.rating - 1]}</span> : ''}
                                             </span>
-                                            {/* <Rate allowHalf defaultValue={0} /> */}
                                             <div class="clearfix"></div>
                                             <p>{elem.message}</p>
                                         </div>
@@ -131,7 +184,7 @@ class ProductReviews extends Component {
                             <div>
                                 <h4>Your Rating :
                                     <span style={{ paddingLeft: "10px" }}>
-                                        <Rate tooltips={desc} onChange={this.changeRating} value={rating} />
+                                        <Rate tooltips={desc} allowHalf onChange={this.changeRating} value={rating} />
                                         {rating ? <span className="ant-rate-text">{desc[rating - 1]}</span> : ''}
                                     </span>
                                 </h4>

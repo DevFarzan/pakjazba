@@ -26,7 +26,8 @@ class EproductDetail extends Component {
       productId: '',
       dataShow: false,
       visible: false,
-      goForLogin: false
+      goForLogin: false,
+      shopId: ''
     }
   }
   async componentDidMount() {
@@ -48,7 +49,8 @@ class EproductDetail extends Component {
         description: data.description,
         productId: data._id,
         data: data,
-        dataShow: true
+        dataShow: true,
+        shopId: data.shopId
       })
     }
     else {
@@ -65,7 +67,8 @@ class EproductDetail extends Component {
         description: data.description,
         data: data,
         productId: data._id,
-        dataShow: true
+        dataShow: true,
+        shopId: data.shopId
       })
     }
   }
@@ -108,13 +111,13 @@ class EproductDetail extends Component {
             cartArr.push(addToCartData[i])
             break;
           }
-          else 
+          else
           // if (addToCartData[i].objectId != objectId &&
           //   addToCartData[i].user_Id == user_Id &&
           //   addToCartData[i].productName != productName &&
           //   addToCartData[i].price != price &&
           //   addToCartData[i].description != description) 
-            {
+          {
             //if user add to cart newe product
             cartArr.push(addToCartObj)
             console.log('elezs')
@@ -173,7 +176,7 @@ class EproductDetail extends Component {
     this.setState({ visible: false });
   }
   render() {
-    const { dataShow, data, productId, cartCount, goForLogin } = this.state;
+    const { dataShow, data, productId, cartCount, goForLogin, profileId, shopId } = this.state;
     if (goForLogin) {
       return <Redirect to={{ pathname: '/sigin', state: { from: { pathname: `/products_DetailStyle/${productId}` }, state: data } }} />;
     }
@@ -193,6 +196,8 @@ class EproductDetail extends Component {
               <PthreeColumn data={data}
                 shoppingCartCount={this.shoppingCartCount}
                 productId={productId}
+                profileId={profileId}
+                shopId={shopId}
               />
               : null}
             {this.state.visible && <Modal

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import './slider.css';
 import { HttpUtils } from "../../Services/HttpUtils";
 import { Redirect } from 'react-router';
+import { Radio } from 'antd';
 
 class Slider extends Component {
     constructor(props) {
@@ -70,6 +71,8 @@ class Slider extends Component {
         this.props.getMethod();
     }
 
+
+
     render() {
         const { inputValue, redirectToEcomFilterPage, ecommreceFilterData } = this.state;
         if (redirectToEcomFilterPage) {
@@ -84,6 +87,7 @@ class Slider extends Component {
                             <h3 className="text-h1" style={{ fontSize: '36px', fontWeight: 'bold', color: 'black', textAlign: 'left' }}>{this.props.mainH1}</h3>
                             <form>
                                 <div className="single">
+
                                     <div className="input-group">
                                         <input type="text" className="form-control" placeholder="Search" style={{ height: '40px' }} onChange={this.onChange.bind(this)} />
                                         <span className="input-group-btn">
@@ -226,6 +230,14 @@ class Slider extends Component {
                         </h3>
                         <form>
                             <div className="single">
+                                <div>
+                                    <Radio.Group onChange={this.props.onChange} value={this.props.searchBy}>
+                                        <Radio value={'product'}>Product</Radio>
+                                        <Radio value={'shop'}>Shop</Radio>
+                                        {/* <Radio value={3}>C</Radio>
+                                        <Radio value={4}>D</Radio> */}
+                                    </Radio.Group>
+                                </div>
                                 <div className="input-group">
                                     <input type="text" className="form-control"
                                         placeholder="Search" style={{ height: '40px' }}
@@ -255,6 +267,15 @@ class Slider extends Component {
                                         >
                                             Your Market hub for all products
                                         </h4>
+                                        {this.props.checkRadioBtn ?
+                                            <div>
+                                                <h4
+                                                    style={{ marginTop: "4px", marginLeft: "-12px", color: 'red' }}
+                                                >
+                                                    Please Select radio button first
+                                        </h4>
+                                            </div>
+                                            : null}
                                     </div>
                                     <div className="col-md-5 col-sm-4">
                                     </div>

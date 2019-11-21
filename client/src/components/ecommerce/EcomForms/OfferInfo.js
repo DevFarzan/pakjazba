@@ -44,7 +44,7 @@ class OfferInfo extends Component {
 
   componentDidMount() {
     let data = this.props.data;
-    if (data) {
+    if (data.product != undefined) {
       this.setState({
         seller: data.seller,
         condition: data.condition,
@@ -78,6 +78,10 @@ class OfferInfo extends Component {
 
   // date picker //
   onChange(date, dateString, key) {
+    console.log(key, 'keys')
+    console.log(date, 'date')
+    console.log(dateString, 'dateString')
+
     this.setState({
       [key]: dateString,
     })
@@ -306,7 +310,7 @@ class OfferInfo extends Component {
                                 })(
                                   <DatePicker
                                     onChange={(date, dateString) =>
-                                      this.onChange(date, dateString)}
+                                      this.onChange(date, dateString, 'salePriceDate1')}
                                   />
                                 )}
                               </FormItem>

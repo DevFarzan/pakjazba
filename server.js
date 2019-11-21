@@ -2155,6 +2155,8 @@ app.post('/api/postecommercecomment', (req, res) => {
     message: req.body.message,
     productId: req.body.productId,
     rating: req.body.rating,
+    shopId: req.body.shopId,
+    averageRatingProduct: req.body.averageRatingProduct
 
   })
   ecommerceObj.save(function (err, data) {
@@ -2368,6 +2370,27 @@ app.post('/api/getSpecificShopById', (req, res) => {
     }
   })
 })
+
+
+app.post('/api/getShopProducts', (req, res) => {
+  let shopIdForProduct = req.body.shopIdForProduct;
+  postecommerce.find({ "shopId": shopIdForProduct }, function (err, shopSpecificData) {
+    if (err) {
+      res.send({
+        code: 404,
+        msg: 'Something went wrong'
+      })
+    }
+    else if (shopSpecificData) {
+      res.send({
+        code: 200,
+        msg: 'Specific shop Data',
+        content: shopSpecificData
+      })
+    }
+  })
+})
+
 
 /*===================event seats arrangment API end================================================================*/
 if (process.env.NODE_ENV === 'production') {

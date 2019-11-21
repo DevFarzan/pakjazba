@@ -6,7 +6,7 @@ import EcomCard from './EcomCard';
 import Eshopcard from './EcomShopcard';
 import DealsEcom from './EcomDeals';
 import { HttpUtils } from "../../Services/HttpUtils";
-import { Spin, Icon } from 'antd';
+import { Spin, Icon, Radio } from 'antd';
 
 class EcommerceMarket extends Component {
   constructor(props) {
@@ -19,7 +19,9 @@ class EcommerceMarket extends Component {
       featuredCategories: true,
       noRecordFound: false,
       recordFound: true,
-      loader: true
+      loader: true,
+      searchBy: '',
+      checkRadioBtn: false
     }
   }
 
@@ -56,45 +58,75 @@ class EcommerceMarket extends Component {
   }
 
   searchProduct = async (e) => {
-    const { ecomSerchValue, allData } = this.state;
+    // ||
+    // ecomSearchValue == data[i].productFeature.toLowerCase() ||
+    // ecomSearchValue == data[i].brandName.toLowerCase() ||
+    // ecomSearchValue == data[i].manufacturer.toLowerCase() ||
+    // ecomSearchValue == data[i].manufacturerPart.toLowerCase()
+    const { ecomSerchValue, allData, searchBy } = this.state;
     e.preventDefault();
-    if (ecomSerchValue != '') {
-      let res = await HttpUtils.get('getecommercedata');
-      let data = res.content;
-      let ecommreceFilterData = [];
-      for (let i in data) {
-        if (ecomSerchValue == data[i].product || ecomSerchValue == data[i].productFeature ||
-          ecomSerchValue == data[i].brandName || ecomSerchValue == data[i].description ||
-          ecomSerchValue == data[i].legalDesclaimer || ecomSerchValue == data[i].manufacturer ||
-          ecomSerchValue == data[i].manufacturerPart) {
-          ecommreceFilterData.push(data[i])
+    let res = await HttpUtils.get('getecommercedata');
+    let data = res.content;
+    let ecomSearchValue = ecomSerchValue.toLowerCase();
+    let ecommreceFilterData = [];
+    if (searchBy != '') {
+      if (ecomSerchValue != '') {
+        for (let i in data) {
+          if (searchBy == 'product') {
+            if (ecomSearchValue == data[i].product.toLowerCase()) {
+              ecommreceFilterData.push(data[i])
+            }
+            // else if (ecomSearchValue == data[i].productFeature.toLowerCase()) {
+            //   ecommreceFilterData.push(data[i])
+            // }
+            // else if (ecomSearchValue == data[i].brandName.toLowerCase()) {
+            //   ecommreceFilterData.push(data[i])
+            // }
+            // else if (ecomSearchValue == data[i].manufacturer.toLowerCase()) {
+            //   ecommreceFilterData.push(data[i])
+            // }
+            // else if (ecomSearchValue == data[i].manufacturerPart.toLowerCase()) {
+            //   ecommreceFilterData.push(data[i])
+            // }
+          }
+          else if (searchBy == 'shop') {
+            if (ecomSearchValue == data[i].shopName.toLowerCase()) {
+              ecommreceFilterData.push(data[i])
+            }
+          }
         }
-      }
-      if (ecommreceFilterData.length == 0) {
-        this.setState({
-          recordFound: false,
-          noRecordFound: true,
-          featuredCategories: false
-        })
-      }
-      else {
-        this.setState({
-          productsData: ecommreceFilterData,
-          featuredCategories: false,
-          recordFound: true,
-          noRecordFound: false
-        })
+        if (ecommreceFilterData.length == 0) {
+          this.setState({
+            recordFound: false,
+            noRecordFound: true,
+            featuredCategories: false,
+          })
+        }
+        else {
+          this.setState({
+            productsData: ecommreceFilterData,
+            featuredCategories: false,
+            recordFound: true,
+            noRecordFound: false,
+          })
+        }
+        // else {
+        //   this.setState({
+        //     productsData: allData,
+        //     featuredCategories: true,
+        //     recordFound: true,
+        //     noRecordFound: false
+        //   })
+        // }
       }
     }
     else {
       this.setState({
-        productsData: allData,
-        featuredCategories: true,
-        recordFound: true,
-        noRecordFound: false
+        checkRadioBtn: true
       })
     }
   }
+
   onAddMore = () => {
     const { allData } = this.state;
     this.setState({
@@ -104,10 +136,19 @@ class EcommerceMarket extends Component {
       noRecordFound: false
     })
   }
-  render() {
-    const { productsData, featureData, featuredCategories, noRecordFound, recordFound, loader } = this.state;
-    const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
+  onChange = e => {
+    console.log('radio checked', e.target.value);
+    this.setState({
+      searchBy: e.target.value,
+      checkRadioBtn: false
+    });
+  };
+
+  render() {
+    const { productsData, featureData, featuredCategories, noRecordFound, recordFound, loader, searchBy, checkRadioBtn } = this.state;
+    const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
+    console.log(searchBy, 'searchBy')
     return (
       <div>
         <span>
@@ -115,7 +156,9 @@ class EcommerceMarket extends Component {
             <div className="visible-xs" style={{ marginTop: '-119px' }}></div>
             <div className="background-image">
               <Burgermenu />
-              <Slider mainH1="Pakjazba Ecommerce" mainH2="" searcProduct={this.searcProduct} searchProduct={this.searchProduct} />
+
+              <Slider mainH1="Pakjazba Ecommerce" mainH2="" searcProduct={this.searcProduct} searchProduct={this.searchProduct}
+                onChange={this.onChange} searchBy={searchBy} checkRadioBtn={checkRadioBtn} />
             </div>
           </div>
         </span>

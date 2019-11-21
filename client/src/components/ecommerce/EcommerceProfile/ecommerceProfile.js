@@ -27,7 +27,7 @@ class EcomProfile extends Component {
   }
 
   async componentWillMount() {
-    console.log(this.props , 'this.props ')
+    console.log(this.props, 'this.props ')
     let shopId = this.props.location.pathname.slice(18)
     let shopData = this.props.location.state;
     const userData = JSON.parse(localStorage.getItem('user'));
@@ -154,7 +154,7 @@ class EcomProfile extends Component {
                   }
                 </TabPane>
                 <TabPane tab="All Products" key="2">
-                  <ProfileProducts />
+                  <ProfileProducts shopId={shopId} />
                 </TabPane>
                 <TabPane tab="Profile" key="3">
                   Content of Tab Pane 3

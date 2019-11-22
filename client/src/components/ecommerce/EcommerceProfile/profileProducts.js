@@ -69,7 +69,8 @@ class ProfileProducts extends Component {
             <div className="col-md-3" style={{ backgroundColor: "whitesmoke" }}>
               <div className="row">
                 <h2 style={{ fontWeight: '700', marginLeft: '15px' }}>Filters</h2>
-                <FourEcom categories={categories} color={color} location={location} brandName={brandName}/>
+                <FourEcom categories={categories} color={color} location={location} 
+                brandName={brandName} onChange={this.props.onChange}/>
               </div>
             </div>
             <div className="col-md-9">

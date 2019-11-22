@@ -4,11 +4,13 @@ import { Rate } from 'antd';
 import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import { Link } from "react-router-dom";
 
+
+
 class EcomNine extends Component {
     constructor(props) {
         super(props)
     }
-  
+
     render() {
         const { allProducts } = this.props;
         return (
@@ -109,87 +111,9 @@ class EcomNine extends Component {
                                     </Link>
                                 </div>
                             )
-                        })}
-                        {/* <div className="col-md-3"> */}
-
-                        {/* </div> */}
-                        {/* <div className="col-md-3">
-                            <div className="sellercardopacity" style={{ cursor: 'pointer' }}>
-                                <div className="sellerstorecard" >
-                                    <img alt='' src='/images/ecommerce/61Yeir0uhIL._AC_SY200_.jpg' />
-                                </div>
-                                <h4 style={{ marginTop: "20px", textAlign: "left" }}>Hisense AC 1.5 ton</h4>
-                                <p style={{ color: "#37a99b", textAlign: 'left', fontWeight: '600', marginLeft: '15px' }}> Rs. 65000</p>
-
-                            </div>
-                        </div> */}
-                        {/* <div className="col-md-3">
-                            <div className="sellercardopacity" style={{ cursor: 'pointer' }}>
-                                <div className="sellerstorecard" >
-                                    <img alt='' src='/images/ecommerce/61Yeir0uhIL._AC_SY200_.jpg' />
-                                </div>
-                                <h4 style={{ marginTop: "20px", textAlign: "left" }}>Hisense AC 1.5 ton</h4>
-                                <p style={{ color: "#37a99b", textAlign: 'left', fontWeight: '600', marginLeft: '15px' }}> Rs. 65000</p>
-
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className="sellercardopacity" style={{ cursor: 'pointer' }}>
-                                <div className="sellerstorecard" >
-                                    <img alt='' src='/images/ecommerce/61Yeir0uhIL._AC_SY200_.jpg' />
-                                </div>
-                                <h4 style={{ marginTop: "20px", textAlign: "left" }}>Hisense AC 1.5 ton</h4>
-                                <p style={{ color: "#37a99b", textAlign: 'left', fontWeight: '600', marginLeft: '15px' }}> Rs. 65000</p>
-                                <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} allowHalf value={4.5} />
-                            </div>
-                        </div> */}
+                        })} 
                     </div>
                 </div>
-                {/* <div className="row">
-
-                    <div className="col-md-12">
-                        <div className="col-md-3">
-                            <div className="sellercardopacity" style={{ cursor: 'pointer' }}>
-                                <div className="sellerstorecard" >
-                                    <img alt='' src='/images/ecommerce/61Yeir0uhIL._AC_SY200_.jpg' />
-                                </div>
-                                <h4 style={{ marginTop: "20px", textAlign: "left" }}>Hisense AC 1.5 ton</h4>
-                                <p style={{ color: "#37a99b", textAlign: 'left', fontWeight: '600', marginLeft: '15px' }}> Rs. 65000</p>
-
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className="sellercardopacity" style={{ cursor: 'pointer' }}>
-                                <div className="sellerstorecard" >
-                                    <img alt='' src='/images/ecommerce/61Yeir0uhIL._AC_SY200_.jpg' />
-                                </div>
-                                <h4 style={{ marginTop: "20px", textAlign: "left" }}>Hisense AC 1.5 ton</h4>
-                                <p style={{ color: "#37a99b", textAlign: 'left', fontWeight: '600', marginLeft: '15px' }}> Rs. 65000</p>
-
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className="sellercardopacity" style={{ cursor: 'pointer' }}>
-                                <div className="sellerstorecard" >
-                                    <img alt='' src='/images/ecommerce/61Yeir0uhIL._AC_SY200_.jpg' />
-                                </div>
-                                <h4 style={{ marginTop: "20px", textAlign: "left" }}>Hisense AC 1.5 ton</h4>
-                                <p style={{ color: "#37a99b", textAlign: 'left', fontWeight: '600', marginLeft: '15px' }}> Rs. 65000</p>
-
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className="sellercardopacity" style={{ cursor: 'pointer' }}>
-                                <div className="sellerstorecard" >
-                                    <img alt='' src='/images/ecommerce/61Yeir0uhIL._AC_SY200_.jpg' />
-                                </div>
-                                <h4 style={{ marginTop: "20px", textAlign: "left" }}>Hisense AC 1.5 ton</h4>
-                                <p style={{ color: "#37a99b", textAlign: 'left', fontWeight: '600', marginLeft: '15px' }}> Rs. 65000</p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
             </div>
         )
     }

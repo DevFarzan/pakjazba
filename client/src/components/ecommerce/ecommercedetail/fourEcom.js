@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
-import MobileMenu from './mobilemenuEcom'
 import './fourEcom.css';
 import { Checkbox, Input, Col, Row, Button, Radio, Rate } from 'antd';
-
-
-function onChange(e) {
-  console.log(`checked = ${e.target.checked}`);
-}
 
 class FourEcom extends Component {
   constructor(props) {
@@ -18,67 +12,64 @@ class FourEcom extends Component {
   }
 
   render() {
-    const { categories, color, location, brandName } = this.props;
-    console.log(categories, 'categories')
+    const { categories, color, location, brandName,onChange } = this.props;
     return (
-
       <div>
+        
         <div className="">
           <h4 style={{ fontWeight: '700' }}>Related Categories</h4>
           {categories && categories.map((elem, key) => {
             return (
               <div className="">
-                <ol> {elem}</ol>
+                <ol onClick={onChange.bind(this, 'categories', elem)}> {elem}</ol>
               </div>
             )
           })}
-          {/* <ol> Accesories & Supplies </ol>
-          <ol> Camera & Photo </ol>
-          <ol> Car & Vehicle Electronics </ol>
-          <ol> Cell Phones & Accesories</ol>
-          <ol> Computers & Accesories</ol>
-          <ol> GPS, Finders & Accesories </ol>
-          <ol> Headphones </ol>
-          <ol> Home Audio </ol>
-          <ol> Office Electronics </ol>
-          <ol> Portable Audio & Video </ol>
-          <ol> Security & Surveillance </ol>
-          <ol> Televison & Video </ol>
-          <ol> Video Game Consoles & Accesories </ol>
-          <ol> eBook Readers & Accesories</ol> */}
         </div>
+
         <hr className="filterdivider" />
         <div className="" style={{ display: "grid" }}>
           <h4 style={{ fontWeight: '700' }}>Brand</h4>
-          {brandName && brandName.map((elem, key) => {
-            return (
-              <div className="">
-                <Checkbox onChange={onChange}>{elem}</Checkbox>
-              </div>
-            )
-          })}
+          <Checkbox.Group style={{ width: '100%' }} onChange={onChange.bind(this, 'brand name')}>
+            {brandName && brandName.map((elem, key) => {
+              return (
+                <div className="">
+                  <Checkbox value={elem}>{elem}</Checkbox>
+                </div>
+              )
+            })}
+          </Checkbox.Group>
         </div>
-        {/* <hr className="filterdivider" /> */}
-        {/* <div class="" style={{display:"grid"}}>
-        <h4 style={{fontWeight: '700'}}>Service</h4>
-            <Checkbox onChange={onChange}>Installments</Checkbox>
-            <Checkbox onChange={onChange}>Cash on delivery</Checkbox>
-         </div> */}
+
         <hr className="filterdivider" />
         <div class="" style={{ display: "grid" }}>
           <h4 style={{ fontWeight: '700' }}>Location</h4>
-          {location && location.map((elem, key) => {
-            return (
-              <div className="">
-                <Checkbox onChange={onChange}>{elem}</Checkbox>
-              </div>
-            )
-          })}
-          {/* <Checkbox onChange={onChange}>Arizona</Checkbox>
-          <Checkbox onChange={onChange}>Dallas</Checkbox>
-          <Checkbox onChange={onChange}>Texas</Checkbox>
-          <Checkbox onChange={onChange}>South America</Checkbox> */}
+          <Checkbox.Group style={{ width: '100%' }} onChange={onChange.bind(this, 'location')}>
+            {location && location.map((elem, key) => {
+              return (
+                <div className="">
+                  <Checkbox value={elem}>{elem}</Checkbox>
+                </div>
+              )
+            })}
+          </Checkbox.Group>
         </div>
+
+        <hr className="filterdivider" />
+        <div class="" style={{ display: "grid" }}>
+          <h4 style={{ fontWeight: '700' }}>
+            Color Family</h4>
+          <Checkbox.Group style={{ width: '100%' }} onChange={onChange.bind(this, 'color')}>
+            {color && color.map((elem, key) => {
+              return (
+                <div className="">
+                  <Checkbox value={elem}>{elem}</Checkbox>
+                </div>
+              )
+            })}
+          </Checkbox.Group>
+        </div>
+
         <hr className="filterdivider" />
         <div>
           <h4 style={{ fontWeight: '700' }}>Price</h4>
@@ -96,8 +87,9 @@ class FourEcom extends Component {
             </Row>
           </div>
         </div>
+
         <hr className="filterdivider" />
-        <div>
+        {/* <div>
           <h4 style={{ fontWeight: '700' }}>Rating</h4>
           <div style={{ marginLeft: "15px", display: 'grid' }}>
             <Radio> <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} allowHalf value={4.5} /></Radio>
@@ -106,23 +98,8 @@ class FourEcom extends Component {
             <Radio> <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} allowHalf value={3} /></Radio>
             <Radio> <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} allowHalf value={2} /></Radio>
           </div>
-        </div>
-        <hr className="filterdivider" />
-        <div class="" style={{ display: "grid" }}>
-          <h4 style={{ fontWeight: '700' }}>
-            Color Family</h4>
-          {color && color.map((elem, key) => {
-            return (
-              <div className="">
-                <Checkbox onChange={onChange}>{elem}</Checkbox>
-              </div>
-            )
-          })}
-          {/* <Checkbox onChange={onChange}>Black</Checkbox>
-          <Checkbox onChange={onChange}>Silver</Checkbox>
-          <Checkbox onChange={onChange}>Blue</Checkbox>
-          <Checkbox onChange={onChange}>Green</Checkbox> */}
-        </div>
+        </div> */}
+
       </div>
     )
   }

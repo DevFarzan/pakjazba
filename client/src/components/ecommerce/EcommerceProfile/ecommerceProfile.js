@@ -11,6 +11,16 @@ import ProfileProducts from './profileProducts';
 import { HttpUtils } from "../../../Services/HttpUtils";
 
 const { TabPane } = Tabs;
+
+let categoriesArr = [];
+let brandNameArr = [];
+let locationArr = [];
+let colorArr = [];
+
+let filterValuesArr = [];
+let filterFinalDataArr = [];
+let filterData = [];
+
 class EcomProfile extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +38,6 @@ class EcomProfile extends Component {
       location: [],
       brandName: [],
     }
-
   }
 
   async componentWillMount() {
@@ -61,6 +70,47 @@ class EcomProfile extends Component {
     }
   }
 
+  getShopData = async (shopId) => {
+    let categoriesArr = [];
+    let colorArr = [];
+    let locationArr = [];
+    let brandNameArr = [];
+    let obj = {
+      shopIdForProduct: shopId
+    }
+    let reqShopData = await HttpUtils.post('getShopProducts', obj)
+    if (reqShopData.code == 200) {
+      let allProducts = reqShopData.content;
+      for (var i = 0; i < allProducts.length; i++) {
+        if (colorArr.indexOf(allProducts[i].color) == -1) {
+          const color = allProducts[i].color.charAt(0).toUpperCase() + allProducts[i].color.substring(1);
+          colorArr.push(color)
+        }
+        if (locationArr.indexOf(allProducts[i].country) == -1) {
+          const location = allProducts[i].country.charAt(0).toUpperCase() + allProducts[i].country.substring(1);
+          locationArr.push(location)
+        }
+        if (brandNameArr.indexOf(allProducts[i].brandName) == -1) {
+          const brandName = allProducts[i].brandName.charAt(0).toUpperCase() + allProducts[i].brandName.substring(1);
+          brandNameArr.push(brandName)
+        }
+        for (var j = 0; j < allProducts[i].category.length; j++) {
+          if (categoriesArr.indexOf(allProducts[i].category[1]) == -1) {
+            const category = allProducts[i].category[1].charAt(0).toUpperCase() + allProducts[i].category[1].substring(1);
+            categoriesArr.push(category)
+          }
+        }
+      }
+      this.setState({
+        allProducts: reqShopData.content,
+        categories: categoriesArr,
+        color: colorArr,
+        location: locationArr,
+        brandName: brandNameArr,
+      })
+    }
+  }
+
   editShop = () => {
     this.setState({
       shopEdit: true
@@ -79,47 +129,99 @@ class EcomProfile extends Component {
     })
   }
 
-  getShopData = async (shopId) => {
-    let categoriesArr = [];
-    let colorArr = [];
-    let locationArr = [];
-    let brandNameArr = [];
-    let obj = {
-      shopIdForProduct: shopId
+  onChange = (key, value) => {
+    filterFinalDataArr = []
+    if (key == 'categories') {
+      categoriesArr = []
+      categoriesArr.push(value)
+      this.pushFilterArrayData()
     }
-    let reqShopData = await HttpUtils.post('getShopProducts', obj)
-    if (reqShopData.code == 200) {
-      let allProducts = reqShopData.content;
+    else {
+      if (key == 'brand name') {
+        brandNameArr = [];
+        for (var i = 0; i < value.length; i++) {
+          brandNameArr.push(value[i])
+        }
+        this.pushFilterArrayData()
+      }
+      else if (key == 'location') {
+        locationArr = [];
+        for (var i = 0; i < value.length; i++) {
+          locationArr.push(value[i])
+        }
+        this.pushFilterArrayData()
+      }
+      else if (key == 'color') {
+        colorArr = [];
+        for (var i = 0; i < value.length; i++) {
+          colorArr.push(value[i])
+        }
+        this.pushFilterArrayData()
+      }
+    }
+  }
+
+  pushFilterArrayData = () => {
+    const { allProducts } = this.state;
+    filterValuesArr = [];
+
+    console.log(categoriesArr, 'categoriesArr')
+
+    for (var i = 0; i < brandNameArr.length; i++) {
+      filterValuesArr.push(brandNameArr[i])
+    }
+    for (var j = 0; j < locationArr.length; j++) {
+      filterValuesArr.push(locationArr[j])
+    }
+    for (var k = 0; k < colorArr.length; k++) {
+      filterValuesArr.push(colorArr[i])
+    }
+
+    if (categoriesArr.length > 0) {
+      filterData = [];
       for (var i = 0; i < allProducts.length; i++) {
-        if (colorArr.indexOf(allProducts[i].color) == -1) {
-          colorArr.push(allProducts[i].color)
+        if (allProducts[i].category[1] == categoriesArr[0]) {
+          filterData.push(allProducts[i]);
+          // filterFinalDataArr.push(allProducts[i])
         }
-        if (locationArr.indexOf(allProducts[i].country) == -1) {
-          locationArr.push(allProducts[i].country)
-        }
-        if (brandNameArr.indexOf(allProducts[i].brandName) == -1) {
-          brandNameArr.push(allProducts[i].brandName)
-        }
-        for (var j = 0; j < allProducts[i].category.length; j++) {
-          if (categoriesArr.indexOf(allProducts[i].category[1]) == -1) {
-            categoriesArr.push(allProducts[i].category[1])
+      }
+      if (filterValuesArr.length > 0) {
+        for (var i = 0; i < filterValuesArr.length; i++) {
+          for (var j = 0; j < filterData.length; j++) {
+            if (filterData[j].brandName.toLowerCase() == filterValuesArr[i].toLowerCase()) {
+              filterFinalDataArr.push(filterData[j])
+            }
+            else if (filterData[j].color.toLowerCase() == filterValuesArr[i].toLowerCase()) {
+              filterFinalDataArr.push(filterData[j])
+            }
+            else if (filterData[j].country.toLowerCase() == filterValuesArr[i].toLowerCase()) {
+              filterFinalDataArr.push(filterData[j])
+            }
           }
         }
       }
-      this.setState({
-        allProducts: reqShopData.content,
-        categories: categoriesArr,
-        color: colorArr,
-        location: locationArr,
-        brandName: brandNameArr,
-      })
-      // console.log(categoriesArr, 'categoriesArr')
-      // console.log(colorArr, 'colorArr')
-      // console.log(locationArr, 'locationArr')
-      // console.log(brandNameArr, 'brandNameArr')
-
     }
+    else {
+      for (var i = 0; i < filterValuesArr.length; i++) {
+        for (var j = 0; j < allProducts.length; j++) {
+          if (allProducts[j].brandName.toLowerCase() == filterValuesArr[i].toLowerCase()) {
+            filterFinalDataArr.push(allProducts[j])
+          }
+          else if (allProducts[j].color.toLowerCase() == filterValuesArr[i].toLowerCase()) {
+            filterFinalDataArr.push(allProducts[j])
+          }
+          else if (allProducts[j].country.toLowerCase() == filterValuesArr[i].toLowerCase()) {
+            filterFinalDataArr.push(allProducts[j])
+          }
+        }
+      }
+    }
+    console.log(filterValuesArr, 'filterValuesArr')
+    console.log(filterData, 'filterData')
+    console.log(filterFinalDataArr, 'filterFinalDataArr')
+
   }
+
   render() {
     const { shopData, shopId, shopEdit, addProduct, profileId, addProductObj,
       allProducts, categories, color, location, brandName } = this.state;
@@ -203,7 +305,8 @@ class EcomProfile extends Component {
                   }
                 </TabPane>
                 <TabPane tab="All Products" key="2">
-                  <ProfileProducts allProducts={allProducts} categories={categories} color={color} location={location} brandName={brandName} />
+                  <ProfileProducts allProducts={allProducts} categories={categories} color={color}
+                    location={location} brandName={brandName} onChange={this.onChange} />
                 </TabPane>
                 <TabPane tab="Profile" key="3">
                   Content of Tab Pane 3

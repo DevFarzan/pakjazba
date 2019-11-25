@@ -12,14 +12,14 @@ import { HttpUtils } from "../../../Services/HttpUtils";
 
 const { TabPane } = Tabs;
 
+let filterKeysArr = [];
 let categoriesArr = [];
 let brandNameArr = [];
 let locationArr = [];
 let colorArr = [];
 
-let filterValuesArr = [];
-let filterFinalDataArr = [];
 let filterData = [];
+let filterFinalDataArr = [];
 
 class EcomProfile extends Component {
   constructor(props) {
@@ -130,95 +130,185 @@ class EcomProfile extends Component {
   }
 
   onChange = (key, value) => {
-    filterFinalDataArr = []
+    //add filter keys in array
+    if (filterKeysArr.length == 0) {
+      filterKeysArr.push(key);
+    }
+    else {
+      if (filterKeysArr.indexOf(key) == -1) {
+        if (key == 'categories') {
+          filterKeysArr.unshift(key);
+        }
+        else {
+          filterKeysArr.push(key);
+        }
+      }
+    }
+
+    //add filter values in the array of the key 
     if (key == 'categories') {
-      categoriesArr = []
+      categoriesArr = [];
       categoriesArr.push(value)
       this.pushFilterArrayData()
     }
-    else {
-      if (key == 'brand name') {
-        brandNameArr = [];
-        for (var i = 0; i < value.length; i++) {
-          brandNameArr.push(value[i])
-        }
-        this.pushFilterArrayData()
+    else if (key == 'brand name') {
+      brandNameArr = [];
+      for (var i = 0; i < value.length; i++) {
+        brandNameArr.push(value[i])
       }
-      else if (key == 'location') {
-        locationArr = [];
-        for (var i = 0; i < value.length; i++) {
-          locationArr.push(value[i])
-        }
-        this.pushFilterArrayData()
+      this.pushFilterArrayData()
+    }
+    else if (key == 'location') {
+      locationArr = [];
+      for (var i = 0; i < value.length; i++) {
+        locationArr.push(value[i])
       }
-      else if (key == 'color') {
-        colorArr = [];
-        for (var i = 0; i < value.length; i++) {
-          colorArr.push(value[i])
-        }
-        this.pushFilterArrayData()
+      this.pushFilterArrayData()
+    }
+    else if (key == 'color') {
+      colorArr = [];
+      for (var i = 0; i < value.length; i++) {
+        colorArr.push(value[i])
       }
+      this.pushFilterArrayData()
     }
   }
 
+
+
+
   pushFilterArrayData = () => {
     const { allProducts } = this.state;
-    filterValuesArr = [];
-
-    console.log(categoriesArr, 'categoriesArr')
-
-    for (var i = 0; i < brandNameArr.length; i++) {
-      filterValuesArr.push(brandNameArr[i])
-    }
-    for (var j = 0; j < locationArr.length; j++) {
-      filterValuesArr.push(locationArr[j])
-    }
-    for (var k = 0; k < colorArr.length; k++) {
-      filterValuesArr.push(colorArr[i])
-    }
-
-    if (categoriesArr.length > 0) {
-      filterData = [];
-      for (var i = 0; i < allProducts.length; i++) {
-        if (allProducts[i].category[1] == categoriesArr[0]) {
-          filterData.push(allProducts[i]);
-          // filterFinalDataArr.push(allProducts[i])
-        }
-      }
-      if (filterValuesArr.length > 0) {
-        for (var i = 0; i < filterValuesArr.length; i++) {
-          for (var j = 0; j < filterData.length; j++) {
-            if (filterData[j].brandName.toLowerCase() == filterValuesArr[i].toLowerCase()) {
-              filterFinalDataArr.push(filterData[j])
-            }
-            else if (filterData[j].color.toLowerCase() == filterValuesArr[i].toLowerCase()) {
-              filterFinalDataArr.push(filterData[j])
-            }
-            else if (filterData[j].country.toLowerCase() == filterValuesArr[i].toLowerCase()) {
-              filterFinalDataArr.push(filterData[j])
-            }
-          }
-        }
-      }
-    }
-    else {
-      for (var i = 0; i < filterValuesArr.length; i++) {
+    filterData = [];
+    filterFinalDataArr = [];
+    
+    for (var i = 0; i < filterKeysArr.length; i++) {
+      if (filterKeysArr[i] == 'categories') {
         for (var j = 0; j < allProducts.length; j++) {
-          if (allProducts[j].brandName.toLowerCase() == filterValuesArr[i].toLowerCase()) {
-            filterFinalDataArr.push(allProducts[j])
+          if (allProducts[j].category[1].toLowerCase() == categoriesArr[0].toLowerCase()) {
+            filterData.push(allProducts[j])
           }
-          else if (allProducts[j].color.toLowerCase() == filterValuesArr[i].toLowerCase()) {
-            filterFinalDataArr.push(allProducts[j])
+        }
+      }
+      else if (filterKeysArr[i] == 'brand name') {
+        if (filterData.length > 0) {
+          for (var j = 0; j < brandNameArr.length; j++) {
+            for (var k = 0; k < filterData.length; k++) {
+              if (filterData[k].brandName.toLowerCase() == brandNameArr[j].toLowerCase()) {
+                filterFinalDataArr.push(filterData[k])
+              }
+            }
           }
-          else if (allProducts[j].country.toLowerCase() == filterValuesArr[i].toLowerCase()) {
-            filterFinalDataArr.push(allProducts[j])
+        }
+        else {
+          for (var j = 0; j < brandNameArr.length; j++) {
+            for (var k = 0; k < allProducts.length; k++) {
+              if (allProducts[k].brandName.toLowerCase() == brandNameArr[j].toLowerCase()) {
+                filterFinalDataArr.push(allProducts[k])
+              }
+            }
+          }
+        }
+      }
+      else if (filterKeysArr[i] == 'location') {
+        if (filterData.length > 0) {
+          for (var j = 0; j < locationArr.length; j++) {
+            for (var k = 0; k < filterData.length; k++) {
+              if (filterData[k].country.toLowerCase() == locationArr[j].toLowerCase()) {
+                filterFinalDataArr.push(filterData[k])
+              }
+            }
+          }
+        }
+        else {
+          for (var j = 0; j < locationArr.length; j++) {
+            for (var k = 0; k < allProducts.length; k++) {
+              if (allProducts[k].country.toLowerCase() == locationArr[j].toLowerCase()) {
+                filterFinalDataArr.push(allProducts[k])
+              }
+            }
+          }
+        }
+      }
+      else if (filterKeysArr[i] == 'color') {
+        if (filterData.length > 0) {
+          for (var j = 0; j < colorArr.length; j++) {
+            for (var k = 0; k < filterData.length; k++) {
+              if (filterData[k].color.toLowerCase() == colorArr[j].toLowerCase()) {
+                filterFinalDataArr.push(filterData[k])
+              }
+            }
+          }
+        }
+        else {
+          for (var j = 0; j < colorArr.length; j++) {
+            for (var k = 0; k < allProducts.length; k++) {
+              if (allProducts[k].color.toLowerCase() == colorArr[j].toLowerCase()) {
+                filterFinalDataArr.push(allProducts[k])
+              }
+            }
           }
         }
       }
     }
-    console.log(filterValuesArr, 'filterValuesArr')
+
+    //   for (var i = 0; i < brandNameArr.length; i++) {
+    //     filterValuesArr.push(brandNameArr[i])
+    //   }
+    //   for (var j = 0; j < locationArr.length; j++) {
+    //     filterValuesArr.push(locationArr[j])
+    //   }
+    //   for (var k = 0; k < colorArr.length; k++) {
+    //     filterValuesArr.push(colorArr[i])
+    //   }
+
+    //   if (categoriesArr.length > 0) {
+    //     filterData = [];
+    //     for (var i = 0; i < allProducts.length; i++) {
+    //       if (allProducts[i].category[1] == categoriesArr[0]) {
+    //         filterData.push(allProducts[i]);
+    //         // filterFinalDataArr.push(allProducts[i])
+    //       }
+    //     }
+    //     if (filterValuesArr.length > 0) {
+    //       for (var i = 0; i < filterValuesArr.length; i++) {
+    //         for (var j = 0; j < filterData.length; j++) {
+    //           if (filterData[j].brandName.toLowerCase() == filterValuesArr[i].toLowerCase()) {
+    //             filterFinalDataArr.push(filterData[j])
+    //           }
+    //           else if (filterData[j].color.toLowerCase() == filterValuesArr[i].toLowerCase()) {
+    //             filterFinalDataArr.push(filterData[j])
+    //           }
+    //           else if (filterData[j].country.toLowerCase() == filterValuesArr[i].toLowerCase()) {
+    //             filterFinalDataArr.push(filterData[j])
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    //   else {
+    //     for (var i = 0; i < filterValuesArr.length; i++) {
+    //       for (var j = 0; j < allProducts.length; j++) {
+    //         if (allProducts[j].brandName.toLowerCase() == filterValuesArr[i].toLowerCase()) {
+    //           filterFinalDataArr.push(allProducts[j])
+    //         }
+    //         else if (allProducts[j].color.toLowerCase() == filterValuesArr[i].toLowerCase()) {
+    //           filterFinalDataArr.push(allProducts[j])
+    //         }
+    //         else if (allProducts[j].country.toLowerCase() == filterValuesArr[i].toLowerCase()) {
+    //           filterFinalDataArr.push(allProducts[j])
+    //         }
+    //       }
+    //     }
+    //   }
+    console.log(filterKeysArr, 'filterKeysArr')
+    // console.log(categoriesArr, 'categoriesArr')
+    // console.log(brandNameArr, 'brandNameArr')
+    // console.log(colorArr, 'colorArr')
+    // console.log(locationArr, 'locationArr')
     console.log(filterData, 'filterData')
     console.log(filterFinalDataArr, 'filterFinalDataArr')
+
 
   }
 

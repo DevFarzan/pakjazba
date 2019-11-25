@@ -41,20 +41,7 @@ class FourEcom extends Component {
           </Checkbox.Group>
         </div>
 
-        <hr className="filterdivider" />
-        <div class="" style={{ display: "grid" }}>
-          <h4 style={{ fontWeight: '700' }}>Location</h4>
-          <Checkbox.Group style={{ width: '100%' }} onChange={onChange.bind(this, 'location')}>
-            {location && location.map((elem, key) => {
-              return (
-                <div className="">
-                  <Checkbox value={elem}>{elem}</Checkbox>
-                </div>
-              )
-            })}
-          </Checkbox.Group>
-        </div>
-
+      
         <hr className="filterdivider" />
         <div class="" style={{ display: "grid" }}>
           <h4 style={{ fontWeight: '700' }}>
@@ -69,6 +56,21 @@ class FourEcom extends Component {
             })}
           </Checkbox.Group>
         </div>
+
+        <hr className="filterdivider" />
+        <div class="" style={{ display: "grid" }}>
+          <h4 style={{ fontWeight: '700' }}>Location</h4>
+          <Checkbox.Group style={{ width: '100%' }} onChange={onChange.bind(this, 'location')}>
+            {location && location.map((elem, key) => {
+              return (
+                <div className="">
+                  <Checkbox value={elem}>{elem}</Checkbox>
+                </div>
+              )
+            })}
+          </Checkbox.Group>
+        </div>
+
 
         <hr className="filterdivider" />
         <div>

@@ -430,7 +430,7 @@ class OfferInfo extends Component {
                     <div className="col-md-12">
                       <div className="col-md-4">
                         <div className="floatright">
-                          <label>Handling time (in Days):</label>
+                          <label>* Handling time (in Days):</label>
                           <p> (Default is 1-2 days) </p>
                         </div>
                       </div>
@@ -463,7 +463,7 @@ class OfferInfo extends Component {
                     <div className="col-md-12">
                       <div className="col-md-4">
                         <div className="floatright">
-                          <label>* Start selling date:</label>
+                          <label>Start selling date:</label>
                           <p> (color of the lense in the item) </p>
                         </div>
                       </div>
@@ -552,7 +552,7 @@ class OfferInfo extends Component {
                     <div className="col-md-12">
                       <div className="col-md-4">
                         <div className="floatright">
-                          <label>Country of Publication:</label>
+                          <label>* Country of Publication:</label>
                           <p> (the country in which  the product was published) </p>
                         </div>
                       </div>
@@ -564,7 +564,7 @@ class OfferInfo extends Component {
                                 {getFieldDecorator('country', {
                                   initialValue: this.state.country,
                                   rules: [{
-                                    required: false,
+                                    required: true,
                                     message: 'Please enter country',
                                     whitespace: true
                                   }],

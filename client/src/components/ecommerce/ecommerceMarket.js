@@ -28,7 +28,6 @@ class EcommerceMarket extends Component {
   async componentWillMount() {
     let res = await HttpUtils.get('getecommercedata');
     let featureData = [];
-    console.log(res.content.length, 'res.content.length')
     if (res.content.length >= 4) {
       for (var i = 0; i < 4; i++) {
         featureData.push(res.content[i])
@@ -58,11 +57,6 @@ class EcommerceMarket extends Component {
   }
 
   searchProduct = async (e) => {
-    // ||
-    // ecomSearchValue == data[i].productFeature.toLowerCase() ||
-    // ecomSearchValue == data[i].brandName.toLowerCase() ||
-    // ecomSearchValue == data[i].manufacturer.toLowerCase() ||
-    // ecomSearchValue == data[i].manufacturerPart.toLowerCase()
     const { ecomSerchValue, allData, searchBy } = this.state;
     e.preventDefault();
     let res = await HttpUtils.get('getecommercedata');
@@ -76,18 +70,6 @@ class EcommerceMarket extends Component {
             if (ecomSearchValue == data[i].product.toLowerCase()) {
               ecommreceFilterData.push(data[i])
             }
-            // else if (ecomSearchValue == data[i].productFeature.toLowerCase()) {
-            //   ecommreceFilterData.push(data[i])
-            // }
-            // else if (ecomSearchValue == data[i].brandName.toLowerCase()) {
-            //   ecommreceFilterData.push(data[i])
-            // }
-            // else if (ecomSearchValue == data[i].manufacturer.toLowerCase()) {
-            //   ecommreceFilterData.push(data[i])
-            // }
-            // else if (ecomSearchValue == data[i].manufacturerPart.toLowerCase()) {
-            //   ecommreceFilterData.push(data[i])
-            // }
           }
           else if (searchBy == 'shop') {
             if (ecomSearchValue == data[i].shopName.toLowerCase()) {
@@ -110,14 +92,6 @@ class EcommerceMarket extends Component {
             noRecordFound: false,
           })
         }
-        // else {
-        //   this.setState({
-        //     productsData: allData,
-        //     featuredCategories: true,
-        //     recordFound: true,
-        //     noRecordFound: false
-        //   })
-        // }
       }
     }
     else {
@@ -138,7 +112,6 @@ class EcommerceMarket extends Component {
   }
 
   onChange = e => {
-    console.log('radio checked', e.target.value);
     this.setState({
       searchBy: e.target.value,
       checkRadioBtn: false
@@ -148,7 +121,6 @@ class EcommerceMarket extends Component {
   render() {
     const { productsData, featureData, featuredCategories, noRecordFound, recordFound, loader, searchBy, checkRadioBtn } = this.state;
     const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
-    console.log(searchBy, 'searchBy')
     return (
       <div>
         <span>

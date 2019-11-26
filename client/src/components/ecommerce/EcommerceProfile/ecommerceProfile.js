@@ -12,14 +12,10 @@ import { HttpUtils } from "../../../Services/HttpUtils";
 
 const { TabPane } = Tabs;
 
-let filterKeysArr = [];
 let categoriesArr = [];
 let brandNameArr = [];
 let locationArr = [];
 let colorArr = [];
-
-let filterData = [];
-let filterFinalDataArr = [];
 
 class EcomProfile extends Component {
   constructor(props) {
@@ -37,6 +33,9 @@ class EcomProfile extends Component {
       color: [],
       location: [],
       brandName: [],
+      filteredData: [],
+      filterDataNotFound: false,
+      filterDataShow: false
     }
   }
 
@@ -129,192 +128,438 @@ class EcomProfile extends Component {
     })
   }
 
+  //collect the filtraion keys and values in seprate array for filtration
   onChange = (key, value) => {
-    //add filter keys in array
-    if (filterKeysArr.length == 0) {
-      filterKeysArr.push(key);
-    }
-    else {
-      if (filterKeysArr.indexOf(key) == -1) {
-        if (key == 'categories') {
-          filterKeysArr.unshift(key);
-        }
-        else {
-          filterKeysArr.push(key);
-        }
+    let filterKey = [];
+
+    console.log(key, 'key')
+    console.log(value, 'value')
+    console.log(value.length, 'value. length')
+
+
+    if (value.length == 0) {
+      if (key == 'categories') {
+
+      }
+      else if (key == 'brand name') {
+        brandNameArr = [];
+      }
+      else if (key == 'location') {
+        locationArr = [];
+
+      }
+      else if (key == 'color') {
+        colorArr = [];
+
       }
     }
-
-    //add filter values in the array of the key 
+    //add filter values in the seprate arrays
     if (key == 'categories') {
       categoriesArr = [];
       categoriesArr.push(value)
-      this.pushFilterArrayData()
     }
     else if (key == 'brand name') {
       brandNameArr = [];
       for (var i = 0; i < value.length; i++) {
         brandNameArr.push(value[i])
       }
-      this.pushFilterArrayData()
     }
     else if (key == 'location') {
       locationArr = [];
       for (var i = 0; i < value.length; i++) {
         locationArr.push(value[i])
       }
-      this.pushFilterArrayData()
     }
     else if (key == 'color') {
       colorArr = [];
       for (var i = 0; i < value.length; i++) {
         colorArr.push(value[i])
       }
-      this.pushFilterArrayData()
     }
+
+
+    //keys of the filter in array
+    if (categoriesArr.length > 0) {
+      filterKey.push('categories')
+    }
+    if (brandNameArr.length > 0) {
+      filterKey.push('brand name')
+    }
+    if (colorArr.length > 0) {
+      filterKey.push('color')
+    }
+    if (locationArr.length > 0) {
+      filterKey.push('location')
+    }
+    //call the function
+    this.pushFilterArrayData(filterKey)
+    console.log(filterKey, 'filterKey')
   }
 
 
+  pushFilterArrayData = (filterKeysArr) => {
 
+    //calls difrent function for diffrent with the filtaraion keys
+    if (filterKeysArr.length == 1) {
+      this.filterProductWithOneValue(filterKeysArr)
+    }
+    else if (filterKeysArr.length == 2) {
+      this.filterProductWithTwoValue(filterKeysArr)
 
-  pushFilterArrayData = () => {
+    }
+    else if (filterKeysArr.length == 3) {
+      this.filterProductWithThreeValue(filterKeysArr)
+
+    }
+    else if (filterKeysArr.length == 4) {
+      this.filterProductWithFourValue(filterKeysArr)
+    }
+    else {
+      let arr = [];
+      this.setTheStateForFiltredValues(arr)
+    }
+  }
+
+  //filter by any one of the key
+  filterProductWithOneValue = (filterKeysArr) => {
     const { allProducts } = this.state;
-    filterData = [];
-    filterFinalDataArr = [];
-    
-    for (var i = 0; i < filterKeysArr.length; i++) {
-      if (filterKeysArr[i] == 'categories') {
+    let filterFinalDataArr = [];
+
+    if (filterKeysArr[0] == 'categories') {
+
+      for (var i = 0; i < allProducts.length; i++) {
+        if (allProducts[i].category[1].toLowerCase() == categoriesArr[0].toLowerCase()) {
+          filterFinalDataArr.push(allProducts[i])
+        }
+      }
+    }
+    else if (filterKeysArr[0] == 'brand name') {
+      for (var i = 0; i < brandNameArr.length; i++) {
         for (var j = 0; j < allProducts.length; j++) {
-          if (allProducts[j].category[1].toLowerCase() == categoriesArr[0].toLowerCase()) {
-            filterData.push(allProducts[j])
+          if (allProducts[j].brandName.toLowerCase() == brandNameArr[i].toLowerCase()) {
+            filterFinalDataArr.push(allProducts[j])
           }
         }
       }
-      else if (filterKeysArr[i] == 'brand name') {
-        if (filterData.length > 0) {
-          for (var j = 0; j < brandNameArr.length; j++) {
-            for (var k = 0; k < filterData.length; k++) {
-              if (filterData[k].brandName.toLowerCase() == brandNameArr[j].toLowerCase()) {
-                filterFinalDataArr.push(filterData[k])
-              }
-            }
-          }
-        }
-        else {
-          for (var j = 0; j < brandNameArr.length; j++) {
-            for (var k = 0; k < allProducts.length; k++) {
-              if (allProducts[k].brandName.toLowerCase() == brandNameArr[j].toLowerCase()) {
-                filterFinalDataArr.push(allProducts[k])
-              }
-            }
+    }
+    else if (filterKeysArr[0] == 'location') {
+      for (var i = 0; i < locationArr.length; i++) {
+        for (var j = 0; j < allProducts.length; j++) {
+          if (allProducts[j].country.toLowerCase() == locationArr[i].toLowerCase()) {
+            filterFinalDataArr.push(allProducts[j])
           }
         }
       }
-      else if (filterKeysArr[i] == 'location') {
-        if (filterData.length > 0) {
-          for (var j = 0; j < locationArr.length; j++) {
-            for (var k = 0; k < filterData.length; k++) {
-              if (filterData[k].country.toLowerCase() == locationArr[j].toLowerCase()) {
-                filterFinalDataArr.push(filterData[k])
-              }
-            }
-          }
-        }
-        else {
-          for (var j = 0; j < locationArr.length; j++) {
-            for (var k = 0; k < allProducts.length; k++) {
-              if (allProducts[k].country.toLowerCase() == locationArr[j].toLowerCase()) {
-                filterFinalDataArr.push(allProducts[k])
-              }
-            }
-          }
-        }
-      }
-      else if (filterKeysArr[i] == 'color') {
-        if (filterData.length > 0) {
-          for (var j = 0; j < colorArr.length; j++) {
-            for (var k = 0; k < filterData.length; k++) {
-              if (filterData[k].color.toLowerCase() == colorArr[j].toLowerCase()) {
-                filterFinalDataArr.push(filterData[k])
-              }
-            }
-          }
-        }
-        else {
-          for (var j = 0; j < colorArr.length; j++) {
-            for (var k = 0; k < allProducts.length; k++) {
-              if (allProducts[k].color.toLowerCase() == colorArr[j].toLowerCase()) {
-                filterFinalDataArr.push(allProducts[k])
-              }
-            }
+    }
+    else if (filterKeysArr[0] == 'color') {
+      for (var i = 0; i < colorArr.length; i++) {
+        for (var j = 0; j < allProducts.length; j++) {
+          if (allProducts[j].color.toLowerCase() == colorArr[i].toLowerCase()) {
+            filterFinalDataArr.push(allProducts[j])
           }
         }
       }
     }
 
-    //   for (var i = 0; i < brandNameArr.length; i++) {
-    //     filterValuesArr.push(brandNameArr[i])
-    //   }
-    //   for (var j = 0; j < locationArr.length; j++) {
-    //     filterValuesArr.push(locationArr[j])
-    //   }
-    //   for (var k = 0; k < colorArr.length; k++) {
-    //     filterValuesArr.push(colorArr[i])
-    //   }
-
-    //   if (categoriesArr.length > 0) {
-    //     filterData = [];
-    //     for (var i = 0; i < allProducts.length; i++) {
-    //       if (allProducts[i].category[1] == categoriesArr[0]) {
-    //         filterData.push(allProducts[i]);
-    //         // filterFinalDataArr.push(allProducts[i])
-    //       }
-    //     }
-    //     if (filterValuesArr.length > 0) {
-    //       for (var i = 0; i < filterValuesArr.length; i++) {
-    //         for (var j = 0; j < filterData.length; j++) {
-    //           if (filterData[j].brandName.toLowerCase() == filterValuesArr[i].toLowerCase()) {
-    //             filterFinalDataArr.push(filterData[j])
-    //           }
-    //           else if (filterData[j].color.toLowerCase() == filterValuesArr[i].toLowerCase()) {
-    //             filterFinalDataArr.push(filterData[j])
-    //           }
-    //           else if (filterData[j].country.toLowerCase() == filterValuesArr[i].toLowerCase()) {
-    //             filterFinalDataArr.push(filterData[j])
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    //   else {
-    //     for (var i = 0; i < filterValuesArr.length; i++) {
-    //       for (var j = 0; j < allProducts.length; j++) {
-    //         if (allProducts[j].brandName.toLowerCase() == filterValuesArr[i].toLowerCase()) {
-    //           filterFinalDataArr.push(allProducts[j])
-    //         }
-    //         else if (allProducts[j].color.toLowerCase() == filterValuesArr[i].toLowerCase()) {
-    //           filterFinalDataArr.push(allProducts[j])
-    //         }
-    //         else if (allProducts[j].country.toLowerCase() == filterValuesArr[i].toLowerCase()) {
-    //           filterFinalDataArr.push(allProducts[j])
-    //         }
-    //       }
-    //     }
-    //   }
-    console.log(filterKeysArr, 'filterKeysArr')
-    // console.log(categoriesArr, 'categoriesArr')
-    // console.log(brandNameArr, 'brandNameArr')
-    // console.log(colorArr, 'colorArr')
-    // console.log(locationArr, 'locationArr')
-    console.log(filterData, 'filterData')
-    console.log(filterFinalDataArr, 'filterFinalDataArr')
-
+    this.setTheStateForFiltredValues(filterFinalDataArr)
 
   }
+
+  //filter by any two of the key
+  filterProductWithTwoValue = (filterKeysArr) => {
+    const { allProducts } = this.state;
+    let arr = [];
+    let filterFinalDataArr = [];
+    if (filterKeysArr[0] == 'categories' && filterKeysArr[1] == 'brand name') {
+
+      for (var i = 0; i < allProducts.length; i++) {
+        if (allProducts[i].category[1].toLowerCase() == categoriesArr[0].toLowerCase()) {
+          arr.push(allProducts[i])
+        }
+      }
+      for (var i = 0; i < brandNameArr.length; i++) {
+        for (var j = 0; j < arr.length; j++) {
+          if (arr[j].brandName.toLowerCase() == brandNameArr[i].toLowerCase()) {
+            filterFinalDataArr.push(arr[j])
+          }
+        }
+      }
+
+    }
+    else if (filterKeysArr[0] == 'categories' && filterKeysArr[1] == 'color') {
+
+      for (var i = 0; i < allProducts.length; i++) {
+        if (allProducts[i].category[1].toLowerCase() == categoriesArr[0].toLowerCase()) {
+          arr.push(allProducts[i])
+        }
+      }
+      for (var i = 0; i < colorArr.length; i++) {
+        for (var j = 0; j < arr.length; j++) {
+          if (arr[j].color.toLowerCase() == colorArr[i].toLowerCase()) {
+            filterFinalDataArr.push(arr[j])
+          }
+        }
+      }
+
+    }
+    else if (filterKeysArr[0] == 'categories' && filterKeysArr[1] == 'location') {
+
+      for (var i = 0; i < allProducts.length; i++) {
+        if (allProducts[i].category[1].toLowerCase() == categoriesArr[0].toLowerCase()) {
+          arr.push(allProducts[i])
+        }
+      }
+      for (var i = 0; i < locationArr.length; i++) {
+        for (var j = 0; j < arr.length; j++) {
+          if (arr[j].country.toLowerCase() == locationArr[i].toLowerCase()) {
+            filterFinalDataArr.push(arr[j])
+          }
+        }
+      }
+
+    }
+    else if (filterKeysArr[0] == 'brand name' && filterKeysArr[1] == 'color') {
+
+      for (var i = 0; i < brandNameArr.length; i++) {
+        for (var j = 0; j < allProducts.length; j++) {
+          if (allProducts[j].brandName.toLowerCase() == brandNameArr[i].toLowerCase()) {
+            arr.push(allProducts[j])
+          }
+        }
+      }
+      for (var i = 0; i < colorArr.length; i++) {
+        for (var j = 0; j < arr.length; j++) {
+          if (arr[j].color.toLowerCase() == colorArr[i].toLowerCase()) {
+            filterFinalDataArr.push(arr[j])
+          }
+        }
+      }
+
+    }
+    else if (filterKeysArr[0] == 'brand name' && filterKeysArr[1] == 'location') {
+
+      for (var i = 0; i < brandNameArr.length; i++) {
+        for (var j = 0; j < allProducts.length; j++) {
+          if (allProducts[j].brandName.toLowerCase() == brandNameArr[i].toLowerCase()) {
+            arr.push(allProducts[j])
+          }
+        }
+      }
+      for (var i = 0; i < locationArr.length; i++) {
+        for (var j = 0; j < arr.length; j++) {
+          if (arr[j].country.toLowerCase() == locationArr[i].toLowerCase()) {
+            filterFinalDataArr.push(arr[j])
+          }
+        }
+      }
+
+    }
+    else if (filterKeysArr[0] == 'color' && filterKeysArr[1] == 'location') {
+
+      for (var i = 0; i < colorArr.length; i++) {
+        for (var j = 0; j < allProducts.length; j++) {
+          if (allProducts[j].color.toLowerCase() == colorArr[i].toLowerCase()) {
+            arr.push(allProducts[j])
+          }
+        }
+      }
+      for (var i = 0; i < locationArr.length; i++) {
+        for (var j = 0; j < arr.length; j++) {
+          if (arr[j].country.toLowerCase() == locationArr[i].toLowerCase()) {
+            filterFinalDataArr.push(arr[j])
+          }
+        }
+      }
+
+    }
+
+    this.setTheStateForFiltredValues(filterFinalDataArr)
+
+  }
+
+  //filter by any three of the key
+  filterProductWithThreeValue = (filterKeysArr) => {
+    const { allProducts } = this.state;
+    let arr1 = [];
+    let arr2 = [];
+    let filterFinalDataArr = [];
+
+    if (filterKeysArr[0] == "categories" && filterKeysArr[1] == "brand name" && filterKeysArr[2] == "color") {
+
+      for (var i = 0; i < allProducts.length; i++) {
+        if (allProducts[i].category[1].toLowerCase() == categoriesArr[0].toLowerCase()) {
+          arr1.push(allProducts[i])
+        }
+      }
+      for (var i = 0; i < brandNameArr.length; i++) {
+        for (var j = 0; j < arr1.length; j++) {
+          if (arr1[j].brandName.toLowerCase() == brandNameArr[i].toLowerCase()) {
+            arr2.push(arr1[j])
+          }
+        }
+      }
+      for (var i = 0; i < colorArr.length; i++) {
+        for (var j = 0; j < arr2.length; j++) {
+          if (arr2[j].color.toLowerCase() == colorArr[i].toLowerCase()) {
+            filterFinalDataArr.push(arr2[j]);
+          }
+        }
+      }
+
+    }
+    else if (filterKeysArr[0] == "categories" && filterKeysArr[1] == "color" && filterKeysArr[2] == "location") {
+
+      for (var i = 0; i < allProducts.length; i++) {
+        if (allProducts[i].category[1].toLowerCase() == categoriesArr[0].toLowerCase()) {
+          arr1.push(allProducts[i])
+        }
+      }
+      for (var i = 0; i < colorArr.length; i++) {
+        for (var j = 0; j < arr1.length; j++) {
+          if (arr1[j].color.toLowerCase() == colorArr[i].toLowerCase()) {
+            arr2.push(arr1[j]);
+          }
+        }
+      }
+      for (var i = 0; i < locationArr.length; i++) {
+        for (var j = 0; j < arr2.length; j++) {
+          if (arr2[j].country.toLowerCase() == locationArr[i].toLowerCase()) {
+            filterFinalDataArr.push(arr2[j])
+          }
+        }
+      }
+
+    }
+    else if (filterKeysArr[0] == "categories" && filterKeysArr[1] == "brand name" && filterKeysArr[2] == "location") {
+
+      for (var i = 0; i < allProducts.length; i++) {
+        if (allProducts[i].category[1].toLowerCase() == categoriesArr[0].toLowerCase()) {
+          arr1.push(allProducts[i])
+        }
+      }
+      for (var i = 0; i < brandNameArr.length; i++) {
+        for (var j = 0; j < arr1.length; j++) {
+          if (arr1[j].brandName.toLowerCase() == brandNameArr[i].toLowerCase()) {
+            arr2.push(arr1[j])
+          }
+        }
+      }
+      for (var i = 0; i < locationArr.length; i++) {
+        for (var j = 0; j < arr2.length; j++) {
+          if (arr2[j].country.toLowerCase() == locationArr[i].toLowerCase()) {
+            filterFinalDataArr.push(arr2[j])
+          }
+        }
+      }
+
+    }
+    else if (filterKeysArr[0] == "brand name" && filterKeysArr[1] == "color" && filterKeysArr[2] == "location") {
+
+      for (var i = 0; i < brandNameArr.length; i++) {
+        for (var j = 0; j < allProducts.length; j++) {
+          if (allProducts[j].brandName.toLowerCase() == brandNameArr[i].toLowerCase()) {
+            arr1.push(allProducts[i])
+          }
+        }
+      }
+      for (var i = 0; i < colorArr.length; i++) {
+        for (var j = 0; j < arr1.length; j++) {
+          if (arr1[j].color.toLowerCase() == colorArr[i].toLowerCase()) {
+            arr2.push(arr1[j]);
+          }
+        }
+      }
+      for (var i = 0; i < locationArr.length; i++) {
+        for (var j = 0; j < arr2.length; j++) {
+          if (arr2[j].country.toLowerCase() == locationArr[i].toLowerCase()) {
+            filterFinalDataArr.push(arr2[j])
+          }
+        }
+      }
+    }
+
+    this.setTheStateForFiltredValues(filterFinalDataArr)
+
+  }
+
+  //filter by any four of the key
+  filterProductWithFourValue = (filterKeysArr) => {
+    const { allProducts } = this.state;
+
+    let arr1 = [];
+    let arr2 = [];
+    let arr3 = [];
+    let filterFinalDataArr = [];
+
+    for (var i = 0; i < allProducts.length; i++) {
+      if (allProducts[i].category[1].toLowerCase() == categoriesArr[0].toLowerCase()) {
+        arr1.push(allProducts[i])
+      }
+    }
+    for (var i = 0; i < brandNameArr.length; i++) {
+      for (var j = 0; j < arr1.length; j++) {
+        if (arr1[j].brandName.toLowerCase() == brandNameArr[i].toLowerCase()) {
+          arr2.push(arr1[j])
+        }
+      }
+    }
+    for (var i = 0; i < colorArr.length; i++) {
+      for (var j = 0; j < arr2.length; j++) {
+        if (arr2[j].color.toLowerCase() == colorArr[i].toLowerCase()) {
+          arr3.push(arr2[j]);
+        }
+      }
+    }
+    for (var i = 0; i < locationArr.length; i++) {
+      for (var j = 0; j < arr3.length; j++) {
+        if (arr3[j].country.toLowerCase() == locationArr[i].toLowerCase()) {
+          filterFinalDataArr.push(arr3[j])
+        }
+      }
+    }
+
+    this.setTheStateForFiltredValues(filterFinalDataArr)
+  }
+
+  setTheStateForFiltredValues = (filterFinalDataArr) => {
+
+    if (filterFinalDataArr.length > 0) {
+      this.setState({
+        filteredData: filterFinalDataArr,
+        filterDataShow: true,
+        filterDataNotFound: false
+
+      })
+    }
+    else {
+      this.setState({
+        filteredData: filterFinalDataArr,
+        filterDataNotFound: true,
+        filterDataShow: true,
+      })
+    }
+    if (brandNameArr.length == 0 && locationArr.length == 0 && colorArr.length == 0) {
+      this.setState({
+        filterDataShow: false,
+      })
+    }
+
+    console.log(locationArr, 'locationArr')
+    console.log(brandNameArr, 'brandNameArr')
+    console.log(colorArr, 'colorArr')
+
+
+    console.log(brandNameArr.length, 'brandNameArr.length')
+    console.log(locationArr.length, 'locationArr.length')
+    console.log(colorArr.length, 'colorArr.length')
+
+  }
+
 
   render() {
     const { shopData, shopId, shopEdit, addProduct, profileId, addProductObj,
-      allProducts, categories, color, location, brandName } = this.state;
+      allProducts, categories, color, location, brandName, filteredData, filterDataNotFound, filterDataShow } = this.state;
+
     if (shopEdit) {
       return (
         <Redirect to={{ pathname: '/shopForm', state: shopData }} />
@@ -327,7 +572,10 @@ class EcomProfile extends Component {
     return (
       <div>
         <span>
-          <div className="" style={{ "backgroundImage": "url('../images/bgc-images/busnes-listing.png')", marginTop: "-20px", backgroundSize: 'cover' }}>
+          <div className="" style={{
+            "backgroundImage": "url('../images/bgc-images/busnes-listing.png')",
+            marginTop: "-20px", backgroundSize: 'cover'
+          }}>
             <div className="background-image">
               <Burgermenu />
             </div>
@@ -391,12 +639,12 @@ class EcomProfile extends Component {
                 <TabPane tab="Home" key="1">
                   {
                     shopData && <ProfileHome shopData={shopData} />
-
                   }
                 </TabPane>
                 <TabPane tab="All Products" key="2">
                   <ProfileProducts allProducts={allProducts} categories={categories} color={color}
-                    location={location} brandName={brandName} onChange={this.onChange} />
+                    location={location} brandName={brandName} onChange={this.onChange} filteredData={filteredData}
+                    filterDataNotFound={filterDataNotFound} filterDataShow={filterDataShow} />
                 </TabPane>
                 <TabPane tab="Profile" key="3">
                   Content of Tab Pane 3

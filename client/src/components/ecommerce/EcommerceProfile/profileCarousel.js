@@ -50,7 +50,6 @@ class ProfileCarousel extends Component {
         const { arrayListing, to, farward, backward } = this.state,
         { detail } = this.props;
         let from = isMobile && isTablet ? 2 : isBrowser ? 3 : 1;
-        console.log(arrayListing, "Array Nhi mil rha")
 
         return(
             <div>

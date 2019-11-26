@@ -12,7 +12,7 @@ class EcomNine extends Component {
     }
 
     render() {
-        const { allProducts } = this.props;
+        const { allProducts, filterDataShow, filteredData, filterDataNotFound } = this.props;
         return (
             <div className="container" style={{ padding: '0px', width: '100%' }}>
                 {/* <div className="row">
@@ -92,26 +92,51 @@ class EcomNine extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                 </div> */}
                 <div className="row">
                     <div className="col-md-12">
-                        {allProducts && allProducts.map((elem, key) => {
-                            return (
-                                <div className="col-md-3 col-sm-4">
-                                    <Link rel="noopener noreferrer" to={{ pathname: `/products_DetailStyle/${elem._id}`, state: elem }} >
-                                        <div className="sellercardopacity" style={{ cursor: 'pointer' }}>
-                                            <div className="sellerstorecard" >
-                                                <img alt='' src={elem.images[0]} />
+                        {filterDataShow ?
+                            filteredData && filteredData.map((elem, key) => {
+                                return (
+                                    <div className="col-md-3 col-sm-4">
+                                        <Link rel="noopener noreferrer" to={{ pathname: `/products_DetailStyle/${elem._id}`, state: elem }} >
+                                            <div className="sellercardopacity" style={{ cursor: 'pointer' }}>
+                                                <div className="sellerstorecard" >
+                                                    <img alt='' src={elem.images[0]} />
+                                                </div>
+                                                <h4 style={{ marginTop: "20px", textAlign: "left" }}>{elem.product}</h4>
+                                                <p style={{ color: "#37a99b", textAlign: 'left', fontWeight: '600', marginLeft: '15px' }}> {`$${elem.price}`}</p>
+                                                <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} value={4.5} />
                                             </div>
-                                            <h4 style={{ marginTop: "20px", textAlign: "left" }}>{elem.product}</h4>
-                                            <p style={{ color: "#37a99b", textAlign: 'left', fontWeight: '600', marginLeft: '15px' }}> {`$${elem.price}`}</p>
-                                            <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} value={4.5} />
-                                        </div>
-                                    </Link>
-                                </div>
-                            )
-                        })} 
+                                        </Link>
+                                    </div>
+                                )
+                            })
+                            :
+                            allProducts && allProducts.map((elem, key) => {
+                                return (
+                                    <div className="col-md-3 col-sm-4">
+                                        <Link rel="noopener noreferrer" to={{ pathname: `/products_DetailStyle/${elem._id}`, state: elem }} >
+                                            <div className="sellercardopacity" style={{ cursor: 'pointer' }}>
+                                                <div className="sellerstorecard" >
+                                                    <img alt='' src={elem.images[0]} />
+                                                </div>
+                                                <h4 style={{ marginTop: "20px", textAlign: "left" }}>{elem.product}</h4>
+                                                <p style={{ color: "#37a99b", textAlign: 'left', fontWeight: '600', marginLeft: '15px' }}> {`$${elem.price}`}</p>
+                                                <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} value={4.5} />
+                                            </div>
+                                        </Link>
+                                    </div>
+                                )
+                            })
+                        }
+                        {filterDataNotFound ?
+                            <div>
+                                <p>
+                                    Data Not Found
+                            </p>
+                            </div> : null}
                     </div>
                 </div>
             </div>

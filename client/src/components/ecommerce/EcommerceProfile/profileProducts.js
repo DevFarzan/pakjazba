@@ -10,9 +10,8 @@ class ProfileProducts extends Component {
   }
 
   render() {
-    const { allProducts, categories, color, location, brandName, filteredData, filterDataNotFound, filterDataShow } = this.props;
-    console.log(filteredData, 'filteredData')
-    console.log(filterDataNotFound, 'filterDataNotFound')
+    const { allProducts, categories, color, location, brandName, filteredData, filterDataNotFound, filterDataShow,
+      categoriesName, removeCategories, serachProductMinToMaxPrice, priceRangeNotGiven } = this.props;
 
     return (
       <div className="">
@@ -22,12 +21,15 @@ class ProfileProducts extends Component {
               <div className="row">
                 <h2 style={{ fontWeight: '700', marginLeft: '15px' }}>Filters</h2>
                 <FourEcom categories={categories} color={color} location={location}
-                  brandName={brandName} onChange={this.props.onChange} />
+                  brandName={brandName} onChange={this.props.onChange}
+                  serachProductMinToMaxPrice={serachProductMinToMaxPrice}
+                  priceRangeNotGiven={priceRangeNotGiven} />
               </div>
             </div>
             <div className="col-md-9">
               <EcomNine allProducts={allProducts} filterDataShow={filterDataShow}
-                filteredData={filteredData} filterDataNotFound={filterDataNotFound} />
+                filteredData={filteredData} filterDataNotFound={filterDataNotFound}
+                categoriesName={categoriesName} removeCategories={removeCategories} />
             </div>
           </div>
         </div>

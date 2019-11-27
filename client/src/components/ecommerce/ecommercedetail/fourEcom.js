@@ -12,10 +12,12 @@ class FourEcom extends Component {
   }
 
   render() {
-    const { categories, color, location, brandName,onChange } = this.props;
+    const { minPrice, maxPrice } = this.state;
+    const { categories, color, location, brandName, onChange, serachProductMinToMaxPrice, priceRangeNotGiven } = this.props;
+
     return (
       <div>
-        
+
         <div className="">
           <h4 style={{ fontWeight: '700' }}>Related Categories</h4>
           {categories && categories.map((elem, key) => {
@@ -41,7 +43,7 @@ class FourEcom extends Component {
           </Checkbox.Group>
         </div>
 
-      
+
         <hr className="filterdivider" />
         <div class="" style={{ display: "grid" }}>
           <h4 style={{ fontWeight: '700' }}>
@@ -78,18 +80,27 @@ class FourEcom extends Component {
           <div size="large" style={{ marginLeft: '10px' }}>
             <Row gutter={8}>
               <Col span={8}>
-                <Input defaultValue="Min" />
+                <Input
+                  placeholder="Min"
+                  onChange={e => this.setState({ minPrice: e.target.value })}
+                />
               </Col>
               <Col span={8}>
-                <Input defaultValue="Max" />
+                <Input
+                  // defaultValue="Max" 
+                  placeholder="Max"
+                  onChange={e => this.setState({ maxPrice: e.target.value })}
+                />
               </Col>
               <Col>
-                <Button type="primary" icon="caret-right" />
+                <Button type="primary" icon="caret-right" onClick={this.props.serachProductMinToMaxPrice.bind(this, minPrice, maxPrice)} />
               </Col>
             </Row>
           </div>
+          {priceRangeNotGiven ? <div>
+            <p>Please Enter Min & Max Price</p>
+          </div> : null}
         </div>
-
         <hr className="filterdivider" />
         {/* <div>
           <h4 style={{ fontWeight: '700' }}>Rating</h4>

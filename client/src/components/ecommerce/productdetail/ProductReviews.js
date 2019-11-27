@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Rate, notification } from 'antd';
-import { isMobile, isTablet, isBrowser } from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 import { HttpUtils } from "../../../Services/HttpUtils";
 
 const desc = ['Terrible', 'Bad', 'Normal', 'Good', 'Wonderful'];
@@ -38,23 +38,18 @@ class ProductReviews extends Component {
     }
     async componentWillMount() {
         const { productId, shopId } = this.props;
-        console.log(shopId, 'shopId')
         if (productId) {
             let getCommentObj = {
                 productId: productId
             }
             let res = await HttpUtils.post('getecommercecomment', getCommentObj);
-            console.log(res, 'res for comments')
-            console.log(res.content.length, 'res for comments')
-
             if (res.content.length > 0) {
-                console.log("if")
                 this.setState({
                     commentData: res.content
                 })
+                this.calculateRating()
             }
             else {
-                // console.log("else")
                 this.setState({
                     averageRatingProduct: 0
                 })
@@ -62,11 +57,10 @@ class ProductReviews extends Component {
         }
     }
     sendComment = async (e) => {
-        const { name, email, message, rating, date, time, userId, commentData, averageRatingProduct } = this.state;
+        const { name, email, message, rating, date, time, userId, commentData } = this.state;
         const { productId, shopId } = this.props;
         e.preventDefault();
         let perOfProductRating;
-        console.log(rating, 'rating')
         if (rating == 0) {
             perOfProductRating = 0
         }
@@ -100,7 +94,6 @@ class ProductReviews extends Component {
         else if (rating == 5) {
             perOfProductRating = 100
         }
-        console.log(perOfProductRating, 'perOfProductRating')
         let objComment = {
             name: name,
             email: email,
@@ -113,7 +106,6 @@ class ProductReviews extends Component {
             shopId: shopId,
             averageRatingProduct: perOfProductRating
         }
-        console.log(objComment, 'objComment')
 
         let res = await HttpUtils.post('postecommercecomment', objComment);
         if (res.code == 200) {
@@ -132,12 +124,46 @@ class ProductReviews extends Component {
                     console.log('Notification Clicked!');
                 },
             });
+            this.calculateRating()
         }
     }
+
     changeRating = (newRating, name) => {
         this.setState({
             rating: newRating
         });
+    }
+
+    calculateRating = async () => {
+        const { commentData } = this.state;
+        const { productId } = this.props;
+
+        let numberOfPerson = 0;
+        let totalPercantageOfProduct = 0;
+        let finalPercantageOfProduct = 0;
+        let totalAverageRateProduct = 0;
+        for (var i = 0; i < commentData.length; i++) {
+            numberOfPerson = numberOfPerson + 1;
+            totalPercantageOfProduct = totalPercantageOfProduct + commentData[i].averageRatingProduct;
+            finalPercantageOfProduct = totalPercantageOfProduct / numberOfPerson;
+            totalAverageRateProduct = finalPercantageOfProduct / 20
+        }
+
+        let obj = {
+            objectId: productId,
+            percantageOfProduct: finalPercantageOfProduct,
+            averageRateProduct: totalAverageRateProduct
+        }
+        
+        let responseEcommreceData = await HttpUtils.post('postecommercedata', obj)
+        console.log(responseEcommreceData , 'responseEcommreceData')
+        // console.log(numberOfPerson, 'numberOfPerson')
+        // console.log(totalPercantageOfProduct, 'totalPercantageOfProduct')
+        // console.log(finalPercantageOfProduct, 'finalPercantageOfProduct')
+        // console.log(totalAverageRateProduct, 'totalAverageRateProduct')
+
+
+
     }
     render() {
         const { rating, name, email, message, commentData } = this.state;
@@ -163,7 +189,7 @@ class ProductReviews extends Component {
                                                 </div>
                                             </div>
                                             <span style={{ paddingLeft: "10px" }}>
-                                                <Rate tooltips={desc} value={elem.rating} />
+                                                <Rate tooltips={desc} allowHalf value={elem.rating} />
                                                 {elem.rating ? <span className="ant-rate-text">{desc[elem.rating - 1]}</span> : ''}
                                             </span>
                                             <div class="clearfix"></div>

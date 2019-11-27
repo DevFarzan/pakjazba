@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './ecomNine.css';
 import { Rate } from 'antd';
-import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import { Link } from "react-router-dom";
 
 
@@ -12,9 +11,14 @@ class EcomNine extends Component {
     }
 
     render() {
-        const { allProducts, filterDataShow, filteredData, filterDataNotFound } = this.props;
+        const { allProducts, filterDataShow, filteredData, filterDataNotFound, categoriesName, removeCategories } = this.props;
         return (
             <div className="container" style={{ padding: '0px', width: '100%' }}>
+                {categoriesName.length > 0 ?
+                    <div>
+                        <li>{categoriesName[0]}<span class="close"
+                            onClick={removeCategories.bind(this, 'categories')}>x</span></li>
+                    </div> : null}
                 {/* <div className="row">
                     <div className="col-md-12" style={isMobile ? { padding: "0px" } : { padding: "15px" }}>
                         <div className="col-md-3 col-sm-4">
@@ -107,7 +111,7 @@ class EcomNine extends Component {
                                                 </div>
                                                 <h4 style={{ marginTop: "20px", textAlign: "left" }}>{elem.product}</h4>
                                                 <p style={{ color: "#37a99b", textAlign: 'left', fontWeight: '600', marginLeft: '15px' }}> {`$${elem.price}`}</p>
-                                                <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} value={4.5} />
+                                                <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} value={elem.averageRateProduct} />
                                             </div>
                                         </Link>
                                     </div>
@@ -124,19 +128,15 @@ class EcomNine extends Component {
                                                 </div>
                                                 <h4 style={{ marginTop: "20px", textAlign: "left" }}>{elem.product}</h4>
                                                 <p style={{ color: "#37a99b", textAlign: 'left', fontWeight: '600', marginLeft: '15px' }}> {`$${elem.price}`}</p>
-                                                <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} value={4.5} />
+                                                <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} value={elem.averageRateProduct} />
                                             </div>
                                         </Link>
                                     </div>
                                 )
                             })
                         }
-                        {filterDataNotFound ?
-                            <div>
-                                <p>
-                                    Data Not Found
-                            </p>
-                            </div> : null}
+                        {filterDataNotFound && <span style={{ textAlign: "center" }}><h1>Not found....</h1></span>}
+                        {filterDataNotFound && <span style={{ textAlign: "center" }}><h5>you can find your search by type</h5></span>}
                     </div>
                 </div>
             </div>

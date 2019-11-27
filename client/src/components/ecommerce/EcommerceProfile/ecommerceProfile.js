@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import Burgermenu from '../../header/burgermenu';
 import Footer from '../../footer/footer';
 import './ecommerceProfile.css';
-import { Link, Redirect } from "react-router-dom";
-import EcomNine from './ecomNine';
-import { isMobile, isTablet, isBrowser } from 'react-device-detect';
-import { Tabs, Radio } from 'antd';
+import { Redirect } from "react-router-dom";
+import { isTablet } from 'react-device-detect';
+import { Tabs } from 'antd';
 import ProfileHome from './profileHome';
 import ProfileProducts from './profileProducts';
 import { HttpUtils } from "../../../Services/HttpUtils";
@@ -35,7 +34,9 @@ class EcomProfile extends Component {
       brandName: [],
       filteredData: [],
       filterDataNotFound: false,
-      filterDataShow: false
+      filterDataShow: false,
+      categoriesName: [],
+      priceRangeNotGiven: false
     }
   }
 
@@ -110,6 +111,36 @@ class EcomProfile extends Component {
     }
   }
 
+  calculateRatingOfShop = async () => {
+    const { allProducts , shopId} = this.state;
+
+    let numberOfProduct = 0;
+    let totalPercantageOfShop = 0;
+    let finalPercantageOfShop = 0;
+
+    for (var i = 0; i < allProducts.length; i++) {
+      numberOfProduct = numberOfProduct + 1;
+      totalPercantageOfShop = totalPercantageOfShop + allProducts[i].percantageOfProduct;
+      finalPercantageOfShop = totalPercantageOfShop / numberOfProduct;
+    }
+
+    // let obj = {
+    //   objectId: productId,
+    //   percantageOfProduct: finalPercantageOfProduct,
+    //   averageRateProduct: totalAverageRateProduct
+    // }
+
+    // let responseEcommreceData = await HttpUtils.post('postecommercedata', obj)
+    // console.log(responseEcommreceData, 'responseEcommreceData')
+    // console.log(numberOfPerson, 'numberOfPerson')
+    // console.log(totalPercantageOfProduct, 'totalPercantageOfProduct')
+    // console.log(finalPercantageOfProduct, 'finalPercantageOfProduct')
+    // console.log(totalAverageRateProduct, 'totalAverageRateProduct')
+
+
+
+  }
+
   editShop = () => {
     this.setState({
       shopEdit: true
@@ -128,20 +159,19 @@ class EcomProfile extends Component {
     })
   }
 
+  removeCategories = (key) => {
+    if (key == 'categories') {
+      categoriesArr = [];
+      let arr = [];
+      this.onChange("categoriess", arr)
+    }
+  }
+
   //collect the filtraion keys and values in seprate array for filtration
   onChange = (key, value) => {
     let filterKey = [];
-
-    console.log(key, 'key')
-    console.log(value, 'value')
-    console.log(value.length, 'value. length')
-
-
     if (value.length == 0) {
-      if (key == 'categories') {
-
-      }
-      else if (key == 'brand name') {
+      if (key == 'brand name') {
         brandNameArr = [];
       }
       else if (key == 'location') {
@@ -150,7 +180,6 @@ class EcomProfile extends Component {
       }
       else if (key == 'color') {
         colorArr = [];
-
       }
     }
     //add filter values in the seprate arrays
@@ -193,7 +222,6 @@ class EcomProfile extends Component {
     }
     //call the function
     this.pushFilterArrayData(filterKey)
-    console.log(filterKey, 'filterKey')
   }
 
 
@@ -260,7 +288,6 @@ class EcomProfile extends Component {
         }
       }
     }
-
     this.setTheStateForFiltredValues(filterFinalDataArr)
 
   }
@@ -454,17 +481,19 @@ class EcomProfile extends Component {
 
     }
     else if (filterKeysArr[0] == "brand name" && filterKeysArr[1] == "color" && filterKeysArr[2] == "location") {
-
       for (var i = 0; i < brandNameArr.length; i++) {
         for (var j = 0; j < allProducts.length; j++) {
           if (allProducts[j].brandName.toLowerCase() == brandNameArr[i].toLowerCase()) {
-            arr1.push(allProducts[i])
+            // console.log(allProducts[i] , 'data with brand')
+            arr1.push(allProducts[j])
           }
         }
       }
       for (var i = 0; i < colorArr.length; i++) {
         for (var j = 0; j < arr1.length; j++) {
           if (arr1[j].color.toLowerCase() == colorArr[i].toLowerCase()) {
+            // console.log(allProducts[i] , 'data with brand')
+
             arr2.push(arr1[j]);
           }
         }
@@ -523,12 +552,13 @@ class EcomProfile extends Component {
 
   setTheStateForFiltredValues = (filterFinalDataArr) => {
 
+
     if (filterFinalDataArr.length > 0) {
       this.setState({
         filteredData: filterFinalDataArr,
         filterDataShow: true,
-        filterDataNotFound: false
-
+        filterDataNotFound: false,
+        categoriesName: categoriesArr
       })
     }
     else {
@@ -536,29 +566,56 @@ class EcomProfile extends Component {
         filteredData: filterFinalDataArr,
         filterDataNotFound: true,
         filterDataShow: true,
+        categoriesName: categoriesArr
       })
     }
-    if (brandNameArr.length == 0 && locationArr.length == 0 && colorArr.length == 0) {
+
+    if (categoriesArr.length == 0 && brandNameArr.length == 0 &&
+      locationArr.length == 0 && colorArr.length == 0) {
       this.setState({
         filterDataShow: false,
+        filterDataNotFound: false,
       })
     }
-
-    console.log(locationArr, 'locationArr')
-    console.log(brandNameArr, 'brandNameArr')
-    console.log(colorArr, 'colorArr')
-
-
-    console.log(brandNameArr.length, 'brandNameArr.length')
-    console.log(locationArr.length, 'locationArr.length')
-    console.log(colorArr.length, 'colorArr.length')
-
   }
 
+  serachProductMinToMaxPrice = (minPrice, maxPrice) => {
+    const { allProducts, filteredData } = this.state;
+    let rangePriceFilterData = []
+    if (minPrice == '' || maxPrice == '') {
+      this.setState({
+        priceRangeNotGiven: true
+      })
+    }
+    else {
+      if (filteredData.length > 0) {
+        for (var i = 0; i < filteredData.length; i++) {
+          if (filteredData[i].price >= minPrice && filteredData[i].price <= maxPrice) {
+            rangePriceFilterData.push(filteredData[i])
+          }
+        }
+      }
+      else {
+        for (var i = 0; i < allProducts.length; i++) {
+          if (allProducts[i].price >= minPrice && allProducts[i].price <= maxPrice) {
+            rangePriceFilterData.push(allProducts[i])
+            // console.log(allProducts[i], 'allProducts[i]')
+          }
+        }
+      }
+      this.setState({
+        priceRangeNotGiven: false,
+        filteredData: rangePriceFilterData,
+        filterDataShow: true,
+        filterDataNotFound: false,
+        categoriesName: categoriesArr
+      })
+    }
+  }
 
   render() {
-    const { shopData, shopId, shopEdit, addProduct, profileId, addProductObj,
-      allProducts, categories, color, location, brandName, filteredData, filterDataNotFound, filterDataShow } = this.state;
+    const { shopData, shopEdit, addProduct, profileId, addProductObj, allProducts, categories, color, location, brandName,
+      filteredData, filterDataNotFound, filterDataShow, categoriesName, priceRangeNotGiven } = this.state;
 
     if (shopEdit) {
       return (
@@ -644,7 +701,10 @@ class EcomProfile extends Component {
                 <TabPane tab="All Products" key="2">
                   <ProfileProducts allProducts={allProducts} categories={categories} color={color}
                     location={location} brandName={brandName} onChange={this.onChange} filteredData={filteredData}
-                    filterDataNotFound={filterDataNotFound} filterDataShow={filterDataShow} />
+                    filterDataNotFound={filterDataNotFound} filterDataShow={filterDataShow}
+                    categoriesName={categoriesName} removeCategories={this.removeCategories}
+                    serachProductMinToMaxPrice={this.serachProductMinToMaxPrice}
+                    priceRangeNotGiven={priceRangeNotGiven} />
                 </TabPane>
                 <TabPane tab="Profile" key="3">
                   Content of Tab Pane 3

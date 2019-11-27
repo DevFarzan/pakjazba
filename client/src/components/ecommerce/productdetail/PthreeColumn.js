@@ -46,7 +46,6 @@ class PthreeColumn extends Component {
   }
 
   onChange = (value) => {
-    console.log('changed', value);
     this.setState({
       count: value
     })
@@ -62,7 +61,6 @@ class PthreeColumn extends Component {
     }
   }
   onGoEditProduct() {
-    console.log('funtion called')
     this.setState({
       editProduct: true
     })
@@ -70,7 +68,6 @@ class PthreeColumn extends Component {
   render() {
     const { data, count, commentData, editProduct } = this.state;
     const { profileId } = this.props;
-    console.log(data, 'data of product')
     if (editProduct) {
       return (
         <Redirect to={{ pathname: `/Forms_Ecommerce`, state: data }} />

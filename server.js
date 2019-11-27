@@ -2033,8 +2033,9 @@ app.post('/api/postecommercedata', (req, res) => {
       searchTerms: ecommerceData.searchTerms,
       subjectMatter: ecommerceData.subjectMatter,
       shopId: ecommerceData.shopId,
-      shopName: ecommerceData.shopName
-
+      shopName: ecommerceData.shopName,
+      percantageOfProduct: ecommerceData.percantageOfProduct,
+      averageRateProduct: ecommerceData.averageRateProduct
     })
     postEcommerceData.save(function (err, data) {
       if (err) {

@@ -76,6 +76,11 @@ class EcommerceMarket extends Component {
               ecommreceFilterData.push(data[i])
             }
           }
+          else if (searchBy == 'brand') {
+            if (ecomSearchValue == data[i].brandName.toLowerCase() || ecomSearchValue == data[i].manufacturer.toLowerCase()) {
+              ecommreceFilterData.push(data[i])
+            }
+          }
         }
         if (ecommreceFilterData.length == 0) {
           this.setState({

@@ -16,6 +16,7 @@ var shopCollection = new mongoose.Schema({
     userId: { type: String },
     shopPurpose: { type: String },
     shopLogo: { type: Array },
+    percantageOfShop: { type: Number }
 });
 //categorySchema.plugin(uniqueValidator);
 mongoose.model('shopCollection', shopCollection);

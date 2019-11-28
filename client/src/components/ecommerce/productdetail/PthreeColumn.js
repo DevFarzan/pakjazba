@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import './PthreeColumn.css';
 import { InputNumber, Icon } from 'antd';
-import PTable from './Ptable';
 import ProductInformation from './ProductInformation';
 import ProductReviews from './ProductReviews';
-import ProductFaq from './ProductFaq';
-import { HttpUtils } from "../../../Services/HttpUtils";
 import { Link, Redirect } from "react-router-dom";
 
 
@@ -158,7 +155,7 @@ class PthreeColumn extends Component {
               <ProductInformation data={this.props.data} />
               {/* <ProductFaq /> */}
               {data &&
-                <ProductReviews shopId={this.props.shopId} productId={this.props.productId} commentData={commentData}
+                <ProductReviews shopId={this.props.shopId} productId={this.props.productId}
                 />}
             </div>
           </div>

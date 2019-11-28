@@ -2292,8 +2292,8 @@ app.post('/api/postshop', (req, res) => {
       profileId: shopData.profileId,
       userId: shopData.userId,
       shopPurpose: shopData.shopPurpose,
-      shopLogo: shopData.shopLogo
-
+      shopLogo: shopData.shopLogo,
+      percantageOfShop: shopData.percantageOfShop
     })
     postShopData.save(function (err, data) {
       if (err) {

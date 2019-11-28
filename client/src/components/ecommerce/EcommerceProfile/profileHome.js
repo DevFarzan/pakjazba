@@ -10,14 +10,14 @@ class ProfileHome extends Component {
         super(props)
     }
     render() {
-        const { shopData } = this.props;
+        const { shopData , allProducts} = this.props;
         return (
             <div className="">
                 <div>
                     <ProfileBanner shopData={shopData}/>
                 </div>
                 <div>
-                    <ProfileCarousel />
+                    <ProfileCarousel arrayListing={allProducts}/>
                 </div>
                 <div>
                     <ProfileCatologe shopData={shopData}/>

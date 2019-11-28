@@ -41,6 +41,7 @@ class EcomProfile extends Component {
   }
 
   async componentWillMount() {
+
     let shopId = this.props.location.pathname.slice(18)
     let shopData = this.props.location.state;
     const userData = JSON.parse(localStorage.getItem('user'));
@@ -68,6 +69,8 @@ class EcomProfile extends Component {
       })
       this.getShopData(shopId)
     }
+
+
   }
 
   getShopData = async (shopId) => {
@@ -109,36 +112,36 @@ class EcomProfile extends Component {
         brandName: brandNameArr,
       })
     }
+    this.calculateRatingOfShop()
   }
 
   calculateRatingOfShop = async () => {
-    const { allProducts , shopId} = this.state;
+    const { allProducts, shopId } = this.state;
 
     let numberOfProduct = 0;
     let totalPercantageOfShop = 0;
     let finalPercantageOfShop = 0;
 
     for (var i = 0; i < allProducts.length; i++) {
-      numberOfProduct = numberOfProduct + 1;
-      totalPercantageOfShop = totalPercantageOfShop + allProducts[i].percantageOfProduct;
-      finalPercantageOfShop = totalPercantageOfShop / numberOfProduct;
+      if (allProducts[i].percantageOfProduct != undefined) {
+        numberOfProduct = numberOfProduct + 1;
+        totalPercantageOfShop = totalPercantageOfShop + allProducts[i].percantageOfProduct;
+        finalPercantageOfShop = totalPercantageOfShop / numberOfProduct;
+
+      }
     }
 
-    // let obj = {
-    //   objectId: productId,
-    //   percantageOfProduct: finalPercantageOfProduct,
-    //   averageRateProduct: totalAverageRateProduct
-    // }
+    finalPercantageOfShop = Math.round(finalPercantageOfShop);
 
-    // let responseEcommreceData = await HttpUtils.post('postecommercedata', obj)
-    // console.log(responseEcommreceData, 'responseEcommreceData')
-    // console.log(numberOfPerson, 'numberOfPerson')
-    // console.log(totalPercantageOfProduct, 'totalPercantageOfProduct')
-    // console.log(finalPercantageOfProduct, 'finalPercantageOfProduct')
-    // console.log(totalAverageRateProduct, 'totalAverageRateProduct')
+    let obj = {
+      objectId: shopId,
+      percantageOfShop: finalPercantageOfShop,
+    }
 
-
-
+    let shopData = await HttpUtils.post('postshop', obj)
+    this.setState({
+      shopData: shopData.content[0]
+    })
   }
 
   editShop = () => {
@@ -654,7 +657,10 @@ class EcomProfile extends Component {
                       </div>
                       <div className="col-md-10 col-sm-9 col-xs-9">
                         <h2 style={isTablet ? { margin: "0", fontSize: '27px' } : { margin: '0', fontSize: '36px' }}>{shopData.shopTitle}</h2>
-                        <p>73% postive seller ratings</p>
+                        {shopData.percantageOfShop != undefined ?
+                          <p>{`${shopData.percantageOfShop} postive seller ratings`}</p>
+                          :
+                          <p>0% postive seller ratings</p>}
                       </div>
                     </div>
                   </div>
@@ -695,7 +701,7 @@ class EcomProfile extends Component {
               <Tabs defaultActiveKey="1">
                 <TabPane tab="Home" key="1">
                   {
-                    shopData && <ProfileHome shopData={shopData} />
+                    shopData && <ProfileHome shopData={shopData} allProducts={allProducts}/>
                   }
                 </TabPane>
                 <TabPane tab="All Products" key="2">

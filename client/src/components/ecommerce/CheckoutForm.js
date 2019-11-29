@@ -24,12 +24,10 @@ class CheckoutForm extends Component {
             btnDisabeld: true
         })
         this.props.loaderFunc()
-        // console.log(token, 'token')
         if (token) {
             chechkOutObj.token = token.id;
         }
         if (error === undefined || token) {
-            console.log(chechkOutObj, 'receivedData')
 
             let res = await HttpUtils.post('postecommercepayment', chechkOutObj);
             this.props.modalsHideAndShow(res)

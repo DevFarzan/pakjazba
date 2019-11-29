@@ -49,6 +49,7 @@ class CarouselHome extends Component{
         { detail } = this.props;
         let from = isMobile && isTablet ? 2 : isBrowser ? 3 : 1;
 
+      
         return(
             <div className="carousel-reviews broun-block">
                 <div className="container" style={{width:"100%"}}>

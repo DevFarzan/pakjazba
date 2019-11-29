@@ -10,7 +10,6 @@ class FeaturedCards extends Component{
             des = des.substring(0, 30);
             des = des + '...'
         }
-    console.log(this.props.data,'forrrrrrrrrr');
     return(
       <div className="col-md-12">
         <div className="row" style={{padding:"0px"}}>

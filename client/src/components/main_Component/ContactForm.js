@@ -29,8 +29,6 @@ class ContactForm extends Component{
 
     async getReviews(data){
         let res = await HttpUtils.get('getreviews')
-        console.log(res, 'reviewsssssssssss')
-        console.log(data, 'lllllllllll')
         if(res.code === 200) {
             let filteredReviews = res.content.filter((elem) => elem.objid === data._id)
             this.setState({reviews: filteredReviews})
@@ -59,7 +57,6 @@ class ContactForm extends Component{
             written: moment().format('LL')
         }
         let res = await HttpUtils.post('reviews', obj)
-        console.log(obj, 'objjjjjjjjjjjjj')
         reviews.push(obj)
         if(res.code === 200) {
             let message1 = 'Your review sent successfully'

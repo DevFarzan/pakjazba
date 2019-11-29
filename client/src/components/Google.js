@@ -8,36 +8,14 @@ class Google extends Component {
         this.state= {
             once : true
         }
-    }//constructor
-
-    // componentDidMount(){
-    //     if(this.state.once == true){
-    //         console.log('helloooooooooooo')
-    //         this.setState({once : false})
-    //         const { dispatch, inRup } = this.props;
-    //         console.log(inRup);
-    //         let data = {
-    //             id: '0987654321',
-    //             name: 'testing',
-    //             email: 'email2@gmail.com'
-    //         }
-    //         data = {...data, ...{route: inRup}}
-    //         dispatch({type: 'FACEBOOKSIGNUP', data})
-    //     }
-    // }
+    }
 
     responseGoogle = (googleUser) =>{
         var id_token = googleUser.getAuthResponse();
         var googleId = googleUser.getId();
 
-        console.log({ googleId });
-        console.log(googleUser.w3.Eea, 'iddddddddddd');
-        console.log(googleUser.w3.U3, 'maillllllll');
-        console.log(googleUser.w3.ig, 'nameeeeeeeeeeee');
-        console.log({accessToken: id_token});
         //anything else you want to do(save to localStorage)...
         const { dispatch, inRup } = this.props;
-        console.log(inRup);
         let data = {
             id: googleUser.w3.Eea,
             name: googleUser.w3.ig,

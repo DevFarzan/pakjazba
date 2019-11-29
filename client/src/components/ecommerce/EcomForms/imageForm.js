@@ -53,9 +53,6 @@ class ImageForm extends Component {
       this.props.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
           this.funcForUpload(values, key)
-          console.log(values, 'values in image form')
-          console.log(key, 'key in image form')
-
         }
       })
     }
@@ -104,8 +101,6 @@ class ImageForm extends Component {
   async postData(values, response, key) {
     const { imageList } = this.state;
     let respons;
-    console.log(imageList, 'imageList')
-    console.log(response, 'response')
     if (imageList != undefined) {
       respons = [...imageList, ...response];
     }

@@ -24,7 +24,6 @@ class EntSlider extends Component{
         const { featuresApi, sportsApi } = this.state,
         features = await axios.get(featuresApi),
         sports =await axios.get(sportsApi);
-        console.log(features,'checkinggggggggggg');
         this.setState({
             features: features.data.list,
             sports: sports.data.list
@@ -52,19 +51,15 @@ class EntSlider extends Component{
         { features, sports } = this.state,
         target = match.path.slice(1, match.path.length),
         target2 = match.params.value;
-        console.log(features,'checkinggg header')
         let news1, assend, finalArr, final1, final2, final3, str, obj;
         if(target.toString() === 'entertainment_Home'){
-            console.log('helloooooooooo');
             news1 = !!news.length && news[0],
-            console.log(finalArr,'hellloooooooooooo1');
             assend = this.shuffleArr([1,2,3,4,5,6,7,8,9], 3),
             finalArr = features.filter((elem, key) => assend.includes(key)),
             final1 = !!finalArr.length && finalArr[0],
             final2 = !!finalArr.length && finalArr[1],
             final3 = !!finalArr.length && finalArr[2];
         }else {
-            console.log('heloooooooo2');
             str = target2.split('')[0].toLowerCase() + target2.slice(1, target2.length),
             obj = entertainment[str];
             if(str.toString() === 'sports'){
@@ -75,7 +70,6 @@ class EntSlider extends Component{
                 final2 = finalArr.length > 0 ? finalArr[2] : {id: 'sjdhlkj'},
                 final3 = finalArr.length > 0 ? finalArr[3] : {id: 'sjdhlkj'};
             }else {
-                console.log('helloooooooooooo3');
                 news1 = !!obj.length && obj[0],
                 final1 = !!obj.length && obj[1],
                 final2 = !!obj.length && obj[2],

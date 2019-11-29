@@ -167,7 +167,6 @@ class Signup extends Component {
 
     async funcLogin(values) {
         let response = await HttpUtils.get('usersignin?useremail=' + values.userName + '&password=' + values.password)
-        console.log(response , 'response')
         if (response) {
             if (response.code === 200) {
                 this.getProfile(response)

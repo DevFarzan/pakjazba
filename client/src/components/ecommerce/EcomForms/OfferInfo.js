@@ -78,9 +78,7 @@ class OfferInfo extends Component {
 
   // date picker //
   onChange(date, dateString, key) {
-    console.log(key, 'keys')
-    console.log(date, 'date')
-    console.log(dateString, 'dateString')
+
 
     this.setState({
       [key]: dateString,

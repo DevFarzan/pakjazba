@@ -117,7 +117,6 @@ class Thirdrow extends Component {
             }
             let req = await HttpUtils.post('AppliedForJob', obj)
             if (req.code === 200) {
-                console.log(req.msg)
                 this.openNotification()
                 this.setState({
                     loader: false,

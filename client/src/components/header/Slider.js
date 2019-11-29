@@ -39,7 +39,6 @@ class Slider extends Component {
         const { inputValue } = this.state;
         const { dispatch } = this.props;
         dispatch({ type: 'SEARCHON', inputValue })
-        console.log(inputValue, 'input value');
 
     }
     serachEcom = async (e) => {

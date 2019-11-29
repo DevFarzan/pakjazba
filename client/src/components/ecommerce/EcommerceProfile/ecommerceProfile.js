@@ -487,7 +487,6 @@ class EcomProfile extends Component {
       for (var i = 0; i < brandNameArr.length; i++) {
         for (var j = 0; j < allProducts.length; j++) {
           if (allProducts[j].brandName.toLowerCase() == brandNameArr[i].toLowerCase()) {
-            // console.log(allProducts[i] , 'data with brand')
             arr1.push(allProducts[j])
           }
         }
@@ -495,7 +494,6 @@ class EcomProfile extends Component {
       for (var i = 0; i < colorArr.length; i++) {
         for (var j = 0; j < arr1.length; j++) {
           if (arr1[j].color.toLowerCase() == colorArr[i].toLowerCase()) {
-            // console.log(allProducts[i] , 'data with brand')
 
             arr2.push(arr1[j]);
           }
@@ -602,7 +600,6 @@ class EcomProfile extends Component {
         for (var i = 0; i < allProducts.length; i++) {
           if (allProducts[i].price >= minPrice && allProducts[i].price <= maxPrice) {
             rangePriceFilterData.push(allProducts[i])
-            // console.log(allProducts[i], 'allProducts[i]')
           }
         }
       }
@@ -658,7 +655,7 @@ class EcomProfile extends Component {
                       <div className="col-md-10 col-sm-9 col-xs-9">
                         <h2 style={isTablet ? { margin: "0", fontSize: '27px' } : { margin: '0', fontSize: '36px' }}>{shopData.shopTitle}</h2>
                         {shopData.percantageOfShop != undefined ?
-                          <p>{`${shopData.percantageOfShop} postive seller ratings`}</p>
+                          <p>{`${shopData.percantageOfShop}% postive seller ratings`}</p>
                           :
                           <p>0% postive seller ratings</p>}
                       </div>

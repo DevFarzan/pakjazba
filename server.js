@@ -120,16 +120,12 @@ mongoose.connect(configDB.EvenNodeDB, { useNewUrlParser: true }, function (err, 
   }
   else {
     var db = mongoose.connection;
-    //console.log('connected to '+ configDB.EvenNodeDB);
     console.log("Database :: pakjazba :: connection established successfully.");
-    //db.close();
   }
 })
 
 app.use((req, res, next) => {
   logger.log('info', 'A request was received');
-  console.log(req.session, 'ppppppppppppppppp')
-  console.log(req.session.cookie.user, 'qqqqqqqqqqq')
   if (req.cookies.user_sid && !req.session.user) {
     res.clearCookie('user_sid');
   }
@@ -137,8 +133,6 @@ app.use((req, res, next) => {
 });
 
 var sessionChecker = (req, res, next) => {
-  console.log(req.session, 'aaaaaaaa')
-  console.log(req.cookies, 'bbbbbbbbbbb')
   if (req.session.user && req.cookies.user_sid) {
     console.log('111111111111')
   } else {
@@ -147,9 +141,6 @@ var sessionChecker = (req, res, next) => {
   }
 };
 
-/*app.get('/', function(req, res) {
-  console.log('Cookies: ', req.cookies)
-})*/
 
 // API calls
 app.get('/api/hello', (req, res) => {
@@ -159,8 +150,6 @@ app.get('/api/hello', (req, res) => {
 
 app.get('/api/keys', (req, res) => {
   var publicKey = String(keys.stripePulishableKey)
-  console.log(publicKey, 'with string')
-  console.log(keys.stripePulishableKey, 'without string')
   res.send({
     keys: publicKey
   })
@@ -176,7 +165,6 @@ app.get('/api/categoryPost', (req, res) => {
   category_info.save(function (err, data) {
     res.send({ err: err, data: data });
   })
-  //res.send({message:category});
 });
 
 app.post('/api/blogpost', (req, res) => {
@@ -198,8 +186,6 @@ app.post('/api/blogpost', (req, res) => {
 });
 
 app.get('/api/getblog', sessionChecker, (req, res) => {
-  console.log('Cookiessssssss: ', req.cookies)
-  console.log('Sessionsssssssss: ', req.session)
   blog.find(function (err, data) {
     res.send({
       blog: data
@@ -323,13 +309,11 @@ app.get('/api/userregister', (req, res) => {
 </html>`
 
   }
-  console.log(mailOptions);
   smtpTransport.sendMail(mailOptions, function (error, response) {
     if (error) {
       console.log(error);
       res.end("error");
     } else {
-      console.log("Message sent: " + response.message);
       console.log("Message sent: " + response.message);
 
       res.end("sent");

@@ -28,7 +28,6 @@ class EHeader extends Component{
         if(!!inputValue){
             let data = await axios.get(`https://api.dailymotion.com/videos?fields=embed_url,id,thumbnail_120_url,description,thumbnail_url,title,&country=pk&sort=recent&tags=${inputValue}&page=1&limit=100`);
             let arr = data.data.list;
-            console.log(arr,'checkingggggggggggg')
             this.props.history.push({pathname: `/entertainment_Category/${inputValue}`, state: {arr,entertainment}})
         }
     }

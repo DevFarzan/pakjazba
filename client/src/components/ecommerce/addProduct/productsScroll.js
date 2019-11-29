@@ -3,11 +3,6 @@ import './addsearch.css';
 
 
 class ProductScroll extends Component{
-  // pickedItem = (e) => {
-  //   console.log(e.target.innerText, 'target')
-  //   console.log(this.props.whenClicked(e.target.innerText)
-  // }
-
   constructor(props){
     super(props);
     this.state = {

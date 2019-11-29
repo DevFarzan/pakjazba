@@ -19,7 +19,6 @@ class EventDetail extends Component{
     async componentDidMount(){
         window.scrollTo(0,0);
         let data = this.props.location.state;
-        console.log(data, 'dataaaaaaaaa')
         if(data === undefined){
             await this.getDetail(this.props.match.params.value);
         }else {

@@ -41,8 +41,6 @@ class EcomTabs extends Component {
   componentDidMount() {
     const { allTabs } = this.state
     let data = this.props.data;
-    // console.log(allTabs, 'allTabs componentDidMount')
-    // console.log(data, 'data')
     if (data._id != undefined) {
       data.objectId = data._id
       allTabs.length = 0
@@ -68,16 +66,11 @@ class EcomTabs extends Component {
     values.profileId = user.profileId;
     values.shopId = shopId;
     values.shopName = shopName;
-    // console.log(objectId, 'objectId')
-    // console.log(allTabs, 'allTabs handleProps')
-    // console.log(updateData, 'values handleProps');
-    // console.log(user, 'values handleProps');
+ 
     if (updateData !== undefined && updateData !== 'undefined' && updateData != null) {
-      // console.log('if condition')
       var updateData = JSON.parse(localStorage.getItem('updateData'));
       values.objectId = updateData.objectId;
     } else {
-      // console.log('else condition')
       values.objectId = objectId;
     }
     allTabs.push(key);
@@ -89,18 +82,14 @@ class EcomTabs extends Component {
     else if (this.state.submitStatus === 'submit') {
       values.status = this.state.submitStatus
     }
-    // console.log(values, 'values handleProps');
 
     let responseEcommreceData = await HttpUtils.post('postecommercedata', values)
-    // console.log(responseEcommreceData, 'responseEcommreceData')
     if (responseEcommreceData.code === 200) {
       if (objectId === '') {
         this.setState({ allTabs, objectId: responseEcommreceData.content._id, objData: responseEcommreceData.content[0] })
       }
       else {
         responseEcommreceData.content.map((k, index) => {
-          // console.log(index, 'responseEcommreceData index')
-          // console.log(responseEcommreceData.content[index]._id, 'responseEcommreceData.content[index]._id')
           this.setState({ allTabs, objectId: responseEcommreceData.content[index]._id, objData: responseEcommreceData.content[0] })
         })
       }

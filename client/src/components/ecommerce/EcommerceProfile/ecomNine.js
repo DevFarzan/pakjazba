@@ -128,7 +128,7 @@ class EcomNine extends Component {
                                                 </div>
                                                 <h4 style={{ marginTop: "20px", textAlign: "left" }}>{elem.product}</h4>
                                                 <p style={{ color: "#37a99b", textAlign: 'left', fontWeight: '600', marginLeft: '15px' }}> {`$${elem.price}`}</p>
-                                                <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} value={elem.averageRateProduct} />
+                                                <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} allowHalf value={elem.averageRateProduct} />
                                             </div>
                                         </Link>
                                     </div>

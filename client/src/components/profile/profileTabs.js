@@ -23,7 +23,6 @@ class ProfileTabs extends Component{
   render(){
     const { mode } = this.state,
     { email, phone, userId, listing } = this.props.profileTabData;
-    console.log(this.props.profileTabData, 'dikh ja bhai')
 
     return(
       <div className="container" style={{width:"70%"}}>

@@ -15,12 +15,10 @@ class Dropdowns extends Component {
 
     componentWillMount() {
         let userObj = JSON.parse(localStorage.getItem('user'))
-        // console.log(userObj)
         if (userObj) {
             this.setState({
                 profileId: userObj.profileId
             })
-            // console.log('user has data')
         }
     }
     handleChangeLogout = () => {
@@ -49,7 +47,6 @@ class Dropdowns extends Component {
         }
 
         const onClick = function ({ key }) {
-            // console.log(key)
             let msg = '';
             if (key == 1) {
                 msg = 'Profile'

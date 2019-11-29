@@ -67,7 +67,6 @@ class ProductReviews extends Component {
 
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
 
                 if (values.rating == 0) {
                     perOfProductRating = 0
@@ -130,7 +129,6 @@ class ProductReviews extends Component {
         const { commentData } = this.state;
 
         let res = await HttpUtils.post('postecommercecomment', objComment);
-        console.log(res, 'res')
         if (res.code == 200) {
             this.setState({
                 name: '',
@@ -178,7 +176,6 @@ class ProductReviews extends Component {
         }
 
         let responseEcommreceData = await HttpUtils.post('postecommercedata', obj)
-        console.log(responseEcommreceData, 'responseEcommreceData')
     }
 
 
@@ -191,11 +188,6 @@ class ProductReviews extends Component {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 },
         };
-        console.log(rating , 'rating')
-        console.log(name , 'name')
-        console.log(email , 'email')
-        console.log(message , 'message')
-
         return (
             <div className="container" style={isMobile ? { width: "92%", paddingLeft: "5px" } : { width: "85%" }}>
                 <div class="vitalbox">

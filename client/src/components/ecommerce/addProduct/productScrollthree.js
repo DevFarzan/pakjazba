@@ -32,10 +32,8 @@ class ProductScrollthree extends Component{
   }
 }
   render(){
-    console.log(this.state[this.props.item], 'ye show hona chaye')
-    console.log(Object.keys(this.state))
+   
     let arr = [];
-    console.log (this.props.item)
     for (var elem in this.state){
       console.log(elem, 'elem')
     }

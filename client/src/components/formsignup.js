@@ -22,10 +22,8 @@ class Formsignup extends Component{
           })
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ',values);
         axios.get('http://localhost:5000/api/userregister?nickname='+values.nickname+'&email='+values.email+'&password='+values.password+'&notrobot='+values.notrobot)
         .then((response) => {
-          console.log(response);
          localStorage.setItem('state', 'off');
           this.setState({
           	loader:false

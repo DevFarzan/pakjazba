@@ -16,7 +16,6 @@ class Facebook extends Component {
         const { clicked } = this.state;
         const { dispatch, inRup } = this.props;
         if(clicked && response && response.id && response.id.length > 0) {
-            console.log(response, 'responseeeeeee')
             let data = response
             // let data = {
             // 	accessToken: 'sdjhfalskjfhajhflakjflkahfja',
@@ -33,7 +32,6 @@ class Facebook extends Component {
     }
 
     componentClicked = () =>{
-        console.log('ye kab chala')
         this.setState({clicked: true})
     }
 

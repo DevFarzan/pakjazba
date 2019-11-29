@@ -12,15 +12,7 @@ import moment from 'moment';
 const QRCode = require('qrcode.react');
 
 class TicketDetail extends Component{
-    // async componentDidMount(){
-    //     console.log(this.props.location.state, 'dataaaaaa')
-    //     const { data, obj, booked } = this.props.location.state;
-    //     let sendObj = {obj: {...obj, ...{eventId: data._id}, booked}, data},
-    //     req = await HttpUtils.post('eventTicket', sendObj);
-    //     console.log(sendObj, 'sendObj')
-    //     console.log(req, 'reqqqqqqqqqq')
-    //     this.setState({receivedData: req});
-    // }
+ 
 
     componentWillUnmount(){
         let data = this.props.location.state;
@@ -57,7 +49,6 @@ class TicketDetail extends Component{
         let webSiteRate = totalPrice > 0 ? (1*100/totalPrice).toFixed(2) : 0.00,
         stripeRate = totalPrice > 0 ? (2.9*100/totalPrice).toFixed(2) : 0.00,
         resToFixed = (+totalPrice + +webSiteRate + +stripeRate).toFixed(2);
-        console.log(data, 'objjjjjjjjjjjj')
         return(
             <div className="" style={{marginTop:"100px"}}>
                 <Burgermenu />

@@ -81,7 +81,6 @@ class Signin extends Component {
     }
 
     async getAllUsers() {
-        // console.log(ip.address(), 'ipAddressssssss')
         let response = await HttpUtils.get('allusers')
         if (response) {
             this.setState({ allUser: response && response.content, _isMount: true })
@@ -220,7 +219,6 @@ class Signin extends Component {
             }
             // this.setState({
             let msg = response.msg ? response.msg : response.err._message
-            console.log(msg, '========================================================')
             // })
         }
     }

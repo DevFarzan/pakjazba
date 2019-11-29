@@ -272,8 +272,6 @@ class SalmanKhan extends Component {
 		        </span>
 
 		        <hr/>
-		        {/*<div style={{width: '40px', height: '40px', position:}}>
-		        </div>*/}
 		        <ReactSVGPanZoom
 		        	className="reactSvgPanZoom"
 					width={800}
@@ -287,13 +285,10 @@ class SalmanKhan extends Component {
 					miniaturePosition='left'
 					onClick={this.onClickSeat}
 					onZoom={this.zoomEffect}
-					// onMouseUp={event => console.log('up', event.x, event.y)}
 					onMouseMove={this.onHoverMouse}
-					// onMouseDown={event => console.log('down', event.x, event.y)}
 					value={this.state.value}
 					onChangeValue={value => {this.setState({value})}}
 					tool={this.state.tool}
-					// onChangeTool={tool=> this.setState({tool})}
 		        >
 
 					<svg>

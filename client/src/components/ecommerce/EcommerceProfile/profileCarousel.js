@@ -9,24 +9,24 @@ class ProfileCarousel extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            // arrayListing:[],
-            to: isMobile && isTablet ? 2 : isBrowser ? 3 : 1
+            arrayListing: [],
+            to: isMobile && isTablet ? 3 : isBrowser ? 4 : 1
         }
     }
 
     componentDidUpdate(prevProps) {
+
         if (prevProps.data !== this.props.data) {
             this.setState({
-                arrayListing: ""
+                arrayListing: this.props.data
             })
         }
     }
 
     handleFarward = (e) => {
-        const { to } = this.state;
-        const { arrayListing } = this.props;
+        const { to, arrayListing } = this.state;
 
-        let from = isMobile && isTablet ? 2 : isBrowser ? 3 : 1;
+        let from = isMobile && isTablet ? 3 : isBrowser ? 4 : 1;
         if (to < arrayListing.length) {
             this.setState({
                 to: to + from, backward: false
@@ -37,10 +37,9 @@ class ProfileCarousel extends Component {
     }
 
     handleBackward = e => {
-        const { to } = this.state;
-        const { arrayListing } = this.props;
+        const { to, arrayListing } = this.state;
 
-        let from = isMobile && isTablet ? 2 : isBrowser ? 3 : 1;
+        let from = isMobile && isTablet ? 3 : isBrowser ? 4 : 1;
         if (to > from) {
             this.setState({
                 to: to - from, farward: false
@@ -51,10 +50,8 @@ class ProfileCarousel extends Component {
     }
 
     render() {
-        const { to, farward, backward } = this.state;
-        const { arrayListing } = this.props;
-
-        let from = isMobile && isTablet ? 2 : isBrowser ? 3 : 1;
+        const { to, farward, backward, arrayListing } = this.state;
+        let from = isMobile && isTablet ? 3 : isBrowser ? 4 : 1;
 
         return (
             <div>
@@ -62,7 +59,7 @@ class ProfileCarousel extends Component {
                 <div className="carousel-reviews broun-block">
                     <div className="container" style={{ width: "100%" }}>
                         <div className="row" style={{ padding: "0" }}>
-                            <div id="carousel-reviews" className="carousel slide" data-ride="carousel">
+                            <div id="carouselShop" className="carousel slide" data-ride="carousel">
                                 <div className="carousel-inner">
                                     {arrayListing && arrayListing.map((elem, key) => {
                                         if (key >= to - from && key < to) {
@@ -70,7 +67,7 @@ class ProfileCarousel extends Component {
                                                 <div key={key} className="item active">
                                                     <div className="col-md-3 col-sm-6">
                                                         <div className="block-text rel zmin">
-                                                            <EcomCardsfor />
+                                                            <EcomCardsfor cardDetails={elem} />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -78,12 +75,18 @@ class ProfileCarousel extends Component {
                                         }
                                     })}
                                 </div>
-                                <a disabled={backward} className="left carousel-control" href="#carousel-reviews" role="button" data-slide="prev">
+                                <a disabled={backward} className="left carousel-control" href="#carouselShop" role="button" data-slide="prev">
+                                    <span className="glyphicon glyphicon-chevron-left" id="leftProfile" onClick={e => this.handleBackward(e)}></span>
+                                </a>
+                                <a disabled={farward} className="right carousel-control" href="#carouselShop" role="button" data-slide="next">
+                                    <span className="glyphicon glyphicon-chevron-right" id="rightProfile" onClick={e => this.handleFarward(e)}></span>
+                                </a>
+                                {/* <a disabled={backward} className="left carousel-control" href="#carousel-reviews" role="button" data-slide="prev">
                                     <span className="glyphicon glyphicon-chevron-left" id="left" onClick={e => this.handleBackward(e)}></span>
                                 </a>
                                 <a disabled={farward} className="right carousel-control" href="#carousel-reviews" role="button" data-slide="next">
                                     <span className="glyphicon glyphicon-chevron-right" id="right" onClick={e => this.handleFarward(e)}></span>
-                                </a>
+                                </a> */}
                             </div>
                         </div>
                     </div>

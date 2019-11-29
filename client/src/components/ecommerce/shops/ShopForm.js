@@ -112,7 +112,6 @@ class ShopForm extends Component {
 
     componentDidMount() {
         let data = this.props.location.state;
-        console.log(this.props.location.state, 'this.props')
         if (data) {
             this.setState({
                 shopTitle: data.shopTitle,
@@ -132,7 +131,6 @@ class ShopForm extends Component {
         // can use data-binding to get
         const keys = form.getFieldValue('keys');
         const nextKeys = keys.concat(id++);
-        console.log()
         // can use data-binding to set
         // important! notify form to detect changes
         this.setState({ keyFor: nextKeys.length })
@@ -262,8 +260,6 @@ class ShopForm extends Component {
         let bannerImg;
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log(coverPhoto, 'coverPhoto')
-                console.log(banner, 'banner')
                 if (coverPhoto != undefined && banner != undefined) {
                     this.setState({
                         loader: true,
@@ -380,7 +376,6 @@ class ShopForm extends Component {
             userId: userData._id
         }
         let reqShopObj = await HttpUtils.post('postshop', shopObj)
-        console.log(reqShopObj, 'reqShopObj')
         if (reqShopObj.code === 200) {
             if (objectId != '') {
                 this.setState({

@@ -35,8 +35,6 @@ class DetailBusiness extends Component{
     componentDidMount(){
         window.scrollTo(0,0);
         let data = this.props.location.state;
-        console.log(data ,'dataaaaa')
-        console.log(this.props, 'props')
         if(data === undefined){
             this.setState({
                 isData: false
@@ -175,7 +173,6 @@ class DetailBusiness extends Component{
         hide = true,
         antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
         let images = data.businessImages || data.arr_url;
-        // console.log(data, 'dataaaaaaaaa')
         if(!isData){
             return <Redirect to='/' />
         }

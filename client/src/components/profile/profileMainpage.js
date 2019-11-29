@@ -21,7 +21,6 @@ class ProfileMain extends Component {
 
     render() {
         const { allArr } = this.props;
-        // console.log(allArr, 'all array')
         let profileDetail = {
             name: allArr.arr6.name,
             imageurl: allArr.arr6.imageUrl,

@@ -30,7 +30,6 @@ class FeaturedCol4 extends Component{
 
   render(){
     const { showEvents } = this.state;
-    console.log('sdsadsadsadsad')
     return(
       <div className="row" style={{padding:"0px", marginTop:"40px"}}>
         <div className="col-md-12 col-lg-12 col-sm-12 col-xs-12">

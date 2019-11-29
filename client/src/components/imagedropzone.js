@@ -16,9 +16,7 @@ class ImageDropzone extends Component{
 
 
   uploadFile = (files) =>{
-			console.log('uploadFile:')
 			const image = files[0]
-      console.log(image);
 
 			const cloudName = 'dxk0bmtei'
 			const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/upload'
@@ -48,15 +46,12 @@ class ImageDropzone extends Component{
 					alert(err)
 					return
 				}
-				//console.log('Upload Complete: '+JSON.stringif(resp.body))
-        console.log('Upload Complete: '+JSON.stringify(resp.body.url))
         this.setState({
           imageresponse:JSON.stringify(resp.body.url)
         })
 
         axios.get('http://localhost:5000/api/getimagedata?image='+this.state.imageresponse)
         .then(function(response){
-          console.log(response);
         })
 			})
   }//upload files
@@ -64,7 +59,6 @@ class ImageDropzone extends Component{
   handlecategory = () =>{
   	//var category = this.refs.category.value;
   	axios.get('http://localhost:5000/api/allusers').then(function(response){
-  		console.log(response);
   	})
   }
 

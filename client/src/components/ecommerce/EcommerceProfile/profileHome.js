@@ -10,17 +10,21 @@ class ProfileHome extends Component {
         super(props)
     }
     render() {
-        const { shopData , allProducts} = this.props;
+        const { shopData, allProducts } = this.props;
         return (
             <div className="">
                 <div>
-                    <ProfileBanner shopData={shopData}/>
+                    <ProfileBanner shopData={shopData} />
+                </div>
+                <div className="">
+                    <h4 className="headingtext" style={{ marginLeft: '-11px', marginTop: '-15px' }}> </h4>
+                    <hr />
+                    <div style={{ marginTop: '-2%' }}>
+                        <ProfileCarousel data={allProducts} />
+                    </div>
                 </div>
                 <div>
-                    <ProfileCarousel arrayListing={allProducts}/>
-                </div>
-                <div>
-                    <ProfileCatologe shopData={shopData}/>
+                    <ProfileCatologe shopData={shopData} />
                 </div>
             </div>
         )

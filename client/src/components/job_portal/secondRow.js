@@ -33,7 +33,6 @@ class JobSecondrow extends Component {
     render() {
         const { data } = this.props;
         const { goForLogin, objData } = this.state;
-        console.log(data.user, 'userrrrrrrr')
 
         if (goForLogin) {
             return <Redirect to={{ pathname: '/sigin', state: { from: { pathname: "/detail_jobPortal" }, state: objData } }} />;

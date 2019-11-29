@@ -231,9 +231,9 @@ class Slider extends Component {
                             <div className="single">
                                 <div>
                                     <Radio.Group onChange={this.props.onChange} value={this.props.searchBy}>
-                                        <Radio value={'product'}>Product</Radio>
+                                        <Radio value={'product'}>Product Name</Radio>
                                         <Radio value={'brand'}>Brand Name</Radio>
-                                        <Radio value={'shop'}>Shop</Radio>
+                                        <Radio value={'shop'}>Shop Name</Radio>
                                         {/* <Radio value={3}>C</Radio>
                                         <Radio value={4}>D</Radio> */}
                                     </Radio.Group>

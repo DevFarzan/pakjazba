@@ -106,7 +106,8 @@ class ShopForm extends Component {
             shopDescription: '',
             shopCategories: [],
             objectId: '',
-            showAlert: false
+            showAlert: false,
+            gridImages: false,
         }
     }
 
@@ -178,7 +179,10 @@ class ShopForm extends Component {
     }
 
     handleChange = ({ fileList }) => {
-        this.setState({ fileList })
+        this.setState({
+            fileList: fileList,
+            gridImages: false,
+        })
     }
 
     handleChangeLogo = ({ fileList }) => {
@@ -260,7 +264,7 @@ class ShopForm extends Component {
         let bannerImg;
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                if (coverPhoto != undefined && banner != undefined) {
+                if (coverPhoto != undefined && banner != undefined && fileList.length >= 4) {
                     this.setState({
                         loader: true,
                         btnDisabeld: true
@@ -271,11 +275,26 @@ class ShopForm extends Component {
                     arr.push(coverImg, bannerImg)
                     this.funcForUpload(values, arr, fileList, fileListLogo)
                 }
-                else {
+                else if (coverPhoto == undefined || banner == undefined) {
+                    console.log('else if baner & grid')
                     this.setState({
-                        showAlert: true
+                        showAlert: true,
                     })
                 }
+                else if (fileList.length < 4) {
+                    console.log('else if 4 grid images')
+
+                    this.setState({
+                        gridImages: true,
+                    })
+                }
+                console.log(coverPhoto, 'coverPhoto')
+                console.log(banner, 'banner')
+                console.log(fileList, 'fileList')
+                console.log(fileList.length, 'fileList')
+
+
+
             }
         })
     }
@@ -424,8 +443,9 @@ class ShopForm extends Component {
     };
 
     render() {
-        const { fileList, previewImage, previewVisible, fileListLogo, previewImageLogo, previewVisibleLogo, btnDisabeld, mgs, loader, shopData, shopId, goShop, showAlert } = this.state;
+        const { fileList, previewImage, previewVisible, fileListLogo, previewImageLogo, previewVisibleLogo, btnDisabeld, mgs, loader, shopData, shopId, goShop, showAlert, gridImages } = this.state;
         const { getFieldDecorator, getFieldValue } = this.props.form;
+        console.log(gridImages, 'gridImages')
         if (goShop) {
             return (
                 <Redirect to={{ pathname: `/EcommerceProfile/${shopId}`, state: shopData }} />
@@ -502,6 +522,8 @@ class ShopForm extends Component {
             <div>
                 {/*================================App component include Start===========================*/}
                 {showAlert && alert("Please Upload required grid & banner")}
+                {gridImages && alert("Please Upload 4 grid images for shops")}
+
                 <Burgermenu />
 
                 <div className="hidden-xs" style={{ width: "100%", height: "67px", marginTop: "3px" }}></div>

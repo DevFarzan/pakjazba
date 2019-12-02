@@ -40,8 +40,10 @@ class EcomProfile extends Component {
     }
   }
 
-  async componentWillMount() {
-
+  componentDidMount() {
+    this.shops();
+  }
+  shops = async () => {
     let shopId = this.props.location.pathname.slice(18)
     let shopData = this.props.location.state;
     const userData = JSON.parse(localStorage.getItem('user'));
@@ -63,17 +65,19 @@ class EcomProfile extends Component {
         shopId: shopId
       }
       let reqShopData = await HttpUtils.post('getSpecificShopById', obj)
-      this.setState({
-        shopData: reqShopData.content[0],
-        shopId: shopId,
-      })
-      this.getShopData(shopId)
+      if (reqShopData.code == 200) {
+        console.log(reqShopData, 'reqShopData')
+        this.setState({
+          shopData: reqShopData.content[0],
+          shopId: shopId,
+        })
+        this.getShopData(shopId)
+      }
     }
-
-
   }
 
   getShopData = async (shopId) => {
+    const { allProducts } = this.state;
     let categoriesArr = [];
     let colorArr = [];
     let locationArr = [];
@@ -112,7 +116,9 @@ class EcomProfile extends Component {
         brandName: brandNameArr,
       })
     }
-    this.calculateRatingOfShop()
+    if (allProducts.length > 0) {
+      this.calculateRatingOfShop()
+    }
   }
 
   calculateRatingOfShop = async () => {
@@ -127,7 +133,6 @@ class EcomProfile extends Component {
         numberOfProduct = numberOfProduct + 1;
         totalPercantageOfShop = totalPercantageOfShop + allProducts[i].percantageOfProduct;
         finalPercantageOfShop = totalPercantageOfShop / numberOfProduct;
-
       }
     }
 
@@ -552,8 +557,6 @@ class EcomProfile extends Component {
   }
 
   setTheStateForFiltredValues = (filterFinalDataArr) => {
-
-
     if (filterFinalDataArr.length > 0) {
       this.setState({
         filteredData: filterFinalDataArr,
@@ -617,6 +620,8 @@ class EcomProfile extends Component {
     const { shopData, shopEdit, addProduct, profileId, addProductObj, allProducts, categories, color, location, brandName,
       filteredData, filterDataNotFound, filterDataShow, categoriesName, priceRangeNotGiven } = this.state;
 
+    console.log(shopData, 'shopData')
+    console.log(allProducts, "allProducts")
     if (shopEdit) {
       return (
         <Redirect to={{ pathname: '/shopForm', state: shopData }} />
@@ -698,7 +703,7 @@ class EcomProfile extends Component {
               <Tabs defaultActiveKey="1">
                 <TabPane tab="Home" key="1">
                   {
-                    shopData && <ProfileHome shopData={shopData} allProducts={allProducts}/>
+                    shopData && <ProfileHome shopData={shopData} allProducts={allProducts} />
                   }
                 </TabPane>
                 <TabPane tab="All Products" key="2">

@@ -55,7 +55,6 @@ class ProfileCarousel extends Component {
 
         return (
             <div>
-                <h4>Carousel</h4>
                 <div className="carousel-reviews broun-block">
                     <div className="container" style={{ width: "100%" }}>
                         <div className="row" style={{ padding: "0" }}>

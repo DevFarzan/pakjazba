@@ -49,8 +49,6 @@ class OfferInfo extends Component {
         seller: data.seller,
         condition: data.condition,
         conditionNote: data.conditionNote,
-        price: data.price,
-        salePrice: data.salePrice,
         quantity: data.quantity,
         legalDesclaimer: data.legalDesclaimer,
         taxCode: data.taxCode,
@@ -59,12 +57,15 @@ class OfferInfo extends Component {
         country: data.country,
         warrantyDescription: data.warrantyDescription,
         countryLabeled: data.countryLabeled,
-        salePriceDatesStart: data.salePriceDate1,
-        salePriceDatesEnd: data.salePriceDate2,
-        sellingDate: data.sellingDate,
-        restockDate: data.restockDate,
-        offering: data.offering,
-        datePicker: false
+        price: data.price,
+        salePrice: data.salePrice,
+
+        // salePriceDatesStart: data.salePriceDate1,
+        // salePriceDatesEnd: data.salePriceDate2,
+        // sellingDate: data.sellingDate,
+        // restockDate: data.restockDate,
+        // offering: data.offering,
+        // datePicker: false
       })
     }
   }

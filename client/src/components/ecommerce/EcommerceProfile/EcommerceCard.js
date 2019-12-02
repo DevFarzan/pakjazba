@@ -28,7 +28,6 @@ class EcomCardsfor extends Component {
                                 <p style={{ marginTop: '0', color: '#D3D3D3', marginLeft: '0px' }}>{cardDetails.country}</p>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </Link>

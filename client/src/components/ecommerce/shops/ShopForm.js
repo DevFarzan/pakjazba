@@ -157,9 +157,18 @@ class ShopForm extends Component {
         });
     }
 
+    validateNumber(rule, value, callback) {
+        if (isNaN(value)) {
+            callback('Please type Numbers');
+        } else {
+            callback()
+        }
+    }
+
     handleCancel = () => {
         this.setState({ previewVisible: false })
     }
+
     handleCancelLogo = () => {
         this.setState({ previewVisibleLogo: false })
     }
@@ -750,7 +759,7 @@ class ShopForm extends Component {
                                     fontFamily: 'Crimson Text, serif !important'
                                 }}>
                                 <Icon type="info-circle" />
-                                <span className="margin_font_location">Upload</span>
+                                <span className="margin_font_location">Upload Images</span>
                             </div>
 
                             <div className="container" style={{ width: '95%' }}>
@@ -854,6 +863,119 @@ class ShopForm extends Component {
                                             </div>
                                         </div>
                                     </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="panel-body">
+                        <div className="panel panel-default">
+                            <div className="bold_c_text"
+                                style={{
+                                    backgroundColor: '#37a99b', color: 'white', padding: '8px',
+                                    fontFamily: 'Crimson Text, serif !important'
+                                }}>
+                                <Icon type="info-circle" />
+                                <span className="margin_font_location">Billing Detail</span>
+                            </div>
+                            <div className="container" style={{ width: '80%' }}>
+                                <section>
+                                    <div className="row" style={{ padding: '0px', marginTop: '10px' }}>
+                                        <div className="col-md-12">
+                                            <div className="col-md-6">
+                                                <div className="form-group">
+                                                    <label htmlFor="sel1">Bank Name</label>
+                                                    <Form.Item>
+                                                        {getFieldDecorator('bankName', {
+                                                            initialValue: this.state.bankName,
+                                                            rules: [{
+                                                                required: true,
+                                                                message: 'Please input your bank name!',
+                                                                whitespace: true
+                                                            }],
+                                                        })(
+                                                            <Input />
+                                                        )}
+                                                    </Form.Item>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <div className="form-group">
+                                                    <label htmlFor="sel1">Account Title</label>
+                                                    <Form.Item>
+                                                        {getFieldDecorator('accountTitle', {
+                                                            initialValue: this.state.accountTitle,
+                                                            rules: [{
+                                                                required: true,
+                                                                message: 'Please input your Account Title!',
+                                                                whitespace: true
+                                                            }],
+                                                        })(
+                                                            <Input type="text" className="form-control" />
+                                                        )}
+                                                    </Form.Item>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='row'>
+                                        <div className="col-md-6">
+                                            <div className="row" style={{ padding: '0px' }}>
+                                                <div className="col-md-7" style={{ display: 'grid' }}>
+                                                    <label> I Bank </label>
+                                                    <Form.Item>
+                                                        {getFieldDecorator('ibank', {
+                                                            initialValue: this.state.ibank,
+                                                            rules: [{
+                                                                whitespace: true,
+                                                                required: true,
+                                                                message: 'Please select your i bank!'
+                                                            },
+                                                            { validator: this.validateNumber.bind(this) }]
+                                                        })(
+                                                            <Input />
+                                                        )}
+                                                    </Form.Item>
+                                                </div>
+                                                <div className="col-md-5">
+                                                    <label> Swift/Sort </label>
+                                                    <Form.Item>
+                                                        {getFieldDecorator('swift', {
+                                                            initialValue: this.state.swift,
+                                                            rules: [{
+                                                                whitespace: true,
+                                                                required: true,
+                                                                message: 'Please select your Swift/Sort!'
+                                                            },
+                                                            { validator: this.validateNumber.bind(this) }],
+                                                        })(
+                                                            <Input />
+                                                        )}
+                                                    </Form.Item>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <div className="form-group">
+                                                <label htmlFor="sel1">Bank Address</label>
+                                                <Form.Item>
+                                                    {getFieldDecorator('bankAddress', {
+                                                        initialValue: this.state.bankAddress,
+                                                        rules: [{
+                                                            required: true,
+                                                            message: 'Please input your Bank Address!',
+                                                            whitespace: true
+                                                        }],
+                                                    })(
+                                                        <Input type="text" className="form-control" />
+                                                    )}
+                                                </Form.Item>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </section>
                             </div>
                         </div>

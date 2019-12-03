@@ -66,7 +66,6 @@ class EcomProfile extends Component {
       }
       let reqShopData = await HttpUtils.post('getSpecificShopById', obj)
       if (reqShopData.code == 200) {
-        console.log(reqShopData, 'reqShopData')
         this.setState({
           shopData: reqShopData.content[0],
           shopId: shopId,
@@ -175,7 +174,7 @@ class EcomProfile extends Component {
     }
   }
 
-  //collect the filtraion keys and values in seprate array for filtration
+  //Collect the filtraion keys and values in seprate array for filtration
   onChange = (key, value) => {
     let filterKey = [];
     if (value.length == 0) {
@@ -669,6 +668,17 @@ class EcomProfile extends Component {
                 </div>
                 {shopData.profileId == profileId &&
                   <div className="col-md-4 col-sm-5">
+                     <div className="col-md-6 col-sm-6 col-xs-6">
+                      <div className="buttontoleft">
+                        <button type="button" className="btn btn-sm btn-editprofile" style={{ width: "100%" }}
+                          onClick={this.oderList}>
+                          {/* Edit Home */}
+                          <div className="font-style fontClolor">
+                            Order List
+                        </div>
+                        </button>
+                      </div>
+                    </div>
                     <div className="col-md-6 col-sm-6 col-xs-6">
                       <div className="buttontoleft">
                         <button type="button" className="btn btn-sm btn-editprofile" style={{ width: "100%" }}

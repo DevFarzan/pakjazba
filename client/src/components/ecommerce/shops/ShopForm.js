@@ -122,7 +122,14 @@ class ShopForm extends Component {
                 shopDescription: data.shopDescription,
                 shopPurpose: data.shopPurpose,
                 shopCategories: data.shopCategories,
-                objectId: data._id
+                objectId: data._id,
+                accountTitle:data.accountTitle,
+                bankAddress:data.bankAddress,
+                bankName:data.bankName,
+                ibank:data.ibank,
+                swift:data.swift,
+                // fileListLogo: data.shopLogo,
+
             })
         }
     }
@@ -282,6 +289,7 @@ class ShopForm extends Component {
                         bannerImg = { ...banner[0], ...{ id: 'gridImage' } };
 
                     arr.push(coverImg, bannerImg)
+                    console.log(values, 'values')
                     this.funcForUpload(values, arr, fileList, fileListLogo)
                 }
                 else if (coverPhoto == undefined || banner == undefined) {
@@ -297,12 +305,6 @@ class ShopForm extends Component {
                         gridImages: true,
                     })
                 }
-                console.log(coverPhoto, 'coverPhoto')
-                console.log(banner, 'banner')
-                console.log(fileList, 'fileList')
-                console.log(fileList.length, 'fileList')
-
-
 
             }
         })
@@ -401,9 +403,16 @@ class ShopForm extends Component {
             shopLogo: logo,
             objectId: objectId,
             profileId: userData.profileId,
-            userId: userData._id
+            userId: userData._id,
+            bankName: values.bankName,
+            accountTitle:values.accountTitle,
+            ibank:values.ibank,
+            bankAddress:values.bankAddress,
+            swift:values.swift,
         }
+
         let reqShopObj = await HttpUtils.post('postshop', shopObj)
+        console.log(reqShopObj , 'reqShopObj')
         if (reqShopObj.code === 200) {
             if (objectId != '') {
                 this.setState({
@@ -454,7 +463,6 @@ class ShopForm extends Component {
     render() {
         const { fileList, previewImage, previewVisible, fileListLogo, previewImageLogo, previewVisibleLogo, btnDisabeld, mgs, loader, shopData, shopId, goShop, showAlert, gridImages } = this.state;
         const { getFieldDecorator, getFieldValue } = this.props.form;
-        console.log(gridImages, 'gridImages')
         if (goShop) {
             return (
                 <Redirect to={{ pathname: `/EcommerceProfile/${shopId}`, state: shopData }} />
@@ -655,6 +663,8 @@ class ShopForm extends Component {
                                                     </Form.Item>
                                                 </div>
                                                 <div className="col-md-6">
+                                                    <label htmlFor="sel1">Shop Logo</label>
+
                                                     <Form.Item>
                                                         {getFieldDecorator('shopLogo', {
                                                             rules: [{
@@ -765,6 +775,8 @@ class ShopForm extends Component {
                             <div className="container" style={{ width: '95%' }}>
                                 <section className="row">
                                     <div className="col-md-12" style={{ padding: '0px' }}>
+                                        <label htmlFor="sel1">Shop Banner</label>
+
                                         <Form.Item>
                                             {getFieldDecorator('banner', {
                                                 rules: [{
@@ -802,6 +814,8 @@ class ShopForm extends Component {
                                 <section className="row">
                                     <div className="col-md-12">
                                         <div className="col-md-6 col-sm-6">
+                                            <label htmlFor="sel1">Shop Grid(Potrait) Image</label>
+
                                             <Form.Item style={{ width: '100%' }}>
                                                 {getFieldDecorator('gridImage', {
                                                     rules: [{
@@ -831,6 +845,8 @@ class ShopForm extends Component {
                                             <div className="row" style={{ padding: '0px' }}>
                                                 <div className="col-md-12">
                                                     <div className="col-md-6 col-sm-6 col-xs-6 clearfix" style={{ marginBottom: '20px' }}>
+                                                        <label htmlFor="sel1">Shop Grid Images</label>
+
                                                         <Form.Item>
                                                             {getFieldDecorator('images', {
                                                                 rules: [{

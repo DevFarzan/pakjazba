@@ -23,12 +23,14 @@ class MarketEvent extends Component {
 
     async getAllBusiness() {
         var res = await HttpUtils.get('marketplace');
-        if (res.code === 200) {
-            let data = res.eventPortalData;
-            this.setState({
-                events: data ? data : [],
-                showBtn: false
-            });
+        if (res) {
+            if (res.code === 200) {
+                let data = res.eventPortalData;
+                this.setState({
+                    events: data ? data : [],
+                    showBtn: false
+                });
+            }
         }
         // this.handleLocalStorage();
     }

@@ -16,7 +16,13 @@ var shopCollection = new mongoose.Schema({
     userId: { type: String },
     shopPurpose: { type: String },
     shopLogo: { type: Array },
-    percantageOfShop: { type: Number }
+    percantageOfShop: { type: Number },
+    accountTitle:{type: String},
+    bankAddress:{type: String},
+    bankName:{type: String},
+    ibank:{type: String},
+    swift:{type: String},
+
 });
 //categorySchema.plugin(uniqueValidator);
 mongoose.model('shopCollection', shopCollection);

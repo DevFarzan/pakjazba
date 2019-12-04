@@ -52,7 +52,7 @@ import AddProduct from './components/ecommerce/addProduct/addProduct';
 import CheckOutPage from './components/ecommerce/checkOutPage';
 import ShopForm from './components/ecommerce/shops/ShopForm'
 import EcomProile from './components/ecommerce/EcommerceProfile/ecommerceProfile';
-
+import OrderList from './components/ecommerce/shops/orderList';
 
 
 //css
@@ -146,6 +146,8 @@ ReactDOM.render(
         <Route path="/checkOutProduct" component={CheckOutPage}></Route>
         <Route path="/shopForm" component={ShopForm}></Route>
         <Route path="/EcommerceProfile/:value" component={EcomProile}></Route>
+        <Route path="/oderList/:value" component={OrderList}></Route>
+
 
         {/*============Ecommerce=============*/}
 

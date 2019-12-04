@@ -25,20 +25,24 @@ class EcommerceMarket extends Component {
     }
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     let res = await HttpUtils.get('getecommercedata');
     let featureData = [];
-    if (res.content.length >= 4) {
-      for (var i = 0; i < 4; i++) {
-        featureData.push(res.content[i])
+    if (res) {
+      if (res.code == 200) {
+        if (res.content.length >= 4) {
+          for (var i = 0; i < 4; i++) {
+            featureData.push(res.content[i])
+          }
+        }
+        this.setState({
+          productsData: res.content,
+          featureData: featureData,
+          allData: res.content,
+          loader: false
+        })
       }
     }
-    this.setState({
-      productsData: res.content,
-      featureData: featureData,
-      allData: res.content,
-      loader: false
-    })
   }
 
   searcProduct = (e) => {
@@ -59,8 +63,13 @@ class EcommerceMarket extends Component {
   searchProduct = async (e) => {
     const { ecomSerchValue, allData, searchBy } = this.state;
     e.preventDefault();
+    let data;
     let res = await HttpUtils.get('getecommercedata');
-    let data = res.content;
+    if (res) {
+      if (res.code = 200) {
+        data = res.content;
+      }
+    }
     let ecomSearchValue = ecomSerchValue.toLowerCase();
     let ecommreceFilterData = [];
     if (searchBy != '') {

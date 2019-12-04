@@ -36,7 +36,8 @@ class EcomProfile extends Component {
       filterDataNotFound: false,
       filterDataShow: false,
       categoriesName: [],
-      priceRangeNotGiven: false
+      priceRangeNotGiven: false,
+      oderList: false
     }
   }
 
@@ -148,6 +149,11 @@ class EcomProfile extends Component {
     })
   }
 
+  oderList = () => {
+    this.setState({
+      oderList: true
+    })
+  }
   editShop = () => {
     this.setState({
       shopEdit: true
@@ -617,7 +623,7 @@ class EcomProfile extends Component {
 
   render() {
     const { shopData, shopEdit, addProduct, profileId, addProductObj, allProducts, categories, color, location, brandName,
-      filteredData, filterDataNotFound, filterDataShow, categoriesName, priceRangeNotGiven } = this.state;
+      filteredData, filterDataNotFound, filterDataShow, categoriesName, priceRangeNotGiven, oderList, shopId } = this.state;
 
     console.log(shopData, 'shopData')
     console.log(allProducts, "allProducts")
@@ -628,6 +634,11 @@ class EcomProfile extends Component {
     } else if (addProduct) {
       return (
         <Redirect to={{ pathname: '/Forms_Ecommerce', state: addProductObj }} />
+      )
+    }
+    else if (oderList) {
+      return (
+        <Redirect to={{ pathname: `/oderList/${shopId}`, state: shopId }} />
       )
     }
     return (
@@ -668,7 +679,7 @@ class EcomProfile extends Component {
                 </div>
                 {shopData.profileId == profileId &&
                   <div className="col-md-4 col-sm-5">
-                     <div className="col-md-6 col-sm-6 col-xs-6">
+                    <div className="col-md-6 col-sm-6 col-xs-6">
                       <div className="buttontoleft">
                         <button type="button" className="btn btn-sm btn-editprofile" style={{ width: "100%" }}
                           onClick={this.oderList}>

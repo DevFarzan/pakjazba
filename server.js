@@ -81,6 +81,7 @@ require('./models/postyourproduct');
 require('./models/ecommerceProductRating');
 require('./models/ecommercePayment');
 require('./models/shopCollection');
+require('./models/orderListCollection');
 
 
 require('./config/passport');
@@ -106,7 +107,9 @@ var uerVideos = mongoose.model('customData');
 var postecommerce = mongoose.model('postyourproduct');
 var ecommerceProductReview = mongoose.model('ecommercereview');
 var ecommercerPayment = mongoose.model('ecommercepayment');
-var postShopCollection = mongoose.model('shopCollection')
+var postShopCollection = mongoose.model('shopCollection');
+var postOrderListCollection = mongoose.model('orderListCollection');
+
 var sess;
 
 app.use(passport.initialize());
@@ -2277,7 +2280,12 @@ app.post('/api/postshop', (req, res) => {
       userId: shopData.userId,
       shopPurpose: shopData.shopPurpose,
       shopLogo: shopData.shopLogo,
-      percantageOfShop: shopData.percantageOfShop
+      percantageOfShop: shopData.percantageOfShop,
+      accountTitle: shopData.accountTitle,
+      bankAddress: shopData.bankAddress,
+      bankName: shopData.bankName,
+      ibank: shopData.ibank,
+      swift: shopData.swift,
     })
     postShopData.save(function (err, data) {
       if (err) {
@@ -2375,6 +2383,63 @@ app.post('/api/getShopProducts', (req, res) => {
     }
   })
 })
+
+
+
+app.post('/api/postOrdersByShop', (req, res) => {
+  var oderList = req.body;
+  // console.log(req.body.images,'iiiimmmmaaggessss')
+  const postOrderList = new postOrderListCollection({
+    cartCount: oderList.cartCount,
+    images: oderList.images,
+    objectId: oderList.objectId,
+    price: oderList.price,
+    productId: oderList.productId,
+    productName: oderList.productName,
+    profileId: oderList.profileId,
+    shopId: oderList.shopId,
+    shopName: oderList.shopName,
+    user_Id: oderList.user_Id,
+  })
+  postOrderList.save(function (err, data) {
+    if (err) {
+      res.send({
+        code: 500,
+        content: 'Internal Server Error',
+        msg: 'API not called properly'
+      })
+    }
+    else if (data) {
+      res.send({
+        code: 200,
+        msg: 'Data saved successfully',
+        content: data
+      });
+    }
+  })
+
+})
+
+app.post('/api/getSpecificORderProductShopId', (req, res) => {
+  let shopId = req.body.shopId;
+  //res.send(product);
+  postOrderListCollection.find({ "shopId": shopId }, function (err, shopSpecificData) {
+    if (err) {
+      res.send({
+        code: 404,
+        msg: 'Something went wrong'
+      })
+    }
+    else if (shopSpecificData) {
+      res.send({
+        code: 200,
+        msg: 'Specific shop Data',
+        content: shopSpecificData
+      })
+    }
+  })
+})
+
 
 
 /*===================event seats arrangment API end================================================================*/

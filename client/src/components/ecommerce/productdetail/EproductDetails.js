@@ -25,12 +25,14 @@ class EproductDetail extends Component {
       dataShow: false,
       visible: false,
       goForLogin: false,
-      shopId: ''
+      shopId: '',
+      shopName: '',
     }
   }
   async componentDidMount() {
     let data = this.props.location.state;
     const userData = JSON.parse(localStorage.getItem('user'));
+    console.log(data, 'data of product')
     if (userData) {
       this.setState({
         visible: false,
@@ -48,7 +50,8 @@ class EproductDetail extends Component {
         productId: data._id,
         data: data,
         dataShow: true,
-        shopId: data.shopId
+        shopId: data.shopId,
+        shopName: data.shopName,
       })
     }
     else {
@@ -66,19 +69,22 @@ class EproductDetail extends Component {
         data: data,
         productId: data._id,
         dataShow: true,
-        shopId: data.shopId
+        shopId: data.shopId,
+        shopName: data.shopName,
       })
     }
   }
 
   //add to cart funtion
   shoppingCartCount = (countCart) => {
-    const { user_Id, profileId, objectId, images, productName, price, description, cartCount } = this.state;
+    const { user_Id, profileId, objectId, images, productName, price, description, cartCount, shopName, productId , shopId} = this.state;
     const userData = JSON.parse(localStorage.getItem('user'));
 
     if (userData) {
       //get local storage data
       const addToCartData = JSON.parse(localStorage.getItem('addToCart'));
+      
+
       //create obj for values
       let addToCartObj = {};
       let cartArr = [];
@@ -92,6 +98,10 @@ class EproductDetail extends Component {
       addToCartObj.productName = productName;
       addToCartObj.price = price;
       addToCartObj.description = description;
+      addToCartObj.shopName = shopName;
+      addToCartObj.productId = productId;
+      addToCartObj.shopId = shopId;
+
       //set state for props
 
       //get array if user previves record or new record
@@ -107,7 +117,7 @@ class EproductDetail extends Component {
             cartArr.push(addToCartData[i])
             break;
           }
-          else{
+          else {
             //if user add to cart newe product
             cartArr.push(addToCartObj)
             break;

@@ -73,8 +73,8 @@ class OrderList extends Component {
                                         <th scope="row">{key}</th>
                                         <td className='tableTd'>{elem.productName}</td>
                                         <td className='tableTd'>{elem.cartCount}</td>
-                                        <td className='tableTd'>{elem.price}</td>
-                                        <td className='tableTd'>{elem.price * elem.cartCount}</td>
+                                        <td className='tableTd'>{`$ ${elem.price}`}</td>
+                                        <td className='tableTd'>{`$ ${elem.price * elem.cartCount}`}</td>
                                         {/* <td className='tableTd'>{elem.size}</td> */}
                                         <td className='tableTd'> <span onClick={this.imagesShow.bind(this, elem.images)}>View</span></td>
                                     </tr>
@@ -110,9 +110,9 @@ class OrderList extends Component {
                                         {productImages && productImages.map((elem, key) => {
                                             // console.log(elem, 'elem')
                                             return (
-                                            <div className="col-md-4">
-                                                <img src={`${elem}`} alt={key} style={{ width: '70px', height: "70px", margin: '10px' }} />
-                                            </div>
+                                                <div className="col-md-4">
+                                                    <img src={`${elem}`} alt={key} style={{ width: '70px', height: "70px", margin: '10px' }} />
+                                                </div>
                                             )
                                         })}
                                     </div>

@@ -9,8 +9,11 @@ import BannerHome from './bannerHome';
 import SliderHome from './sliderHome';
 import {HttpUtils} from "../../Services/HttpUtils";
 import CarouselHome from './carouselHome';
+import SecondfoldCard from './secondfold_card';
 import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import './homePage.css';
+import HomeBanner from './homebanner';
+import HeaderMenu from '../header/headermenu';
 
 
 class HomePage extends Component{
@@ -77,49 +80,60 @@ class HomePage extends Component{
       <div className="">
           <div className="visible-xs" style={{marginTop:'-19px',backgroundSize: 'cover'}}>
               <div className="background-image">
-                  <Burgermenu/>
+              <Burgermenu/>
               </div>
           </div>
-          <div className ="hidden-xs" style={{marginTop:'86px',backgroundSize: 'cover'}}>
+          <div className ="hidden-xs hidden-sm" style={{marginTop:'86px',backgroundSize: 'cover'}}>
               <div className="background-image">
-                  <Burgermenu/>
+                  
+                  <HeaderMenu/>
               </div>
           </div>
-          <BannerHome/>
-          <div className="container" style={isMobile && !isTablet ? {width: '92%'} : {width:"70%"}}>
-              <SliderHome/>
+          <HomeBanner/>
+            <div>
+                <SecondfoldCard/>
+                <hr className="hr4homedivide"/>
+            </div>
+          <div className="container" style={isMobile && !isTablet ? {width: '100%', marginTop:'0'} : {width:"80%", marginTop:'70px'}}>
+
+              
               <div  className="">
-                  <h4 className="headingtext" style={{marginLeft:'-11px',marginTop:'-11%'}}> Business Listing </h4>
-                  <hr />
-                  <div style={{marginTop:'-5%'}}>
+                  <h2 className="headingtext"> Businessess we recommend you to visit </h2>
+                    <h4 className="headingtexth4">Handpicked business by our team</h4>
+                 
+                  <div style={{marginTop:'80px'}}>
                       <CarouselHome data={business} detail="businessData"/>
                   </div>
+                  <hr className="hr4homedivide"/>
               </div>
               <div className="">
-                  <h4 className="headingtext" style={{marginLeft:'-11px',marginTop:'-15px'}}> Room Renting </h4>
-                  <hr />
-                  <div style={{marginTop:'-2%'}}>
+                  <h2 className="headingtext4home"> Room Renting </h2>
+                    <h4 className="headingtexth4">Handpicked business by our team</h4>
+                  <div style={{marginTop:'80px'}}>
                       <CarouselHome data={roomRenting} detail='roomRentData'/>
                   </div>
+                  <hr className="hr4homedivide"/>
               </div>
               <div className="">
-                  <h4 className="headingtext" style={{marginLeft:'-11px',marginTop:'-4%'}}> Job Listing </h4>
-                  <hr/>
-                  <div style={{marginTop:'13px'}}>
+                  <h2 className="headingtext4home"> Job Listing </h2>
+                     <h4 className="headingtexth4">Handpicked business by our team</h4>
+                  <div style={{marginTop:'80px'}}>
                       <CarouselHome data={jobPortal} detail='jobListData'/>
                   </div>
+                  <hr className="hr4homedivide"/>
               </div>
               <div className="">
-                  <h4 className="headingtext" style={{marginLeft:'-11px',marginTop:'-4%'}}>Buy & Sell </h4>
-                  <hr/>
-                  <div style={{marginTop:'13px'}}>
+                  <h2 className="headingtext4home">Buy & Sell </h2>
+                      <h4 className="headingtexth4">Handpicked business by our team</h4>
+                  <div style={{marginTop:'80px'}}>
                       <CarouselHome data={buySell} detail='buySellData'/>
                   </div>
+                  <hr className="hr4homedivide"/>
               </div>
               <div className="">
-                  <h4 className="headingtext" style={{marginLeft:'-11px',marginTop:'-4%'}}> Events </h4>
-                  <hr/>
-                  <div style={{marginTop:'-3%'}}>
+                  <h2 className="headingtext4home"> Events </h2>
+                     <h4 className="headingtexth4">Handpicked business by our team</h4>
+                  <div style={{marginTop:'80px'}}>
                       <CarouselHome data={event} detail='eventPortalData'/>
                   </div>
               </div>

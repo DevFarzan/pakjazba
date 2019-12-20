@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import './addAlisting.css';
 import Burgermenu from '../header/burgermenu';
 import Footer from '../footer/footer';
+import HeaderMenu from './headermenu';
 
 class AddListing extends Component{
 
     render(){
         return(
             <div>
-                <Burgermenu />
+                <HeaderMenu/>
+                
                 <div className="container" >
                     <div className="col-lg-12 col-md-12 col-sm-12 hidden-xs" style={{textAlign: 'center',marginTop: '17vh'}}>
                         <h1>Create a listing</h1>

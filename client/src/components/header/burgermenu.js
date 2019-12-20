@@ -47,7 +47,7 @@ class Burgermenu extends Component {
         return (
             <div>
                 <nav className="navbar navbar-fixed-top hidden-xs"
-                    style={{ position: "fixed", width: "100%", "zIndex": "999", marginTop: "-19px", border: 'none' }}>
+                    style={{ position: "fixed", width: "100%", "zIndex": "999", marginTop: "-15px", border: 'none' }}>
                     <div className="container-fluid">
                         <div className="col-md-2 col-sm-6 col-xs-6">
                             <div className="navbar-header">
@@ -58,15 +58,17 @@ class Burgermenu extends Component {
                                     <span className="icon-bar"></span>
                                 </button>
                                 <p onClick={() => this.renderList('')} className="navbar-brand hidden-sm">
-                                    <img alt='' src="../images/pakjazba_new.png" style={{ "width": "100%", marginTop: "32px", marginLeft: '35%', cursor: 'pointer' }} />
+                                    <img alt='' src="../images/PakJazbaLogo-01.png" style={{ "width": "100%", marginTop: "32px", marginLeft: '35%', cursor: 'pointer' }} />
                                 </p>
                                 <Link to={`/`} className="navbar-brand visible-sm">
-                                    <img alt='' src="../images/pakjazba_new.png" style={{ "width": "100%", marginTop: "8px" }} />
+                                    <img alt='' src="../images/PakJazbaLogo-01.png" style={{ "width": "100%", marginTop: "8px" }} />
                                 </Link>
 
                             </div>
                         </div>
-                        <div className="col-md-10 col-sm-6 col-xs-6">
+                        <div className="col-md-4">
+                        </div>
+                        <div className="col-md-4 col-sm-6 col-xs-6">
                             <div className="row">
                                 <div className="col-md-7">
                                 </div>
@@ -116,7 +118,7 @@ class Burgermenu extends Component {
                             <EHeader entertainment={this.props.entertainment} />
                         </div>}
                     </div>
-                    <div className="row visible-sm">
+                    <div className="row hidden-sm">
                         <div style={{ width: '96%', height: '42px', marginLeft: '16px' }}>
                             <span type="" name='room' ghost className="button_globalclassName col-md-2 col-sm-2">
                                 <Link rel="noopener noreferrer" to={`/market_roommates`} style={{ color: 'black', fontSize: '14px' }}>Room Renting</Link>

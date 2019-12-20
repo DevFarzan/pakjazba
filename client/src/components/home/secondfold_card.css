@@ -1,0 +1,32 @@
+.hometext{
+    text-align: center;
+}
+
+.hometext h1{
+    color: black;
+    font-weight: 700;
+}
+
+.hometext h4{
+    color: grey;
+}
+
+.cardsecond_fold{
+    border-radius: 10px;
+    
+}
+
+.cardsecond_fold img{
+    border-radius: 10px !important;
+}
+
+.cardsecond_fold:hover{
+    -webkit-filter: brightness(70%);
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+
+}
+

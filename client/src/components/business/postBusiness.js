@@ -22,6 +22,7 @@ import { HttpUtils } from '../../Services/HttpUtils';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 import moment from 'moment';
 import stateCities from "../../lib/countrycitystatejson";
+import './postBusiness.css';
 
 //const stateCities= require('countrycitystatejson')
 const { TextArea } = Input;
@@ -729,20 +730,46 @@ class Postbusiness extends Component {
                 <Burgermenu />
                 {/*================================post business form start============================*/}
                 <div className="hidden-xs" style={{ width: "100%", height: "67px", marginTop: "3px" }}></div>
-                <div className="">
+                <div></div>
+                <div className="col-lg-3 col-md-3 col-sm-3 hidden-xs"></div>
+                <div className="col-lg-3 col-md-3 col-sm-3 hidden-xs card" id="section1" style={{marginTop: '15vh', position: 'fixed'}}>
+                    {/* <div className="card"> */}
+                        <label class="dov">One
+                            <input id="scrollChange1" type="radio" name="radio" />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="dov">Two
+                            <input id="scrollChange2" type="radio" name="radio" />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="dov">Three
+                            <input id="scrollChange3" type="radio" name="radio" />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="dov">Four
+                            <input id="scrollChange4" type="radio" name="radio" />
+                            <span class="checkmark"></span>
+                        </label>
+                    {/* </div> */}
+                    
+                </div>
+                
+                <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                     <Form onSubmit={this.handleSubmit} className="login-form">
-                        <div className="panel-group" style={{ paddingTop: "37px" }}>
-                            <div className="panel panel-default">
-                                <div className="main_c_panel" style={{ backgroundColor: '#37a99b', color: 'white', textAlign: 'center' }}>Submit your Business<br />
+                        <div className="" style={{ paddingTop: "64px",  }}>{/*panel-group 37px*/}
+                            <div className="">{/*panel panel-default */}
+                                <div className="main_c_panel" style={{ backgroundColor: '#fff', color: 'black', textAlign: 'center', borderBottom: '1px solid black'}}>Submit your Business<br />{/*main_c_panel */}
 
                                 </div>
-                                <div className="panel-body">
+                                <div className="" href="#scrollChange1">{/*panel-body */}
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
                                     <div className="panel panel-default" >
-                                        <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}><Icon type="info-circle" /><span
-                                            className="margin_font_location">Location</span></div>
-                                        <div className="panel-body">
+                                        <div className="bold_c_text" style={{ backgroundColor: '#fff', color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid black' }}>
+                                                <Icon type="info-circle" />
+                                                <span className="margin_font_location">Location</span>
+                                            </div>
+                                        <div className="">{/*panel-body */}
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Address"
@@ -792,9 +819,11 @@ class Postbusiness extends Component {
                                     <br />
                                     {/*==========location panel end===========*/}
                                     {/*==========Business panel start=========*/}
-                                    <div className="panel panel-default">
-                                        <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}><Icon type="info-circle" /><span
-                                            className="margin_font_location">Business</span></div>
+                                    <div className="panel panel-default" href="#scrollChange2">
+                                        <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}>
+                                            <Icon type="info-circle" />
+                                            <span className="margin_font_location">Business</span>
+                                        </div>
                                         <div className="panel-body">
                                             <FormItem
                                                 {...formItemLayout}
@@ -958,9 +987,11 @@ class Postbusiness extends Component {
                                     <br />
                                     {/*==========Business panel end===========*/}
                                     {/*==========social links box start===========*/}
-                                    <div className="panel panel-default">
-                                        <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}><Icon type="info-circle" /><span
-                                            className="margin_font_location">Social Links</span></div>
+                                    <div className="panel panel-default" href="#scrollChange3">
+                                        <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}>
+                                            <Icon type="info-circle" />
+                                            <span className="margin_font_location">Social Links</span>
+                                        </div>
                                         <div className="panel-body">
                                             <FormItem
                                                 {...formItemLayout}
@@ -984,10 +1015,11 @@ class Postbusiness extends Component {
                                     </div>
                                     {/*==========social links box end===========*/}
                                     {/*==========upload panel start=========*/}
-                                    <div className="panel panel-default">
+                                    <div className="panel panel-default" href="#scrollChange4">
                                         <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px' }}>
-                                            <Icon type="info-circle" /><span
-                                            className="margin_font_location">Upload</span></div>
+                                            <Icon type="info-circle" />
+                                            <span className="margin_font_location">Upload</span>
+                                        </div>
                                         <div className="panel-body">
                                             <Upload
                                                 action="//jsonplaceholder.typicode.com/posts/"
@@ -1015,10 +1047,13 @@ class Postbusiness extends Component {
                         </div>
                         {/*panel-group*/}
                     </Form>
-                    <Footer />
                 </div>
+                <div className="col-lg-1 col-md-1 col-sm-1 hidden-xs"></div>
                 {/*container*/}
                 {/*================================post business form End==============================*/}
+
+                <Footer />
+
             </div>
         )
     }

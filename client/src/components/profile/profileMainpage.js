@@ -42,7 +42,7 @@ class ProfileMain extends Component {
                     </div>
                 </div>
                 <div className="container" style={isMobile ? { width: "100%", marginTop: "10px", marginLeft: "0", marginRight: "0", padding: "0" } : { width: "85%", marginTop: "10px" }}>
-                    <div className="row" style={{ marginTop: '-2%' }}>
+                    <div className="row"> {/* style={{ marginTop: '-2%' }} */}
                         <h2 style={{ textAlign: "center", fontWeight: "bold" }}> Your Profile</h2>
                         {/* <div className="col-md-3">
                 <ProfileSidebar onChange={this.onChange}/> 
@@ -50,8 +50,16 @@ class ProfileMain extends Component {
                         <div className="col-md-12">
                             <ProfileDetail profileDetail={{ profileDetail }} callPublicSection={this.callPublicSection} />
                             <ProfileContactDisplay profileTabData={{ ...profileTab }} />
-                            <TestComponent listing={allArr} />
+                            {/* <TestComponent listing={allArr} /> */}
                         </div>
+                        
+                    </div>
+                </div>
+                <div className="col-md-12">
+                    <div className="container">
+                        {/* <ProfileDetail profileDetail={{ profileDetail }} callPublicSection={this.callPublicSection} />
+                        <ProfileContactDisplay profileTabData={{ ...profileTab }} /> */}
+                        <TestComponent listing={allArr} />
                     </div>
                 </div>
             </div>

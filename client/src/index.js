@@ -53,6 +53,7 @@ import CheckOutPage from './components/ecommerce/checkOutPage';
 import ShopForm from './components/ecommerce/shops/ShopForm'
 import EcomProile from './components/ecommerce/EcommerceProfile/ecommerceProfile';
 import OrderList from './components/ecommerce/shops/orderList';
+import AddListing from './components/header/addAlisting';
 
 
 //css
@@ -96,6 +97,9 @@ ReactDOM.render(
         <Route exact path="/" component={HomePage}></Route>
         <Route path="/sigin" component={Signin}></Route>
         <Route exact path="/reset/:token" component={ResetPassword} />
+
+        {/*============Header dropdown post your need route=============*/}
+        <Route path="/add_listing" component={AddListing}></Route>
 
         {/*============Room Renting=============*/}
         <PrivateRoute path="/postad_Roommates" component={Postroommates}></PrivateRoute>

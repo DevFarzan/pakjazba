@@ -25,14 +25,15 @@ class ProfileDetail extends Component {
     render() {
         const { imageurl, name, location, description, reviewProfile } = this.props.profileDetail.profileDetail;
         return (
-            <div className="container" style={{ width: "90%" }}>
+            <div className="container">  {/*style={{ width: "90%" }}*/}
                 <div className="row" >
-                    <div className="col-md-5 col-sm-3">
+                    <div className="col-md-4 col-sm-2 ImageCard">
 
-                        <img src={imageurl ? imageurl : '../images/images.jpg'} style={{ width: "100%" }} />
+                        <img className="ImageCard" src={imageurl ? imageurl : '../images/images.jpg'} style={{ width: "100%" }} />
                     </div>
-                    <div className="col-md-7 col-sm-9">
-                        <h2> Hi, I am {name}
+                    <div className="col-md-1 col-sm-1"></div>
+                    <div className="col-md-7 col-sm-9 ImageCard">
+                        <h2> Hi, {name}
                             {reviewProfile && <Icon
                                 type="edit" size={16}
                                 style={{ marginLeft: '10%', cursor: 'pointer' }}

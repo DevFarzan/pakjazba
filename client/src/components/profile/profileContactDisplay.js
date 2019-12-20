@@ -14,17 +14,18 @@ class ProfileContactDisplay extends Component {
     render() {
         const { email, phone, facebooklink, twitterlink } = this.props.profileTabData;
         return (
-
+            <div className="container">
             <div className="row" style={isTablet ? { marginLeft: "25px" } : { marginLeft: "-15px" }}>
                 <div className="col-md-5">
                 </div>
+                {/* <div className="col-md-1"></div> */}
                 <div className="col-md-7">
                     <div className="Contactprofile" style={isMobile ? { marginTop: "-80px" } : { marginTop: "-130px" }}>
-                        <div className="row">
-                            <div className="col-md-9 col-sm-9 col-md-8">
+                        <div className="row ImageCard" style={{width: ''}}>
+                            <div className="col-md-9 col-sm-9 col-md-8" style={{padding: '0px'}}>
                                 <h2 style={{ marginLeft: "0" }}>CONTACT</h2>
                                 <div className="row">
-                                    <div className="col-md-3 col-sm-3 col-xs-4">
+                                    <div className="col-md-3 col-sm-3 col-xs-4" style={{padding: '0px'}}>
                                         <p style={{ fontSize: "16px", fontWeight: "600", color: "black" }}>Email: </p>
                                         <p style={{ fontSize: "16px", fontWeight: "600", color: "black" }}>Phone: </p>
                                     </div>
@@ -42,7 +43,8 @@ class ProfileContactDisplay extends Component {
                     </div>
 
                 </div>
-            </div>
+                {/* <div className="col-md-1"></div> */}
+            </div></div>
         )
     }
 }

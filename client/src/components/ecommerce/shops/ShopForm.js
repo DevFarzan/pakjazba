@@ -254,6 +254,8 @@ class ShopForm extends Component {
 
     }
 
+    0
+
     handleSubmit = (e) => {
         e.preventDefault();
         let { fileList, coverPhoto, banner, fileListLogo } = this.state;
@@ -802,7 +804,7 @@ class ShopForm extends Component {
                                             </Form.Item>
                                         </div>
                                         <div className="col-md-6 col-sm-6">
-                                            <div className="row" style={{ padding: '0px' }}>
+                                            <div className="row" style={{ padding: '0px 0px 0px 10px' }}>
                                                 <div className="col-md-12">
                                                     <div className="col-md-6 col-sm-6 col-xs-6 clearfix" style={{ marginBottom: '20px' }}>
                                                         <Form.Item>

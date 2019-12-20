@@ -6,10 +6,34 @@ import EHeader from '../entertainment/entertainmenthome/entertainmentHeader';
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Redirect } from 'react-router';
-import CartButton from './shoppingCartBtn';
+import CartButton from './shoppingCartBtn'
+import { Menu, Dropdown, Icon } from 'antd';;
 
+const menu = ( 
+<Menu>
+    <Menu.Item>
+    <Link rel="noopener noreferrer" to={`/market_roommates`} style={{ color: 'black', fontSize: '14px' }}>Room Renting</Link>
+    </Menu.Item>
+    <Menu.Item>
+    <Link rel="noopener noreferrer" to={`/market_business`} style={{ color: 'black', fontSize: '14px' }}>Business Listing</Link>
+    </Menu.Item>
+    <Menu.Item>
+    <Link rel="noopener noreferrer" to={`/market_classified`} style={{ color: 'black', fontSize: '14px' }}>Buy & Sell</Link>
+    </Menu.Item>
+    <Menu.Item>
+            <Link rel="noopener noreferrer" to={`/market_jobPortal`} style={{ color: 'black', fontSize: '14px' }}>Job Portal</Link>
+    </Menu.Item>
+    <Menu.Item>                        
+        <Link rel="noopener noreferrer" to={`/market_eventPortal`} style={{ color: 'black', fontSize: '14px' }}>Events</Link>
+    </Menu.Item>
+        <Menu.Item>
+        <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{ color: 'black', fontSize: '14px' }}>Entertainment</Link>
+    </Menu.Item>
+  </Menu>
+);
 
-class Burgermenu extends Component {
+class HeaderMenu extends Component {
+
     constructor(props) {
         super(props)
         this.state = {
@@ -47,8 +71,8 @@ class Burgermenu extends Component {
         return (
             <div>
                 <nav className="navbar navbar-fixed-top hidden-xs"
-                    style={{ position: "fixed", width: "100%", "zIndex": "999", marginTop: "-15px", border: 'none' }}>
-                    <div className="container-fluid">
+                    style={{ position: "fixed", width: "100%", "zIndex": "999", marginTop: "-19px", border: 'none', backgroundColor:"#00000052" }}>
+                    <div className="container-fluid" style={{padding:"0"}}>
                         <div className="col-md-2 col-sm-6 col-xs-6">
                             <div className="navbar-header">
                                 <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" >
@@ -66,28 +90,48 @@ class Burgermenu extends Component {
 
                             </div>
                         </div>
-                        <div className="col-md-4">
+                        <div className="col-md-2">
                         </div>
-                        <div className="col-md-4 col-sm-6 col-xs-6">
+                        <div className="col-md-8 col-sm-6 col-xs-6">
                             <div className="row">
-                                <div className="col-md-7">
+                                <div className="col-md-2" style={{ marginTop: "26px" }}>
+                                    <form action="" class="search-form">
+                                        <div class="form-group has-feedback">
+                                            <label for="search" class="sr-only">Search</label>
+                                            <input type="text" class="form-control" name="search" id="search" placeholder="search"></input>
+                                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div className="col-md-2 col-sm-2 col-xs-12" style={{ marginTop: "26px" }}>
+                                <div className="col-md-1" style={{ marginTop: "33px" }}>
+                                     <Link to={`/`} className="homeheader">Home</Link>
+                                </div>
+                                <div className="col-md-2" style={{ marginTop: "33px", width:"12%", paddingRight:"0" }}>
+                                <Dropdown overlay={menu}>
+                                    <a className="ant-dropdown-link" href="#">
+                                    Listing <Icon type="down" className="dropdownheader"/>
+                                    </a>
+                                </Dropdown>
+                                </div>
+                                <div className="col-md-1" style={{ marginTop: "33px" }}>
+                                     <Link to={`/`} className="homeheader">More</Link>
+                                </div>
+                                <div className="col-md-2 col-sm-2 col-xs-12" style={{ marginTop: "33px" }}>
                                     <MainLogin />
                                 </div>{/*col-md-4*/}
-                                <div className="col-md-2 col-sm-2 col-xs-12" style={{ marginTop: "21px" }}>
-                                    <Category />
-                                </div>{/*col-md-4*/}
-                                <div className="col-md-1 col-sm-2 col-xs-12" style={{ marginTop: "21px" }}>
+                                <div className="col-md-1 col-sm-2 col-xs-12" style={{ marginTop: "28px" }}>
                                     <Link rel="noopener noreferrer" to={`/checkOutProduct`} style={{ color: 'black', fontSize: '14px' }}>
                                         <CartButton cartCount={this.props.cartCount} />
                                     </Link>
                                 </div>
+                                <div className="col-md-2 col-sm-2 col-xs-12" style={{ marginTop: "21px" }}>
+                                    <Category />
+                                </div>{/*col-md-4*/}
                             </div>{/*row*/}
                         </div>
                     </div>
 
-                    <div className="row hidden-sm">
+                    {/* <div className="row hidden-sm">
                         <div style={{ background: 'rgba(236, 236, 236, 0.48)', height: '42px' }}>
                             <span type="" name='room' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
                                 <p rel="noopener noreferrer" onClick={() => this.renderList('market_roommates')} style={{ color: 'black', fontSize: '14px', cursor: 'pointer' }}>Room Renting</p>
@@ -110,15 +154,15 @@ class Burgermenu extends Component {
                             <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
                                 <p rel="noopener noreferrer" onClick={() => this.renderList('market_ecommerceMarket')} style={{ color: 'black', fontSize: '14px', cursor: 'pointer' }}>Ecommerce</p>
                             </span>
-                            {/* <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
+                             <span type="" name='events' ghost className="button_globalclassName col-md-2 col-sm-2 global_submenu">
                                 <p rel="noopener noreferrer" onClick={() => this.renderList('EcommerceProfile')} style={{ color: 'black', fontSize: '14px', cursor: 'pointer' }}>Profile</p>
-                            </span> */}
+                            </span> 
                         </div>
                         {this.props.entertainment && <div className="row" className="hidden-sm">
                             <EHeader entertainment={this.props.entertainment} />
                         </div>}
-                    </div>
-                    <div className="row hidden-sm">
+                    </div> */}
+                    <div className="row visible-sm">
                         <div style={{ width: '96%', height: '42px', marginLeft: '16px' }}>
                             <span type="" name='room' ghost className="button_globalclassName col-md-2 col-sm-2">
                                 <Link rel="noopener noreferrer" to={`/market_roommates`} style={{ color: 'black', fontSize: '14px' }}>Room Renting</Link>
@@ -205,4 +249,4 @@ const mapStateToProps = (state) => {
     });
 }
 
-export default withRouter(connect(mapStateToProps)(Burgermenu));
+export default withRouter(connect(mapStateToProps)(HeaderMenu));

@@ -1,6 +1,6 @@
 .body{
   margin:0px;
-  /*font-family: 'Roboto', sans-serif;*/
+  font-family: 'Poppins', sans-serif !important
     /*font-family: 'Roboto Slab', serif;*/
 
 }
@@ -24,7 +24,7 @@ hr {
   border-top-width:2px;
 }
 h1{
-font-family: 'Crimson Text', serif !important;
+font-family: 'Poppins', sans-serif !important;
 
 }
 
@@ -32,28 +32,28 @@ font-family: 'Crimson Text', serif !important;
   padding-left: 0px !important;
 }
 h2{
-font-family: 'Crimson Text', serif !important;
+font-family: 'Poppins', sans-serif !important;
 
 }
 
 
 h3{
-font-family: 'Crimson Text', serif !important;
+font-family: 'Poppins', sans-serif !important;
 
 }
 
 h4{
-font-family: 'Crimson Text', serif !important;
+font-family: 'Poppins', sans-serif !important;
 
 }
 
 h5{
-font-family: 'Crimson Text', serif !important;
+font-family: 'Poppins', sans-serif !important;
 
 }
 
 h6{
-font-family: 'Crimson Text', serif !important;
+font-family: 'Poppins', sans-serif !important;
 }
 .logoWidth_main img{
  width: 55%;
@@ -72,7 +72,7 @@ font-family: 'Crimson Text', serif !important;
 }
 .paragraph:hover{
 	cursor:pointer;
-	background: #8cbc40;
+
     color: white;
     width: 50px;
     border-radius: 5px;
@@ -808,7 +808,7 @@ color: #fff;
 }
 
 .navbar-fixed-top.scrolled {
-  background-color: white !important;
+  background-color:rgba(0, 0, 0, 0.85) !important;
   transition: background-color 200ms linear;
 }
 
@@ -845,7 +845,7 @@ color: #fff;
     padding-left: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
-    font-family:
+    font-family: 'Poppins', sans-serif
 }
 
 .blog-bg{
@@ -869,7 +869,7 @@ color: #fff;
 .name_style{
   color:black;
   font-size: 36px;
-  font-family: 'Work Sans', sans-serif
+  font-family: 'Poppins', sans-serif
 }
 /*.text-align{
   text-align: right;
@@ -884,18 +884,12 @@ color: #fff;
     color: white;
 }
 .font-style{
-  font-family: 'Product Sans', sans-serif !important;
+  font-family: 'GlacialIndifference-Bold' !important;
 }
 .signuphover{
 
 }
-.signuphover:hover{
-  cursor:pointer;
-  background: #8cbc40;
-    color: white;
-    width: 100px;
-    border-radius: 5px;
-}
+
 .ant-tabs-nav .ant-tabs-tab:active{
   color:white !important;
 }
@@ -1008,42 +1002,7 @@ color: #fff;
         right: 0;
     }
 }
-.body{
-  margin:0px;
-  /*font-family: 'Roboto', sans-serif;*/
-    /*font-family: 'Roboto Slab', serif;*/
 
-}
-
-h1{
-  font-family: 'Source Sans Pro', sans-serif !important;
-
-}
-
-h2{
-  font-family: 'Source Sans Pro', sans-serif !important;
-
-}
-
-h3{
-  font-family: 'Source Sans Pro', sans-serif !important;
-
-}
-
-h4{
-  font-family: 'Source Sans Pro', sans-serif !important;
-
-}
-
-h5{
-  font-family: 'Source Sans Pro', sans-serif !important;
-
-}
-
-h6{
-  font-family: 'Source Sans Pro', sans-serif !important;
-
-}
 .logoWidth_main img{
  width: 55%;
 }
@@ -1059,13 +1018,7 @@ h6{
 .padding_left_p{
   padding-left: 51px;
 }
-.paragraph:hover{
-	cursor:pointer;
-	background: #8cbc40;
-    color: white;
-    width: 50px;
-    border-radius: 5px;
-}
+
 .insideDiv{
   border-radius:4px;
   margin-right:8px;
@@ -1787,10 +1740,6 @@ color: #fff;
   height:250px;*/
 }
 
-.navbar-fixed-top.scrolled {
-  background-color: white !important;
-  transition: background-color 200ms linear;
-}
 
 /* new codeeeeeeeeeeeeeeeeeeeee*/
 
@@ -1866,15 +1815,11 @@ color: #fff;
 .font-style{
   font-family: '', sans-serif;
 }
-.signuphover{
-
-}
 .signuphover:hover{
   cursor:pointer;
-  background: #8cbc40;
-    color: white;
-    width: 100px;
-    border-radius: 5px;
+  color: white;
+  width: 100px;
+  border-radius: 5px;
 }
 
 .ant-tabs-nav .ant-tabs-tab-active {
@@ -2152,15 +2097,96 @@ color: #fff;
 
 /*================footer coding start=================================*/
 .jazba_footer{
-  background: rgba(236, 236, 236, 0.48);
+  background: repeating-linear-gradient(45deg, #236A4B, #224B69);
+  color: white;
 }
+
+.footerlinks{
+  color: white;
+}
+
+.footerlinks a{
+  color: rgba(255, 255, 255, 0.63);
+}
+
+.footerlinks a:hover{
+  color: white;
+}
+
 .jazba_text_align{
   text-align: center;
 }
 .social_button{
-    background: black;
+    background: white;
     color: white;
     border: none;
     font-size: 21px;
 }
 /*==============footer coding end=====================================*/
+@media only screen 
+and (min-device-width: 1024px) 
+and (max-device-width: 1199px) 
+and (orientation: portrait) 
+and (-webkit-min-device-pixel-ratio: 2)
+ {
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 50% !important;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}
+
+@media only screen and (min-device-width: 1200px) 
+and (max-device-width: 1600px) 
+and (-webkit-min-device-pixel-ratio: 1)  {
+  /* For desktop: */
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 50%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}
+
+.headerbuttontop{
+  padding: 25px;
+  background: white;
+  color: #236a4b;
+  border-radius: 5px !important;
+  font-weight: 600;
+  line-height: 0 !important;
+  background-color: white;
+
+}
+
+.ant-dropdown-link {
+  margin-top: -86% !important;
+  color: white;
+}
+
+.ant-btn:hover, .ant-btn:focus, .ant-btn:active, .ant-btn.active {
+  background: linear-gradient(45deg, #236a4b, #224b69);
+  color: white;
+  border-color: transparent;
+}
+
+.dropdownheader{
+  color: white !important;
+}
+
+.dropdownheader:hover{
+  color: #243c4f !important;
+}

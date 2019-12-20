@@ -29,6 +29,9 @@ class EshopCard extends Component {
                         <img alt='' src={elem.images[0]} />
                       </div>
                       <h4 style={{ marginTop: "20px", textAlign: "center" }}>{`$${elem.price}`} </h4>
+                      <p>
+                      {`${elem.product}`}
+                      </p>
                       <button type="button" className="btn btn-sm btn2-success font-style" style={{ width: "100%" }}>Shop Now</button>
                     </div>
                   </Link>

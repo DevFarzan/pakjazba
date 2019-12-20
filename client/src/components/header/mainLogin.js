@@ -43,8 +43,8 @@ export default class MainLogin extends Component{
         return (
             <div>
                 {user === '' ?
-                    <span className="mainLoginDiv button_globalclass" style={{}}><Signup modalContent={this.updateMethod.bind(this)}/>  {  '|'  } <Signin modalContent={this.updateMethod.bind(this)}/></span> :
-                    <span className="mainLoginDiv button_globalclass" style={{fontSize:'19px'}}>{user} <Signin modalContent={this.updateMethod.bind(this)}/></span>}
+                    <span className="mainLoginDiv button_globalclass" style={{color: '#ffffffa1'}}><Signup modalContent={this.updateMethod.bind(this)}/>  {  '|'  } <Signin modalContent={this.updateMethod.bind(this)}/></span> :
+                    <span className="mainLoginDiv button_globalclass" style={{fontSize:'19px', color: '#ffffffa1'}}>{user} <Signin modalContent={this.updateMethod.bind(this)}/></span>}
             </div>
         )
     }

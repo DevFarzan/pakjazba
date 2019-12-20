@@ -172,6 +172,7 @@ class Roomrenting1content extends Component{
                                         <br/>{'$' + elem.rent + ' ' + elem.pricemode}</p>
                                         <span><Rate disabled style={{paddingBottom: '20px', marginTop:"-20px",fontFamily: 'Source Sans Pro, sans-serif'}} allowHalf value={elem.star}/>
                                         {elem.star}</span>
+                                        
                                     </div>
                                 </Link>
                             )

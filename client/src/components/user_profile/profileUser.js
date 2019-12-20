@@ -6,6 +6,7 @@ import superagent from "superagent";
 import AsyncStorage from "@callstack/async-storage";
 import { HttpUtils } from "../../Services/HttpUtils";
 import Burgermenu from '../header/burgermenu';
+import Headermenu from '../header/headermenu';
 import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import { Link } from "react-router-dom";
 import { Redirect } from 'react-router';
@@ -443,7 +444,7 @@ class ProfileUser extends Component {
                         <div className="vissible-xs" style={{ "background": "#d8e7e4", marginTop: "102px", backgroundSize: 'cover' }}>
                             <div className="visible-xs" style={{ marginTop: '-119px' }}></div>
                             <div className="background-image">
-                                <Burgermenu />
+                                <Headermenu />
                             </div>
                         </div>
                         <div className="hero" style={isMobile && !isTablet ? { marginTop: "0%" } : { marginTop: "-12%" }}>

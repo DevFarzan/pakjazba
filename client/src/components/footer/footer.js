@@ -58,7 +58,7 @@ class Footer extends Component{
                 <div className="row hidden-xs">
                     <div className="col-md-12 jazba_text_align">
                         <Link to={`/`}>
-                            <img alt='' src="../images/pakjazba_new.png" style={{width:'19%'}} />
+                            <img alt='' src="../images/footer-logo.png"  />
                         </Link>
                     </div>
                     <div className="row" style={{padding:'0px'}}>
@@ -84,8 +84,8 @@ class Footer extends Component{
                             <span style={{marginLeft:'55%'}}><b>+01 456 7890</b></span>
                         </div>
                         <div className="col-md-6" style={{textAlign:'left'}}>
-                        <span><Link to={`/privacypolicy`} target="blank" style={{color:'#666666',marginLeft:'24%'}}><b>privacy policy</b></Link></span>
-                           <span style={{marginLeft: '10px'}}><Link to="/termofservice" target="blank" style={{color:'#666666',marginLeft:'0%'}}><b>term of service</b></Link></span>
+                        <span className="footerlinks"><Link to={`/privacypolicy`} target="blank" style={{marginLeft:'24%'}}><b>privacy policy</b></Link></span>
+                           <span className="footerlinks" style={{marginLeft: '10px'}}><Link to="/termofservice" target="blank" style={{marginLeft:'0%'}}><b>term of service</b></Link></span>
                         </div>
                     </div>
                     {/*<div className="row" style={{padding:'0px'}}>
@@ -153,9 +153,9 @@ class Footer extends Component{
 
                 <div className="row" style={{padding:'0px'}}>
                     <div className="col-md-12" style={{textAlign:'center'}}>
-                        <a href="https://www.facebook.com" target="_blank" className="fa fa-facebook social_button" style={{width:"40px", height:"40px"}}><i></i></a>
-                        <a href="https://www.linkedin.com" target="_blank" className="fa fa-linkedin social_button" style={{margin:'6px', width:"40px", height:"40px"}}></a>
-                        <a href="https://mail.google.com" target="_blank" className="fa fa-google-plus social_button"style={{width:"40px", height:"40px"}}></a>
+                        <a href="https://www.facebook.com" target="_blank" className="fa fa-facebook social_button" style={{width:"40px", height:"40px", color: '#2f55a4'}}><i></i></a>
+                        <a href="https://www.linkedin.com" target="_blank" className="fa fa-linkedin social_button" style={{margin:'6px', width:"40px", height:"40px", color: '#2867B2'}}></a>
+                        <a href="https://mail.google.com" target="_blank" className="fa fa-google-plus social_button"style={{width:"40px", height:"40px", color: '#db4a39'}}></a>
                     </div>
                 </div>
             </footer>

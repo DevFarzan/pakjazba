@@ -42,16 +42,14 @@ class ArraySubcategoryTwo extends Component{
       MilkFormula: ['Growing-up Milk (3yrs +)', 'Toddler Milk (1 - under 3yrs)', 'Maternal', 'Baby Fromula'],
       DiaperingPotty: ['Disposable diapers', 'Diaper Bags', 'Wipes & Holders', 'Changing Tables, Pads & Kits', 'Diapering Care', 'Cloth Diapers & Accessories', 'Potty Training'],
       Nursery: ['Baby Furniture', 'Mattresses & Bedding', 'Storage & Organization'],
-      BabyPersonal: ['Skin Care', 'Bathing Tubs & Seats', 'Soap, Cleanser & Bodywash', 'Baby Groomings & Care Kits', 'Gromming & Healthcare Kits', 'Toothbrushes & Toothpaste', 'Shampoo & Conditioners', 'Washcloths & Towels', 'Baby Bath Mats']
+      BabyPersonal: ['Skin Care', 'Bathing Tubs & Seats', 'Soap, Cleanser & Bodywash', 'Baby Groomings & Care Kits', 'Gromming & Healthcare Kits', 'Toothbrushes & Toothpaste', 'Shampoo & Conditioners', 'Washcloths & Towels', 'Baby Bath Mats'],
       ClothingAccessories: ['New Born Unisex (0 - 6 mnths)', 'New born bodysuits', 'New born sets & Packs', 'Girls Clothing', 'Boys Clothing'],
       ToysGames: ['Action Figures & Collectibles', 'Arts & Craft for Kids', 'Blocks and Building toys', 'Dolls & Accesssories', 'Learning & Education', 'Puzzle & Board Games', '' ]
     }
 }
   render(){
-    console.log(this.state[this.props.item], 'ye show hona chaye')
-    console.log(Object.keys(this.state))
+
     let arr = [];
-    console.log (this.props.item)
     for (var elem in this.state){
       console.log(elem, 'elem')
     }

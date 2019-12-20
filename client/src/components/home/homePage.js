@@ -75,6 +75,7 @@ class HomePage extends Component{
   render(){
     const { business, roomRenting, buySell, jobPortal, event } = this.state
 
+    
     return(
       <div className="">
           <div className="visible-xs" style={{marginTop:'-19px',backgroundSize: 'cover'}}>

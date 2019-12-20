@@ -99,8 +99,14 @@ class ImageForm extends Component {
 
   //-----------------cloudnary function end ------------------
   async postData(values, response, key) {
-    const { imageList } = this.state
-    let respons = [...imageList, ...response]
+    const { imageList } = this.state;
+    let respons;
+    if (imageList != undefined) {
+      respons = [...imageList, ...response];
+    }
+    else {
+      respons = response
+    }
     this.props.handleProps({ images: respons }, 'description');
     this.props.desStates()
     if (key === 'submit') {

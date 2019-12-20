@@ -572,7 +572,6 @@ class Postbusiness extends Component {
 
     async postData(values, response) {
         const { userId, socLin, socGoo, socFac, profileId, openingTime, closingTime, objectId, imageList } = this.state;
-        console.log(values , 'in busines');
         let obj = {
             user_id: userId,
             profileId: profileId,
@@ -672,7 +671,6 @@ class Postbusiness extends Component {
         const uploadedImages = (
             <div style={{ display: 'flex' }}>
                 {this.state.imageList.map((elem) => {
-                    console.log(elem, 'elem in businees')
                     return (
                         <div className='insideDiv'>
                             <a>

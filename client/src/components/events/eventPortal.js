@@ -323,9 +323,7 @@ class EventPortal extends Component {
             randomKey,
             posted: moment().format('LL')
         }
-        console.log(obj, 'objjjjjjjjjjj')
         let req = await HttpUtils.post('postEventPortal', obj)
-        console.log(req, 'responseeeeeeeee')
         if (req.code === 200) {
             this.setState({ objData: obj, msg: true, randomKey })
         }

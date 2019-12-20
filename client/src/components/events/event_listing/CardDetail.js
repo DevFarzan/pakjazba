@@ -17,15 +17,11 @@ class CardDetail extends Component {
 
     componentDidMount() {
         this.props.onRef(this);
-        console.log(this.props, 'card detail')
     }
 
     componentDidUpdate(prevProps, prevState) {
         let fir = prevProps.data;
         let sec = this.props.data;
-        console.log(prevProps, 'prevProps');
-        console.log(prevState, 'prevState')
-        console.log(this.props.data, 'this.props.data')
         if (fir !== sec) {
             this.setState({ receivedData: this.props.data });
         }
@@ -36,13 +32,11 @@ class CardDetail extends Component {
     }
 
     creditCard = (e) => {
-        console.log(e, 'e credit card')
         this.setState({ msg: '' })
         this.child.mainPayment()
     }
 
     changeHandler(data) {
-        console.log(data, 'data')
         this.props.onChange(data)
     }
 

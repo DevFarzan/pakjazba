@@ -6,7 +6,7 @@ import FeaturedBox from './featuredJob';
 import { Redirect } from 'react-router';
 import Footer from '../footer/footer';
 import { connect } from 'react-redux';
-import {HttpUtils} from "../../Services/HttpUtils";
+import { HttpUtils } from "../../Services/HttpUtils";
 
 class JobClassified extends Component {
     constructor(props) {
@@ -17,15 +17,17 @@ class JobClassified extends Component {
     }
 
     componentDidMount() {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
         this.getAllBusiness();
     }
 
-    async getAllBusiness(){
+    async getAllBusiness() {
         let res = await HttpUtils.get('marketplace')
-        this.setState({
-            data: res && res.jobPortalData
-        })
+        if (res) {
+            this.setState({
+                data: res && res.jobPortalData
+            })
+        }
     }
 
     // componentWillUnmount(){
@@ -36,22 +38,22 @@ class JobClassified extends Component {
     //     }
     // }
 
-    render(){
-        if(this.props.text){
-            return <Redirect to={{pathname: '/apply_forJob', state: this.state.data}}/>
+    render() {
+        if (this.props.text) {
+            return <Redirect to={{ pathname: '/apply_forJob', state: this.state.data }} />
         }
         return (
             <div>
-            <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "102px",backgroundSize: 'cover'}}>
-                <div className="visible-xs" style={{marginTop:'-119px'}}></div>
-                <div className="background-image">
-                    <Burgermenu/>
-                    <Slider mainH1="PakJazba Job Portal" mainH2=""/>
+                <div className="vissible-xs" style={{ "background": "#d8e7e4", marginTop: "102px", backgroundSize: 'cover' }}>
+                    <div className="visible-xs" style={{ marginTop: '-119px' }}></div>
+                    <div className="background-image">
+                        <Burgermenu />
+                        <Slider mainH1="PakJazba Job Portal" mainH2="" />
+                    </div>
                 </div>
-            </div>
-                {!this.props.text && <ClassifiedIcons/>}
-                <FeaturedBox/>
-                <Footer/>
+                {!this.props.text && <ClassifiedIcons />}
+                <FeaturedBox />
+                <Footer />
             </div>
         )
     }
@@ -59,7 +61,7 @@ class JobClassified extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return({
+    return ({
         text: state.text
     })
 }

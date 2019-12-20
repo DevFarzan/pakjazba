@@ -424,7 +424,6 @@ class ProfileUser extends Component {
             arr6: { imageUrl, name, description, twitter, facebook, email, phone, reviewProfile },
 
         }
-        // console.log(passObj, "passObj")
         const noData = (
             <div style={{ marginTop: '125px' }}>
                 <h1>
@@ -800,7 +799,6 @@ class ProfileUser extends Component {
                                                         <div className="index-content" style={{ marginTop: '20px' }}>
                                                             <div className="row">
                                                                 {listData2.length ? listData2.map((elem) => {
-                                                                    // console.log(elem, 'elemt bussiens')
                                                                     let img = elem.businessImages && elem.businessImages[0] || '../images/images.jpg';
                                                                     let title = elem.businessname || ''
                                                                     let str = elem.description || '';
@@ -881,7 +879,6 @@ class ProfileUser extends Component {
                                                         <div className="index-content" style={{ marginTop: '20px' }}>
                                                             <div className="row">
                                                                 {listData4.length ? listData4.map((elem) => {
-                                                                    // console.log(elem, 'elem')
                                                                     let img = elem.arr_url && elem.arr_url[0] || '../images/images.jpg';
                                                                     let title = elem.compName || ''
                                                                     let str = elem.compDescription || '';
@@ -923,7 +920,6 @@ class ProfileUser extends Component {
                                                         <div className="index-content" style={{ marginTop: '20px' }}>
                                                             <div className="row">
                                                                 {listData5.length ? listData5.map((elem) => {
-                                                                    // console.log(elem , 'elemnt of the e comrece')
                                                                     let img = elem.images && elem.images[0] || '../images/images.jpg';
 
                                                                     let title = elem.product || ''
@@ -933,31 +929,26 @@ class ProfileUser extends Component {
                                                                         str = str + '...'
                                                                     }
                                                                     return (
-                                                                        <div className="col-md-4"
-                                                                            style={{
-                                                                                marginBottom: '20px',
-                                                                                marginTop: '20px'
-                                                                            }}>
-                                                                            <div className="card">
-                                                                                <Link to={{
-                                                                                    // pathname: `/products_DetailStyle`,
-                                                                                    pathname: `/EcommerceProfile`,
-                                                                                    state: elem
-                                                                                }}>
-                                                                                    <img alt='' src={img} />
-                                                                                    <h4>{title}</h4>
-                                                                                    <p>{str}</p>
-                                                                                </Link>
-                                                                                <a onClick={this.editBusiness.bind(this, elem)}>
-                                                                                    <i className="glyphicon glyphicon-edit"
-                                                                                        style={{ padding: "16px", marginTop: "8px", color: "gray" }}>
-                                                                                        <span style={{ margin: "7px" }}>Edit</span></i></a>
-                                                                                <i className="glyphicon glyphicon-trash"
-                                                                                    style={{
-                                                                                        padding: "16px", marginTop: "8px", float: "right",
-                                                                                        color: "gray"
-                                                                                    }}><span style={{ margin: "7px" }}
-                                                                                    >Remove</span></i>
+                                                                        <div className="col-md-4 col-sm-4" style={{
+                                                                            marginBottom: '20px',
+                                                                            marginTop: '20px'
+                                                                        }}>
+                                                                            <div className="sellercardopacity" style={{ cursor: 'pointer' }}>
+                                                                                <div className="overlay1">
+                                                                                    <Link to={{
+                                                                                        pathname: `/EcommerceProfile/${elem._id}`,
+                                                                                        state: elem
+                                                                                    }}>
+                                                                                        <div className="sellerstorecard" >
+                                                                                            <img alt='img' src={img} />
+                                                                                        </div>
+                                                                                        <h4 style={{ marginTop: "20px", textAlign: "left" }}>{elem.shopTitle}</h4>
+                                                                                        <div class="middle">
+                                                                                            <div class="text">View Shop</div>
+                                                                                        </div>
+                                                                                    </Link>
+                                                                                </div>
+                        
                                                                             </div>
                                                                         </div>
 

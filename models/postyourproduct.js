@@ -57,6 +57,9 @@ var postyourproduct = new mongoose.Schema({
   searchTerms: { type: String },
   subjectMatter: { type: Array },
   shopId: { type: String },
+  shopName: { type: String },
+  percantageOfProduct: { type: Number },
+  averageRateProduct: { type: Number }
 });
 
 mongoose.model('postyourproduct', postyourproduct);

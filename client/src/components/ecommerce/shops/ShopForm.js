@@ -106,13 +106,13 @@ class ShopForm extends Component {
             shopDescription: '',
             shopCategories: [],
             objectId: '',
-            showAlert: false
+            showAlert: false,
+            gridImages: false,
         }
     }
 
     componentDidMount() {
         let data = this.props.location.state;
-        console.log(this.props.location.state, 'this.props')
         if (data) {
             this.setState({
                 shopTitle: data.shopTitle,
@@ -122,7 +122,14 @@ class ShopForm extends Component {
                 shopDescription: data.shopDescription,
                 shopPurpose: data.shopPurpose,
                 shopCategories: data.shopCategories,
-                objectId: data._id
+                objectId: data._id,
+                accountTitle:data.accountTitle,
+                bankAddress:data.bankAddress,
+                bankName:data.bankName,
+                ibank:data.ibank,
+                swift:data.swift,
+                // fileListLogo: data.shopLogo,
+
             })
         }
     }
@@ -132,7 +139,6 @@ class ShopForm extends Component {
         // can use data-binding to get
         const keys = form.getFieldValue('keys');
         const nextKeys = keys.concat(id++);
-        console.log()
         // can use data-binding to set
         // important! notify form to detect changes
         this.setState({ keyFor: nextKeys.length })
@@ -158,9 +164,18 @@ class ShopForm extends Component {
         });
     }
 
+    validateNumber(rule, value, callback) {
+        if (isNaN(value)) {
+            callback('Please type Numbers');
+        } else {
+            callback()
+        }
+    }
+
     handleCancel = () => {
         this.setState({ previewVisible: false })
     }
+
     handleCancelLogo = () => {
         this.setState({ previewVisibleLogo: false })
     }
@@ -180,7 +195,10 @@ class ShopForm extends Component {
     }
 
     handleChange = ({ fileList }) => {
-        this.setState({ fileList })
+        this.setState({
+            fileList: fileList,
+            gridImages: false,
+        })
     }
 
     handleChangeLogo = ({ fileList }) => {
@@ -264,9 +282,7 @@ class ShopForm extends Component {
         let bannerImg;
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log(coverPhoto, 'coverPhoto')
-                console.log(banner, 'banner')
-                if (coverPhoto != undefined && banner != undefined) {
+                if (coverPhoto != undefined && banner != undefined && fileList.length >= 4) {
                     this.setState({
                         loader: true,
                         btnDisabeld: true
@@ -275,13 +291,23 @@ class ShopForm extends Component {
                         bannerImg = { ...banner[0], ...{ id: 'gridImage' } };
 
                     arr.push(coverImg, bannerImg)
+                    console.log(values, 'values')
                     this.funcForUpload(values, arr, fileList, fileListLogo)
                 }
-                else {
+                else if (coverPhoto == undefined || banner == undefined) {
+                    console.log('else if baner & grid')
                     this.setState({
-                        showAlert: true
+                        showAlert: true,
                     })
                 }
+                else if (fileList.length < 4) {
+                    console.log('else if 4 grid images')
+
+                    this.setState({
+                        gridImages: true,
+                    })
+                }
+
             }
         })
     }
@@ -379,10 +405,16 @@ class ShopForm extends Component {
             shopLogo: logo,
             objectId: objectId,
             profileId: userData.profileId,
-            userId: userData._id
+            userId: userData._id,
+            bankName: values.bankName,
+            accountTitle:values.accountTitle,
+            ibank:values.ibank,
+            bankAddress:values.bankAddress,
+            swift:values.swift,
         }
+
         let reqShopObj = await HttpUtils.post('postshop', shopObj)
-        console.log(reqShopObj, 'reqShopObj')
+        console.log(reqShopObj , 'reqShopObj')
         if (reqShopObj.code === 200) {
             if (objectId != '') {
                 this.setState({
@@ -431,7 +463,7 @@ class ShopForm extends Component {
     };
 
     render() {
-        const { fileList, previewImage, previewVisible, fileListLogo, previewImageLogo, previewVisibleLogo, btnDisabeld, mgs, loader, shopData, shopId, goShop, showAlert } = this.state;
+        const { fileList, previewImage, previewVisible, fileListLogo, previewImageLogo, previewVisibleLogo, btnDisabeld, mgs, loader, shopData, shopId, goShop, showAlert, gridImages } = this.state;
         const { getFieldDecorator, getFieldValue } = this.props.form;
         if (goShop) {
             return (
@@ -509,6 +541,8 @@ class ShopForm extends Component {
             <div>
                 {/*================================App component include Start===========================*/}
                 {showAlert && alert("Please Upload required grid & banner")}
+                {gridImages && alert("Please Upload 4 grid images for shops")}
+
                 <Burgermenu />
 
                 <div className="hidden-xs" style={{ width: "100%", height: "67px", marginTop: "3px" }}></div>
@@ -631,6 +665,8 @@ class ShopForm extends Component {
                                                     </Form.Item>
                                                 </div>
                                                 <div className="col-md-6">
+                                                    <label htmlFor="sel1">Shop Logo</label>
+
                                                     <Form.Item>
                                                         {getFieldDecorator('shopLogo', {
                                                             rules: [{
@@ -735,12 +771,14 @@ class ShopForm extends Component {
                                     fontFamily: 'Crimson Text, serif !important'
                                 }}>
                                 <Icon type="info-circle" />
-                                <span className="margin_font_location">Upload</span>
+                                <span className="margin_font_location">Upload Images</span>
                             </div>
 
                             <div className="container" style={{ width: '95%' }}>
                                 <section className="row">
                                     <div className="col-md-12" style={{ padding: '0px' }}>
+                                        <label htmlFor="sel1">Shop Banner</label>
+
                                         <Form.Item>
                                             {getFieldDecorator('banner', {
                                                 rules: [{
@@ -778,6 +816,8 @@ class ShopForm extends Component {
                                 <section className="row">
                                     <div className="col-md-12">
                                         <div className="col-md-6 col-sm-6">
+                                            <label htmlFor="sel1">Shop Grid(Potrait) Image</label>
+
                                             <Form.Item style={{ width: '100%' }}>
                                                 {getFieldDecorator('gridImage', {
                                                     rules: [{
@@ -807,6 +847,8 @@ class ShopForm extends Component {
                                             <div className="row" style={{ padding: '0px 0px 0px 10px' }}>
                                                 <div className="col-md-12">
                                                     <div className="col-md-6 col-sm-6 col-xs-6 clearfix" style={{ marginBottom: '20px' }}>
+                                                        <label htmlFor="sel1">Shop Grid Images</label>
+
                                                         <Form.Item>
                                                             {getFieldDecorator('images', {
                                                                 rules: [{
@@ -839,6 +881,119 @@ class ShopForm extends Component {
                                             </div>
                                         </div>
                                     </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="panel-body">
+                        <div className="panel panel-default">
+                            <div className="bold_c_text"
+                                style={{
+                                    backgroundColor: '#37a99b', color: 'white', padding: '8px',
+                                    fontFamily: 'Crimson Text, serif !important'
+                                }}>
+                                <Icon type="info-circle" />
+                                <span className="margin_font_location">Billing Detail</span>
+                            </div>
+                            <div className="container" style={{ width: '80%' }}>
+                                <section>
+                                    <div className="row" style={{ padding: '0px', marginTop: '10px' }}>
+                                        <div className="col-md-12">
+                                            <div className="col-md-6">
+                                                <div className="form-group">
+                                                    <label htmlFor="sel1">Bank Name</label>
+                                                    <Form.Item>
+                                                        {getFieldDecorator('bankName', {
+                                                            initialValue: this.state.bankName,
+                                                            rules: [{
+                                                                required: true,
+                                                                message: 'Please input your bank name!',
+                                                                whitespace: true
+                                                            }],
+                                                        })(
+                                                            <Input />
+                                                        )}
+                                                    </Form.Item>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <div className="form-group">
+                                                    <label htmlFor="sel1">Account Title</label>
+                                                    <Form.Item>
+                                                        {getFieldDecorator('accountTitle', {
+                                                            initialValue: this.state.accountTitle,
+                                                            rules: [{
+                                                                required: true,
+                                                                message: 'Please input your Account Title!',
+                                                                whitespace: true
+                                                            }],
+                                                        })(
+                                                            <Input type="text" className="form-control" />
+                                                        )}
+                                                    </Form.Item>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='row'>
+                                        <div className="col-md-6">
+                                            <div className="row" style={{ padding: '0px' }}>
+                                                <div className="col-md-7" style={{ display: 'grid' }}>
+                                                    <label> I Bank </label>
+                                                    <Form.Item>
+                                                        {getFieldDecorator('ibank', {
+                                                            initialValue: this.state.ibank,
+                                                            rules: [{
+                                                                whitespace: true,
+                                                                required: true,
+                                                                message: 'Please select your i bank!'
+                                                            },
+                                                            { validator: this.validateNumber.bind(this) }]
+                                                        })(
+                                                            <Input />
+                                                        )}
+                                                    </Form.Item>
+                                                </div>
+                                                <div className="col-md-5">
+                                                    <label> Swift/Sort </label>
+                                                    <Form.Item>
+                                                        {getFieldDecorator('swift', {
+                                                            initialValue: this.state.swift,
+                                                            rules: [{
+                                                                whitespace: true,
+                                                                required: true,
+                                                                message: 'Please select your Swift/Sort!'
+                                                            },
+                                                            { validator: this.validateNumber.bind(this) }],
+                                                        })(
+                                                            <Input />
+                                                        )}
+                                                    </Form.Item>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <div className="form-group">
+                                                <label htmlFor="sel1">Bank Address</label>
+                                                <Form.Item>
+                                                    {getFieldDecorator('bankAddress', {
+                                                        initialValue: this.state.bankAddress,
+                                                        rules: [{
+                                                            required: true,
+                                                            message: 'Please input your Bank Address!',
+                                                            whitespace: true
+                                                        }],
+                                                    })(
+                                                        <Input type="text" className="form-control" />
+                                                    )}
+                                                </Form.Item>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </section>
                             </div>
                         </div>

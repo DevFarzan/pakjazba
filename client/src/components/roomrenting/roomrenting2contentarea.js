@@ -328,7 +328,6 @@ class Roomrentingtwocontentarea extends Component{
 	render(){
         const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader, objData, goDetail } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
-        console.log(noText, 'noTexttttttttttttt')
         if(!noText){
             return <Redirect to='/market_roommates'/>
         }

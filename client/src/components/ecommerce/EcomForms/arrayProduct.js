@@ -31,7 +31,7 @@ const electronics = [{
             value: 'Oppo',
             label: 'Oppo Mobiles'
           },{
-            value: 'Oneplus'
+            value: 'Oneplus',
             label: 'Oneplus Mobiles'
           }],       
     },{
@@ -67,20 +67,20 @@ const electronics = [{
         value: 'Gaming', 
         label: 'Gaming Console',
           children: [{
-            value: 
-            label: 
-          },{
-            value: 
-            label: 
-          },{
-            value: 
-            label: 
-          },{
-            value: 
-            label: 
-          },{
-            value: 
-            label: 
+          //   value: 
+          //   label: 
+          // },{
+          //   value: 
+          //   label: 
+          // },{
+          //   value: 
+          //   label: 
+          // },{
+          //   value: 
+          //   label: 
+          // },{
+          //   value: 
+          //   label: 
           }]
 
     }]
@@ -88,10 +88,7 @@ const electronics = [{
 }];
 
 class ArrayProduct extends Component{
-  // pickedItem = (e) => {
-  //   console.log(e.target.innerText, 'target')
-  //   console.log(this.props.whenClicked(e.target.innerText)
-  // }constructor(props) { super(props);
+  
   constructor(props){
     super(props);
   this.state = {

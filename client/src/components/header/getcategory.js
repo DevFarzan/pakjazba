@@ -6,18 +6,6 @@ import { Link } from 'react-router-dom';
 
 class getCategory extends Component{
 
-    componentDidMount = () =>{
-        this.handlecategory();
-    }
-
-    handlecategory = () =>{
-        //axios.get('http://localhost:5000/api/getcategory').then(function(response){
-        //console.log(response.data.data[0].categoryName);
-        //var category = response.data.data[0].categoryName;
-        //})
-    }//handlecategory
-
-
     render(){
         const menu = (
             <Menu >

@@ -25,7 +25,6 @@ class Signin extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.location.state, '123456')
         this.setState({ to: this.props.location.state })
         this.handleLocalStorage();
         this.getSignData();
@@ -65,7 +64,6 @@ class Signin extends Component {
 
     async getSignData() {
         let res = await HttpUtils.get('facebookdata')
-        console.log(res, 'res')
         if (res) {
             this.setState({ obj: res.data })
         }

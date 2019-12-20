@@ -5,7 +5,6 @@ const QRCode = require('qrcode.react');
  class TicketFirst extends Component{
    render(){
     const { data } = this.props;
-    console.log(data, 'event hello bhaiiiiiiiiiii')
     let startDate = moment(data.data.dateRange[0].from).format('LL');
     let startDay = moment(data.data.dateRange[0].from).format('dddd');
     let endDate = moment(data.data.dateRange[0].to).format('LL');
@@ -15,7 +14,6 @@ const QRCode = require('qrcode.react');
     let calIndex = data.obj.total.indexOf('.');
     let str = data.obj.total.substring(0, calIndex);
     let res = +data.obj.total - +str;
-    console.log(res, '************')  
      return(
       <div className="container" style={{width:"80%"}}>
         <div className="ecardoutset">

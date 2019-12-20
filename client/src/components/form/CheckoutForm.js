@@ -27,9 +27,7 @@ class CheckoutForm extends Component {
 
     async submit(ev) {
         const { receivedData } = this.state;
-        console.log(receivedData, 'receivedData')
         let { token, error } = await this.props.stripe.createToken({ name: receivedData.firstName });
-        console.log(token, 'token')
 
         if (error === undefined || token) {
             let response = await HttpUtils.post("charge", {

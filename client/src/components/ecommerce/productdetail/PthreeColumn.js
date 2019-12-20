@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import './PthreeColumn.css';
-import { InputNumber } from 'antd';
-import PTable from './Ptable'
-import ProductInformation from './ProductInformation'
-import ProductReviews from './ProductReviews'
-import ProductFaq from './ProductFaq';
-import { HttpUtils } from "../../../Services/HttpUtils";
+import { InputNumber, Icon } from 'antd';
+import ProductInformation from './ProductInformation';
+import ProductReviews from './ProductReviews';
+import { Link, Redirect } from "react-router-dom";
 
 
 class PthreeColumn extends Component {
@@ -17,7 +15,8 @@ class PthreeColumn extends Component {
       images: [],
       imgUrl: '',
       count: 0,
-      commentData: []
+      commentData: [],
+      editProduct: false
     }
   }
 
@@ -44,11 +43,11 @@ class PthreeColumn extends Component {
   }
 
   onChange = (value) => {
-    console.log('changed', value);
     this.setState({
       count: value
     })
   }
+
   addTocart = () => {
     const { count } = this.state;
     let user = JSON.parse(localStorage.getItem('user'));
@@ -58,8 +57,19 @@ class PthreeColumn extends Component {
       this.props.shoppingCartCount(count)
     }
   }
+  onGoEditProduct() {
+    this.setState({
+      editProduct: true
+    })
+  }
   render() {
-    const { data, count, commentData } = this.state
+    const { data, count, commentData, editProduct } = this.state;
+    const { profileId } = this.props;
+    if (editProduct) {
+      return (
+        <Redirect to={{ pathname: `/Forms_Ecommerce`, state: data }} />
+      )
+    }
     return (
       <div class="container" style={{ width: "100%", padding: "0px" }}>
         <div class="card-three-column">
@@ -84,7 +94,16 @@ class PthreeColumn extends Component {
                 <div class="details col-md-7">
                   <h3 class="product-title"
                   >{data.product}</h3>
-                  {/* <p> By PakJazba </p> */}
+                  <Link to={{
+                    pathname: `/EcommerceProfile/${data.shopId}`,
+                    // state: data.shopId
+                  }}>
+                    <div className="sellerstorecard" >
+                      <p>
+                        {`By ${data.shopName}`}
+                      </p>
+                    </div>
+                  </Link>
                   <h3>{'$' + data.price} & Free Shipping</h3>
                   <p class="vote">Size: <strong>{data.size}</strong></p>
                   <div style={{ marginTop: "20px" }}>
@@ -99,6 +118,13 @@ class PthreeColumn extends Component {
                     <p>Warranty Description: {data.warrantyDescription}</p>
                   </div>
                 </div>
+                {data.profileId == profileId ? <Icon
+                  type="edit" size={26}
+                  style={{ marginLeft: '10%', cursor: 'pointer' }}
+                  onClick={() => { this.onGoEditProduct() }}
+                >
+                </Icon>
+                  : null}
                 <div className="col-md-5">
                   <p style={{ marginBottom: "0px" }}> Share: Email, Facebook, Twitter, Pinterest </p>
                   <div className="ecartbox">
@@ -112,7 +138,7 @@ class PthreeColumn extends Component {
                     </span>
                     <div>
                       <span>Qty:</span>
-                      <span> <InputNumber min={1} max={10} defaultValue={1} onChange={this.onChange} /></span>
+                      <span> <InputNumber min={0} max={10} defaultValue={1} onChange={this.onChange} /></span>
                     </div>
                     <div className="row center_global row">
                       <button style={{ textAlign: 'center', width: "90%", marginTop: "20px" }} className="btn button_custom"
@@ -128,7 +154,9 @@ class PthreeColumn extends Component {
               {/* <PTable /> */}
               <ProductInformation data={this.props.data} />
               {/* <ProductFaq /> */}
-              <ProductReviews productId={this.props.productId} commentData={commentData} />
+              {data &&
+                <ProductReviews shopId={this.props.shopId} productId={this.props.productId}
+                />}
             </div>
           </div>
         </div>

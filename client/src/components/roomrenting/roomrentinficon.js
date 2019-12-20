@@ -10,7 +10,6 @@ class RoomrentingIcon extends Component{
 
     clickItem(item){
         const { dispatch } = this.props;
-        console.log(item, 'ggggggggggggggggggg')
         var inputValue = item;
         dispatch({type: 'SEARCHON', inputValue})
     }

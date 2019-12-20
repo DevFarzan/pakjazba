@@ -81,6 +81,7 @@ require('./models/postyourproduct');
 require('./models/ecommerceProductRating');
 require('./models/ecommercePayment');
 require('./models/shopCollection');
+require('./models/orderListCollection');
 
 
 require('./config/passport');
@@ -106,7 +107,9 @@ var uerVideos = mongoose.model('customData');
 var postecommerce = mongoose.model('postyourproduct');
 var ecommerceProductReview = mongoose.model('ecommercereview');
 var ecommercerPayment = mongoose.model('ecommercepayment');
-var postShopCollection = mongoose.model('shopCollection')
+var postShopCollection = mongoose.model('shopCollection');
+var postOrderListCollection = mongoose.model('orderListCollection');
+
 var sess;
 
 app.use(passport.initialize());
@@ -120,16 +123,12 @@ mongoose.connect(configDB.EvenNodeDB, { useNewUrlParser: true }, function (err, 
   }
   else {
     var db = mongoose.connection;
-    //console.log('connected to '+ configDB.EvenNodeDB);
     console.log("Database :: pakjazba :: connection established successfully.");
-    //db.close();
   }
 })
 
 app.use((req, res, next) => {
   logger.log('info', 'A request was received');
-  console.log(req.session, 'ppppppppppppppppp')
-  console.log(req.session.cookie.user, 'qqqqqqqqqqq')
   if (req.cookies.user_sid && !req.session.user) {
     res.clearCookie('user_sid');
   }
@@ -137,8 +136,6 @@ app.use((req, res, next) => {
 });
 
 var sessionChecker = (req, res, next) => {
-  console.log(req.session, 'aaaaaaaa')
-  console.log(req.cookies, 'bbbbbbbbbbb')
   if (req.session.user && req.cookies.user_sid) {
     console.log('111111111111')
   } else {
@@ -147,9 +144,6 @@ var sessionChecker = (req, res, next) => {
   }
 };
 
-/*app.get('/', function(req, res) {
-  console.log('Cookies: ', req.cookies)
-})*/
 
 // API calls
 app.get('/api/hello', (req, res) => {
@@ -159,8 +153,6 @@ app.get('/api/hello', (req, res) => {
 
 app.get('/api/keys', (req, res) => {
   var publicKey = String(keys.stripePulishableKey)
-  console.log(publicKey, 'with string')
-  console.log(keys.stripePulishableKey, 'without string')
   res.send({
     keys: publicKey
   })
@@ -176,7 +168,6 @@ app.get('/api/categoryPost', (req, res) => {
   category_info.save(function (err, data) {
     res.send({ err: err, data: data });
   })
-  //res.send({message:category});
 });
 
 app.post('/api/blogpost', (req, res) => {
@@ -198,8 +189,6 @@ app.post('/api/blogpost', (req, res) => {
 });
 
 app.get('/api/getblog', sessionChecker, (req, res) => {
-  console.log('Cookiessssssss: ', req.cookies)
-  console.log('Sessionsssssssss: ', req.session)
   blog.find(function (err, data) {
     res.send({
       blog: data
@@ -323,13 +312,11 @@ app.get('/api/userregister', (req, res) => {
 </html>`
 
   }
-  console.log(mailOptions);
   smtpTransport.sendMail(mailOptions, function (error, response) {
     if (error) {
       console.log(error);
       res.end("error");
     } else {
-      console.log("Message sent: " + response.message);
       console.log("Message sent: " + response.message);
 
       res.end("sent");
@@ -2032,7 +2019,10 @@ app.post('/api/postecommercedata', (req, res) => {
       platinumKeywords: ecommerceData.platinumKeywords,
       searchTerms: ecommerceData.searchTerms,
       subjectMatter: ecommerceData.subjectMatter,
-      shopId: ecommerceData.shopId
+      shopId: ecommerceData.shopId,
+      shopName: ecommerceData.shopName,
+      percantageOfProduct: ecommerceData.percantageOfProduct,
+      averageRateProduct: ecommerceData.averageRateProduct
     })
     postEcommerceData.save(function (err, data) {
       if (err) {
@@ -2153,6 +2143,8 @@ app.post('/api/postecommercecomment', (req, res) => {
     message: req.body.message,
     productId: req.body.productId,
     rating: req.body.rating,
+    shopId: req.body.shopId,
+    averageRatingProduct: req.body.averageRatingProduct
 
   })
   ecommerceObj.save(function (err, data) {
@@ -2287,8 +2279,13 @@ app.post('/api/postshop', (req, res) => {
       profileId: shopData.profileId,
       userId: shopData.userId,
       shopPurpose: shopData.shopPurpose,
-      shopLogo: shopData.shopLogo
-
+      shopLogo: shopData.shopLogo,
+      percantageOfShop: shopData.percantageOfShop,
+      accountTitle: shopData.accountTitle,
+      bankAddress: shopData.bankAddress,
+      bankName: shopData.bankName,
+      ibank: shopData.ibank,
+      swift: shopData.swift,
     })
     postShopData.save(function (err, data) {
       if (err) {
@@ -2366,6 +2363,84 @@ app.post('/api/getSpecificShopById', (req, res) => {
     }
   })
 })
+
+
+app.post('/api/getShopProducts', (req, res) => {
+  let shopIdForProduct = req.body.shopIdForProduct;
+  postecommerce.find({ "shopId": shopIdForProduct }, function (err, shopSpecificData) {
+    if (err) {
+      res.send({
+        code: 404,
+        msg: 'Something went wrong'
+      })
+    }
+    else if (shopSpecificData) {
+      res.send({
+        code: 200,
+        msg: 'Specific shop Data',
+        content: shopSpecificData
+      })
+    }
+  })
+})
+
+
+
+app.post('/api/postOrdersByShop', (req, res) => {
+  var oderList = req.body;
+  // console.log(req.body.images,'iiiimmmmaaggessss')
+  const postOrderList = new postOrderListCollection({
+    cartCount: oderList.cartCount,
+    images: oderList.images,
+    objectId: oderList.objectId,
+    price: oderList.price,
+    productId: oderList.productId,
+    productName: oderList.productName,
+    profileId: oderList.profileId,
+    shopId: oderList.shopId,
+    shopName: oderList.shopName,
+    user_Id: oderList.user_Id,
+  })
+  postOrderList.save(function (err, data) {
+    if (err) {
+      res.send({
+        code: 500,
+        content: 'Internal Server Error',
+        msg: 'API not called properly'
+      })
+    }
+    else if (data) {
+      res.send({
+        code: 200,
+        msg: 'Data saved successfully',
+        content: data
+      });
+    }
+  })
+
+})
+
+app.post('/api/getSpecificORderProductShopId', (req, res) => {
+  let shopId = req.body.shopId;
+  //res.send(product);
+  postOrderListCollection.find({ "shopId": shopId }, function (err, shopSpecificData) {
+    if (err) {
+      res.send({
+        code: 404,
+        msg: 'Something went wrong'
+      })
+    }
+    else if (shopSpecificData) {
+      res.send({
+        code: 200,
+        msg: 'Specific shop Data',
+        content: shopSpecificData
+      })
+    }
+  })
+})
+
+
 
 /*===================event seats arrangment API end================================================================*/
 if (process.env.NODE_ENV === 'production') {

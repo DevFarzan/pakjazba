@@ -227,9 +227,6 @@ class Postroommates extends Component{
         window.scrollTo(0,0);
         this.handleLocalStorage();
         let data = this.props.location.state;
-        // console.log(data.startdate , 'startdate')
-        // console.log(data.enddate , 'startdate')
-
         if(data) {
             this.setState({
                 dataState: [data.state],
@@ -448,7 +445,6 @@ class Postroommates extends Component{
             objectId: objectId,
             posted: moment().format('LL')
         }
-        // console.log(obj , 'obj in room renting')
         let req = await HttpUtils.post('postroomrent', obj)
         if(req.code === 200) {
             this.props.form.resetFields();

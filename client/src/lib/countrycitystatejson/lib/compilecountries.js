@@ -8,7 +8,6 @@ cscCountries = csc.getAllCountries()
 
 newlist = cl.countries
 for (var key in newlist) {
-  console.log(key)
   let i = 0;
   found = false;
   let cscCountryId = null

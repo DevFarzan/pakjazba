@@ -71,6 +71,10 @@ class CheckOutPage extends Component {
                 updateObj.productName = addToCartData[i].productName;
                 updateObj.profileId = addToCartData[i].profileId;
                 updateObj.user_Id = addToCartData[i].user_Id;
+                updateObj.shopName = addToCartData[i].shopName;
+                updateObj.productId = addToCartData[i].productId;
+                updateObj.shopId = addToCartData[i].shopId;
+
                 updateCartData.push(updateObj)
             }
             else {
@@ -191,8 +195,12 @@ class CheckOutPage extends Component {
         })
     }
 
-    modalsHideAndShow = (res) => {
+    modalsHideAndShow = async (res) => {
+        const { cartValue } = this.state;
         if (res.status) {
+            for (var i = 0; i < cartValue.length; i++) {
+                let res = await HttpUtils.post('postOrdersByShop', cartValue[i]);
+            }
             localStorage.removeItem('addToCart');
             this.setState({
                 succes: true,
@@ -254,7 +262,7 @@ class CheckOutPage extends Component {
                                         <ul className='cartDetail'>
                                             <li>Product Name : {elem.productName}</li>
                                             <li style={{ marginTop: "15px" }}>Quantity : {elem.cartCount}</li>
-                                            <li style={{ marginTop: "15px" }}>Description : {elem.description}</li>
+                                            <li style={{ marginTop: "15px" }}>Shop Name : {elem.shopName}</li>
                                         </ul>
                                     </div>
                                     <div className="col-md-6 col-sm-6 col-xs-12 cartPrice text-right">
@@ -303,7 +311,7 @@ class CheckOutPage extends Component {
                         </div>
                     </div> : null}
                     {noRecordFound && <span style={{ textAlign: "center" }}><h1>Not found....</h1></span>}
-                    {noRecordFound && <span style={{ textAlign: "center" }}><h5>you can find your search by type</h5></span>}
+                    {noRecordFound && <span style={{ textAlign: "center" }}><h5>you can't buy any product</h5></span>}
                     {noRecordFound && <div className="col-md-12" style={{ textAlign: "center" }}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
                     {this.state.visible &&
                         <Modal
@@ -318,7 +326,8 @@ class CheckOutPage extends Component {
                                     <StripeProvider stripe={stripe}>
                                         <div className="example">
                                             <Elements style={{ boxSizing: 'border-box' }}>
-                                                <CheckoutForm chechkOutObj={chechkOutObj} modalsHideAndShow={this.modalsHideAndShow} loaderFunc={this.loaderFunc} />
+                                                <CheckoutForm chechkOutObj={chechkOutObj} modalsHideAndShow={this.modalsHideAndShow}
+                                                    loaderFunc={this.loaderFunc} />
                                             </Elements>
                                         </div>
                                     </StripeProvider>

@@ -84,3 +84,24 @@ html{
 #scrollChange4{
     height: 2400px;
 }
+
+.color_button{
+  /* background-color:#8cbc40 !important;
+  color:white !important; */
+  background: linear-gradient(45deg, #236a4b, #224b69) !important;
+  color: white !important;
+  border-color: transparent !important;
+  border-radius: 5px !important;
+}
+.iconStyle{
+  padding: 6px !important;
+  background: linear-gradient(45deg, #236a4b, #224b69) !important;
+  color: white !important;
+  font-size: 18px !important;
+}
+.iconStyle:hover{
+  padding: 6px !important;
+  background: linear-gradient(45deg, #236a4b, #224b69) !important;
+  color: white !important;
+  font-size: 18px !important;
+}

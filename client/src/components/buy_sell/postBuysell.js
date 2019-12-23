@@ -12,6 +12,7 @@ import {
 } from 'antd';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 import Burgermenu from '../header/burgermenu';
+import HeaderMenu from '../header/headermenu';
 import Footer from '../footer/footer';
 import sha1 from "sha1";
 import superagent from "superagent";
@@ -466,20 +467,44 @@ class Postbuysell extends Component{
         return(
             <div>
                 {/*================================App component include Start===========================*/}
-                <Burgermenu/>
+                <HeaderMenu/>
                 <div className="hidden-xs" style={{width:"100%",height:"67px",marginTop:"3px"}}></div>
                 {/*================================post business form start============================*/}
-                <div className="">
+                <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
+                <div className="col-lg-3 col-md-3 hidden-sm hidden-xs card formRadius" id="section1" style={{marginTop: '116px', position: 'fixed', borderRadius: '3px !important'}}>
+                        <label class="dov">One
+                            <input id="scrollChange1" type="radio" name="radio" />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="dov">Two
+                            <input id="scrollChange2" type="radio" name="radio" />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="dov">Three
+                            <input id="scrollChange3" type="radio" name="radio" />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="dov">Four
+                            <input id="scrollChange4" type="radio" name="radio" />
+                            <span class="checkmark"></span>
+                        </label>
+                    
+                </div>
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div className="main_c_panel" style={{color:'white',textAlign:'center',marginTop: '40px'}}>
+                        <h3 style={{color: 'white',fontWeight: 'bold'}}>Submit your Items</h3>
+                    </div>
                     <Form onSubmit={this.handleSubmit} className="login-form">
-                        <div className="panel-group" style={{paddingTop:"34px"}}>
-                            <div className="panel panel-default">
-                            <div className="main_c_panel" style={{backgroundColor:'#37a99b',color:'white',textAlign:'center'}}><br/>
-                                    Submit your Items
-                                </div>
-                                <div className="panel-body">
-                                <div className="panel panel-default">
-                                        <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}><Icon type="info-circle"/><span
-                                            className="margin_font_location">Brand Detail</span></div>
+                        <div className="">{/*panel-group */}
+                            <div className="">{/*panel panel-default */}
+                            
+                                <div className="formRadius">{/*panel-body */}
+                                <div className="formRadius card">{/*panel panel-default */}
+                                        <div className="formRadius" style={{color:'black',padding:'8px',fontFamily:'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9'}}>
+                                            {/* <Icon type="info-circle"/> */}
+                                            <i class="fa fa-info-circle iconStyle"></i>
+                                            <span className="margin_font_location">Product Detail</span>
+                                        </div>
                                     <FormItem
                                         {...formItemLayout}
                                         label="Category"
@@ -574,8 +599,14 @@ class Postbuysell extends Component{
                             </div>
                             </div>
                             <br/>
-                            <div className="panel panel-default">
-                                <div className="panel-body">
+                            <div className="card formRadius">{/*panel panel-default  */}
+                                <div className="bold_c_text formRadius" style={{backgroundColor:'white',color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                    {/* <Icon type="info-circle"/> */}
+                                    <i class="fa fa-info-circle iconStyle"></i>
+                                    <span className="margin_font_location">Brand Details</span>
+                                </div>
+                                <div className="">{/*panel-body */}
+                                    
                                     <FormItem
                                         {...formItemLayout}
                                         label="Condition"
@@ -664,8 +695,14 @@ class Postbuysell extends Component{
                                 </div>
                             </div>
                             <br/>
-                            <div className="panel panel-default">
-                                <div className="panel-body">
+                            <div className="card formRadius">{/*panel panel-default */}
+                                <div className="bold_c_text formRadius" style={{backgroundColor:'white',color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                    {/* <Icon type="info-circle"/> */}
+                                    <i class="fa fa-address-card iconStyle"></i>
+                                    <span className="margin_font_location">Contact</span>
+                                </div>
+                                <div className="">{/*panel-body */}
+                                        
                                     <FormItem
                                         {...formItemLayout}
                                         label="Contact Name"
@@ -779,8 +816,9 @@ class Postbuysell extends Component{
                             </div>
                         </div>
                     </Form>
-                    <Footer />
+                    
                 </div>
+                {/* <Footer /> */}
             </div>
         )
     }

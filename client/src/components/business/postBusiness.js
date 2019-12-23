@@ -13,6 +13,7 @@ import {
 } from 'antd';
 // import Geosuggest from 'react-geosuggest';
 import Burgermenu from '../header/burgermenu';
+import HeaderMenu from '../header/headermenu';
 import Footer from '../footer/footer';
 import sha1 from "sha1";
 import superagent from "superagent";
@@ -727,13 +728,11 @@ class Postbusiness extends Component {
         return (
             <div>
                 {/*================================App component include Start===========================*/}
-                <Burgermenu />
+                <HeaderMenu />
                 {/*================================post business form start============================*/}
                 <div className="hidden-xs" style={{ width: "100%", height: "67px", marginTop: "3px" }}></div>
-                <div></div>
-                <div className="col-lg-3 col-md-3 col-sm-3 hidden-xs"></div>
-                <div className="col-lg-3 col-md-3 col-sm-3 hidden-xs card" id="section1" style={{marginTop: '15vh', position: 'fixed'}}>
-                    {/* <div className="card"> */}
+                <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
+                <div className="col-lg-3 col-md-3 hidden-sm hidden-xs card formRadius" id="section1" style={{marginTop: '128px', position: 'fixed', borderRadius: '3px !important'}}>
                         <label class="dov">One
                             <input id="scrollChange1" type="radio" name="radio" />
                             <span class="checkmark"></span>
@@ -750,25 +749,26 @@ class Postbusiness extends Component {
                             <input id="scrollChange4" type="radio" name="radio" />
                             <span class="checkmark"></span>
                         </label>
-                    {/* </div> */}
                     
                 </div>
                 
-                <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <Form onSubmit={this.handleSubmit} className="login-form">
-                        <div className="" style={{ paddingTop: "64px",  }}>{/*panel-group 37px*/}
+                        <div className="" style={{ paddingTop: "74px",  }}>{/*panel-group 37px*/}
+                            <div style={{textAlign: 'center'}}>
+                                <h2 style={{ color: 'white', fontWeight: 'bold'}}>Your listing details</h2>
+                            </div>
                             <div className="">{/*panel panel-default */}
-                                <div className="main_c_panel" style={{ backgroundColor: '#fff', color: 'black', textAlign: 'center', borderBottom: '1px solid black'}}>Submit your Business<br />{/*main_c_panel */}
-
-                                </div>
-                                <div className="" href="#scrollChange1">{/*panel-body */}
+                                
+                                <div className="" href="#scrollChange1">
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
-                                    <div className="panel panel-default" >
-                                        <div className="bold_c_text" style={{ backgroundColor: '#fff', color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid black' }}>
-                                                <Icon type="info-circle" />
+                                    <div className="panel panel-default formRadius" style={{borderRadius: '3px !important', boxShadow: '0 2px 5px 0 rgba(0,0,0,.07)',}}>
+                                        <div className="bold_c_text"
+                                          style={{ backgroundColor: '#fff', color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important', }}>
+                                                <i class="fa fa-map-marker iconStyle" aria-hidden="true"></i>
                                                 <span className="margin_font_location">Location</span>
-                                            </div>
+                                        </div>
                                         <div className="">{/*panel-body */}
                                             <FormItem
                                                 {...formItemLayout}
@@ -819,12 +819,12 @@ class Postbusiness extends Component {
                                     <br />
                                     {/*==========location panel end===========*/}
                                     {/*==========Business panel start=========*/}
-                                    <div className="panel panel-default" href="#scrollChange2">
-                                        <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}>
-                                            <Icon type="info-circle" />
+                                    <div className="panel panel-default formRadius" href="#scrollChange2">
+                                        <div className="bold_c_text" style={{ backgroundColor: '#white', color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid #d9d9d9' }}>
+                                            <i class="fa fa-building iconStyle"></i>
                                             <span className="margin_font_location">Business</span>
                                         </div>
-                                        <div className="panel-body">
+                                        <div className="panel-body" style={{border: 'none'}}>
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="First Name"
@@ -987,12 +987,12 @@ class Postbusiness extends Component {
                                     <br />
                                     {/*==========Business panel end===========*/}
                                     {/*==========social links box start===========*/}
-                                    <div className="panel panel-default" href="#scrollChange3">
-                                        <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}>
-                                            <Icon type="info-circle" />
+                                    <div className="panel panel-default formRadius" href="#scrollChange3" style={{border: 'none'}}>
+                                        <div className="bold_c_text formRadius" style={{ backgroundColor: 'white', color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important', border: 'none', border: '1px solid #d9d9d9' }}>
+                                            <i class="fa fa-link iconStyle"></i>
                                             <span className="margin_font_location">Social Links</span>
                                         </div>
-                                        <div className="panel-body">
+                                        <div className="panel-body" style={{border: 'none'}}>
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Facebook"
@@ -1015,12 +1015,12 @@ class Postbusiness extends Component {
                                     </div>
                                     {/*==========social links box end===========*/}
                                     {/*==========upload panel start=========*/}
-                                    <div className="panel panel-default" href="#scrollChange4">
-                                        <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px' }}>
-                                            <Icon type="info-circle" />
+                                    <div className="panel panel-default formRadius" href="#scrollChange4" style={{border: 'none'}}>
+                                        <div className="bold_c_text formRadius" style={{ backgroundColor: 'white', color: 'black', padding: '8px', border: '1px solid #d9d9d9' }}>
+                                            <i class="fa fa-upload iconStyle"></i>
                                             <span className="margin_font_location">Upload</span>
                                         </div>
-                                        <div className="panel-body">
+                                        <div className="panel-body" style={{border: 'none'}}>
                                             <Upload
                                                 action="//jsonplaceholder.typicode.com/posts/"
                                                 listType="picture-card"
@@ -1040,7 +1040,7 @@ class Postbusiness extends Component {
                                 </div>
                                 <div className="row center_global">
                                     {this.state.loader && <Spin indicator={antIcon} />}
-                                    <button disabled={!!this.state.loader} className="btn color_button" style={{ width: '19%' }}>Submit</button>
+                                    <button disabled={!!this.state.loader} className="btn color_button" style={{ width: '19%' }}>Submit</button>{/*color_button */}
                                 </div>
                                 {/*main panel content*/}
                             </div>
@@ -1048,12 +1048,10 @@ class Postbusiness extends Component {
                         {/*panel-group*/}
                     </Form>
                 </div>
-                <div className="col-lg-1 col-md-1 col-sm-1 hidden-xs"></div>
-                {/*container*/}
-                {/*================================post business form End==============================*/}
+                <div className="col-lg-3 col-md-3 hidden-xs"></div>
+               
 
-                <Footer />
-
+                {/* <Footer/> */}
             </div>
         )
     }

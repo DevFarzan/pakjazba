@@ -14,8 +14,8 @@
 .shopcataloge{
     border: black 1px solid;
     padding: 50px;
-    width: 500px;
-    height: 500px;
+    width: 190px;
+    height: 240px;
 }
 
 @media only screen 
@@ -43,8 +43,8 @@
     .shopcataloge{
         border: black 1px solid;
         padding: 50px;
-        width: 247px;
-        height: 260px;
+        width: 220px;
+        height: 160px;
     }
 }
 
@@ -95,8 +95,8 @@
     .shopcataloge{
         border: black 1px solid;
         padding: 50px;
-        width: 500px;
-        height: 400px;
+        width: 250px;
+        height: 200px;
     }
 }
 

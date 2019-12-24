@@ -12,6 +12,7 @@ import {
 import { Redirect } from 'react-router';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 import Burgermenu from '../header/burgermenu';
+import HeaderMenu from '../header/headermenu';
 import Footer from '../footer/footer';
 import sha1 from "sha1";
 import moment from 'moment';
@@ -362,22 +363,46 @@ class JobPortal extends Component {
 
         return (
             <div>
-                <Burgermenu/>
-                <div className="hidden-xs" style={{width:"100%", height:"67px", marginTop: "3px"}} />
-                <div className="">
+                <HeaderMenu/>
+                <div className="hidden-xs" style={{width:"100%", height:"67px", marginTop: "40px"}} />
+                <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
+                <div className="col-lg-3 col-md-3 hidden-sm hidden-xs card formRadius" id="section1" style={{marginTop: '116px', position: 'fixed', borderRadius: '3px !important'}}>
+                        <label class="dov">One
+                            <input id="scrollChange1" type="radio" name="radio" />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="dov">Two
+                            <input id="scrollChange2" type="radio" name="radio" />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="dov">Three
+                            <input id="scrollChange3" type="radio" name="radio" />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="dov">Four
+                            <input id="scrollChange4" type="radio" name="radio" />
+                            <span class="checkmark"></span>
+                        </label>
+                    
+                </div>
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div className="main_c_panel" style={{textAlign: 'center'}}>
+                        <h3 style={{color: 'white',fontWeight: 'bold'}}>Add Job<br/>
+                        Find all your Jobs in one place</h3>
+                    </div>
                     <Form onSubmit={this.handleSubmit} className="login-form">
-                        <div className="panel-group" style={{paddingTop:"50px"}}>
-                            <div className="panel panel-default">
-                                <div className="main_c_panel" style={{backgroundColor:'#37a99b',color:'white'}}>Add Job<br/>
-                                    Find all your Jobs in one place
-                                </div>
-                                <div className="panel-body row">
-                                    <div className="col-md-2"/>
-                                    <div className="panel panel-default col-md-8" style={{paddingLeft: '0px', paddingRight: '0px'}}>
-                                        <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px'}}><Icon type="info-circle"/><span
-                                            className="margin_font_location">Job Details</span>
+                        <div className="">{/* style={{panel-group paddingTop:"50px"}} */}
+                            <div className="">{/*panel panel-default */}
+                                
+                                <div className=" row">{/*panel-body */}
+                                    {/* <div className="col-md-2"/> */}
+                                    <div className="formRadius card" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/* col-md-8 panel panel-default */}
+                                        <div className="bold_c_text" style={{color:'black',padding:'8px',borderBottom: '1px solid #d9d9d9'}}>
+                                            {/* <Icon type="info-circle"/> */}
+                                            <i class="fa fa-info-circle iconStyle"></i>
+                                            <span className="margin_font_location">Job Details</span>
                                         </div>
-                                        <section style={{backgroundColor: '#F1F2F2'}}>
+                                        <section className="formRadius card">{/* style={{backgroundColor: '#F1F2F2'}} */}
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
@@ -559,13 +584,15 @@ class JobPortal extends Component {
                                     </div>
                                     <div className="col-md-2"/>
                                 </div>
-                                <div className="panel-body row">
-                                    <div className="col-md-2"/>
-                                    <div className="panel panel-default col-md-8" style={{paddingLeft: '0px', paddingRight: '0px'}}>
-                                        <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px'}}><Icon type="info-circle"/><span
-                                            className="margin_font_location">Company Details</span>
+                                <div className="row">{/*panel-body  */}
+                                    {/* <div className="col-md-2"/> */}
+                                    <div className="formRadius card" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/*panel panel-default col-md-8 */}
+                                        <div className="bold_c_text" style={{color:'black',padding:'8px',borderBottom: '1px solid #d9d9d9'}}>
+                                            {/* <Icon type="info-circle"/> */}
+                                            <i class="fa fa-info-circle iconStyle"></i>
+                                            <span className="margin_font_location">Company Details</span>
                                         </div>
-                                        <section style={{backgroundColor: '#F1F2F2'}}>
+                                        <section className="formRadius card">{/* style={{backgroundColor: '#F1F2F2'}} */}
                                             <div className="row">
                                                 <div className="col-md-4">
                                                     <div className="form-group">
@@ -632,22 +659,22 @@ class JobPortal extends Component {
                                                             <div className='row' style={{paddingTop: '0px', paddingBottom: '0px'}}>
                                                                 <button
                                                                     type="button"
-                                                                    className="btn btn-fb"
+                                                                    className="btn btn-fb btnSet"
                                                                     style={{width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#3B5999'}}
                                                                 >
-                                                                    <i className="fa fa-facebook" style={{color: 'white'}}></i>
+                                                                    <i className="fa fa-facebook iconSet" style={{color: 'white'}}></i>
                                                                 </button>
                                                                 <input type="text"
                                                                        id='faceBook'
                                                                        value={this.state.faceBook}
-                                                                       className="form-control"
+                                                                       className="form-control inputSet"
                                                                        style={{width: '90%', display: 'inline-block', borderRadius: '0px'}}
                                                                        onChange={this.onChangeValue.bind(this)}/>
                                                             </div>
                                                             <div className='row' style={{paddingTop: '0px', paddingBottom: '0px'}}>
                                                                 <button
                                                                     type="button"
-                                                                    className="btn btn-fb"
+                                                                    className="btn btn-fb btnSet"
                                                                     style={{width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#0077B5'}}
                                                                 >
                                                                     <i className="fa fa-linkedin" style={{color: 'white'}}></i>
@@ -656,14 +683,14 @@ class JobPortal extends Component {
                                                                     type="text"
                                                                     id='LinkdIn'
                                                                     value={this.state.LinkdIn}
-                                                                    className="form-control"
+                                                                    className="form-control inputSet"
                                                                     style={{width: '90%', display: 'inline-block', borderRadius: '0px'}}
                                                                     onChange={this.onChangeValue.bind(this)}/>
                                                             </div>
                                                             <div className='row' style={{paddingTop: '0px', paddingBottom: '0px'}}>
                                                                 <button
                                                                     type="button"
-                                                                    className="btn btn-fb"
+                                                                    className="btn btn-fb btnSet"
                                                                     style={{width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#DC4E41'}}
                                                                 >
                                                                     <i className="fa fa-google-plus" style={{color: 'white'}}></i>
@@ -672,7 +699,7 @@ class JobPortal extends Component {
                                                                     type="text"
                                                                     id='Google'
                                                                     value={this.state.Google}
-                                                                    className="form-control"
+                                                                    className="form-control inputSet"
                                                                     style={{width: '90%', display: 'inline-block', borderRadius: '0px'}}
                                                                     onChange={this.onChangeValue.bind(this)}/>
                                                             </div>
@@ -695,7 +722,7 @@ class JobPortal extends Component {
                         </div>
                     </Form>
                 </div>
-                <Footer/>
+                {/* <Footer/> */}
             </div>
         )
     }

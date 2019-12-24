@@ -15,6 +15,7 @@ import moment from 'moment';
 import { Redirect } from 'react-router';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 import Burgermenu from '../header/burgermenu';
+import HeaderMenu from '../header/headermenu';
 import Footer from '../footer/footer';
 import sha1 from "sha1";
 import superagent from "superagent";
@@ -542,591 +543,613 @@ class EventPortal extends Component {
 
         return (
             <div>
-                <Burgermenu />
-                <div className="hidden-sm" style={{ marginTop: '10%' }}></div>
+                <HeaderMenu />
+                <div className="hidden-sm" style={{ marginTop: '8%' }}></div>
                 <div className="visible-sm" style={{ marginTop: '15%' }}></div>
-                <div className="row jobdetail-page" style={{ backgroundColor: "#37a99b" }}>
-                    <div className="col-md-12 col-sm-12 col-xs-12" style={{ textAlign: "center" }}>
-                        <div className="">
-                            <h1 style={{ fontFamily: 'Work Sans, sans-serif', fontWeight: "bold", color: 'white' }}>SUBMIT YOUR EVENT</h1>
-                        </div>
-                    </div>
+                <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
+                <div className="col-lg-3 col-md-3 hidden-sm hidden-xs card formRadius" id="section1" style={{marginTop: '46px', position: 'fixed', borderRadius: '3px !important'}}>
+                        <label class="dov">One
+                            <input id="scrollChange1" type="radio" name="radio" />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="dov">Two
+                            <input id="scrollChange2" type="radio" name="radio" />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="dov">Three
+                            <input id="scrollChange3" type="radio" name="radio" />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="dov">Four
+                            <input id="scrollChange4" type="radio" name="radio" />
+                            <span class="checkmark"></span>
+                        </label>
+                    
                 </div>
-                <Form onSubmit={this.handleSubmit} className="login-form">
-                    <div className="panel-body">
-                        <div className="panel panel-default">
-                            <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}>
-                                <Icon type="info-circle" />
-                                <span className="margin_font_location">Event Detail</span>
-                            </div>
-                            <div className="container" style={{ width: '80%' }}>
-                                <section>
-                                    <div className="row">
-                                        <div className="col-md-12">
-                                            <div className="col-md-6">
-                                                <div className="form-group">
-                                                    <label htmlFor="sel1">Event Title</label>
-                                                    <FormItem>
-                                                        {getFieldDecorator('eventTitle', {
-                                                            initialValue: this.state.eventTitle,
-                                                            rules: [{ required: true, message: 'Please input your Event Title!', whitespace: true }],
-                                                        })(
-                                                            <input type="text" className="form-control" />
-                                                        )}
-                                                    </FormItem>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6" style={{ textAlign: 'left', display: 'grid' }}>
-                                                <label htmlFor="Price Mode"> Category </label>
-                                                <FormItem>
-                                                    {getFieldDecorator('eventCategory', {
-                                                        initialValue: this.state.eventCategory,
-                                                        rules: [{ type: 'array', required: true, message: 'Please select your Event Category!' }],
-                                                    })(
-                                                        <Cascader options={category} showSearch={{ filter }} />
-                                                    )}
-                                                </FormItem>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-md-12">
-                                            <div className="col-md-6">
-                                                <div className="row" style={{ padding: '0px' }}>
-                                                    <div className="col-md-7" style={{ display: 'grid' }}>
-                                                        <label> State </label>
-                                                        <FormItem>
-                                                            {getFieldDecorator('state', {
-                                                                initialValue: this.state.state,
-                                                                rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
-                                                            })(
-                                                                <Cascader options={statesUS} showSearch={{ filter }} onChange={this.onChangeState.bind(this)} />
-                                                            )}
-                                                        </FormItem>
-                                                    </div>
-                                                    <div className="col-md-5">
-                                                        <label> City </label>
-                                                        <FormItem>
-                                                            {getFieldDecorator('city', {
-                                                                initialValue: this.state.city,
-                                                                rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
-                                                            })(
-                                                                <Cascader options={citiesUS} showSearch={{ filter }} />
-                                                            )}
-                                                        </FormItem>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <label htmlFor="sel1">Date Range</label>
-                                                <FormItem>
-                                                    {getFieldDecorator('dateRange', {
-                                                        initialValue: [(this.state.startDate),
-                                                        (this.state.endDate)],
-                                                        rules: [{ validator: this.validateDate.bind(this) }],
-                                                    })(
-                                                        <RangePicker
-                                                            ranges={{
-                                                                Today: [moment(), moment()],
-                                                                'This Month': [moment(), moment().endOf('month')]
-                                                            }}
-                                                            onChange={this.onChangeDate.bind(this)}
-                                                        />
-                                                    )}
-                                                </FormItem>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-md-12">
-                                            <div className="col-md-6">
-                                                <div className="form-group">
-                                                    <label htmlFor="sel1">Description</label>
-                                                    <FormItem>
-                                                        {getFieldDecorator('description', {
-                                                            initialValue: this.state.description,
-                                                            rules: [
-                                                                {
-                                                                    required: true, message: 'Please input your Description/Details!', whitespace: true
-                                                                },
-                                                                {
-                                                                    validator: this.checkValue.bind(this)
-                                                                }],
-                                                        })(
-                                                            <TextArea
-                                                                rows={6}
-                                                                maxLength="500"
-                                                                style={{ "marginBottom": "10px" }} />
-                                                        )}
-                                                        <br />
-                                                        <span style={{ "float": "right" }}>{500 - this.state.desLength} Words</span>
-                                                    </FormItem>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group">
-                                                    <label htmlFor="sel1">Address</label>
-                                                    <FormItem>
-                                                        {getFieldDecorator('address', {
-                                                            initialValue: this.state.address,
-                                                            rules: [{ required: true, message: 'Please input your Address!', whitespace: true }],
-                                                        })(
-                                                            <Input />
-                                                        )}
-                                                    </FormItem>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
+                <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12 jobdetail-page">{/* style={{ backgroundColor: "#37a99b" }} */}
+                    <div className="" style={{ textAlign: "center" }}>
+                        <h3 style={{ fontFamily: 'Work Sans, sans-serif', fontWeight: "bold", color: 'white' }}>SUBMIT YOUR EVENT</h3>
                     </div>
-                    <div className="panel-body">
-                        <div className="panel panel-default">
-                            <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}>
-                                <Icon type="info-circle" />
-                                <span className="margin_font_location">Upload</span>
-                            </div>
-                            <div className="container" style={{ width: '80%' }}>
-                                <section className="row">
-                                    <div className="col-md-3">
-                                        <FormItem>
-                                            {getFieldDecorator('images', {
-                                                rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
-                                            })(
-                                                <div>
-                                                    <Upload
-                                                        action="//jsonplaceholder.typicode.com/posts/"
-                                                        listType="picture-card"
-                                                        fileList={fileList}
-                                                        onPreview={this.handlePreview}
-                                                        onChange={this.handleChange}
-                                                    >
-                                                        {fileList.length > 1 ? null : uploadButton}
-                                                    </Upload>
-                                                    <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-                                                        <img alt="example" style={{ width: '100%' }} src={previewImage} />
-                                                    </Modal>
-                                                </div>
-                                            )}
-                                        </FormItem>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <FormItem>
-                                            {getFieldDecorator('coverPhoto', {
-                                                rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
-                                            })(
-                                                <span>
-                                                    {this.state.coverPhotoSrc.length == 0 && <Dragger
-                                                        id="coverPhoto"
-                                                        name='file'
-                                                        action="//jsonplaceholder.typicode.com/posts/"
-                                                        onChange={this.onChangeCoverPhoto}>
-                                                        <p className="ant-upload-drag-icon">
-                                                            <Icon type="inbox" />
-                                                        </p>
-                                                        <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                                                        <p className="ant-upload-hint">Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files</p>
-                                                    </Dragger>}
-                                                    {this.state.coverPhotoSrc.length > 0 && <div>
-                                                        <img alt="example" src={this.state.coverPhotoSrc} style={{ height: '190px' }} />
-                                                    </div>}
-                                                </span>
-                                            )}
-                                        </FormItem>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <FormItem>
-                                            {getFieldDecorator('banner', {
-                                                rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
-                                            })(
-                                                <span>
-                                                    {this.state.bannerSrc.length == 0 && <Upload
-                                                        action="//jsonplaceholder.typicode.com/posts/"
-                                                        // listType="picture-card"
-                                                        // style={{border: '1px dotted black'}}
-                                                        // fileList={fileList}
-                                                        onPreview={this.handlePreview}
-                                                        onChange={this.onChangeBanner}
-                                                    >
-                                                        {bannerButton}
-                                                    </Upload>}
-                                                    {this.state.bannerSrc.length > 0 && <div>
-                                                        <img alt="example" src={this.state.bannerSrc} style={{ height: '190px' }} />
-                                                    </div>}
-                                                </span>
-                                            )}
-                                        </FormItem>
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="panel-body">
-                        <div className="panel panel-default">
-                            <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}>
-                                <Icon type="info-circle" />
-                                <span className="margin_font_location">Ticket Detail</span>
-                            </div>
-                            <div className="container" style={{ width: '80%' }}>
-                                <section>
-                                    <div className="row">
-                                        <div className="col-md-12">
-                                            <div className="col-md-6">
-                                                <label> Select Tickets </label>
-                                                <FormItem>
-                                                    {getFieldDecorator('ticketsCategory', {
-                                                        initialValue: this.state.ticketsCategory,
-                                                        rules: [{ type: 'array', required: true, message: 'Please select your Ticket category!' }],
-                                                    })(
-                                                        <Cascader options={ticketNames} showSearch={{ filter }} onChange={this.onSelectTicket.bind(this)} />
-                                                    )}
-                                                </FormItem>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <label>Opening & closing Time</label>
-                                                <div className="row" style={{ marginTop: '-17px' }}>
-                                                    <div className="col-md-6">
-                                                        <FormItem>
-                                                            {getFieldDecorator('openingTime', {
-                                                                initialValue: moment(this.state.openingTime, 'HH:mm:ss'),
-                                                                rules: [{ validator: this.validateTime.bind(this) }],
-                                                            })(
-                                                                <TimePicker placeholder="Opening Time" onChange={this.onOpeningTime.bind(this)} />
-                                                            )}
-                                                        </FormItem>
-                                                    </div>
-                                                    <div className="col-md-6">
-                                                        <FormItem>
-                                                            {getFieldDecorator('closingTime', {
-                                                                initialValue: moment(this.state.closingTime, 'HH:mm:ss'),
-                                                                rules: [{ validator: this.validateTime.bind(this) }],
-                                                            })(
-                                                                <TimePicker placeholder="Closing Time" onChange={this.onClosingTime.bind(this)} />
-                                                            )}
-                                                        </FormItem>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {this.state.earlyBird && <div className="row">
-                                        <div className="col-md-12">
-                                            <div className="col-md-6">
-                                                <label style={{ fontSize: '18px' }}>Early Bird</label><br />
-                                                <label> Available Tickets &nbsp;&nbsp;&nbsp;Total</label>
-                                                <div className="row">
-                                                    <div className="col-md-3" style={{ paddingLeft: '0px' }}>
-                                                        <FormItem>
-                                                            {getFieldDecorator('earlyBirdAvailableTickets', {
-                                                                initialValue: this.state.earlyBirdAvailableTickets,
-                                                                rules: [{ required: true, message: 'Please input your Available Tickets!', whitespace: true },
-                                                                    // { validator: this.validateNumber.bind(this) }
-                                                                ],
-                                                            })(
-                                                                <input type="text" className="form-control" />
-                                                            )}
-                                                        </FormItem>
-                                                    </div>
-                                                    <div className="col-md-3" style={{ paddingRight: '0px' }}>
-                                                        <FormItem>
-                                                            {getFieldDecorator('earlyBirdTotalTickets', {
-                                                                initialValue: this.state.earlyBirdTotalTickets,
-                                                                rules: [{ required: true, message: 'Please input your Total Tickets!', whitespace: true },
-                                                                    // { validator: this.validateNumber.bind(this) }
-                                                                ],
-                                                            })(
-                                                                <input type="text" className="form-control" />
-                                                            )}
-                                                        </FormItem>
-                                                    </div>
-                                                    <div className="col-md-3" style={{ marginTop: '-27px' }}>
-                                                        <label> Price </label>
-                                                        <FormItem>
-                                                            {getFieldDecorator('earlyBirdPrice', {
-                                                                initialValue: this.state.earlyBirdPrice,
-                                                                rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
-                                                                    // { validator: this.validateNumber.bind(this) }
-                                                                ],
-                                                            })(
-                                                                <input type="text" className="form-control" />
-                                                            )}
-                                                        </FormItem>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <label className="ant-checkbox ant-checkbox-wrapper">
-                                                            <Checkbox checked={this.state.earlyBirdFree} onChange={this.onChangePrice1.bind(this)}>(Free)</Checkbox>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {!this.state.earlyBirdFree && <div className="col-md-6" style={{ marginTop: '35px' }}>
-                                                <label> Mode Of Payment </label>
-                                                <FormItem>
-                                                    {getFieldDecorator('earlyBirdPaymentMode', {
-                                                        initialValue: this.state.earlyBirdPaymentMode,
-                                                        rules: [{ validator: this.checkCheckBox }],
-                                                    })(
-                                                        <CheckboxGroup options={optionsPayment} />
-                                                    )}
-                                                </FormItem>
-                                            </div>}
-                                        </div>
-                                    </div>}
-                                    {this.state.earlyBird && <div className="row">
-                                        {!this.state.earlyBirdFree && <div className="col-md-6">
-                                            <label>Ticket Delivery</label>
-                                            <FormItem>
-                                                {getFieldDecorator('earlyBirdDelivery', {
-                                                    initialValue: this.state.earlyBirdDelivery,
-                                                    rules: [{ validator: this.checkCheckBox }],
-                                                })(
-                                                    <CheckboxGroup options={optionsDelivery} />
-                                                )}
-                                            </FormItem>
-                                        </div>}
-                                        <div className="col-md-6">
-
-                                        </div>
-                                    </div>}
-                                    {this.state.normalTicket && this.state.earlyBird && <hr />}
-                                    {this.state.normalTicket && <div className="row">
-                                        <div className="col-md-12">
-                                            <div className="col-md-6">
-                                                <label style={{ fontSize: '18px' }}>Normal Ticket</label><br />
-                                                <label> Available Tickets &nbsp;&nbsp;&nbsp;Total</label>
-                                                <div className="row">
-                                                    <div className="col-md-3" style={{ paddingLeft: '0px' }}>
-                                                        <FormItem>
-                                                            {getFieldDecorator('normalTicketAvailableTickets', {
-                                                                initialValue: this.state.normalTicketAvailableTickets,
-                                                                rules: [{ required: true, message: 'Please input your Available Tickets!', whitespace: true },
-                                                                    // { validator: this.validateNumber.bind(this) }
-                                                                ],
-                                                            })(
-                                                                <input type="text" className="form-control" />
-                                                            )}
-                                                        </FormItem>
-                                                    </div>
-                                                    <div className="col-md-3" style={{ paddingRight: '0px' }}>
-                                                        <FormItem>
-                                                            {getFieldDecorator('normalTicketTotalTickets', {
-                                                                initialValue: this.state.normalTicketTotalTickets,
-                                                                rules: [{ required: true, message: 'Please input your Total Tickets!', whitespace: true },
-                                                                    // { validator: this.validateNumber.bind(this) }
-                                                                ],
-                                                            })(
-                                                                <input type="text" className="form-control" />
-                                                            )}
-                                                        </FormItem>
-                                                    </div>
-                                                    <div className="col-md-3" style={{ marginTop: '-27px' }}>
-                                                        <label> Price </label>
-                                                        <FormItem>
-                                                            {getFieldDecorator('normalTicketPrice', {
-                                                                initialValue: this.state.normalTicketPrice,
-                                                                rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
-                                                                    // { validator: this.validateNumber.bind(this) }
-                                                                ],
-                                                            })(
-                                                                <input type="text" className="form-control" />
-                                                            )}
-                                                        </FormItem>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <label className="ant-checkbox ant-checkbox-wrapper">
-                                                            <Checkbox checked={this.state.normalTicketFree} onChange={this.onChangePrice2.bind(this)}>(Free)</Checkbox>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {!this.state.normalTicketFree && <div className="col-md-6" style={{ marginTop: '35px' }}>
-                                                <label> Mode Of Payment </label>
-                                                <FormItem>
-                                                    {getFieldDecorator('normalTicketPaymentMode', {
-                                                        initialValue: this.state.normalTicketPaymentMode,
-                                                        rules: [{ validator: this.checkCheckBox }],
-                                                    })(
-                                                        <CheckboxGroup options={optionsPayment} />
-                                                    )}
-                                                </FormItem>
-                                            </div>}
-                                        </div>
-                                    </div>}
-                                    {this.state.normalTicket && <div className="row">
-                                        {!this.state.normalTicketFree && <div className="col-md-6">
-                                            <label>Ticket Delivery</label>
-                                            <FormItem>
-                                                {getFieldDecorator('normalTicketDelivery', {
-                                                    initialValue: this.state.normalTicketDelivery,
-                                                    rules: [{ validator: this.checkCheckBox }],
-                                                })(
-                                                    <CheckboxGroup options={optionsDelivery} />
-                                                )}
-                                            </FormItem>
-                                        </div>}
-                                        <div className="col-md-6">
-
-                                        </div>
-                                    </div>}
-                                    {this.state.customTicket && <div className="row">
-                                        <CustomTickets
-                                            label="Custom Ticket"
-                                            id="customTicketDetail"
-                                            value={this.state.customTicketDetail}
-                                            onChange={this.handleCard}
-                                        />
-                                    </div>}
-                                </section>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="panel-body">
-                        <div className="panel panel-default">
-                            <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}>
-                                <Icon type="info-circle" />
-                                <span className="margin_font_location">Organizer Detail</span>
-                            </div>
-                            <div className="container" style={{ width: '80%' }}>
-                                <div className="row">
-                                    <div className="col-md-4">
-                                        <div className="form-group">
-                                            <label htmlFor="sel1">Name</label>
-                                            <FormItem>
-                                                {getFieldDecorator('name', {
-                                                    initialValue: this.state.name,
-                                                    rules: [{ required: true, message: 'Please input your Contact Name!', whitespace: true }],
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4">
-                                        <div className="form-group">
-                                            <label htmlFor="sel1">Email</label>
-                                            <FormItem>
-                                                {getFieldDecorator('email', {
-                                                    initialValue: this.state.email,
-                                                    rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true },
-                                                    { required: true, message: 'Please input your Contact Email!', whitespace: true }],
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4">
-                                        <div className="form-group">
-                                            <label htmlFor="sel1">Website</label>
-                                            <FormItem>
-                                                <input type="text" id='website'
-                                                    value={this.state.website}
-                                                    className="form-control" onChange={this.onChangeValue.bind(this)} />
-                                            </FormItem>
-                                        </div>
-                                    </div>
+                
+                    <Form onSubmit={this.handleSubmit} className="login-form">
+                        <div className="" style={{backgroundColor: 'white'}}>{/*panel-body */}
+                            <div className="formRadius card">{/*panel panel-default */}
+                                <div className="bold_c_text" style={{ color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
+                                    {/* <Icon type="info-circle" /> */}
+                                    <i class="fa fa-info-circle iconStyle"></i>
+                                    <span className="margin_font_location">Event Detail</span>
                                 </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <div className="form-group">
-                                            <label htmlFor="sel1">Phone</label>
+                                <div className="formRadius card" style={{marginBottom: '3%'}}>{/*container  style={{ width: '80%' }}*/}
+                                    <section>
+                                        <div className="row">
+                                            <div className="col-md-12">
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label htmlFor="sel1">Event Title</label>
+                                                        <FormItem>
+                                                            {getFieldDecorator('eventTitle', {
+                                                                initialValue: this.state.eventTitle,
+                                                                rules: [{ required: true, message: 'Please input your Event Title!', whitespace: true }],
+                                                            })(
+                                                                <input type="text" className="form-control" />
+                                                            )}
+                                                        </FormItem>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6" style={{ textAlign: 'left', display: 'grid' }}>
+                                                    <label htmlFor="Price Mode"> Category </label>
+                                                    <FormItem>
+                                                        {getFieldDecorator('eventCategory', {
+                                                            initialValue: this.state.eventCategory,
+                                                            rules: [{ type: 'array', required: true, message: 'Please select your Event Category!' }],
+                                                        })(
+                                                            <Cascader options={category} showSearch={{ filter }} />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-12">
+                                                <div className="col-md-6">
+                                                    <div className="row" style={{ padding: '0px' }}>
+                                                        <div className="col-md-7" style={{ display: 'grid' }}>
+                                                            <label> State </label>
+                                                            <FormItem>
+                                                                {getFieldDecorator('state', {
+                                                                    initialValue: this.state.state,
+                                                                    rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
+                                                                })(
+                                                                    <Cascader options={statesUS} showSearch={{ filter }} onChange={this.onChangeState.bind(this)} />
+                                                                )}
+                                                            </FormItem>
+                                                        </div>
+                                                        <div className="col-md-5">
+                                                            <label> City </label>
+                                                            <FormItem>
+                                                                {getFieldDecorator('city', {
+                                                                    initialValue: this.state.city,
+                                                                    rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
+                                                                })(
+                                                                    <Cascader options={citiesUS} showSearch={{ filter }} />
+                                                                )}
+                                                            </FormItem>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <label htmlFor="sel1">Date Range</label>
+                                                    <FormItem>
+                                                        {getFieldDecorator('dateRange', {
+                                                            initialValue: [(this.state.startDate),
+                                                            (this.state.endDate)],
+                                                            rules: [{ validator: this.validateDate.bind(this) }],
+                                                        })(
+                                                            <RangePicker
+                                                                ranges={{
+                                                                    Today: [moment(), moment()],
+                                                                    'This Month': [moment(), moment().endOf('month')]
+                                                                }}
+                                                                onChange={this.onChangeDate.bind(this)}
+                                                            />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-12">
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label htmlFor="sel1">Description</label>
+                                                        <FormItem>
+                                                            {getFieldDecorator('description', {
+                                                                initialValue: this.state.description,
+                                                                rules: [
+                                                                    {
+                                                                        required: true, message: 'Please input your Description/Details!', whitespace: true
+                                                                    },
+                                                                    {
+                                                                        validator: this.checkValue.bind(this)
+                                                                    }],
+                                                            })(
+                                                                <TextArea
+                                                                    rows={6}
+                                                                    maxLength="500"
+                                                                    style={{ "marginBottom": "10px" }} />
+                                                            )}
+                                                            <br />
+                                                            <span style={{ "float": "right" }}>{500 - this.state.desLength} Words</span>
+                                                        </FormItem>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label htmlFor="sel1">Address</label>
+                                                        <FormItem>
+                                                            {getFieldDecorator('address', {
+                                                                initialValue: this.state.address,
+                                                                rules: [{ required: true, message: 'Please input your Address!', whitespace: true }],
+                                                            })(
+                                                                <Input />
+                                                            )}
+                                                        </FormItem>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="formRadius card">{/*panel-body */}
+                            <div className="">{/*panel panel-default */}
+                                <div className="bold_c_text" style={{color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
+                                    <i class="fa fa-upload"></i>
+                                    <span className="margin_font_location">Upload</span>
+                                </div>
+                                <div className="formRadius card" style={{marginBottom: '3%'}}>{/*container  style={{ width: '80%' }}*/}
+                                    <section className="row">
+                                        <div className="col-md-3">
                                             <FormItem>
-                                                {getFieldDecorator('number', {
-                                                    initialValue: this.state.number,
-                                                    rules: [{
-                                                        required: true,
-                                                        message: 'Please input your Number!',
-                                                        whitespace: true
-                                                    },
-                                                        // { validator: this.validateNumber.bind(this) }
-                                                    ],
+                                                {getFieldDecorator('images', {
+                                                    rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
                                                 })(
-                                                    <input type="text" className="form-control" />
+                                                    <div>
+                                                        <Upload
+                                                            action="//jsonplaceholder.typicode.com/posts/"
+                                                            listType="picture-card"
+                                                            fileList={fileList}
+                                                            onPreview={this.handlePreview}
+                                                            onChange={this.handleChange}
+                                                        >
+                                                            {fileList.length > 1 ? null : uploadButton}
+                                                        </Upload>
+                                                        <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+                                                            <img alt="example" style={{ width: '100%' }} src={previewImage} />
+                                                        </Modal>
+                                                    </div>
                                                 )}
                                             </FormItem>
                                         </div>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="form-group">
-                                            <label htmlFor="usr">Social Media Links</label>
+                                        <div className="col-md-6">
                                             <FormItem>
-                                                <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
-                                                    <button
-                                                        type="button"
-                                                        className="btn btn-fb"
-                                                        style={{ width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#3B5999' }}
-                                                    >
-                                                        <i className="fa fa-facebook" style={{ color: 'white' }}></i>
-                                                    </button>
-                                                    <input type="text"
-                                                        id='faceBook'
-                                                        className="form-control"
-                                                        value={this.state.faceBook}
-                                                        onChange={this.onChangeValue.bind(this)}
-                                                        style={{ width: '90%', display: 'inline-block', borderRadius: '0px' }}
-                                                    />
-                                                </div>
-                                                <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
-                                                    <button
-                                                        type="button"
-                                                        className="btn btn-fb"
-                                                        style={{ width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#0077B5' }}
-                                                    >
-                                                        <i className="fa fa-linkedin" style={{ color: 'white' }}></i>
-                                                    </button>
-                                                    <input
-                                                        type="text"
-                                                        id='linkdIn'
-                                                        className="form-control"
-                                                        value={this.state.linkdIn}
-                                                        onChange={this.onChangeValue.bind(this)}
-                                                        style={{ width: '90%', display: 'inline-block', borderRadius: '0px' }}
-                                                    />
-                                                </div>
-                                                <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
-                                                    <button
-                                                        type="button"
-                                                        className="btn btn-fb"
-                                                        style={{ width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#DC4E41' }}
-                                                    >
-                                                        <i className="fa fa-google-plus" style={{ color: 'white' }}></i>
-                                                    </button>
-                                                    <input
-                                                        type="text"
-                                                        id='google'
-                                                        className="form-control"
-                                                        value={this.state.google}
-                                                        onChange={this.onChangeValue.bind(this)}
-                                                        style={{
-                                                            width: '90%',
-                                                            display: 'inline-block', borderRadius: '0px'
-                                                        }} />
-                                                </div>
+                                                {getFieldDecorator('coverPhoto', {
+                                                    rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
+                                                })(
+                                                    <span>
+                                                        {this.state.coverPhotoSrc.length == 0 && <Dragger
+                                                            id="coverPhoto"
+                                                            name='file'
+                                                            action="//jsonplaceholder.typicode.com/posts/"
+                                                            onChange={this.onChangeCoverPhoto}>
+                                                            <p className="ant-upload-drag-icon">
+                                                                <Icon type="inbox" />
+                                                            </p>
+                                                            <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                                                            <p className="ant-upload-hint">Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files</p>
+                                                        </Dragger>}
+                                                        {this.state.coverPhotoSrc.length > 0 && <div>
+                                                            <img alt="example" src={this.state.coverPhotoSrc} style={{ height: '190px' }} />
+                                                        </div>}
+                                                    </span>
+                                                )}
                                             </FormItem>
                                         </div>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="form-group">
-                                            <label htmlFor="usr">Terms and Conditions</label>
-                                            <Shareholder
-                                                id="termsCondition"
-                                                value={this.state.termsCondition}
+                                        <div className="col-md-3">
+                                            <FormItem>
+                                                {getFieldDecorator('banner', {
+                                                    rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
+                                                })(
+                                                    <span>
+                                                        {this.state.bannerSrc.length == 0 && <Upload
+                                                            action="//jsonplaceholder.typicode.com/posts/"
+                                                            // listType="picture-card"
+                                                            // style={{border: '1px dotted black'}}
+                                                            // fileList={fileList}
+                                                            onPreview={this.handlePreview}
+                                                            onChange={this.onChangeBanner}
+                                                        >
+                                                            {bannerButton}
+                                                        </Upload>}
+                                                        {this.state.bannerSrc.length > 0 && <div>
+                                                            <img alt="example" src={this.state.bannerSrc} style={{ height: '190px' }} />
+                                                        </div>}
+                                                    </span>
+                                                )}
+                                            </FormItem>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="formRadius card">{/*panel-body */}
+                            <div className="">{/*panel panel-default */}
+                                <div className="bold_c_text" style={{color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
+                                    {/* <Icon type="info-circle" /> */}
+                                    <i class="fa fa-info-circle iconStyle"></i>
+                                    <span className="margin_font_location">Ticket Detail</span>
+                                </div>
+                                <div className="formRadius card" style={{marginBottom: '3%'}}>{/*container style={{ width: '80%' }}*/}
+                                    <section>
+                                        <div className="row">
+                                            <div className="col-md-12">
+                                                <div className="col-md-6">
+                                                    <label> Select Tickets </label>
+                                                    <FormItem>
+                                                        {getFieldDecorator('ticketsCategory', {
+                                                            initialValue: this.state.ticketsCategory,
+                                                            rules: [{ type: 'array', required: true, message: 'Please select your Ticket category!' }],
+                                                        })(
+                                                            <Cascader options={ticketNames} showSearch={{ filter }} onChange={this.onSelectTicket.bind(this)} />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <label>Opening & closing Time</label>
+                                                    <div className="row" style={{ marginTop: '-17px' }}>
+                                                        <div className="col-md-6">
+                                                            <FormItem>
+                                                                {getFieldDecorator('openingTime', {
+                                                                    initialValue: moment(this.state.openingTime, 'HH:mm:ss'),
+                                                                    rules: [{ validator: this.validateTime.bind(this) }],
+                                                                })(
+                                                                    <TimePicker placeholder="Opening Time" onChange={this.onOpeningTime.bind(this)} />
+                                                                )}
+                                                            </FormItem>
+                                                        </div>
+                                                        <div className="col-md-6">
+                                                            <FormItem>
+                                                                {getFieldDecorator('closingTime', {
+                                                                    initialValue: moment(this.state.closingTime, 'HH:mm:ss'),
+                                                                    rules: [{ validator: this.validateTime.bind(this) }],
+                                                                })(
+                                                                    <TimePicker placeholder="Closing Time" onChange={this.onClosingTime.bind(this)} />
+                                                                )}
+                                                            </FormItem>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {this.state.earlyBird && <div className="row">
+                                            <div className="col-md-12">
+                                                <div className="col-md-6">
+                                                    <label style={{ fontSize: '18px' }}>Early Bird</label><br />
+                                                    <label> Available Tickets &nbsp;&nbsp;&nbsp;Total</label>
+                                                    <div className="row">
+                                                        <div className="col-md-3" style={{ paddingLeft: '0px' }}>
+                                                            <FormItem>
+                                                                {getFieldDecorator('earlyBirdAvailableTickets', {
+                                                                    initialValue: this.state.earlyBirdAvailableTickets,
+                                                                    rules: [{ required: true, message: 'Please input your Available Tickets!', whitespace: true },
+                                                                        // { validator: this.validateNumber.bind(this) }
+                                                                    ],
+                                                                })(
+                                                                    <input type="text" className="form-control" />
+                                                                )}
+                                                            </FormItem>
+                                                        </div>
+                                                        <div className="col-md-3" style={{ paddingRight: '0px' }}>
+                                                            <FormItem>
+                                                                {getFieldDecorator('earlyBirdTotalTickets', {
+                                                                    initialValue: this.state.earlyBirdTotalTickets,
+                                                                    rules: [{ required: true, message: 'Please input your Total Tickets!', whitespace: true },
+                                                                        // { validator: this.validateNumber.bind(this) }
+                                                                    ],
+                                                                })(
+                                                                    <input type="text" className="form-control" />
+                                                                )}
+                                                            </FormItem>
+                                                        </div>
+                                                        <div className="col-md-3" style={{ marginTop: '-27px' }}>
+                                                            <label> Price </label>
+                                                            <FormItem>
+                                                                {getFieldDecorator('earlyBirdPrice', {
+                                                                    initialValue: this.state.earlyBirdPrice,
+                                                                    rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
+                                                                        // { validator: this.validateNumber.bind(this) }
+                                                                    ],
+                                                                })(
+                                                                    <input type="text" className="form-control" />
+                                                                )}
+                                                            </FormItem>
+                                                        </div>
+                                                        <div className="col-md-3">
+                                                            <label className="ant-checkbox ant-checkbox-wrapper">
+                                                                <Checkbox checked={this.state.earlyBirdFree} onChange={this.onChangePrice1.bind(this)}>(Free)</Checkbox>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {!this.state.earlyBirdFree && <div className="col-md-6" style={{ marginTop: '35px' }}>
+                                                    <label> Mode Of Payment </label>
+                                                    <FormItem>
+                                                        {getFieldDecorator('earlyBirdPaymentMode', {
+                                                            initialValue: this.state.earlyBirdPaymentMode,
+                                                            rules: [{ validator: this.checkCheckBox }],
+                                                        })(
+                                                            <CheckboxGroup options={optionsPayment} />
+                                                        )}
+                                                    </FormItem>
+                                                </div>}
+                                            </div>
+                                        </div>}
+                                        {this.state.earlyBird && <div className="row">
+                                            {!this.state.earlyBirdFree && <div className="col-md-6">
+                                                <label>Ticket Delivery</label>
+                                                <FormItem>
+                                                    {getFieldDecorator('earlyBirdDelivery', {
+                                                        initialValue: this.state.earlyBirdDelivery,
+                                                        rules: [{ validator: this.checkCheckBox }],
+                                                    })(
+                                                        <CheckboxGroup options={optionsDelivery} />
+                                                    )}
+                                                </FormItem>
+                                            </div>}
+                                            <div className="col-md-6">
+
+                                            </div>
+                                        </div>}
+                                        {this.state.normalTicket && this.state.earlyBird && <hr />}
+                                        {this.state.normalTicket && <div className="row">
+                                            <div className="col-md-12">
+                                                <div className="col-md-6">
+                                                    <label style={{ fontSize: '18px' }}>Normal Ticket</label><br />
+                                                    <label> Available Tickets &nbsp;&nbsp;&nbsp;Total</label>
+                                                    <div className="row">
+                                                        <div className="col-md-3" style={{ paddingLeft: '0px' }}>
+                                                            <FormItem>
+                                                                {getFieldDecorator('normalTicketAvailableTickets', {
+                                                                    initialValue: this.state.normalTicketAvailableTickets,
+                                                                    rules: [{ required: true, message: 'Please input your Available Tickets!', whitespace: true },
+                                                                        // { validator: this.validateNumber.bind(this) }
+                                                                    ],
+                                                                })(
+                                                                    <input type="text" className="form-control" />
+                                                                )}
+                                                            </FormItem>
+                                                        </div>
+                                                        <div className="col-md-3" style={{ paddingRight: '0px' }}>
+                                                            <FormItem>
+                                                                {getFieldDecorator('normalTicketTotalTickets', {
+                                                                    initialValue: this.state.normalTicketTotalTickets,
+                                                                    rules: [{ required: true, message: 'Please input your Total Tickets!', whitespace: true },
+                                                                        // { validator: this.validateNumber.bind(this) }
+                                                                    ],
+                                                                })(
+                                                                    <input type="text" className="form-control" />
+                                                                )}
+                                                            </FormItem>
+                                                        </div>
+                                                        <div className="col-md-3" style={{ marginTop: '-27px' }}>
+                                                            <label> Price </label>
+                                                            <FormItem>
+                                                                {getFieldDecorator('normalTicketPrice', {
+                                                                    initialValue: this.state.normalTicketPrice,
+                                                                    rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
+                                                                        // { validator: this.validateNumber.bind(this) }
+                                                                    ],
+                                                                })(
+                                                                    <input type="text" className="form-control" />
+                                                                )}
+                                                            </FormItem>
+                                                        </div>
+                                                        <div className="col-md-3">
+                                                            <label className="ant-checkbox ant-checkbox-wrapper">
+                                                                <Checkbox checked={this.state.normalTicketFree} onChange={this.onChangePrice2.bind(this)}>(Free)</Checkbox>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {!this.state.normalTicketFree && <div className="col-md-6" style={{ marginTop: '35px' }}>
+                                                    <label> Mode Of Payment </label>
+                                                    <FormItem>
+                                                        {getFieldDecorator('normalTicketPaymentMode', {
+                                                            initialValue: this.state.normalTicketPaymentMode,
+                                                            rules: [{ validator: this.checkCheckBox }],
+                                                        })(
+                                                            <CheckboxGroup options={optionsPayment} />
+                                                        )}
+                                                    </FormItem>
+                                                </div>}
+                                            </div>
+                                        </div>}
+                                        {this.state.normalTicket && <div className="row">
+                                            {!this.state.normalTicketFree && <div className="col-md-6">
+                                                <label>Ticket Delivery</label>
+                                                <FormItem>
+                                                    {getFieldDecorator('normalTicketDelivery', {
+                                                        initialValue: this.state.normalTicketDelivery,
+                                                        rules: [{ validator: this.checkCheckBox }],
+                                                    })(
+                                                        <CheckboxGroup options={optionsDelivery} />
+                                                    )}
+                                                </FormItem>
+                                            </div>}
+                                            <div className="col-md-6">
+
+                                            </div>
+                                        </div>}
+                                        {this.state.customTicket && <div className="row">
+                                            <CustomTickets
+                                                label="Custom Ticket"
+                                                id="customTicketDetail"
+                                                value={this.state.customTicketDetail}
                                                 onChange={this.handleCard}
                                             />
+                                        </div>}
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="formRadius card">{/*panel-body */}
+                            <div className="">{/*panel panel-default */}
+                                <div className="bold_c_text" style={{color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
+                                    {/* <Icon type="info-circle" /> */}
+                                    <i class="fa fa-info-circle iconStyle"></i>
+                                    <span className="margin_font_location">Organizer Detail</span>
+                                </div>
+                                <div className="formRadius card">{/*container  style={{ width: '80%' }}*/}
+                                    <div className="row">
+                                        <div className="col-md-4">
+                                            <div className="form-group">
+                                                <label htmlFor="sel1">Name</label>
+                                                <FormItem>
+                                                    {getFieldDecorator('name', {
+                                                        initialValue: this.state.name,
+                                                        rules: [{ required: true, message: 'Please input your Contact Name!', whitespace: true }],
+                                                    })(
+                                                        <Input />
+                                                    )}
+                                                </FormItem>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <div className="form-group">
+                                                <label htmlFor="sel1">Email</label>
+                                                <FormItem>
+                                                    {getFieldDecorator('email', {
+                                                        initialValue: this.state.email,
+                                                        rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true },
+                                                        { required: true, message: 'Please input your Contact Email!', whitespace: true }],
+                                                    })(
+                                                        <Input />
+                                                    )}
+                                                </FormItem>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <div className="form-group">
+                                                <label htmlFor="sel1">Website</label>
+                                                <FormItem>
+                                                    <input type="text" id='website'
+                                                        value={this.state.website}
+                                                        className="form-control" onChange={this.onChangeValue.bind(this)} />
+                                                </FormItem>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <div className="form-group">
+                                                <label htmlFor="sel1">Phone</label>
+                                                <FormItem>
+                                                    {getFieldDecorator('number', {
+                                                        initialValue: this.state.number,
+                                                        rules: [{
+                                                            required: true,
+                                                            message: 'Please input your Number!',
+                                                            whitespace: true
+                                                        },
+                                                            // { validator: this.validateNumber.bind(this) }
+                                                        ],
+                                                    })(
+                                                        <input type="text" className="form-control" />
+                                                    )}
+                                                </FormItem>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <div className="form-group">
+                                                <label htmlFor="usr">Social Media Links</label>
+                                                <FormItem>
+                                                    <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-fb btnSet"
+                                                            style={{ width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#3B5999' }}
+                                                        >
+                                                            <i className="fa fa-facebook" style={{ color: 'white' }}></i>
+                                                        </button>
+                                                        <input type="text"
+                                                            id='faceBook'
+                                                            className="form-control inputSet"
+                                                            value={this.state.faceBook}
+                                                            onChange={this.onChangeValue.bind(this)}
+                                                            style={{ width: '90%', display: 'inline-block', borderRadius: '0px' }}
+                                                        />
+                                                    </div>
+                                                    <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-fb btnSet"
+                                                            style={{ width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#0077B5' }}
+                                                        >
+                                                            <i className="fa fa-linkedin" style={{ color: 'white' }}></i>
+                                                        </button>
+                                                        <input
+                                                            type="text"
+                                                            id='linkdIn'
+                                                            className="form-control inputSet"
+                                                            value={this.state.linkdIn}
+                                                            onChange={this.onChangeValue.bind(this)}
+                                                            style={{ width: '90%', display: 'inline-block', borderRadius: '0px' }}
+                                                        />
+                                                    </div>
+                                                    <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-fb btnSet"
+                                                            style={{ width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#DC4E41' }}
+                                                        >
+                                                            <i className="fa fa-google-plus" style={{ color: 'white' }}></i>
+                                                        </button>
+                                                        <input
+                                                            type="text"
+                                                            id='google'
+                                                            className="form-control inputSet"
+                                                            value={this.state.google}
+                                                            onChange={this.onChangeValue.bind(this)}
+                                                            style={{
+                                                                width: '90%',
+                                                                display: 'inline-block', borderRadius: '0px'
+                                                            }} />
+                                                    </div>
+                                                </FormItem>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <div className="form-group">
+                                                <label htmlFor="usr">Terms and Conditions</label>
+                                                <Shareholder
+                                                    id="termsCondition"
+                                                    value={this.state.termsCondition}
+                                                    onChange={this.handleCard}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="row center_global row">
-                        {this.state.loader && <Spin indicator={antIcon} />}
-                        <button disabled={!!this.state.loader} style={{ textAlign: 'center', width: "45%" }} className="btn button_custom">Submit Event</button>
-                    </div>
-                </Form>
-                <Footer />
+                        <div className="row center_global row">
+                            {this.state.loader && <Spin indicator={antIcon} />}
+                            <button disabled={!!this.state.loader} style={{ textAlign: 'center', width: "45%" }} className="btn color_button">Submit Event</button>
+                        </div>
+                    </Form>
+                </div>
+                {/* <Footer /> */}
             </div>
         )
     }

@@ -10,7 +10,8 @@ import {
     Upload,
     Modal,
     Button,
-    Radio
+    Radio,
+    Anchor 
 } from 'antd';
 import Burgermenu from '../../header/burgermenu';
 import HeaderMenu from '../../header/headermenu';
@@ -21,6 +22,13 @@ import './shopForm.css'
 import { HttpUtils } from "../../../Services/HttpUtils";
 import { Redirect } from "react-router-dom";
 
+
+const { Link } = Anchor;
+
+const handleClick = (e, link) => {
+  e.preventDefault();
+  console.log(link);
+};
 
 const { TextArea } = Input;
 const Dragger = Upload.Dragger;
@@ -552,35 +560,26 @@ class ShopForm extends Component {
                 <div className="hidden-sm" style={{ marginTop: '4%' }}></div>
                 <div className="visible-sm" style={{ marginTop: '15%' }}></div>
                 <div className="col-lg-12 col-md-12 col-md-12 col-sm-12 col-xs-12" style={{ textAlign: "center" }}>
-                        <h1 style={{ fontFamily: 'Work Sans, sans-serif', fontWeight: "bold", color: 'white' }}>CREATE YOUR SHOP</h1>
+                        <h1 style={{ fontFamily: 'Work Sans, sans-serif', fontWeight: "bold", color: 'black' }}>CREATE YOUR SHOP</h1>
                     </div>
-
-                <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
+                   
+                <div className="col-lg-3 col-md-3 hidden-sm hidden-xs">
+                
+                </div>
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs card formRadius" id="section1" style={{marginTop: '60px', position: 'fixed', borderRadius: '3px !important'}}>
-                        <label class="dov">One
-                            <input id="scrollChange1" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Two
-                            <input id="scrollChange2" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Three
-                            <input id="scrollChange3" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Four
-                            <input id="scrollChange4" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                    
+                    <Anchor>
+                        <Link href="#scrollChange1" title="Shop Details" />
+                        <Link href="#scrollChange2" title="Upload Images" />
+                        <Link href="#scrollChange3" title="Billing Details" />
+                        
+                    </Anchor>
                 </div>
                 
                 <div className="col-lg-9 col-md-9 col-md-9 col-sm-12 col-xs-12">
                     
                 
                     <Form onSubmit={this.handleSubmit}>
-                        <div className="formRadius card">{/*panel-body */}
+                        <div className="formRadius card" id="scrollChange1">{/*panel-body */}
                             <div className="">{/*panel panel-default */}
                                 <div className="bold_c_text"
                                     style={{
@@ -591,7 +590,7 @@ class ShopForm extends Component {
                                     <i class="fa fa-info-circle iconStyle"></i>
                                     <span className="margin_font_location">Shop Detail</span>
                                 </div>
-                                <div className="formRadius card" style={{marginBottom: '3%'}}>{/*container  style={{ width: '80%' }}*/}
+                                <div className="formRadius card" id="scrollChange1" style={{marginBottom: '3%'}}>{/*container  style={{ width: '80%' }}*/}
                                     <section>
                                         <div className="row" style={{ padding: '0px', marginTop: '10px' }}>
                                             <div className="col-md-12">
@@ -686,7 +685,7 @@ class ShopForm extends Component {
                                                             )}
                                                         </Form.Item>
                                                     </div>
-                                                    <div className="col-md-6">
+                                                    {/* <div className="col-md-6">
                                                         <label htmlFor="sel1">Shop Logo</label>
 
                                                         <Form.Item>
@@ -715,7 +714,7 @@ class ShopForm extends Component {
                                                                 </div>
                                                             )}
                                                         </Form.Item>
-                                                    </div>
+                                                    </div> */}
                                                 </div>
                                             </div>
                                         </div>
@@ -785,7 +784,7 @@ class ShopForm extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="formRadius card">{/*panel-body */}
+                        <div className="formRadius card" id="scrollChange2">{/*panel-body */}
                             <div className="">{/*panel panel-default */}
                                 <div className="bold_c_text"
                                     style={{
@@ -799,6 +798,37 @@ class ShopForm extends Component {
 
                                 <div className="container" style={{marginBottom: '3%',width: '95%'}}>{/*  style={{ width: '95%' }}*/}
                                     <section className="row">
+                                        <div className="col-md-6">
+                                            <label htmlFor="sel1">Shop Logo</label>
+
+                                            <Form.Item>
+                                                {getFieldDecorator('shopLogo', {
+                                                    rules: [{
+                                                        required: true,
+                                                        message: 'Please upload your shop logo!',
+                                                        whitespace: true
+                                                    }],
+                                                })(
+                                                    <div>
+                                                        <Upload
+                                                            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                                                            listType="picture-card"
+                                                            fileList={fileListLogo}
+                                                            onPreview={this.handlePreviewLogo}
+                                                            onChange={this.handleChangeLogo}
+                                                        >
+                                                            {fileListLogo.length > 1 ? null : uploadButtonLogo}
+                                                        </Upload>
+                                                        <div>
+                                                            <Modal visible={previewVisibleLogo} footer={null} onCancel={this.handleCancelLogo}>
+                                                                <img alt="example" style={{ width: '100%' }} src={previewImageLogo} />
+                                                            </Modal>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </Form.Item>
+                                        </div>
+                                        <div className="col-md-6"></div>
                                         <div className="col-md-12" style={{ padding: '0px' }}>
                                             <label htmlFor="sel1">Shop Banner</label>
 
@@ -908,7 +938,7 @@ class ShopForm extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="formRadius card">{/*panel-body */}
+                        <div className="formRadius card" id="scrollChange3">{/*panel-body */}
                             <div className="">{/*panel panel-default */}
                                 <div className="bold_c_text"
                                     style={{

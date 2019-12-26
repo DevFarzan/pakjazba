@@ -12,7 +12,8 @@ import {
     DatePicker,
     Radio,
     Row,
-    Col
+    Col,
+    Anchor,
 } from 'antd';
 import moment from 'moment';
 import superagent from "superagent";
@@ -24,7 +25,16 @@ import Burgermenu from '../header/burgermenu';
 import HeaderMenu from '../header/headermenu';
 import Footer from '../footer/footer';
 import AsyncStorage from "@callstack/async-storage/lib/index";
-import stateCities from "../../lib/countrycitystatejson"
+import stateCities from "../../lib/countrycitystatejson";
+
+const { Link } = Anchor;
+
+const handleClick = (e, link) => {
+  e.preventDefault();
+  console.log(link);
+};
+
+
 const RangePicker = DatePicker.RangePicker;
 const { TextArea } = Input;
 const CheckboxGroup = Checkbox.Group;
@@ -547,28 +557,15 @@ class Postroommates extends Component{
                 <div className="hidden-xs" style={{width:"100%",height:"67px",marginTop:"40px"}}></div>{/*3*/}
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs card formRadius" id="section1" style={{marginTop: '103px', position: 'fixed', borderRadius: '3px !important'}}>
-                        <label class="dov">One
-                            <input id="scrollChange1" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Two
-                            <input id="scrollChange2" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Three
-                            <input id="scrollChange3" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Four
-                            <input id="scrollChange4" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                    
+                    <Anchor>
+                        <Link href="#scrollChange1" title="Location" />
+                        <Link href="#scrollChange2" title="About" />
+                    </Anchor>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     
                     <div className="main_c_panel" style={{color:'white',textAlign:'center'}}>
-                    <h3 style={{color: 'white', fontWeight: 'bold'}}>Roommates / Rentals<br/>
+                    <h3 style={{color: 'black', fontWeight: 'bold'}}>Roommates / Rentals<br/>
                                     Find all your Local Rentals in one place</h3>
                                 </div>
                     <Form onSubmit={this.handleSubmit} className="login-form">
@@ -584,7 +581,7 @@ class Postroommates extends Component{
                                             <i class="fa fa-map-marker iconStyle" aria-hidden="true"></i>
                                             <span className="margin_font_location">Location</span>
                                         </div>
-                                        <div className="formRadius" style={{backgroundColor: 'white',padding: '1vw 0 0 0' }}>{/*panel-body */}
+                                        <div className="formRadius" id="scrollChange1" style={{backgroundColor: 'white',padding: '1vw 0 0 0' }}>{/*panel-body */}
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="State"
@@ -844,12 +841,12 @@ class Postroommates extends Component{
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
                                     <div className="card formRadius" style={{padding: '0 0 1vw 0'}}>{/*panel panel-default */}
-                                        <div className="bold_c_text formRadius" style={{color:'white',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                        <div className="bold_c_text formRadius" style={{color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-address-card iconStyle"></i>
                                             <span className="margin_font_location">About</span>
                                         </div>
-                                        <div className="formRadius" style={{padding: '1vw 0 1vw 0'}}>{/* panel-body*/}
+                                        <div className="formRadius" id="scrollChange2" style={{padding: '1vw 0 1vw 0'}}>{/* panel-body*/}
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Contact Name"

@@ -8,6 +8,7 @@ import {
     notification,
     Upload,
     Modal,
+    Anchor,
 } from 'antd';
 import { Redirect } from 'react-router';
 import AsyncStorage from "@callstack/async-storage/lib/index";
@@ -18,6 +19,13 @@ import sha1 from "sha1";
 import moment from 'moment';
 import superagent from "superagent";
 import {HttpUtils} from "../../Services/HttpUtils";
+
+const { Link } = Anchor;
+
+const handleClick = (e, link) => {
+  e.preventDefault();
+  console.log(link);
+};
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -367,27 +375,14 @@ class JobPortal extends Component {
                 <div className="hidden-xs" style={{width:"100%", height:"67px", marginTop: "40px"}} />
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs card formRadius" id="section1" style={{marginTop: '116px', position: 'fixed', borderRadius: '3px !important'}}>
-                        <label class="dov">One
-                            <input id="scrollChange1" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Two
-                            <input id="scrollChange2" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Three
-                            <input id="scrollChange3" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Four
-                            <input id="scrollChange4" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                    
+                    <Anchor>
+                        <Link href="#scrollChange1" title="Job Details" />
+                        <Link href="#scrollChange2" title="Company Details" />
+                    </Anchor>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div className="main_c_panel" style={{textAlign: 'center'}}>
-                        <h3 style={{color: 'white',fontWeight: 'bold'}}>Add Job<br/>
+                        <h3 style={{color: 'black',fontWeight: 'bold'}}>Add Job<br/>
                         Find all your Jobs in one place</h3>
                     </div>
                     <Form onSubmit={this.handleSubmit} className="login-form">
@@ -396,7 +391,7 @@ class JobPortal extends Component {
                                 
                                 <div className=" row">{/*panel-body */}
                                     {/* <div className="col-md-2"/> */}
-                                    <div className="formRadius card" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/* col-md-8 panel panel-default */}
+                                    <div className="formRadius card" id="scrollChange1" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/* col-md-8 panel panel-default */}
                                         <div className="bold_c_text" style={{color:'black',padding:'8px',borderBottom: '1px solid #d9d9d9'}}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-info-circle iconStyle"></i>
@@ -586,7 +581,7 @@ class JobPortal extends Component {
                                 </div>
                                 <div className="row">{/*panel-body  */}
                                     {/* <div className="col-md-2"/> */}
-                                    <div className="formRadius card" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/*panel panel-default col-md-8 */}
+                                    <div className="formRadius card" id="scrollChange2" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/*panel panel-default col-md-8 */}
                                         <div className="bold_c_text" style={{color:'black',padding:'8px',borderBottom: '1px solid #d9d9d9'}}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-info-circle iconStyle"></i>

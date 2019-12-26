@@ -9,7 +9,8 @@ import {
     Modal,
     DatePicker,
     TimePicker,
-    Checkbox
+    Checkbox,
+    Anchor,
 } from 'antd';
 import moment from 'moment';
 import { Redirect } from 'react-router';
@@ -22,6 +23,14 @@ import superagent from "superagent";
 import { HttpUtils } from "../../Services/HttpUtils";
 import { Shareholder, CustomTickets } from './ColorPicker';
 import stateCities from "../../lib/countrycitystatejson";
+
+
+const { Link } = Anchor;
+
+const handleClick = (e, link) => {
+  e.preventDefault();
+  console.log(link);
+};
 
 const FormItem = Form.Item;
 const RangePicker = DatePicker.RangePicker;
@@ -548,31 +557,21 @@ class EventPortal extends Component {
                 <div className="visible-sm" style={{ marginTop: '15%' }}></div>
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs card formRadius" id="section1" style={{marginTop: '46px', position: 'fixed', borderRadius: '3px !important'}}>
-                        <label class="dov">One
-                            <input id="scrollChange1" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Two
-                            <input id="scrollChange2" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Three
-                            <input id="scrollChange3" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Four
-                            <input id="scrollChange4" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                    
+                <Anchor>
+                        <Link href="#scrollChange1" title="Event Details" />
+                        <Link href="#scrollChange2" title="Upload" />
+                        <Link href="#scrollChange3" title="Ticket Details" />
+                        <Link href="#scrollChange4" title="Organizer Details" />
+                        
+                    </Anchor>
                 </div>
                 <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12 jobdetail-page">{/* style={{ backgroundColor: "#37a99b" }} */}
                     <div className="" style={{ textAlign: "center" }}>
-                        <h3 style={{ fontFamily: 'Work Sans, sans-serif', fontWeight: "bold", color: 'white' }}>SUBMIT YOUR EVENT</h3>
+                        <h3 style={{ fontFamily: 'Work Sans, sans-serif', fontWeight: "bold", color: 'black' }}>SUBMIT YOUR EVENT</h3>
                     </div>
                 
                     <Form onSubmit={this.handleSubmit} className="login-form">
-                        <div className="" style={{backgroundColor: 'white'}}>{/*panel-body */}
+                        <div className="" id="scrollChange1" style={{backgroundColor: 'white'}}>{/*panel-body */}
                             <div className="formRadius card">{/*panel panel-default */}
                                 <div className="bold_c_text" style={{ color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
                                     {/* <Icon type="info-circle" /> */}
@@ -702,7 +701,7 @@ class EventPortal extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="formRadius card">{/*panel-body */}
+                        <div className="formRadius card" id="scrollChange2">{/*panel-body */}
                             <div className="">{/*panel panel-default */}
                                 <div className="bold_c_text" style={{color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
                                     <i class="fa fa-upload"></i>
@@ -783,7 +782,7 @@ class EventPortal extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="formRadius card">{/*panel-body */}
+                        <div className="formRadius card" id="scrollChange3">{/*panel-body */}
                             <div className="">{/*panel panel-default */}
                                 <div className="bold_c_text" style={{color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
                                     {/* <Icon type="info-circle" /> */}
@@ -1003,7 +1002,7 @@ class EventPortal extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="formRadius card">{/*panel-body */}
+                        <div className="formRadius card" id="scrollChange4">{/*panel-body */}
                             <div className="">{/*panel panel-default */}
                                 <div className="bold_c_text" style={{color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
                                     {/* <Icon type="info-circle" /> */}

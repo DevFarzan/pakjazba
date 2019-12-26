@@ -9,7 +9,8 @@ import {
     notification,
     Upload,
     Modal,
-    TimePicker
+    TimePicker,
+    Anchor,
 } from 'antd';
 // import Geosuggest from 'react-geosuggest';
 import Burgermenu from '../header/burgermenu';
@@ -24,6 +25,13 @@ import AsyncStorage from "@callstack/async-storage/lib/index";
 import moment from 'moment';
 import stateCities from "../../lib/countrycitystatejson";
 import './postBusiness.css';
+
+const { Link } = Anchor;
+
+const handleClick = (e, link) => {
+  e.preventDefault();
+  console.log(link);
+};
 
 //const stateCities= require('countrycitystatejson')
 const { TextArea } = Input;
@@ -733,37 +741,26 @@ class Postbusiness extends Component {
                 <div className="hidden-xs" style={{ width: "100%", height: "67px", marginTop: "3px" }}></div>
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs card formRadius" id="section1" style={{marginTop: '128px', position: 'fixed', borderRadius: '3px !important'}}>
-                        <label class="dov">One
-                            <input id="scrollChange1" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Two
-                            <input id="scrollChange2" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Three
-                            <input id="scrollChange3" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Four
-                            <input id="scrollChange4" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                    
+                    <Anchor>
+                        <Link href="#scrollChange1" title="Location" />
+                        <Link href="#scrollChange2" title="Business" />
+                        <Link href="#scrollChange3" title="Social Links" />
+                        <Link href="#scrollChange4" title="Upload" />
+                    </Anchor>
                 </div>
                 
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="" style={{ paddingTop: "74px",  }}>{/*panel-group 37px*/}
                             <div style={{textAlign: 'center'}}>
-                                <h2 style={{ color: 'white', fontWeight: 'bold'}}>Your listing details</h2>
+                                <h2 style={{ color: 'black', fontWeight: 'bold'}}>Your listing details</h2>
                             </div>
                             <div className="">{/*panel panel-default */}
                                 
-                                <div className="" href="#scrollChange1">
+                                <div className="">
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
-                                    <div className="panel panel-default formRadius" style={{borderRadius: '3px !important', boxShadow: '0 2px 5px 0 rgba(0,0,0,.07)',}}>
+                                    <div className="panel panel-default formRadius" id="scrollChange1" style={{borderRadius: '3px !important', boxShadow: '0 2px 5px 0 rgba(0,0,0,.07)',}}>
                                         <div className="bold_c_text"
                                           style={{ backgroundColor: '#fff', color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important', }}>
                                                 <i class="fa fa-map-marker iconStyle" aria-hidden="true"></i>
@@ -819,7 +816,7 @@ class Postbusiness extends Component {
                                     <br />
                                     {/*==========location panel end===========*/}
                                     {/*==========Business panel start=========*/}
-                                    <div className="panel panel-default formRadius" href="#scrollChange2">
+                                    <div className="panel panel-default formRadius" id="scrollChange2">
                                         <div className="bold_c_text" style={{ backgroundColor: '#white', color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid #d9d9d9' }}>
                                             <i class="fa fa-building iconStyle"></i>
                                             <span className="margin_font_location">Business</span>
@@ -987,7 +984,7 @@ class Postbusiness extends Component {
                                     <br />
                                     {/*==========Business panel end===========*/}
                                     {/*==========social links box start===========*/}
-                                    <div className="panel panel-default formRadius" href="#scrollChange3" style={{border: 'none'}}>
+                                    <div className="panel panel-default formRadius" id="scrollChange3" style={{border: 'none'}}>
                                         <div className="bold_c_text formRadius" style={{ backgroundColor: 'white', color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important', border: 'none', border: '1px solid #d9d9d9' }}>
                                             <i class="fa fa-link iconStyle"></i>
                                             <span className="margin_font_location">Social Links</span>
@@ -1015,7 +1012,7 @@ class Postbusiness extends Component {
                                     </div>
                                     {/*==========social links box end===========*/}
                                     {/*==========upload panel start=========*/}
-                                    <div className="panel panel-default formRadius" href="#scrollChange4" style={{border: 'none'}}>
+                                    <div className="panel panel-default formRadius" id="scrollChange4" style={{border: 'none'}}>
                                         <div className="bold_c_text formRadius" style={{ backgroundColor: 'white', color: 'black', padding: '8px', border: '1px solid #d9d9d9' }}>
                                             <i class="fa fa-upload iconStyle"></i>
                                             <span className="margin_font_location">Upload</span>

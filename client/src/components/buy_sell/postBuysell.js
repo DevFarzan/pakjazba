@@ -8,7 +8,8 @@ import {
     Checkbox,
     notification,
     Upload,
-    Modal
+    Modal,
+    Anchor,
 } from 'antd';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 import Burgermenu from '../header/burgermenu';
@@ -20,6 +21,13 @@ import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
 import moment from 'moment';
 import stateCities from "../../lib/countrycitystatejson";
+
+const { Link } = Anchor;
+
+const handleClick = (e, link) => {
+  e.preventDefault();
+  console.log(link);
+};
 
 const { TextArea } = Input;
 const CheckboxGroup = Checkbox.Group;
@@ -472,34 +480,22 @@ class Postbuysell extends Component{
                 {/*================================post business form start============================*/}
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs card formRadius" id="section1" style={{marginTop: '116px', position: 'fixed', borderRadius: '3px !important'}}>
-                        <label class="dov">One
-                            <input id="scrollChange1" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Two
-                            <input id="scrollChange2" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Three
-                            <input id="scrollChange3" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Four
-                            <input id="scrollChange4" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                    
+                    <Anchor>
+                        <Link href="#scrollChange1" title="Product Details" />
+                        <Link href="#scrollChange2" title="Brand Details" />
+                        <Link href="#scrollChange3" title="Contact" />
+                    </Anchor>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div className="main_c_panel" style={{color:'white',textAlign:'center',marginTop: '40px'}}>
-                        <h3 style={{color: 'white',fontWeight: 'bold'}}>Submit your Items</h3>
+                    <div className="main_c_panel" style={{textAlign:'center',marginTop: '40px'}}>
+                        <h3 style={{color: 'black',fontWeight: 'bold'}}>Submit your Items</h3>
                     </div>
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="">{/*panel-group */}
                             <div className="">{/*panel panel-default */}
                             
                                 <div className="formRadius">{/*panel-body */}
-                                <div className="formRadius card">{/*panel panel-default */}
+                                <div className="formRadius card" id="scrollChange1">{/*panel panel-default */}
                                         <div className="formRadius" style={{color:'black',padding:'8px',fontFamily:'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9'}}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-info-circle iconStyle"></i>
@@ -599,7 +595,7 @@ class Postbuysell extends Component{
                             </div>
                             </div>
                             <br/>
-                            <div className="card formRadius">{/*panel panel-default  */}
+                            <div className="card formRadius" id="scrollChange2">{/*panel panel-default  */}
                                 <div className="bold_c_text formRadius" style={{backgroundColor:'white',color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
                                     {/* <Icon type="info-circle"/> */}
                                     <i class="fa fa-info-circle iconStyle"></i>
@@ -695,7 +691,7 @@ class Postbuysell extends Component{
                                 </div>
                             </div>
                             <br/>
-                            <div className="card formRadius">{/*panel panel-default */}
+                            <div className="card formRadius" id="scrollChange3">{/*panel panel-default */}
                                 <div className="bold_c_text formRadius" style={{backgroundColor:'white',color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
                                     {/* <Icon type="info-circle"/> */}
                                     <i class="fa fa-address-card iconStyle"></i>

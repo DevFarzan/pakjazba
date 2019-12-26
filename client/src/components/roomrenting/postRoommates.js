@@ -12,7 +12,8 @@ import {
     DatePicker,
     Radio,
     Row,
-    Col
+    Col,
+    Anchor,
 } from 'antd';
 import moment from 'moment';
 import superagent from "superagent";
@@ -21,9 +22,19 @@ import {HttpUtils} from "../../Services/HttpUtils";
 //import MapContainer from './google_map/Map'
 import sha1 from "sha1";
 import Burgermenu from '../header/burgermenu';
+import HeaderMenu from '../header/headermenu';
 import Footer from '../footer/footer';
 import AsyncStorage from "@callstack/async-storage/lib/index";
-import stateCities from "../../lib/countrycitystatejson"
+import stateCities from "../../lib/countrycitystatejson";
+
+const { Link } = Anchor;
+
+const handleClick = (e, link) => {
+  e.preventDefault();
+  console.log(link);
+};
+
+
 const RangePicker = DatePicker.RangePicker;
 const { TextArea } = Input;
 const CheckboxGroup = Checkbox.Group;
@@ -542,22 +553,35 @@ class Postroommates extends Component{
 
         return(
             <div>
-                <Burgermenu/>
-                <div className="hidden-xs" style={{width:"100%",height:"67px",marginTop:"3px"}}></div>
-                <div className="">
-                    <Form onSubmit={this.handleSubmit} className="login-form">
-                        <div className="panel-group" style={{paddingTop:"32px"}}>
-                            <div className="panel panel-default">
-                                <div className="main_c_panel" style={{backgroundColor:'#37a99b',color:'white',textAlign:'center'}}>Roommates / Rentals<br/>
-                                    Find all your Local Rentals in one place
+                <HeaderMenu/>
+                <div className="hidden-xs" style={{width:"100%",height:"67px",marginTop:"40px"}}></div>{/*3*/}
+                <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
+                <div className="col-lg-3 col-md-3 hidden-sm hidden-xs card formRadius" id="section1" style={{marginTop: '103px', position: 'fixed', borderRadius: '3px !important'}}>
+                    <Anchor>
+                        <Link href="#scrollChange1" title="Location" />
+                        <Link href="#scrollChange2" title="About" />
+                    </Anchor>
+                </div>
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    
+                    <div className="main_c_panel" style={{color:'white',textAlign:'center'}}>
+                    <h3 style={{color: 'black', fontWeight: 'bold'}}>Roommates / Rentals<br/>
+                                    Find all your Local Rentals in one place</h3>
                                 </div>
-                                <div className="panel-body">
+                    <Form onSubmit={this.handleSubmit} className="login-form">
+                        <div className="">{/*panel-group 32 */}
+                            <div className="">{/*panel panel-default */}
+                                
+                                <div className="">{/*panel-body */}
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
-                                    <div className="panel panel-default">
-                                        <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px'}}><Icon type="info-circle"/><span
-                                            className="margin_font_location">Location</span></div>
-                                        <div className="panel-body">
+                                    <div className="formRadius card">{/*panel panel-default */}
+                                        <div className="bold_c_text formRadius" style={{backgroundColor:'white',color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                            {/* <Icon type="info-circle"/> */}
+                                            <i class="fa fa-map-marker iconStyle" aria-hidden="true"></i>
+                                            <span className="margin_font_location">Location</span>
+                                        </div>
+                                        <div className="formRadius" id="scrollChange1" style={{backgroundColor: 'white',padding: '1vw 0 0 0' }}>{/*panel-body */}
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="State"
@@ -813,13 +837,16 @@ class Postroommates extends Component{
                                         </div>
                                     </div>
                                 </div>
-                                <div className="panel-body">
+                                <div className="">{/*panel-body */}
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
-                                    <div className="panel panel-default">
-                                        <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px'}}><Icon type="info-circle"/><span
-                                            className="margin_font_location">About</span></div>
-                                        <div className="panel-body">
+                                    <div className="card formRadius" style={{padding: '0 0 1vw 0'}}>{/*panel panel-default */}
+                                        <div className="bold_c_text formRadius" style={{color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                            {/* <Icon type="info-circle"/> */}
+                                            <i class="fa fa-address-card iconStyle"></i>
+                                            <span className="margin_font_location">About</span>
+                                        </div>
+                                        <div className="formRadius" id="scrollChange2" style={{padding: '1vw 0 1vw 0'}}>{/* panel-body*/}
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Contact Name"
@@ -878,8 +905,9 @@ class Postroommates extends Component{
                             </div>
                         </div>
                     </Form>
-                    <Footer />
+                    
                 </div>
+                {/* <Footer /> */}
             </div>
         )
     }

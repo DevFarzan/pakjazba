@@ -25,7 +25,7 @@
 
 .fa:hover {
     opacity: 0.7;
-      color: #236A4B !important;
+      color: #236A4B ;
 }
 
 .fa-facebook {
@@ -48,4 +48,10 @@
 
 .emailnphone {
   MARGIN-TOP: 3PX;
+}
+
+/* new css */
+
+.ImageCard {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }

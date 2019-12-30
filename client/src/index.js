@@ -54,6 +54,7 @@ import ShopForm from './components/ecommerce/shops/ShopForm'
 import EcomProile from './components/ecommerce/EcommerceProfile/ecommerceProfile';
 import OrderList from './components/ecommerce/shops/orderList';
 import AddListing from './components/header/addAlisting';
+import Explore from './components/Explore/explore';
 
 
 //css
@@ -97,6 +98,9 @@ ReactDOM.render(
         <Route exact path="/" component={HomePage}></Route>
         <Route path="/sigin" component={Signin}></Route>
         <Route exact path="/reset/:token" component={ResetPassword} />
+
+        {/*============Explore Page In Header=============*/}
+        <Route path="/explore" component={Explore}></Route>
 
         {/*============Header dropdown post your need route=============*/}
         <Route path="/add_listing" component={AddListing}></Route>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Burgermenu from "../header/burgermenu";
+import Burgermenu from "../header/burgermenu";  
+import Headermenu from "../header/headermenu";
 import Slider from "../header/Slider";
 import Roomrenting1content from "./roomrenting1content";
 import RoomrentingIcon from "./roomrentinficon";
@@ -9,8 +10,8 @@ import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
 import AsyncStorage from "@callstack/async-storage/lib/index";
 import { isMobile, isTablet } from 'react-device-detect';
-import { Modal } from 'antd';
 
+import { Modal, Tabs, Icon } from 'antd';
 
 class MarketRoommates extends Component{
     constructor(props) {
@@ -104,15 +105,13 @@ class MarketRoommates extends Component{
         return(
             <div>
                 <span>
-                <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "-20px",backgroundSize: 'cover'}}>
-                    <div className="visible-xs"></div>
-                    <div className="hidden-xs" style={{marginTop:'9%'}}></div>
-                    <div className="visible-sm" style={{marginTop:'10%'}}></div>
-                    <div className="background-image">
-                        <Burgermenu/>
-                        <Slider mainH1="PakJazba Room Renting" mainH2="" getMethod={this.postRoom}/>
+                    {/*<div className ="" style={{"background":"#d8e7e4",marginTop : "8vw",backgroundSize: 'cover'}}>*/}
+                    <div className ="" style={{marginTop : "8vw"}}>
+                        <div className="background-image">
+                            <Headermenu/>
+                            <Slider mainH1="PakJazba Room Renting" mainH2="" getMethod={this.postRoom}/>
+                        </div>
                     </div>
-                </div>
                 </span>
                 <div className="container" style={isMobile && !isTablet ? {width: '100%'} : {width:"70%"}}>
                     <div className="hidden-xs">

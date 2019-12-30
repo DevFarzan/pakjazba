@@ -11,6 +11,7 @@ import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import { Link } from "react-router-dom";
 import { Redirect } from 'react-router';
 import PublicProfile from '../profile/profileMainpage';
+import './profileUser.css';
 const FormItem = Form.Item;
 const { TextArea } = Input;
 const TabPane = Tabs.TabPane;
@@ -477,9 +478,9 @@ class ProfileUser extends Component {
                                         <div className="row">
                                             {profileSec && <div className="visible-xs">
                                                 <div className="profile-image">
-                                                    <div className="img-circle">
-                                                        <img className="img-circle"
-                                                            src={imageUrl ? imageUrl : '../images/images.jpg'} alt="" style={{ "width": "100%" }} />
+                                                    <div className="img-circle profileCard profileFormRadius">
+                                                        <img className="img-circle profileCard profileFormRadius"
+                                                            src={imageUrl ? imageUrl : '../images/images.jpg'} alt="" style={{ "width": "100%", borderRadius: '25px!important' }} />
                                                     </div>
                                                     <div className="single-file-input"
                                                         style={{ "padding": "16px", "marginTop": "-6px" }}>
@@ -492,9 +493,13 @@ class ProfileUser extends Component {
                                                 </div>
                                             </div>}
                                             {profileSec && <div className="col-md-8">
-                                                <h2>Personal Information</h2>
-                                                <section>
-                                                    <div className="row" style={{ padding: "0" }}>
+                                                
+                                                <section className=" profileCard profileFormRadius" style={{padding: '2%',}}>
+                                                    <div style={{borderBottom :'1px solid black'}}>
+                                                    <i class="fa fa-address-card iconStyle"></i>
+                                                    <span className="profileFormHeading">Personal Information</span>
+                                                    </div>
+                                                    <div className="row" style={{ padding: "2% 0" }}>
                                                         <div className="col-md-4">
                                                             <div className="form-group">
                                                                 <label htmlFor="sel1">Title:</label>
@@ -526,7 +531,10 @@ class ProfileUser extends Component {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="row" style={{ padding: "0" }}>
+
+                                                    <hr className="profileHrLine" />
+
+                                                    <div className="row" style={{ padding: "2% 0" }}>
                                                         <div className="col-md-12">
                                                             <div className="form-group">
                                                                 <label htmlFor="usr">Your Location:</label>
@@ -546,7 +554,10 @@ class ProfileUser extends Component {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="row" style={{ padding: "0" }}>
+
+                                                    <hr className="profileHrLine" />
+
+                                                    <div className="row" style={{ padding: "2% 0" }}>
                                                         <div className="col-md-12">
                                                             <div className="form-group">
                                                                 <label htmlFor="usr">More About You:</label>
@@ -571,9 +582,12 @@ class ProfileUser extends Component {
                                                         </div>
                                                     </div>
                                                 </section>
-                                                <section>
-                                                    <h2>Contact</h2>
-                                                    <div className="form-group">
+                                                <section className=" profileCard profileFormRadius" style={{padding: '2%'}}>
+                                                    <div style={{borderBottom :'1px solid black'}}>
+                                                        <i class="fa fa-address-card iconStyle"></i>
+                                                        <span className="profileFormHeading">Contact</span>
+                                                    </div>
+                                                    <div className="form-group" style={{ padding: "2% 0" }}>
                                                         <label htmlFor="phone" className="col-form-label">Phone</label>
                                                         <FormItem>
                                                             {getFieldDecorator('phone', {
@@ -591,7 +605,10 @@ class ProfileUser extends Component {
                                                             )}
                                                         </FormItem>
                                                     </div>
-                                                    <div className="form-group">
+                                                    
+                                                    <hr className="profileHrLine" />
+
+                                                    <div className="form-group" style={{ padding: "2% 0" }}>
                                                         <label htmlFor="email" className="col-form-label">Email</label>
                                                         <FormItem>
                                                             {getFieldDecorator('email', {
@@ -612,9 +629,12 @@ class ProfileUser extends Component {
                                                         </FormItem>
                                                     </div>
                                                 </section>
-                                                <section>
-                                                    <h2>Social</h2>
-                                                    <div className="form-group">
+                                                <section className=" profileCard profileFormRadius" style={{padding: '2%'}}>
+                                                    <div style={{borderBottom :'1px solid black'}}>
+                                                        <i class="fa fa-link iconStyle"></i>
+                                                        <span className="profileFormHeading">Social</span>
+                                                    </div>
+                                                    <div className="form-group" style={{ padding: "2% 0" }}>
                                                         <label htmlFor="phone"
                                                             className="col-form-label">Twitter</label>
                                                         <FormItem>
@@ -632,7 +652,10 @@ class ProfileUser extends Component {
                                                             )}
                                                         </FormItem>
                                                     </div>
-                                                    <div className="form-group">
+
+                                                    <hr className="profileHrLine" />
+
+                                                    <div className="form-group" style={{ padding: "2% 0" }}>
                                                         <label htmlFor="email"
                                                             className="col-form-label">Facebook</label>
                                                         <FormItem>
@@ -729,8 +752,8 @@ class ProfileUser extends Component {
                                             </div>}
                                             {profileSec && <div className="col-md-4 hidden-xs">
                                                 <div className="profile-image">
-                                                    <div className="img-circle">
-                                                        <img className="img-circle"
+                                                    <div className="img-circle card profileFormRadius">
+                                                        <img className="img-circle card profileFormRadius"
                                                             src={imageUrl ? imageUrl : '../images/images.jpg'} alt="" style={{ "width": "100%" }} />
                                                     </div>
                                                     <div className="single-file-input"

@@ -556,8 +556,8 @@ class Postroommates extends Component{
                 <HeaderMenu/>
                 <div className="hidden-xs" style={{width:"100%",height:"67px",marginTop:"40px"}}></div>{/*3*/}
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
-                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%', marginTop: '103px', position: 'fixed', borderRadius: '3px !important'}}>
-                    <Anchor className="formRadius">
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%', marginTop: '103px', position: 'fixed',}}>
+                    <Anchor className="" style={{margin: '2%',backgroundColor: '#f6f6f6'}}>
                         <Link href="#scrollChange1" title="General" />
                         <Link href="#scrollChange2" title="Location" />
                         <Link href="#scrollChange3" title="RentDetails" />
@@ -580,7 +580,7 @@ class Postroommates extends Component{
                                     {/*==========main panel content=============*/}
                                     {/*==========General panel start=========*/}
                                     <div className="card formRadius" style={{padding: '0 0 1vw 0'}}>{/*panel panel-default */}
-                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'2%',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-info-circle iconStyle"></i>
                                             <span className="margin_font_location">General</span>
@@ -589,6 +589,8 @@ class Postroommates extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Category"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('category', {
                                                     initialValue: this.state.dataCat,
@@ -603,6 +605,8 @@ class Postroommates extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Posting Title"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('postingTitle', {
                                                     initialValue: this.state.dataTitle,
@@ -617,6 +621,8 @@ class Postroommates extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Description/Details"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('description', {
                                                     initialValue: this.state.dataDescription,
@@ -644,7 +650,7 @@ class Postroommates extends Component{
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
                                     <div className="formRadius card">{/*panel panel-default */}
-                                        <div className="bold_c_text topRadius" style={{backgroundColor:'white',color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                        <div className="bold_c_text topRadius" style={{backgroundColor:'white',color:'black',padding:'2%',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-map-marker iconStyle" aria-hidden="true"></i>
                                             <span className="margin_font_location">Location</span>
@@ -653,6 +659,8 @@ class Postroommates extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="State"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('state', {
                                                     initialValue: this.state.dataState,
@@ -667,6 +675,8 @@ class Postroommates extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="City"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('city', {
                                                     initialValue: this.state.dataCity,
@@ -681,6 +691,8 @@ class Postroommates extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Property Location"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('propertyLocation', {
                                                     initialValue: this.state.dataLocation,
@@ -699,6 +711,8 @@ class Postroommates extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Property Zip Code"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('zipCode', {
                                                     initialValue: this.state.dataZip,
@@ -719,7 +733,7 @@ class Postroommates extends Component{
                                     {/*==========main panel content=============*/}
                                     {/*==========General panel start=========*/}
                                     <div className="card formRadius" style={{padding: '0 0 1vw 0'}}>{/*panel panel-default */}
-                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'2%',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-info-circle iconStyle"></i>
                                             <span className="margin_font_location">Rent details</span>
@@ -728,6 +742,8 @@ class Postroommates extends Component{
                                         <FormItem
                                                 {...formItemLayout}
                                                 label="Accommodates"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('accommodates', {
                                                     initialValue: this.state.dataAccom,
@@ -742,6 +758,8 @@ class Postroommates extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Furnished"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('furnished', {
                                                     initialValue: this.state.dataFurn,
@@ -756,6 +774,8 @@ class Postroommates extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Attached Bath"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 <RadioGroup onChange={this.changeAttBath} name='radio' value={this.state.radio}>
                                                     <Radio value={true}>YES</Radio>
@@ -768,6 +788,8 @@ class Postroommates extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Amenities include"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('amenities', {
                                                     initialValue: this.state.dataAmmen,
@@ -797,6 +819,8 @@ class Postroommates extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Vegetarians Preferred"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 <RadioGroup onChange={this.changeAttBath} name='vegNoVeg' value={this.state.vegNoVeg}>
                                                     <Radio value={'Yes'}>YES</Radio>
@@ -809,6 +833,8 @@ class Postroommates extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Smoking"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 <RadioGroup onChange={this.changeAttBath} name='smoking' value={this.state.smoking}>
                                                     <Radio value={'Yes'}>YES</Radio>
@@ -822,6 +848,8 @@ class Postroommates extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Pet Friendly"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 <RadioGroup onChange={this.changeAttBath} name='petFriendly' value={this.state.petFriendly}>
                                                     <Radio value={'No'}>No</Radio>
@@ -838,15 +866,17 @@ class Postroommates extends Component{
                                     {/*==========main panel content=============*/}
                                     {/*==========General panel start=========*/}
                                     <div className="card formRadius" style={{padding: '0 0 1vw 0'}}>{/*panel panel-default */}
-                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'2%',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
                                             {/* <Icon type="info-circle"/> */}
-                                            <i class="fa fa-info-circle iconStyle"></i>
+                                            <i class="fa fa-upload iconStyle"></i>
                                             <span className="margin_font_location">Upload</span>
                                         </div>
                                         <div className="formRadius">{/* panel-body*/}
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Images"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('images', {
                                                     rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
@@ -876,7 +906,7 @@ class Postroommates extends Component{
                                     {/*==========main panel content=============*/}
                                     {/*==========General panel start=========*/}
                                     <div className="card formRadius" style={{padding: '0 0 1vw 0'}}>{/*panel panel-default */}
-                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'2%',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-info-circle iconStyle"></i>
                                             <span className="margin_font_location">Price details</span>
@@ -885,6 +915,8 @@ class Postroommates extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Date Range"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('dateRange', {
                                                     initialValue: [moment(this.state.dataStart), moment(this.state.dataEnd)],
@@ -905,6 +937,8 @@ class Postroommates extends Component{
                                                     <FormItem
                                                         {...formItemLayout}
                                                         label="Rent"
+
+                                                        style={{padding: '2%'}}
                                                     >
                                                         {getFieldDecorator('price', {
                                                             initialValue: this.state.dataRent,
@@ -919,6 +953,8 @@ class Postroommates extends Component{
                                                     <FormItem
                                                         {...formItemLayout}
                                                         label="Price Mode"
+
+                                                        style={{padding: '2%'}}
                                                     >
                                                         {getFieldDecorator('priceMode', {
                                                             initialValue: this.state.dataPmode,
@@ -937,7 +973,7 @@ class Postroommates extends Component{
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
                                     <div className="card formRadius" style={{padding: '0 0 1vw 0'}}>{/*panel panel-default */}
-                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'2%',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-address-card iconStyle"></i>
                                             <span className="margin_font_location">About</span>
@@ -946,6 +982,8 @@ class Postroommates extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Contact Name"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('contactName', {
                                                     initialValue: this.state.dataName,
@@ -960,6 +998,8 @@ class Postroommates extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Contact Email"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('contactEmail', {
                                                     initialValue: this.state.dataEmail,
@@ -977,6 +1017,8 @@ class Postroommates extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Contact Number"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('contactNumber', {
                                                     initialValue: this.state.dataNumber,
@@ -992,6 +1034,8 @@ class Postroommates extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Mode of Contact"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('contactMode', {
                                                     initialValue: this.state.dataMcont,

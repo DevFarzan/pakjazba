@@ -556,8 +556,8 @@ class EventPortal extends Component {
                 <div className="hidden-sm" style={{ marginTop: '8%' }}></div>
                 <div className="visible-sm" style={{ marginTop: '15%' }}></div>
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
-                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%',marginTop: '46px', position: 'fixed', borderRadius: '3px !important'}}>
-                <Anchor>
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%',marginTop: '46px', position: 'fixed',}}>
+                <Anchor className="" style={{margin: '2%',backgroundColor: '#f6f6f6'}}>
                         <Link href="#scrollChange1" title="Event Details" />
                         <Link href="#scrollChange2" title="Upload" />
                         <Link href="#scrollChange3" title="Ticket Details" />
@@ -571,21 +571,21 @@ class EventPortal extends Component {
                     </div>
                 
                     <Form onSubmit={this.handleSubmit} className="login-form">
-                        <div className="" id="scrollChange1" style={{backgroundColor: 'white'}}>{/*panel-body */}
+                        <div className="" id="scrollChange1">{/*panel-body */}
                             <div className="formRadius card">{/*panel panel-default */}
-                                <div className="bold_c_text" style={{ color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
+                                <div className="bold_c_text" style={{ color: 'black', padding: '2%', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
                                     {/* <Icon type="info-circle" /> */}
                                     <i class="fa fa-info-circle iconStyle"></i>
                                     <span className="margin_font_location">Event Detail</span>
                                 </div>
-                                <div className="formRadius card" style={{marginBottom: '3%'}}>{/*container  style={{ width: '80%' }}*/}
+                                <div className="bottomRadius card" style={{marginBottom: '3%'}}>{/*container  style={{ width: '80%' }}*/}
                                     <section>
                                         <div className="row">
                                             <div className="col-md-12">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Event Title</label>
-                                                        <FormItem>
+                                                        <FormItem style={{padding: '2% 0%'}}>
                                                             {getFieldDecorator('eventTitle', {
                                                                 initialValue: this.state.eventTitle,
                                                                 rules: [{ required: true, message: 'Please input your Event Title!', whitespace: true }],
@@ -597,7 +597,7 @@ class EventPortal extends Component {
                                                 </div>
                                                 <div className="col-md-6" style={{ textAlign: 'left', display: 'grid' }}>
                                                     <label htmlFor="Price Mode"> Category </label>
-                                                    <FormItem>
+                                                    <FormItem style={{padding: '2% 0%'}}>
                                                         {getFieldDecorator('eventCategory', {
                                                             initialValue: this.state.eventCategory,
                                                             rules: [{ type: 'array', required: true, message: 'Please select your Event Category!' }],
@@ -608,13 +608,16 @@ class EventPortal extends Component {
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <hr className="hrLineStyle"/>
+
                                         <div className="row">
                                             <div className="col-md-12">
                                                 <div className="col-md-6">
                                                     <div className="row" style={{ padding: '0px' }}>
                                                         <div className="col-md-6" style={{ display: 'grid' }}>
                                                             <label> State </label>
-                                                            <FormItem>
+                                                            <FormItem style={{padding: '2% 0%'}}>
                                                                 {getFieldDecorator('state', {
                                                                     initialValue: this.state.state,
                                                                     rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
@@ -625,7 +628,7 @@ class EventPortal extends Component {
                                                         </div>
                                                         <div className="col-md-6">
                                                             <label> City </label>
-                                                            <FormItem>
+                                                            <FormItem style={{padding: '2% 0%'}}>
                                                                 {getFieldDecorator('city', {
                                                                     initialValue: this.state.city,
                                                                     rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
@@ -638,7 +641,7 @@ class EventPortal extends Component {
                                                 </div>
                                                 <div className="col-md-6">
                                                     <label htmlFor="sel1">Date Range</label>
-                                                    <FormItem>
+                                                    <FormItem style={{padding: '2% 0%'}}>
                                                         {getFieldDecorator('dateRange', {
                                                             initialValue: [(this.state.startDate),
                                                             (this.state.endDate)],
@@ -656,12 +659,15 @@ class EventPortal extends Component {
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <hr className="hrLineStyle"/>
+
                                         <div className="row">
                                             <div className="col-md-12">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Description</label>
-                                                        <FormItem>
+                                                        <FormItem style={{padding: '2% 0%'}}>
                                                             {getFieldDecorator('description', {
                                                                 initialValue: this.state.description,
                                                                 rules: [
@@ -685,7 +691,7 @@ class EventPortal extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Address</label>
-                                                        <FormItem>
+                                                        <FormItem style={{padding: '2% 0%'}}>
                                                             {getFieldDecorator('address', {
                                                                 initialValue: this.state.address,
                                                                 rules: [{ required: true, message: 'Please input your Address!', whitespace: true }],
@@ -703,14 +709,14 @@ class EventPortal extends Component {
                         </div>
                         <div className="formRadius card" id="scrollChange2">{/*panel-body */}
                             <div className="">{/*panel panel-default */}
-                                <div className="bold_c_text" style={{color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
-                                    <i class="fa fa-upload"></i>
+                                <div className="bold_c_text" style={{color: 'black', padding: '2%', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
+                                    <i class="fa fa-upload iconStyle"></i>
                                     <span className="margin_font_location">Upload</span>
                                 </div>
-                                <div className="formRadius card" style={{marginBottom: '3%'}}>{/*container  style={{ width: '80%' }}*/}
+                                <div className="bottomRadius card" style={{marginBottom: '3%'}}>{/*container  style={{ width: '80%' }}*/}
                                     <section className="row">
                                         <div className="col-md-3">
-                                            <FormItem>
+                                            <FormItem style={{padding: '2% 0%'}}>
                                                 {getFieldDecorator('images', {
                                                     rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
                                                 })(
@@ -732,7 +738,7 @@ class EventPortal extends Component {
                                             </FormItem>
                                         </div>
                                         <div className="col-md-6">
-                                            <FormItem>
+                                            <FormItem style={{padding: '2% 0%'}}>
                                                 {getFieldDecorator('coverPhoto', {
                                                     rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
                                                 })(
@@ -756,7 +762,7 @@ class EventPortal extends Component {
                                             </FormItem>
                                         </div>
                                         <div className="col-md-3">
-                                            <FormItem>
+                                            <FormItem style={{padding: '2% 0%'}}>
                                                 {getFieldDecorator('banner', {
                                                     rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
                                                 })(
@@ -784,18 +790,18 @@ class EventPortal extends Component {
                         </div>
                         <div className="formRadius card" id="scrollChange3">{/*panel-body */}
                             <div className="">{/*panel panel-default */}
-                                <div className="bold_c_text" style={{color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
+                                <div className="bold_c_text" style={{color: 'black', padding: '2%', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
                                     {/* <Icon type="info-circle" /> */}
                                     <i class="fa fa-info-circle iconStyle"></i>
                                     <span className="margin_font_location">Ticket Detail</span>
                                 </div>
-                                <div className="formRadius card" style={{marginBottom: '3%'}}>{/*container style={{ width: '80%' }}*/}
+                                <div className="bottomRadius card" style={{marginBottom: '3%'}}>{/*container style={{ width: '80%' }}*/}
                                     <section>
                                         <div className="row">
                                             <div className="col-md-12">
                                                 <div className="col-md-6">
                                                     <label> Select Tickets </label>
-                                                    <FormItem>
+                                                    <FormItem style={{padding: '2% 0%'}}>
                                                         {getFieldDecorator('ticketsCategory', {
                                                             initialValue: this.state.ticketsCategory,
                                                             rules: [{ type: 'array', required: true, message: 'Please select your Ticket category!' }],
@@ -808,7 +814,7 @@ class EventPortal extends Component {
                                                     <label>Opening & closing Time</label>
                                                     <div className="row" style={{ marginTop: '-17px' }}>
                                                         <div className="col-md-6">
-                                                            <FormItem>
+                                                            <FormItem style={{padding: '2% 0%'}}>
                                                                 {getFieldDecorator('openingTime', {
                                                                     initialValue: moment(this.state.openingTime, 'HH:mm:ss'),
                                                                     rules: [{ validator: this.validateTime.bind(this) }],
@@ -818,7 +824,7 @@ class EventPortal extends Component {
                                                             </FormItem>
                                                         </div>
                                                         <div className="col-md-6">
-                                                            <FormItem>
+                                                            <FormItem style={{padding: '2% 0%'}}>
                                                                 {getFieldDecorator('closingTime', {
                                                                     initialValue: moment(this.state.closingTime, 'HH:mm:ss'),
                                                                     rules: [{ validator: this.validateTime.bind(this) }],
@@ -831,6 +837,9 @@ class EventPortal extends Component {
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <hr className="hrLineStyle"/>
+
                                         {this.state.earlyBird && <div className="row">
                                             <div className="col-md-12">
                                                 <div className="col-md-7">
@@ -838,7 +847,7 @@ class EventPortal extends Component {
                                                     <label> Available Tickets &nbsp;&nbsp;&nbsp;Total</label>
                                                     <div className="row">
                                                         <div className="col-md-3" style={{ paddingLeft: '0px' }}>
-                                                            <FormItem>
+                                                            <FormItem style={{padding: '2% 0%'}}>
                                                                 {getFieldDecorator('earlyBirdAvailableTickets', {
                                                                     initialValue: this.state.earlyBirdAvailableTickets,
                                                                     rules: [{ required: true, message: 'Please input your Available Tickets!', whitespace: true },
@@ -850,7 +859,7 @@ class EventPortal extends Component {
                                                             </FormItem>
                                                         </div>
                                                         <div className="col-md-3" style={{ paddingRight: '0px' }}>
-                                                            <FormItem>
+                                                            <FormItem style={{padding: '2% 0%'}}>
                                                                 {getFieldDecorator('earlyBirdTotalTickets', {
                                                                     initialValue: this.state.earlyBirdTotalTickets,
                                                                     rules: [{ required: true, message: 'Please input your Total Tickets!', whitespace: true },
@@ -863,7 +872,7 @@ class EventPortal extends Component {
                                                         </div>
                                                         <div className="col-md-3" style={{ marginTop: '-31px' }}>
                                                             <label> Price </label>
-                                                            <FormItem>
+                                                            <FormItem style={{padding: '2% 0%'}}>
                                                                 {getFieldDecorator('earlyBirdPrice', {
                                                                     initialValue: this.state.earlyBirdPrice,
                                                                     rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
@@ -883,7 +892,7 @@ class EventPortal extends Component {
                                                 </div>
                                                 {!this.state.earlyBirdFree && <div className="col-md-5" style={{ marginTop: '35px' }}>
                                                     <label> Mode Of Payment </label>
-                                                    <FormItem>
+                                                    <FormItem style={{padding: '2% 0%'}}>
                                                         {getFieldDecorator('earlyBirdPaymentMode', {
                                                             initialValue: this.state.earlyBirdPaymentMode,
                                                             rules: [{ validator: this.checkCheckBox }],
@@ -894,10 +903,13 @@ class EventPortal extends Component {
                                                 </div>}
                                             </div>
                                         </div>}
+
+                                        <hr className="hrLineStyle"/>
+
                                         {this.state.earlyBird && <div className="row">
                                             {!this.state.earlyBirdFree && <div className="col-md-6">
                                                 <label>Ticket Delivery</label>
-                                                <FormItem>
+                                                <FormItem style={{padding: '2% 0%'}}>
                                                     {getFieldDecorator('earlyBirdDelivery', {
                                                         initialValue: this.state.earlyBirdDelivery,
                                                         rules: [{ validator: this.checkCheckBox }],
@@ -910,7 +922,8 @@ class EventPortal extends Component {
 
                                             </div>
                                         </div>}
-                                        {this.state.normalTicket && this.state.earlyBird && <hr />}
+
+                                        {this.state.normalTicket && this.state.earlyBird && <hr className="hrLineStyle" />}
                                         {this.state.normalTicket && <div className="row">
                                             <div className="col-md-12">
                                                 <div className="col-md-6">
@@ -918,7 +931,7 @@ class EventPortal extends Component {
                                                     <label> Available Tickets &nbsp;&nbsp;&nbsp;Total</label>
                                                     <div className="row">
                                                         <div className="col-md-3" style={{ paddingLeft: '0px' }}>
-                                                            <FormItem>
+                                                            <FormItem style={{padding: '2% 0%'}}>
                                                                 {getFieldDecorator('normalTicketAvailableTickets', {
                                                                     initialValue: this.state.normalTicketAvailableTickets,
                                                                     rules: [{ required: true, message: 'Please input your Available Tickets!', whitespace: true },
@@ -930,7 +943,7 @@ class EventPortal extends Component {
                                                             </FormItem>
                                                         </div>
                                                         <div className="col-md-3" style={{ paddingRight: '0px' }}>
-                                                            <FormItem>
+                                                            <FormItem style={{padding: '2% 0%'}}>
                                                                 {getFieldDecorator('normalTicketTotalTickets', {
                                                                     initialValue: this.state.normalTicketTotalTickets,
                                                                     rules: [{ required: true, message: 'Please input your Total Tickets!', whitespace: true },
@@ -943,7 +956,7 @@ class EventPortal extends Component {
                                                         </div>
                                                         <div className="col-md-3" style={{ marginTop: '-27px' }}>
                                                             <label> Price </label>
-                                                            <FormItem>
+                                                            <FormItem style={{padding: '2% 0%'}}>
                                                                 {getFieldDecorator('normalTicketPrice', {
                                                                     initialValue: this.state.normalTicketPrice,
                                                                     rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
@@ -963,7 +976,7 @@ class EventPortal extends Component {
                                                 </div>
                                                 {!this.state.normalTicketFree && <div className="col-md-6" style={{ marginTop: '35px' }}>
                                                     <label> Mode Of Payment </label>
-                                                    <FormItem>
+                                                    <FormItem style={{padding: '2% 0%'}}>
                                                         {getFieldDecorator('normalTicketPaymentMode', {
                                                             initialValue: this.state.normalTicketPaymentMode,
                                                             rules: [{ validator: this.checkCheckBox }],
@@ -974,10 +987,13 @@ class EventPortal extends Component {
                                                 </div>}
                                             </div>
                                         </div>}
+
+                                        <hr className="hrLineStyle"/>
+
                                         {this.state.normalTicket && <div className="row">
                                             {!this.state.normalTicketFree && <div className="col-md-6">
                                                 <label>Ticket Delivery</label>
-                                                <FormItem>
+                                                <FormItem style={{padding: '2% 0%'}}>
                                                     {getFieldDecorator('normalTicketDelivery', {
                                                         initialValue: this.state.normalTicketDelivery,
                                                         rules: [{ validator: this.checkCheckBox }],
@@ -1004,17 +1020,17 @@ class EventPortal extends Component {
                         </div>
                         <div className="formRadius card" id="scrollChange4">{/*panel-body */}
                             <div className="">{/*panel panel-default */}
-                                <div className="bold_c_text" style={{color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
+                                <div className="bold_c_text" style={{color: 'black', padding: '2%', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
                                     {/* <Icon type="info-circle" /> */}
                                     <i class="fa fa-info-circle iconStyle"></i>
                                     <span className="margin_font_location">Organizer Detail</span>
                                 </div>
-                                <div className="formRadius card">{/*container  style={{ width: '80%' }}*/}
+                                <div className="bottomRadius card">{/*container  style={{ width: '80%' }}*/}
                                     <div className="row">
                                         <div className="col-md-4">
                                             <div className="form-group">
                                                 <label htmlFor="sel1">Name</label>
-                                                <FormItem>
+                                                <FormItem style={{padding: '2% 0%'}}>
                                                     {getFieldDecorator('name', {
                                                         initialValue: this.state.name,
                                                         rules: [{ required: true, message: 'Please input your Contact Name!', whitespace: true }],
@@ -1027,7 +1043,7 @@ class EventPortal extends Component {
                                         <div className="col-md-4">
                                             <div className="form-group">
                                                 <label htmlFor="sel1">Email</label>
-                                                <FormItem>
+                                                <FormItem style={{padding: '2% 0%'}}>
                                                     {getFieldDecorator('email', {
                                                         initialValue: this.state.email,
                                                         rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true },
@@ -1041,7 +1057,7 @@ class EventPortal extends Component {
                                         <div className="col-md-4">
                                             <div className="form-group">
                                                 <label htmlFor="sel1">Website</label>
-                                                <FormItem>
+                                                <FormItem style={{padding: '2% 0%'}}>
                                                     <input type="text" id='website'
                                                         value={this.state.website}
                                                         className="form-control" onChange={this.onChangeValue.bind(this)} />
@@ -1049,11 +1065,14 @@ class EventPortal extends Component {
                                             </div>
                                         </div>
                                     </div>
+
+                                    <hr className="hrLineStyle"/>
+
                                     <div className="row">
                                         <div className="col-md-6">
                                             <div className="form-group">
                                                 <label htmlFor="sel1">Phone</label>
-                                                <FormItem>
+                                                <FormItem style={{padding: '2% 0%'}}>
                                                     {getFieldDecorator('number', {
                                                         initialValue: this.state.number,
                                                         rules: [{
@@ -1088,18 +1107,18 @@ class EventPortal extends Component {
 
                         <div className="formRadius card" id="scrollChange5">{/*panel-body */}
                             <div className="">{/*panel panel-default */}
-                                <div className="bold_c_text" style={{color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
+                                <div className="bold_c_text" style={{color: 'black', padding: '2%', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
                                     {/* <Icon type="info-circle" /> */}
-                                    <i class="fa fa-info-circle iconStyle"></i>
+                                    <i class="fa fa-link iconStyle"></i>
                                     <span className="margin_font_location">Social Links</span>
                                 </div>
-                                <div className="formRadius card">{/*container  style={{ width: '80%' }}*/}
+                                <div className="bottomRadius card">{/*container  style={{ width: '80%' }}*/}
                                     
                                     <div className="row">
                                         <div className="col-md-6">
                                             <div className="form-group">
                                                 <label htmlFor="usr">Social Media Links</label>
-                                                <FormItem>
+                                                <FormItem style={{padding: '2% 0%'}}>
                                                     <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
                                                         <button
                                                             type="button"

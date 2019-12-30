@@ -1,0 +1,19 @@
+.profileFormRadius{
+    border-radius: 25px !important;
+}
+.profileCard{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: white !important;
+    margin-bottom: 5%;
+}
+.profileFormHeading{
+    font-size: 27px;
+    font-weight: 400;
+}
+.profileHrLine{
+    display: block;
+    border: 0;
+    border-top: 1px solid black;
+    width: 95%;
+    border-top-width: 1px;
+}

@@ -740,8 +740,8 @@ class Postbusiness extends Component {
                 {/*================================post business form start============================*/}
                 <div className="hidden-xs" style={{ width: "100%", height: "67px", marginTop: "3px" }}></div>
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
-                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%',marginTop: '128px', position: 'fixed', borderRadius: '25px !important'}}>
-                    <Anchor className="formRadius">
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%',marginTop: '128px', position: 'fixed',}}>
+                    <Anchor className="" style={{margin: '2%',backgroundColor: '#f6f6f6'}}>
                         <Link href="#scrollChange1" title="General" />
                         <Link href="#scrollChange2" title="Location" />
                         <Link href="#scrollChange3" title="Business" />
@@ -763,7 +763,7 @@ class Postbusiness extends Component {
                                     {/*==========location panel start=========*/}
                                     <div className="formRadius card" id="scrollChange1">
                                         <div className="bold_c_text topRadius" 
-                                            style={{ backgroundColor: 'white', color: 'black', padding: '8px', 
+                                            style={{ backgroundColor: 'white', color: 'black', padding: '2%', 
                                                 fontFamily: 'Crimson Text, serif !important', border: 'none', 
                                                 borderBottom: '1px solid #d9d9d9', }}>
 
@@ -774,6 +774,8 @@ class Postbusiness extends Component {
                                             <FormItem
                                                     {...formItemLayout}
                                                     label="Business Category"
+
+                                                    style={{padding: '2%'}}
                                                 >
                                                     {getFieldDecorator('businessCategory', {
                                                         initialValue: this.state.dataCategory,
@@ -788,6 +790,8 @@ class Postbusiness extends Component {
                                                 <FormItem
                                                     {...formItemLayout}
                                                     label="Description"
+
+                                                    style={{padding: '2%'}}
                                                 >
                                                     {getFieldDecorator('description', {
                                                         initialValue: this.state.dataDescription,
@@ -813,7 +817,7 @@ class Postbusiness extends Component {
                                     
                                     <div className="formRadius card" id="scrollChange2">
                                         <div className="bold_c_text topRadius"
-                                          style={{ backgroundColor: '#fff', color: 'black', padding: '8px', 
+                                          style={{ backgroundColor: '#fff', color: 'black', padding: '2%', 
                                           fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid #d9d9d9',
                                            boxShadow: '0 2px 5px 0 rgba(0,0,0,.07)', }}>
                                                 <i class="fa fa-map-marker iconStyle" aria-hidden="true"></i>
@@ -823,6 +827,8 @@ class Postbusiness extends Component {
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Address"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('address', {
                                                     initialValue: this.state.dataAddress,
@@ -837,6 +843,8 @@ class Postbusiness extends Component {
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="State"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('state', {
                                                     initialValue: this.state.dataState,
@@ -851,6 +859,8 @@ class Postbusiness extends Component {
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="City"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('city', {
                                                     initialValue: this.state.dataCity,
@@ -865,6 +875,8 @@ class Postbusiness extends Component {
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Zip"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('zip', {
                                                     initialValue: this.state.dataZip,
@@ -879,7 +891,7 @@ class Postbusiness extends Component {
                                     {/*==========location panel end===========*/}
                                     {/*==========Business panel start=========*/}
                                     <div className="formRadius" id="scrollChange3">{/*panel panel-default */}
-                                        <div className="bold_c_text topRadius card" style={{ backgroundColor: '#white', color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid #d9d9d9' }}>
+                                        <div className="bold_c_text topRadius card" style={{ backgroundColor: '#white', color: 'black', padding: '2%', fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid #d9d9d9' }}>
                                             <i class="fa fa-building iconStyle"></i>
                                             <span className="margin_font_location">Business</span>
                                         </div>
@@ -887,6 +899,8 @@ class Postbusiness extends Component {
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="First Name"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('firstName', {
                                                     initialValue: this.state.dataFname,
@@ -901,6 +915,8 @@ class Postbusiness extends Component {
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Last Name"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('lastName', {
                                                     initialValue: this.state.dataLname,
@@ -915,6 +931,8 @@ class Postbusiness extends Component {
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Business Name"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('businessName', {
                                                     initialValue: this.state.dataBname,
@@ -928,7 +946,7 @@ class Postbusiness extends Component {
 
                                             <hr className="hrLineStyle"/>
 
-                                            <div className='row'>
+                                            <div className='row' style={{padding: '2%'}}>
                                                 <div className="col-md-4">
                                                     <label htmlFor="email" style={{ fontColor: 'black', float: 'right' }}>Opening & closing Time:</label>
                                                 </div>
@@ -960,6 +978,8 @@ class Postbusiness extends Component {
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Business Number"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('businessNumber', {
                                                     initialValue: this.state.dataBnumber,
@@ -975,6 +995,8 @@ class Postbusiness extends Component {
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Your Business Email id"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('businessId', {
                                                     initialValue: this.state.dataBemailId,
@@ -992,6 +1014,8 @@ class Postbusiness extends Component {
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Business Address"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('businessAddress', {
                                                     initialValue: this.state.dataBaddress,
@@ -1006,6 +1030,8 @@ class Postbusiness extends Component {
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Business Owner Name"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('businessOwner', {
                                                     initialValue: this.state.dataBOwnernamae,
@@ -1020,6 +1046,8 @@ class Postbusiness extends Component {
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Business Email"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('businessEmail', {
                                                     initialValue: this.state.dataBemail,
@@ -1040,7 +1068,7 @@ class Postbusiness extends Component {
                                     {/*==========Business panel end===========*/}
                                     {/*==========social links box start===========*/}
                                     <div className="formRadius card" id="scrollChange4" style={{backgroundColor: 'white',marginBottom: '5%'}}>
-                                        <div className="bold_c_text topRadius card" style={{ backgroundColor: 'white', color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid #d9d9d9' }}>
+                                        <div className="bold_c_text topRadius card" style={{ backgroundColor: 'white', color: 'black', padding: '2%', fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid #d9d9d9' }}>
                                             <i class="fa fa-link iconStyle"></i>
                                             <span className="margin_font_location">Social Links</span>
                                         </div>
@@ -1048,7 +1076,9 @@ class Postbusiness extends Component {
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Facebook"
-                                            >
+
+                                                style={{padding: '2%'}}>
+
                                                 <Input id='socFac' value={socFac} onChange={this.onChangeSocial.bind(this)} />
                                             </FormItem>
 
@@ -1057,6 +1087,8 @@ class Postbusiness extends Component {
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Google"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 <Input id='socGoo' value={socGoo} onChange={this.onChangeSocial.bind(this)} />
                                             </FormItem>
@@ -1066,6 +1098,8 @@ class Postbusiness extends Component {
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Linkedin"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 <Input id='socLin' value={socLin} onChange={this.onChangeSocial.bind(this)} />
                                             </FormItem>
@@ -1074,7 +1108,7 @@ class Postbusiness extends Component {
                                     {/*==========social links box end===========*/}
                                     {/*==========upload panel start=========*/}
                                     <div className="formRadius" id="scrollChange5">
-                                        <div className="bold_c_text topRadius card" style={{ backgroundColor: 'white', color: 'black', padding: '8px', borderBottom: '1px solid #d9d9d9' }}>
+                                        <div className="bold_c_text topRadius card" style={{ backgroundColor: 'white', color: 'black', padding: '2%', borderBottom: '1px solid #d9d9d9' }}>
                                             <i class="fa fa-upload iconStyle"></i>
                                             <span className="margin_font_location">Upload</span>
                                         </div>

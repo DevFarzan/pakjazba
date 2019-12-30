@@ -566,8 +566,8 @@ class ShopForm extends Component {
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs">
                 
                 </div>
-                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%',marginTop: '60px', position: 'fixed', borderRadius: '3px !important'}}>
-                    <Anchor>
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs" id="section1" style={{marginLeft: '4%',marginTop: '60px', position: 'fixed',}}>
+                    <Anchor className="" style={{margin: '2%',backgroundColor: '#f6f6f6'}}>
                         <Link href="#scrollChange1" title="Shop Details" />
                         <Link href="#scrollChange2" title="Upload Images" />
                         <Link href="#scrollChange3" title="Billing Details" />
@@ -583,21 +583,21 @@ class ShopForm extends Component {
                             <div className="">{/*panel panel-default */}
                                 <div className="bold_c_text"
                                     style={{
-                                        color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important',
+                                        color: 'black', padding: '2%', fontFamily: 'Crimson Text, serif !important',
                                         borderBottom: '1px solid #d9d9d9'
                                     }}>
                                     {/* <Icon type="info-circle" /> */}
                                     <i class="fa fa-info-circle iconStyle"></i>
                                     <span className="margin_font_location">Shop Detail</span>
                                 </div>
-                                <div className="formRadius card" id="scrollChange1" style={{marginBottom: '3%'}}>{/*container  style={{ width: '80%' }}*/}
+                                <div className="bottomRadius card" id="scrollChange1" style={{marginBottom: '3%'}}>{/*container  style={{ width: '80%' }}*/}
                                     <section>
                                         <div className="row" style={{ padding: '0px', marginTop: '10px' }}>
                                             <div className="col-md-12">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Shop Title</label>
-                                                        <Form.Item>
+                                                        <Form.Item style={{padding: '2% 0%'}}>
                                                             {getFieldDecorator('shopTitle', {
                                                                 initialValue: this.state.shopTitle,
                                                                 rules: [{
@@ -614,7 +614,7 @@ class ShopForm extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Address</label>
-                                                        <Form.Item>
+                                                        <Form.Item style={{padding: '2% 0%'}}>
                                                             {getFieldDecorator('shopAddress', {
                                                                 initialValue: this.state.shopAddress,
                                                                 rules: [{
@@ -630,12 +630,15 @@ class ShopForm extends Component {
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <hr className="hrLineStyle"/>
+
                                         <div className='row'>
                                             <div className="col-md-6">
                                                 <div className="row" style={{ padding: '0px' }}>
                                                     <div className="col-md-7" style={{ display: 'grid' }}>
                                                         <label> City </label>
-                                                        <Form.Item>
+                                                        <Form.Item style={{padding: '2% 0%'}}>
                                                             {getFieldDecorator('shopCity', {
                                                                 initialValue: this.state.shopCity,
                                                                 rules: [{
@@ -650,7 +653,7 @@ class ShopForm extends Component {
                                                     </div>
                                                     <div className="col-md-5">
                                                         <label> State </label>
-                                                        <Form.Item>
+                                                        <Form.Item style={{padding: '2% 0%'}}>
                                                             {getFieldDecorator('shopState', {
                                                                 initialValue: this.state.shopState,
                                                                 rules: [{
@@ -669,7 +672,7 @@ class ShopForm extends Component {
                                                 <div className="row">{/* style={{ padding: '0px' }} */}
                                                     <div className="col-md-6" className="form-group">
                                                         <label htmlFor="sel1">Shop Purpose</label>
-                                                        <Form.Item>
+                                                        <Form.Item style={{padding: '2% 0%'}}>
                                                             {getFieldDecorator('shopPurpose', {
                                                                 initialValue: this.state.shopPurpose,
                                                                 rules: [{
@@ -718,6 +721,9 @@ class ShopForm extends Component {
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <hr className="hrLineStyle"/>
+
                                         <div className="row">
                                             <div className="col-md-12">
                                                 <div className="col-md-4">
@@ -727,7 +733,7 @@ class ShopForm extends Component {
                                                                 {formItems}
                                                             </div>
                                                             <div className="col-md-4 col-sm-2 col-xs-2" style={{ paddingLeft: '0.6%' }}>
-                                                                <Form.Item >
+                                                                <Form.Item  style={{padding: '2% 0%'}}>
                                                                     <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
                                                                         <button
                                                                             type="button"
@@ -751,12 +757,15 @@ class ShopForm extends Component {
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <hr className="hrLineStyle"/>
+                                        
                                         <div className="row">
                                             <div className="col-md-12">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Description</label>
-                                                        <Form.Item>
+                                                        <Form.Item style={{padding: '2% 0%'}}>
                                                             {getFieldDecorator('shopDescription', {
                                                                 initialValue: this.state.shopDescription,
                                                                 rules: [
@@ -788,11 +797,11 @@ class ShopForm extends Component {
                             <div className="">{/*panel panel-default */}
                                 <div className="bold_c_text"
                                     style={{
-                                        color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important',
+                                        color: 'black', padding: '2%', fontFamily: 'Crimson Text, serif !important',
                                         borderBottom: '1px solid #d9d9d9'
                                     }}>
                                     {/* <Icon type="info-circle" /> */}
-                                    <i class="fa fa-info-circle iconStyle"></i>
+                                    <i class="fa fa-upload iconStyle"></i>
                                     <span className="margin_font_location">Upload Images</span>
                                 </div>
 
@@ -801,7 +810,7 @@ class ShopForm extends Component {
                                         <div className="col-md-6">
                                             <label htmlFor="sel1">Shop Logo</label>
 
-                                            <Form.Item>
+                                            <Form.Item style={{padding: '2% 0%'}}>
                                                 {getFieldDecorator('shopLogo', {
                                                     rules: [{
                                                         required: true,
@@ -829,10 +838,11 @@ class ShopForm extends Component {
                                             </Form.Item>
                                         </div>
                                         <div className="col-md-6"></div>
+
                                         <div className="col-md-12" style={{ padding: '0px' }}>
                                             <label htmlFor="sel1">Shop Banner</label>
 
-                                            <Form.Item>
+                                            <Form.Item style={{padding: '2% 0%'}}>
                                                 {getFieldDecorator('banner', {
                                                     rules: [{
                                                         required: true,
@@ -865,13 +875,16 @@ class ShopForm extends Component {
                                         </div>
                                     </section>
                                 </div>
+
+                                <hr className="hrLineStyle"/>
+
                                 <div className="" style={{marginBottom: '3%'}}>{/*container  style={{ width: '80%' }}*/}
                                     <section className="row">
                                         <div className="col-md-12">
                                             <div className="col-md-6 col-sm-6">
                                                 <label htmlFor="sel1">Shop Grid(Potrait) Image</label>
 
-                                                <Form.Item style={{ width: '100%' }}>
+                                                <Form.Item style={{ width: '100%', padding: '2% 0%',}}>
                                                     {getFieldDecorator('gridImage', {
                                                         rules: [{
                                                             required: true,
@@ -902,7 +915,7 @@ class ShopForm extends Component {
                                                         <div className="col-md-6 col-sm-6 col-xs-12 clearfix" style={{ marginBottom: '20px' }}>
                                                             <label htmlFor="sel1">Shop Grid Images</label>
 
-                                                            <Form.Item>
+                                                            <Form.Item style={{padding: '2% 0%'}}>
                                                                 {getFieldDecorator('images', {
                                                                     rules: [{
                                                                         required: true,
@@ -942,21 +955,21 @@ class ShopForm extends Component {
                             <div className="">{/*panel panel-default */}
                                 <div className="bold_c_text"
                                     style={{
-                                        color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important',
+                                        color: 'black', padding: '2%', fontFamily: 'Crimson Text, serif !important',
                                         borderBottom: '1px solid #d9d9d9'
                                     }}>
                                     {/* <Icon type="info-circle" /> */}
                                     <i class="fa fa-info-circle iconStyle"></i>
                                     <span className="margin_font_location">Billing Detail</span>
                                 </div>
-                                <div className="formRadius card">{/*container  style={{ width: '80%' }}*/}
+                                <div className="bottomRadius card">{/*container  style={{ width: '80%' }}*/}
                                     <section>
                                         <div className="row" style={{ padding: '0px', marginTop: '10px' }}>
                                             <div className="col-md-12">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Bank Name</label>
-                                                        <Form.Item>
+                                                        <Form.Item style={{padding: '2% 0%'}}>
                                                             {getFieldDecorator('bankName', {
                                                                 initialValue: this.state.bankName,
                                                                 rules: [{
@@ -973,7 +986,7 @@ class ShopForm extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Account Title</label>
-                                                        <Form.Item>
+                                                        <Form.Item style={{padding: '2% 0%'}}>
                                                             {getFieldDecorator('accountTitle', {
                                                                 initialValue: this.state.accountTitle,
                                                                 rules: [{
@@ -990,12 +1003,15 @@ class ShopForm extends Component {
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <hr className="hrLineStyle"/>
+
                                         <div className='row'>
                                             <div className="col-md-6">
                                                 <div className="row" style={{ padding: '0px' }}>
                                                     <div className="col-md-7" style={{ display: 'grid' }}>
                                                         <label> I Bank </label>
-                                                        <Form.Item>
+                                                        <Form.Item style={{padding: '2% 0%'}}>
                                                             {getFieldDecorator('ibank', {
                                                                 initialValue: this.state.ibank,
                                                                 rules: [{
@@ -1011,7 +1027,7 @@ class ShopForm extends Component {
                                                     </div>
                                                     <div className="col-md-5">
                                                         <label> Swift/Sort </label>
-                                                        <Form.Item>
+                                                        <Form.Item style={{padding: '2% 0%'}}>
                                                             {getFieldDecorator('swift', {
                                                                 initialValue: this.state.swift,
                                                                 rules: [{
@@ -1031,7 +1047,7 @@ class ShopForm extends Component {
                                             <div className="col-md-6">
                                                 <div className="form-group">
                                                     <label htmlFor="sel1">Bank Address</label>
-                                                    <Form.Item>
+                                                    <Form.Item style={{padding: '2% 0%'}}>
                                                         {getFieldDecorator('bankAddress', {
                                                             initialValue: this.state.bankAddress,
                                                             rules: [{

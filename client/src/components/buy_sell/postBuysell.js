@@ -479,8 +479,8 @@ class Postbuysell extends Component{
                 <div className="hidden-xs" style={{width:"100%",height:"67px",marginTop:"3px"}}></div>
                 {/*================================post business form start============================*/}
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
-                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%',marginTop: '116px', position: 'fixed', borderRadius: '3px !important'}}>
-                    <Anchor className="formRadius">
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%',marginTop: '116px', position: 'fixed',}}>
+                    <Anchor className="" style={{margin: '2%',backgroundColor: '#f6f6f6'}}>
                         <Link href="#scrollChange1" title="General" />
                         <Link href="#scrollChange2" title="Brand Details" />
                         <Link href="#scrollChange3" title="Upload" />
@@ -497,7 +497,7 @@ class Postbuysell extends Component{
                             
                                 <div className="formRadius">{/*panel-body */}
                                 <div className="formRadius card" id="scrollChange1">{/*panel panel-default */}
-                                        <div className="topRadius" style={{color:'black',padding:'8px',fontFamily:'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9'}}>
+                                        <div className="topRadius" style={{color:'black',padding:'2%',fontFamily:'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9'}}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-info-circle iconStyle"></i>
                                             <span className="margin_font_location">General</span>
@@ -505,7 +505,9 @@ class Postbuysell extends Component{
                                     <FormItem
                                         {...formItemLayout}
                                         label="Category"
-                                        style={{marginTop: "20px"}}>
+
+                                        style={{marginTop: "20px", padding: '2%'}}>
+
                                         {getFieldDecorator('category', {
                                             initialValue: this.state.dataCat,
                                             rules: [{ type: 'array', required: true, message: 'Please select your Category!' }],
@@ -519,6 +521,8 @@ class Postbuysell extends Component{
                                     <FormItem
                                         {...formItemLayout}
                                         label="Sub-Category"
+
+                                        style={{padding: '2%'}}
                                     >
                                         {getFieldDecorator('subcategory', {
                                             initialValue: this.state.dataCatSub,
@@ -533,7 +537,7 @@ class Postbuysell extends Component{
                                     {(!!this.state.dataSubSub.length || selectSubCat) && <div className="row">
                                         <div className="col-md-3"></div>
                                         <div className="col-md-6" style={{padding: 0}}>
-                                            <FormItem>
+                                            <FormItem style={{padding: '2%'}}>
                                                 {getFieldDecorator('subsubcategory', {
                                                     initialValue: this.state.dataSubSub,
                                                     rules: [{ type: 'array', required: true, message: 'Please select your Posting Type!' }],
@@ -547,6 +551,8 @@ class Postbuysell extends Component{
                                     <FormItem
                                         {...formItemLayout}
                                         label="Posting Title"
+
+                                        style={{padding: '2%'}}
                                     >
                                         {getFieldDecorator('postingTitle', {
                                             initialValue: this.state.dataTitle,
@@ -561,6 +567,8 @@ class Postbuysell extends Component{
                                     <FormItem
                                         {...formItemLayout}
                                         label="Description"
+
+                                        style={{padding: '2%'}}
                                     >
                                         {getFieldDecorator('description', {
                                             initialValue: this.state.dataDescription,
@@ -589,6 +597,8 @@ class Postbuysell extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Price"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('price', {
                                                     initialValue: this.state.dataPrice,
@@ -609,7 +619,7 @@ class Postbuysell extends Component{
                             </div>
                             <br/>
                             <div className="card formRadius" id="scrollChange2">{/*panel panel-default  */}
-                                <div className="bold_c_text topRadius" style={{backgroundColor:'white',color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                <div className="bold_c_text topRadius" style={{backgroundColor:'white',color:'black',padding:'2%',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
                                     {/* <Icon type="info-circle"/> */}
                                     <i class="fa fa-info-circle iconStyle"></i>
                                     <span className="margin_font_location">Brand Details</span>
@@ -619,6 +629,8 @@ class Postbuysell extends Component{
                                     <FormItem
                                         {...formItemLayout}
                                         label="Condition"
+
+                                        style={{padding: '2%'}}
                                     >
                                         {getFieldDecorator('condition', {
                                             initialValue: this.state.dataCondition,
@@ -633,6 +645,8 @@ class Postbuysell extends Component{
                                     <FormItem
                                         {...formItemLayout}
                                         label="Brand"
+
+                                        style={{padding: '2%'}}
                                     >
                                         {getFieldDecorator('make', {
                                             initialValue: this.state.dataMake,
@@ -647,6 +661,8 @@ class Postbuysell extends Component{
                                     <FormItem
                                         {...formItemLayout}
                                         label="Model Name"
+
+                                        style={{padding: '2%'}}
                                     >
                                         {getFieldDecorator('modelName', {
                                             initialValue: this.state.dataModelName,
@@ -661,6 +677,8 @@ class Postbuysell extends Component{
                                     <FormItem
                                         {...formItemLayout}
                                         label="Model Number"
+
+                                        style={{padding: '2%'}}
                                     >
                                         {getFieldDecorator('number', {
                                             initialValue: this.state.dataModelNumber,
@@ -717,7 +735,7 @@ class Postbuysell extends Component{
                             </div>
                             <br/>
                             <div className="card formRadius" id="scrollChange3">{/*panel panel-default  */}
-                                <div className="bold_c_text topRadius" style={{backgroundColor:'white',color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                <div className="bold_c_text topRadius" style={{backgroundColor:'white',color:'black',padding:'2%',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
                                     {/* <Icon type="info-circle"/> */}
                                     <i class="fa fa-info-circle iconStyle"></i>
                                     <span className="margin_font_location">Upload</span>
@@ -726,6 +744,8 @@ class Postbuysell extends Component{
                                     <FormItem
                                         {...formItemLayout}
                                         label="Images"
+
+                                        style={{padding: '2%'}}
                                     >
                                         {getFieldDecorator('images', {
                                             initialValues: this.state.imageList,
@@ -767,6 +787,8 @@ class Postbuysell extends Component{
                                     <FormItem
                                         {...formItemLayout}
                                         label="Contact Name"
+
+                                        style={{padding: '2%'}}
                                     >
                                         {getFieldDecorator('contactName', {
                                             initialValue: this.state.dataContact,
@@ -781,6 +803,8 @@ class Postbuysell extends Component{
                                     <FormItem
                                         {...formItemLayout}
                                         label="Contact Email"
+
+                                        style={{padding: '2%'}}
                                     >
                                         {getFieldDecorator('contactEmail', {
                                             initialValue: this.state.dataEmail,
@@ -798,6 +822,8 @@ class Postbuysell extends Component{
                                     <FormItem
                                         {...formItemLayout}
                                         label="Contact Number"
+
+                                        style={{padding: '2%'}}
                                     >
                                         {getFieldDecorator('contactNumber', {
                                             initialValue: this.state.dataNumber,
@@ -813,6 +839,8 @@ class Postbuysell extends Component{
                                     <FormItem
                                         {...formItemLayout}
                                         label="Mode of Contact"
+
+                                        style={{padding: '2%'}}
                                     >
                                         {getFieldDecorator('contactMode', {
                                             initialValue: this.state.dataCheckedList,
@@ -827,6 +855,8 @@ class Postbuysell extends Component{
                                     <FormItem
                                         {...formItemLayout}
                                         label="Delivery"
+
+                                        style={{padding: '2%'}}
                                     >
                                         {getFieldDecorator('delivery', {
                                             initialValue: this.state.dataDelivery,
@@ -841,6 +871,8 @@ class Postbuysell extends Component{
                                     <FormItem
                                         {...formItemLayout}
                                         label="State"
+
+                                        style={{padding: '2%'}}
                                     >
                                         {getFieldDecorator('state', {
                                             initialValue: this.state.dataState,
@@ -855,6 +887,8 @@ class Postbuysell extends Component{
                                     <FormItem
                                         {...formItemLayout}
                                         label="City"
+
+                                        style={{padding: '2%'}}
                                     >
                                         {getFieldDecorator('city', {
                                             initialValue: this.state.dataCity,
@@ -872,6 +906,8 @@ class Postbuysell extends Component{
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Address"
+
+                                                style={{padding: '2%'}}
                                             >
                                                 {getFieldDecorator('address', {
                                                     initialValue: this.state.dataAddress,

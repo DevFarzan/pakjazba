@@ -26,17 +26,15 @@
 .topRadius{
 	border-top-left-radius: 25px !important;
 	border-top-right-radius: 25px !important;
-	boxShadow: 0 2px 5px 0 rgba(0,0,0,.07),
 }
 .bottomRadius{
 	border-bottom-left-radius: 25px !important;
 	border-bottom-right-radius: 25px !important;
-	boxShadow: 0 2px 5px 0 rgba(0,0,0,.07),
 }
 .hrLineStyle{
 	display: block;
     border: 0;
-    border-top: 1px solid rgb(55, 169, 155);
+    border-top: 1px solid black;
     width: 95%;
     border-top-width: 1px;
 }

@@ -374,8 +374,8 @@ class JobPortal extends Component {
                 <HeaderMenu/>
                 <div className="hidden-xs" style={{width:"100%", height:"67px", marginTop: "40px"}} />
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
-                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%', marginTop: '116px', position: 'fixed', borderRadius: '3px !important'}}>
-                    <Anchor className="formRadius">
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%', marginTop: '116px', position: 'fixed',}}>
+                    <Anchor className="" style={{margin: '2%',backgroundColor: '#f6f6f6'}}>
                         <Link href="#scrollChange1" title="Job Details" />
                         <Link href="#scrollChange2" title="Upload" />
                         <Link href="#scrollChange3" title="Company Details" />
@@ -394,17 +394,17 @@ class JobPortal extends Component {
                                 <div className=" row">{/*panel-body */}
                                     {/* <div className="col-md-2"/> */}
                                     <div className="formRadius card" id="scrollChange1" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/* col-md-8 panel panel-default */}
-                                        <div className="bold_c_text" style={{color:'black',padding:'8px',borderBottom: '1px solid #d9d9d9'}}>
+                                        <div className="bold_c_text" style={{color:'black',padding:'2%',borderBottom: '1px solid #d9d9d9'}}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-info-circle iconStyle"></i>
                                             <span className="margin_font_location">Job Details</span>
                                         </div>
-                                        <section className="formRadius card">{/* style={{backgroundColor: '#F1F2F2'}} */}
+                                        <section className="bottomRadius card">{/* style={{backgroundColor: '#F1F2F2'}} */}
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Your Email</label>
-                                                        <FormItem>
+                                                        <FormItem style={{padding: '2%'}}>
                                                             {getFieldDecorator('email', {
                                                                 initialValue: email,
                                                                 rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true },{
@@ -421,7 +421,7 @@ class JobPortal extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="usr">Job Title</label>
-                                                        <FormItem>
+                                                        <FormItem style={{padding: '2%'}}>
                                                             {getFieldDecorator('jobTitle', {
                                                                 initialValue: jobTitle,
                                                                 rules: [{
@@ -436,11 +436,14 @@ class JobPortal extends Component {
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Location</label>
-                                                        <FormItem>
+                                                        <FormItem style={{padding: '2%'}}>
                                                             {getFieldDecorator('location', {
                                                                 initialValue: location,
                                                                 rules: [{
@@ -457,7 +460,7 @@ class JobPortal extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="usr">Job Type</label>
-                                                        <FormItem>
+                                                        <FormItem style={{padding: '2%'}}>
                                                             {getFieldDecorator('jobType', {
                                                                 initialValue: jobType,
                                                                 rules: [{ validator: this.onChangeState }],
@@ -468,11 +471,14 @@ class JobPortal extends Component {
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Job Category</label>
-                                                        <FormItem>
+                                                        <FormItem style={{padding: '2%'}}>
                                                             {getFieldDecorator('jobCat', {
                                                                 initialValue: jobCat,
                                                                 rules: [{ validator: this.onChangeState }],                                                            })(
@@ -484,7 +490,7 @@ class JobPortal extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="usr">Salary</label>
-                                                        <FormItem>
+                                                        <FormItem style={{padding: '2%'}}>
                                                             {getFieldDecorator('salary', {
                                                                 initialValue: salary,
                                                                 rules: [{
@@ -500,11 +506,14 @@ class JobPortal extends Component {
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Description</label>
-                                                        <FormItem>
+                                                        <FormItem style={{padding: '2%'}}>
                                                             {getFieldDecorator('jobDescription', {
                                                                 initialValue: jobDescription,
                                                                 rules: [
@@ -523,7 +532,7 @@ class JobPortal extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="usr">Experience</label>
-                                                        <FormItem>
+                                                        <FormItem style={{padding: '2%'}}>
                                                             {getFieldDecorator('experience', {
                                                                 initialValue: experience,
                                                                 rules: [{
@@ -538,11 +547,14 @@ class JobPortal extends Component {
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Receiving CV/Resume Email</label>
-                                                        <FormItem>
+                                                        <FormItem style={{padding: '2%'}}>
                                                             {getFieldDecorator('compEmail', {
                                                                 initialValue: compEmail,
                                                                 rules: [{
@@ -565,17 +577,17 @@ class JobPortal extends Component {
 
                                 <div className="row">{/*panel-body  */}
                                     {/* <div className="col-md-2"/> */}
-                                    <div className="formRadius card" id="scrollChange2" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/*panel panel-default col-md-8 */}
-                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'8px',borderBottom: '1px solid #d9d9d9'}}>
+                                    <div className="topRadius card" id="scrollChange2" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/*panel panel-default col-md-8 */}
+                                        <div className="bold_c_text" style={{color:'black',padding:'2%',borderBottom: '1px solid #d9d9d9'}}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-upload iconStyle"></i>
                                             <span className="margin_font_location">Upload</span>
                                         </div>
                                         <section className="bottomRadius card">{/* style={{backgroundColor: '#F1F2F2'}} */}
-                                            <div className="col-md-12 card">
+                                            <div className="col-md-12 bottomRadius card">
                                                 <div className="form-group">
-                                                    <label htmlFor="usr">Job Banner/Image</label>
-                                                    <div className="panel-body">
+                                                    <label htmlFor="usr" style={{padding: '2%'}}>Job Banner/Image</label>
+                                                    <div className="">{/*panel-body */}
                                                         <Upload
                                                             action="//jsonplaceholder.typicode.com/posts/"
                                                             listType="picture-card"
@@ -600,7 +612,7 @@ class JobPortal extends Component {
                                 <div className="row">{/*panel-body  */}
                                     {/* <div className="col-md-2"/> */}
                                     <div className="formRadius card" id="scrollChange3" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/*panel panel-default col-md-8 */}
-                                        <div className="bold_c_text" style={{color:'black',padding:'8px',borderBottom: '1px solid #d9d9d9'}}>
+                                        <div className="bold_c_text" style={{color:'black',padding:'2%',borderBottom: '1px solid #d9d9d9'}}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-info-circle iconStyle"></i>
                                             <span className="margin_font_location">Company Details</span>
@@ -610,7 +622,7 @@ class JobPortal extends Component {
                                                 <div className="col-md-4">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Company Name</label>
-                                                        <FormItem>
+                                                        <FormItem style={{padding: '2%'}}>
                                                             {getFieldDecorator('compName', {
                                                                 initialValue: email,
                                                                 rules: [{
@@ -627,7 +639,7 @@ class JobPortal extends Component {
                                                 <div className="col-md-4">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Website</label>
-                                                        <FormItem>
+                                                        <FormItem style={{padding: '2%'}}>
                                                             <input type="text" id='Website'
                                                                 value={this.state.Website}
                                                                 className="form-control" onChange={this.onChangeValue.bind(this)}/>
@@ -637,7 +649,7 @@ class JobPortal extends Component {
                                                 <div className="col-md-4">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Tagline</label>
-                                                        <FormItem>
+                                                        <FormItem style={{padding: '2%'}}>
                                                             <input type="text" id='Tagline'
                                                                 value={this.state.Tagline}
                                                                 className="form-control" onChange={this.onChangeValue.bind(this)}/>
@@ -645,11 +657,14 @@ class JobPortal extends Component {
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Description</label>
-                                                        <FormItem>
+                                                        <FormItem style={{padding: '2%'}}>
                                                             {getFieldDecorator('compDescription', {
                                                                 initialValue: compDescription,
                                                                 rules: [
@@ -675,20 +690,20 @@ class JobPortal extends Component {
                                 
                                 <div className="row">{/*panel-body  */}
                                     {/* <div className="col-md-2"/> */}
-                                    <div className="formRadius card" id="scrollChange4" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/*panel panel-default col-md-8 */}
-                                        <div className="bold_c_text" style={{color:'black',padding:'8px',borderBottom: '1px solid #d9d9d9'}}>
+                                    <div className="topRadius card" id="scrollChange4" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/*panel panel-default col-md-8 */}
+                                        <div className="bold_c_text " style={{color:'black',padding:'2%',borderBottom: '1px solid #d9d9d9'}}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-link iconStyle"></i>
                                             <span className="margin_font_location">Social Links</span>
                                         </div>
                                         <section className="formRadius card">{/* style={{backgroundColor: '#F1F2F2'}} */}
-                                            <div className="col-md-12 card">
+                                            <div className="col-md-12 bottomRadius card">
                                                 <div className="form-group">
-                                                    <label htmlFor="usr">Social Media Links</label>
-                                                    <div className="panel-body">
+                                                    <label htmlFor="usr" style={{padding: '2%'}}>Social Media Links</label>
+                                                    <div className="">{/*panel-body */}
                                                     <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <FormItem>
+                                                        <FormItem style={{padding: '2%'}}>
                                                             <div className='row' style={{paddingTop: '0px', paddingBottom: '0px'}}>
                                                                 <button
                                                                     type="button"

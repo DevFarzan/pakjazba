@@ -106,6 +106,9 @@ class HeaderMenu extends Component {
                                 <div className="col-md-1" style={{ marginTop: "33px" }}>
                                      <Link to={`/`} className="homeheader">Home</Link>
                                 </div>
+                                <div className="col-md-1" style={{ marginTop: "33px" }}>
+                                     <Link to={`/explore`} className="homeheader">Explore</Link>
+                                </div>
                                 <div className="col-md-2" style={{ marginTop: "33px", width:"12%", paddingRight:"0" }}>
                                 <Dropdown overlay={menu}>
                                     <a className="ant-dropdown-link" href="#">
@@ -207,6 +210,9 @@ class HeaderMenu extends Component {
                         </div>{/*row*/}
                         <span>
                             <Link rel="noopener noreferrer" to={`/market_roommates`} onClick={this.closeNav}>Room Renting</Link>
+                        </span>
+                        <span style={{ marginTop: "8px" }}>
+                            <Link rel="noopener noreferrer" to={`/explore`}>Explore</Link>
                         </span>
                         <span style={{ marginTop: "8px" }}>
                             <Link rel="noopener noreferrer" to={`/market_business`}>Business Listing</Link>

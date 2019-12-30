@@ -1,0 +1,33 @@
+.headerDivv{
+    margin-top: 8vw;
+}
+.ant-tabs-nav-container {
+    overflow: hidden;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.5;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    white-space: nowrap;
+    margin-bottom: -1px;
+    -webkit-transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    -o-transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    zoom: 1;
+}
+.ant-tabs-bar {
+    border-bottom: 1px solid #e8e8e8;
+    margin: 0 0 16px 0;
+    outline: none;
+    -webkit-transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    -o-transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.roomRentTabText{
+    font-size: 28px;
+    text-align: center;
+    margin-top: 1vw;
+    margin-left: 2vw;
+    padding-bottom: 1vw;
+}

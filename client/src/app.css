@@ -2190,3 +2190,27 @@ and (-webkit-min-device-pixel-ratio: 1)  {
 .dropdownheader:hover{
   color: #243c4f !important;
 }
+
+/* post job css */
+.btnSet{
+  padding: 0px;
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 800px)  {
+  .btnSet{
+    width: 13% !important;
+  }
+  .inputSet{
+    width: 86% !important;
+  }
+  /* .iconSet{
+    padding: 4px;
+    width: 20px;
+    height: 20px;
+    margin-left: -3px;
+  } */
+}
+
+
+
+

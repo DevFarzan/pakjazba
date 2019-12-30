@@ -179,7 +179,7 @@ ReactDOM.render(
 
         <Route path="/detail_blog" component={DetailBlog}></Route>
         <Route path="/privacypolicy" component={Privacy}></Route>
-        <Route path="/termofservice" component={TermOfServices}></Route> */}
+        <Route path="/termofservice" component={TermOfServices}></Route> 
 
 
         {/*<Route path="/detail_roomRent" component={DetailRoommates}></Route>

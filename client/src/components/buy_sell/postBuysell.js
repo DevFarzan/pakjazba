@@ -8,7 +8,8 @@ import {
     Checkbox,
     notification,
     Upload,
-    Modal
+    Modal,
+    Anchor,
 } from 'antd';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 import Burgermenu from '../header/burgermenu';
@@ -20,6 +21,13 @@ import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
 import moment from 'moment';
 import stateCities from "../../lib/countrycitystatejson";
+
+const { Link } = Anchor;
+
+const handleClick = (e, link) => {
+  e.preventDefault();
+  console.log(link);
+};
 
 const { TextArea } = Input;
 const CheckboxGroup = Checkbox.Group;
@@ -471,39 +479,28 @@ class Postbuysell extends Component{
                 <div className="hidden-xs" style={{width:"100%",height:"67px",marginTop:"3px"}}></div>
                 {/*================================post business form start============================*/}
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
-                <div className="col-lg-3 col-md-3 hidden-sm hidden-xs card formRadius" id="section1" style={{marginTop: '116px', position: 'fixed', borderRadius: '3px !important'}}>
-                        <label class="dov">One
-                            <input id="scrollChange1" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Two
-                            <input id="scrollChange2" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Three
-                            <input id="scrollChange3" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="dov">Four
-                            <input id="scrollChange4" type="radio" name="radio" />
-                            <span class="checkmark"></span>
-                        </label>
-                    
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%',marginTop: '116px', position: 'fixed', borderRadius: '3px !important'}}>
+                    <Anchor className="formRadius">
+                        <Link href="#scrollChange1" title="General" />
+                        <Link href="#scrollChange2" title="Brand Details" />
+                        <Link href="#scrollChange3" title="Upload" />
+                        <Link href="#scrollChange4" title="Contact" />
+                    </Anchor>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div className="main_c_panel" style={{color:'white',textAlign:'center',marginTop: '40px'}}>
-                        <h3 style={{color: 'white',fontWeight: 'bold'}}>Submit your Items</h3>
+                    <div className="main_c_panel" style={{textAlign:'center',marginTop: '40px'}}>
+                        <h3 style={{color: 'black',fontWeight: 'bold'}}>Submit your Items</h3>
                     </div>
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="">{/*panel-group */}
                             <div className="">{/*panel panel-default */}
                             
                                 <div className="formRadius">{/*panel-body */}
-                                <div className="formRadius card">{/*panel panel-default */}
-                                        <div className="formRadius" style={{color:'black',padding:'8px',fontFamily:'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9'}}>
+                                <div className="formRadius card" id="scrollChange1">{/*panel panel-default */}
+                                        <div className="topRadius" style={{color:'black',padding:'8px',fontFamily:'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9'}}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-info-circle iconStyle"></i>
-                                            <span className="margin_font_location">Product Detail</span>
+                                            <span className="margin_font_location">General</span>
                                         </div>
                                     <FormItem
                                         {...formItemLayout}
@@ -516,6 +513,9 @@ class Postbuysell extends Component{
                                             <Cascader options={categ} showSearch={{ filter }} onChange={this.onChangeCat.bind(this)}/>
                                         )}
                                     </FormItem>
+
+                                    <hr className="hrLineStyle"/>
+
                                     <FormItem
                                         {...formItemLayout}
                                         label="Sub-Category"
@@ -527,6 +527,9 @@ class Postbuysell extends Component{
                                             <Cascader options={subCat} showSearch={{ filter }} onChange={this.onChangeSubCat.bind(this)}/>
                                         )}
                                     </FormItem>
+
+                                    <hr className="hrLineStyle"/>
+
                                     {(!!this.state.dataSubSub.length || selectSubCat) && <div className="row">
                                         <div className="col-md-3"></div>
                                         <div className="col-md-6" style={{padding: 0}}>
@@ -552,6 +555,9 @@ class Postbuysell extends Component{
                                             <Input  />
                                         )}
                                     </FormItem>
+
+                                    <hr className="hrLineStyle"/>
+                                    
                                     <FormItem
                                         {...formItemLayout}
                                         label="Description"
@@ -574,9 +580,12 @@ class Postbuysell extends Component{
                                         <br />
                                         <span>{500 - desLength} Words</span>
                                     </FormItem>
+
+                                    <hr className="hrLineStyle"/>
+
                                     <div className="row" style={{'textAlign': 'center'}}>
                                         <div className="col-md-2"></div>
-                                        <div className="col-md-3">
+                                        <div className="col-md-5">
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Price"
@@ -593,14 +602,14 @@ class Postbuysell extends Component{
                                         <div className="col-md-3" style={{'textAlign': 'left'}}>
                                             <Checkbox checked={this.state.hidePrice} onChange={this.onChangePrice.bind(this)}>(Hide Price)</Checkbox>
                                         </div>
-                                        <div className="col-md-4"></div>
+                                        <div className="col-md-2"></div>
                                     </div>
                                 </div>
                             </div>
                             </div>
                             <br/>
-                            <div className="card formRadius">{/*panel panel-default  */}
-                                <div className="bold_c_text formRadius" style={{backgroundColor:'white',color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                            <div className="card formRadius" id="scrollChange2">{/*panel panel-default  */}
+                                <div className="bold_c_text topRadius" style={{backgroundColor:'white',color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
                                     {/* <Icon type="info-circle"/> */}
                                     <i class="fa fa-info-circle iconStyle"></i>
                                     <span className="margin_font_location">Brand Details</span>
@@ -618,6 +627,9 @@ class Postbuysell extends Component{
                                             <Cascader options={condition} showSearch={{ filter }} />
                                         )}
                                     </FormItem>
+
+                                    <hr className="hrLineStyle"/>
+
                                     <FormItem
                                         {...formItemLayout}
                                         label="Brand"
@@ -629,6 +641,9 @@ class Postbuysell extends Component{
                                             <Input  />
                                         )}
                                     </FormItem>
+
+                                    <hr className="hrLineStyle"/>
+
                                     <FormItem
                                         {...formItemLayout}
                                         label="Model Name"
@@ -640,6 +655,9 @@ class Postbuysell extends Component{
                                             <Input  />
                                         )}
                                     </FormItem>
+
+                                    <hr className="hrLineStyle"/>
+
                                     <FormItem
                                         {...formItemLayout}
                                         label="Model Number"
@@ -652,6 +670,9 @@ class Postbuysell extends Component{
                                             <Input  />
                                         )}
                                     </FormItem>
+
+                                    <hr className="hrLineStyle"/>
+
                                     <div className="row">
                                     <div></div>
                                     <div className="col-md-3" style={{textAlign:"right"}}><label style={{"color":"black"}}>Length/Width/Height:</label></div>
@@ -662,6 +683,46 @@ class Postbuysell extends Component{
                                     </div>
                                     </div>
                                     <span>{this.state.err && this.state.errMsg}</span>
+                                    {/* <FormItem
+                                        {...formItemLayout}
+                                        label="Images"
+                                    >
+                                        {getFieldDecorator('images', {
+                                            initialValues: this.state.imageList,
+                                            rules: [{ required: true, 
+                                                message: 'Please upload your Images!', 
+                                                whitespace: true }],
+                                        })(
+                                            <div>
+                                                <Upload
+                                                    action="//jsonplaceholder.typicode.com/posts/"
+                                                    listType="picture-card"
+                                                    fileList={fileList}
+                                                    onPreview={this.handlePreview}
+                                                    onChange={this.handleChange}
+                                                >
+                                                    {this.state.imageList.length + fileList.length >= 3 
+                                                        ? null : uploadButton}
+                                                </Upload>
+                                                <Modal visible={previewVisible} 
+                                                footer={null} onCancel={this.handleCancel}>
+                                                    <img alt="example" style={{ width: '100%' }} 
+                                                    src={previewImage} />
+                                                </Modal>
+                                                {uploadedImages}
+                                            </div>
+                                        )}
+                                    </FormItem> */}
+                                </div>
+                            </div>
+                            <br/>
+                            <div className="card formRadius" id="scrollChange3">{/*panel panel-default  */}
+                                <div className="bold_c_text topRadius" style={{backgroundColor:'white',color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                    {/* <Icon type="info-circle"/> */}
+                                    <i class="fa fa-info-circle iconStyle"></i>
+                                    <span className="margin_font_location">Upload</span>
+                                </div>
+                                <div className="">{/*panel-body */}
                                     <FormItem
                                         {...formItemLayout}
                                         label="Images"
@@ -695,8 +756,8 @@ class Postbuysell extends Component{
                                 </div>
                             </div>
                             <br/>
-                            <div className="card formRadius">{/*panel panel-default */}
-                                <div className="bold_c_text formRadius" style={{backgroundColor:'white',color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                            <div className="card formRadius" id="scrollChange4">{/*panel panel-default */}
+                                <div className="bold_c_text topRadius" style={{backgroundColor:'white',color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
                                     {/* <Icon type="info-circle"/> */}
                                     <i class="fa fa-address-card iconStyle"></i>
                                     <span className="margin_font_location">Contact</span>
@@ -714,6 +775,9 @@ class Postbuysell extends Component{
                                             <Input  />
                                         )}
                                     </FormItem>
+
+                                    <hr className="hrLineStyle"/>
+
                                     <FormItem
                                         {...formItemLayout}
                                         label="Contact Email"
@@ -728,6 +792,9 @@ class Postbuysell extends Component{
                                             <Input  />
                                         )}
                                     </FormItem>
+
+                                    <hr className="hrLineStyle"/>
+
                                     <FormItem
                                         {...formItemLayout}
                                         label="Contact Number"
@@ -740,6 +807,9 @@ class Postbuysell extends Component{
                                             <Input  />
                                         )}
                                     </FormItem>
+
+                                    <hr className="hrLineStyle"/>
+
                                     <FormItem
                                         {...formItemLayout}
                                         label="Mode of Contact"
@@ -751,6 +821,9 @@ class Postbuysell extends Component{
                                             <CheckboxGroup options={optionsContact} />
                                         )}
                                     </FormItem>
+
+                                    <hr className="hrLineStyle"/>
+
                                     <FormItem
                                         {...formItemLayout}
                                         label="Delivery"
@@ -762,6 +835,9 @@ class Postbuysell extends Component{
                                             <CheckboxGroup options={optionsDelivery} />
                                         )}
                                     </FormItem>
+
+                                    <hr className="hrLineStyle"/>
+
                                     <FormItem
                                         {...formItemLayout}
                                         label="State"
@@ -773,6 +849,9 @@ class Postbuysell extends Component{
                                             <Cascader options={statesUS} showSearch={{ filter }} onChange={this.onChangeState.bind(this)}/>
                                         )}
                                     </FormItem>
+
+                                    <hr className="hrLineStyle"/>
+
                                     <FormItem
                                         {...formItemLayout}
                                         label="City"
@@ -784,9 +863,12 @@ class Postbuysell extends Component{
                                             <Cascader options={citiesUS} showSearch={{ filter }}/>
                                         )}
                                     </FormItem>
+
+                                    <hr className="hrLineStyle"/>
+
                                     <div className="row">
                                         <div className="col-md-2"></div>
-                                        <div className="col-md-4">
+                                        <div className="col-md-5">
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Address"
@@ -806,7 +888,7 @@ class Postbuysell extends Component{
                                         <div className="col-md-3" style={{'textAlign': 'left'}}>
                                             <Checkbox checked={this.state.hideAddress} onChange={this.onChangeAddress.bind(this)}>(Hide Address)</Checkbox>
                                         </div>
-                                        <div className="col-md-3"></div>
+                                        <div className="col-md-2"></div>
                                     </div>
                                 </div>
                             </div>

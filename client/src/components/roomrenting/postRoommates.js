@@ -556,10 +556,14 @@ class Postroommates extends Component{
                 <HeaderMenu/>
                 <div className="hidden-xs" style={{width:"100%",height:"67px",marginTop:"40px"}}></div>{/*3*/}
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
-                <div className="col-lg-3 col-md-3 hidden-sm hidden-xs card formRadius" id="section1" style={{marginTop: '103px', position: 'fixed', borderRadius: '3px !important'}}>
-                    <Anchor>
-                        <Link href="#scrollChange1" title="Location" />
-                        <Link href="#scrollChange2" title="About" />
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%', marginTop: '103px', position: 'fixed', borderRadius: '3px !important'}}>
+                    <Anchor className="formRadius">
+                        <Link href="#scrollChange1" title="General" />
+                        <Link href="#scrollChange2" title="Location" />
+                        <Link href="#scrollChange3" title="RentDetails" />
+                        <Link href="#scrollChange4" title="Upload" />
+                        <Link href="#scrollChange5" title="Price Details" />
+                        <Link href="#scrollChange6" title="About" />
                     </Anchor>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -571,69 +575,17 @@ class Postroommates extends Component{
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="">{/*panel-group 32 */}
                             <div className="">{/*panel panel-default */}
-                                
-                                <div className="">{/*panel-body */}
+
+                                <div className="" id="scrollChange1" style={{marginBottom: '25px'}}>{/*panel-body */}
                                     {/*==========main panel content=============*/}
-                                    {/*==========location panel start=========*/}
-                                    <div className="formRadius card">{/*panel panel-default */}
-                                        <div className="bold_c_text formRadius" style={{backgroundColor:'white',color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                    {/*==========General panel start=========*/}
+                                    <div className="card formRadius" style={{padding: '0 0 1vw 0'}}>{/*panel panel-default */}
+                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
                                             {/* <Icon type="info-circle"/> */}
-                                            <i class="fa fa-map-marker iconStyle" aria-hidden="true"></i>
-                                            <span className="margin_font_location">Location</span>
+                                            <i class="fa fa-info-circle iconStyle"></i>
+                                            <span className="margin_font_location">General</span>
                                         </div>
-                                        <div className="formRadius" id="scrollChange1" style={{backgroundColor: 'white',padding: '1vw 0 0 0' }}>{/*panel-body */}
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="State"
-                                            >
-                                                {getFieldDecorator('state', {
-                                                    initialValue: this.state.dataState,
-                                                    rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
-                                                })(
-                                                    <Cascader options={statesUS} onChange={this.onChangeCat.bind(this)} showSearch={{ filter }}/>
-                                                )}
-                                            </FormItem>
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="City"
-                                            >
-                                                {getFieldDecorator('city', {
-                                                    initialValue: this.state.dataCity,
-                                                    rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
-                                                })(
-                                                    <Cascader options={citiesUS} showSearch={{ filter }}/>
-                                                )}
-                                            </FormItem>
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Property Location"
-                                            >
-                                                {getFieldDecorator('propertyLocation', {
-                                                    initialValue: this.state.dataLocation,
-                                                    rules: [{
-                                                        required: true,
-                                                        message: 'Please input your Property Location!',
-                                                        whitespace: true
-                                                    }],
-                                                })(
-                                                    <Input/>
-                                                )}
-                                            </FormItem>
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Property Zip Code"
-                                            >
-                                                {getFieldDecorator('zipCode', {
-                                                    initialValue: this.state.dataZip,
-                                                    rules: [{
-                                                        required: true,
-                                                        message: 'Please input your Property Zip Code!',
-                                                        whitespace: true
-                                                    }],
-                                                })(
-                                                    <Input/>
-                                                )}
-                                            </FormItem>
+                                        <div className="formRadius">{/* panel-body*/}
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Category"
@@ -645,6 +597,9 @@ class Postroommates extends Component{
                                                     <Cascader options={category} showSearch={{ filter }}/>
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Posting Title"
@@ -656,6 +611,9 @@ class Postroommates extends Component{
                                                     <Input  />
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Description/Details"
@@ -678,52 +636,96 @@ class Postroommates extends Component{
                                                 <br />
                                                 <span style={{"float": "right"}}>{500 - desLength} Words</span>
                                             </FormItem>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="" id="scrollChange2">{/*panel-body */}
+                                    {/*==========main panel content=============*/}
+                                    {/*==========location panel start=========*/}
+                                    <div className="formRadius card">{/*panel panel-default */}
+                                        <div className="bold_c_text topRadius" style={{backgroundColor:'white',color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                            {/* <Icon type="info-circle"/> */}
+                                            <i class="fa fa-map-marker iconStyle" aria-hidden="true"></i>
+                                            <span className="margin_font_location">Location</span>
+                                        </div>
+                                        <div className="formRadius" style={{backgroundColor: 'white',padding: '1vw 0px 5px 0px', }}>{/*panel-body */}
                                             <FormItem
                                                 {...formItemLayout}
-                                                label="Date Range"
+                                                label="State"
                                             >
-                                                {getFieldDecorator('dateRange', {
-                                                    initialValue: [moment(this.state.dataStart), moment(this.state.dataEnd)],
-                                                    rules: [{ validator: this.validateDate.bind(this) }],
+                                                {getFieldDecorator('state', {
+                                                    initialValue: this.state.dataState,
+                                                    rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
                                                 })(
-                                                    <RangePicker
-                                                        ranges={{ Today: [moment(), moment()], 'This Month': [moment(), moment().endOf('month')] }}
-                                                        onChange={this.onChangeDate.bind(this)}
-                                                    />
+                                                    <Cascader options={statesUS} onChange={this.onChangeCat.bind(this)} showSearch={{ filter }}/>
                                                 )}
                                             </FormItem>
-                                            <div className="row" style={{'textAlign': 'center'}}>
-                                                <div className="col-md-2"></div>
-                                                <div className="col-md-4">
-                                                    <FormItem
-                                                        {...formItemLayout}
-                                                        label="Rent"
-                                                    >
-                                                        {getFieldDecorator('price', {
-                                                            initialValue: this.state.dataRent,
-                                                            rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
-                                                                    { validator: this.validateNumber.bind(this) }],
-                                                        })(
-                                                            <Input />
-                                                        )}
-                                                    </FormItem>
-                                                </div>
-                                                <div className="col-md-5" style={{'textAlign': 'left'}}>
-                                                    <FormItem
-                                                        {...formItemLayout}
-                                                        label="Price Mode"
-                                                    >
-                                                        {getFieldDecorator('priceMode', {
-                                                            initialValue: this.state.dataPmode,
-                                                            rules: [{ type: 'array', required: true, message: 'Please select your Price Mode!' }],
-                                                        })(
-                                                            <Cascader options={priceCategory} showSearch={{ filter }}/>
-                                                        )}
-                                                    </FormItem>
-                                                </div>
-                                                <div className="col-md-1"></div>
-                                            </div>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
+                                                {...formItemLayout}
+                                                label="City"
+                                            >
+                                                {getFieldDecorator('city', {
+                                                    initialValue: this.state.dataCity,
+                                                    rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
+                                                })(
+                                                    <Cascader options={citiesUS} showSearch={{ filter }}/>
+                                                )}
+                                            </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
+                                            <FormItem
+                                                {...formItemLayout}
+                                                label="Property Location"
+                                            >
+                                                {getFieldDecorator('propertyLocation', {
+                                                    initialValue: this.state.dataLocation,
+                                                    rules: [{
+                                                        required: true,
+                                                        message: 'Please input your Property Location!',
+                                                        whitespace: true
+                                                    }],
+                                                })(
+                                                    <Input/>
+                                                )}
+                                            </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
+                                            <FormItem
+                                                {...formItemLayout}
+                                                label="Property Zip Code"
+                                            >
+                                                {getFieldDecorator('zipCode', {
+                                                    initialValue: this.state.dataZip,
+                                                    rules: [{
+                                                        required: true,
+                                                        message: 'Please input your Property Zip Code!',
+                                                        whitespace: true
+                                                    }],
+                                                })(
+                                                    <Input/>
+                                                )}
+                                            </FormItem>                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="" id="scrollChange3" style={{marginBottom: '25px', marginTop: '5%'}}>{/*panel-body */}
+                                    {/*==========main panel content=============*/}
+                                    {/*==========General panel start=========*/}
+                                    <div className="card formRadius" style={{padding: '0 0 1vw 0'}}>{/*panel panel-default */}
+                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                            {/* <Icon type="info-circle"/> */}
+                                            <i class="fa fa-info-circle iconStyle"></i>
+                                            <span className="margin_font_location">Rent details</span>
+                                        </div>
+                                        <div className="formRadius">{/* panel-body*/}
+                                        <FormItem
                                                 {...formItemLayout}
                                                 label="Accommodates"
                                             >
@@ -734,6 +736,9 @@ class Postroommates extends Component{
                                                     <Cascader options={accomodateCategory} showSearch={{ filter }}/>
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Furnished"
@@ -745,6 +750,9 @@ class Postroommates extends Component{
                                                     <Cascader options={furnishedcategory} showSearch={{ filter }}/>
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Attached Bath"
@@ -754,6 +762,9 @@ class Postroommates extends Component{
                                                     <Radio value={false}>NO</Radio>
                                                 </RadioGroup>
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Amenities include"
@@ -780,6 +791,9 @@ class Postroommates extends Component{
                                                     </CheckboxGroup>
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Vegetarians Preferred"
@@ -789,6 +803,9 @@ class Postroommates extends Component{
                                                     <Radio value={'No'}>NO</Radio>
                                                 </RadioGroup>
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+                                            
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Smoking"
@@ -799,6 +816,9 @@ class Postroommates extends Component{
                                                     <Radio value={'Outside'}>Outside only</Radio>
                                                 </RadioGroup>
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Pet Friendly"
@@ -810,6 +830,20 @@ class Postroommates extends Component{
                                                     <Radio value={'Any Pet'}>Any Pet</Radio>
                                                 </RadioGroup>
                                             </FormItem>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="" id="scrollChange4" style={{marginBottom: '25px'}}>{/*panel-body */}
+                                    {/*==========main panel content=============*/}
+                                    {/*==========General panel start=========*/}
+                                    <div className="card formRadius" style={{padding: '0 0 1vw 0'}}>{/*panel panel-default */}
+                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                            {/* <Icon type="info-circle"/> */}
+                                            <i class="fa fa-info-circle iconStyle"></i>
+                                            <span className="margin_font_location">Upload</span>
+                                        </div>
+                                        <div className="formRadius">{/* panel-body*/}
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Images"
@@ -837,16 +871,78 @@ class Postroommates extends Component{
                                         </div>
                                     </div>
                                 </div>
-                                <div className="">{/*panel-body */}
+
+                                <div className="" id="scrollChange5" style={{marginBottom: '25px'}}>{/*panel-body */}
+                                    {/*==========main panel content=============*/}
+                                    {/*==========General panel start=========*/}
+                                    <div className="card formRadius" style={{padding: '0 0 1vw 0'}}>{/*panel panel-default */}
+                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                            {/* <Icon type="info-circle"/> */}
+                                            <i class="fa fa-info-circle iconStyle"></i>
+                                            <span className="margin_font_location">Price details</span>
+                                        </div>
+                                        <div className="formRadius">{/* panel-body*/}
+                                            <FormItem
+                                                {...formItemLayout}
+                                                label="Date Range"
+                                            >
+                                                {getFieldDecorator('dateRange', {
+                                                    initialValue: [moment(this.state.dataStart), moment(this.state.dataEnd)],
+                                                    rules: [{ validator: this.validateDate.bind(this) }],
+                                                })(
+                                                    <RangePicker
+                                                        ranges={{ Today: [moment(), moment()], 'This Month': [moment(), moment().endOf('month')] }}
+                                                        onChange={this.onChangeDate.bind(this)}
+                                                    />
+                                                )}
+                                            </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
+                                            <div className="row" style={{'textAlign': 'center'}}>
+                                                <div className="col-md-1"></div>
+                                                <div className="col-md-5">
+                                                    <FormItem
+                                                        {...formItemLayout}
+                                                        label="Rent"
+                                                    >
+                                                        {getFieldDecorator('price', {
+                                                            initialValue: this.state.dataRent,
+                                                            rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
+                                                                    { validator: this.validateNumber.bind(this) }],
+                                                        })(
+                                                            <Input />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-md-6" style={{'textAlign': 'left'}}>
+                                                    <FormItem
+                                                        {...formItemLayout}
+                                                        label="Price Mode"
+                                                    >
+                                                        {getFieldDecorator('priceMode', {
+                                                            initialValue: this.state.dataPmode,
+                                                            rules: [{ type: 'array', required: true, message: 'Please select your Price Mode!' }],
+                                                        })(
+                                                            <Cascader options={priceCategory} showSearch={{ filter }}/>
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="" id="scrollChange6">{/*panel-body */}
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
                                     <div className="card formRadius" style={{padding: '0 0 1vw 0'}}>{/*panel panel-default */}
-                                        <div className="bold_c_text formRadius" style={{color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-address-card iconStyle"></i>
                                             <span className="margin_font_location">About</span>
                                         </div>
-                                        <div className="formRadius" id="scrollChange2" style={{padding: '1vw 0 1vw 0'}}>{/* panel-body*/}
+                                        <div className="formRadius" style={{padding: '1vw 0 1vw 0'}}>{/* panel-body*/}
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Contact Name"
@@ -858,6 +954,9 @@ class Postroommates extends Component{
                                                     <Input  />
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Contact Email"
@@ -872,6 +971,9 @@ class Postroommates extends Component{
                                                     <Input  />
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Contact Number"
@@ -884,6 +986,9 @@ class Postroommates extends Component{
                                                     <Input  />
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Mode of Contact"

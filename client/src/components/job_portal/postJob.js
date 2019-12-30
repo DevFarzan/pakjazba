@@ -374,10 +374,12 @@ class JobPortal extends Component {
                 <HeaderMenu/>
                 <div className="hidden-xs" style={{width:"100%", height:"67px", marginTop: "40px"}} />
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
-                <div className="col-lg-3 col-md-3 hidden-sm hidden-xs card formRadius" id="section1" style={{marginTop: '116px', position: 'fixed', borderRadius: '3px !important'}}>
-                    <Anchor>
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%', marginTop: '116px', position: 'fixed', borderRadius: '3px !important'}}>
+                    <Anchor className="formRadius">
                         <Link href="#scrollChange1" title="Job Details" />
-                        <Link href="#scrollChange2" title="Company Details" />
+                        <Link href="#scrollChange2" title="Upload" />
+                        <Link href="#scrollChange3" title="Company Details" />
+                        <Link href="#scrollChange4" title="Social Links" />
                     </Anchor>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -554,34 +556,50 @@ class JobPortal extends Component {
                                                         </FormItem>
                                                     </div>
                                                 </div>
-                                                <div className="col-md-6">
-                                                    <div className="form-group">
-                                                        <label htmlFor="usr">Job Banner/Image</label>
-                                                        <div className="panel-body">
-                                                            <Upload
-                                                                action="//jsonplaceholder.typicode.com/posts/"
-                                                                listType="picture-card"
-                                                                fileList={fileList}
-                                                                onPreview={this.handlePreview}
-                                                                onChange={this.handleChange}
-                                                            >
-                                                                {this.state.imageList.length + fileList.length >= 3 ? null : uploadButton}
-                                                            </Upload>
-                                                            <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-                                                                <img alt="example" style={{ width: '100%' }} src={previewImage} />
-                                                            </Modal>
-                                                            {uploadedImages}
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                
                                             </div>
                                         </section>
                                     </div>
                                     <div className="col-md-2"/>
                                 </div>
+
                                 <div className="row">{/*panel-body  */}
                                     {/* <div className="col-md-2"/> */}
                                     <div className="formRadius card" id="scrollChange2" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/*panel panel-default col-md-8 */}
+                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'8px',borderBottom: '1px solid #d9d9d9'}}>
+                                            {/* <Icon type="info-circle"/> */}
+                                            <i class="fa fa-upload iconStyle"></i>
+                                            <span className="margin_font_location">Upload</span>
+                                        </div>
+                                        <section className="bottomRadius card">{/* style={{backgroundColor: '#F1F2F2'}} */}
+                                            <div className="col-md-12 card">
+                                                <div className="form-group">
+                                                    <label htmlFor="usr">Job Banner/Image</label>
+                                                    <div className="panel-body">
+                                                        <Upload
+                                                            action="//jsonplaceholder.typicode.com/posts/"
+                                                            listType="picture-card"
+                                                            fileList={fileList}
+                                                            onPreview={this.handlePreview}
+                                                            onChange={this.handleChange}
+                                                        >
+                                                            {this.state.imageList.length + fileList.length >= 3 ? null : uploadButton}
+                                                        </Upload>
+                                                        <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+                                                            <img alt="example" style={{ width: '100%' }} src={previewImage} />
+                                                        </Modal>
+                                                        {uploadedImages}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </section>
+                                    </div>
+                                </div>
+
+                                <div className="row">{/*panel-body  */}
+                                    {/* <div className="col-md-2"/> */}
+                                    <div className="formRadius card" id="scrollChange3" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/*panel panel-default col-md-8 */}
                                         <div className="bold_c_text" style={{color:'black',padding:'8px',borderBottom: '1px solid #d9d9d9'}}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-info-circle iconStyle"></i>
@@ -647,9 +665,29 @@ class JobPortal extends Component {
                                                         </FormItem>
                                                     </div>
                                                 </div>
-                                                <div className="col-md-6">
+                                                
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <div className="col-md-2" />
+                                </div>
+
+                                
+                                <div className="row">{/*panel-body  */}
+                                    {/* <div className="col-md-2"/> */}
+                                    <div className="formRadius card" id="scrollChange4" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/*panel panel-default col-md-8 */}
+                                        <div className="bold_c_text" style={{color:'black',padding:'8px',borderBottom: '1px solid #d9d9d9'}}>
+                                            {/* <Icon type="info-circle"/> */}
+                                            <i class="fa fa-link iconStyle"></i>
+                                            <span className="margin_font_location">Social Links</span>
+                                        </div>
+                                        <section className="formRadius card">{/* style={{backgroundColor: '#F1F2F2'}} */}
+                                            <div className="col-md-12 card">
+                                                <div className="form-group">
+                                                    <label htmlFor="usr">Social Media Links</label>
+                                                    <div className="panel-body">
+                                                    <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <label htmlFor="usr">Social Media Links</label>
                                                         <FormItem>
                                                             <div className='row' style={{paddingTop: '0px', paddingBottom: '0px'}}>
                                                                 <button
@@ -701,11 +739,14 @@ class JobPortal extends Component {
                                                         </FormItem>
                                                     </div>
                                                 </div>
+                                                    </div>
+                                                </div>
                                             </div>
+                                            
                                         </section>
                                     </div>
-                                    <div className="col-md-2" />
                                 </div>
+
                                 <div className="row center_global row">
 
                                     <div className="col-md-12 col-sm-12 col-xs-12">

@@ -24,7 +24,7 @@
                 {/*End first tile
             </div>
 
-        </div>*/}
+        </div>
         <div className="row"> <br/></div>
         <div className="col-lg-2 col-md-2 col-sm-12 ">
         </div>

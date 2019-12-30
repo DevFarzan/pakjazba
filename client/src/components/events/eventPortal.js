@@ -526,7 +526,7 @@ class EventPortal extends Component {
         );
 
         const bannerButton = (
-            <div style={{ height: '190px', width: '150px', border: '1px dotted black' }}>
+            <div className="bannerButton">
                 <Icon type="plus-square" />
                 <div className="ant-upload-text">Upload Banner</div>
             </div>
@@ -556,16 +556,16 @@ class EventPortal extends Component {
                 <div className="hidden-sm" style={{ marginTop: '8%' }}></div>
                 <div className="visible-sm" style={{ marginTop: '15%' }}></div>
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
-                <div className="col-lg-3 col-md-3 hidden-sm hidden-xs card formRadius" id="section1" style={{marginTop: '46px', position: 'fixed', borderRadius: '3px !important'}}>
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%',marginTop: '46px', position: 'fixed', borderRadius: '3px !important'}}>
                 <Anchor>
                         <Link href="#scrollChange1" title="Event Details" />
                         <Link href="#scrollChange2" title="Upload" />
                         <Link href="#scrollChange3" title="Ticket Details" />
                         <Link href="#scrollChange4" title="Organizer Details" />
-                        
+                        <Link href="#scrollChange5" title="Social Links" />
                     </Anchor>
                 </div>
-                <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12 jobdetail-page">{/* style={{ backgroundColor: "#37a99b" }} */}
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 jobdetail-page" style={{borderRadius: '13px'}}>{/* style={{ backgroundColor: "#37a99b" }} */}
                     <div className="" style={{ textAlign: "center" }}>
                         <h3 style={{ fontFamily: 'Work Sans, sans-serif', fontWeight: "bold", color: 'black' }}>SUBMIT YOUR EVENT</h3>
                     </div>
@@ -612,7 +612,7 @@ class EventPortal extends Component {
                                             <div className="col-md-12">
                                                 <div className="col-md-6">
                                                     <div className="row" style={{ padding: '0px' }}>
-                                                        <div className="col-md-7" style={{ display: 'grid' }}>
+                                                        <div className="col-md-6" style={{ display: 'grid' }}>
                                                             <label> State </label>
                                                             <FormItem>
                                                                 {getFieldDecorator('state', {
@@ -623,7 +623,7 @@ class EventPortal extends Component {
                                                                 )}
                                                             </FormItem>
                                                         </div>
-                                                        <div className="col-md-5">
+                                                        <div className="col-md-6">
                                                             <label> City </label>
                                                             <FormItem>
                                                                 {getFieldDecorator('city', {
@@ -833,7 +833,7 @@ class EventPortal extends Component {
                                         </div>
                                         {this.state.earlyBird && <div className="row">
                                             <div className="col-md-12">
-                                                <div className="col-md-6">
+                                                <div className="col-md-7">
                                                     <label style={{ fontSize: '18px' }}>Early Bird</label><br />
                                                     <label> Available Tickets &nbsp;&nbsp;&nbsp;Total</label>
                                                     <div className="row">
@@ -861,7 +861,7 @@ class EventPortal extends Component {
                                                                 )}
                                                             </FormItem>
                                                         </div>
-                                                        <div className="col-md-3" style={{ marginTop: '-27px' }}>
+                                                        <div className="col-md-3" style={{ marginTop: '-31px' }}>
                                                             <label> Price </label>
                                                             <FormItem>
                                                                 {getFieldDecorator('earlyBirdPrice', {
@@ -881,7 +881,7 @@ class EventPortal extends Component {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                {!this.state.earlyBirdFree && <div className="col-md-6" style={{ marginTop: '35px' }}>
+                                                {!this.state.earlyBirdFree && <div className="col-md-5" style={{ marginTop: '35px' }}>
                                                     <label> Mode Of Payment </label>
                                                     <FormItem>
                                                         {getFieldDecorator('earlyBirdPaymentMode', {
@@ -1069,6 +1069,33 @@ class EventPortal extends Component {
                                                 </FormItem>
                                             </div>
                                         </div>
+                                        
+                                        <div className="col-md-6">
+                                            <div className="form-group">
+                                                <label htmlFor="usr">Terms and Conditions</label>
+                                                <Shareholder
+                                                    id="termsCondition"
+                                                    value={this.state.termsCondition}
+                                                    onChange={this.handleCard}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div className="formRadius card" id="scrollChange5">{/*panel-body */}
+                            <div className="">{/*panel panel-default */}
+                                <div className="bold_c_text" style={{color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9' }}>
+                                    {/* <Icon type="info-circle" /> */}
+                                    <i class="fa fa-info-circle iconStyle"></i>
+                                    <span className="margin_font_location">Social Links</span>
+                                </div>
+                                <div className="formRadius card">{/*container  style={{ width: '80%' }}*/}
+                                    
+                                    <div className="row">
                                         <div className="col-md-6">
                                             <div className="form-group">
                                                 <label htmlFor="usr">Social Media Links</label>
@@ -1126,16 +1153,6 @@ class EventPortal extends Component {
                                                             }} />
                                                     </div>
                                                 </FormItem>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                                <label htmlFor="usr">Terms and Conditions</label>
-                                                <Shareholder
-                                                    id="termsCondition"
-                                                    value={this.state.termsCondition}
-                                                    onChange={this.handleCard}
-                                                />
                                             </div>
                                         </div>
                                     </div>

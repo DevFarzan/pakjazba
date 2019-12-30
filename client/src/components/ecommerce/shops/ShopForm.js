@@ -510,7 +510,7 @@ class ShopForm extends Component {
                     key={k}
                 >
                     <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
-                        <div className="col-md-10 col-sm-10 col-xs-10"
+                        <div className="col-md-12 col-sm-10 col-xs-10"
                             key={index} style={{ marginTop: '10px' }}>
                             <label htmlFor="Category"> Category </label>
                             <Form.Item style={{ marginTop: '10px' }}>
@@ -566,7 +566,7 @@ class ShopForm extends Component {
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs">
                 
                 </div>
-                <div className="col-lg-3 col-md-3 hidden-sm hidden-xs card formRadius" id="section1" style={{marginTop: '60px', position: 'fixed', borderRadius: '3px !important'}}>
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%',marginTop: '60px', position: 'fixed', borderRadius: '3px !important'}}>
                     <Anchor>
                         <Link href="#scrollChange1" title="Shop Details" />
                         <Link href="#scrollChange2" title="Upload Images" />
@@ -575,7 +575,7 @@ class ShopForm extends Component {
                     </Anchor>
                 </div>
                 
-                <div className="col-lg-9 col-md-9 col-md-9 col-sm-12 col-xs-12">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     
                 
                     <Form onSubmit={this.handleSubmit}>
@@ -666,7 +666,7 @@ class ShopForm extends Component {
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
-                                                <div className="row" style={{ padding: '0px' }}>
+                                                <div className="row">{/* style={{ padding: '0px' }} */}
                                                     <div className="col-md-6" className="form-group">
                                                         <label htmlFor="sel1">Shop Purpose</label>
                                                         <Form.Item>
@@ -899,7 +899,7 @@ class ShopForm extends Component {
                                             <div className="col-md-6 col-sm-6">
                                                 <div className="row" style={{ padding: '0px 0px 0px 10px' }}>
                                                     <div className="col-md-12">
-                                                        <div className="col-md-6 col-sm-6 col-xs-6 clearfix" style={{ marginBottom: '20px' }}>
+                                                        <div className="col-md-6 col-sm-6 col-xs-12 clearfix" style={{ marginBottom: '20px' }}>
                                                             <label htmlFor="sel1">Shop Grid Images</label>
 
                                                             <Form.Item>

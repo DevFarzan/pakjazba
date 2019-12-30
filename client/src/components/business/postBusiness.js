@@ -740,12 +740,13 @@ class Postbusiness extends Component {
                 {/*================================post business form start============================*/}
                 <div className="hidden-xs" style={{ width: "100%", height: "67px", marginTop: "3px" }}></div>
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
-                <div className="col-lg-3 col-md-3 hidden-sm hidden-xs card formRadius" id="section1" style={{marginTop: '128px', position: 'fixed', borderRadius: '3px !important'}}>
-                    <Anchor>
-                        <Link href="#scrollChange1" title="Location" />
-                        <Link href="#scrollChange2" title="Business" />
-                        <Link href="#scrollChange3" title="Social Links" />
-                        <Link href="#scrollChange4" title="Upload" />
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%',marginTop: '128px', position: 'fixed', borderRadius: '25px !important'}}>
+                    <Anchor className="formRadius">
+                        <Link href="#scrollChange1" title="General" />
+                        <Link href="#scrollChange2" title="Location" />
+                        <Link href="#scrollChange3" title="Business" />
+                        <Link href="#scrollChange4" title="Social Links" />
+                        <Link href="#scrollChange5" title="Upload" />
                     </Anchor>
                 </div>
                 
@@ -760,9 +761,61 @@ class Postbusiness extends Component {
                                 <div className="">
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
-                                    <div className="panel panel-default formRadius" id="scrollChange1" style={{borderRadius: '3px !important', boxShadow: '0 2px 5px 0 rgba(0,0,0,.07)',}}>
-                                        <div className="bold_c_text"
-                                          style={{ backgroundColor: '#fff', color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important', }}>
+                                    <div className="formRadius card" id="scrollChange1">
+                                        <div className="bold_c_text topRadius" 
+                                            style={{ backgroundColor: 'white', color: 'black', padding: '8px', 
+                                                fontFamily: 'Crimson Text, serif !important', border: 'none', 
+                                                borderBottom: '1px solid #d9d9d9', }}>
+
+                                            <i class="fa fa-info-circle iconStyle"></i>
+                                            <span className="margin_font_location">General</span>
+                                        </div>
+                                        <div style={{padding: '8px 0px 8px 0px',}}>
+                                            <FormItem
+                                                    {...formItemLayout}
+                                                    label="Business Category"
+                                                >
+                                                    {getFieldDecorator('businessCategory', {
+                                                        initialValue: this.state.dataCategory,
+                                                        rules: [{ type: 'array', required: true, message: 'Please select your Business Category!' }],
+                                                    })(
+                                                        <Cascader options={category} showSearch={{ filter }} />
+                                                    )}
+                                                </FormItem>
+
+                                                <hr className="hrLineStyle"/>
+
+                                                <FormItem
+                                                    {...formItemLayout}
+                                                    label="Description"
+                                                >
+                                                    {getFieldDecorator('description', {
+                                                        initialValue: this.state.dataDescription,
+                                                        rules: [
+                                                            {
+                                                                required: true, message: 'Please input your Description!', whitespace: true
+                                                            },
+                                                            {
+                                                                validator: this.checkValue.bind(this)
+                                                            }],
+                                                    })(
+                                                        <TextArea style={{ "marginBottom": "12px" }}
+                                                            rows={6}
+                                                            maxLength="500"
+                                                        />
+                                                    )}
+                                                    <br /><br />
+                                                    <span className="text-area_business">{500 - desLength} Words</span>
+                                            </FormItem>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    
+                                    <div className="formRadius card" id="scrollChange2">
+                                        <div className="bold_c_text topRadius"
+                                          style={{ backgroundColor: '#fff', color: 'black', padding: '8px', 
+                                          fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid #d9d9d9',
+                                           boxShadow: '0 2px 5px 0 rgba(0,0,0,.07)', }}>
                                                 <i class="fa fa-map-marker iconStyle" aria-hidden="true"></i>
                                                 <span className="margin_font_location">Location</span>
                                         </div>
@@ -778,6 +831,9 @@ class Postbusiness extends Component {
                                                     <Input />
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="State"
@@ -789,6 +845,9 @@ class Postbusiness extends Component {
                                                     <Cascader options={statesUS} onChange={this.onChangeCat.bind(this)} showSearch={{ filter }} />
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="City"
@@ -800,6 +859,9 @@ class Postbusiness extends Component {
                                                     <Cascader options={citiesUS} showSearch={{ filter }} />
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+                                            
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Zip"
@@ -816,12 +878,12 @@ class Postbusiness extends Component {
                                     <br />
                                     {/*==========location panel end===========*/}
                                     {/*==========Business panel start=========*/}
-                                    <div className="panel panel-default formRadius" id="scrollChange2">
-                                        <div className="bold_c_text" style={{ backgroundColor: '#white', color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid #d9d9d9' }}>
+                                    <div className="formRadius" id="scrollChange3">{/*panel panel-default */}
+                                        <div className="bold_c_text topRadius card" style={{ backgroundColor: '#white', color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid #d9d9d9' }}>
                                             <i class="fa fa-building iconStyle"></i>
                                             <span className="margin_font_location">Business</span>
                                         </div>
-                                        <div className="panel-body" style={{border: 'none'}}>
+                                        <div className="bottomRadius card" style={{paddingBottom: '5px',}}>{/*panel-body  */}
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="First Name"
@@ -833,6 +895,9 @@ class Postbusiness extends Component {
                                                     <Input />
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Last Name"
@@ -844,6 +909,9 @@ class Postbusiness extends Component {
                                                     <Input />
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+                                            
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Business Name"
@@ -857,8 +925,11 @@ class Postbusiness extends Component {
                                                     <Input />
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <div className='row'>
-                                                <div className="col-md-3">
+                                                <div className="col-md-4">
                                                     <label htmlFor="email" style={{ fontColor: 'black', float: 'right' }}>Opening & closing Time:</label>
                                                 </div>
                                                 <div className="col-md-3">
@@ -881,8 +952,11 @@ class Postbusiness extends Component {
                                                         )}
                                                     </FormItem>
                                                 </div>
-                                                <div className="col-md-3"></div>
+                                                <div className="col-md-2"></div>
                                             </div>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Business Number"
@@ -895,6 +969,9 @@ class Postbusiness extends Component {
                                                     <Input />
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Your Business Email id"
@@ -909,6 +986,9 @@ class Postbusiness extends Component {
                                                     <Input />
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Business Address"
@@ -920,6 +1000,9 @@ class Postbusiness extends Component {
                                                     <Input />
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Business Owner Name"
@@ -931,6 +1014,9 @@ class Postbusiness extends Component {
                                                     <Input />
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Business Email"
@@ -946,62 +1032,37 @@ class Postbusiness extends Component {
                                                     <Input />
                                                 )}
                                             </FormItem>
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Business Category"
-                                            >
-                                                {getFieldDecorator('businessCategory', {
-                                                    initialValue: this.state.dataCategory,
-                                                    rules: [{ type: 'array', required: true, message: 'Please select your Business Category!' }],
-                                                })(
-                                                    <Cascader options={category} showSearch={{ filter }} />
-                                                )}
-                                            </FormItem>
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Description"
-                                            >
-                                                {getFieldDecorator('description', {
-                                                    initialValue: this.state.dataDescription,
-                                                    rules: [
-                                                        {
-                                                            required: true, message: 'Please input your Description!', whitespace: true
-                                                        },
-                                                        {
-                                                            validator: this.checkValue.bind(this)
-                                                        }],
-                                                })(
-                                                    <TextArea style={{ "marginBottom": "12px" }}
-                                                        rows={6}
-                                                        maxLength="500"
-                                                    />
-                                                )}
-                                                <br /><br />
-                                                <span className="text-area_business">{500 - desLength} Words</span>
-                                            </FormItem>
+                                            
                                         </div>
                                     </div>
                                     <br />
+                                    
                                     {/*==========Business panel end===========*/}
                                     {/*==========social links box start===========*/}
-                                    <div className="panel panel-default formRadius" id="scrollChange3" style={{border: 'none'}}>
-                                        <div className="bold_c_text formRadius" style={{ backgroundColor: 'white', color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important', border: 'none', border: '1px solid #d9d9d9' }}>
+                                    <div className="formRadius card" id="scrollChange4" style={{backgroundColor: 'white',marginBottom: '5%'}}>
+                                        <div className="bold_c_text topRadius card" style={{ backgroundColor: 'white', color: 'black', padding: '8px', fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid #d9d9d9' }}>
                                             <i class="fa fa-link iconStyle"></i>
                                             <span className="margin_font_location">Social Links</span>
                                         </div>
-                                        <div className="panel-body" style={{border: 'none'}}>
+                                        <div className="bottomRadius card" style={{paddingBottom: '5px',}}>
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Facebook"
                                             >
                                                 <Input id='socFac' value={socFac} onChange={this.onChangeSocial.bind(this)} />
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+                                            
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Google"
                                             >
                                                 <Input id='socGoo' value={socGoo} onChange={this.onChangeSocial.bind(this)} />
                                             </FormItem>
+
+                                            <hr className="hrLineStyle"/>
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Linkedin"
@@ -1012,12 +1073,12 @@ class Postbusiness extends Component {
                                     </div>
                                     {/*==========social links box end===========*/}
                                     {/*==========upload panel start=========*/}
-                                    <div className="panel panel-default formRadius" id="scrollChange4" style={{border: 'none'}}>
-                                        <div className="bold_c_text formRadius" style={{ backgroundColor: 'white', color: 'black', padding: '8px', border: '1px solid #d9d9d9' }}>
+                                    <div className="formRadius" id="scrollChange5">
+                                        <div className="bold_c_text topRadius card" style={{ backgroundColor: 'white', color: 'black', padding: '8px', borderBottom: '1px solid #d9d9d9' }}>
                                             <i class="fa fa-upload iconStyle"></i>
                                             <span className="margin_font_location">Upload</span>
                                         </div>
-                                        <div className="panel-body" style={{border: 'none'}}>
+                                        <div className="bottomRadius card" style={{padding: '15px'}}>
                                             <Upload
                                                 action="//jsonplaceholder.typicode.com/posts/"
                                                 listType="picture-card"

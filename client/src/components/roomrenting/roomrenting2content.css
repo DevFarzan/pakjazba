@@ -29,8 +29,8 @@
 }
 
 .search-space1{
-
-	margin-top: 5px;
+    text-align:center;
+	margin-top: 1vw;
 	padding-bottom: 5px;
 }
 
@@ -58,7 +58,9 @@
   padding-top: 15px;
 }
 .slidecontainer {
-    width: 100%;
+    width: 85%;
+    margin-left: 1vw;
+    margin-top: 4vw;
 }
 
 .slider {

@@ -117,7 +117,7 @@ class MarketRoommates extends Component{
                     <div className="hidden-xs">
                       <RoomrentingIcon/>
                     </div>
-                    <Roomrenting1content/>
+                      <Roomrenting1content/>
                 </div>
                 <Footer />
                 {this.state.visible && <Modal

@@ -1,20 +1,21 @@
-.secondfold{
-  padding: 0px;
-  /*background-color: 	#D3D3D3;*/
+.secondfold2{
   margin-top: 20px;
+  padding: 0px;
+  /* background-color: white; */
 }
-
+.headingtext2{
+    font-family: source serif;
+    font-weight: bold;
+  }
 
 .column-spacing{
   width: 70%;
   background-color: yellow;
 }
-
 .row-spacing{
 padding: 50px;
 
 }
-
 .BusinessCard{
   width:20%;
   margin-top: 10px;

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import RoomRentFilterContent from '../roomrenting/roomrenting2contentarea';
+import JobFilter from '../job_portal/CategoriesJobs';
+import JobCategory from '../job_portal/jobClassifiedicon';
 import { Tabs, Icon } from 'antd';
-import Roomrenting1content from "../roomrenting/roomrenting1content";
-import RoomrentingCatagory from '../roomrenting/roomrentinficon';
     
-class RoomRentTAB extends Component{
+class JobPortal extends Component{
     constructor(props) {
         super(props)
         this.state = {
@@ -24,21 +23,21 @@ class RoomRentTAB extends Component{
                             <TabPane tab={
                                 <span><Icon type="apple" /> Filter </span>}
                                 key="1">
-                                <RoomRentFilterContent />
+                                <JobFilter />
                             </TabPane>
                             <TabPane tab={
                                 <span><Icon type="android" /> Category </span>}
                                 key="2">
-                                <RoomrentingCatagory/>
+                                <JobCategory />
                             </TabPane>
                         </Tabs>
                     </div>
                     <div className="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                        <Roomrenting1content/>
+                        {/* <Roomrenting1content/> */}
                     </div>
                 </div>
             </div>
         )
     }
 }
-export default RoomRentTAB;
+export default JobPortal;

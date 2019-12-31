@@ -32,6 +32,19 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    
+}
+.card_room:hover{
+    /* box-shadow: none; 
+    border: 1px solid rgba(128, 128, 128, 0.56); 
+    background: white; */
+    background: -webkit-gradient-(linear,right top,left top,
+    color-stop(0,#236a4b),to(#224b69));
+    background: linear-gradient(270deg,#236a4b 0,#224b69);
+    -webkit-transition: 1s ease-in;
+    transition: 1s ease-in;
+    opacity: 0.5;
+    
 }
 .card_room22{
     background-image: url("./RoomImage/home_option22.jpg");
@@ -39,21 +52,34 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
     background-repeat: no-repeat;
     background-size: cover;
 }
+.card_room22:hover{
+    background: -webkit-gradient-(linear,right top,left top,
+    color-stop(0,#236a4b),to(#224b69));
+    background: linear-gradient(270deg,#236a4b 0,#224b69);
+    -webkit-transition: 1s ease-in;
+    transition: 1s ease-in;
+    opacity: 0.5;
+}
 .card_room33{
     background-image: url("./RoomImage/home_option33.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
-.tag1 {
-    padding-top: 5px;
-    padding-bottom: 5px;
+.card_room33:hover{
+    background: -webkit-gradient-(linear,right top,left top,
+    color-stop(0,#236a4b),to(#224b69));
+    background: linear-gradient(270deg,#236a4b 0,#224b69);
+    -webkit-transition: 1s ease-in;
+    transition: 1s ease-in;
+    opacity: 0.5;
 }
-.option_text
-{
-    color: white;
-    padding: 3vw;
-    text-align: center;
+.tag111 {
+    padding: 4vw 2vw 0.5vw 1.5vw;
+}
+.option_text{
+    color: black;
+    font-weight: 600;
 }
 .option_img
 {

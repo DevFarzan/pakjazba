@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { Modal, Tabs, Icon } from 'antd';
 import Headermenu from "../header/headermenu";
 import RoomRentTAB from './RoomRentTAB';
+import BusinesListing from './BusinessListingTAB';
+import BuyNsell from './Buy&SellTAB';
+import JobPortal from './JobPortalTAB';
 import "./explore.css";
 
 class Explore extends Component {
@@ -46,7 +49,7 @@ class Explore extends Component {
                             }
                             key="2"
                             >
-                                <RoomRentTAB />
+                                <BusinesListing />
                         </TabPane>
                         <TabPane
                             tab={
@@ -56,7 +59,7 @@ class Explore extends Component {
                             }
                             key="3"
                             >
-                                <RoomRentTAB />
+                                <BuyNsell />
                         </TabPane>
                         <TabPane
                             tab={
@@ -66,7 +69,7 @@ class Explore extends Component {
                             }
                             key="4"
                             >
-                                <RoomRentTAB />
+                                <JobPortal />
                         </TabPane>
                         <TabPane
                             tab={
@@ -82,6 +85,16 @@ class Explore extends Component {
                             tab={
                                 <span>
                                 <Icon type="android" /> Entertainment{" "}
+                                </span>
+                            }
+                            key="6"
+                            >
+                                <RoomRentTAB />
+                        </TabPane>
+                        <TabPane
+                            tab={
+                                <span>
+                                <Icon type="android" /> Ecommerce{" "}
                                 </span>
                             }
                             key="6"

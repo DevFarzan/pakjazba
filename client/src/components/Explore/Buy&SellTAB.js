@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import RoomRentFilterContent from '../roomrenting/roomrenting2contentarea';
+import BuySellFilterContent from '../buy_sell/filterBuySell';
+import BuyCategory from '../buy_sell/buyfirstfold';
+import BuyNsellData from '../buy_sell/buyforthfold';
 import { Tabs, Icon } from 'antd';
-import Roomrenting1content from "../roomrenting/roomrenting1content";
-import RoomrentingCatagory from '../roomrenting/roomrentinficon';
-    
-class RoomRentTAB extends Component{
-    constructor(props) {
-        super(props)
-        this.state = {
-            
+
+
+    class BuyNsell extends Component{
+        constructor(props) {
+            super(props)
+            this.state = {
+                
+            }
     }
-}
     
     render(){
         const { TabPane } = Tabs;
@@ -24,21 +25,21 @@ class RoomRentTAB extends Component{
                             <TabPane tab={
                                 <span><Icon type="apple" /> Filter </span>}
                                 key="1">
-                                <RoomRentFilterContent />
+                                    <BuySellFilterContent />
                             </TabPane>
                             <TabPane tab={
                                 <span><Icon type="android" /> Category </span>}
                                 key="2">
-                                <RoomrentingCatagory/>
+                                    <BuyCategory />
                             </TabPane>
                         </Tabs>
                     </div>
                     <div className="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                        <Roomrenting1content/>
+                        <BuyNsellData/>
                     </div>
                 </div>
             </div>
         )
     }
 }
-export default RoomRentTAB;
+export default BuyNsell;

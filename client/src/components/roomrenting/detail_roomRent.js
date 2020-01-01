@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Burgermenu from '../header/burgermenu';
+import Headermenu from '../header/headermenu';
 import Slider from '../header/Slider';
 import Footer from '../footer/footer'
 import Roomrentingthreecontentarea from "./roomrenting3contentarea";
@@ -49,12 +50,12 @@ class DetailRoommates extends Component{
                 <span>
                     <div className ="" style={{"backgroundImage":"url('../images/bgc-images/busnes-listing.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
                         <div className="background-image">
-                            <Burgermenu/>
+                            <Headermenu/>
                             <Slider mainH1="Explore Homes" mainH2="Find Your Perfect Match" hide={hide}/>
                         </div>
                     </div>
                 </span> 
-                <div className="container" style={{"width":"90%"}}>
+                <div className="">{/*container  style={{"width":"90%"}}*/}
                     {!!data && <Roomrentingthreecontentarea data={data} {...this.props}/>}
                 </div>
                 <div>

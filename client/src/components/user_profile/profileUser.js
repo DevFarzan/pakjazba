@@ -495,9 +495,9 @@ class ProfileUser extends Component {
                                             {profileSec && <div className="col-md-8">
                                                 
                                                 <section className=" profileCard profileFormRadius" style={{padding: '2%',}}>
-                                                    <div style={{borderBottom :'1px solid black'}}>
-                                                    <i class="fa fa-address-card iconStyle"></i>
-                                                    <span className="profileFormHeading">Personal Information</span>
+                                                    <div style={{borderBottom :'1px solid black', padding: '2% 0%'}}>
+                                                        <i class="fa fa-address-card iconStyle"></i>
+                                                        <span className="profileFormHeading">Personal Information</span>
                                                     </div>
                                                     <div className="row" style={{ padding: "2% 0" }}>
                                                         <div className="col-md-4">
@@ -583,7 +583,7 @@ class ProfileUser extends Component {
                                                     </div>
                                                 </section>
                                                 <section className=" profileCard profileFormRadius" style={{padding: '2%'}}>
-                                                    <div style={{borderBottom :'1px solid black'}}>
+                                                    <div style={{borderBottom :'1px solid black', padding: '2% 0%'}}>
                                                         <i class="fa fa-address-card iconStyle"></i>
                                                         <span className="profileFormHeading">Contact</span>
                                                     </div>
@@ -630,7 +630,7 @@ class ProfileUser extends Component {
                                                     </div>
                                                 </section>
                                                 <section className=" profileCard profileFormRadius" style={{padding: '2%'}}>
-                                                    <div style={{borderBottom :'1px solid black'}}>
+                                                    <div style={{borderBottom :'1px solid black', padding: '2% 0%'}}>
                                                         <i class="fa fa-link iconStyle"></i>
                                                         <span className="profileFormHeading">Social</span>
                                                     </div>
@@ -677,17 +677,20 @@ class ProfileUser extends Component {
                                                 <section>
                                                     <div className="row">
                                                         <div className="col-md-12">
-                                                            <button className="btn btn-primary"
-                                                                style={{ "float": "right", backgroundColor: "#37a99b", backgroundImage: "none", borderColor: "#37a99b" }}>Save Changes
+                                                            <button className="btn btn-primary btnStyle"
+                                                                style={{ "float": "right", backgroundImage: "none",}}>Save Changes
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </section>
                                             </div>}
                                             {changePass && <div className="col-md-8">
-                                                <h2>Change Password</h2>
-                                                <section>
-                                                    <div className="form-group">
+                                                <section className=" profileCard profileFormRadius" style={{padding: '2%'}}>
+                                                    <div style={{borderBottom :'1px solid black', padding: '2% 0%'}}>
+                                                        <i class="fa fa-key iconStyle"></i>
+                                                        <span className="profileFormHeading">Change Password</span>
+                                                    </div>
+                                                    <div className="form-group" style={{padding: '2%'}}>
                                                         <label htmlFor="currentpassword" className="col-form-label">Current
                                                             Password</label>
                                                         <FormItem>
@@ -743,8 +746,8 @@ class ProfileUser extends Component {
                                                 <section>
                                                     <div className="row">
                                                         <div className="col-md-12">
-                                                            <button className="btn btn-primary"
-                                                                style={{ "float": "right" }}>Change Password
+                                                            <button className="btn btn-primary btnStyle"
+                                                                style={{ "float": "right", }}>Change Password
                                                             </button>
                                                         </div>
                                                     </div>
@@ -759,7 +762,7 @@ class ProfileUser extends Component {
                                                     <div className="single-file-input"
                                                         style={{ "padding": "16px", "marginTop": "-6px" }}>
                                                         <Upload {...props} >
-                                                            <div className="btn btn-framed btn-primary small" style={{ backgroundColor: "#37a99b", backgroundImage: "none", borderColor: "#37a99b" }}>Upload a
+                                                            <div className="btn btn-framed btn-primary small btnStyle" style={{ background: "#236A4B", backgroundImage: "none", borderColor: "#37a99b" }}>Upload a
                                                                 picture
                                                             </div>
                                                         </Upload>

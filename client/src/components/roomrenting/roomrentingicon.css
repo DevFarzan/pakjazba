@@ -54,3 +54,9 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
     height: 250px;
     width: 380px;   
 }
+
+.romRentForm{
+    background: white;
+    border-radius: 15px !important;
+    padding: 2% 2% 1% 2%;
+}

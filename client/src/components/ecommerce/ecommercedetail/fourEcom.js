@@ -17,7 +17,6 @@ class FourEcom extends Component {
 
     return (
       <div>
-
         <div className="">
           <h4 style={{ fontWeight: '700' }}>Related Categories</h4>
           {categories && categories.map((elem, key) => {

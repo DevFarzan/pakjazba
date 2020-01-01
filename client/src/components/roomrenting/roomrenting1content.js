@@ -144,7 +144,7 @@ class Roomrenting1content extends Component{
                         <h4 style={{margin:"0", textAlign: 'center',fontFamily: 'Source Sans Pro, sans-serif'}}><b>No Room for rent</b> </h4>
                     </div>
                 </div>}
-                {showroomrents.length > 0 && <div className="row" style={{marginTop:'-11%'}}>
+                {showroomrents.length > 0 && <div className="row" style={{marginTop:'-6vw'}}>
                     <div className="col-md-12 col-sm-12 col-xs-12">
                         <h4 style={{margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}><b>Top Available Buy</b> </h4>
                         <br/>

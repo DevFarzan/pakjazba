@@ -43,7 +43,7 @@ class FilterBuySell extends Component{
     render(){
     	return (
         <div className="">
-          <div className ="hidden-xs" style={{"background":"#d8e7e4",marginTop:'86px',backgroundSize: 'cover'}}>
+          {/* <div className ="hidden-xs" style={{"background":"#d8e7e4",marginTop:'86px',backgroundSize: 'cover'}}>
               <div className="background-image">
                   <Burgermenu/>
               </div>
@@ -52,40 +52,41 @@ class FilterBuySell extends Component{
               <div className="background-image">
                   <Burgermenu/>
               </div>
-          </div>
-          <div className="container" style={{width:"70%"}}>
+          </div> */}
+          <div className="container" style={{width:"100%"}}>
             <div className="filterbox">
               <div className="row">
-                <div className="col-md-2">
+                <div className="col-md-12">
                 <Search
                   placeholder="Location"
                   onSearch={value => console.log(value)}
                   enterButton
+                  style={{width:'100%'}}
                 />
                 </div>
-                <div className="col-md-2">
-                  <Input placeholder="Price"/>
+                <div className="col-md-12">
+                  <Input placeholder="Price" style={{width:'100%',marginTop:'2vw'}}/>
                 </div>
-                <div className="col-md-2">
-                  <Input placeholder="Size"/>
+                <div className="col-md-12">
+                  <Input placeholder="Size" style={{width:'100%',marginTop:'2vw'}}/>
                 </div>
-                <div className="col-md-2">
-                  <Input placeholder="Condition"/>
+                <div className="col-md-12">
+                  <Input placeholder="Condition" style={{width:'100%',marginTop:'2vw'}}/>
                 </div>
-                <div className="col-md-2">
-                  <Input placeholder="Category"/>
+                <div className="col-md-12">
+                  <Input placeholder="Category" style={{width:'100%',marginTop:'2vw'}}/>
                 </div>
-                <div className="col-md-2">
-                  <Cascader options={options} onChange={onChange} placeholder="More Filter" />
+                <div className="col-md-12">
+                  <Cascader options={options} onChange={onChange} placeholder="More Filter" style={{width:'100%',marginTop:'2vw'}} />
                 </div>
               </div>
             </div>
-            <span>
+            {/* <span>
               <h4 style={{marginTop:"30px", marginBottom:"0px"}}> Suggest For You </h4>
-            </span>
+            </span> */}
           </div>
 
-          <BuyFourthFold />
+          {/* <BuyFourthFold /> */}
         </div>
     		)
     }

@@ -52,7 +52,7 @@ class EntertainmentHome extends Component{
         return(
             <div className="">
               <div className="visible-xs" style={{marginTop:'-20px'}}></div>
-                  <Burgermenu entertainment={{news, sports, dramas, movies, musics}}/>
+                  {/* <Burgermenu entertainment={{news, sports, dramas, movies, musics}}/> */}
                 {/*<EHeader entertainment={{news, sports, dramas, movies, musics}} {...this.props}/>*/}
 
                 <div>

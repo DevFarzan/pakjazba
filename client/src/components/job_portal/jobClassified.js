@@ -47,7 +47,7 @@ class JobClassified extends Component {
                 <div className="vissible-xs" style={{ "background": "#d8e7e4", marginTop: "102px", backgroundSize: 'cover' }}>
                     <div className="visible-xs" style={{ marginTop: '-119px' }}></div>
                     <div className="background-image">
-                        <Burgermenu />
+                        {/* <Burgermenu /> */}
                         <Slider mainH1="PakJazba Job Portal" mainH2="" />
                     </div>
                 </div>

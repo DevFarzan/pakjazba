@@ -60,7 +60,7 @@ class ApplyJob extends Component {
     render(){
         return (
             <div>
-                <App/>
+                {/* <App/> */}
                 <div className="row jobdetail-page" style={{marginTop:'6%'}}>
                   <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center"}}>
                     {/*<div className="">
@@ -69,7 +69,7 @@ class ApplyJob extends Component {
                   </div>
                 </div>
                 <CategoriesjobMarket filteringData={this.filteringData.bind(this)}/>
-                <Secondscreencard data={this.state.showJob} allData={this.getAllBusiness.bind(this)}/>
+                {/* <Secondscreencard data={this.state.showJob} allData={this.getAllBusiness.bind(this)}/> */}
                 <div>
                   <Footer/>
                 </div>

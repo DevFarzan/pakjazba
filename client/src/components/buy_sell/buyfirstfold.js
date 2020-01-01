@@ -35,13 +35,77 @@ class Firstfold extends Component{
             return <Redirect to={{pathname: `/filter_buySell`}} />
         }
         return(
-            <div className="container" style={{width:"70%"}}>
-                <div className="row" style={{padding:"0", marginTop:"10px", marginBottom:"15px"}}>
+            <div className="container" style={{width:"100%"}}>
+                  <div className="row">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                        <div className="wrimagecard wrimagecard-topimage">
+                            <div className="wrimagecard-topimage_header">
+                                <center>
+                                    <h4>Motors</h4>
+                                    <img src="../images/room icon/home_option1.jpg" onClick={this.dropDown.bind(this, 'motors')}  style={{ width: "75%" }}/>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                        <div className="wrimagecard wrimagecard-topimage">
+                            <div className="wrimagecard-topimage_header">
+                                <center>
+                                    <h4>Fashion</h4>
+                                    <img src="../images/room icon/home_option2.jpg" onClick={this.dropDown.bind(this, 'Fashion')} style={{ width: "75%" }} />
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                        <div className="wrimagecard wrimagecard-topimage">
+                            <div className="wrimagecard-topimage_header">
+                                <center>
+                                    <h4>Electronics</h4>
+                                    <img src="../images/room icon/home_option3.jpg" onClick={this.dropDown.bind(this, 'Electronics')} style={{ width: "75%" }} />
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                        <div className="wrimagecard wrimagecard-topimage">
+                            <div className="wrimagecard-topimage_header">
+                                <center>
+                                    <h4>Home</h4>
+                                    <img src="../images/room icon/home_option1.jpg" onClick={this.dropDown.bind(this, 'Home')}  style={{ width: "75%" }}/>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                        <div className="wrimagecard wrimagecard-topimage">
+                            <div className="wrimagecard-topimage_header">
+                                <center>
+                                    <h4>Garden</h4>
+                                    <img src="../images/room icon/home_option2.jpg" onClick={this.dropDown.bind(this, 'Garden')} style={{ width: "75%" }} />
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                        <div className="wrimagecard wrimagecard-topimage">
+                            <div className="wrimagecard-topimage_header">
+                                <center>
+                                    <h4>Toys</h4>
+                                    <img src="../images/room icon/home_option3.jpg" onClick={this.dropDown.bind(this, 'Toys')} style={{ width: "75%" }} />
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* <div className="row" style={{padding:"0", marginTop:"10px", marginBottom:"15px"}}>
                     <div className="col-md-12 col-sm-12 col-xs-12">
                         <span className="popular_c">Popular categories</span>
                     </div>
-                </div>
-                <div className="row" style={{padding:'0px'}}>
+                </div> */}
+                {/* <div className="row" style={{padding:'0px'}}>
                     <div className="col-md-4 col-sm-4 col-xs-12" style={{marginRight:'-30px'}} onClick={this.category}>
                         <div style={{border:'1px solid black',padding:'6px'}}>
                             <i className="fa fa-car margin_right_c"></i>
@@ -90,8 +154,8 @@ class Firstfold extends Component{
                         </ul>
                         </div>}
                     </div>
-                </div>
-                <div className="row" style={{padding:'0px'}}>
+                </div> */}
+                {/* <div className="row" style={{padding:'0px'}}>
                     <div className="col-md-4 col-sm-4 col-xs-12" style={{marginRight:'-30px'}} onClick={this.category}>
                         <div style={{border:'1px solid black',padding:'6px'}}>
                             <i className="fa fa-home margin_right_c"></i>
@@ -146,14 +210,14 @@ class Firstfold extends Component{
                         </ul>
                         </div>}
                     </div>
-                </div>
-                <div className="row" style={{padding:'0px'}}>
+                </div> */}
+                {/* <div className="row" style={{padding:'0px'}}>
                     <div className="col-md-12" style={{textAlign:'right'}}>
                         <span style={{marginRight:'5%',cursor:'pointer'}} onClick={this.filterPage}><b>See more</b></span>
                     </div>
-                </div>
+                </div> */}
             {/*<!-- jambo section start -->*/}
-        <div className="row hidden-xs">
+        {/* <div className="row hidden-xs">
             <div className="col-md-12 col-sm-12 col-xs-12 card_border" style={{width:'94%'}}>
                 <div className="col-md-6">
                     <h1 className="jambo_text" style={{fontSize:"40px"}}><b>Find your desire item and buy it pakjazba classified</b></h1>
@@ -163,7 +227,7 @@ class Firstfold extends Component{
                     <img src="images/buysell/thirdsec.png" className="img-responsive jambo_img center-block" alt='img'/>
                 </div>
             </div>
-        </div>
+        </div> */}
         <br/><br/>
        {/*<!-- jambo section End -->*/}
             </div>

@@ -156,7 +156,8 @@ class Roomrentingtwocontentarea extends Component{
     componentWillUnmount() {
         const { objData, goDetail } = this.state;
         if(!(objData && Object.keys(objData).length <= 0) && !goDetail){
-            this.props.history.push('/market_roommates');
+            // this.props.history.push('/market_roommates');
+            // this.props.history.push('/explore');
         }
     }
 
@@ -329,97 +330,104 @@ class Roomrentingtwocontentarea extends Component{
         const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader, objData, goDetail } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
         if(!noText){
-            return <Redirect to='/market_roommates'/>
+            // return <Redirect to='/market_roommates'/>
+            // return <Redirect to='/explore'/>
         }
         if(goDetail){
             return <Redirect to={{pathname: `/detail_roomRent`, state: objData}} />
         }
-
 		return(
-            <div style={{marginTop:'6%'}}>
-		    <Burgermenu/>
-            <div className="container" style={{width:"75%"}}>
+            <div style={{marginTop:'-2vw'}}>
+            {/*<Burgermenu/>*/}
+            <div className="" style={{width:"100%"}}>
                 <div className="row">
-                <div className="col-md-1 col-sm-1">
-                </div>
-                <div className="locationbox">
-                  <span className="search-space2">
-                  <div className="row">
-                    <div className="col-md-12 col-sm-10">
-                        <div className="col-md-2 col-sm-2">
-                            <h4><b> Search By:</b></h4>
-                        </div>
-                        <div className="col-md-4 col-sm-6 search-space1">
-                            <Cascader style={{width: '100%'}} options={category} onChange={this.onChange.bind(this)} placeholder="Please select" />
-                        </div>
-                        <div className="col-md-4 col-sm-2 search-space1">
-                            <button
-                                className="btn"
-                                onClick={this.mostPopular.bind(this)}
-                                style={{backgroundColor:'#37a99b', color:'white'}}
-                            >
-                                Search
-                            </button>
-                            <button
-                                className="btn"
-                                style={{backgroundColor:'#37a99b', color:'white', marginLeft:'23px'}}
-                                onClick={() => {this.setState({moreFilter: !this.state.moreFilter})}}
-                            >
-                                More Filter
-                            </button>
-                            {/*<button className="btn btn-filter" onClick={this.mostPopular.bind(this)} style={{backroundColor:"rgb(55, 169, 155)"}}>Search</button>
-                            <button className="btn btn-filter" style={{backroundColor:'rgb(55, 169, 155) !important',color:'white',marginLeft:'23px'}}>More Filter</button>*/}
+                <div className="col-md-1 col-sm-1"></div>
+                    <div className="">
+                    <span className="search-space2">
+                    <div className="r ow">
+                        <div className="col-md-12 col-sm-12">
+                            <div className="col-md-12 col-sm-12">
+                                <h3><b>Search By:</b></h3>
+                            </div>
+                            <div className="col-md-12 col-sm-12 search-space1">
+                                <Cascader style={{width: '100%'}} options={category} onChange={this.onChange.bind(this)} placeholder="Please select" />
+                            </div>
+                            <div className="col-md-12 col-sm-12 search-space1">
+                                <button
+                                    className="btn"
+                                    onClick={this.mostPopular.bind(this)}
+                                    style={{backgroundColor:'#37a99b', color:'white',width:'100%'}}
+                                >
+                                    Search
+                                </button>
+                                {/* <button
+                                    className="btn"
+                                    style={{backgroundColor:'#37a99b', color:'white', marginLeft:'17px'}}
+                                    onClick={() => {this.setState({moreFilter: !this.state.moreFilter})}}
+                                >
+                                    More Filter
+                                </button> */}
+                                {/*<button className="btn btn-filter" onClick={this.mostPopular.bind(this)} style={{backroundColor:"rgb(55, 169, 155)"}}>Search</button>
+                                <button className="btn btn-filter" style={{backroundColor:'rgb(55, 169, 155) !important',color:'white',marginLeft:'23px'}}>More Filter</button>*/}
+                            </div>
                         </div>
                     </div>
-                  </div>
 
-                    {this.state.moreFilter && <div className="row">
-                        <div class="col-md-5 col-sm-12 spacing">
-                            <h3 className="col-md-3">Location </h3>
-                                    <div className="col-md-4 col-sm-4 col-xs-12"><Cascader options={states} onChange={this.onChangeState.bind(this)}/></div>
-                                    <div className="col-md-4 col-sm-4 col-xs-12"><Cascader options={cities} onChange={this.onChangeCity.bind(this)}/></div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 spacing hidden-xs" style={{marginLeft:'-47px'}}>
-                        <span>Price</span>
-                        <div className="slidecontainer" style={{marginTop:'-16px'}}>
-                                <Slider range min={0} max={6000} step={500} tipFormatter={this.formatter} defaultValue={[0, 6000]} onChange={this.onChangeSlider.bind(this)}/>
-                                <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p>
+                        {/* {this.state.moreFilter && <div className="row"> */}
+                        <div className="row">
+                            <div class="col-md-12 col-sm-12 spacing">
+                                <h3 className="col-md-12"><b>Location</b></h3>
+                                        <div className="col-md-12 col-sm-12 col-xs-12"><Cascader style={{width:'100%'}} options={states} onChange={this.onChangeState.bind(this)}/></div>
+                                        <div className="col-md-12 col-sm-12 col-xs-12" style={{marginTop:'2vw',}}><Cascader style={{width:'100%'}} options={cities} onChange={this.onChangeCity.bind(this)}/></div>
                             </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 spacing visible-xs">
-                            <span>Price</span>
-                            <div className="slidecontainer" style={{marginTop:'-16px'}}>
-                                <Slider range min={0} max={6000} step={500} tipFormatter={this.formatter} defaultValue={[0, 6000]} onChange={this.onChangeSlider.bind(this)}/>
-                                <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p>
-                             </div>
-                        </div>
-                        <div className="col-md-1">Beds:</div>
-                        <div className="col-md-3">
-                            <div className="row" style={{padding:'0px'}}>
-                                <div className="col-md-3">
-                                    <label><input type="checkbox" value="" id='1 Bed' onClick={this.checkedBed.bind(this)}/>1</label>
-                                </div>
-                                <div className="col-md-3">
-                                    <label><input type="checkbox" value="" id='2 Beds' onClick={this.checkedBed.bind(this)}/>2</label>
-                                </div>
-                                <div className="col-md-3">
-                                    <label><input type="checkbox" value="" id='3 Beds' onClick={this.checkedBed.bind(this)}/>3</label>
-                                </div>
-                                <div className="col-md-3">
-                                    <label><input type="checkbox" value="" id='4+ Beds' onClick={this.checkedBed.bind(this)}/>4+</label>
+                            <div class="col-md-12 col-sm-12 spacing hidden-xs" style={{marginTop:'2vw'}}>
+                                <h3 className="col-md-12"><b>Price</b></h3>
+                                <div className="slidecontainer">
+                                    <Slider range min={0} max={6000} step={500} tipFormatter={this.formatter} defaultValue={[0, 6000]} onChange={this.onChangeSlider.bind(this)}/>
+                                    <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p>
                                 </div>
                             </div>
+                            <div class="col-xs-12 spacing visible-xs">
+                                <div className="row">
+                                    <div class="col-xs-1"></div>
+                                    <div class="col-xs-10">
+                                        <span>Price</span>
+                                        <div className="slidecontainer" style={{marginTop:'0px'}}>
+                                            <Slider range min={0} max={6000} step={500} tipFormatter={this.formatter} defaultValue={[0, 6000]} onChange={this.onChangeSlider.bind(this)}/>
+                                            <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-1"></div>
+                                </div>
+                            </div>
+                            <div className="col-md-12">
+                                <h3 className="col-md-12"><b>Beds:</b></h3>
+                                <div className="row" style={{padding:'0px'}}>
+                                    <div className="col-xs-2 col-md-2"></div>
+                                    <div className="col-xs-2 col-md-2">
+                                        <label><input type="checkbox" value="" id='1 Bed' onClick={this.checkedBed.bind(this)}/>1</label>
+                                    </div>
+                                    <div className="col-xs-2 col-md-2">
+                                        <label><input type="checkbox" value="" id='2 Beds' onClick={this.checkedBed.bind(this)}/>2</label>
+                                    </div>
+                                    <div className="col-xs-2 col-md-2">
+                                        <label><input type="checkbox" value="" id='3 Beds' onClick={this.checkedBed.bind(this)}/>3</label>
+                                    </div>
+                                    <div className="col-xs-2 col-md-2">
+                                        <label><input type="checkbox" value="" id='4+ Beds' onClick={this.checkedBed.bind(this)}/>4+</label>
+                                    </div>
+                                    <div className="col-xs-2 col-md-2"></div>
+                                </div>
+                            </div>
                         </div>
-                    </div>}
-                  </span>
-                </div>
-                </div>
-                <div className="col-md-1 col-sm-1">
-                </div>
+                    </span>
+                    </div>
+                    </div>
+                <div className="col-md-1 col-sm-1"></div>
               </div>
-              <div className="container" style={{width:"75%"}}>
+              <div className="container" style={{width:"100%"}}>
                     <div className="col-md-12 col-sm-12 col-xs-12">
-                        {!!showroomrents.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
+                        {!!showroomrents.length === false && <span style={{textAlign:"center"}}><h3>Not found....</h3></span>}
                         {!!showroomrents.length === false && <span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
                         {!!showroomrents.length === false && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
                         {showroomrents && showroomrents.map((elem, key) => {

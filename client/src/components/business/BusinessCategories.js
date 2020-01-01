@@ -3,93 +3,93 @@ import 'antd/dist/antd.css';
 import './firstfold.css';
 import { connect } from 'react-redux';
 
-class BusinessCategory extends Component{
+class BusinessCategory extends Component {
     /*Category*/
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-        intervalId: 0
-    };
+            intervalId: 0
+        };
         this.clickItem = this.clickItem.bind(this);
     }
 
-    clickItem(item){
+    clickItem(item) {
         const { dispatch } = this.props;
         var inputValue = item;
-        dispatch({type: 'SEARCHON', inputValue});
-      
+        dispatch({ type: 'SEARCHON', inputValue });
+
     }
     /*Category props end*/
 
 
-    render(){
-        return(
-            <div className="container" style={{width:"70%"}}>
+    render() {
+        return (
+            <div className="container" style={{ width: "100%" }}>
                 <div className="row">
-                    <h1 className="headingtext" style={{fontWeight:'bold'}}> Browse Businessess by Category </h1>
+                    {/* <h1 className="headingtext" style={{fontWeight:'bold'}}> Browse Businessess by Category </h1> */}
                     <a href="#backToTop">
-                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-6" onClick={() => {this.clickItem('resturants')}} style={{cursor:'pointer'}}>
-                        <div className="wrimagecard wrimagecard-topimage">
-                        <div className="wrimagecard-topimage_header">
-                            <center>
-                                <img src="../images/business icon/icons/resturant.png" style={{width: "75%"}}/>
-                            </center>
-                        </div>
-                    </div>
-                    </div>
-                    </a>
-                    <a href="#backToTop">
-                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-6" onClick={() => {this.clickItem('shopping')}} style={{cursor:'pointer'}}>
-                        <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header">
-                                <center>
-                                    <img src="../images/business icon/icons/shopping.png" style={{width: "75%"}}/>
-                                </center>
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('resturants') }} style={{ cursor: 'pointer' }}>
+                            <div className="wrimagecard wrimagecard-topimage">
+                                <div className="wrimagecard-topimage_header">
+                                    <center>
+                                        <img src="../images/business icon/icons/resturant.png" style={{ width: "75%" }} />
+                                    </center>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </a>
                     <a href="#backToTop">
-                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-6" onClick={() => {this.clickItem('night life')}} style={{cursor:'pointer'}}>
-                        <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header">
-                                <center>
-                                    <img src="../images/business icon/icons/night-life.png" style={{width: "75%"}}/>
-                                </center>
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('shopping') }} style={{ cursor: 'pointer' }}>
+                            <div className="wrimagecard wrimagecard-topimage">
+                                <div className="wrimagecard-topimage_header">
+                                    <center>
+                                        <img src="../images/business icon/icons/shopping.png" style={{ width: "75%" }} />
+                                    </center>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    </a>
-                     </div>
-                     <div className="row">
-                     <a href="#backToTop">
-                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-6" onClick={() => {this.clickItem('active life')}} style={{cursor:'pointer'}}>
-                        <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header">
-                                <center>
-                                    <img src="../images/business icon/icons/active-life.png" style={{width: "75%"}}/>
-                                </center>
-                            </div>
-                        </div>
-                    </div>
                     </a>
                     <a href="#backToTop">
-                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-6" onClick={() => {this.clickItem('beauty & spa')}} style={{cursor:'pointer'}}>
-                        <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header">
-                                <center>
-                                    <img src="../images/business icon/icons/beauty-spa.png" style={{width: "75%"}}/>
-                                </center>
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('night life') }} style={{ cursor: 'pointer' }}>
+                            <div className="wrimagecard wrimagecard-topimage">
+                                <div className="wrimagecard-topimage_header">
+                                    <center>
+                                        <img src="../images/business icon/icons/night-life.png" style={{ width: "75%" }} />
+                                    </center>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
+                </div>
+                <div className="row">
+                    <a href="#backToTop">
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('active life') }} style={{ cursor: 'pointer' }}>
+                            <div className="wrimagecard wrimagecard-topimage">
+                                <div className="wrimagecard-topimage_header">
+                                    <center>
+                                        <img src="../images/business icon/icons/active-life.png" style={{ width: "75%" }} />
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#backToTop">
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('beauty & spa') }} style={{ cursor: 'pointer' }}>
+                            <div className="wrimagecard wrimagecard-topimage">
+                                <div className="wrimagecard-topimage_header">
+                                    <center>
+                                        <img src="../images/business icon/icons/beauty-spa.png" style={{ width: "75%" }} />
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
                     </a>
 
-                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-6" onClick={() => {this.clickItem('automotive')}} style={{cursor:'pointer'}}>
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('automotive') }} style={{ cursor: 'pointer' }}>
                         <div className="wrimagecard wrimagecard-topimage">
                             <div className="wrimagecard-topimage_header">
                                 <center>
-                                    <img src="../images/business icon/icons/automotive.png"  style={{width: "75%"}}/>
+                                    <img src="../images/business icon/icons/automotive.png" style={{ width: "75%" }} />
                                 </center>
                             </div>
                         </div>

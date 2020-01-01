@@ -82,11 +82,21 @@
   padding: 6px !important;
   background: linear-gradient(45deg, #236a4b, #224b69) !important;
   color: white !important;
-  font-size: 18px !important;
+  font-size: 16px !important;
 }
 .iconStyle:hover{
   padding: 6px !important;
   background: linear-gradient(45deg, #236a4b, #224b69) !important;
   color: white !important;
-  font-size: 18px !important;
+  font-size: 16px !important;
+}
+.btnStyle{
+  background: #236A4B;
+  border-radius: 5px !important;
+  border: none;
+}
+.btnStyle:hover{
+  background: #236A4B;
+  border-radius: 5px !important;
+  border: none;
 }

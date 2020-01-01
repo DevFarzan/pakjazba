@@ -56,7 +56,7 @@ class ProfileMain extends Component {
                         
                     </div>
                 </div>
-                <div className="col-md-12">
+                <div className="col-md-12" style={{background: '#f6f6f6'}}>
                     <div className="container">
                         {/* <ProfileDetail profileDetail={{ profileDetail }} callPublicSection={this.callPublicSection} />
                         <ProfileContactDisplay profileTabData={{ ...profileTab }} /> */}

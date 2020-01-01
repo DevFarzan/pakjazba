@@ -8,6 +8,9 @@ import Gallery from './gallery';
 import {HttpUtils} from "../../Services/HttpUtils";
 import { DatePicker } from 'antd';
 import AsyncStorage from "@callstack/async-storage/lib/index";
+import RoomRenting3ContentArea2 from './roomRenting3ContentArea2';
+import RoomRenting3ContentArea3 from './roomRenting3ContentArea2';
+import { Tabs } from 'antd';
 
 const { MonthPicker, RangePicker } = DatePicker;
 const dateFormat = 'YYYY-MM-DD';
@@ -143,6 +146,7 @@ class Roomrenting3contentarea extends Component{
     }
 
     render(){
+        const { TabPane } = Tabs;
         const { data } = this.props,
         { goProfile, reviews, item, reviewUserId, reviewProfileId } = this.state,
         antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
@@ -169,17 +173,70 @@ class Roomrenting3contentarea extends Component{
 
         return(
             <div>
-                <div className="" style={{marginTop: '10%'}}></div>
-                <Gallery images={images} style={{marginTop: '13%'}}/>
+                <Gallery images={images} style={{marginTop: '0%'}}/>
+                <div className="row tabMainDiV">
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <Tabs defaultActiveKey="1">
+                            <TabPane
+                                // onClick={this.tabnavigation('true')}
+                                tab={
+                                    <span>
+                                       Profile{" "}
+                                    </span>
+                                }
+                                key="1"
+                            >
+                                {/* <JobdetailIconPanel /> */}
+                            </TabPane>
+                            <TabPane
+                                // onClick={this.tabnavigation('false')}
+                                tab={
+                                    <span>
+                                        Add Review{" "}
+                                    </span>
+                                }
+                                key="2"
+                            >
+                                <RoomRenting3ContentArea2 />
+                            </TabPane>
+                            <TabPane
+                                // onClick={this.tabnavigation('false')}
+                                tab={
+                                    <span>
+                                        Information{" "}
+                                    </span>
+                                }
+                                key="2"
+                            >
+                                <RoomRenting3ContentArea3 />
+                            </TabPane>
+                        </Tabs>
+                    </div>
+                </div>
+
                   <div className="container hidden-xs" style={{width:"70%"}}>
                     <div className="row">
                       <div className="col-md-8">
+                        <div className="romRentForm" style={{marginBottom: '5%'}}>
                           <h3 className="head-space2"> California  </h3>
+
                           <h1 className="head-space2"><b>{data.postingtitle || data.postingTitle} Available</b></h1>
+
                           <h4 style={{marginLeft:"0"}}> { data.propertylocation || data.propertyLocation } </h4>
-                          <h5><span className="glyphicon glyphicon-phone" style={{marginRight: "15px", color:"#36a89f"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{phone}</span></h5>
-                          <h5 style={{marginBottom:"70px"}}><span className="glyphicon glyphicon-globe" style={{marginRight: "15px", color:"#36a89f"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{email}</span></h5>
-                          <div className="row" style={{padding:"0"}}>
+
+                          <h5>
+                            <span className="glyphicon glyphicon-phone" style={{marginRight: "15px", color:"#36a89f"}}></span>
+                            <span style={{color: "rgba(0, 0, 0, 0.65)"}}>{phone}</span>
+                          </h5>
+
+                          <h5 style={{marginBottom:"70px"}}>
+                            <span className="glyphicon glyphicon-globe" style={{marginRight: "15px", color:"#36a89f"}}></span>
+                            <span style={{color: "rgba(0, 0, 0, 0.65)"}}>{email}</span>
+                          </h5>
+                        </div>
+
+                        <div className="col-md-12 romRentForm" style={{marginBottom: '5%'}}>
+                          <div className="row" style={{padding: '0'}}>
                             <div className="col-md-1">
                             <i className="fa fa-home" style={{fontSize:"30px"}}/>
                             </div>
@@ -190,7 +247,7 @@ class Roomrenting3contentarea extends Component{
                                 <p> { data.subSubCategory} Bedrooms</p>
                                 {data.Attachedbath && <p> Attachedbath </p>}
                                 {data.attachedBath && <p> Attachedbath </p>}
-                               </span>
+                              </span>
                             </div>
                             <div className="col-md-1">
                             <i className="fa fa-map" style={{fontSize:"30px"}}/>
@@ -200,7 +257,7 @@ class Roomrenting3contentarea extends Component{
                               <span className="appartmentdes">
                                 <p> 100% of recent guests gave this homes's location a 5-star rating.  </p>
 
-                               </span>
+                              </span>
                             </div>
                             <div className="col-md-1">
                             <i className="fa fa-snowflake-o" style={{fontSize:"30px"}}/>
@@ -209,58 +266,68 @@ class Roomrenting3contentarea extends Component{
                               <h4 style={{margin:"0"}}> Sparkling Clean </h4>
                               <span className="appartmentdes">
                                 <p> 10 recent guests have said that this home was sparkling clean.  </p>
-                               </span>
+                              </span>
                             </div>
                           </div>
-                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
+                        </div>
+
+                        <div className="col-md-12 romRentForm" style={{marginBottom: '5%'}}>
                           <h3 style={{marginTop:'9px'}}> Description </h3>
                           <p>{data.discription || data.description}</p>
-                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
-                          <h3 style={{marginTop:'9px'}}> Amenities </h3>
-                          <div className="forimage">
-                            <div className="row" style={{padding:"0"}}>
-                              <div className="col-md-12 col-sm-12 col-xs-12">
-                                {AIncludes && AIncludes.map((elem, key) => {
-                                  return(
-                                    this.state.amenitiesArr.map((el, i) => {
-                                      if(el.key === elem){
-                                        return (
-                                          <div className="col-md-4 col-sm-4 col-xs-12">
-                                            <div className="col-md-4 col-xs-5">
-                                              <img src={el.value}/>
+                        </div>
+
+                          <div className="col-md-12 romRentForm" style={{marginBottom: '5%'}}>
+                            <h3> Amenities </h3>{/* style={{marginTop:'9px'}} */}
+                            <div className="forimage">
+                              <div className="row" style={{padding:"0"}}>
+                                <div className="col-md-12 col-sm-12 col-xs-12">
+                                  {AIncludes && AIncludes.map((elem, key) => {
+                                    return(
+                                      this.state.amenitiesArr.map((el, i) => {
+                                        if(el.key === elem){
+                                          return (
+                                            <div className="col-md-4 col-sm-4 col-xs-12">
+                                              <div className="col-md-4 col-xs-5">
+                                                <img src={el.value}/>
+                                              </div>
+                                              <div className="col-md-8 col-xs-7" style={{width: '50%'}}>
+                                                <p> {el.key} </p>
+                                              </div>
                                             </div>
-                                            <div className="col-md-8 col-xs-7" style={{width: '50%'}}>
-                                              <p> {el.key} </p>
-                                            </div>
-                                          </div>
-                                        )
-                                      }
-                                    })
-                                  )
-                                })}
-                              </div>
-                            </div>
-                          </div>
-                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
-                          <h3 style={{marginTop:'9px'}}> Sleeping Arrangments </h3>
-                          <div className="forimage" style={{display:"inline"}}>
-                            <div className="row" style={{padding:"0"}}>
-                              <div className="col-md-5 col-sm-4">
-                                <div className="col-md-6 col-sm-5 col-xs-4">
-                                  <i class="fa fa-bed" aria-hidden="true" style={{fontSize: '30px'}}></i>
-                                </div>
-                                <div className="col-md-6 col-sm-7 col-xs-8">
-                                  <p style={{marginTop:"15px", marginBottom:"0"}}> { data.subSubCategory } </p>
+                                          )
+                                        }
+                                      })
+                                    )
+                                  })}
                                 </div>
                               </div>
                             </div>
                           </div>
+
+                          <div className="col-md-12 romRentForm" style={{marginBottom: '5%'}}>
+                            <h3> Sleeping Arrangments </h3>{/* style={{marginTop:'9px'}} */}
+                            <div className="forimage" style={{display:"inline"}}>
+                              <div className="row" style={{padding:"0"}}>
+                                <div className="col-md-5 col-sm-4">
+                                  <div className="col-md-6 col-sm-5 col-xs-4">
+                                    <i class="fa fa-bed" aria-hidden="true" style={{fontSize: '30px'}}></i>
+                                  </div>
+                                  <div className="col-md-6 col-sm-7 col-xs-8">
+                                    <p style={{marginTop:"15px", marginBottom:"0"}}> { data.subSubCategory } </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
                           {/*<p className="availability">  Availability </p>
                           <p style={{marginBottom:"0"}}> 1 night minimum stay </p>
                           <span>
                             <Rate allowHalf defaultValue={5} />
                           </span>*/}
-                          <div className="row" style={{padding:"0px", marginTop:"50px"}}>
+                          
+                          <div className="row">{/* style={{padding:"0px", marginTop:"50px"}} */}
+                          <div className="col-md-12 col-sm-12 romRentForm" style={{marginBottom: '5%'}}>
                             <div className="col-md-2 col-sm-3" style={{paddingLeft:"0"}}>
                                 <h4>
                                 <b>Excellent </b>
@@ -328,8 +395,11 @@ class Roomrenting3contentarea extends Component{
                                   </div>
                                 </div>
                             </div>
+                            </div>
                           </div>
-                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
+
+                          {/* <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/> */}
+                          
                           <div className="card">
                               <div className="row" style={{padding:"0px"}}>
                               {!!reviews.length && <div className="row" style={{padding:"0px"}}>
@@ -382,21 +452,23 @@ class Roomrenting3contentarea extends Component{
                       </div>
 
                       <div className="col-md-4" style={{position: 'sticky',top:'25'}}>
-                        <div className="roomdetail">
-                          <div className="row" style={{padding:"0"}}>
+                        <div className="roomdetail romRentForm">
+                          <div className="row">{/* style={{padding:"0"}} */}
                            <div className="col-md-7">
                              <h2 className="head-space2" style={{fontSize:"28px"}}><b>$ { data.rent || data.price }</b>
                              </h2>
                            </div>
-                           <div className="col-md-5" style={{padding:"0"}}>
+                           <div className="col-md-5">{/* style={{padding:"0"}} */}
                              <p style={{marginTop:"2px", fontSize:"18px", fontWeight:"bold"}}>{ data.pricemode || data.priceMode }</p>
                            </div>
                          </div>
                           <br/>
-                          <p> Dates </p>
+                          <div>
+                          <span> Dates </span>{/*p tag */}
                               <input value={" " + from + " ~ " + to + " "} />
                           <span style={{fontFamily: 'Source Sans Pro, sans-serif'}}> Accomodates </span>
                           <span style={{fontFamily: 'Source Sans Pro, sans-serif'}}> {accommodates} </span>
+                          </div>
 
                            {/*<Cascader options={options} onChange={onChange} placeholder="Please select" style={{width:"100%"}} />*/}
                           <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'191px'}}/>
@@ -439,9 +511,9 @@ class Roomrenting3contentarea extends Component{
                       </div>
                     </div>
                   </div>
-                  <div className="container hidden-xs" style={{width:"70%"}}>
+                  <div className="container hidden-xs" style={{width:"68%"}}>{/*width:'70' */}
                     <div className="row">
-                        <div className="card outset" style={{ boxShadow: "none", background:"whitesmoke"}}>
+                        <div className=" romRentForm">{/*card outset  style={{ boxShadow: "none", background:"whitesmoke"}}*/}
                             <div className="card-body space">
                                 <div className="row">
                                     <div className="col-md-12 col-sm-12 col-xs-12">

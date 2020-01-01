@@ -144,59 +144,61 @@ class Thirdrow extends Component {
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
         return (
-            <div className="container" style={{ width: "70%" }}>
-                <div className="row">
-                    <div className="col-md-12 col-sm-12 col-xs-12 des-space">
-                        <div className="row">
-                            <div className="card outset" style={{ boxShadow: "none", marginTop: "-40px", background: "whitesmoke" }}>
-                                <div className="card-body space">
-                                    <div className="row">
-                                        <div className="col-md-12 col-sm-12 col-xs-12">
-                                            <div className="col-md-6">
-                                                <div className="md-form mb-0">
-                                                    <label className="font-style">First Name</label>
-                                                    <input type="text" id="name1" name="first name" className="form-background1" value={this.state.name1} onChange={this.onChangeInput.bind(this)} />
-                                                </div>
-                                            </div>
-                                            {/*Grid column*/}
-                                            {/*Grid column*/}
-                                            <div className="col-md-6">
-                                                <div className="md-form mb-0">
-                                                    <label className="font-style">Last Name</label>
-                                                    <input type="text" id="name2" name="last name" className="form-background1" value={this.state.name2} onChange={this.onChangeInput.bind(this)} />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="md-form mb-0">
-                                                    <label className="font-style">Your Email</label>
-                                                    <input type="text" id="email1" name="email" className="form-background1" value={this.state.email1} onChange={this.onChangeInput.bind(this)} />
-                                                </div>
-                                            </div>
-                                            {/*Grid column*/}
-                                            {/*Grid column*/}
-                                            <div className="col-md-6">
-                                                <div className="md-form mb-0">
-                                                    <label className="font-style">Add Your CV</label>
-                                                    <div className="form-background">
-                                                        <Dropzone style={{ border: 'none' }} onDrop={this.uploadFile.bind(this)}>
-                                                            <button className="btn button_custom" style={{ width: "100%" }}>Choose File</button>
-                                                        </Dropzone>
+            <div style={{ backgroundColor: '#f7f5ed' }}>
+                <div className="container" style={{ width: "70%"}}>
+                    <div className="row">
+                        <div className="col-md-12 col-sm-12 col-xs-12 des-space">
+                            <div className="row">
+                                <div className="card outset" style={{ boxShadow: "none", marginTop: "-40px", background: "whitesmoke" }}>
+                                    <div className="card-body space">
+                                        <div className="row">
+                                            <div className="col-md-12 col-sm-12 col-xs-12">
+                                                <div className="col-md-6">
+                                                    <div className="md-form mb-0">
+                                                        <label className="font-style">First Name</label>
+                                                        <input type="text" id="name1" name="first name" className="form-background1" value={this.state.name1} onChange={this.onChangeInput.bind(this)} />
                                                     </div>
-                                                    {loader2 && <Spin className="col-xs-2 col-md-1" indicator={antIcon} />}
-                                                    <p className="font-style">{this.state.err}</p>
                                                 </div>
-                                            </div>
-                                            <div className="row">
                                                 {/*Grid column*/}
-                                                <div className="col-md-12">
-                                                    <div className="md-form">
-                                                        <label className="font-style">Additional Information</label>
-                                                        <textarea type="text" id="message" name="message" className="form-background1" style={{ height: "235px" }} value={this.state.msg} onChange={this.onChangeInput.bind(this)}></textarea>
+                                                {/*Grid column*/}
+                                                <div className="col-md-6">
+                                                    <div className="md-form mb-0">
+                                                        <label className="font-style">Last Name</label>
+                                                        <input type="text" id="name2" name="last name" className="form-background1" value={this.state.name2} onChange={this.onChangeInput.bind(this)} />
                                                     </div>
-                                                    <div className="form-background">
-                                                        {loader && <Spin className="col-xs-2 col-md-1" indicator={antIcon} />}
-                                                        <button className="btn button_custom" disabled={!!loader} style={{ width: "100%" }} onClick={this.handleSubmit}>Submit Now</button>
-                                                        <p className="font-style">{this.state.err2}</p>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="md-form mb-0">
+                                                        <label className="font-style">Your Email</label>
+                                                        <input type="text" id="email1" name="email" className="form-background1" value={this.state.email1} onChange={this.onChangeInput.bind(this)} />
+                                                    </div>
+                                                </div>
+                                                {/*Grid column*/}
+                                                {/*Grid column*/}
+                                                <div className="col-md-6">
+                                                    <div className="md-form mb-0">
+                                                        <label className="font-style">Add Your CV</label>
+                                                        <div className="form-background">
+                                                            <Dropzone style={{ border: 'none' }} onDrop={this.uploadFile.bind(this)}>
+                                                                <button className="btn button_custom" style={{ width: "100%" }}>Choose File</button>
+                                                            </Dropzone>
+                                                        </div>
+                                                        {loader2 && <Spin className="col-xs-2 col-md-1" indicator={antIcon} />}
+                                                        <p className="font-style">{this.state.err}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="row">
+                                                    {/*Grid column*/}
+                                                    <div className="col-md-12">
+                                                        <div className="md-form">
+                                                            <label className="font-style">Additional Information</label>
+                                                            <textarea type="text" id="message" name="message" className="form-background1" style={{ height: "235px" }} value={this.state.msg} onChange={this.onChangeInput.bind(this)}></textarea>
+                                                        </div>
+                                                        <div className="form-background">
+                                                            {loader && <Spin className="col-xs-2 col-md-1" indicator={antIcon} />}
+                                                            <button className="btn button_custom" disabled={!!loader} style={{ width: "100%" }} onClick={this.handleSubmit}>Submit Now</button>
+                                                            <p className="font-style">{this.state.err2}</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

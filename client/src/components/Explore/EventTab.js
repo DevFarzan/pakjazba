@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import JobFilter from '../job_portal/CategoriesJobs';
-import JobCategory from '../job_portal/jobClassifiedicon';
-import JobAds from '../job_portal/featuredJob';
+import RoomRentFilterContent from '../roomrenting/roomrenting2contentarea';
 import { Tabs, Icon } from 'antd';
+import EventAds from '../events/Eventfeaturedcard';
     
-class JobPortal extends Component{
+class EventTab extends Component{
     constructor(props) {
         super(props)
         this.state = {
+            events: []
             
     }
 }
@@ -24,21 +24,21 @@ class JobPortal extends Component{
                             <TabPane tab={
                                 <span><Icon type="apple" /> Filter </span>}
                                 key="1">
-                                <JobFilter />
+                                <RoomRentFilterContent />
                             </TabPane>
                             <TabPane tab={
                                 <span><Icon type="android" /> Category </span>}
                                 key="2">
-                                <JobCategory />
+                                
                             </TabPane>
                         </Tabs>
                     </div>
                     <div className="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                        <JobAds/>
+                        <EventAds events={this.state.events}/>
                     </div>
                 </div>
             </div>
         )
     }
 }
-export default JobPortal;
+export default EventTab;

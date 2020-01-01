@@ -137,12 +137,12 @@ class EventFeatured extends Component {
             return <Redirect to={{ pathname: `/postad_eventPortal` }} />
         }
         return (
-            <div className="container" style={{ width: "70%" }}>
+            <div className="container" style={{ width: "100%" }}>
                 {this.state.loader && showEvents == 0 && <h4 style={{ textAlign: "center", fontWeight: "bold", marginTop: "20px", marginBottom: "0" }}>No events available</h4>}
                 {showEvents.length > 0 && <h4 style={{ textAlign: "left", fontWeight: "bolder", marginTop: "20px", marginBottom: "0", fontSize: "26px" }}>{text ? 'your search' : 'Upcoming Events'}</h4>}
-                {text && !!filteredArr.length === false && <span style={{ textAlign: "center" }}><h1>Not found....</h1></span>}
-                {text && !!filteredArr.length === false && <span style={{ textAlign: "center" }}><h5>you can find your search by type</h5></span>}
-                {text && !!filteredArr.length === false && <div className="col-md-12" style={{ textAlign: "center" }}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
+                {text && !!filteredArr.length === false && <span><h1>Not found....</h1></span>}
+                {text && !!filteredArr.length === false && <span><h5>you can find your search by type</h5></span>}
+                {text && !!filteredArr.length === false && <div className="col-md-12"><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
                 <div className="row">
                     {/*<div className="col-md-3"  style={{'marginBottom': '30px'}} onClick={() => {this.clickItem()}}>
                   <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '345px', width: '100%', borderRadius: '13px'}}/>

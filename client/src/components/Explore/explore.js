@@ -6,6 +6,7 @@ import RoomRentTAB from './RoomRentTAB';
 import BusinesListing from './BusinessListingTAB';
 import BuyNsell from './Buy&SellTAB';
 import JobPortal from './JobPortalTAB';
+import EventTab from './EventTab';
 import "./explore.css";
 
 class Explore extends Component {
@@ -79,7 +80,7 @@ class Explore extends Component {
                             }
                             key="5"
                             >
-                                <RoomRentTAB />
+                                <EventTab />
                         </TabPane>
                         <TabPane
                             tab={
@@ -97,7 +98,7 @@ class Explore extends Component {
                                 <Icon type="android" /> Ecommerce{" "}
                                 </span>
                             }
-                            key="6"
+                            key="7"
                             >
                                 <RoomRentTAB />
                         </TabPane>

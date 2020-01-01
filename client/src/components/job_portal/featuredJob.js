@@ -177,22 +177,22 @@ class FeaturedBox extends Component{
         }
 
         return(
-            <div className="container" style={{width:"70%"}}>
-              <div className="hidden-xs">
-                <div className="Person" style={{width:"100%"}}>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <h1 style={{fontSize:'40px',linHeight:'50px'}}> Find, Explore Job <br/> Opportunities <br/> with PakJazba </h1>
-                      <p> 100+ companies with the jobs for you </p>
+            <div className="container" style={{width:"100%"}}>
+                {/* <div className="hidden-xs">
+                    <div className="Person" style={{width:"100%"}}>
+                    <div className="row">
+                        <div className="col-md-6">
+                        <h1 style={{fontSize:'40px',linHeight:'50px'}}> Find, Explore Job <br/> Opportunities <br/> with PakJazba </h1>
+                        <p> 100+ companies with the jobs for you </p>
+                        </div>
+                        <div className="col-md-6">
+                        <img src="images/job-icons/ilus-2.png" style={{height:'250px'}}/>
+                        </div>
                     </div>
-                    <div className="col-md-6">
-                      <img src="images/job-icons/ilus-2.png" style={{height:'250px'}}/>
                     </div>
-                  </div>
-                </div>
-              </div>
-                {!this.state.loader && showJob.length == 0 && <h2 className="font-style" style={{textAlign:"center", fontWeight:"bold", marginTop:"20px"}}>No jobs available</h2>}
-                {showJob.length > 0 && <h1 className="font-style" style={{textAlign:"center", fontWeight:"bold", marginTop:"20px", fontSize:"30px"}}>Featured Jobs </h1>}
+                </div> */}
+                {!this.state.loader && showJob.length == 0 && <h4 className="" style={{fontWeight:"bold", marginTop:"20px"}}>No jobs available</h4>}
+                {showJob.length > 0 && <h4 className="" style={{fontWeight:"bold", marginTop:"20px"}}>Featured Jobs </h4>}
                 <div className="row">
                     {/*<div className="col-md-3" onClick={() => {this.addJob()}}>
                         <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '380px', width: '90%',borderRadius:'16px'}}/>

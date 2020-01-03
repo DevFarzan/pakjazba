@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import Burgermenu from '../header/burgermenu';
+import HeaderMenu from '../header/headermenu';
 import Footer from '../footer/footer';
 import Slider from '../header/Slider';
 import EdetailFirstfold from './EdetailFirstfold';
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";
+import './EdetailFirstfold.css';
 import './eventdetail.css';
 
 class EventDetail extends Component{
@@ -61,16 +62,10 @@ class EventDetail extends Component{
         }
 
         return(
-          <div>
-          <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "102px",backgroundSize: 'cover'}}>
-              <div className="visible-xs" style={{marginTop:'-119px'}}></div>
-              <div className="background-image">
-                  <Burgermenu/>
-              </div>
-          </div>
-
+            <div>
+                <HeaderMenu />
                 <EdetailFirstfold data={data}/>
-                <Footer/>
+                {/* <Footer/> */}
             </div>
         )
     }

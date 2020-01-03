@@ -57,7 +57,7 @@ class JobDetailpage extends Component {
                                 </div>
                                 <div className="row" style={{paddingBottom:'0px',paddingTop:'0px'}}>
                                     <div className="col-xs-2 col-md-3 col-sm-3 col-lg-3"></div>
-                                    <div className="col-xs-10 col-md-6 col-sm-6 col-lg-6">
+                                    <div className="col-xs-8 col-md-6 col-sm-6 col-lg-6">
                                         <p className="designationPara">Project Manager</p>
                                     </div>
                                     <div className="col-xs-2 col-md-3 col-sm-3 col-lg-3"></div>
@@ -108,7 +108,7 @@ class JobDetailpage extends Component {
                                 </div>
                                 <div className="row" style={{paddingBottom:'0px',paddingTop:'0px'}}>
                                     <div className="col-xs-2 col-md-3 col-sm-3 col-lg-3"></div>
-                                    <div className="col-xs-10 col-md-6 col-sm-6 col-lg-6">
+                                    <div className="col-xs-8 col-md-6 col-sm-6 col-lg-6">
                                         <p className="designationPara">Rs.35,000 - 45,000</p>
                                     </div>
                                     <div className="col-xs-2 col-md-3 col-sm-3 col-lg-3"></div>
@@ -129,16 +129,19 @@ class JobDetailpage extends Component {
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <div className="row" style={{textAlign:'center'}}>
                                     <div className="col-xs-4 col-md-4 col-sm-4 col-lg-4">
-                                        <Icon type="facebook" className="fbLinkCsS" /><br/>
+                                        {/* <Icon type="facebook" className="fbLinkCsS" /><br/> */}
+                                        <a href="https://www.facebook.com" target="_blank" className="fa fa-facebook social_button" style={{width:"40px", height:"40px", color: '#2f55a4'}}><i></i></a><br/>
                                         <p className="eductionPara">Facebook</p>
                                      </div>
                                     <div className="col-xs-4 col-md-4 col-sm-4 col-lg-4">
-                                        <Icon type="linkedin" className="LinkeDinCsS" /><br/>
+                                        {/* <Icon type="linkedin" className="LinkeDinCsS" /><br/> */}
+                                        <a href="https://www.linkedin.com" target="_blank" className="fa fa-linkedin social_button" style={{ width:"40px", height:"40px", color: '#2867B2'}}></a><br/>
                                         <p className="eductionPara">Linkdin</p>
                                     </div>
                                     <div className="col-xs-4 col-md-4 col-sm-4 col-lg-4">
-                                        <Icon type="google-plus" className="gooGlePlusCsS" /><br/>
-                                        <p className="eductionPara">Google+</p>
+                                        {/* <Icon type="google-plus" className="gooGlePlusCsS" /><br/> */}
+                                        <a href="https://mail.google.com" target="_blank" className="fa fa-google-plus social_button"style={{width:"40px", height:"40px", color: '#db4a39'}}></a><br/>
+                                        <p className="eductionPara">Google+</p>                               
                                     </div>
                                 </div>
                             </div> 
@@ -159,7 +162,7 @@ class JobDetailpage extends Component {
                                 </div>
                                 <div className="row" style={{paddingBottom:'0px',paddingTop:'0px'}}>
                                     <div className="col-xs-2 col-md-3 col-sm-3 col-lg-3"></div>
-                                    <div className="col-xs-10 col-md-6 col-sm-6 col-lg-6">
+                                    <div className="col-xs-8 col-md-6 col-sm-6 col-lg-6">
                                         <p className="designationPara">Internship</p>
                                     </div>
                                     <div className="col-xs-2 col-md-3 col-sm-3 col-lg-3"></div>

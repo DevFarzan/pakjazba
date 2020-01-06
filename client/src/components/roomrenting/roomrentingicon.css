@@ -13,8 +13,30 @@
     font-size: 70px;
 }
 
-.wrimagecard-topimage_header{
-padding: 20px;
+.wrimagecard-topimage_headerRoom1{
+    background-image: url("../../images/RoomRental/condo.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerRoom2{
+    background-image: url("../../images/RoomRental/home.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerRoom3{
+    background-image: url("../../images/RoomRental/apartments.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.categoryInnerText{
+    color: white;
+    margin-top: 1vw;
 }
 a.wrimagecard:hover, .wrimagecard-topimage:hover {
     box-shadow: 2px 4px 8px 0px rgba(46,61,73,0.2);
@@ -28,7 +50,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
     /* box-shadow: none; 
     border: 1px solid rgba(128, 128, 128, 0.56); 
     background: white; */
-    background-image: url("./RoomImage/home_option11.jpg");
+    /* background-image: url("./RoomImage/home_option11.jpg"); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -47,7 +69,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
     
 }
 .card_room22{
-    background-image: url("./RoomImage/home_option22.jpg");
+    /* background-image: url("./RoomImage/home_option22.jpg"); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -61,7 +83,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
     opacity: 0.5;
 }
 .card_room33{
-    background-image: url("./RoomImage/home_option33.jpg");
+    /* background-image: url("./RoomImage/home_option33.jpg"); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

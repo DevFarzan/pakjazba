@@ -337,7 +337,7 @@ class Roomrentingtwocontentarea extends Component{
             return <Redirect to={{pathname: `/detail_roomRent`, state: objData}} />
         }
 		return(
-            <div style={{marginTop:'-2vw'}}>
+            <div className="exploreRentFilter">
             {/*<Burgermenu/>*/}
             <div className="" style={{width:"100%"}}>
                 <div className="row">

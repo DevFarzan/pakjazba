@@ -7,7 +7,48 @@
   text-decoration: lin
 
 }
-
+.wrimagecard-topimage_headerMotor{
+    background-image: url("../../images/BuySell/motors.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerFashion{
+  background-image: url("../../images/BuySell/beauty.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerElectric{
+  background-image: url("../../images/BuySell/electronics.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerHomeBuy{
+  background-image: url("../../images/BuySell/home.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerGarden{
+  background-image: url("../../images/BuySell/gardening.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerToy{
+  background-image: url("../../images/BuySell/toys.jpg ");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
 .media-object{
   border-radius: 50px;
 }

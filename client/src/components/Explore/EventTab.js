@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RoomRentFilterContent from '../roomrenting/roomrenting2contentarea';
 import { Tabs, Icon } from 'antd';
 import EventAds from '../events/Eventfeaturedcard';
+import { HttpUtils } from "../../Services/HttpUtils";
     
 class EventTab extends Component{
     constructor(props) {
@@ -11,7 +12,33 @@ class EventTab extends Component{
             
     }
 }
-    
+componentDidMount() {
+    window.scrollTo(0, 0);
+    this.setState({ showBtn: true });
+    this.getAllBusiness();
+}
+
+async getAllBusiness() {
+    var res = await HttpUtils.get('marketplace');
+    if (res) {
+        if (res.code === 200) {
+            let data = res.eventPortalData;
+            this.setState({
+                events: data ? data : [],
+                showBtn: false
+            });
+        }
+    }
+    // this.handleLocalStorage();
+}
+
+componentWillUnmount() {
+    let inputValue = '';
+    if (this.props.text.length) {
+        const { dispatch } = this.props;
+        dispatch({ type: 'SEARCHON', inputValue })
+    }
+}
     render(){
         const { TabPane } = Tabs;
         const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader, objData, goDetail } = this.state;

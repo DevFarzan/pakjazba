@@ -19,30 +19,83 @@ class ClassifiedIcons extends Component {
       <span>
         <div className="container" style={{width:'100%'}}>
           <div className="row">
-            {/* <h1 className="headingtext" style={{fontWeight:'bold'}}> Browse Businessess by Category </h1> */}
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('resturants') }} style={{ cursor: 'pointer' }}>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Accounting') }} style={{ cursor: 'pointer' }}>
                 <div className="wrimagecard wrimagecard-topimage">
-                  <div className="wrimagecard-topimage_header">
+                  <div className="wrimagecard-topimage_headerAccounting">
                     <center>
-                      <img src="../images/business icon/icons/resturant.png" style={{ width: "75%" }} />
+                        <h3 className="categoryInnerText">Accounting</h3>
                     </center>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('shopping') }} style={{ cursor: 'pointer' }}>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Admin') }} style={{ cursor: 'pointer' }}>
                 <div className="wrimagecard wrimagecard-topimage">
-                  <div className="wrimagecard-topimage_header">
+                  <div className="wrimagecard-topimage_headerAdmin">
                     <center>
-                      <img src="../images/business icon/icons/shopping.png" style={{ width: "75%" }} />
+                        <h3 className="categoryInnerText">Admin</h3>
                     </center>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('night life') }} style={{ cursor: 'pointer' }}>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Customer Service') }} style={{ cursor: 'pointer' }}>
                 <div className="wrimagecard wrimagecard-topimage">
-                  <div className="wrimagecard-topimage_header">
+                  <div className="wrimagecard-topimage_headerCustomerService">
                     <center>
-                      <img src="../images/business icon/icons/night-life.png" style={{ width: "75%" }} />
+                        <h3 className="categoryInnerText">Customer Service</h3>
+                    </center>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Executive') }} style={{ cursor: 'pointer' }}>
+                <div className="wrimagecard wrimagecard-topimage">
+                  <div className="wrimagecard-topimage_headerExecutive">
+                    <center>
+                        <h3 className="categoryInnerText">Executive</h3>
+                    </center>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Freelancer') }} style={{ cursor: 'pointer' }}>
+                <div className="wrimagecard wrimagecard-topimage">
+                  <div className="wrimagecard-topimage_headerFreelancer">
+                    <center>
+                        <h3 className="categoryInnerText">Freelancer</h3>
+                    </center>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Health Care') }} style={{ cursor: 'pointer' }}>
+                <div className="wrimagecard wrimagecard-topimage">
+                  <div className="wrimagecard-topimage_headerHealthCare">
+                    <center>
+                        <h3 className="categoryInnerText">Health Care</h3>
+                    </center>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Marketing') }} style={{ cursor: 'pointer' }}>
+                <div className="wrimagecard wrimagecard-topimage">
+                  <div className="wrimagecard-topimage_headerMarketing">
+                    <center>
+                        <h3 className="categoryInnerText">Marketing</h3>
+                    </center>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Retail') }} style={{ cursor: 'pointer' }}>
+                <div className="wrimagecard wrimagecard-topimage">
+                  <div className="wrimagecard-topimage_headerRetail">
+                    <center>
+                       <h3 className="categoryInnerText">Retail</h3>
+                    </center>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Transport') }} style={{ cursor: 'pointer' }}>
+                <div className="wrimagecard wrimagecard-topimage">
+                  <div className="wrimagecard-topimage_headerTransport">
+                    <center>
+                        <h3 className="categoryInnerText">Transport</h3>
                     </center>
                   </div>
                 </div>

@@ -219,74 +219,76 @@ class Slider extends Component {
 
                 {/*=====================Ecommerce start==================*/}
 
-                {this.props.mainH1 === "Pakjazba Ecommerce" && <div className="row">
-                    <span className="col-md-2"></span>
-                    <div className="col-md-5 col-sm-12 col-xs-12">
-                        <h3 className="text-h1"
-                            style={{ fontSize: '36px', fontWeight: 'bold', color: 'black', textAlign: 'left' }}
-                        >
-                            {this.props.mainH1}
-                        </h3>
-                        <form>
-                            <div className="single">
-                                <div>
-                                    <Radio.Group onChange={this.props.onChange} value={this.props.searchBy}>
-                                        <Radio value={'product'}>Product Name</Radio>
-                                        <Radio value={'brand'}>Brand Name</Radio>
-                                        <Radio value={'shop'}>Shop Name</Radio>
-                                        {/* <Radio value={3}>C</Radio>
-                                        <Radio value={4}>D</Radio> */}
-                                    </Radio.Group>
-                                </div>
-                                <div className="input-group">
-                                    <input type="text" className="form-control"
-                                        placeholder="Search" style={{ height: '40px' }}
-                                        onChange=
-                                        // {(e => 
-                                        {e => this.props.searcProduct(e)}
-                                    // this.setState({ ecomSerchValue: e.target.value }))} 
-                                    />
-                                    <span className="input-group-btn">
-                                        <button className="btn btn-theme"
-                                            type="submit"
-                                            style={{ backgroundColor: '#37a99b', color: 'white' }}
-                                            onClick={this.props.searchProduct}>
-                                            <i className="fa fa-search" />
-                                            {/* <Link rel="noopener noreferrer"
-                                                to={`/products_GridStyle`}
-                                                params={{ value: inputValue }} >
+                {this.props.mainH1 === "Pakjazba Ecommerce" && 
+                    <div className="row">
+                        <span className="col-md-2"></span>
+                        <div className="col-md-12 col-sm-12 col-xs-12">
+                            {/* <h3 className="text-h1"
+                                style={{ fontSize: '36px', fontWeight: 'bold', color: 'black', textAlign: 'left' }}
+                            >
+                                {this.props.mainH1}
+                            </h3> */}
+                            <form>
+                                <div className="single">
+                                    <div>
+                                        <Radio.Group onChange={this.props.onChange} value={this.props.searchBy}>
+                                            <Radio value={'product'}>Product Name</Radio><br/><br/>
+                                            <Radio value={'brand'}>Brand Name</Radio><br/><br/>
+                                            <Radio value={'shop'}>Shop Name</Radio>
+                                            {/* <Radio value={3}>C</Radio>
+                                            <Radio value={4}>D</Radio> */}
+                                        </Radio.Group>
+                                    </div><br/>
+                                    <div className="input-group">
+                                        <input type="text" className="form-control"
+                                            placeholder="Search" style={{ height: '42px' }}
+                                            onChange=
+                                            // {(e => 
+                                            {e => this.props.searcProduct(e)}
+                                        // this.setState({ ecomSerchValue: e.target.value }))} 
+                                        />
+                                        <span className="input-group-btn">
+                                            <button className="btn btn-theme"
+                                                type="submit"
+                                                style={{ backgroundColor: '#37a99b', color: 'white' }}
+                                                onClick={this.props.searchProduct}>
+                                                <i className="fa fa-search" />
+                                                {/* <Link rel="noopener noreferrer"
+                                                    to={`/products_GridStyle`}
+                                                    params={{ value: inputValue }} >
 
-                                            </Link> */}
-                                        </button>
-                                    </span>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-7 col-sm-8">
-                                        <h4
-                                            style={{ marginTop: "4px", marginLeft: "-12px" }}
-                                        >
-                                            Your Market hub for all products
-                                        </h4>
-                                        {this.props.checkRadioBtn ?
-                                            <div>
-                                                <h4
-                                                    style={{ marginTop: "4px", marginLeft: "-12px", color: 'red' }}
-                                                >
-                                                    Please Select radio button first
-                                        </h4>
-                                            </div>
-                                            : null}
+                                                </Link> */}
+                                            </button>
+                                        </span>
                                     </div>
-                                    <div className="col-md-5 col-sm-4">
+                                    <div className="row">
+                                        <div className="col-md-12 col-sm-12">
+                                            {/* <h4
+                                                style={{ marginTop: "4px", marginLeft: "-12px" }}
+                                            >
+                                                Your Market hub for all products
+                                            </h4> */}
+                                            {this.props.checkRadioBtn ?
+                                                <div>
+                                                    <h4
+                                                        style={{ marginTop: "4px", marginLeft: "-12px", color: 'red' }}
+                                                    >
+                                                        Please Select radio button first
+                                            </h4>
+                                                </div>
+                                                : null}
+                                        </div>
+                                        <div className="col-md-12 col-sm-12">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
+                        {/* <div className="col-md-5 col-sm-6 hidden-xs hidden-sm">
+                            <img src="../images/room icon/room_header.png" style={{ width: '65%' }} />
+                        </div> */}
                     </div>
-                    <div className="col-md-5 col-sm-6 hidden-xs hidden-sm">
-                        <img src="../images/room icon/room_header.png" style={{ width: '65%' }} />
-                    </div>
-                </div>}
+                }
 
                 {/*=====================Ecommerce end====================*/}
 

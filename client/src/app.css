@@ -4,6 +4,77 @@
     /*font-family: 'Roboto Slab', serif;*/
 
 }
+
+
+@media screen and (min-device-width: 360px) and (max-device-width: 767px) {
+  .exploreHead{
+    font-weight: bold;
+     text-align: left; 
+     margin-top: -30px;
+  }
+  .exploreRentFilter{
+    margin-top: -2vw;
+  }
+  .exploreRent{
+    margin-top: -6vw;
+  }
+}
+@media screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+  .exploreHead{
+    font-weight: bold;
+     text-align: left; 
+     margin-top: -30px;
+     margin-left: 2vw;
+  }
+  .exploreRentFilter{
+    margin-top: -2vw;
+  }
+  .exploreRent{
+    margin-top: -6vw;
+  }
+}
+@media screen and (min-device-width: 1024px) and (max-device-width: 1365px) {
+  .exploreHead{
+    font-weight: bold;
+     text-align: left; 
+     margin-top: -30px;
+     margin-left: 2vw;
+  }
+  .exploreRentFilter{
+    margin-top: -2vw;
+  }
+  .exploreRent{
+    margin-top: -6vw;
+  }
+}
+@media screen and (min-device-width: 1366px) and (max-device-width: 1600px) {
+  .exploreHead{
+    font-weight: bold;
+     text-align: left; 
+     margin-top: -30px;
+     margin-left: 2vw;
+  }
+  .exploreRentFilter{
+    margin-top: 2vw;
+  }
+  .exploreRent{
+    margin-top: -6vw;
+  }
+}
+@media screen and (min-device-width: 1600px){
+  .exploreHead{
+    font-weight: bold;
+     text-align: left; 
+     margin-top: -30px;
+     margin-left: 1.5vw;
+  }
+  .exploreRentFilter{
+    margin-top: 2vw;
+  }
+  .exploreRent{
+    /* margin-top: -6vw; */
+  }
+}
 .anticon-down{
   color:black !important;
 }

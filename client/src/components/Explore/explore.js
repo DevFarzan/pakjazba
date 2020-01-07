@@ -7,6 +7,8 @@ import BusinesListing from './BusinessListingTAB';
 import BuyNsell from './Buy&SellTAB';
 import JobPortal from './JobPortalTAB';
 import EventTab from './EventTab';
+import EntertainmentTab from './EntertainmentTAB';
+import EcommerceTab from './EcommerceTAB';
 import "./explore.css";
 
 class Explore extends Component {
@@ -90,7 +92,7 @@ class Explore extends Component {
                             }
                             key="6"
                             >
-                                <RoomRentTAB />
+                                <EntertainmentTab />
                         </TabPane>
                         <TabPane
                             tab={
@@ -100,7 +102,7 @@ class Explore extends Component {
                             }
                             key="7"
                             >
-                                <RoomRentTAB />
+                                <EcommerceTab />
                         </TabPane>
                     </Tabs>
                 </div>

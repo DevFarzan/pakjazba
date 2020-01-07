@@ -1,0 +1,28 @@
+.wrimagecard-topimage_headerEntertain1{
+    background-image: url("../../../images/Entertainment/drama.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+  }
+  .wrimagecard-topimage_headerEntertain2{
+    background-image: url("../../../images/Entertainment/movie.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+  }
+  .wrimagecard-topimage_headerEntertain3{
+    background-image: url("../../../images/Entertainment/news.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+  }
+  .wrimagecard-topimage_headerEntertain4{
+    background-image: url("../../../images/Entertainment/sportss.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+  }

@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { isBrowser, isMobile } from "react-device-detect";
 
-class Firstfold extends Component{
-    constructor(props){
+class Firstfold extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             open: '',
@@ -14,89 +14,81 @@ class Firstfold extends Component{
         this.category = this.category.bind(this);
     }
 
-    category(e){
+    category(e) {
         const { dispatch } = this.props;
         var inputValue = e.target.textContent;
-        dispatch({type: 'SEARCHON', inputValue})
+        dispatch({ type: 'SEARCHON', inputValue })
     }
 
-    dropDown(e){
+    dropDown(e) {
         const { open } = this.state;
-        this.setState({open: open === e ? '' : e})
+        this.setState({ open: open === e ? '' : e })
     }
 
     filterPage = () => {
-        this.setState({goToFilter: true})
+        this.setState({ goToFilter: true })
     }
 
-    render(){
+    render() {
         const { open, goToFilter } = this.state;
-        if(goToFilter){
-            return <Redirect to={{pathname: `/filter_buySell`}} />
+        if (goToFilter) {
+            return <Redirect to={{ pathname: `/filter_buySell` }} />
         }
-        return(
-            <div className="container" style={{width:"100%"}}>
-                  <div className="row">
+        return (
+            <div className="container" style={{ width: "100%" }}>
+                <div className="row">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
                         <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header">
+                            <div className="wrimagecard-topimage_headerMotor" onClick={this.dropDown.bind(this, 'motors')}>
                                 <center>
-                                    <h4>Motors</h4>
-                                    <img src="../images/room icon/home_option1.jpg" onClick={this.dropDown.bind(this, 'motors')}  style={{ width: "75%" }}/>
+                                    <h3 className="categoryInnerText">Motors</h3>
                                 </center>
                             </div>
                         </div>
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
                         <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header">
+                            <div className="wrimagecard-topimage_headerFashion" onClick={this.dropDown.bind(this, 'Fashion')}>
                                 <center>
-                                    <h4>Fashion</h4>
-                                    <img src="../images/room icon/home_option2.jpg" onClick={this.dropDown.bind(this, 'Fashion')} style={{ width: "75%" }} />
+                                    <h3 className="categoryInnerText">Fashion</h3>
                                 </center>
                             </div>
                         </div>
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
                         <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header">
+                            <div className="wrimagecard-topimage_headerElectric" onClick={this.dropDown.bind(this, 'Electronics')} >
                                 <center>
-                                    <h4>Electronics</h4>
-                                    <img src="../images/room icon/home_option3.jpg" onClick={this.dropDown.bind(this, 'Electronics')} style={{ width: "75%" }} />
+                                    <h3 className="categoryInnerText">Electronics</h3>
                                 </center>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
-                        <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header">
-                                <center>
-                                    <h4>Home</h4>
-                                    <img src="../images/room icon/home_option1.jpg" onClick={this.dropDown.bind(this, 'Home')}  style={{ width: "75%" }}/>
-                                </center>
-                            </div>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                    <div className="wrimagecard wrimagecard-topimage">
+                        <div className="wrimagecard-topimage_headerHomeBuy" onClick={this.dropDown.bind(this, 'Home')} >
+                            <center>
+                                <h3 className="categoryInnerText">Home</h3>
+                            </center>
                         </div>
                     </div>
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
-                        <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header">
-                                <center>
-                                    <h4>Garden</h4>
-                                    <img src="../images/room icon/home_option2.jpg" onClick={this.dropDown.bind(this, 'Garden')} style={{ width: "75%" }} />
-                                </center>
-                            </div>
+                </div>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                    <div className="wrimagecard wrimagecard-topimage">
+                        <div className="wrimagecard-topimage_headerGarden" onClick={this.dropDown.bind(this, 'Garden')} >
+                            <center>
+                                <h3 className="categoryInnerText">Garden</h3>
+                            </center>
                         </div>
                     </div>
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
-                        <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header">
-                                <center>
-                                    <h4>Toys</h4>
-                                    <img src="../images/room icon/home_option3.jpg" onClick={this.dropDown.bind(this, 'Toys')} style={{ width: "75%" }} />
-                                </center>
-                            </div>
+                </div>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                    <div className="wrimagecard wrimagecard-topimage">
+                        <div className="wrimagecard-topimage_headerToy" onClick={this.dropDown.bind(this, 'Toys')}>
+                            <center>
+                                <h3 className="categoryInnerText">Toys</h3>
+                            </center>
                         </div>
                     </div>
                 </div>
@@ -216,8 +208,8 @@ class Firstfold extends Component{
                         <span style={{marginRight:'5%',cursor:'pointer'}} onClick={this.filterPage}><b>See more</b></span>
                     </div>
                 </div> */}
-            {/*<!-- jambo section start -->*/}
-        {/* <div className="row hidden-xs">
+                {/*<!-- jambo section start -->*/}
+                {/* <div className="row hidden-xs">
             <div className="col-md-12 col-sm-12 col-xs-12 card_border" style={{width:'94%'}}>
                 <div className="col-md-6">
                     <h1 className="jambo_text" style={{fontSize:"40px"}}><b>Find your desire item and buy it pakjazba classified</b></h1>
@@ -228,8 +220,8 @@ class Firstfold extends Component{
                 </div>
             </div>
         </div> */}
-        <br/><br/>
-       {/*<!-- jambo section End -->*/}
+                <br /><br />
+                {/*<!-- jambo section End -->*/}
             </div>
         )
     }

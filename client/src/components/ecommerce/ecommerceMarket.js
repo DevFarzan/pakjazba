@@ -177,11 +177,11 @@ class EcommerceMarket extends Component {
             <div className="row" style={{ marginTop: "-70px" }}>
               <DealsEcom />
             </div>
-            <div className="row">
+            {/* <div className="row">
               <div className="col-md-12">
                 <img src="../images/businesslistingimage.png" style={{ width: '100%' }} alt='img' />
               </div>
-            </div>
+            </div> */}
             <Footer />
           </div>
         )

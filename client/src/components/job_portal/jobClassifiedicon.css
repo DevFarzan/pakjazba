@@ -53,3 +53,67 @@ a.jobIconbox:hover, .jobIconbox-topimage:hover {
 	font-size: 14px;
     display: inline;
 }
+
+.wrimagecard-topimage_headerAccounting{
+    background-image: url("../../images/Jobs/accounting.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerAdmin{
+    background-image: url("../../images/Jobs/admin.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerCustomerService{
+    background-image: url("../../images/Jobs/customer\ services.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerExecutive{
+    background-image: url("../../images/Jobs/executive.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerFreelancer{
+    background-image: url("../../images/Jobs/freelancer.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerHealthCare{
+    background-image: url("../../images/Jobs/healthcare.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerMarketing{
+    background-image: url("../../images/Jobs/marketing.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerRetail{
+    background-image: url("../../images/Jobs/retail.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerTransport{
+    background-image: url("../../images/Jobs/transport.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}

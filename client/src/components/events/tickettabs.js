@@ -36,9 +36,9 @@ class TicketTabs extends Component{
               <div className="col-md-12 hidden-xs">
                   <div className="tab" role="tabpanel">
                       <ul className="nav nav-tabs" role="tablist">
-                          <a href="#headline1"><button className="btn btn-lg" style={{backgroundColor:'#37A99B',color:'white',margin:'11px'}}>Buy Ticket</button></a>
-                          <a href="#headline2"><button className="btn btn-lg" style={{backgroundColor:'#37A99B',color:'white',margin:'11px'}}>Event Info</button></a>
-                          <a href="#headline3"><button className="btn btn-lg" style={{backgroundColor:'#37A99B',color:'white',margin:'11px'}}>Term And Conditions</button></a>
+                          {/* <a href="#headline1"><button className="btn btn-lg" style={{backgroundColor:'#37A99B',color:'white',margin:'11px'}}>Buy Ticket</button></a> */}
+                          {/* <a href="#headline2"><button className="btn btn-lg" style={{backgroundColor:'#37A99B',color:'white',margin:'11px'}}>Event Info</button></a>
+                          <a href="#headline3"><button className="btn btn-lg" style={{backgroundColor:'#37A99B',color:'white',margin:'11px'}}>Term And Conditions</button></a> */}
                           {/*<li role="presentation" className="active"><Anchor affix={true} onClick={handleClick}><Link href="#headline1" title="Buy Ticket " /></Anchor></li>
                           <li role="presentation"><Anchor affix={false} onClick={handleClick}><Link href="#headline2" title="Event Info"  /></Anchor></li>
                           <li role="presentation"><Anchor affix={false} onClick={handleClick}><Link href="#headline3" title="Terms & Conditions" /></Anchor></li>*/}

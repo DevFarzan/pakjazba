@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Tabs, Icon } from 'antd';
 import EntertainmentHome from '../entertainment/entertainmenthome/EntertainmentHome';
 import Entslider from '../entertainment/entertainmenthome/EntSlider';
+import EntertainmentCategory from '../entertainment/entertainmentPages/EntertainmentTabCategory';
 import axios from "axios/index";
     
 class EntertainmentTab extends Component{
@@ -29,10 +30,12 @@ class EntertainmentTab extends Component{
     }
 
     render(){
+
         const { TabPane } = Tabs;
         const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader, objData, goDetail } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
         const { news, sports, dramas, movies, musics } = this.state;
+        
         return(
             <div>
                 <div className="row">
@@ -66,7 +69,7 @@ class EntertainmentTab extends Component{
                             <TabPane tab={
                                 <span><Icon type="android" /> Category </span>}
                                 key="2">
-                                
+                                <EntertainmentCategory />
                             </TabPane>
                         </Tabs>
                     </div>

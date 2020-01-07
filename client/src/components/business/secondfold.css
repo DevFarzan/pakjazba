@@ -92,8 +92,9 @@ padding: 50px;
     }
 }
 .button_custom{
-  background-color:#008080;
-  color:#F7F7F7;
+  color:#F7F7F7; 
+  font-weight: bolder;
+  background: linear-gradient(#236A4B, #224B69);
 }
 
 .btnview-success {

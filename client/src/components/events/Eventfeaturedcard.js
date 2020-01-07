@@ -191,7 +191,7 @@ class EventFeatured extends Component {
                             style={{ width: '100%' }}
                             onClick={this.onAddMore}
                         >
-                            Veiw More
+                            View More
                     </button>
                     </div>
                     <div className="col-md-3"></div>

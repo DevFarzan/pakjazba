@@ -3,6 +3,7 @@ import { Tabs, Icon } from 'antd';
 import Slider from '../header/Slider';
 import { HttpUtils } from "../../Services/HttpUtils";
 import Eshopcard from '../ecommerce/EcomShopcard';
+import BuyCategory from '../buy_sell/buyfirstfold';
 import DealsEcom from '../ecommerce/EcomDeals';
     
 class EcommerceTAB extends Component{
@@ -151,7 +152,7 @@ class EcommerceTAB extends Component{
                             <TabPane tab={
                                 <span><Icon type="android" /> Category </span>}
                                 key="2">
-                                
+                                <BuyCategory />
                             </TabPane>
                         </Tabs>
                     </div>

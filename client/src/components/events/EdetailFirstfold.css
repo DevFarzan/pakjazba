@@ -61,7 +61,10 @@
   border-radius: 50vw !important;
 }
 .timerTExt{
-  margin: 1vw 0vw 0vw 0.5vw;
+  margin: 2.5vw 0vw 0vw -0.6vw;
+  color: white;
+  font-weight: bolder;
+  font-size: 10px;
 }
 @media only screen and (min-device-width: 330px) and (max-device-width: 767px){
   .EventBanerTextCsS{
@@ -69,6 +72,10 @@
     font-size: 30px; 
     font-weight:bold;
     margin: 0;
+  }
+  .timerDivPadd{
+    padding-bottom: 4vw; 
+    padding-top: 7vw;
   }
   .MainDivCount{
     background: #6c1cff!important;
@@ -79,14 +86,24 @@
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
     border-radius: 3px;
   }
+  .timerTExt{
+    margin: 2.5vw 0vw 0vw -0.6vw;
+    color: white;
+    font-weight: bolder;
+    font-size: 10px;
+  }
 }
-@media only screen and (min-device-width: 768px){
+@media only screen and (min-device-width: 768px) and (max-device-width: 1365px){
   .EventBanerTextCsS{
     color: white;
     font-size: 40px;
     font-weight: bold;
     margin: 0;
     margin-top: -0.9vw;
+  }
+  .timerDivPadd{
+    padding-bottom: 2vw; 
+    padding-top: 2vw;
   }
   .MainDivCount{
     background: #6c1cff!important;
@@ -97,6 +114,70 @@
     transition: box-shadow .25s ease-in-out;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
     border-radius: 3px;
+  }
+  .timerTExt{
+    margin: 2.5vw 0vw 0vw -0.6vw;
+    color: white;
+    font-weight: bolder;
+    font-size: 10px;
+  }
+}
+@media only screen and (min-device-width: 1366px) and (max-device-width: 1600px){
+  .EventBanerTextCsS{
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+    margin-top: -0.9vw;
+  }
+  .timerDivPadd{
+    padding-bottom: 2vw; 
+    padding-top: 2vw;
+  }
+  .MainDivCount{
+    background: #6c1cff!important;
+    padding: 15px;
+    margin-left: 1vw;
+    margin-bottom: 25px;
+    -webkit-transition: box-shadow .25s ease-in-out;
+    transition: box-shadow .25s ease-in-out;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
+    border-radius: 3px;
+  }
+  .timerTExt{
+    margin: 2.5vw 0vw 0vw -0.6vw;
+    color: white;
+    font-weight: bolder;
+    font-size: 10px;
+  }
+}
+@media only screen and (min-device-width: 1600px){
+  .EventBanerTextCsS{
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+    margin-top: -0.9vw;
+  }
+  .timerDivPadd{
+    padding-bottom: 2vw; 
+    padding-top: 2vw;
+  }
+  .MainDivCount{
+    background: #6c1cff!important;
+    padding: 15px;
+    margin-left: 1vw;
+    margin-bottom: 25px;
+    -webkit-transition: box-shadow .25s ease-in-out;
+    transition: box-shadow .25s ease-in-out;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
+    border-radius: 3px;
+  }
+  .timerTExt{
+    margin: 2vw 0vw 0vw -0.6vw;
+    color: white;
+    font-weight: bolder;
+    font-size: 17px;
   }
 }
 .btnCallEventbaner{

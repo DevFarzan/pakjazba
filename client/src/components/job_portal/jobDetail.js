@@ -79,7 +79,6 @@ class JobDetail extends Component {
         if (goForLogin) {
             return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/detail_jobPortal" }, state: data}}}/>;
         }
-
         return (
             <div>
                 {/* <span>
@@ -96,10 +95,10 @@ class JobDetail extends Component {
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 BackBannerCsS">
                         <div className="row mainBannerPadMarg">
                             <div className="col-xs-4 col-sm-1 col-md-1 col-lg-1">
-                                <img src={Imggg} alt="icon" className="BannerIcon" />
+                                <img src={data.arr_url && data.arr_url} alt="icon" className="BannerIcon" />
                             </div>
                             <div className="col-xs-8 col-sm-9 col-md-9 col-lg-9">
-                                <h1 className="BanerTextCsS"> About The Jobb </h1>
+                                <h1 className="BanerTextCsS">{data.compName && data.compName}</h1>
                             </div>
                             <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2">
                                 <button className="btnCallbaner">

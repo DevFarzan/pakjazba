@@ -51,20 +51,20 @@ class EventDetailTab extends Component {
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
                                 <Icon type="bars" style={{ color: 'white' }} /><h5 className="CountText">Event starts in</h5>
                             </div>
-                            <div className="row" style={{ paddingBottom: '2vw', paddingTop: '2vw' }}>
-                                <div className="col-xs-12 col-md-4 col-sm-4 col-lg-4" style={{display:'flex'}}>
+                            <div className="row timerDivPadd">
+                                <div className="col-xs-4 col-md-4 col-sm-4 col-lg-4" style={{display:'flex'}}>
                                     <div className="timerDicCsS">
                                         <p style={{margin:'0'}}>00</p>
                                     </div>
                                         <p className="timerTExt">DAYS</p>
                                 </div>
-                                <div className="col-xs-12 col-md-4 col-sm-4 col-lg-4" style={{display:'flex'}}>
+                                <div className="col-xs-4 col-md-4 col-sm-4 col-lg-4" style={{display:'flex'}}>
                                     <div className="timerDicCsS">
                                         <p style={{margin:'0'}}>00</p>
                                     </div>
                                         <p className="timerTExt">HOURS</p>
                                 </div>
-                                <div className="col-xs-12 col-md-4 col-sm-4 col-lg-4" style={{display:'flex'}}>
+                                <div className="col-xs-4 col-md-4 col-sm-4 col-lg-4" style={{display:'flex'}}>
                                     <div className="timerDicCsS">
                                         <p style={{margin:'0'}}>00</p>
                                     </div>

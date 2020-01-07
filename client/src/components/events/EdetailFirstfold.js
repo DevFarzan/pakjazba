@@ -18,6 +18,7 @@ class EdetailFirstfold extends Component {
     let date = data.dateRange && (data.dateRange.from ? data.dateRange.from : data.dateRange[0].from);
     date = moment(date).format('LL');
     const { TabPane } = Tabs;
+    console.log(data,'Event Data');
     return (
       <div>
         <div className="row" style={{ marginTop: '-1.5vw' }}>
@@ -68,7 +69,7 @@ class EdetailFirstfold extends Component {
                         </Tabs>
                     </div>
                 </div>
-        {/* <div className="hidden-sm hidden-xs">
+        <div className="hidden-sm hidden-xs">
           <div className="container" style={{ width: "100%", marginTop: "-5px" }}>
             <div className="row" style={{ padding: "0" }}>
               <div className="col-md-12 col-sm-12 col-xs-12" style={{ textAlign: "center" }}>
@@ -118,7 +119,7 @@ class EdetailFirstfold extends Component {
 
 
           </div>
-        </div> */}
+        </div>
         {/* <div className="visible-sm visible-xs">
           <div className="container" style={{ width: "100%", marginTop: "-5px" }}>
             <div className="row" style={{ padding: "0" }}>

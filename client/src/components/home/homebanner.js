@@ -10,8 +10,7 @@ class HomeBanner extends Component{
                 <div className="homebanneropa">
                     <img src="./images/home-banner.jpg" alt="" style={{width: "100%", height:"475px"}}/>
                 </div>
-                <BannerInside/>
-                
+                <BannerInside/>               
             </div>
         )
     } 

@@ -23,7 +23,7 @@ class Gallery extends Component{
 						let divSt = {paddingRight: '0px', paddingLeft: '0px'};
 						let obj = { 
 							class: imgLen == 2 || imgLen >= 4 ? 'col-md-6' : 'col-md-4', 
-							height: imgLen == 2 ? '500' : imgLen == 3 ? '200' : '500'};
+							height: imgLen == 2 ? '400' : imgLen == 3 ? '200' : '500'};
 						if(imgLen === 5){
 							abc = true;
 						}

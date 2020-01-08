@@ -175,12 +175,26 @@ class Roomrenting3contentarea extends Component{
             <div>
                 <Gallery images={images} style={{marginTop: '0%'}}/>
 
-                <div className="col-md-5" style={{position: 'relative',marginTop: '-7%',float: 'right', marginRight: '7%',}}>
+                <div className="col-md-5 hidden-xs BnrBtnUp" style={{position: 'relative',marginTop: '-7%',float: 'right', marginRight: '7%',}}>
                   <div className="row">
                     <div className="col-md-4"></div>
                     <div className="col-md-4">
-                    <h5>Price per month</h5>
-                    <h4 className="h4Style" style={{color: 'white !important',margin: '0% !important', }}>$700</h4></div>
+                    <h5 style={{color: '#bdc1c5'}}>Price per month</h5>
+                    <h4 className="h4Style" style={{color: 'white',margin: '0px', fontWeight: 'bold', }}>$700</h4></div>
+                    <div className="col-md-4">
+                      <button className="btnCallbaner">
+                        <Icon type="phone" /> 
+                        <span>Call Now</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-5 visible-xs BnrBtnUp" style={{position: 'relative',marginTop: '-40%',float: 'right', marginRight: '7%',}}>
+                  <div className="row">
+                    <div className="col-md-4"></div>
+                    <div className="col-md-4">
+                    <h5 style={{color: '#bdc1c5'}}>Price per month</h5>
+                    <h4 className="h4Style" style={{color: 'white',margin: '0px', fontWeight: 'bold', }}>$700</h4></div>
                     <div className="col-md-4">
                       <button className="btnCallbaner">
                         <Icon type="phone" /> 
@@ -213,7 +227,7 @@ class Roomrenting3contentarea extends Component{
                                 }
                                 key="2"
                             >
-                                <RoomRenting3ContentArea2 />
+                                {/* <RoomRenting3ContentArea2 /> */}
                             </TabPane>
                             <TabPane
                                 // onClick={this.tabnavigation('false')}
@@ -222,9 +236,9 @@ class Roomrenting3contentarea extends Component{
                                         Information{" "}
                                     </span>
                                 }
-                                key="2"
+                                key="3"
                             >
-                                <RoomRenting3ContentArea3 />
+                                {/* <RoomRenting3ContentArea3 /> */}
                             </TabPane>
                         </Tabs>
                     </div>

@@ -111,7 +111,7 @@
   and (-webkit-min-device-pixel-ratio: 1) { 
 	.bannerButton{
 		height: 175px;
-		width: 150px;
+		width: 100px;
 		border: 1px dotted black;
 	  }
     

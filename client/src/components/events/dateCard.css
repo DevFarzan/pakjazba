@@ -4,6 +4,7 @@
   and (-webkit-min-device-pixel-ratio: 1) {
     .widthmobile{
       width: 70% !important;
+      background: white;
     }
 }
 
@@ -15,6 +16,7 @@
     .widthmobile{
       width: 100%;
       margin-top: -25px !important;
+      background: white;
     }
 }
 

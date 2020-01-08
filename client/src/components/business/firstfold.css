@@ -128,3 +128,38 @@ padding: 50px;
         margin-top: 20px;
     }
 }
+.wrimagecard-topimage_headerBusines1{
+  background-image: url("../../images/BusinessListing/active\ life.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerBusines2{
+  background-image: url("../../images/BusinessListing/automotive.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerBusines3{
+  background-image: url("../../images/BusinessListing/beauty.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerBusines4{
+  background-image: url("../../images/BusinessListing/restaurant.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerBusines5{
+  background-image: url("../../images/BusinessListing/shop.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}

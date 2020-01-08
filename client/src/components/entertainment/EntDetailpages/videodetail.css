@@ -1,13 +1,20 @@
 .videoheading{
 
 }
+.marqueTextSlide{
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(45deg, #236a4b, #224b69);
+}
 
 .videoheading h6{
   color: white;
-  background-color: #37a99b;
+  background: linear-gradient(45deg, #236a4b, #224b69);
   width:80px;
   text-align: center;
   font-size: 16px;
+  padding: 1vw;
   margin: 0px;
 }
 
@@ -32,7 +39,7 @@ a.socialbox {
 }
 
 a.socialbox.facebook {
-  background-color: #2980b9;
+  background-color: #3b5998;
   -webkit-transition: background-color 0.25s ease-in-out;
   transition: background-color 0.25s ease-in-out;
 }
@@ -41,8 +48,18 @@ a.socialbox.twitter {
   -webkit-transition: background-color 0.25s ease-in-out;
   transition: background-color 0.25s ease-in-out;
 }
-
-
+a.socialbox.google-plus {
+  background-color: #db4a39;
+  -webkit-transition: background-color 0.25s ease-in-out;
+  transition: background-color 0.25s ease-in-out;
+}
+#imaginary_container{
+  margin-top: 3vw;
+}
+.fa-google-plus{
+  background: black;
+  color: white;
+}
 a.socialbox .social-icon {
   line-height: 25px;
     font-size: 25px;
@@ -54,7 +71,7 @@ a.socialbox .social-icon {
 a.socialbox .description {
   display: inline-block;
   vertical-align: middle;
-  padding-left: 10px;
+  padding-left: 1px;
   font-size: 13px;
 }
 
@@ -62,7 +79,12 @@ a.socialbox .description span {
   display: block;
   line-height: 16px;
 }
-
+.starSpanSty{
+  font-weight: bold;
+  font-family: Crimson Text , serif !important;
+  color: black;
+  font-size: 15px;
+}
 
 
 /* Smartphones (portrait and landscape) ----------- */
@@ -237,4 +259,34 @@ a.socialbox .description span {
     width: 200px;
     padding: 10px;
 
+}
+@media only screen and (min-device-width: 330px) and (max-device-width: 767px){
+  .NewsFeedMarque{
+    color: white;
+    margin: 0.2vw 0vw 0vw 3vw;
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1023px){
+  .NewsFeedMarque{
+    color: white;
+    margin: 0.2vw 0vw 0vw 3vw;
+  }
+}
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1365px){
+  .NewsFeedMarque{
+    color: white;
+    margin: 0.2vw 0vw 0.55vw 3vw;
+  }
+}
+@media only screen and (min-device-width: 1366px) and (max-device-width: 1600px){
+  .NewsFeedMarque{
+    color: white;
+    margin: 0.2vw 0vw 0.45vw 3vw;
+  }
+}
+@media only screen and (min-device-width: 1600px){
+  .NewsFeedMarque{
+    color: white;
+    margin: 0.2vw 0vw 0.25vw 3vw;
+  }
 }

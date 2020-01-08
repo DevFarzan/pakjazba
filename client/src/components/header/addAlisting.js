@@ -52,9 +52,9 @@ class AddListing extends Component{
 
                         <Link rel="noopener noreferrer" to={`/postad_business`}>
                             <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <div className="devCard ImageCard">
+                                <div className="devCard">
                                     <div className="iconDev">
-                                        <img className="" src="images/post-your-need-images/businessListing.png" alt='img' style={{width: '60%', marginTop: '11px'}}/>
+                                        <img className="" src="images/post-your-need-images/businessListing.png" alt='img'/>
                                     </div>
                                         <h4 className="needPost-Head">Publish Your Business</h4>
                                 
@@ -64,9 +64,9 @@ class AddListing extends Component{
 
                         <Link rel="noopener noreferrer" to={`/postad_Roommates`}>
                             <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <div className="devCard ImageCard">
+                                <div className="devCard">
                                     <div className="iconDev">
-                                        <img className="" src="images/post-your-need-images/roomRental.png" alt='img' style={{width: '60%', marginTop: '11px'}}/>
+                                        <img className="" src="images/post-your-need-images/roomRental.png" alt='img'/>
                                     </div>
                                         <h4 className="needPost-Head">Roommates / Rentals</h4>
                                     
@@ -76,9 +76,9 @@ class AddListing extends Component{
 
                         <Link rel="noopener noreferrer" to={`/postad_buysell`}>
                             <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <div className="devCard ImageCard">
+                                <div className="devCard">
                                     <div className="iconDev">
-                                        <img className="" src="images/post-your-need-images/buyNSell.png" alt='img' style={{width: '60%', marginTop: '11px'}}/>
+                                        <img className="" src="images/post-your-need-images/buyNSell.png" alt='img'/>
                                     </div>
                                         <h4 className="needPost-Head">Buy & Sell</h4>
                                 </div>
@@ -87,9 +87,9 @@ class AddListing extends Component{
                         
                         <Link rel="noopener noreferrer" to={`/postad_jobPortal`}>
                             <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <div className="devCard ImageCard">
+                                <div className="devCard">
                                     <div className="iconDev">
-                                        <img className="" src="images/post-your-need-images/jobPortal.png" alt='img' style={{width: '60%', marginTop: '11px'}}/>
+                                        <img className="" src="images/post-your-need-images/jobPortal.png" alt='img'/>
                                     </div>
                                     <h4 className="needPost-Head">Job Portal</h4>
                                 </div>
@@ -98,9 +98,9 @@ class AddListing extends Component{
 
                         <Link rel="noopener noreferrer" to={`/postad_eventPortal`}>
                             <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <div className="devCard ImageCard">
+                                <div className="devCard">
                                     <div className="iconDev">
-                                        <img className="" src="images/post-your-need-images/events.png" alt='img' style={{width: '60%', marginTop: '11px'}}/>
+                                        <img className="" src="images/post-your-need-images/events.png" alt='img'/>
                                     </div>
                                     <h4 className="needPost-Head">Organize an Event</h4>
                                 </div>
@@ -109,9 +109,9 @@ class AddListing extends Component{
 
                         <Link rel="noopener noreferrer" to={`/shopForm`}>
                             <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <div className="devCard ImageCard">
+                                <div className="devCard">
                                     <div className="iconDev">
-                                        <img className="" src="images/post-your-need-images/ecommerce.png" alt='img' style={{width: '60%', marginTop: '11px'}}/>
+                                        <img className="" src="images/post-your-need-images/ecommerce.png" alt='img'/>
                                     </div>
                                     <h4 className="needPost-Head">Creat Shop</h4>
                                 </div>

@@ -30,9 +30,9 @@ class BusinessCategory extends Component {
                     <a href="#backToTop">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('resturants') }} style={{ cursor: 'pointer' }}>
                             <div className="wrimagecard wrimagecard-topimage">
-                                <div className="wrimagecard-topimage_header">
+                                <div className="wrimagecard-topimage_headerBusines1">
                                     <center>
-                                        <img src="../images/business icon/icons/resturant.png" style={{ width: "75%" }} />
+                                        <h3 className="categoryInnerText">Active Life</h3>
                                     </center>
                                 </div>
                             </div>
@@ -41,9 +41,9 @@ class BusinessCategory extends Component {
                     <a href="#backToTop">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('shopping') }} style={{ cursor: 'pointer' }}>
                             <div className="wrimagecard wrimagecard-topimage">
-                                <div className="wrimagecard-topimage_header">
+                                <div className="wrimagecard-topimage_headerBusines2">
                                     <center>
-                                        <img src="../images/business icon/icons/shopping.png" style={{ width: "75%" }} />
+                                        <h3 className="categoryInnerText">Automotive</h3>
                                     </center>
                                 </div>
                             </div>
@@ -52,9 +52,9 @@ class BusinessCategory extends Component {
                     <a href="#backToTop">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('night life') }} style={{ cursor: 'pointer' }}>
                             <div className="wrimagecard wrimagecard-topimage">
-                                <div className="wrimagecard-topimage_header">
+                                <div className="wrimagecard-topimage_headerBusines3">
                                     <center>
-                                        <img src="../images/business icon/icons/night-life.png" style={{ width: "75%" }} />
+                                        <h3 className="categoryInnerText">Beauty</h3>
                                     </center>
                                 </div>
                             </div>
@@ -65,9 +65,9 @@ class BusinessCategory extends Component {
                     <a href="#backToTop">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('active life') }} style={{ cursor: 'pointer' }}>
                             <div className="wrimagecard wrimagecard-topimage">
-                                <div className="wrimagecard-topimage_header">
+                                <div className="wrimagecard-topimage_headerBusines4">
                                     <center>
-                                        <img src="../images/business icon/icons/active-life.png" style={{ width: "75%" }} />
+                                        <h3 className="categoryInnerText">Restaurant</h3>
                                     </center>
                                 </div>
                             </div>
@@ -76,25 +76,14 @@ class BusinessCategory extends Component {
                     <a href="#backToTop">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('beauty & spa') }} style={{ cursor: 'pointer' }}>
                             <div className="wrimagecard wrimagecard-topimage">
-                                <div className="wrimagecard-topimage_header">
+                                <div className="wrimagecard-topimage_headerBusines5">
                                     <center>
-                                        <img src="../images/business icon/icons/beauty-spa.png" style={{ width: "75%" }} />
+                                        <h3 className="categoryInnerText">Shop</h3>
                                     </center>
                                 </div>
                             </div>
                         </div>
                     </a>
-
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('automotive') }} style={{ cursor: 'pointer' }}>
-                        <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_header">
-                                <center>
-                                    <img src="../images/business icon/icons/automotive.png" style={{ width: "75%" }} />
-                                </center>
-                            </div>
-                        </div>
-                    </div>
-
                     {/*<div className="col-lg-3 col-md-3 col-sm-4 col-xs-6" onClick={() => {this.clickItem('home service')}} style={{cursor:'pointer'}}>
                         <div className="wrimagecard wrimagecard-topimage">
                             <div className="wrimagecard-topimage_header">

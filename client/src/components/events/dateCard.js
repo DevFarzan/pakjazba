@@ -204,7 +204,7 @@ class DateCard extends Component{
                     </div>
                 </Modal>}
 
-                <a name="headline2"><div className="">
+                {/* <a name="headline2"><div className="">
                   <h3 style={{fontWeight:"bold",fontFamily: 'Crimson Text, sans-serif',marginTop:'11px'}}><a name="headline2" style={{color: "black"}}>Event Detail</a></h3>
                   <div className="ticketbuy" style={{textAlign:"center"}}>
 
@@ -221,12 +221,12 @@ class DateCard extends Component{
 
                       </div>
                   </div>
-                </div></a>
+                </div></a> */}
 
-                <div className="">
+                {/* <div className="">
                   <h3 style={{fontWeight:"bold",fontFamily: 'Crimson Text, sans-serif',marginTop:'11px'}}><a name="headline3" style={{color: "black"}}>Terms And Conditions</a></h3>
                   <div className="ticketbuy" style={{padding:"20px"}}>
-                    {/*<ol>
+                    <ol>
                       <li> All Sales are Final. </li>
                       <li> All tickets are NON-Refundable and NON-TRANSFERABLE.</li>
                       <li> The person min whose name the ticket is issued must also be present at the door with valid photo ID.</li>
@@ -234,7 +234,7 @@ class DateCard extends Component{
                       <li> If the event attendance is different from the credit card hlider, a copy of the credit card used for ticket purchase must be produced along with order.</li>
                       <li> Any failure in providing the aforementioned documents may result in denial admission to the event with no refund.</li>
                       <li> In case of event being cancelled/postponed Pakjazba will refund only the face value of the ticket NOT the service fee.</li>
-                    </ol>*/}
+                    </ol>
                     {data.termsCondition && data.termsCondition.map((elem, idx) => {
                         return(
                             <p>{idx + 1}. {elem.name}</p>
@@ -242,7 +242,7 @@ class DateCard extends Component{
                     })}
                   </div>
 
-                </div>
+                </div> */}
                 {/*<div className="row" style={{padding:"0px"}}>
                     <div className="col-lg-12 col-md-12 col-sm-12 " >
 

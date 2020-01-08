@@ -1,8 +1,198 @@
 .Event-borders{
-  boxShadow: none;
+  box-shadow: none;
   border:1px solid #D3D3D3;
   padding: 15px;
   margin-left: 0px;
+}
+.eventBanerDemo{
+    /* background-position: 50% 50%; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('./Images/EventBanner.PNG');
+    top: 0px;
+    left: 0px;
+    /* height: 350px; */
+    width: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+.mainEventBanerPadMarg{
+  padding-top: 20vw;
+  padding-bottom: 2vw;
+}
+.BanerSmalTextCsS{
+  margin:0;
+  margin-top: 0.7vw;
+  color: white;
+  font-size: 15px;
+  opacity: .9;
+  font-weight: 400;
+}
+.eventDateBaner{
+  margin:0;
+  margin-top: 0.2vw;
+  color: white;
+  font-size: 15px;
+  opacity: .7;
+}
+.eventDayBaner{
+  margin:0;
+  font-size: 20px;
+  white-space: nowrap;
+  font-weight: 600;
+  color: white;
+}
+.hostedByPara{
+  font-weight: bolder;
+  font-size: 16px;
+  margin-top: 1.5vw;
+}
+.CountText{
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0;
+  margin-left: 0.5vw;
+}
+
+.timerDicCsS{
+  padding: 1vw;
+  background: white;
+  margin: 1vw;
+  border-radius: 50vw !important;
+}
+
+@media only screen and (min-device-width: 330px) and (max-device-width: 767px){
+  .EventBanerTextCsS{
+    color: white;
+    font-size: 30px; 
+    font-weight:bold;
+    margin: 0;
+  }
+  .timerDivPadd{
+    padding-bottom: 4vw; 
+    padding-top: 7vw;
+  }
+  .MainDivCount{
+    background: #6c1cff!important;
+    padding: 15px;
+    margin-bottom: 25px;
+    -webkit-transition: box-shadow .25s ease-in-out;
+    transition: box-shadow .25s ease-in-out;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
+    border-radius: 3px;
+  }
+  .timerTExt{
+    margin: 0px;
+    color: black;
+    font-weight: bolder;
+    font-size: 14px;
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1365px){
+  .EventBanerTextCsS{
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+    margin-top: -0.9vw;
+  }
+  .timerDivPadd{
+    padding-bottom: 2vw; 
+    padding-top: 2vw;
+  }
+  .MainDivCount{
+    background: #6c1cff!important;
+    padding: 15px;
+    margin-left: 1vw;
+    margin-bottom: 25px;
+    -webkit-transition: box-shadow .25s ease-in-out;
+    transition: box-shadow .25s ease-in-out;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
+    border-radius: 3px;
+  }
+  .timerTExt{
+    margin: 0px;
+    color: black;
+    font-weight: bolder;
+    font-size: 14px;
+  }
+}
+@media only screen and (min-device-width: 1366px) and (max-device-width: 1600px){
+  .EventBanerTextCsS{
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+    margin-top: -0.9vw;
+  }
+  .timerDivPadd{
+    padding-bottom: 2vw; 
+    padding-top: 2vw;
+  }
+  .MainDivCount{
+    background: #6c1cff!important;
+    padding: 15px;
+    margin-left: 1vw;
+    margin-bottom: 25px;
+    -webkit-transition: box-shadow .25s ease-in-out;
+    transition: box-shadow .25s ease-in-out;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
+    border-radius: 3px;
+  }
+  .timerTExt{
+    margin: 0px;
+    color: black;
+    font-weight: bolder;
+    font-size: 14px;
+  }
+}
+@media only screen and (min-device-width: 1600px){
+  .EventBanerTextCsS{
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+    margin-top: -0.9vw;
+  }
+  .timerDivPadd{
+    padding-bottom: 2vw; 
+    padding-top: 2vw;
+  }
+  .MainDivCount{
+    background: #6c1cff!important;
+    padding: 15px;
+    margin-left: 1vw;
+    margin-bottom: 25px;
+    -webkit-transition: box-shadow .25s ease-in-out;
+    transition: box-shadow .25s ease-in-out;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
+    border-radius: 3px;
+  }
+  .timerTExt{
+    margin: 0px;
+    color: black;
+    font-weight: bolder;
+    font-size: 17px;
+  }
+}
+.eventBanersty{
+  height: 200px;
+  width: 100%;
+  margin: 15px 1px 20px 0px;
+  border-radius: 1vw !important;
+}
+.btnCallEventbaner{
+  width: 100%;
+  padding: 1vw;
+  font-size: 17px;
+  background: linear-gradient(90deg, rgba(35,106,75,1) 0%, rgba(34,75,105,1) 100%);
+  color: white;
+  border:none;
+  border-radius: 5px !important;
+}
+.eventtabIcon{
+  font-size: 22px;
+  color:#236A4B;
 }
 
 .blurimage{
@@ -66,4 +256,95 @@
     border-radius: 5px !important;
     position: relative;
     margin-left: 12px;
+}
+.wrimagecard-topimage_headerEvent1{
+  background-image: url("../../images/Events/art.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerEvent2{
+  background-image: url("../../images/Events/career.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerEvent3{
+  background-image: url("../../images/Events/charity.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerEvent4{
+  background-image: url("../../images/Events/competition.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerEvent5{
+  background-image: url("../../images/Events/fest.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerEvent6{
+  background-image: url("../../images/Events/fitness.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerEvent7{
+  background-image: url("../../images/Events/food.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerEvent8{
+  background-image: url("../../images/Events/job.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerEvent9{
+  background-image: url("../../images/Events/kid\ friendly.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerEvent10{
+  background-image: url("../../images/Events/literary.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerEvent11{
+  background-image: url("../../images/Events/outdoor.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerEvent12{
+  background-image: url("../../images/Events/singles.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerEvent13{
+  background-image: url("../../images/Events/tech.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
 }

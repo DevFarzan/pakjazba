@@ -13,7 +13,7 @@ class EshopCard extends Component {
       <div className="container" style={{ width: "95%" }}>
         <div className="row" style={{ marginTop: "20px" }}>
           <span>
-            <h3 className="" style={{ fontWeight: "bold", textAlign: "left", marginLeft: "15px" }}> Products </h3>
+            <h3 className="exploreHead"> Products </h3>
             {/* <p style={{ marginLeft: "365px", marginTop: "-40px" }}> see detail </p> */}
           </span>
         </div>

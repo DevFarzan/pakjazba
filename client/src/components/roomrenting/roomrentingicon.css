@@ -123,6 +123,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 
 .romRentForm{
     background: white;
-    border-radius: 15px !important;
-    padding: 2% 2% 1% 2%;
+    /* border-radius: 15px !important; */
+    padding: 5%;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
 }

@@ -40,7 +40,7 @@ class BussinesCard extends Component {
             <Link key={1} to={obj}>
                 <div className="" style={{ 'marginBottom': '30px' }}>
                     <div className="card" style={{ width: '100%', backgroundColor: "#000000" }}>
-                        <img alt='' src={src} style={{ height: '200px', width: "100%", opacity: '0.5' }} />
+                        <img alt='' src={src} style={{ height: '200px', width: "100%", filter: 'brightness(0.5)' }} />
 
                         {detail == 'businessData' && <span>
                             <div className="businessborder">
@@ -59,7 +59,15 @@ class BussinesCard extends Component {
                                     </h4>
 
                                     <p style={{ marginTop: "-15px" }}>
-                                        {/* <div className="" style={{ 'marginBottom': '30px' }}>
+                
+                                    <span className="glyphicon glyphicon-map-marker"
+                                            style={{ color: "#008080", margin: "2px" }}
+                                        ></span>
+                                        <span style={{ color: "black" }}>{locate}</span>
+                                    </p>
+                                </div>
+                            </div>
+                             {/* <div className="" style={{ 'marginBottom': '30px' }}>
                         <div className="card" style={{ width: '100%' }}>
                             <img alt='' src={src} style={{ height: '200px', width: "100%" }} />
                             {detail == 'businessData' && <span>
@@ -74,13 +82,6 @@ class BussinesCard extends Component {
                                     {cardDetails.star}
                                 </span>
                                 <p style={{ marginTop: "-15px" }}> */}
-                                    <span className="glyphicon glyphicon-map-marker"
-                                            style={{ color: "#008080", margin: "2px" }}
-                                        ></span>
-                                        <span style={{ color: "black" }}>{locate}</span>
-                                    </p>
-                                </div>
-                            </div>
                         </span>}
                         {/* {detail == 'ecommerce' && <span>
                             <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}>

@@ -160,9 +160,9 @@ class EcommerceTAB extends Component{
                     {noRecordFound && <span style={{ textAlign: "center" }}><h1>Not found....</h1></span>}
                     {noRecordFound && <span style={{ textAlign: "center" }}><h5>you can find your search by type</h5></span>}
                     {noRecordFound && <div className="col-md-12" style={{ textAlign: "center" }}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
-                    {recordFound ? <div className="row">
+                    {recordFound ? 
                     <Eshopcard productsData={productsData} />
-                    </div> : null}
+                    : null}
                     
                     </div>
                 </div>

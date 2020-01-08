@@ -52,10 +52,10 @@ class VideoDetail extends Component {
     return (
       <div>
         <div className="row" style={{ marginTop: "100px" }}>
-          <div className="col-md-2" style={{ backgroundColor: '#236a4b'}}>
+          <div className="col-md-2" style={{ backgroundColor: '#236a4b',height: '28px'}}>
             <h4 className="NewsFeedMarque"s>News Feeds</h4>
           </div>
-          <div className="col-md-10 marqueTextSlide">
+          <div className="col-md-10" style={{padding:'0'}}>
             <marquee className="marqueTextSlide">
               A scrolling text created with HTML Marquee element.
               A scrolling text created with HTML Marquee element.

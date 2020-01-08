@@ -92,9 +92,12 @@ class JobDetail extends Component {
                     </div>
                 </span> */}
                 <Header />
-                <div className="row" style={{ marginTop: '-1.5vw' }}>
-                    {data.arr_url && <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ backgroundImage: `url(${data.arr_url[0]})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center center" }}>
-                        {/* <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">     */}
+                {data.arr_url && <div className="row" style={{ marginTop: '-1.5vw' }}>
+                    {/* {data.arr_url && <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ backgroundImage: `url(${data.arr_url[0]})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center center" }}> */}
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">    
+                    </div>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{padding:'0'}}>    
+                        <img src={data.arr_url[0]} alt="banner" className="JobBannertoP" />
                         <div className="row mainBannerPadMarg">
                             <div className="col-xs-4 col-sm-1 col-md-1 col-lg-1">
                                 {/* <img src={data.arr_url && data.arr_url} alt="icon" className="BannerIcon" /> */}
@@ -110,8 +113,8 @@ class JobDetail extends Component {
                             </div>
                         </div>
                     </div>
-                    }
-                </div>
+                    
+                </div>}
                 <div className="row tabMainDiV">
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <Tabs defaultActiveKey="1">

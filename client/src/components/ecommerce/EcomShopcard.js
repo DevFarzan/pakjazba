@@ -22,19 +22,30 @@ class EshopCard extends Component {
           <div className="col-md-12">
             {productsData && productsData.map((elem, key) => {
               return (
-                <div className="col-md-3 col-sm-4">
+                <div className="col-md-4 col-sm-4">
                   <Link rel="noopener noreferrer" to={{ pathname: `/products_DetailStyle/${elem._id}`, state: elem }} >
-                    <div className="ecomshopcard" style={{ cursor: 'pointer' }}>
-                      <div className="card2" >
+                    <div className="ecomshopcard">
+                      <div className="ecommerce-card" >
                         <img alt='' src={elem.images[0]} />
                       </div>
-                      <h4 style={{ marginTop: "20px", textAlign: "center" }}>{`$${elem.price}`} </h4>
-                      <p>
-                      {`${elem.product}`}
-                      </p>
-                      <button type="button" className="btn btn-sm btn2-success font-style" style={{ width: "100%" }}>Shop Now</button>
+                      <div className="">
+                        <div className="pricing">
+                          <h4 style={{margin:"0", color:"#337AB7"}}>{`$${elem.price}`} </h4>
+                        </div>
+                        <div className="category">
+                          <h4>
+                                {elem.category[1]}
+                              </h4>
+                        </div>
+                      </div>
+                      <div className="otherdetails">
+                        <span><h3>{elem.product.slice(0,15)}....</h3></span>
+                        <span><h5>By:{elem.shopName}</h5></span>
+                        <Link rel="noopener noreferrer" to={{ pathname: `/products_DetailStyle/${elem._id}`, state: elem }} ><button className="shop-btn">Shop Now</button></Link>
+                      </div>
+                      
                     </div>
-                  </Link>
+                    </Link>
                 </div>
               )
             })}

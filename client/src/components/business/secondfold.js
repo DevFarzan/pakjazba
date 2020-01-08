@@ -210,14 +210,41 @@ class Secondfold extends Component{
                               return (
                                   <Link key={key} to={{pathname: `/detail_business`, state: elem}}>
                                       <div className="col-md-4 col-sm-6"  style={{'marginBottom': '30px'}}>
-                                          <div className="card" style={{width:'100%'}}>
-                                              <img alt='' src={elem.businessImages.length ? elem.businessImages[0] : './images/def_card_img.jpg'} style={{height:'200px'}} />
+                                          {/* <div className="card" style={{width:'100%'}}>
+                                              
                                               <h4 style={{marginTop:'53px'}}><b>{elem.businessname}</b></h4>
                                               <span>
                                               <Rate disabled style={{paddingBottom: '20px', marginTop:"-10px"}} allowHalf value={elem.star}/>{Math.floor(elem.star)}</span>
-                                              {elem.businessaddress && <p style={{marginTop:"-15px"}}><span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}></span><span style={{color:"black"}}>{str}</span></p>}
-                                          </div>
-                                      </div>
+                                              {elem.businessaddress && <p style={{marginTop:"-15px"}}>
+                                              <span className="glyphicon glyphicon-map-marker" style={{color: "#008080",margin:"2px"}}></span>
+                                              <span style={{color:"black"}}>{str}</span></p>}
+                                          </div> */}
+                                            <div className="businessborder" style={{width:'100%'}}>
+                                                <img alt='' src={elem.businessImages.length ? elem.businessImages[0] : './images/def_card_img.jpg'} style={{height:'200px',width:'100%',filter:'brightness(0.5)'}} />
+                                                <div className="ratewithbox">
+                                                    <span>
+                                                        <Rate disabled
+                                                            style={{ fontSize: "12px" }}
+                                                            allowHalf value={elem.star}
+                                                        />
+                                                        {Math.floor(elem.star)}
+                                                    </span>
+                                                </div>
+                                                <div className="businessname">
+                                                    <h4 style={{ marginLeft: "-1px", marginBottom: "15px", marginTop: "20px" }}>
+                                                        <b>{elem.businessname}</b>
+                                                    </h4>
+
+                                                    <p style={{ marginTop: "-15px" }}>
+                                
+                                                    <span className="glyphicon glyphicon-map-marker"
+                                                            style={{ color: "#008080", margin: "2px" }}
+                                                        ></span>
+                                                        <span style={{ color: "black" }}>{elem.businessaddress}</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                   </Link>
 
                               )

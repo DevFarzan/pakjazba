@@ -51,70 +51,112 @@ class AddListing extends Component{
                     <div className="row">
 
                         <Link rel="noopener noreferrer" to={`/postad_business`}>
-                            <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <div className="devCard">
-                                    <div className="iconDev">
-                                        <img className="" src="images/post-your-need-images/businessListing.png" alt='img'/>
-                                    </div>
+                            <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 flip-card">
+                                <div className="devCard flip-card-inner">
+                                    <div className="flip-card-front">
+                                        <div className="iconDev1">
+                                            <img className="iconDevImg" src="images/post-your-need-images/businessListing.png" alt='img'/>
+                                        </div>
                                         <h4 className="needPost-Head">Publish Your Business</h4>
-                                
+                                    </div>
+                                    <div className="flip-card-back">
+                                        <div className="flip-card-back-child-dev1">
+                                            <h4 className="needPost-Head">Publish Your Business</h4>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </Link>
 
                         <Link rel="noopener noreferrer" to={`/postad_Roommates`}>
-                            <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <div className="devCard">
-                                    <div className="iconDev">
-                                        <img className="" src="images/post-your-need-images/roomRental.png" alt='img'/>
-                                    </div>
+                            <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 flip-card">
+                                <div className="devCard flip-card-inner">
+                                    <div className="flip-card-front">
+                                        <div className="iconDev2">
+                                            <img className="iconDevImg" src="images/post-your-need-images/roomRental.png" alt='img'/>
+                                        </div>
                                         <h4 className="needPost-Head">Roommates / Rentals</h4>
-                                    
+                                    </div>
+                                    <div className="flip-card-back">
+                                        <div className="flip-card-back-child-dev2">
+                                            <h4 className="needPost-Head">Roommates / Rentals</h4>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </Link>
 
                         <Link rel="noopener noreferrer" to={`/postad_buysell`}>
-                            <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <div className="devCard">
-                                    <div className="iconDev">
-                                        <img className="" src="images/post-your-need-images/buyNSell.png" alt='img'/>
-                                    </div>
+                            <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 flip-card">
+                                <div className="devCard flip-card-inner">
+                                    <div className="flip-card-front">
+                                        <div className="iconDev3">
+                                            <img className="iconDevImg" src="images/post-your-need-images/buyNSell.png" alt='img'/>
+                                        </div>
                                         <h4 className="needPost-Head">Buy & Sell</h4>
+                                    </div>
+                                    <div className="flip-card-back">
+                                        <div className="flip-card-back-child-dev3">
+                                            <h4 className="needPost-Head">Buy & Sell</h4>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </Link>
                         
                         <Link rel="noopener noreferrer" to={`/postad_jobPortal`}>
-                            <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <div className="devCard">
-                                    <div className="iconDev">
-                                        <img className="" src="images/post-your-need-images/jobPortal.png" alt='img'/>
+                            <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 flip-card">
+                                <div className="devCard flip-card-inner">
+                                    <div className="flip-card-front">
+                                        <div className="iconDev4">
+                                            <img className="iconDevImg" src="images/post-your-need-images/jobPortal.png" alt='img'/>
+                                        </div>
+                                        <h4 className="needPost-Head">Job Portal</h4>
                                     </div>
-                                    <h4 className="needPost-Head">Job Portal</h4>
+                                    <div className="flip-card-back">
+                                        <div className="flip-card-back-child-dev4">
+                                            <h4 className="needPost-Head">Job Portal</h4>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </Link>
 
                         <Link rel="noopener noreferrer" to={`/postad_eventPortal`}>
-                            <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <div className="devCard">
-                                    <div className="iconDev">
-                                        <img className="" src="images/post-your-need-images/events.png" alt='img'/>
+                            <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 flip-card">
+                                <div className="devCard flip-card-inner">
+                                    <div className="flip-card-front">
+                                        <div className="iconDev5">
+                                            <img className="iconDevImg" src="images/post-your-need-images/events.png" alt='img'/>
+                                        </div>
+                                        <h4 className="needPost-Head">Organize an Event</h4>
                                     </div>
-                                    <h4 className="needPost-Head">Organize an Event</h4>
+                                    <div className="flip-card-back">
+                                        <div className="flip-card-back-child-dev5">
+                                            <h4 className="needPost-Head">Organize an Event</h4>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </Link>
 
                         <Link rel="noopener noreferrer" to={`/shopForm`}>
-                            <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <div className="devCard">
-                                    <div className="iconDev">
-                                        <img className="" src="images/post-your-need-images/ecommerce.png" alt='img'/>
+                            <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 flip-card">
+                                <div className="devCard flip-card-inner">
+                                    <div className="flip-card-front">
+                                        <div className="iconDev6">
+                                            <img className="iconDevImg" src="images/post-your-need-images/ecommerce.png" alt='img'/>
+                                        </div>
+                                        <h4 className="needPost-Head">Creat Shop</h4>
                                     </div>
-                                    <h4 className="needPost-Head">Creat Shop</h4>
+                                    <div className="flip-card-back">
+                                        <div className="flip-card-back-child-dev6">
+                                            <h4 className="needPost-Head">Creat Shop</h4>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
+                                
                             </div>
                         </Link>
 

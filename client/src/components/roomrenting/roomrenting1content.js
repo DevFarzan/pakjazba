@@ -164,15 +164,71 @@ class Roomrenting1content extends Component{
                             let postedOn = moment(elem.posted, "LL").format('YYYY-MM-DD');
                             return(
                                 <Link key={key} to={{pathname: `/detail_roomRent`, state: elem}}>
-                                    <div className="col-md-3 col-sm-4 col-xs-12">
+                                    <div className="col-md-4 col-sm-4 col-xs-12">
                                         <img src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'} class="img-responsive list_img" />
-                                        <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}>{elem.postingtitle.slice(0, 23)}{elem.postingtitle.length > 22 ? '...' : ''}</p>
+                                        {/* <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}>{elem.postingtitle.slice(0, 23)}{elem.postingtitle.length > 22 ? '...' : ''}</p>
                                         <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}><b>{str}</b>
-                                            {/*<br/><b>{elem.contactname}</b>*/}
+                                            <br/><b>{elem.contactname}</b>
                                         <br/>{'$' + elem.rent + ' ' + elem.pricemode}</p>
-                                        <span><Rate disabled style={{paddingBottom: '20px', marginTop:"-20px",fontFamily: 'Source Sans Pro, sans-serif'}} allowHalf value={elem.star}/>
-                                        {elem.star}</span>
-                                        
+                                        <span>
+                                            <Rate disabled style={{paddingBottom: '20px', marginTop:"-20px",fontFamily: 'Source Sans Pro, sans-serif'}} allowHalf value={elem.star}/>
+                                            {elem.star}
+                                        </span> */}
+                                        <div className="row" style={{ padding: "0" }}>
+                                                <div className="col-md-12" style={{ padding: "0" }}>
+                                                    <div className="col-md-6 col-sm-5 col-xs-5">
+                                                        <div className="pricingroomExplore">
+                                                            {'$' + elem.rent + ' ' + elem.pricemode}
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-6 col-sm-7 col-xs-7">
+                                                        <span className="rentstarExplore">
+                                                            <Rate disabled
+                                                                style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif', fontSize: "12px" }}
+                                                                allowHalf value={elem.star}
+                                                            />
+                                                            {elem.star}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="roomdetailcardExplore">
+                                                <p style={{ fontFamily: 'Poppins, sans-serif' }}>
+                                                    {elem.postingtitle}
+                                                </p>
+
+                                                <p style={{ fontFamily: 'Poppins, sans-serif' }}>
+                                                    <span className="glyphicon glyphicon-map-marker"
+                                                        style={{ color: "#008080", margin: "0", left: "-3px" }}
+                                                    ></span>
+                                                <span>
+                                                    <b>{elem.propertylocation.slice(0, 35)}</b></span>
+                                                <br />
+                                            </p>
+                                        </div>
+                                        <table id="customers">
+                                            <tr>
+                                                <td><span className="fa fa-inbox"
+                                                    style={{ color: "#236A4B", margin: "0", left: "-3px" }}
+                                                ></span><span>{elem.furnished}</span></td>
+
+                                                <td><span className="fa fa-users"
+                                                    style={{ color: "#236A4B", margin: "0", left: "-3px" }}
+                                                ></span><span>{elem.accomodates} People</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span className="fa fa-shower" style={{ color: "#236A4B", margin: "0", left: "-3px" }}>
+                                                    </span>
+                                                    <span>Bathroom</span>
+                                                </td>
+                                                <td>
+                                                    <span className="fa fa-bed" style={{ color: "#236A4B", margin: "0", left: "-3px" }}>
+                                                    </span>
+                                                    <span>{elem.subSubCategory}</span>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </Link>
                             )

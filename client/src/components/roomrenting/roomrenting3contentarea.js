@@ -174,6 +174,36 @@ class Roomrenting3contentarea extends Component{
         return(
             <div>
                 <Gallery images={images} style={{marginTop: '0%'}}/>
+
+                <div className="col-md-5 hidden-xs BnrBtnUp" style={{position: 'relative',marginTop: '-7%',float: 'right', marginRight: '7%',}}>
+                  <div className="row">
+                    <div className="col-md-4"></div>
+                    <div className="col-md-4">
+                    <h5 style={{color: '#bdc1c5'}}>Price per month</h5>
+                    <h4 className="h4Style" style={{color: 'white',margin: '0px', fontWeight: 'bold', }}>$700</h4></div>
+                    <div className="col-md-4">
+                      <button className="btnCallbaner">
+                        <Icon type="phone" /> 
+                        <span>Call Now</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-5 visible-xs BnrBtnUp" style={{position: 'relative',marginTop: '-40%',float: 'right', marginRight: '7%',}}>
+                  <div className="row">
+                    <div className="col-md-4"></div>
+                    <div className="col-md-4">
+                    <h5 style={{color: '#bdc1c5'}}>Price per month</h5>
+                    <h4 className="h4Style" style={{color: 'white',margin: '0px', fontWeight: 'bold', }}>$700</h4></div>
+                    <div className="col-md-4">
+                      <button className="btnCallbaner">
+                        <Icon type="phone" /> 
+                        <span>Call Now</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="row tabMainDiV">
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <Tabs defaultActiveKey="1">
@@ -197,7 +227,7 @@ class Roomrenting3contentarea extends Component{
                                 }
                                 key="2"
                             >
-                                <RoomRenting3ContentArea2 />
+                                {/* <RoomRenting3ContentArea2 /> */}
                             </TabPane>
                             <TabPane
                                 // onClick={this.tabnavigation('false')}
@@ -206,17 +236,54 @@ class Roomrenting3contentarea extends Component{
                                         Information{" "}
                                     </span>
                                 }
-                                key="2"
+                                key="3"
                             >
-                                <RoomRenting3ContentArea3 />
+                                {/* <RoomRenting3ContentArea3 /> */}
                             </TabPane>
                         </Tabs>
                     </div>
                 </div>
 
-                  <div className="container hidden-xs" style={{width:"70%"}}>
+                <div className="row" style={{backgroundColor: '#f7f5ed'}}>
+                    <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2"></div>
+                    <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                        <div className="row" style={{textAlign:'center'}}>
+                            <div className="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+                                <Icon type="phone" className="tabIcon" />
+                                <p>Call now</p>
+                            </div>
+                            <div className="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+                                <Icon type="heart" className="tabIcon" />
+                                <p>Bookmark</p>
+                            </div>
+                            <div className="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+                                <Icon type="share-alt" className="tabIcon" />
+                                <p>Share</p>
+                            </div>
+                            <div className="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+                                <Icon type="environment" className="tabIcon" />
+                                <p>Direction</p>
+                            </div>
+                            <div className="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+                                <Icon type="branches" className="tabIcon" />
+                                <p>Website</p>
+                            </div>
+                            <div className="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+                                <Icon type="mail" className="tabIcon" />
+                                <p>Send email</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2"></div>
+                </div>
+
+                  <div className="container hidden-xs">{/* style={{width:"70%"}} */}
                     <div className="row">
-                      <div className="col-md-8">
+                      <div className="col-md-6">
+                        <div className="romRentForm" style={{marginBottom: '5%'}}>
+                          <h3 style={{marginTop:'9px'}}> Description </h3>
+                          <p>{data.discription || data.description}</p>
+                        </div>
                         <div className="romRentForm" style={{marginBottom: '5%'}}>
                           <h3 className="head-space2"> California  </h3>
 
@@ -271,54 +338,10 @@ class Roomrenting3contentarea extends Component{
                           </div>
                         </div>
 
-                        <div className="col-md-12 romRentForm" style={{marginBottom: '5%'}}>
+                        {/* <div className="col-md-12 romRentForm" style={{marginBottom: '5%'}}>
                           <h3 style={{marginTop:'9px'}}> Description </h3>
                           <p>{data.discription || data.description}</p>
-                        </div>
-
-                          <div className="col-md-12 romRentForm" style={{marginBottom: '5%'}}>
-                            <h3> Amenities </h3>{/* style={{marginTop:'9px'}} */}
-                            <div className="forimage">
-                              <div className="row" style={{padding:"0"}}>
-                                <div className="col-md-12 col-sm-12 col-xs-12">
-                                  {AIncludes && AIncludes.map((elem, key) => {
-                                    return(
-                                      this.state.amenitiesArr.map((el, i) => {
-                                        if(el.key === elem){
-                                          return (
-                                            <div className="col-md-4 col-sm-4 col-xs-12">
-                                              <div className="col-md-4 col-xs-5">
-                                                <img src={el.value}/>
-                                              </div>
-                                              <div className="col-md-8 col-xs-7" style={{width: '50%'}}>
-                                                <p> {el.key} </p>
-                                              </div>
-                                            </div>
-                                          )
-                                        }
-                                      })
-                                    )
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="col-md-12 romRentForm" style={{marginBottom: '5%'}}>
-                            <h3> Sleeping Arrangments </h3>{/* style={{marginTop:'9px'}} */}
-                            <div className="forimage" style={{display:"inline"}}>
-                              <div className="row" style={{padding:"0"}}>
-                                <div className="col-md-5 col-sm-4">
-                                  <div className="col-md-6 col-sm-5 col-xs-4">
-                                    <i class="fa fa-bed" aria-hidden="true" style={{fontSize: '30px'}}></i>
-                                  </div>
-                                  <div className="col-md-6 col-sm-7 col-xs-8">
-                                    <p style={{marginTop:"15px", marginBottom:"0"}}> { data.subSubCategory } </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                        </div> */}
 
                           {/*<p className="availability">  Availability </p>
                           <p style={{marginBottom:"0"}}> 1 night minimum stay </p>
@@ -451,7 +474,7 @@ class Roomrenting3contentarea extends Component{
                       </div>
                       </div>
 
-                      <div className="col-md-4" style={{position: 'sticky',top:'25'}}>
+                      <div className="col-md-6" style={{position: 'sticky',top:'25'}}>
                         <div className="roomdetail romRentForm">
                           <div className="row">{/* style={{padding:"0"}} */}
                            <div className="col-md-7">
@@ -508,88 +531,150 @@ class Roomrenting3contentarea extends Component{
                             </div>
                           </div>
                         </div>
+                        <div className="col-md-12 romRentForm" style={{margin: '5% 0%'}}>
+                            <h3> Amenities </h3>{/* style={{marginTop:'9px'}} */}
+                            <div className="forimage">
+                              <div className="row" style={{padding:"0"}}>
+                                <div className="col-md-12 col-sm-12 col-xs-12">
+                                  {AIncludes && AIncludes.map((elem, key) => {
+                                    return(
+                                      this.state.amenitiesArr.map((el, i) => {
+                                        if(el.key === elem){
+                                          return (
+                                            <div className="col-md-6 col-sm-4 col-xs-12">
+                                              <div className="col-md-4 col-xs-5">
+                                                <img src={el.value}/>
+                                              </div>
+                                              <div className="col-md-8 col-xs-7" style={{width: '50%'}}>
+                                                <p> {el.key} </p>
+                                              </div>
+                                            </div>
+                                          )
+                                        }
+                                      })
+                                    )
+                                  })}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="col-md-12 romRentForm" style={{marginBottom: '5%'}}>
+                            <h3> Sleeping Arrangments </h3>{/* style={{marginTop:'9px'}} */}
+                            <div className="forimage" style={{display:"inline"}}>
+                              <div className="row" style={{padding:"0"}}>
+                                <div className="col-md-5 col-sm-4">
+                                  <div className="col-md-6 col-sm-5 col-xs-4">
+                                    <i class="fa fa-bed" aria-hidden="true" style={{fontSize: '30px'}}></i>
+                                  </div>
+                                  <div className="col-md-6 col-sm-7 col-xs-8">
+                                    <p style={{marginTop:"15px", marginBottom:"0"}}> { data.subSubCategory } </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          
+                          <div className="col-md-12 hidden-xs" style={{padding: '0%'}}>{/*container style={{width:"68%"}} width:'70' */}
+                            <div className="row">
+                                <div className=" romRentForm">{/*card outset  style={{ boxShadow: "none", background:"whitesmoke"}}*/}
+                                    <div className="card-body space">
+                                        <div className="row">
+                                            <div className="col-md-12 col-sm-12 col-xs-12">
+                                                <h3><b><a name="linkReview" className="black">Add Review</a></b></h3>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-12">
+                                                {/*Section: Contact v.2*/}
+                                                <section className="section">
+                                                    <h4>Your Rating:
+                                                        <Rate onChange={this.handleChange.bind(this)} allowHalf value={this.state.star}/>
+                                                    </h4>
+                                                </section>
+                                                {/*Section: Contact v.2*/}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        {/*Grid column*/}
+                                        <div className="col-md-12 mb-md-0 mb-5">
+                                            <form id="contact-form" name="contact-form">
+                                                {/*Grid row*/}
+                                                <div className="row">
+                                                    {/*Grid column*/}
+                                                    <div className="col-md-6">
+                                                        <div className="md-form mb-0">
+                                                            <label className="">Your name</label>
+                                                            <input type="text" id="name1" name="name" className="form-control" value={this.state.name1} onChange={this.onChangeReview.bind(this)} />
+                                                        </div>
+                                                    </div>
+                                                    {/*Grid column*/}
+                                                    {/*Grid column*/}
+                                                    <div className="col-md-6">
+                                                        <div className="md-form mb-0">
+                                                            <label className="">Your email</label>
+                                                            <input type="text" id="email1" name="email" className="form-control" value={this.state.email1} onChange={this.onChangeReview.bind(this)}/>
+                                                        </div>
+                                                    </div>
+                                                    {/*Grid column*/}
+                                                </div>
+                                                {/*Grid row*/}
+                                                {/*Grid row*/}
+                                                <div className="row">
+                                                    {/*Grid column*/}
+                                                    <div className="col-md-12">
+                                                        <div className="md-form">
+                                                            <label>Your message</label>
+                                                            <textarea type="text" id="message1" name="message" rows="2"
+                                                            className="form-control md-textarea"
+                                                            value={this.state.msg1}
+                                                            onChange={this.onChangeReview.bind(this)}></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {/*Grid row*/}
+                                            </form>
+                                            <div className="text-center text-md-left">
+                                                {this.state.loader && <Spin indicator={antIcon} />}
+                                                <a disabled={!!this.state.loader} onClick={this.submitReview.bind(this)} className="btn color_button" style={{width: "35%"}}>Send</a>
+                                            </div>
+                                            <div className="status"></div>
+                                        </div>
+                                        {/*Grid column*/}
+                                    </div>
+                                </div>
+                            </div>
+                  </div>
+
+
+
+
                       </div>
                     </div>
                   </div>
-                  <div className="container hidden-xs" style={{width:"68%"}}>{/*width:'70' */}
-                    <div className="row">
-                        <div className=" romRentForm">{/*card outset  style={{ boxShadow: "none", background:"whitesmoke"}}*/}
-                            <div className="card-body space">
-                                <div className="row">
-                                    <div className="col-md-12 col-sm-12 col-xs-12">
-                                        <h3><b><a name="linkReview" className="black">Add Review</a></b></h3>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-12">
-                                        {/*Section: Contact v.2*/}
-                                        <section className="section">
-                                            <h4>Your Rating:
-                                                <Rate onChange={this.handleChange.bind(this)} allowHalf value={this.state.star}/>
-                                            </h4>
-                                        </section>
-                                        {/*Section: Contact v.2*/}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row">
-                                {/*Grid column*/}
-                                <div className="col-md-7 mb-md-0 mb-5">
-                                    <form id="contact-form" name="contact-form">
-                                        {/*Grid row*/}
-                                        <div className="row">
-                                            {/*Grid column*/}
-                                            <div className="col-md-6">
-                                                <div className="md-form mb-0">
-                                                    <label className="">Your name</label>
-                                                    <input type="text" id="name1" name="name" className="form-control" value={this.state.name1} onChange={this.onChangeReview.bind(this)} />
-                                                </div>
-                                            </div>
-                                            {/*Grid column*/}
-                                            {/*Grid column*/}
-                                            <div className="col-md-6">
-                                                <div className="md-form mb-0">
-                                                    <label className="">Your email</label>
-                                                    <input type="text" id="email1" name="email" className="form-control" value={this.state.email1} onChange={this.onChangeReview.bind(this)}/>
-                                                </div>
-                                            </div>
-                                            {/*Grid column*/}
-                                        </div>
-                                        {/*Grid row*/}
-                                        {/*Grid row*/}
-                                        <div className="row">
-                                            {/*Grid column*/}
-                                            <div className="col-md-12">
-                                                <div className="md-form">
-                                                    <label>Your message</label>
-                                                    <textarea type="text" id="message1" name="message" rows="2"
-                                                     className="form-control md-textarea"
-                                                     value={this.state.msg1}
-                                                     onChange={this.onChangeReview.bind(this)}></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {/*Grid row*/}
-                                    </form>
-                                    <div className="text-center text-md-left">
-                                        {this.state.loader && <Spin indicator={antIcon} />}
-                                        <a disabled={!!this.state.loader} onClick={this.submitReview.bind(this)} className="btn button_custom" style={{width: "35%"}}>Send</a>
-                                    </div>
-                                    <div className="status"></div>
-                                </div>
-                                {/*Grid column*/}
-                            </div>
-                        </div>
-                    </div>
-                  </div>
+
                   <div className="container visible-xs">
                     <div className="row">
-                      <div className="col-md-8">
-                          <h3 className="head-space2"></h3>
-                          <h1 className="head-space2" style={{fontSize:'18px'}}><b>{data.postingtitle || data.postingTitle} Available</b></h1>
+                      
+                        <div className="romRentForm" style={{margin: '5% 0', padding: '5%'}}>
+                          <h3 className="head-space2">California</h3>
+                          <h1 className="head-space2" style={{fontSize:'18px'}}>
+                            <b>{data.postingtitle || data.postingTitle} Available</b>
+                          </h1>
                           <h4 style={{marginLeft:"0",fontSize:'18px'}}> { data.propertylocation || data.propertyLocation } </h4>
-                          <h5><span className="glyphicon glyphicon-phone" style={{marginRight: "15px", color:"#36a89f"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{phone}</span></h5>
-                          <h5 style={{marginBottom:"70px"}}><span className="glyphicon glyphicon-globe" style={{marginRight: "15px", color:"#36a89f"}}></span><span style={{color: "rgba(0, 0, 0, 0.65)"}}>{email}</span></h5>
+                          <h5>
+                            <span className="glyphicon glyphicon-phone" style={{marginRight: "15px", color:"#36a89f"}}></span>
+                            <span style={{color: "rgba(0, 0, 0, 0.65)"}}>{phone}</span>
+                          </h5>
+                          <h5 style={{marginBottom:"70px"}}>
+                            <span className="glyphicon glyphicon-globe" style={{marginRight: "15px", color:"#36a89f"}}></span>
+                            <span style={{color: "rgba(0, 0, 0, 0.65)"}}>{email}</span>
+                          </h5>
+                        </div>
+
+                        <div className="romRentForm" style={{margin: '5% 0', padding: '5%'}}>
                           <div className="row" style={{padding:"0"}}>
                             <div className="col-md-1">
                             <i className="fa fa-home" style={{fontSize:"30px"}}/>
@@ -623,27 +708,32 @@ class Roomrenting3contentarea extends Component{
                                </span>
                             </div>
                           </div>
-                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'100%'}}/>
+                        </div>
+                          {/* <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'100%'}}/> */}
+                        <div className="romRentForm" style={{margin: '5% 0'}}>
                           <h3 style={{marginTop:'9px'}}> Description </h3>
                           <p>{data.discription || data.description}</p>
-                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
+
+                          {/* <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/> */}
+
                           <h3 style={{marginTop:'9px'}}> Amenities </h3>
                           <div className="forimage">
-                            <div className="row" style={{padding:"0"}}>
+                            <div className="row">
                               <div className="col-md-12 col-sm-12 col-xs-12">
                                 {AIncludes && AIncludes.map((elem, key) => {
                                   return(
                                     this.state.amenitiesArr.map((el, i) => {
                                       if(el.key === elem){
                                         return (
-                                          <div className="col-md-4 col-sm-4 col-xs-12">
+ 
+                                          <div className="col-md-12 col-sm-12 col-xs-12">
                                             <div className="col-md-4 col-xs-5">
                                               <img src={el.value}/>
                                             </div>
-                                            <div className="col-md-8 col-xs-7" style={{width: '50%'}}>
+                                            <div className="col-md-8 col-xs-7">{/* style={{width: '50%'}} */}
                                               <p> {el.key} </p>
                                             </div>
-                                          </div>
+                                           </div>
                                         )
                                       }
                                     })
@@ -652,7 +742,9 @@ class Roomrenting3contentarea extends Component{
                               </div>
                             </div>
                           </div>
-                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
+                        </div>
+                          {/* <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/> */}
+                        <div className="romRentForm" style={{margin: '5% 0', padding: '5%'}}>
                           <h3 style={{marginTop:'9px'}}> Sleeping Arrangments </h3>
                           <div className="forimage" style={{display:"inline"}}>
                             <div className="row" style={{padding:"0"}}>
@@ -666,11 +758,13 @@ class Roomrenting3contentarea extends Component{
                               </div>
                             </div>
                           </div>
+                        </div>
                           {/*<p className="availability">  Availability </p>
                           <p style={{marginBottom:"0"}}> 1 night minimum stay </p>
                           <span>
                             <Rate allowHalf defaultValue={5} />
                           </span>*/}
+                        <div className="romRentForm" style={{margin: '5% 0', padding: '5%'}}>
                           <div className="row" style={{padding:"0px", marginTop:"50px"}}>
                             <div className="col-md-2 col-sm-3" style={{paddingLeft:"0"}}>
                                 <h4>
@@ -740,7 +834,9 @@ class Roomrenting3contentarea extends Component{
                                 </div>
                             </div>
                           </div>
-                          <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/>
+                        </div>
+                          {/* <hr style={{borderTop:'1px solid black',borderTopWidth:'1px',width:'97%'}}/> */}
+                        
                           <div className="card">
                               <div className="row" style={{padding:"0px"}}>
                               {!!reviews.length && <div className="row" style={{padding:"0px"}}>
@@ -789,9 +885,9 @@ class Roomrenting3contentarea extends Component{
                                 >More</a>
                               </div>}
                           </div>
-                      </div>
-                      </div>
-
+                        </div>
+                      
+                    <div className="romRentForm" style={{margin: '5% 0', padding: '5%'}}>
                       <div className="col-md-4" style={{position: 'sticky',top:'25'}}>
                         <div className="roomdetail">
                           <h2 className="head-space2"><b>$ { data.rent || data.price }</b><sub>{ data.pricemode || data.priceMode }</sub></h2>
@@ -841,10 +937,11 @@ class Roomrenting3contentarea extends Component{
                         </div>
                       </div>
                     </div>
+                    </div>
                   </div>
                   <div className="container visible-xs">
                     <div className="row">
-                        <div className="card outset" style={{ boxShadow: "none", background:"whitesmoke"}}>
+                        <div className="card outset romRentForm">{/* style={{ boxShadow: "none", background:"whitesmoke"}} */}
                             <div className="card-body space">
                                 <div className="row">
                                     <div className="col-md-12 col-sm-12 col-xs-12">
@@ -904,7 +1001,7 @@ class Roomrenting3contentarea extends Component{
                                     </form>
                                     <div className="text-center text-md-left">
                                         {this.state.loader && <Spin indicator={antIcon} />}
-                                        <a disabled={!!this.state.loader} onClick={this.submitReview.bind(this)} className="btn button_custom" style={{width: "35%"}}>Send</a>
+                                        <a disabled={!!this.state.loader} onClick={this.submitReview.bind(this)} className="btn color_button" style={{width: "35%"}}>Send</a>
                                     </div>
                                     <div className="status"></div>
                                 </div>

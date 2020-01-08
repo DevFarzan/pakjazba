@@ -6,6 +6,7 @@
     font-weight: bold;
     color: white;
     background: linear-gradient(45deg, #236a4b, #224b69);
+    height: 28px;
 }
 
 .videoheading h6{
@@ -239,7 +240,7 @@ a.socialbox .description span {
 }
 
 .stylish-input-group .input-group-addon{
-    background: white !important;
+  background: linear-gradient(#236A4B, #224B69);
 }
 .stylish-input-group .form-control{
 	border-right:0;
@@ -264,29 +265,34 @@ a.socialbox .description span {
   .NewsFeedMarque{
     color: white;
     margin: 0.2vw 0vw 0vw 3vw;
+    font-size: 17px;
   }
 }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1023px){
   .NewsFeedMarque{
     color: white;
     margin: 0.2vw 0vw 0vw 3vw;
+    font-size: 17px;
   }
 }
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1365px){
   .NewsFeedMarque{
     color: white;
     margin: 0.2vw 0vw 0.55vw 3vw;
+    font-size: 17px;
   }
 }
 @media only screen and (min-device-width: 1366px) and (max-device-width: 1600px){
   .NewsFeedMarque{
     color: white;
     margin: 0.2vw 0vw 0.45vw 3vw;
+    font-size: 17px;
   }
 }
 @media only screen and (min-device-width: 1600px){
   .NewsFeedMarque{
     color: white;
     margin: 0.2vw 0vw 0.25vw 3vw;
+    font-size: 17px;
   }
 }

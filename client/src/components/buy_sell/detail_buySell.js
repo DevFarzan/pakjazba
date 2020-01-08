@@ -1,47 +1,48 @@
 import React, { Component } from 'react';
-import Buydetailfirstfold from './buydetail/buydetailfirstfold'
+import Buydetailfirstfold  from './buydetail/buydetailfirstfold'
 import { Redirect } from 'react-router';
 import Burgermenu from '../header/burgermenu';
 import Footer from '../footer/footer';
 import {HttpUtils} from "../../Services/HttpUtils";
 
 class DetailBuySell extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            isData: true,
-            data: {}
-        }
-    }
+    // constructor(props){
+    //     super(props)
+    //     this.state = {
+    //         isData: true,
+    //         data: {}
+    //     }
+    // }
 
-    componentDidMount(){
-        window.scrollTo(0,0);
-        let data = this.props.location.state;
-        if(data === undefined){
-            this.setState({
-                isData: false
-            })
-        }else {
-            this.getProfile(data)
-        }
-    }
+    // componentDidMount(){
+    //     window.scrollTo(0,0);
+    //     let data = this.props.location.state;
+    //     if(data === undefined){
+    //         this.setState({
+    //             isData: true
+    //         })
+    //     }else {
+    //         this.getProfile(data)
+    //     }
+    // }
 
-    async getProfile(data){
-        let _id = data.profileid ? data.profileid : data.profileId ? data.profileId : '';
-        let req = await HttpUtils.get('getprofile?profileId=' + _id);
-        let allData = {...data, ...{userImage: req ? req.content.imageurl : ''}}
-        this.setState({
-            isData : true,
-            data : allData
-        })
-    }
+    // async getProfile(data){
+    //     let _id = data.profileid ? data.profileid : data.profileId ? data.profileId : '';
+    //     let req = await HttpUtils.get('getprofile?profileId=' + _id);
+    //     let allData = {...data, ...{userImage: req ? req.content.imageurl : ''}}
+    //     this.setState({
+    //         isData : true,
+    //         data : allData
+    //     })
+    // }
 
-    render(){
-        const { isData, data } = this.state;
+ 
+        // const { isData, data } = this.state;
 
-        if(!isData){
-            return <Redirect to='/' />
-        }
+        // if(!isData){
+        //     return <Redirect to='/detail_buySell' />
+        // }
+        render(){
         return(
             <div>
                 <span>
@@ -54,12 +55,13 @@ class DetailBuySell extends Component{
                 </span>
                 <div className="hidden-xs">
                   <div className='container' style={{width:"60%",textAlign:'center', marginTop:"15px"}}>
-                      <Buydetailfirstfold data={data}/>
+                      {/* <Buydetailfirstfold data={data}/> */}
+                        <Buydetailfirstfold/>
                   </div>
                 </div>
                 <div className="visible-xs">
                   <div className='container' style={{width:"100%",textAlign:'center'}}>
-                      <Buydetailfirstfold data={data}/>
+                      {/* <Buydetailfirstfold data={data}/> */}
                   </div>
                 </div>
 

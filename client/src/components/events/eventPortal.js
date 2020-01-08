@@ -556,7 +556,7 @@ class EventPortal extends Component {
                 <div className="hidden-sm" style={{ marginTop: '8%' }}></div>
                 <div className="visible-sm" style={{ marginTop: '15%' }}></div>
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
-                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%',marginTop: '46px', position: 'fixed',}}>
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs" id="section1" style={{marginLeft: '4%',marginTop: '46px', position: 'fixed',}}>
                 <Anchor className="" style={{margin: '2%',backgroundColor: '#f6f6f6'}}>
                         <Link href="#scrollChange1" title="Event Details" />
                         <Link href="#scrollChange2" title="Upload" />
@@ -613,50 +613,48 @@ class EventPortal extends Component {
 
                                         <div className="row">
                                             <div className="col-md-12">
-                                                <div className="col-md-6">
-                                                    <div className="row" style={{ padding: '0px' }}>
-                                                        <div className="col-md-6" style={{ display: 'grid' }}>
-                                                            <label> State </label>
-                                                            <FormItem style={{padding: '2% 0%'}}>
-                                                                {getFieldDecorator('state', {
-                                                                    initialValue: this.state.state,
-                                                                    rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
-                                                                })(
-                                                                    <Cascader options={statesUS} showSearch={{ filter }} onChange={this.onChangeState.bind(this)} />
-                                                                )}
-                                                            </FormItem>
-                                                        </div>
-                                                        <div className="col-md-6">
-                                                            <label> City </label>
-                                                            <FormItem style={{padding: '2% 0%'}}>
-                                                                {getFieldDecorator('city', {
-                                                                    initialValue: this.state.city,
-                                                                    rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
-                                                                })(
-                                                                    <Cascader options={citiesUS} showSearch={{ filter }} />
-                                                                )}
-                                                            </FormItem>
-                                                        </div>
+                                                <div className="row" style={{ padding: '0px' }}>
+                                                    <div className="col-md-6" style={{ display: 'grid' }}>
+                                                        <label> State </label>
+                                                        <FormItem style={{padding: '2% 0%'}}>
+                                                            {getFieldDecorator('state', {
+                                                                initialValue: this.state.state,
+                                                                rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
+                                                            })(
+                                                                <Cascader options={statesUS} showSearch={{ filter }} onChange={this.onChangeState.bind(this)} />
+                                                            )}
+                                                        </FormItem>
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <label> City </label>
+                                                        <FormItem style={{padding: '2% 0%'}}>
+                                                            {getFieldDecorator('city', {
+                                                                initialValue: this.state.city,
+                                                                rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
+                                                            })(
+                                                                <Cascader options={citiesUS} showSearch={{ filter }} />
+                                                            )}
+                                                        </FormItem>
                                                     </div>
                                                 </div>
-                                                <div className="col-md-6">
-                                                    <label htmlFor="sel1">Date Range</label>
-                                                    <FormItem style={{padding: '2% 0%'}}>
-                                                        {getFieldDecorator('dateRange', {
-                                                            initialValue: [(this.state.startDate),
-                                                            (this.state.endDate)],
-                                                            rules: [{ validator: this.validateDate.bind(this) }],
-                                                        })(
-                                                            <RangePicker
-                                                                ranges={{
-                                                                    Today: [moment(), moment()],
-                                                                    'This Month': [moment(), moment().endOf('month')]
-                                                                }}
-                                                                onChange={this.onChangeDate.bind(this)}
-                                                            />
-                                                        )}
-                                                    </FormItem>
-                                                </div>
+                                            </div>
+                                            <div className="col-md-12">
+                                                <label htmlFor="sel1">Date Range</label>
+                                                <FormItem style={{padding: '2% 0%'}}>
+                                                    {getFieldDecorator('dateRange', {
+                                                        initialValue: [(this.state.startDate),
+                                                        (this.state.endDate)],
+                                                        rules: [{ validator: this.validateDate.bind(this) }],
+                                                    })(
+                                                        <RangePicker
+                                                            ranges={{
+                                                                Today: [moment(), moment()],
+                                                                'This Month': [moment(), moment().endOf('month')]
+                                                            }}
+                                                            onChange={this.onChangeDate.bind(this)}
+                                                        />
+                                                    )}
+                                                </FormItem>
                                             </div>
                                         </div>
 

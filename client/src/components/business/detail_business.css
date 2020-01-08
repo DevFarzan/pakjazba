@@ -67,3 +67,77 @@ margin-left: -40px;
   font-size: 19px;
   margin-top: 20px;
 }
+
+@media only screen 
+  and (min-device-width: 360px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+
+    .tabTop{
+      margin-top: 0% !important;
+    }
+
+}
+
+/*TABLETS*/
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+	.tabTop{
+		margin-top: 5.3% !important;
+	  }
+    
+}
+
+@media only screen 
+  and (min-device-width: 834px) 
+  and (max-device-width: 1112px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+	.tabTop{
+    margin-top: 5.3% !important;
+	  }
+    
+}
+
+@media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+	.tabTop{
+		margin-top: 8.3% !important;
+	  }
+    
+}
+
+@media screen 
+  and (device-width: 1536px) 
+  and (device-height: 2048px) 
+  and (-webkit-min-device-pixel-ratio: 1.331) 
+  and (-webkit-max-device-pixel-ratio: 1.332) {
+	.tabTop{
+		margin-top: 5.3% !important;
+	  }
+    
+}
+
+
+/*desktops*/
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+	.tabTop{
+		margin-top: 7% !important;
+	  }
+    
+}
+@media screen 
+  and (min-device-width: 1600px) 
+  and (max-device-width: 1920px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+	.tabTop{
+		margin-top: 5.4% !important;
+	  }
+    
+}

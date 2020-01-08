@@ -21,12 +21,30 @@
     font-size: 30px; 
     font-weight:bold;
   }
+  .socialMediadiv{
+    padding-bottom:0px;
+    height: 165px;
+  }
+  .experienceDiv{
+    padding-bottom:0px;
+    height: 165px;
+  }
 }
 @media only screen and (min-device-width: 768px){
   .BanerTextCsS{
     color: white;
     font-size: 40px; 
     font-weight:bold;
+  }
+  .socialMediadiv{
+    padding-bottom:0px;
+    margin-right:0;
+    height: 165px;
+  }
+  .experienceDiv{
+    padding-bottom:0px;
+    margin-left:0;
+    height: 165px;
   }
 }
 .mainBannerPadMarg{

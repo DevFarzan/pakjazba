@@ -169,6 +169,8 @@ class RoomRenting3ContentArea2 extends Component{
             phone = data.contactnumber;
         }
         let postedOn = moment(data.posted, "LL").format('YYYY-MM-DD');
+
+        let {Abc, star, start, Rate} = this.state;
         
         return(
             <div>
@@ -187,8 +189,8 @@ class RoomRenting3ContentArea2 extends Component{
                                         <section className="section">
                                             <h4>Your Rating:
                                                 <Rate onChange={this.handleChange.bind(this)} allowHalf value={this.state.star}/>
-                                                {/* <Abc star={start} onchange={this.handleChange}/>
-                                                <Rate onchange={this.onchange.bind(this)} allowHalf value={star}/> */}
+                                                <Abc star={start} onchange={this.handleChange}/>
+                                                <Rate onchange={this.onchange.bind(this)} allowHalf value={star}/>
                                             </h4>
                                         </section>
                                         {/*Section: Contact v.2*/}

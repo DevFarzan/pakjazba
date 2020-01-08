@@ -479,7 +479,7 @@ class Postbuysell extends Component{
                 <div className="hidden-xs" style={{width:"100%",height:"67px",marginTop:"3px"}}></div>
                 {/*================================post business form start============================*/}
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
-                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%',marginTop: '116px', position: 'fixed',}}>
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs" id="section1" style={{marginLeft: '4%',marginTop: '116px', position: 'fixed',}}>
                     <Anchor className="" style={{margin: '2%',backgroundColor: '#f6f6f6'}}>
                         <Link href="#scrollChange1" title="General" />
                         <Link href="#scrollChange2" title="Brand Details" />

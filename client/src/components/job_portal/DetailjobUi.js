@@ -32,8 +32,8 @@ class JobDetailpage extends Component {
             <div style={{ backgroundColor: '#f7f5ed' }}>
                 <div className="row" style={{paddingBottom:'0px'}}>
                     <div className="col-xs-12 col-sm-1 col-md-1 col-lg-1"></div>
-                    <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 elementMainDivS">
-                        <div className="row" style={{paddingBottom:'0px'}}>
+                    <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div className="row elementMainDivS" style={{paddingBottom:'0px'}}>
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{display: 'inline-flex'}}>
                                 <Icon type="unordered-list" /><h5 className="headMainDivs">Description</h5>
                             </div>
@@ -41,37 +41,7 @@ class JobDetailpage extends Component {
                                 <p className="paraTextDivs">{data.jobDescription && data.jobDescription}</p>
                             </div> 
                         </div>
-                    </div>
-                    <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4 elementMainDivS2">
-                        <div className="row" style={{paddingBottom:'0px'}}>
-                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{display: 'inline-flex'}}>
-                                <Icon type="bars" /><h5 className="headMainDivs">Categories</h5>
-                            </div>
-                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{textAlign:'center'}}>
-                                <div className="row">
-                                    <div className="col-xs-4 col-md-4 col-sm-4 col-lg-4"></div>
-                                    <div className="col-xs-4 col-md-4 col-sm-4 col-lg-4">
-                                        <img src={CategoryImg} alt="" className="" />
-                                    </div>
-                                    <div className="col-xs-4 col-md-4 col-sm-4 col-lg-4"></div>
-                                </div>
-                                <div className="row" style={{paddingBottom:'0px',paddingTop:'0px'}}>
-                                    <div className="col-xs-2 col-md-3 col-sm-3 col-lg-3"></div>
-                                    <div className="col-xs-8 col-md-6 col-sm-6 col-lg-6">
-                                        <p className="designationPara">{data.jobTitle && data.jobTitle}</p>
-                                    </div>
-                                    <div className="col-xs-2 col-md-3 col-sm-3 col-lg-3"></div>
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
-                    <div className="col-xs-12 col-sm-1 col-md-1 col-lg-1"></div>
-                </div>   
-
-                <div className="row" style={{paddingBottom:'0px'}}>
-                    <div className="col-xs-12 col-sm-1 col-md-1 col-lg-1"></div>
-                    <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 elementMainDivS">
-                        <div className="row" style={{paddingBottom:'0px'}}>
+                        <div className="row elementMainDivS" style={{paddingBottom:'0px'}}>
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{display: 'inline-flex'}}>
                                 <Icon type="unordered-list" /><h5 className="headMainDivs">Qualification</h5>
                             </div>
@@ -93,8 +63,29 @@ class JobDetailpage extends Component {
                             </div> 
                         </div>
                     </div>
-                    <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4 elementMainDivS2">
-                        <div className="row" style={{paddingBottom:'0px'}}>
+                    <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <div className="row elementMainDivS2" style={{paddingBottom:'0px'}}>
+                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{display: 'inline-flex'}}>
+                                <Icon type="bars" /><h5 className="headMainDivs">Categories</h5>
+                            </div>
+                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{textAlign:'center'}}>
+                                <div className="row">
+                                    <div className="col-xs-4 col-md-4 col-sm-4 col-lg-4"></div>
+                                    <div className="col-xs-4 col-md-4 col-sm-4 col-lg-4">
+                                        <img src={CategoryImg} alt="" className="" />
+                                    </div>
+                                    <div className="col-xs-4 col-md-4 col-sm-4 col-lg-4"></div>
+                                </div>
+                                <div className="row" style={{paddingBottom:'0px',paddingTop:'0px'}}>
+                                    <div className="col-xs-2 col-md-3 col-sm-3 col-lg-3"></div>
+                                    <div className="col-xs-8 col-md-6 col-sm-6 col-lg-6">
+                                        <p className="designationPara">{data.jobTitle && data.jobTitle}</p>
+                                    </div>
+                                    <div className="col-xs-2 col-md-3 col-sm-3 col-lg-3"></div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div className="row elementMainDivS2" style={{paddingBottom:'0px'}}>
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{display: 'inline-flex'}}>
                                 <Icon type="bars" /><h5 className="headMainDivs">Salary</h5>
                             </div>
@@ -117,14 +108,13 @@ class JobDetailpage extends Component {
                         </div>
                     </div>
                     <div className="col-xs-12 col-sm-1 col-md-1 col-lg-1"></div>
-                </div>
-
+                </div>   
                 <div className="row" style={{paddingBottom:'0px'}}>
                     <div className="col-xs-12 col-sm-1 col-md-1 col-lg-1"></div>
                         <div className="col-xs-12 col-sm-10 col-md-10 col-lg-10" style={{padding:'0'}}>
                             <div className="row">
-                                <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4 elementMainDivS">
-                                    <div className="row" style={{paddingBottom:'0px'}}>
+                                <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                    <div className="row elementMainDivS socialMediadiv">
                                         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{display: 'inline-flex'}}>
                                             <Icon type="unordered-list" /><h5 className="headMainDivs">Social media</h5>
                                         </div>
@@ -149,8 +139,8 @@ class JobDetailpage extends Component {
                                         </div> 
                                     </div>
                                 </div>
-                                <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4 elementMainDivS222">
-                                    <div className="row" style={{paddingBottom:'0px'}}>
+                                <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                    <div className="row elementMainDivS222" style={{paddingBottom:'0px',height: '165px'}}>
                                         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{display: 'inline-flex'}}>
                                             <Icon type="bars" /><h5 className="headMainDivs">Vacancy type</h5>
                                         </div>
@@ -172,8 +162,8 @@ class JobDetailpage extends Component {
                                         </div> 
                                     </div>
                                 </div>
-                                <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4 elementMainDivS222">
-                                    <div className="row" style={{paddingBottom:'0px'}}>
+                                <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                    <div className="row elementMainDivS222 experienceDiv">
                                         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{display: 'inline-flex'}}>
                                             <Icon type="bars" /><h5 className="headMainDivs">Experience required</h5>
                                         </div>

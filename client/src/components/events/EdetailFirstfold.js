@@ -22,7 +22,9 @@ class EdetailFirstfold extends Component {
     return (
       <div>
         <div className="row" style={{ marginTop: '-1.5vw' }}>
-          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,1.7)), url(${data.coverPhotoSrc})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center center"}}>
+          {/* <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,1.7)), url(${data.coverPhotoSrc})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center center"}}> */}
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{padding:'0'}}>  
+            <img src={data.coverPhotoSrc} alt="banner" className="JobBannertoP" />
             <div className="row mainEventBanerPadMarg">
               <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                 <h1 className="EventBanerTextCsS">{data.eventTitle}</h1>

@@ -227,11 +227,30 @@ class BussinesCard extends Component {
                                 <span style={{ color: "black" }}>{cardDetails.location}</span>
                             </p> */}
                         </span>}
-                        {detail == 'buySellData' && <p>
-                            Rs.{!cardDetails.hideprice ? '$' + cardDetails.price : 'Hide'}
-                            <br /><b>{cardDetails.modelname}</b>
-                            <br />{cardDetails.address},{cardDetails.state}
-                        </p>}
+                        
+                        {detail == 'buySellData' && <span>
+                            <div className="pricingSell">
+                                 {!cardDetails.hideprice ? '$' + cardDetails.price : 'Hide'}
+                            </div>
+
+                                
+
+                            <div className="buy-card">
+                                <h4>{cardDetails.modelname}</h4>
+                                <p style={{ fontFamily: 'Poppins, sans-serif' }}>
+                                        <span className="glyphicon glyphicon-map-marker"
+                                            style={{ color: "#008080", margin: "0", left: "-3px" }}
+                                        ></span><span>{cardDetails.address},{cardDetails.state}</span>
+                                </p>
+                                <p style={{ fontFamily: 'Poppins, sans-serif' }}>
+                                        <span className="glyphicon glyphicon-phone"
+                                            style={{ color: "#008080", margin: "0", left: "-3px" }}></span>
+                                <span>{cardDetails.contactnumber}</span>
+                                </p>
+                            </div>
+
+                            
+                        </span>}
                         {detail == 'eventPortalData' && <span>
                             <div className="pricingroom">  <p style={{ margin: "0" }}>
                                 <span className="glyphicon glyphicon-calendar"

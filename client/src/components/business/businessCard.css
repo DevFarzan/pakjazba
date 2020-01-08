@@ -38,6 +38,34 @@
     border: 1px solid white;
     padding: 5px;
 }
+
+.pricingSell{
+    position: absolute;
+    top: 12px;
+    left: 25px;
+    color: white;
+    font-size: 15px;
+    border: 2px solid white;
+    padding: 5px;
+    width: 25%;
+    font-weight: 700;
+    text-align: center;
+}
+.buy-card{
+    display:grid; 
+    color: black; 
+    padding:10px;
+}
+
+.buy-card h4{
+margin: 0;
+color: #224B69;
+}
+
+.buy-card p{
+    margin: 0;
+}
+
 /*Media queries for Pricing on Roomrental card*/
     /*For Mobile Phones*/
     @media only screen 
@@ -53,6 +81,18 @@
             font-size: 11px;
             border: 1px solid white;
         }
+        .pricingSell{
+            position: absolute;
+            top: 12px;
+            left: 25px;
+            color: white;
+            font-size: 15px;
+            border: 2px solid white;
+            padding: 5px;
+            width: 25%;
+            font-weight: 700;
+            text-align: center;
+        }
   }
   
   @media only screen 
@@ -67,6 +107,18 @@
         font-size: 18px;
         border: 1px solid white;
         padding: 5px;
+    }
+    .pricingSell{
+        position: absolute;
+        top: 12px;
+        left: 25px;
+        color: white;
+        font-size: 15px;
+        border: 2px solid white;
+        padding: 5px;
+        width: 25%;
+        font-weight: 700;
+        text-align: center;
     }
 
 }
@@ -84,6 +136,18 @@
         border: 1px solid white;
         padding: 5px;
     }
+    .pricingSell{
+        position: absolute;
+        top: 12px;
+        left: 25px;
+        color: white;
+        font-size: 15px;
+        border: 2px solid white;
+        padding: 5px;
+        width: 25%;
+        font-weight: 700;
+        text-align: center;
+    }
 }
 
 @media screen 
@@ -98,6 +162,18 @@
         font-size: 18px;
         border: 1px solid white;
         padding: 5px;
+    }
+    .pricingSell{
+        position: absolute;
+        top: 12px;
+        left: 25px;
+        color: white;
+        font-size: 15px;
+        border: 2px solid white;
+        padding: 5px;
+        width: 25%;
+        font-weight: 700;
+        text-align: center;
     }
 }
 
@@ -115,6 +191,18 @@
         border: 1px solid white;
         padding: 5px;
     }
+    .pricingSell{
+        position: absolute;
+        top: 12px;
+        left: 25px;
+        color: white;
+        font-size: 15px;
+        border: 2px solid white;
+        padding: 5px;
+        width: 25%;
+        font-weight: 700;
+        text-align: center;
+    }
 }
 
 @media only screen 
@@ -129,6 +217,18 @@
         font-size: 12px;
         border: 1px solid white;
         padding: 5px;
+    }
+    .pricingSell{
+        position: absolute;
+        top: 12px;
+        left: 25px;
+        color: white;
+        font-size: 15px;
+        border: 2px solid white;
+        padding: 5px;
+        width: 25%;
+        font-weight: 700;
+        text-align: center;
     }
 }
 
@@ -234,6 +334,8 @@
     position: absolute;
     top: 145px;
     left: 25px;
+    color: white;
+    font-weight: 600;
     
 }
 
@@ -332,3 +434,5 @@
     font-size: 16px;
     font-weight: 700;
 }
+
+

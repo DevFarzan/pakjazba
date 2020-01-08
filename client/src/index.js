@@ -56,7 +56,6 @@ import OrderList from './components/ecommerce/shops/orderList';
 import AddListing from './components/header/addAlisting';
 import Explore from './components/Explore/explore';
 
-
 //css
 import './app.css';
 
@@ -111,6 +110,7 @@ ReactDOM.render(
         <Route path="/market_roommates" component={MarketRoommates}></Route>
         <Route path="/detail_roomRent" component={DetailRoommates}></Route>
         {/*============Room Renting End=============*/}
+       
 
         {/*============Bussiness=============*/}
         <PrivateRoute path="/postad_business" component={Postbusiness}></PrivateRoute>

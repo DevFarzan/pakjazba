@@ -556,7 +556,7 @@ class EventPortal extends Component {
                 <div className="hidden-sm" style={{ marginTop: '8%' }}></div>
                 <div className="visible-sm" style={{ marginTop: '15%' }}></div>
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
-                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs card formRadius" id="section1" style={{marginLeft: '4%',marginTop: '46px', position: 'fixed',}}>
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs" id="section1" style={{marginLeft: '4%',marginTop: '46px', position: 'fixed',}}>
                 <Anchor className="" style={{margin: '2%',backgroundColor: '#f6f6f6'}}>
                         <Link href="#scrollChange1" title="Event Details" />
                         <Link href="#scrollChange2" title="Upload" />

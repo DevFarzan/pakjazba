@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import RoomRentFilterContent from '../roomrenting/roomrenting2contentarea';
 import { Tabs, Icon } from 'antd';
-import EventAds from '../events/Eventfeaturedcard';
+import EventFeatured from '../events/Eventfeaturedcard';
 import EventCategory from '../events/eventCategory';
 import { HttpUtils } from "../../Services/HttpUtils";
     
@@ -13,6 +13,35 @@ class EventTab extends Component{
             
     }
 }
+
+componentDidMount() {
+    window.scrollTo(0, 0);
+    this.setState({ showBtn: true });
+    this.getAllBusiness();
+}
+
+async getAllBusiness() {
+    var res = await HttpUtils.get('marketplace');
+    if (res) {
+        if (res.code === 200) {
+            let data = res.eventPortalData;
+            this.setState({
+                events: data ? data : [],
+                showBtn: false
+            });
+        }
+    }
+    // this.handleLocalStorage();
+}
+
+componentWillUnmount() {
+    let inputValue = '';
+    if (this.props.text.length) {
+        const { dispatch } = this.props;
+        dispatch({ type: 'SEARCHON', inputValue })
+    }
+}
+
 
     render(){
         const { TabPane } = Tabs;
@@ -36,7 +65,7 @@ class EventTab extends Component{
                         </Tabs>
                     </div>
                     <div className="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                        <EventAds events={this.state.events}/>
+                        <EventFeatured events={this.state.events}/>
                     </div>
                 </div>
             </div>

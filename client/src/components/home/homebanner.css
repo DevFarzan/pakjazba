@@ -49,9 +49,9 @@
   and (-webkit-min-device-pixel-ratio: 2) { 
     .onbanner{
         position: absolute;
-        top: 200px;
-        left: 20px;
-        width: 95%;
+        top: 145px;
+        left: 0px;
+        width: 100%;
     }
 }
 
@@ -61,9 +61,9 @@
   and (-webkit-min-device-pixel-ratio: 3) { 
     .onbanner{
         position: absolute;
-        top: 200px;
-        left: 20px;
-        width: 95%;
+        top: 145px;
+        left: 0px;
+        width: 100%;
     }
 }
 
@@ -73,9 +73,9 @@
   and (-webkit-device-pixel-ratio: 2) {
     .onbanner{
         position: absolute;
-        top: 200px;
-        left: 20px;
-        width: 95%;
+        top: 145px;
+        left: 0px;
+        width: 100%;
     }
 }
 

@@ -40,7 +40,7 @@ class BussinesCard extends Component {
             <Link key={1} to={obj}>
                 <div className="" style={{ 'marginBottom': '30px' }}>
                     <div className="card" style={{ width: '100%', backgroundColor: "#000000" }}>
-                        <img alt='' src={src} style={{ height: '200px', width: "100%", opacity: '0.5' }} />
+                        <img alt='' src={src} style={{ height: '200px', width: "100%", filter: 'brightness(0.5)' }} />
 
                         {detail == 'businessData' && <span>
                             <div className="businessborder">
@@ -184,7 +184,7 @@ class BussinesCard extends Component {
                                                 <span className="glyphicon glyphicon-map-marker"
                                                     style={{ color: "#236A4B", marginRight: "2px" }}
                                                 ></span>
-                                                <span style={{ color: "black" }}>{cardDetails.location}</span>
+                                                <span style={{ color: "black" }}>{cardDetails.location.slice(0,7)}..</span>
                                             </div>
                                             <div className="col-md-7 col-xs-8" style={{ padding: "0" }}>
                                                 <span className="fa fa-phone" style={{ color: "#236A4B", margin: "0", left: "-3px", padding: "0" }}>

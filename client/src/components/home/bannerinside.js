@@ -19,28 +19,28 @@ class BannerInside extends Component{
                         <h4>Find awesome places, bars, restaurants and activities and online stores</h4>
                             <div className="row" style={{margin:'0'}}>
                                 <div className="col-md-12">
-                                    <div className="col-md-1 col-sm-2">
+                                    <div className="col-md-1 col-sm-2 col-xs-2">
                                         <img src="./images/homeicon/roomRental.png" alt=""/>
                                     </div>
-                                    <div className="col-md-1 col-sm-2">
+                                    <div className="col-md-1 col-sm-2 col-xs-2">
                                         <img src="./images/homeicon/businessListing.png" alt=""/>
                                     </div>
-                                    <div className="col-md-1 col-sm-2">
+                                    <div className="col-md-1 col-sm-2 col-xs-2">
                                         <img src="./images/homeicon/buyNSell.png" alt=""/>
                                     </div>
-                                    <div className="col-md-1 col-sm-2">
+                                    <div className="col-md-1 col-sm-2 col-xs-2">
                                         <img src="./images/homeicon/ecommerce.png" alt=""/>
                                     </div>
-                                    <div className="col-md-1 col-sm-2">
+                                    <div className="col-md-1 col-sm-2 col-xs-2">
                                         <img src="./images/homeicon/events.png" alt=""/>
                                     </div>
-                                    <div className="col-md-1 col-sm-2">
+                                    <div className="col-md-1 col-sm-2 col-xs-2">
                                         <img src="./images/homeicon/jobPortal.png" alt=""/>
                                     </div>
-                                    <div className="col-md-1 hidden-sm">
+                                    <div className="col-md-1 hidden-sm hidden-xs">
                                         <img src="./images/homeicon/roomRental.png" alt=""/>
                                     </div>
-                                    <div className="col-md-1 hidden-sm">
+                                    <div className="col-md-1 hidden-sm hidden-xs">
                                         <img src="./images/homeicon/roomRental.png" alt=""/>
                                     </div>
                                 </div>

@@ -7,18 +7,19 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Redirect } from 'react-router';
 import CartButton from './shoppingCartBtn'
-import { Menu, Dropdown, Icon } from 'antd';;
+import { Menu, Dropdown, Icon } from 'antd';
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 
 const menu = ( 
-<Menu>
+{/* <Menu>
     <Menu.Item>
-    <Link rel="noopener noreferrer" to={`/market_roommates`} style={{ color: 'black', fontSize: '14px' }}>Room Renting</Link>
+        <Link rel="noopener noreferrer" to={`/market_roommates`} style={{ color: 'black', fontSize: '14px' }}>Room Renting</Link>
     </Menu.Item>
     <Menu.Item>
-    <Link rel="noopener noreferrer" to={`/market_business`} style={{ color: 'black', fontSize: '14px' }}>Business Listing</Link>
+        <Link rel="noopener noreferrer" to={`/market_business`} style={{ color: 'black', fontSize: '14px' }}>Business Listing</Link>
     </Menu.Item>
     <Menu.Item>
-    <Link rel="noopener noreferrer" to={`/market_classified`} style={{ color: 'black', fontSize: '14px' }}>Buy & Sell</Link>
+        <Link rel="noopener noreferrer" to={`/market_classified`} style={{ color: 'black', fontSize: '14px' }}>Buy & Sell</Link>
     </Menu.Item>
     <Menu.Item>
             <Link rel="noopener noreferrer" to={`/market_jobPortal`} style={{ color: 'black', fontSize: '14px' }}>Job Portal</Link>
@@ -29,7 +30,7 @@ const menu = (
         <Menu.Item>
         <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{ color: 'black', fontSize: '14px' }}>Entertainment</Link>
     </Menu.Item>
-  </Menu>
+  </Menu> */}
 );
 
 class HeaderMenu extends Component {
@@ -109,13 +110,13 @@ class HeaderMenu extends Component {
                                 <div className="col-md-1" style={{ marginTop: "33px" }}>
                                      <Link to={`/explore`} className="homeheader">Explore</Link>
                                 </div>
-                                <div className="col-md-2" style={{ marginTop: "33px", width:"12%", paddingRight:"0" }}>
+                                {/* <div className="col-md-2" style={{ marginTop: "33px", width:"12%", paddingRight:"0" }}>
                                 <Dropdown overlay={menu}>
                                     <a className="ant-dropdown-link" href="#">
                                     Listing <Icon type="down" className="dropdownheader"/>
                                     </a>
                                 </Dropdown>
-                                </div>
+                                </div> */}
                                 <div className="col-md-1" style={{ marginTop: "33px" }}>
                                      <Link to={`/`} className="homeheader">More</Link>
                                 </div>
@@ -198,23 +199,28 @@ class HeaderMenu extends Component {
                         <div className="row">
                             <div className="col-xs-6">
                                 <MainLogin />
-                            </div>{/*col-md-4*/}
+                            </div>
                             <div className="col-xs-6">
-                                <Category />
-                            </div>{/*col-md-4*/}
-                            <div className="col-xs-6">
-                                <Link rel="noopener noreferrer" to={`checkOutProduct`} style={{ color: 'black', fontSize: '14px' }}>
+                                <Link rel="noopener noreferrer" to={`checkOutProduct`} style={isMobile? { color: 'black', fontSize: '14px', marginTop:'-5px' }: { color: 'black', fontSize: '14px' }}>
                                     <CartButton cartCount={this.props.cartCount} />
                                 </Link>
                             </div>
+                            <div className="col-xs-12">
+                                <Category />
+                            </div>{/*col-md-4*/}
+                            
                         </div>{/*row*/}
                         <span>
-                            <Link rel="noopener noreferrer" to={`/market_roommates`} onClick={this.closeNav}>Room Renting</Link>
+                            <Link rel="noopener noreferrer" to={`/`} onClick={this.closeNav}>Home</Link>
                         </span>
                         <span style={{ marginTop: "8px" }}>
                             <Link rel="noopener noreferrer" to={`/explore`}>Explore</Link>
                         </span>
                         <span style={{ marginTop: "8px" }}>
+                            <Link rel="noopener noreferrer" to={`/explore`}>More</Link>
+                        </span>
+
+                        {/* <span style={{ marginTop: "8px" }}>
                             <Link rel="noopener noreferrer" to={`/market_business`}>Business Listing</Link>
                         </span>
                         <span style={{ marginTop: "8px" }}>
@@ -228,22 +234,24 @@ class HeaderMenu extends Component {
                         </span>
                         <span style={{ marginTop: "8px" }}>
                             <Link rel="noopener noreferrer" to={`/entertainment_Home`}>Entertainment</Link>
-                        </span>
+                        </span> */}
                     </div>
                 </div>
-                <div className="row visible-xs" style={{ background: 'white' }}>
-                    <div className="col-md-4 col-xs-4">
-                        <i onClick={this.openNav} className="fa fa-bars" style={{ color: 'rgb(3, 42, 48)', marginLeft: '8px', fontSize: '24px', marginTop: '0px', cursor: 'pointer' }}></i>
-                    </div>
+                <div className="row visible-xs" style={{ background: '#0000001f' }}>
+                    
                     <div className="col-md-4 col-xs-5">
-                        <Link to={`/`}><img src="../images/pakjazba_new.png" alt='img' style={{ width: '100%' }} /></Link>
+                        <Link to={`/`}><img src="../images/PakJazbaLogo-01.png" alt='img' style={{ width: '100%' }} /></Link>
                     </div>
-                    <div className="col-md-4 col-xs-3">
+                    
+                    <div className="col-md-4 col-xs-5">
+                    </div>
+                    <div className="col-md-4 col-xs-2">
+                        <i onClick={this.openNav} className="fa fa-bars" style={{ color: 'white',  fontSize: '24px', marginTop: '20px', cursor: 'pointer' }}></i>
                     </div>
                 </div>
-                {this.props.entertainment && <div className="row" className="visible-xs">
+                {/* {this.props.entertainment && <div className="row" className="visible-xs">
                     <EHeader entertainment={this.props.entertainment} />
-                </div>}
+                </div>} */}
             </div>
         )
     }

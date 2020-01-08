@@ -78,9 +78,9 @@ class HomePage extends Component{
     
     return(
       <div className="">
-          <div className="visible-xs" style={{marginTop:'-19px',backgroundSize: 'cover'}}>
+          <div className="visible-xs" style={{marginTop:'0',backgroundColor:"#33333354", backgroundSize: 'cover', zIndex:"999", width:"100%", position:"fixed"}}>
               <div className="background-image">
-              <Burgermenu/>
+              <HeaderMenu/>
               </div>
           </div>
           <div className ="hidden-xs hidden-sm" style={{marginTop:'86px',backgroundSize: 'cover'}}>

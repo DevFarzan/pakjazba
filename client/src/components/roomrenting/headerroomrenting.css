@@ -1070,6 +1070,9 @@ body.mobile-nav-active #mobile-nav-toggle {
     top: 157px;
     left: 30px; 
   }
+  .mobileMargBotom{
+    margin-bottom: 30px;
+  }
 }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1023px){
   .pricingroomExplore{
@@ -1093,6 +1096,9 @@ body.mobile-nav-active #mobile-nav-toggle {
     top: 100px;
     left: 25px;  
   }
+  .mobileMargBotom{
+    
+  }
 }
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1365px){
   .rentstarExplore{
@@ -1115,6 +1121,9 @@ body.mobile-nav-active #mobile-nav-toggle {
     top: 100px;
     left: 25px;   
   }
+  .mobileMargBotom{
+    
+  }
 }
 @media only screen and (min-device-width: 1366px) and (max-device-width: 1600px){
   .pricingroomExplore{
@@ -1130,12 +1139,15 @@ body.mobile-nav-active #mobile-nav-toggle {
   .rentstarExplore{
     position: absolute;
     top: -140px;
-    left: 20px;
+    left: 0px;
   }
   .roomdetailcardExplore{
     position: absolute;
     top: 100px;
     left: 25px;    
+  }
+  .mobileMargBotom{
+    
   }
 }
 @media only screen and (min-device-width: 1600px){
@@ -1152,12 +1164,15 @@ body.mobile-nav-active #mobile-nav-toggle {
   .rentstarExplore{
     position: absolute;
     top: -13.5vw;
-    left: 50px;
+    left: 0px;
   }
   .roomdetailcardExplore{
     position: absolute;
     top: 12vw;
     left: 28px;  
+  }
+  .mobileMargBotom{
+    
   }
 }
 .roomdetailcardExplore p{

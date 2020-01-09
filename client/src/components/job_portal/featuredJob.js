@@ -227,7 +227,7 @@ class FeaturedBox extends Component {
                                                                 <span className="glyphicon glyphicon-map-marker"
                                                                     style={{ color: "#236A4B", marginRight: "2px" }}
                                                                 ></span>
-                                                                <span style={{ color: "black" }}>{elem.location}</span>
+                                                                <span style={{ color: "black" }}>{elem.location.slice(0,7)}...</span>
                                                             </div>
                                                             <div className="col-md-7 col-xs-8" style={{ padding: "0" }}>
                                                                 <span className="fa fa-phone" style={{ color: "#236A4B", margin: "0", left: "-3px", padding: "0" }}>

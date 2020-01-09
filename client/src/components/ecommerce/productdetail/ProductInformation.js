@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Rate } from 'antd';
+import { Rate, Icon, Button,  Tooltip } from 'antd';
 import { isMobile, isTablet, isBrowser } from 'react-device-detect';
+import './PthreeColumn.css'
 
 class ProductInformation extends Component {
   constructor(props) {
@@ -30,57 +31,22 @@ class ProductInformation extends Component {
     let weight = data.itemWeight;
     let width = data.itemWidth;
     return (
-      <div class="container" style={isMobile? { width: "92%" } : {width: '85%'} }>
-        <h4><strong>Product Information</strong>  </h4>
+      <div class="container" style={isMobile? { width: "92%" } : {width: '100%', padding:"0"} }>
+        <div className="new-card">
+          <span style={{display: 'inline-flex'}}>
+            <Icon type="unordered-list" style={{marginRight:"5px"}}/>
+              <h5>Product Information </h5>
+          </span>
         <table class="table table-bordered">
           <tbody>
-            {data.brandName ? <tr>
-              <td><strong>Brand Name</strong></td>
-              <td>{data.brandName}</td>
-            </tr>
-              : null}
-            {data.price ?
-              <tr>
-                <td><strong>Price</strong></td>
-                <td>{'$ ' + data.price}</td>
-              </tr>
-              : null}
-            {data.salePrice ?
-              <tr>
-                <td><strong>Sale Price</strong></td>
-                <td>{'$ ' + data.salePrice}</td>
-              </tr>
-              : null}
-            {data.color ?
-              <tr>
-                <td><strong>Color</strong></td>
-                <td>{data.color}</td>
-              </tr>
-              : null}
+            
             {data.lenseColor ?
               <tr>
                 <td><strong>Lense Color</strong></td>
                 <td>{data.lenseColor}</td>
               </tr>
               : null}
-            {data.condition ?
-              <tr>
-                <td><strong>Condition</strong></td>
-                <td>{data.condition}</td>
-              </tr>
-              : null}
-            {data.conditionNote ?
-              <tr>
-                <td><strong>Condition Note</strong></td>
-                <td>{data.conditionNote}</td>
-              </tr>
-              : null}
-            {data.country ?
-              <tr>
-                <td><strong>Country</strong></td>
-                <td>{data.country}</td>
-              </tr>
-              : null}
+            
             {data.countryLabeled ?
               <tr>
                 <td><strong>Country Labeled</strong></td>
@@ -111,26 +77,7 @@ class ProductInformation extends Component {
                 <td>{length.itemLengthNumber} {length.itemLengthUnit}</td>
               </tr>
               : null}
-            {weight ?
-              <tr>
-                <td><strong>Item Weight</strong></td>
-                <td>{weight.itemWeightNumber} {weight.itemWeightUnit}</td>
-              </tr>
-              : null}
-            {width ?
-              <tr>
-                <td><strong>Item Width</strong></td>
-                <td>{width.itemWidthNumber} {width.itemWidthUnit}</td>
-              </tr>
-              : null}
-
-
-            {data.materialType ?
-              <tr>
-                <td><strong>Material Type</strong></td>
-                <td>{data.materialType}</td>
-              </tr>
-              : null}
+            
             {data.maximumWeight ?
               <tr>
                 <td><strong>Maximum Weight</strong></td>
@@ -198,12 +145,7 @@ class ProductInformation extends Component {
                 <td>{data.variationTheme}</td>
               </tr>
               : null}
-            {data.legalDesclaimer ?
-              <tr>
-                <td><strong>Legal Desclaimer</strong></td>
-                <td>{data.legalDesclaimer}</td>
-              </tr>
-              : null}
+            
             {data.sellingDate ?
               <tr>
                 <td><strong>Date First Available</strong></td>
@@ -236,6 +178,7 @@ class ProductInformation extends Component {
               : null}
           </tbody>
         </table>
+        </div>
       </div>
     )
   }

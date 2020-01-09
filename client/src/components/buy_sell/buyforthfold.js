@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './buysecondfold.css'
+import './buyforthfold.css';
 import {HttpUtils} from "../../Services/HttpUtils";
 import { Pagination, Spin, Icon, Modal } from 'antd';
 import { connect } from 'react-redux';
@@ -192,11 +192,30 @@ class Forthfold extends Component{
                             des = des + '...'
                         }
                         return (
-                            <div className="col-md-3 col-sm-4 col-xs-12" onClick={() => {this.goToProfile(1, elem)}} style={{cursor:'pointer'}}>
-                                <img alt='' src={elem.images.length ? elem.images[0] : './images/def_card_img.jpg'} style={{width:'100%',height:'200px'}} />
-                                <p style={{color:"black"}}>{!elem.hideprice ? '$' + elem.price : 'Hide'}
-                                <br/><b style={{fontSize:"15px"}}>{elem.modelname}</b>
-                                <br/>{elem.address.slice(0, 19)},{elem.state}</p>
+                            <div className="col-md-4 col-sm-4 col-xs-12" onClick={() => {this.goToProfile(1, elem)}} style={{cursor:'pointer'}}>
+                                <img alt='' src={elem.images.length ? elem.images[0] : './images/def_card_img.jpg'}  style={{ height: '200px', width: "100%", filter: 'brightness(0.5)' }}  />
+                                <div className="pricingbuy">
+                                    <p>{!elem.hideprice ? '$' + elem.price : 'Hide'}</p>
+                                </div>
+                                <div className="sell-card">
+                                    <h4>{elem.modelname}</h4>
+                                    <p style={{ fontFamily: 'Poppins, sans-serif' }}>
+                                        <span className="glyphicon glyphicon-map-marker"
+                                            style={{ color: "#008080", margin: "0", left: "-3px" }}>
+                                        </span>
+                                        <span>
+                                            {elem.address.slice(0, 10)},{elem.state}
+                                        </span>
+                                    </p>
+                                    
+                                    <p style={{ fontFamily: 'Poppins, sans-serif' }}>
+                                        <span className="glyphicon glyphicon-phone"
+                                            style={{ color: "#008080", margin: "0", left: "-3px" }}></span>
+                                <span>{elem.contactnumber}</span>
+                                </p>
+                                </div>
+                                
+                               
                             </div>
                         )
                     })}

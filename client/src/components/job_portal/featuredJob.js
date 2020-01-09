@@ -223,13 +223,13 @@ class FeaturedBox extends Component {
                                                             <b>{elem.jobCat}</b>
                                                         </h4>
                                                         <div className="row" style={{ padding: "10px" }}>
-                                                            <div className="col-md-5 col-xs-4" style={{ padding: "0" }}>
+                                                            <div className="col-md-6 col-xs-6" style={{ padding: "0" }}>
                                                                 <span className="glyphicon glyphicon-map-marker"
                                                                     style={{ color: "#236A4B", marginRight: "2px" }}
                                                                 ></span>
                                                                 <span style={{ color: "black" }}>{elem.location.slice(0,7)}...</span>
                                                             </div>
-                                                            <div className="col-md-7 col-xs-8" style={{ padding: "0" }}>
+                                                            <div className="col-md-6 col-xs-6" style={{ padding: "0" }}>
                                                                 <span className="fa fa-phone" style={{ color: "#236A4B", margin: "0", left: "-3px", padding: "0" }}>
                                                                 </span>
                                                                 <span style={{ color: "black" }}></span>

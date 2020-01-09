@@ -180,7 +180,6 @@
 
 .forimage p{
 	padding: 0;
-	margin-left: -20px;
 	font-size: 17px;
 }
 
@@ -245,4 +244,36 @@
 .roomdetail hr{
 	margin-top: 0;
 	margin-bottom: 0;
+}
+.headingMainRoom{
+    font-weight: 600;
+      color: #242429;
+      margin-bottom: 0;
+      margin-left: 0.5vw;
+  }
+.RoomMainDivS{
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 25px;
+    -webkit-transition: box-shadow .25s ease-in-out;
+    transition: box-shadow .25s ease-in-out;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
+    border-radius: 3px;
+}
+.borderDetailDev{
+    border-bottom: 1px solid #e1e1e1;
+}
+
+@media only screen and (min-device-width: 330px) and (max-device-width: 767px){
+    .mainRoomBanerPadMarg{
+        padding-bottom: 2vw;
+        margin-top: -180px;
+        text-align: center;
+    }
+}
+@media only screen and (min-device-width: 768px){
+    .mainRoomBanerPadMarg{
+        padding-bottom: 2vw;
+        margin-top: -100px;
+    }
 }

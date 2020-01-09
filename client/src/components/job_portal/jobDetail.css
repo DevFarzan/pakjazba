@@ -5,9 +5,44 @@
 .btnSet{
   padding: 0px;
 }
-.JobBannertoP{
-  width: 100%;
-  height: 359px;
-  position: absolute;
-  filter: brightness(0.5);
+
+@media only screen and (min-device-width: 330px) and (max-device-width: 767px){
+  .JobBannertoP{
+    width: 100%;
+    height: 340px;
+    position: absolute;
+    filter: brightness(0.5);
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1023px){
+  .JobBannertoP{
+    width: 100%;
+    height: 340px;
+    position: absolute;
+    filter: brightness(0.5);
+  }
+}
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1365px){
+  .JobBannertoP{
+    width: 100%;
+    height: 40vh;
+    position: absolute;
+    filter: brightness(0.5);
+  }
+}
+@media only screen and (min-device-width: 1366px) and (max-device-width: 1600px){
+  .JobBannertoP{
+    width: 100%;
+    height: 53vh;
+    position: absolute;
+    filter: brightness(0.5);
+  }
+}
+@media only screen and (min-device-width: 1600px){
+  .JobBannertoP{
+    width: 100%;
+    height: 39vh;
+    position: absolute;
+    filter: brightness(0.5);
+  }
 }

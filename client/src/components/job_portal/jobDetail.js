@@ -52,6 +52,7 @@ class JobDetail extends Component {
             }
             this.setState({ data, user: data.user });
         }
+        // window.scroll(0,0);
     }
 
     clickItem(item) {

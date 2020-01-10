@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Cascader, Pagination, Slider, Spin, Icon, Rate } from 'antd';
 import Burgermenu from '../header/burgermenu'
-import "./roomrenting2content.css";
+import "./BusinesListFilterContent.css";
 import { Link, BrowserRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from 'react-router';
@@ -9,125 +9,277 @@ import stateCities from "../../lib/countrycitystatejson";
 
 
 //const stateCities= require('countrycitystatejson')
-
 const category = [{
-    value: 'Property to rent',
-    label: 'Property to rent',
-    children: [{
-        value: 'Single Family Home',
-        label: 'Single Family Home',
-        children: [{
-            value: '1 Bed',
-            label: '1 Bed',
-        }, {
-            value: '2 Beds',
-            label: '2 Beds',
-        }, {
-            value: '3 Beds',
-            label: '3 Beds',
-        }, {
-            value: '4+ Beds',
-            label: '4+ Beds',
-        }],
-    },
-    {
-        value: 'Appartment',
-        label: 'Apartment',
-        children: [{
-            value: '1 Bed',
-            label: '1 Bed',
-        }, {
-            value: '2 Beds',
-            label: '2 Beds',
-        }, {
-            value: '3 Beds',
-            label: '3 Beds',
-        }, {
-            value: '4+ Beds',
-            label: '4+ Beds',
-        }],
-    }, {
-        value: 'Condo',
-        label: 'Condo',
-        children: [{
-            value: '1 Bed',
-            label: '1 Bed',
-        }, {
-            value: '2 Beds',
-            label: '2 Beds',
-        }, {
-            value: '3 Beds',
-            label: '3 Beds',
-        }, {
-            value: '4+ Beds',
-            label: '4+ Beds',
-        }],
-    }, {
-        value: 'Town house',
-        label: 'Town house',
-        children: [{
-            value: '1 Bed',
-            label: '1 Bed',
-        }, {
-            value: '2 Beds',
-            label: '2 Beds',
-        }, {
-            value: '3 Beds',
-            label: '3 Beds',
-        }, {
-            value: '4+ Beds',
-            label: '4+ Beds',
-        }],
-    }, {
-        value: 'Homes',
-        label: 'Homes',
-        children: [{
-            value: '1 Bed',
-            label: '1 Bed',
-        }, {
-            value: '2 Beds',
-            label: '2 Beds',
-        }, {
-            value: '3 Beds',
-            label: '3 Beds',
-        }, {
-            value: '4+ Beds',
-            label: '4+ Beds',
-        }],
-    }],
+    value: 'Advertising Agency',
+    label: 'Advertising Agency'
 }, {
-    value: 'Room to rent',
-    label: 'Room to rent',
-    children: [{
-        value: 'Shared Room',
-        label: 'Shared Room',
-    }, {
-        value: 'Single Room',
-        label: 'Single Room',
-    }, {
-        value: 'Paying Guest',
-        label: 'Paying Guest',
-    }],
+    value: 'Answering Service',
+    label: 'Answering Service',
 }, {
-    value: 'Office & commercial to rent',
-    label: 'Office & commercial to rent',
-    children: [{
-        value: 'Office Space',
-        label: 'Office Space',
-    }, {
-        value: 'Retail Outlet',
-        label: 'Retail Outlet',
-    }, {
-        value: 'Others',
-        label: 'Others',
-    }],
-
+    value: 'Audio Visual Equipment Hire',
+    label: 'Audio Visual Equipment Hire',
+}, { value: 'Branding Consultant', label: 'Branding Consultant' }, {
+    value: 'Business Advisor',
+    label: 'Business Advisor',
 }, {
-    value: 'Parking & storage to rent',
-    label: 'Parking & storage to rent',
+    value: 'Business Consultant',
+    label: 'Business Consultant',
+}, {
+    label: 'Business Franchise Consultant',
+    value: 'Business Franchise Consultant',
+}, {
+    label: 'Business Training Service',
+    value: 'Business Training Service',
+}, {
+    value: 'Car Body Shop',
+    label: 'Car Body Shop',
+}, {
+    value: 'Car Detailer',
+    label: 'Car Detailer',
+}, {
+    value: 'Car Sales Showroom',
+    label: 'Car Sales Showroom',
+}, {
+    value: 'Caterer',
+    label: 'Caterer',
+}, {
+    value: 'Charity',
+    label: 'Charity',
+}, {
+    value: 'Chauffeur',
+    label: 'Chauffeur',
+}, {
+    value: 'Chef',
+    label: 'Chef',
+}, {
+    value: 'Clothing Supplier',
+    label: 'Clothing Supplier',
+}, {
+    value: 'Computer Networks Installer',
+    label: 'Computer Networks Installer',
+}, {
+    value: 'Computer Repair Centre',
+    label: 'Computer Repair Centre',
+}, {
+    value: 'Computer Software Developer',
+    label: 'Computer Software Developer',
+}, {
+    value: 'Computer Software Sales',
+    label: 'Computer Software Sales',
+}, {
+    value: 'Computer Training Provider',
+    label: 'Computer Training Provider',
+}, {
+    value: 'Concierge',
+    label: 'Concierge',
+}, {
+    value: 'Copywriter',
+    label: 'Copywriter',
+}, {
+    value: 'Courier',
+    label: 'Courier',
+}, {
+    value: 'Custom Clothing Company',
+    label: 'Custom Clothing Company',
+}, {
+    value: 'Data Cabling Installer',
+    label: 'Data Cabling Installer',
+}, {
+    value: 'Detective Agency',
+    label: 'Detective Agency'
+}, {
+    value: 'Email Marketing Service',
+    label: 'Email Marketing Service',
+}, {
+    value: 'Executive Coach',
+    label: 'Executive Coach',
+}, {
+    value: 'Fire Safety Training Provider',
+    label: 'Fire Safety Training Provider',
+}, {
+    value: 'Furniture Shop',
+    label: 'Furniture Shop',
+}, {
+    value: 'Graphic Designer',
+    label: 'Graphic Designer',
+}, {
+    value: 'Hotel',
+    label: 'Hotel',
+}, {
+    value: 'Human Resources Consultant',
+    label: 'Human Resources Consultant',
+}, {
+    value: 'Illustrator',
+    label: 'Illustrator',
+}, {
+    value: 'Information Technology Consultant',
+    label: 'Information Technology Consultant',
+}, {
+    value: 'Internet Marketing Consultant',
+    label: 'Internet Marketing Consultant',
+}, {
+    value: 'Internet Service Provider',
+    label: 'Internet Service Provider',
+}, {
+    value: 'IT Support Services',
+    label: 'IT Support Services',
+}, {
+    value: 'Language Tutor',
+    label: 'Language Tutor',
+}, {
+    value: 'Leadership Development Consultant',
+    label: 'Leadership Development Consultant',
+}, {
+    value: 'Limousine Service',
+    label: 'Limousine Service',
+}, {
+    value: 'Local Magazine or Directory',
+    label: 'Local Magazine or Directory',
+}, {
+    value: 'Mailing Service',
+    label: 'Mailing Service',
+}, {
+    value: 'Management Consultant',
+    label: 'Management Consultant',
+}, {
+    value: 'Market Research Agency',
+    label: 'Market Research Agency',
+}, {
+    value: 'Marketing Consultant',
+    label: 'Marketing Consultant',
+}, {
+    value: 'Mediation Service',
+    label: 'Mediation Service',
+}, {
+    value: 'Mobile Phone Supplier',
+    label: 'Mobile Phone Supplier',
+}, {
+    value: 'Office Equipment Leasing',
+    label: 'Office Equipment Leasing',
+}, {
+    value: 'Office Furnisher',
+    label: 'Office Furnisher',
+}, {
+    value: 'Office Machines Company',
+    label: 'Office Machines Company',
+}, {
+    value: 'Office Products Supplier',
+    label: 'Office Products Supplier',
+}, {
+    value: 'Personal Assistant',
+    label: 'Personal Assistant',
+}, {
+    value: 'Printer',
+    label: 'Printer',
+}, {
+    value: 'Printer Ink Cartridges Supplier',
+    label: 'Printer Ink Cartridges Supplier',
+}, {
+    value: 'Professional Organiser',
+    label: 'Professional Organiser',
+}, {
+    value: 'Professional Speaker',
+    label: 'Professional Speaker',
+}, {
+    value: 'Promotional Goods Supplier',
+    label: 'Promotional Goods Supplier',
+}, {
+    value: 'Public Relations Agency',
+    label: 'Public Relations Agency',
+}, {
+    value: 'Public Speaking Coach',
+    label: 'Public Speaking Coach',
+}, {
+    value: 'Publicist',
+    label: 'Publicist',
+}, {
+    value: 'Radio Station',
+    label: 'Radio Station',
+}, {
+    value: 'Recruitment Agency',
+    label: 'Recruitment Agency',
+}, {
+    value: 'Restaurant',
+    label: 'Restaurant',
+}, {
+    value: 'Sales Training Consultant',
+    label: 'Sales Training Consultant',
+}, {
+    value: 'Search Engine Optimisation Consultant',
+    label: 'Search Engine Optimisation Consultant',
+}, {
+    value: 'Security Guarding Agency',
+    label: 'Security Guarding Agency',
+}, {
+    value: 'Security Personnel Agency',
+    label: 'Security Personnel Agency',
+}, {
+    value: 'Shop Fitter',
+    label: 'Shop Fitter',
+}, {
+    value: 'Sign Company',
+    label: 'Sign Company',
+}, {
+    value: 'Social Media Marketing Agency',
+    label: 'Social Media Marketing Agency',
+}, {
+    value: 'Solicitor',
+    label: 'Solicitor',
+}, {
+    value: 'Storage Facility',
+    label: 'Storage Facility',
+}, {
+    value: 'Tailor',
+    label: 'Tailor',
+}, {
+    value: 'Taxi Service',
+    label: 'Taxi Service',
+}, {
+    value: 'Telecommunications Service',
+    label: 'Telecommunications Service',
+}, {
+    value: 'Telemarketing Service',
+    label: 'Telemarketing Service',
+}, {
+    value: 'Tour Operator',
+    label: 'Tour Operator',
+}, {
+    value: 'Translator',
+    label: 'Translator',
+}, {
+    value: 'Trophie Supplier',
+    label: 'Trophie Supplier',
+}, {
+    value: 'Utilities Broker',
+    label: 'Utilities Broker',
+}, {
+    value: 'Vending Machine Supplier',
+    label: 'Vending Machine Supplier',
+}, {
+    value: 'Video Production Service',
+    label: 'Video Production Service',
+}, {
+    value: 'Virtual Assistant',
+    label: 'Virtual Assistant',
+}, {
+    value: 'Water Cooler Supplier',
+    label: 'Water Cooler Supplier',
+}, {
+    value: 'Web Designer',
+    label: 'Web Designer',
+}, {
+    value: 'Web Developer',
+    label: 'Web Developer',
+}, {
+    value: 'Web Hosting Provider',
+    label: 'Web Hosting Provider',
+}, {
+    value: 'Writer',
+    label: 'Writer',
 }];
 
-class Roomrentingtwocontentarea extends Component {
+
+class BusinesListFilterContent extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -151,10 +303,11 @@ class Roomrentingtwocontentarea extends Component {
     componentDidMount() {
         window.scrollTo(0, 0);
         // this.getAllBusiness();
-        this.stateAndCities();
+        this.stateAndCities()
     }
 
     stateAndCities(res) {
+        // console.log('get state')
         // let text = this.props.text;
         // let filter = this.searchArr(res, text)
         let states = stateCities.getStatesByShort('US');
@@ -179,6 +332,9 @@ class Roomrentingtwocontentarea extends Component {
         // }
     }
 
+    onChange(value) {
+        this.setState({ dropDownVal: value })
+    }
 
     onChangeState(value) {
         if (!!value.length) {
@@ -196,6 +352,7 @@ class Roomrentingtwocontentarea extends Component {
         }
     }
 
+
     onChangeCity(value) {
     //     const { roomrents, eachState } = this.state;
     //     let data = roomrents.filter((elem) => {
@@ -207,62 +364,22 @@ class Roomrentingtwocontentarea extends Component {
     //         add: 6
     //     })
     }
+
     
-    onChange(value) {
-        this.setState({ dropDownVal: value })
+     mostPopular() {
+    //     const { dropDownVal, roomrents } = this.state;
+    //     let data = roomrents.filter((elem) => {
+    //         return (elem.category && elem.category.includes(dropDownVal[0])) ||
+    //             (elem.subCategory && elem.subCategory.includes(dropDownVal[1])) ||
+    //             (elem.subSubCategory && elem.subSubCategory.includes(dropDownVal[2]))
+    //     })
+    //     this.setState({
+    //         filteredArr: data,
+    //         showroomrents: data.slice(0, 6),
+    //         add: 6
+    //     })
     }
 
-    formatter(value) {
-        return `${'$ ' + value}`;
-    }
-
-    onChangeSlider(value) {
-        const { roomrents } = this.state;
-        let data = roomrents.filter((elem) => {
-            return elem.rent >= value[0] && elem.rent <= value[1]
-        })
-        this.setState({
-            to: value[0],
-            from: value[1],
-            filteredArr: data,
-            showroomrents: data.slice(0, 6),
-            add: 6
-        })
-    }
-
-    checkedBed(e) {
-        let { bedArr, roomrents } = this.state;
-        let target = e.target.id;
-        if (!bedArr.includes(target)) {
-            bedArr.push(target)
-            this.setState({ bedArr })
-        } else {
-            bedArr = bedArr.filter((elem) => elem !== target)
-            this.setState({ bedArr })
-        }
-        let data = roomrents.filter((elem) => {
-            return elem.subSubCategory && bedArr.includes(elem.subSubCategory)
-        })
-        this.setState({
-            filteredArr: data,
-            showroomrents: data.slice(0, 6),
-            add: 6
-        })
-    }
-
-    mostPopular() {
-        // const { dropDownVal, roomrents } = this.state;
-        // let data = roomrents.filter((elem) => {
-        //     return (elem.category && elem.category.includes(dropDownVal[0])) ||
-        //         (elem.subCategory && elem.subCategory.includes(dropDownVal[1])) ||
-        //         (elem.subSubCategory && elem.subSubCategory.includes(dropDownVal[2]))
-        // })
-        // this.setState({
-        //     filteredArr: data,
-        //     showroomrents: data.slice(0, 6),
-        //     add: 6
-        // })
-    }
 
     // componentWillUnmount() {
     //     const { objData, goDetail } = this.state;
@@ -273,7 +390,9 @@ class Roomrentingtwocontentarea extends Component {
     // }
 
     // async getAllBusiness() {
+        
     //     if (this.props.text) {
+    //         console.log('get state')
     //         let res = this.props.location.state;
     //         this.stateAndCities(res)
     //     } else {
@@ -281,7 +400,6 @@ class Roomrentingtwocontentarea extends Component {
     //     }
     // }
 
-  
 
     // searchArr(arr, text) {
     //     let data = arr;
@@ -297,6 +415,7 @@ class Roomrentingtwocontentarea extends Component {
     // }
 
    
+    
     // funcIndexes(page) {
     //     let to = 6 * page;
     //     let from = to - 6;
@@ -312,7 +431,10 @@ class Roomrentingtwocontentarea extends Component {
     //     });
     // }
 
-   
+    // formatter(value) {
+    //     return `${'$ ' + value}`;
+    // }
+
     // onAddMore = () => {
     //     const { add, filteredArr, roomrents } = this.state;
     //     if (!!filteredArr.length) {
@@ -328,6 +450,39 @@ class Roomrentingtwocontentarea extends Component {
     //     }
     // }
 
+    // onChangeSlider(value) {
+    //     const { roomrents } = this.state;
+    //     let data = roomrents.filter((elem) => {
+    //         return elem.rent >= value[0] && elem.rent <= value[1]
+    //     })
+    //     this.setState({
+    //         to: value[0],
+    //         from: value[1],
+    //         filteredArr: data,
+    //         showroomrents: data.slice(0, 6),
+    //         add: 6
+    //     })
+    // }
+
+    // checkedBed(e) {
+    //     let { bedArr, roomrents } = this.state;
+    //     let target = e.target.id;
+    //     if (!bedArr.includes(target)) {
+    //         bedArr.push(target)
+    //         this.setState({ bedArr })
+    //     } else {
+    //         bedArr = bedArr.filter((elem) => elem !== target)
+    //         this.setState({ bedArr })
+    //     }
+    //     let data = roomrents.filter((elem) => {
+    //         return elem.subSubCategory && bedArr.includes(elem.subSubCategory)
+    //     })
+    //     this.setState({
+    //         filteredArr: data,
+    //         showroomrents: data.slice(0, 6),
+    //         add: 6
+    //     })
+    // }
 
     // clickItem(item) {
     //     this.setState({ goDetail: true, objData: item })
@@ -335,7 +490,8 @@ class Roomrentingtwocontentarea extends Component {
 
     render() {
         const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader, objData, goDetail } = this.state;
-        const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
+        // const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
+        // console.log(states, 'states')
         if (!noText) {
             // return <Redirect to='/market_roommates'/>
             // return <Redirect to='/explore'/>
@@ -384,12 +540,13 @@ class Roomrentingtwocontentarea extends Component {
                                 <div className="row">
                                     <div class="col-md-12 col-sm-12 spacing">
                                         <h3 className="col-md-12"><b>Location</b></h3>
-                                        <div className="col-md-12 col-sm-12 col-xs-12">
-                                            <Cascader style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)} /></div>
+                                        <div className="col-md-12 col-sm-12 col-xs-12"><Cascader style={{ width: '100%' }}
+                                            options={states} onChange={this.onChangeState.bind(this)} /></div>
                                         <div className="col-md-12 col-sm-12 col-xs-12" style={{ marginTop: '2vw', }}>
-                                            <Cascader style={{ width: '100%' }} options={cities} onChange={this.onChangeCity.bind(this)} /></div>
+                                            <Cascader style={{ width: '100%' }}
+                                                options={cities} onChange={this.onChangeCity.bind(this)} /></div>
                                     </div>
-                                    <div className="col-md-12">
+                                    {/* <div className="col-md-12">
                                         <h3 className="col-md-12"><b>Beds:</b></h3>
                                         <div className="row" style={{ padding: '0px' }}>
                                             <div className="col-xs-2 col-md-2"></div>
@@ -407,7 +564,7 @@ class Roomrentingtwocontentarea extends Component {
                                             </div>
                                             <div className="col-xs-2 col-md-2"></div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className="col-md-12 col-sm-12 search-space1">
                                         <button
                                             className="btn"
@@ -417,14 +574,14 @@ class Roomrentingtwocontentarea extends Component {
                                             Search
                                         </button>
                                     </div>
-                                    <div class="col-md-12 col-sm-12 spacing hidden-xs" style={{ marginTop: '2vw' }}>
+                                    {/* <div class="col-md-12 col-sm-12 spacing hidden-xs" style={{ marginTop: '2vw' }}>
                                         <h3 className="col-md-12"><b>Price</b></h3>
                                         <div className="slidecontainer">
                                             <Slider range min={0} max={1000} step={1} tipFormatter={this.formatter} defaultValue={[0, 1000]} onChange={this.onChangeSlider.bind(this)} />
                                             <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p>
                                         </div>
-                                    </div>
-                                    <div class="col-xs-12 spacing visible-xs">
+                                    </div> */}
+                                    {/* <div class="col-xs-12 spacing visible-xs">
                                         <div className="row">
                                             <div class="col-xs-1"></div>
                                             <div class="col-xs-10">
@@ -436,7 +593,7 @@ class Roomrentingtwocontentarea extends Component {
                                             </div>
                                             <div class="col-xs-1"></div>
                                         </div>
-                                    </div>
+                                    </div> */}
 
                                 </div>
                             </span>
@@ -493,4 +650,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps)(Roomrentingtwocontentarea);
+export default connect(mapStateToProps)(BusinesListFilterContent);

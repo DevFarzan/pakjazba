@@ -172,7 +172,7 @@ class Roomrenting3contentarea extends Component {
     let postedOn = moment(data.posted, "LL").format('YYYY-MM-DD');
     return (
       <div>
-        <Gallery images={images} style={{ marginTop: '0%' }} />
+        <Gallery images={images} style={{ marginTop: '0%' }}/>
          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 mainRoomBanerPadMarg">
          <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                 <h1 className="EventBanerTextCsS">{data.postingtitle || data.postingTitle}</h1>

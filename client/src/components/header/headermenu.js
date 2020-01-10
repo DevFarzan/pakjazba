@@ -71,7 +71,7 @@ class HeaderMenu extends Component {
         }
         return (
             <div>
-                <nav className="navbar navbar-fixed-top hidden-xs"
+                <nav className="navbar navbar-fixed-top hidden-xs hidden-sm"
                     style={{ position: "fixed", width: "100%", "zIndex": "999", marginTop: "-19px", border: 'none', backgroundColor:"#00000052" }}>
                     <div className="container-fluid" style={{padding:"0"}}>
                         <div className="col-md-2 col-sm-6 col-xs-6">
@@ -166,7 +166,7 @@ class HeaderMenu extends Component {
                             <EHeader entertainment={this.props.entertainment} />
                         </div>}
                     </div> */}
-                    <div className="row visible-sm">
+                    {/* <div className="row visible-sm">
                         <div style={{ width: '96%', height: '42px', marginLeft: '16px' }}>
                             <span type="" name='room' ghost className="button_globalclassName col-md-2 col-sm-2">
                                 <Link rel="noopener noreferrer" to={`/market_roommates`} style={{ color: 'black', fontSize: '14px' }}>Room Renting</Link>
@@ -190,10 +190,10 @@ class HeaderMenu extends Component {
                         {this.props.entertainment && <div className="row" className="visible-sm">
                             <EHeader entertainment={this.props.entertainment} />
                         </div>}
-                    </div>
+                    </div> */}
                 </nav>
                 {/*=============================================visible xs============================================*/}
-                <div id="myNav" className="overlay visible-xs navbar-fixed-top" style={{}}>
+                <div id="myNav" className="overlay visible-xs visible-sm navbar-fixed-top" style={{}}>
                     <a href="javascript:void(0)" className="closebtn" onClick={this.closeNav} style={{ marginTop: '-8%' }}>&times;</a>
                     <div className="overlay-content">
                         <div className="row">
@@ -237,16 +237,16 @@ class HeaderMenu extends Component {
                         </span> */}
                     </div>
                 </div>
-                <div className="row visible-xs" style={{ background: '#0000001f' }}>
+                <div className="row visible-xs visible-sm" style={{ background: '#0000001f' }}>
                     
-                    <div className="col-md-4 col-xs-5">
+                    <div className="col-sm-3 col-xs-5">
                         <Link to={`/`}><img src="../images/PakJazbaLogo-01.png" alt='img' style={{ width: '100%' }} /></Link>
                     </div>
                     
-                    <div className="col-md-4 col-xs-5">
+                    <div className="col-sm-6 col-xs-5">
                     </div>
-                    <div className="col-md-4 col-xs-2">
-                        <i onClick={this.openNav} className="fa fa-bars" style={{ color: 'white',  fontSize: '24px', marginTop: '20px', cursor: 'pointer' }}></i>
+                    <div className="col-sm-3 col-xs-2">
+                        <i onClick={this.openNav} className="fa fa-bars" style={isTablet? { color: 'white',  fontSize: '24px', marginTop: '20px', cursor: 'pointer' } : {color: 'white',  fontSize: '24px', marginTop: '20px', cursor: 'pointer', marginLeft:"20px"} }></i>
                     </div>
                 </div>
                 {/* {this.props.entertainment && <div className="row" className="visible-xs">

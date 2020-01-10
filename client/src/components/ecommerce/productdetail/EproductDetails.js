@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import Burgermenu from '../../header/burgermenu';
+import HeaderMenu from '../../header/headermenu';
+import Footer from '../../footer/footer'
 import Slider from '../../header/Slider';
 import PthreeColumn from './PthreeColumn';
 import { Redirect } from 'react-router';
-import { isMobile } from 'react-device-detect';
 import { HttpUtils } from "../../../Services/HttpUtils";
 import { Modal } from 'antd';
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import './productdetail.css';
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 
 class EproductDetail extends Component {
   constructor(props) {
@@ -26,7 +29,7 @@ class EproductDetail extends Component {
       visible: false,
       goForLogin: false,
       shopId: '',
-      shopName: '',
+      shopLogo:'',
     }
   }
   async componentDidMount() {
@@ -52,8 +55,18 @@ class EproductDetail extends Component {
         dataShow: true,
         shopId: data.shopId,
         shopName: data.shopName,
+        
+      })
+      let logoshop = {shopId: data.shopId
+
+      }
+      let reqShopData = await HttpUtils.post('getSpecificShopById', logoshop)
+      console.log(reqShopData, "Shop LOfo")
+      this.setState({
+        shopLogo: reqShopData.content[0].shopLogo[0]
       })
     }
+
     else {
       let obj = {
         productId: this.props.location.pathname.slice(22)
@@ -77,7 +90,7 @@ class EproductDetail extends Component {
 
   //add to cart funtion
   shoppingCartCount = (countCart) => {
-    const { user_Id, profileId, objectId, images, productName, price, description, cartCount, shopName, productId , shopId} = this.state;
+    const { shopLogo, user_Id, profileId, objectId, images, productName, price, description, cartCount, shopName, productId , shopId} = this.state;
     const userData = JSON.parse(localStorage.getItem('user'));
 
     if (userData) {
@@ -174,26 +187,65 @@ class EproductDetail extends Component {
     this.setState({ visible: false });
   }
   render() {
-    const { dataShow, data, productId, cartCount, goForLogin, profileId, shopId } = this.state;
+    const { dataShow, data, productId, cartCount, goForLogin, profileId, shopId, shopLogo, productName, shopName, price } = this.state;
+    console.log(productName, "Product ka naam")
     if (goForLogin) {
       return <Redirect to={{ pathname: '/sigin', state: { from: { pathname: `/products_DetailStyle/${productId}` }, state: data } }} />;
     }
     return (
       <div>
         <span>
-          <div className="" style={isMobile ? { "backgroundImage": "url('../images/bgc-images/buy-sell.png')", marginTop: "10px", backgroundSize: 'cover' } : { "backgroundImage": "url('../images/bgc-images/buy-sell.png')", marginTop: "105px", backgroundSize: 'cover' }}>
+          <div className="" style={isMobile ? { "backgroundImage": "url('../images/bgc-images/buy-sell.png')", marginTop: "10px", backgroundSize: 'cover' } : { "backgroundImage": "url('../images/bgc-images/buy-sell.png')", marginTop: "84px", backgroundSize: 'cover' }}>
             <div className="background-image">
-              <Burgermenu cartCount={cartCount} />
+              <HeaderMenu cartCount={cartCount} />
               <Slider mainH1="Your Market Hub for all Products" mainH2="Find what you need" />
             </div>
           </div>
         </span>
         <div className="row">
-          <div className="col-md-12">
+          <div className="" style={{height:"0"}}>
+            <div className="product-banner">
+              <img src="../images/footer-background-icons.jpg" alt="" />
+            </div>
+            <div className="row position">
+              <div className="col-md-10 col-sm-9">
+                <div className="row">
+                  <div className="logo-image">
+                    <div className="col-xs-3">
+                        <span><Link to={{
+                              pathname: `/EcommerceProfile/${data.shopId}`,
+                              // state: data.shopId
+                            }}>{shopLogo &&<img src={shopLogo} alt=""/>}</Link>
+                        </span>
+                    </div>
+                    <div className="col-xs-9">
+                      <span>
+                        <Link to={{
+                            pathname: `/EcommerceProfile/${data.shopId}`,
+                            // state: data.shopId
+                          }}><h3>{shopName}</h3></Link>
+                      </span>
+                    </div>
+                    </div>
+                </div>
+              </div>
+              <div className="col-md-2 col-sm-3" style={isMobile? {marginTop:"0px"} : {marginTop:"25px"} }>
+                <div className="price-product">
+                  <h2>${price}</h2>
+                </div>
+              </div>
+            </div>
+            
+            
+            <div className="product-title">
+                <h2>{productName}</h2>
+            </div>
+          </div>
+          <div className="col   productId={productId}
+             -md-12">
             {dataShow ?
               <PthreeColumn data={data}
                 shoppingCartCount={this.shoppingCartCount}
-                productId={productId}
                 profileId={profileId}
                 shopId={shopId}
               />
@@ -211,7 +263,43 @@ class EproductDetail extends Component {
             </Modal>}
           </div>
         </div>
+        <Footer/>
       </div>
+      // <div>
+      //   <span>
+      //     <div className="" style={isMobile ? { "backgroundImage": "url('../images/bgc-images/buy-sell.png')", marginTop: "10px", backgroundSize: 'cover' } : { "backgroundImage": "url('../images/bgc-images/buy-sell.png')", marginTop: "105px", backgroundSize: 'cover' }}>
+      //       <div className="background-image">
+      //         <HeaderMenu cartCount={cartCount} />
+      //         <Slider mainH1="Your Market Hub for all Products" mainH2="Find what you need" />
+      //       </div>
+      //     </div>
+      //   </span>
+      //   <div className="row">
+      //     <div className="col-md-12">
+      //       {dataShow ?
+      //         <PthreeColumn data={data}
+      //           shoppingCartCount={this.shoppingCartCount}
+      //           productId={productId}
+      //           profileId={profileId}
+      //           shopId={shopId}
+      //         />
+      //         : null}
+      //       {this.state.visible && <Modal
+      //         title="Kindly Login first"
+      //         visible={this.state.visible}
+      //         onOk={this.handleOk}
+      //         onCancel={this.handleCancel}
+      //       >
+      //         <div className="row">
+      //           <div className="col-md-6" style={{ textAlign: 'center' }}><button className="btn btn-sm btn2-success" style={{ width: '100%' }} onClick={this.handleLogin}>Login</button></div>
+      //           <div className="col-md-6" style={{ textAlign: 'center' }}><button className="btn btn-sm btn2-success" style={{ width: '100%' }} onClick={this.handleCancel}>Cancel</button></div>
+      //         </div>
+      //       </Modal>}
+      //     </div>
+
+      //   </div>
+      //   <Footer/>
+      // </div>
 
     )
   }

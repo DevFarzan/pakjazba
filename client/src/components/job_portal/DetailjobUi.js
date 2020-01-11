@@ -47,18 +47,12 @@ class JobDetailpage extends Component {
                             </div>
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <div className="row" style={{textAlign:'center'}}>
-                                    <div className="col-xs-4 col-md-4 col-sm-4 col-lg-4">
-                                        {/* <img src={SimpleIcon} alt="" className="" /><br/>
-                                        <p className="eductionPara">Certificate</p> */}
-                                     </div>
+                                    <div className="col-xs-4 col-md-4 col-sm-4 col-lg-4"></div>
                                     <div className="col-xs-4 col-md-4 col-sm-4 col-lg-4">
                                         <img src={SimpleIcon} alt="" className="" /><br/>
                                         <p className="eductionPara">{data.jobCat && data.jobCat}</p>
                                     </div>
-                                    <div className="col-xs-4 col-md-4 col-sm-4 col-lg-4">
-                                        {/* <img src={SimpleIcon} alt="" className="" /><br/>
-                                        <p className="eductionPara">Master's Degree</p> */}
-                                    </div>
+                                    <div className="col-xs-4 col-md-4 col-sm-4 col-lg-4"></div>
                                 </div>
                             </div> 
                         </div>

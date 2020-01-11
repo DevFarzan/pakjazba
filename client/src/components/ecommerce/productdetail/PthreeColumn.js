@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './PthreeColumn.css';
-import { InputNumber, Icon, Button,  Tooltip  } from 'antd';
+import { InputNumber, Icon, Button, Tooltip } from 'antd';
 import ProductInformation from './ProductInformation';
 import ProductReviews from './ProductReviews';
 import { Link, Redirect } from "react-router-dom";
@@ -64,7 +64,7 @@ class PthreeColumn extends Component {
     })
   }
   render() {
-    
+
     const { data, count, commentData, editProduct } = this.state;
     let length = data.itemLength;
     let weight = data.itemWeight;
@@ -80,7 +80,7 @@ class PthreeColumn extends Component {
       <div class="container" style={isMobile ? { width: "100%", padding: "0px" } : { width: "80%", padding: "0px" }}>
         <div class="card-three-column">
           <div class="row" style={{ padding: "15px" }}>
-            <div class="col-md-6" style={{padding:"0"}}>
+            <div class="col-md-6" style={{ padding: "0" }}>
               <div className="preview">
                 <div class="preview-pic tab-content">
                   <div class="tab-pane active" id="pic-1"><img src={this.state.imgUrl} /></div>
@@ -89,57 +89,54 @@ class PthreeColumn extends Component {
                   {this.state.images.map(img => <li onClick={() => this.renderImagesinLi(img)}><a ><img src={img} /></a></li>)}
                 </ul>
               </div>
-            </div> 
-
-              
-  
+            </div>
             <div className="col-md-6">
               <div className="new-card">
                 <div>
-                  <div className="row" style={{padding:"0"}}>
+                  <div className="row" style={{ padding: "0" }}>
                     <div className="col-md-10">
-                    <h4>{data.product}</h4>
+                      <h4>{data.product}</h4>
                     </div>
                     <div className="col-md-2">
-                        <Tooltip title="Edit your product">
-                          {data.profileId == profileId ? <span className="fa fa-pencil-square-o icon-color"
-                            type="edit" size={26}
-                            style={{ marginLeft: '10%', cursor: 'pointer'}}
-                            onClick={() => { this.onGoEditProduct() }}
-                          >
-                          </span>
-                            : null}
-                        </Tooltip>
+                      <Tooltip title="Edit your product">
+                        {data.profileId == profileId ? <span className="fa fa-pencil-square-o icon-color"
+                          type="edit" size={26}
+                          style={{ marginLeft: '10%', cursor: 'pointer' }}
+                          onClick={() => { this.onGoEditProduct() }}
+                        >
+                        </span>
+                          : null}
+                      </Tooltip>
+                    </div>
+                  </div>
+                  <span>
+                    <h4>Price: {'$' + data.price} </h4>
+                    <h4>Sale: {'$ ' + data.salePrice}</h4>
+                    <h6 className="efontcolor"> In Stock </h6>
+
+                  </span>
+                  <span>
+                    <div className="row" style={{ padding: "0" }}>
+                      <div className="col-md-9">
+                        <h6> & Free Shipping </h6>
+                        <p> Ships from and sold by PakJazba.com </p>
                       </div>
-                  </div>  
-                      <span>
-                        <h4>Price: {'$' + data.price} </h4>
-                        <h4>Sale: {'$ ' + data.salePrice}</h4>
-                        <h6 className="efontcolor"> In Stock </h6>
-                        
-                      </span>
-                     <span>
-                        <div className="row" style={{padding:"0"}}>
-                          <div className="col-md-9">
-                            <h6> & Free Shipping </h6>
-                            <p> Ships from and sold by PakJazba.com </p>
-                          </div>
-                          <div className="col-md-3">
-                            <Button type="primary" htmlType="submit" className="btn contact-button">
-                                <span>Contact</span>
-                            </Button>
-                          </div>
-                        </div>
-                        
-                     </span>
+                      <div className="col-md-3">
+                        <Button type="primary" htmlType="submit" className="btn contact-button">
+                          <span>Contact</span>
+                        </Button>
+                      </div>
+                    </div>
+
+                  </span>
                 </div>
               </div>
-              
-              
-              <div className="new-card" style={{marginTop:"20px"}}>
+
+
+              <div className="new-card" style={{ marginTop: "20px" }}>
                 <div className="produc-features">
-                  <span style={{display: 'inline-flex'}}>
-                    <Icon type="unordered-list" style={{marginRight:"5px"}}/>
+                  <span style={{ display: 'inline-flex' }}>
+                    <Icon type="unordered-list" style={{ marginRight: "5px" }} />
                     <h5>Product Features</h5>
                   </span>
                   <p>{data.productFeature} </p>
@@ -154,68 +151,68 @@ class PthreeColumn extends Component {
                     </div>
                     <div className="col-md-4">
                       {weight ?
-                          <p class="vote">Weight: <strong>{weight.itemWeightNumber} {weight.itemWeightUnit}</strong></p>
+                        <p class="vote">Weight: <strong>{weight.itemWeightNumber} {weight.itemWeightUnit}</strong></p>
                         : null}
                       {width ?
-                            <p class="vote">width: <strong>{width.itemWidthNumber} {width.itemWidthUnit}</strong></p>
-                            
-                          : null}
+                        <p class="vote">width: <strong>{width.itemWidthNumber} {width.itemWidthUnit}</strong></p>
+
+                        : null}
                     </div>
                   </div>
-                  
-                 
-                 
-                </div>
-              </div>
-              
-              
-              {/* <RelatedInformation/> */}
-            </div>
-              
-            <div class="col-md-12">
-              <div className="new-card">
-                    <div className="produc-description">
-                          <span style={{display: 'inline-flex'}}>
-                            <Icon type="unordered-list" style={{marginRight:"5px"}}/>
-                            <h5>Description</h5>
-                          </span>
-                      
-                      <p>{data.description}</p>
-                      
-                    </div>
-                    
+
+
+
                 </div>
               </div>
 
-            <div className="col-md-6">
-              <div className="new-card" style={{marginTop:"20px"}}>
-                    <div className="product-manufacturer">
-                      <span style={{display: 'inline-flex'}}>
-                        <Icon type="unordered-list" style={{marginRight:"5px"}}/>
-                          <h5>Manufacturer </h5>
-                      </span>
-                      <p>Manufacturer: <strong>{data.manufacturer}</strong></p>
-                      <p>Part Number: <strong>{data.manufacturerPart}</strong></p>
-                      <h4>Warranty Desciption</h4>
-                      <p>{data.warrantyDescription}</p>
-                    </div>
+
+              {/* <RelatedInformation/> */}
+            </div>
+
+            <div class="col-md-12">
+              <div className="new-card">
+                <div className="produc-description">
+                  <span style={{ display: 'inline-flex' }}>
+                    <Icon type="unordered-list" style={{ marginRight: "5px" }} />
+                    <h5>Description</h5>
+                  </span>
+
+                  <p>{data.description}</p>
+
+                </div>
+
               </div>
-            </div>  
+            </div>
+
             <div className="col-md-6">
-               <ProductInformation data={this.props.data} />
+              <div className="new-card" style={{ marginTop: "20px" }}>
+                <div className="product-manufacturer">
+                  <span style={{ display: 'inline-flex' }}>
+                    <Icon type="unordered-list" style={{ marginRight: "5px" }} />
+                    <h5>Manufacturer </h5>
+                  </span>
+                  <p>Manufacturer: <strong>{data.manufacturer}</strong></p>
+                  <p>Part Number: <strong>{data.manufacturerPart}</strong></p>
+                  <h4>Warranty Desciption</h4>
+                  <p>{data.warrantyDescription}</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <ProductInformation data={this.props.data} />
             </div>
 
             <div className="col-md-12">
               <div className="new-card">
-                <span style={{display: 'inline-flex'}}>
-                  <Icon type="unordered-list" style={{marginRight:"5px"}}/>
+                <span style={{ display: 'inline-flex' }}>
+                  <Icon type="unordered-list" style={{ marginRight: "5px" }} />
                   <h5>Notes</h5>
                 </span>
-                  <p class="vote"><strong>Condition Note: </strong> {data.conditionNote} </p>
-                  <p class="vote"><strong>Legal Desclaimer: </strong>{data.legalDesclaimer} </p>
+                <p class="vote"><strong>Condition Note: </strong> {data.conditionNote} </p>
+                <p class="vote"><strong>Legal Desclaimer: </strong>{data.legalDesclaimer} </p>
               </div>
             </div>
-              {/* <div className="row">
+            {/* <div className="row">
                 <div class="details col-md-7">
                   <h3 class="product-title"
                   >{data.product}</h3>
@@ -274,19 +271,19 @@ class PthreeColumn extends Component {
                   </div>
                 </div>
               </div> */}
-            
-            
+
+
             <div>
               {/* <PTable /> */}
-              
+
             </div>
           </div>
-        
-         
-              {/* <ProductFaq /> */}
-              {data &&
-                <ProductReviews shopId={this.props.shopId} productId={this.props.productId}
-                />}
+
+
+          {/* <ProductFaq /> */}
+          {data &&
+            <ProductReviews shopId={this.props.shopId} productId={this.props.productId}
+            />}
         </div>
       </div>
 

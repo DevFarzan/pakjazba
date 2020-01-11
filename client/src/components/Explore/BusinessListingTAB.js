@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BusinesListFilterContent from '../roomrenting/roomrenting2contentarea';
+import BusinesListFilterContent from '../business/BusinesListFilterContent';
 import BusinessCategory from '../business/BusinessCategories';
 import BusinessCard from '../business/bussinessCard';
 import SecondFoldCard from '../business/secondfold';

@@ -673,7 +673,7 @@ class Postbusiness extends Component {
     render() {
         const { previewVisible, previewImage, fileList, desLength, socFac, socGoo, socLin, statesUS, citiesUS, objData } = this.state;
         const { getFieldDecorator } = this.props.form;
-
+console.log()
         if (this.state.msg === true) {
             return <Redirect to={{ pathname: '/detail_business', state: objData }} />
         }
@@ -1009,9 +1009,9 @@ class Postbusiness extends Component {
                                                 )}
                                             </FormItem>
 
-                                            <hr className="hrLineStyle"/>
+                                            {/* <hr className="hrLineStyle"/> */}
 
-                                            <FormItem
+                                            {/* <FormItem
                                                 {...formItemLayout}
                                                 label="Business Address"
 
@@ -1023,11 +1023,11 @@ class Postbusiness extends Component {
                                                 })(
                                                     <Input />
                                                 )}
-                                            </FormItem>
+                                            </FormItem> */}
 
-                                            <hr className="hrLineStyle"/>
+                                            {/* <hr className="hrLineStyle"/> */}
 
-                                            <FormItem
+                                            {/* <FormItem
                                                 {...formItemLayout}
                                                 label="Business Owner Name"
 
@@ -1039,11 +1039,11 @@ class Postbusiness extends Component {
                                                 })(
                                                     <Input />
                                                 )}
-                                            </FormItem>
+                                            </FormItem> */}
 
-                                            <hr className="hrLineStyle"/>
+                                            {/* <hr className="hrLineStyle"/> */}
 
-                                            <FormItem
+                                            {/* <FormItem
                                                 {...formItemLayout}
                                                 label="Business Email"
 
@@ -1059,7 +1059,7 @@ class Postbusiness extends Component {
                                                 })(
                                                     <Input />
                                                 )}
-                                            </FormItem>
+                                            </FormItem> */}
                                             
                                         </div>
                                     </div>

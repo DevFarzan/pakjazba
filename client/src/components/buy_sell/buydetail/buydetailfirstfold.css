@@ -141,3 +141,70 @@ hr{
   height: 1px;
   color: black;
 }
+.bannerSubtext{
+  margin: 0;
+  margin-top: 0.5vw;
+  color: white;
+  font-size: 18px;
+  opacity: .9;
+  font-weight: 400;
+}
+.bannerPriceTag{
+  margin: 0;
+  font-size: 20px;
+  white-space: nowrap;
+  font-weight: 600;
+  color: white;
+  padding: 1vw;
+}
+.adPOsted{
+    margin-top: 2px;
+    margin-bottom: 0;
+    font-size: 12px;
+    white-space: nowrap;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+} 
+@media screen and (min-device-width: 360px) and (max-device-width: 767px) {
+  .noIcon{
+    margin-top: 4vw;
+  }
+  .bannerPriceDivv{
+    border: 2px solid white;
+    margin-top: 6vw;
+    margin-bottom: 4vw;
+  }
+}
+@media screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+  .noIcon{
+    
+  }
+  .bannerPriceDivv{
+    border: 2px solid white;
+  }
+}
+@media screen and (min-device-width: 1024px) and (max-device-width: 1365px) {
+  .noIcon{
+   
+  }
+  .bannerPriceDivv{
+    border: 2px solid white;
+  }
+}
+@media screen and (min-device-width: 1366px) and (max-device-width: 1600px) {
+  .noIcon{
+    
+  }
+  .bannerPriceDivv{
+    border: 2px solid white;
+  }
+}
+@media screen and (min-device-width: 1600px){
+  .noIcon{
+    
+  }
+  .bannerPriceDivv{
+    border: 2px solid white;
+  }
+}

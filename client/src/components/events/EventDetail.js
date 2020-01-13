@@ -64,8 +64,8 @@ class EventDetail extends Component{
         return(
             <div>
                 <HeaderMenu />
-                <EdetailFirstfold data={data}/>
-                {/* <Footer/> */}
+                <EdetailFirstfold data={data} />
+                <Footer/>
             </div>
         )
     }

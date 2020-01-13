@@ -23,14 +23,14 @@ class EdetailFirstfold extends Component {
       <div>
         <div className="row" style={{ marginTop: '-1.5vw' }}>
           {/* <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,1.7)), url(${data.coverPhotoSrc})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center center"}}> */}
-          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{padding:'0'}}>  
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
             <img src={data.coverPhotoSrc} alt="banner" className="JobBannertoP" />
             <div className="row mainEventBanerPadMarg">
               <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                 <h1 className="EventBanerTextCsS">{data.eventTitle}</h1>
                 <p className="BanerSmalTextCsS">{data.city + ": " + data.address}</p>
               </div>
-              <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2" style={{textAlign:'center'}}>
+              <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2" style={{ textAlign: 'center' }}>
                 <p className="eventDateBaner">Event starts</p>
                 <h4 className="eventDayBaner">{date}</h4>
               </div>
@@ -42,135 +42,35 @@ class EdetailFirstfold extends Component {
             </div>
           </div>
         </div>
-        <div className="row tabMainDiV">
-                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <Tabs defaultActiveKey="1">
-                            <TabPane
-                                // onClick={this.tabnavigation('true')}
-                                tab={
-                                    <span>
-                                       Details{" "}
-                                    </span>
-                                }
-                                key="1"
-                            >
-                                <EventDetailTabIcons />
-                                <EventDetailTab data={this.props.data} />
-                            </TabPane>
-                            <TabPane
-                                // onClick={this.tabnavigation('false')}
-                                tab={
-                                    <span>
-                                        Review{" "}
-                                    </span>
-                                }
-                                key="2"
-                            >
-                                <EventDetailTabIcons />
-                            </TabPane>
-                        </Tabs>
-                    </div>
-                </div>
-        <div className="hidden-sm hidden-xs">
-          <div className="container" style={{ width: "100%", marginTop: "-5px" }}>
-            {/* <div className="row" style={{ padding: "0" }}>1
-              <div className="col-md-12 col-sm-12 col-xs-12" style={{ textAlign: "center" }}>
-                <div className="blurimage" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,1.7)), url(${data.coverPhotoSrc})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center center", color: "#fff", height: "320px", paddingTop: "50px", marginBottom: "-5px" }}>
-                </div>
-                <div className="row">
-                  <div className="col-md-2">
-                  </div>
-                  <div className="col-md-6">
-                    <div className="eventdetail" style={{ textAlign: "left" }}>
-                      <h2>{data.eventTitle}</h2>
-                      <span>
-                        <i className="fa fa-map-marker" style={{ color: "white", fontSize: "24px" }}></i>
-                        <p className="display">{data.city + ": " + data.address}</p></span>
-                    </div>
-                    <div className="row" style={{ padding: "0" }}>
-                      <div className="col-md-2">
-                        <div className="gray">
-                          <p><b>{date}</b>&emsp;{data.openingTime}</p>
-                        </div>
-                      </div>
-                      <div className="col-md-4">
-                        <span className="whitee">
-                          <p> Organiser: {data.name}</p>
-                        </span>
-                        <div className="text-center text-md-left">
-                          <a className="btn clickbutton" href="#ticketsection" style={{ width: "70%", marginTop: "15px", marginLeft: "-55px" }}>Buy Ticket</a>
-                        </div>
-                      </div>
-
-                      <div className="col-md-3">
-
-                      </div>
-                      <div className="col-md-1">
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                  </div>
-                </div>
-
-              </div>
-
-            </div> */}
-            {/* <DateCard data={this.props.data} /> */}
-
-
+        <div className="row">
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <EventDetailTabIcons />
+                <EventDetailTab data={this.props.data} />
+            {/* <Tabs defaultActiveKey="1">
+              <TabPane
+                tab={
+                  <span>
+                    Details{" "}
+                  </span>
+                }
+                key="1"
+              >
+                <EventDetailTabIcons />
+                <EventDetailTab data={this.props.data} />
+              </TabPane>
+              <TabPane
+                tab={
+                  <span>
+                    Review{" "}
+                  </span>
+                }
+                key="2"
+              >
+                <EventDetailTabIcons />
+              </TabPane>
+            </Tabs> */}
           </div>
         </div>
-        {/* <div className="visible-sm visible-xs">
-          <div className="container" style={{ width: "100%", marginTop: "-5px" }}>
-            <div className="row" style={{ padding: "0" }}>
-              <div className="col-md-12 col-sm-12 col-xs-12" style={{ textAlign: "center" }}>
-                <div className="blurimage" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,1.7)), url(${data.coverPhotoSrc})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center center", color: "#fff", height: "320px", paddingTop: "50px", marginBottom: "-80px" }}>
-                </div>
-                <div className="row">
-                  <div className="col-md-2">
-                  </div>
-                  <div className="col-md-6">
-                    <div className="eventdetail" style={{ textAlign: "left" }}>
-                      <h2>{data.eventTitle}</h2>
-                      <span>
-                        <i className="fa fa-map-marker" style={{ color: "white", fontSize: "24px" }}></i>
-                        <p className="display">{data.city + ": " + data.address}</p></span>
-                    </div>
-                    <div className="row" style={{ padding: "0" }}>
-                      <div className="col-md-2">
-                        <div className="gray">
-                          <p><b>{data.dateRange && data.dateRange.from}</b>&emsp;{data.openingTime}</p>
-                        </div>
-                      </div>
-                      <div className="col-md-4">
-                        <span className="whitee">
-                          <p> Organiser: {data.name}</p>
-                        </span>
-                      </div>
-
-                      <div className="col-md-3">
-                        <div className="text-center text-md-left">
-                          <a className="btn clickbutton" style={{ width: "90%", marginTop: "15px", }}>Buy Ticket</a>
-                        </div>
-                      </div>
-                      <div className="col-md-1">
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-
-            <DateCard data={this.props.data} />
-
-
-          </div>
-        </div> */}
       </div>
 
     )

@@ -108,8 +108,8 @@ class EventDetailTab extends Component {
                         </div>
                     </div>
                     <div className="col-xs-12 col-sm-1 col-md-1 col-lg-1"></div>
-                </div>
-                <DateCard data={this.props.data} />
+                </div><br/><br/>
+                <DateCard data={this.props.data} /><br/><br/>
             </div>
         )
     }

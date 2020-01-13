@@ -316,45 +316,45 @@ class Roomrenting3contentarea extends Component {
                         </div>
                       </div>
                       <div className="row RoomMainDivS" style={{ padding: "0px" }}>
-                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex',paddingTop: '15px' }}>
+                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex', paddingTop: '15px' }}>
                           <Icon type="unordered-list" /><h5 className="headingMainRoom">Reviews</h5>
                         </div>
                         {!!reviews.length && <div className="row" style={{ padding: "0px" }}>
                           {reviews && reviews.map((elem, key) => {
                             if (key <= item - 1)
                               return (
-                                <div className="card-body space" style={{ marginBottom: "0px", paddingLeft: "0px" }}>
-                                  <div className="row">
-                                    <div className="col-md-12 col-sm-12 col-xs-12">
-                                      <div className="col-md-3 col-sm-4 col-xs-12 "><br />
+                                <div className="card-body space" style={{ marginBottom: "0px" }}>
+                                  <div className="row" style={{ margin:'35px 0px 0px 0px' }}>
+                                      <div className="col-md-2 col-sm-4 col-xs-12">
                                         <img
                                           src={elem.userImg ? elem.userImg : "../images/images.jpg"}
                                           className="image-circle"
-                                          alt="" width="100" height="100"
+                                          alt="" width="100" height="50"
                                           style={{ cursor: 'pointer' }}
                                           onClick={this.goToProfile.bind(this, elem.userId, elem.profileId)}
                                         />
                                       </div>
-                                      <div className="col-md-5 col-sm-4" style={{ marginTop: "40px" }}>
+                                      <div className="col-md-2 col-sm-4" style={{ paddingTop: "10px" }}>
                                         <h5 className=""
                                           style={{ margin: "0", cursor: 'pointer' }}
                                           onClick={this.goToProfile.bind(this, elem.userId, elem.profileId)}
                                         >
                                           {elem.name}
                                         </h5>
-                                        <Rate disabled allowHalf value={elem.star} />
                                       </div>
-                                      <div className="col-md-4 col-sm-4 col-xs-12" style={{ marginTop: "40px" }}>
+                                      <div className="col-md-4 col-sm-4" style={{ paddingTop: "7px" }}>
+                                        <Rate disabled allowHalf value={elem.star} />
+                                      </div>                                       
+                                      <div className="col-md-4 col-sm-4 col-xs-12" style={{ paddingTop: "7px" }}>
                                         <a name="linkReview"><p className="star-space1">Writen On {elem.written} </p></a>
                                       </div>
-                                    </div>
-                                    <div className="col-md-12 col-sm-12 col-xs-12"><br />
+                                   
                                       <div className="col-md-12 col-sm-12 col-xs-12">
-                                        <p>{elem.message}.</p>
+                                        <p style={{margin:'0'}}>{elem.message}.</p>
                                       </div>
-                                    </div>
+                                    
                                   </div>
-                                  {/* <hr style={{ borderTop: '1px solid black', borderTopWidth: '1px', width: '97%' }} /> */}
+                                  <hr/>
                                 </div>
                               )
                           })}

@@ -1279,7 +1279,8 @@ app.post('/api/postroomrent', function (req, res) {
       subCategory: postroomrent.subCategory,
       subSubCategory: postroomrent.subSubCategory,
       state: postroomrent.state,
-      posted: postroomrent.posted
+      posted: postroomrent.posted,
+      beds:postroomrent.beds,
     })
     roommates_info.save(function (err, data) {
       if (err) {
@@ -1338,6 +1339,7 @@ app.post('/api/postroomrent', function (req, res) {
       roomrentsdata.subSubCategory = postroomrent.subSubCategory;
       roomrentsdata.state = postroomrent.state;
       roomrentsdata.posted = postroomrent.posted;
+      roomrentsdata.beds = postroomrent.beds;
 
       roomrentsdata.save(function (err, doc) {
         if (err) {

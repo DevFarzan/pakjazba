@@ -18,7 +18,7 @@ import {
 import moment from 'moment';
 import superagent from "superagent";
 import { Redirect } from 'react-router';
-import {HttpUtils} from "../../Services/HttpUtils";
+import { HttpUtils } from "../../Services/HttpUtils";
 //import MapContainer from './google_map/Map'
 import sha1 from "sha1";
 import Burgermenu from '../header/burgermenu';
@@ -30,8 +30,8 @@ import stateCities from "../../lib/countrycitystatejson";
 const { Link } = Anchor;
 
 const handleClick = (e, link) => {
-  e.preventDefault();
-  console.log(link);
+    e.preventDefault();
+    console.log(link);
 };
 
 
@@ -51,130 +51,130 @@ const category = [{
         children: [{
             value: '1 Bed',
             label: '1 Bed',
-        },{
+        }, {
             value: '2 Beds',
             label: '2 Beds',
-        },{
+        }, {
             value: '3 Beds',
             label: '3 Beds',
-        },{
+        }, {
             value: '4+ Beds',
             label: '4+ Beds',
         }],
     },
-        {
-            value:'Appartment',
-            label:'Apartment',
-            children: [{
-                value: '1 Bed',
-                label: '1 Bed',
-            },{
-                value: '2 Beds',
-                label: '2 Beds',
-            },{
-                value: '3 Beds',
-                label: '3 Beds',
-            },{
-                value: '4+ Beds',
-                label: '4+ Beds',
-            }],
-        },{
-            value:'Condo',
-            label:'Condo',
-            children: [{
-                value: '1 Bed',
-                label: '1 Bed',
-            },{
-                value: '2 Beds',
-                label: '2 Beds',
-            },{
-                value: '3 Beds',
-                label: '3 Beds',
-            },{
-                value: '4+ Beds',
-                label: '4+ Beds',
-            }],
-        },{
-            value:'Town house',
-            label:'Town house',
-            children: [{
-                value: '1 Bed',
-                label: '1 Bed',
-            },{
-                value: '2 Beds',
-                label: '2 Beds',
-            },{
-                value: '3 Beds',
-                label: '3 Beds',
-            },{
-                value: '4+ Beds',
-                label: '4+ Beds',
-            }],
-        },{
-            value:'Homes',
-            label:'Homes',
-            children: [{
-                value: '1 Bed',
-                label: '1 Bed',
-            },{
-                value: '2 Beds',
-                label: '2 Beds',
-            },{
-                value: '3 Beds',
-                label: '3 Beds',
-            },{
-                value: '4+ Beds',
-                label: '4+ Beds',
-            }],
+    {
+        value: 'Appartment',
+        label: 'Apartment',
+        children: [{
+            value: '1 Bed',
+            label: '1 Bed',
+        }, {
+            value: '2 Beds',
+            label: '2 Beds',
+        }, {
+            value: '3 Beds',
+            label: '3 Beds',
+        }, {
+            value: '4+ Beds',
+            label: '4+ Beds',
         }],
-},{
+    }, {
+        value: 'Condo',
+        label: 'Condo',
+        children: [{
+            value: '1 Bed',
+            label: '1 Bed',
+        }, {
+            value: '2 Beds',
+            label: '2 Beds',
+        }, {
+            value: '3 Beds',
+            label: '3 Beds',
+        }, {
+            value: '4+ Beds',
+            label: '4+ Beds',
+        }],
+    }, {
+        value: 'Town house',
+        label: 'Town house',
+        children: [{
+            value: '1 Bed',
+            label: '1 Bed',
+        }, {
+            value: '2 Beds',
+            label: '2 Beds',
+        }, {
+            value: '3 Beds',
+            label: '3 Beds',
+        }, {
+            value: '4+ Beds',
+            label: '4+ Beds',
+        }],
+    }, {
+        value: 'Homes',
+        label: 'Homes',
+        children: [{
+            value: '1 Bed',
+            label: '1 Bed',
+        }, {
+            value: '2 Beds',
+            label: '2 Beds',
+        }, {
+            value: '3 Beds',
+            label: '3 Beds',
+        }, {
+            value: '4+ Beds',
+            label: '4+ Beds',
+        }],
+    }],
+}, {
     value: 'Room to rent',
     label: 'Room to rent',
     children: [{
         value: 'Shared Room',
         label: 'Shared Room',
-    },{
-        value:'Single Room',
-        label:'Single Room',
-    },{
-        value:'Paying Guest',
-        label:'Paying Guest',
+    }, {
+        value: 'Single Room',
+        label: 'Single Room',
+    }, {
+        value: 'Paying Guest',
+        label: 'Paying Guest',
     }],
-},{
-    value:'Office & commercial to rent',
-    label:'Office & commercial to rent',
-    children:[{
-        value:'Office Space',
-        label:'Office Space',
-    },{
-        value:'Retail Outlet',
-        label:'Retail Outlet',
-    },{
-        value:'Others',
-        label:'Others',
+}, {
+    value: 'Office & commercial to rent',
+    label: 'Office & commercial to rent',
+    children: [{
+        value: 'Office Space',
+        label: 'Office Space',
+    }, {
+        value: 'Retail Outlet',
+        label: 'Retail Outlet',
+    }, {
+        value: 'Others',
+        label: 'Others',
     }],
 
-},{
-    value:'Parking & storage to rent',
-    label:'Parking & storage to rent',
+}, {
+    value: 'Parking & storage to rent',
+    label: 'Parking & storage to rent',
 }];
 
 const accomodateCategory = [{
     value: 1,
     label: 1
-},{
+}, {
     value: 2,
     label: 2
-},{
+}, {
     value: 3,
     label: 3
-},{
+}, {
     value: 4,
     label: 4
-},{
+}, {
     value: 5,
     label: 5
-},{
+}, {
     value: 6,
     label: 6
 }]
@@ -182,32 +182,32 @@ const accomodateCategory = [{
 const priceCategory = [{
     value: 'per night',
     label: 'per night'
-},{
+}, {
     value: 'per day',
     label: 'per day'
-},{
+}, {
     value: 'per week',
     label: 'per week'
-},{
+}, {
     value: 'per month',
     label: 'per month'
 }]
 
 const furnishedcategory = [{
-  value: 'Unfurnished',
-  label: 'Unfurnished',
-  },{
-    value:'Furnished with Bed',
-    label:'Furnished with Bed',
-  },{
-    value:'Semi Furnished',
-    label:'Semi Furnished',
-  },{
-    value:'Fully Furnished',
-    label:'Fully Furnished',
-  }];
+    value: 'Unfurnished',
+    label: 'Unfurnished',
+}, {
+    value: 'Furnished with Bed',
+    label: 'Furnished with Bed',
+}, {
+    value: 'Semi Furnished',
+    label: 'Semi Furnished',
+}, {
+    value: 'Fully Furnished',
+    label: 'Fully Furnished',
+}];
 
-class Postroommates extends Component{
+class Postroommates extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -234,11 +234,11 @@ class Postroommates extends Component{
         }
     }
 
-    componentDidMount(){
-        window.scrollTo(0,0);
+    componentDidMount() {
+        window.scrollTo(0, 0);
         this.handleLocalStorage();
         let data = this.props.location.state;
-        if(data) {
+        if (data) {
             this.setState({
                 dataState: [data.state],
                 dataCity: [data.city],
@@ -268,13 +268,13 @@ class Postroommates extends Component{
         }
     }
 
-    deleteImage(e){
+    deleteImage(e) {
         let { imageList } = this.state;
         imageList = imageList.filter((elem) => elem !== e)
-        this.setState({imageList: imageList})
+        this.setState({ imageList: imageList })
     }
 
-    handleLocalStorage = () =>{
+    handleLocalStorage = () => {
         let states = stateCities.getStatesByShort('US');
         states = states.map((elem) => {
             return {
@@ -285,7 +285,7 @@ class Postroommates extends Component{
         AsyncStorage.getItem('user')
             .then((obj) => {
                 let userObj = JSON.parse(obj)
-                if(!!userObj) {
+                if (!!userObj) {
                     this.setState({
                         userId: userObj._id,
                         profileId: userObj.profileId,
@@ -308,16 +308,16 @@ class Postroommates extends Component{
     }
 
     handleChange = ({ fileList }) => {
-        this.setState({fileList})
+        this.setState({ fileList })
     }
     //--------------upload functions end ---------------------
 
     checkValue(rule, value, callback) {
-        this.setState({desLength: value ? value.length : 0})
+        this.setState({ desLength: value ? value.length : 0 })
         callback();
     }
 
-    validateDate(rule, value, callback){
+    validateDate(rule, value, callback) {
         if (!(!!value)) {
             callback('Please select your Date Range!');
         } else {
@@ -326,7 +326,7 @@ class Postroommates extends Component{
     }
 
     onChangePrice(e) {
-        this.setState({hidePrice: e.target.checked});
+        this.setState({ hidePrice: e.target.checked });
     }
 
     onChangeDate(dates, dateStrings) {
@@ -339,11 +339,11 @@ class Postroommates extends Component{
     }
 
     onChangeAmenities(checkedValues) {
-        this.setState({amenities: checkedValues});
+        this.setState({ amenities: checkedValues });
     }
 
     onChangeAddress(e) {
-        this.setState({hideAddress: e.target.checked});
+        this.setState({ hideAddress: e.target.checked });
     }
 
     checkCheckBox = (rule, value, callback) => {
@@ -355,48 +355,48 @@ class Postroommates extends Component{
     };
 
     changeAttBath = (e) => {
-        if(e.target.name === 'radio') {
+        if (e.target.name === 'radio') {
             this.setState({
                 radio: e.target.value,
             });
-        }else if(e.target.name === 'vegNoVeg'){
+        } else if (e.target.name === 'vegNoVeg') {
             this.setState({
                 vegNoVeg: e.target.value,
             });
-        }else if(e.target.name === 'smoking'){
+        } else if (e.target.name === 'smoking') {
             this.setState({
                 smoking: e.target.value,
             });
-        }else if(e.target.name === 'petFriendly'){
+        } else if (e.target.name === 'petFriendly') {
             this.setState({
                 petFriendly: e.target.value,
             });
         }
     }
 
-    uploadFile = (files) =>{
+    uploadFile = (files) => {
         const image = files.originFileObj
         const cloudName = 'dxk0bmtei'
-        const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/upload'
-        const timestamp = Date.now()/1000
+        const url = 'https://api.cloudinary.com/v1_1/' + cloudName + '/image/upload'
+        const timestamp = Date.now() / 1000
         const uploadPreset = 'toh6r3p2'
-        const paramsStr = 'timestamp='+timestamp+'&upload_preset='+uploadPreset+'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
+        const paramsStr = 'timestamp=' + timestamp + '&upload_preset=' + uploadPreset + 'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
         const signature = sha1(paramsStr)
         const params = {
-            'api_key':'878178936665133',
-            'timestamp':timestamp,
-            'upload_preset':uploadPreset,
-            'signature':signature
+            'api_key': '878178936665133',
+            'timestamp': timestamp,
+            'upload_preset': uploadPreset,
+            'signature': signature
         }
 
         return new Promise((res, rej) => {
             let uploadRequest = superagent.post(url)
             uploadRequest.attach('file', image)
-            Object.keys(params).forEach((key) =>{
+            Object.keys(params).forEach((key) => {
                 uploadRequest.field(key, params[key])
             })
 
-            uploadRequest.end((err, resp) =>{
+            uploadRequest.end((err, resp) => {
                 err ? rej(err) : res(resp);
             })
         })
@@ -405,14 +405,15 @@ class Postroommates extends Component{
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
-            if(!err) {
-                this.setState({loader: true})
+            if (!err) {
+                this.setState({ loader: true })
                 this.funcForUpload(values)
+                console.log(values, 'values')
             }
         })
     }
 
-    async funcForUpload(values){
+    async funcForUpload(values) {
         const { fileList } = this.state;
 
         Promise.all(fileList.map((val) => {
@@ -425,18 +426,19 @@ class Postroommates extends Component{
     }
 
     async postData(values, response) {
-        const {dateObj, userId, petFriendly, radio, smoking, vegNoVeg, profileId, objectId, imageList} = this.state;
+        const { dateObj, userId, petFriendly, radio, smoking, vegNoVeg, profileId, objectId, imageList } = this.state;
+        console.log(values, 'values')
         let obj = {
             user_id: userId,
             profileId: profileId,
-            accommodates : values.accommodates[0],
+            accommodates: values.accommodates[0],
             amenities: values.amenities,
-            attachedBath : radio,
+            attachedBath: radio,
             category: values.category[0],
             subCategory: values.category[1] ? values.category[1] : '',
             subSubCategory: values.category[2] ? values.category[2] : '',
             state: values.state[0],
-            city : values.city[0],
+            city: values.city[0],
             contactEmail: values.contactEmail,
             contactMode: values.contactMode,
             contactName: values.contactName,
@@ -444,7 +446,7 @@ class Postroommates extends Component{
             dateRange: dateObj,
             description: values.description,
             furnished: values.furnished[0],
-            postingTitle :values.postingTitle,
+            postingTitle: values.postingTitle,
             price: values.price,
             priceMode: values.priceMode[0],
             propertyLocation: values.propertyLocation,
@@ -454,7 +456,8 @@ class Postroommates extends Component{
             vegNoVeg: vegNoVeg,
             arr_url: [...response, ...imageList],
             objectId: objectId,
-            posted: moment().format('LL')
+            posted: moment().format('LL'),
+            beds:values.beds
         }
         let req = await HttpUtils.post('postroomrent', obj)
         if(req.code === 200) {
@@ -486,22 +489,22 @@ class Postroommates extends Component{
         }
     }
 
-    validateNumber(rule, value, callback){
-        if(isNaN(value)){
+    validateNumber(rule, value, callback) {
+        if (isNaN(value)) {
             callback('Please type Numbers');
-        }else {
+        } else {
             callback()
         }
     }
 
-    render(){
+    render() {
         const { desLength, fileList, previewVisible, previewImage, statesUS, citiesUS, objData } = this.state;
-        const {getFieldDecorator} = this.props.form;
+        const { getFieldDecorator } = this.props.form;
         const dateFormat = 'YYYY-MM-DD';
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
 
         if (this.state.msg === true) {
-            return <Redirect to={{pathname: '/detail_roomRent', state: objData}} />
+            return <Redirect to={{ pathname: '/detail_roomRent', state: objData }} />
         }
 
         const optionsContact = [
@@ -511,14 +514,14 @@ class Postroommates extends Component{
 
         const formItemLayout = {
             labelCol: {
-                md:{span:6},
-                xs: {span: 24},
-                sm: {span: 5},
+                md: { span: 6 },
+                xs: { span: 24 },
+                sm: { span: 5 },
             },
             wrapperCol: {
-                md:{span:12},
-                xs: {span: 24},
-                sm: {span: 16},
+                md: { span: 12 },
+                xs: { span: 24 },
+                sm: { span: 16 },
             },
         };
 
@@ -527,16 +530,16 @@ class Postroommates extends Component{
         }
 
         const uploadedImages = (
-            <div style={{display: 'flex'}}>
+            <div style={{ display: 'flex' }}>
                 {this.state.imageList.map((elem) => {
-                    return(
+                    return (
                         <div className='insideDiv'>
                             <a>
-                            <img alt='img1' src={elem} />
-                            <span>
-                                <a><Icon title='Preview file' onClick={() => this.handlePreview(elem)} type="eye" theme="outlined" style={{zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'}} /></a>
-                                <Icon title='Remove file' type='delete' onClick={this.deleteImage.bind(this, elem)} style={{zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'}}/>
-                            </span>
+                                <img alt='img1' src={elem} />
+                                <span>
+                                    <a><Icon title='Preview file' onClick={() => this.handlePreview(elem)} type="eye" theme="outlined" style={{ zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px' }} /></a>
+                                    <Icon title='Remove file' type='delete' onClick={this.deleteImage.bind(this, elem)} style={{ zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px' }} />
+                                </span>
                             </a>
                         </div>
                     )
@@ -551,13 +554,13 @@ class Postroommates extends Component{
             </div>
         );
 
-        return(
+        return (
             <div>
-                <HeaderMenu/>
-                <div className="hidden-xs" style={{width:"100%",height:"67px",marginTop:"40px"}}></div>{/*3*/}
+                <HeaderMenu />
+                <div className="hidden-xs" style={{ width: "100%", height: "67px", marginTop: "40px" }}></div>{/*3*/}
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
-                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs" id="section1" style={{marginLeft: '4%', marginTop: '103px', position: 'fixed',}}>
-                    <Anchor className="" style={{margin: '2%',backgroundColor: '#f6f6f6'}}>
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs" id="section1" style={{ marginLeft: '4%', marginTop: '103px', position: 'fixed', }}>
+                    <Anchor className="" style={{ margin: '2%', backgroundColor: '#f6f6f6' }}>
                         <Link href="#scrollChange1" title="General" />
                         <Link href="#scrollChange2" title="Location" />
                         <Link href="#scrollChange3" title="RentDetails" />
@@ -567,20 +570,20 @@ class Postroommates extends Component{
                     </Anchor>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    
-                    <div className="main_c_panel" style={{color:'white',textAlign:'center'}}>
-                    <h3 style={{color: 'black', fontWeight: 'bold'}}>Roommates / Rentals<br/>
-                                    Find all your Local Rentals in one place</h3>
-                                </div>
+
+                    <div className="main_c_panel" style={{ color: 'white', textAlign: 'center' }}>
+                        <h3 style={{ color: 'black', fontWeight: 'bold' }}>Roommates / Rentals<br />
+                            Find all your Local Rentals in one place</h3>
+                    </div>
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="">{/*panel-group 32 */}
                             <div className="">{/*panel panel-default */}
 
-                                <div className="" id="scrollChange1" style={{marginBottom: '25px'}}>{/*panel-body */}
+                                <div className="" id="scrollChange1" style={{ marginBottom: '25px' }}>{/*panel-body */}
                                     {/*==========main panel content=============*/}
                                     {/*==========General panel start=========*/}
-                                    <div className="card formRadius" style={{padding: '0 0 1vw 0'}}>{/*panel panel-default */}
-                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'2%',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                    <div className="card formRadius" style={{ padding: '0 0 1vw 0' }}>{/*panel panel-default */}
+                                        <div className="bold_c_text topRadius" style={{ color: 'black', padding: '2%', border: 'none', borderBottom: '1px solid #d9d9d9', borderRadius: '3px !important', }}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-info-circle iconStyle"></i>
                                             <span className="margin_font_location">General</span>
@@ -590,39 +593,39 @@ class Postroommates extends Component{
                                                 {...formItemLayout}
                                                 label="Category"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 {getFieldDecorator('category', {
                                                     initialValue: this.state.dataCat,
                                                     rules: [{ type: 'array', required: true, message: 'Please select your Category!' }],
                                                 })(
-                                                    <Cascader options={category} showSearch={{ filter }}/>
+                                                    <Cascader options={category} showSearch={{ filter }} />
                                                 )}
                                             </FormItem>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Posting Title"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 {getFieldDecorator('postingTitle', {
                                                     initialValue: this.state.dataTitle,
                                                     rules: [{ required: true, message: 'Please input your Posting Title!', whitespace: true }],
                                                 })(
-                                                    <Input  />
+                                                    <Input />
                                                 )}
                                             </FormItem>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Description/Details"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 {getFieldDecorator('description', {
                                                     initialValue: this.state.dataDescription,
@@ -637,62 +640,84 @@ class Postroommates extends Component{
                                                     <TextArea
                                                         rows={6}
                                                         maxLength="500"
-                                                    style={{"marginBottom": "10px"}}/>
+                                                        style={{ "marginBottom": "10px" }} />
                                                 )}
                                                 <br />
-                                                <span style={{"float": "right"}}>{500 - desLength} Words</span>
+                                                <span style={{ "float": "right" }}>{500 - desLength} Words</span>
                                             </FormItem>
+
+
+                                            {/* <FormItem
+                                                {...formItemLayout}
+                                                label="Beds"
+
+                                                style={{ padding: '2%' }}
+                                            >
+                                                {getFieldDecorator('beds', {
+                                                    initialValue: this.state.dataAmmen,
+                                                    rules: [{ validator: this.checkCheckBox }],
+                                                })(
+                                                    <Radio.Group style={{ width: '100%' }} onChange={this.onChangeAmenities.bind(this)}>
+                                                        <Row>
+                                                            <Col span={8}><Radio value="1">1</Radio></Col>
+                                                            <Col span={8}><Radio value="2">2</Radio></Col>
+                                                            <Col span={8}><Radio value="3">3</Radio></Col>
+                                                            <Col span={8}><Radio value="4+">4+</Radio></Col>
+                                                        </Row>
+                                                    </Radio.Group>
+                                                )}
+                                            </FormItem> */}
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div className="" id="scrollChange2">{/*panel-body */}
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
                                     <div className="formRadius card">{/*panel panel-default */}
-                                        <div className="bold_c_text topRadius" style={{backgroundColor:'white',color:'black',padding:'2%',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                        <div className="bold_c_text topRadius" style={{ backgroundColor: 'white', color: 'black', padding: '2%', border: 'none', borderBottom: '1px solid #d9d9d9', borderRadius: '3px !important', }}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-map-marker iconStyle" aria-hidden="true"></i>
                                             <span className="margin_font_location">Location</span>
                                         </div>
-                                        <div className="formRadius" style={{backgroundColor: 'white',padding: '1vw 0px 5px 0px', }}>{/*panel-body */}
+                                        <div className="formRadius" style={{ backgroundColor: 'white', padding: '1vw 0px 5px 0px', }}>{/*panel-body */}
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="State"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 {getFieldDecorator('state', {
                                                     initialValue: this.state.dataState,
                                                     rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
                                                 })(
-                                                    <Cascader options={statesUS} onChange={this.onChangeCat.bind(this)} showSearch={{ filter }}/>
+                                                    <Cascader options={statesUS} onChange={this.onChangeCat.bind(this)} showSearch={{ filter }} />
                                                 )}
                                             </FormItem>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="City"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 {getFieldDecorator('city', {
                                                     initialValue: this.state.dataCity,
                                                     rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
                                                 })(
-                                                    <Cascader options={citiesUS} showSearch={{ filter }}/>
+                                                    <Cascader options={citiesUS} showSearch={{ filter }} />
                                                 )}
                                             </FormItem>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Property Location"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 {getFieldDecorator('propertyLocation', {
                                                     initialValue: this.state.dataLocation,
@@ -702,17 +727,17 @@ class Postroommates extends Component{
                                                         whitespace: true
                                                     }],
                                                 })(
-                                                    <Input/>
+                                                    <Input />
                                                 )}
                                             </FormItem>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Property Zip Code"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 {getFieldDecorator('zipCode', {
                                                     initialValue: this.state.dataZip,
@@ -722,60 +747,60 @@ class Postroommates extends Component{
                                                         whitespace: true
                                                     }],
                                                 })(
-                                                    <Input/>
+                                                    <Input />
                                                 )}
-                                            </FormItem>                                            
+                                            </FormItem>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="" id="scrollChange3" style={{marginBottom: '25px', marginTop: '5%'}}>{/*panel-body */}
+                                <div className="" id="scrollChange3" style={{ marginBottom: '25px', marginTop: '5%' }}>{/*panel-body */}
                                     {/*==========main panel content=============*/}
                                     {/*==========General panel start=========*/}
-                                    <div className="card formRadius" style={{padding: '0 0 1vw 0'}}>{/*panel panel-default */}
-                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'2%',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                    <div className="card formRadius" style={{ padding: '0 0 1vw 0' }}>{/*panel panel-default */}
+                                        <div className="bold_c_text topRadius" style={{ color: 'black', padding: '2%', border: 'none', borderBottom: '1px solid #d9d9d9', borderRadius: '3px !important', }}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-info-circle iconStyle"></i>
                                             <span className="margin_font_location">Rent details</span>
                                         </div>
                                         <div className="formRadius">{/* panel-body*/}
-                                        <FormItem
+                                            <FormItem
                                                 {...formItemLayout}
                                                 label="Accommodates"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 {getFieldDecorator('accommodates', {
                                                     initialValue: this.state.dataAccom,
                                                     rules: [{ type: 'array', required: true, message: 'Please select your Accommodates!' }],
                                                 })(
-                                                    <Cascader options={accomodateCategory} showSearch={{ filter }}/>
+                                                    <Cascader options={accomodateCategory} showSearch={{ filter }} />
                                                 )}
                                             </FormItem>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Furnished"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 {getFieldDecorator('furnished', {
                                                     initialValue: this.state.dataFurn,
                                                     rules: [{ type: 'array', required: true, message: 'Please select your Furnished!' }],
                                                 })(
-                                                    <Cascader options={furnishedcategory} showSearch={{ filter }}/>
+                                                    <Cascader options={furnishedcategory} showSearch={{ filter }} />
                                                 )}
                                             </FormItem>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Attached Bath"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 <RadioGroup onChange={this.changeAttBath} name='radio' value={this.state.radio}>
                                                     <Radio value={true}>YES</Radio>
@@ -783,13 +808,13 @@ class Postroommates extends Component{
                                                 </RadioGroup>
                                             </FormItem>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Amenities include"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 {getFieldDecorator('amenities', {
                                                     initialValue: this.state.dataAmmen,
@@ -814,13 +839,13 @@ class Postroommates extends Component{
                                                 )}
                                             </FormItem>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Vegetarians Preferred"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 <RadioGroup onChange={this.changeAttBath} name='vegNoVeg' value={this.state.vegNoVeg}>
                                                     <Radio value={'Yes'}>YES</Radio>
@@ -828,13 +853,13 @@ class Postroommates extends Component{
                                                 </RadioGroup>
                                             </FormItem>
 
-                                            <hr className="hrLineStyle"/>
-                                            
+                                            <hr className="hrLineStyle" />
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Smoking"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 <RadioGroup onChange={this.changeAttBath} name='smoking' value={this.state.smoking}>
                                                     <Radio value={'Yes'}>YES</Radio>
@@ -843,13 +868,13 @@ class Postroommates extends Component{
                                                 </RadioGroup>
                                             </FormItem>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Pet Friendly"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 <RadioGroup onChange={this.changeAttBath} name='petFriendly' value={this.state.petFriendly}>
                                                     <Radio value={'No'}>No</Radio>
@@ -862,11 +887,11 @@ class Postroommates extends Component{
                                     </div>
                                 </div>
 
-                                <div className="" id="scrollChange4" style={{marginBottom: '25px'}}>{/*panel-body */}
+                                <div className="" id="scrollChange4" style={{ marginBottom: '25px' }}>{/*panel-body */}
                                     {/*==========main panel content=============*/}
                                     {/*==========General panel start=========*/}
-                                    <div className="card formRadius" style={{padding: '0 0 1vw 0'}}>{/*panel panel-default */}
-                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'2%',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                    <div className="card formRadius" style={{ padding: '0 0 1vw 0' }}>{/*panel panel-default */}
+                                        <div className="bold_c_text topRadius" style={{ color: 'black', padding: '2%', border: 'none', borderBottom: '1px solid #d9d9d9', borderRadius: '3px !important', }}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-upload iconStyle"></i>
                                             <span className="margin_font_location">Upload</span>
@@ -876,7 +901,7 @@ class Postroommates extends Component{
                                                 {...formItemLayout}
                                                 label="Images"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 {getFieldDecorator('images', {
                                                     rules: [{ required: true, message: 'Please upload your Images!', whitespace: true }],
@@ -902,11 +927,11 @@ class Postroommates extends Component{
                                     </div>
                                 </div>
 
-                                <div className="" id="scrollChange5" style={{marginBottom: '25px'}}>{/*panel-body */}
+                                <div className="" id="scrollChange5" style={{ marginBottom: '25px' }}>{/*panel-body */}
                                     {/*==========main panel content=============*/}
                                     {/*==========General panel start=========*/}
-                                    <div className="card formRadius" style={{padding: '0 0 1vw 0'}}>{/*panel panel-default */}
-                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'2%',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                    <div className="card formRadius" style={{ padding: '0 0 1vw 0' }}>{/*panel panel-default */}
+                                        <div className="bold_c_text topRadius" style={{ color: 'black', padding: '2%', border: 'none', borderBottom: '1px solid #d9d9d9', borderRadius: '3px !important', }}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-info-circle iconStyle"></i>
                                             <span className="margin_font_location">Price details</span>
@@ -916,7 +941,7 @@ class Postroommates extends Component{
                                                 {...formItemLayout}
                                                 label="Date Range"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 {getFieldDecorator('dateRange', {
                                                     initialValue: [moment(this.state.dataStart), moment(this.state.dataEnd)],
@@ -929,38 +954,38 @@ class Postroommates extends Component{
                                                 )}
                                             </FormItem>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
-                                            <div className="row" style={{'textAlign': 'center'}}>
+                                            <div className="row" style={{ 'textAlign': 'center' }}>
                                                 <div className="col-md-1"></div>
                                                 <div className="col-md-5">
                                                     <FormItem
                                                         {...formItemLayout}
                                                         label="Rent"
 
-                                                        style={{padding: '2%'}}
+                                                        style={{ padding: '2%' }}
                                                     >
                                                         {getFieldDecorator('price', {
                                                             initialValue: this.state.dataRent,
                                                             rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
-                                                                    { validator: this.validateNumber.bind(this) }],
+                                                            { validator: this.validateNumber.bind(this) }],
                                                         })(
                                                             <Input />
                                                         )}
                                                     </FormItem>
                                                 </div>
-                                                <div className="col-md-6" style={{'textAlign': 'left'}}>
+                                                <div className="col-md-6" style={{ 'textAlign': 'left' }}>
                                                     <FormItem
                                                         {...formItemLayout}
                                                         label="Price Mode"
 
-                                                        style={{padding: '2%'}}
+                                                        style={{ padding: '2%' }}
                                                     >
                                                         {getFieldDecorator('priceMode', {
                                                             initialValue: this.state.dataPmode,
                                                             rules: [{ type: 'array', required: true, message: 'Please select your Price Mode!' }],
                                                         })(
-                                                            <Cascader options={priceCategory} showSearch={{ filter }}/>
+                                                            <Cascader options={priceCategory} showSearch={{ filter }} />
                                                         )}
                                                     </FormItem>
                                                 </div>
@@ -972,70 +997,71 @@ class Postroommates extends Component{
                                 <div className="" id="scrollChange6">{/*panel-body */}
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
-                                    <div className="card formRadius" style={{padding: '0 0 1vw 0'}}>{/*panel panel-default */}
-                                        <div className="bold_c_text topRadius" style={{color:'black',padding:'2%',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                    <div className="card formRadius" style={{ padding: '0 0 1vw 0' }}>{/*panel panel-default */}
+                                        <div className="bold_c_text topRadius" style={{ color: 'black', padding: '2%', border: 'none', borderBottom: '1px solid #d9d9d9', borderRadius: '3px !important', }}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-address-card iconStyle"></i>
                                             <span className="margin_font_location">About</span>
                                         </div>
-                                        <div className="formRadius" style={{padding: '1vw 0 1vw 0'}}>{/* panel-body*/}
+                                        <div className="formRadius" style={{ padding: '1vw 0 1vw 0' }}>{/* panel-body*/}
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Contact Name"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 {getFieldDecorator('contactName', {
                                                     initialValue: this.state.dataName,
                                                     rules: [{ required: true, message: 'Please input your Contact Name!', whitespace: true }],
                                                 })(
-                                                    <Input  />
+                                                    <Input />
                                                 )}
                                             </FormItem>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Contact Email"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 {getFieldDecorator('contactEmail', {
                                                     initialValue: this.state.dataEmail,
                                                     rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true },
-                                                            { 
-                                                                required: true, 
-                                                                message: 'Please input your Contact Email!', whitespace: true }],
+                                                    {
+                                                        required: true,
+                                                        message: 'Please input your Contact Email!', whitespace: true
+                                                    }],
                                                 })(
-                                                    <Input  />
+                                                    <Input />
                                                 )}
                                             </FormItem>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Contact Number"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 {getFieldDecorator('contactNumber', {
                                                     initialValue: this.state.dataNumber,
                                                     rules: [{ required: true, message: 'Please input your Contact Number!', whitespace: true },
-                                                            { validator: this.validateNumber.bind(this) }],
+                                                    { validator: this.validateNumber.bind(this) }],
                                                 })(
-                                                    <Input  />
+                                                    <Input />
                                                 )}
                                             </FormItem>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Mode of Contact"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 {getFieldDecorator('contactMode', {
                                                     initialValue: this.state.dataMcont,
@@ -1049,12 +1075,12 @@ class Postroommates extends Component{
                                 </div>
                                 <div className="row center_global">
                                     {this.state.loader && <Spin indicator={antIcon} />}
-                                    <button disabled={!!this.state.loader} className="btn color_button" style={{width:'19%'}}>Submit</button>
+                                    <button disabled={!!this.state.loader} className="btn color_button" style={{ width: '19%' }}>Submit</button>
                                 </div>
                             </div>
                         </div>
                     </Form>
-                    
+
                 </div>
                 {/* <Footer /> */}
             </div>

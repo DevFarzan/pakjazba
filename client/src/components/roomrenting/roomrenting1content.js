@@ -165,7 +165,10 @@ class Roomrenting1content extends Component {
                             return (
                                 <Link key={key} to={{ pathname: `/detail_roomRent`, state: elem }}>
                                     <div className="col-md-4 col-sm-4 col-xs-12 mobileMargBotom">
-                                        <img src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'} class="img-responsive list_img" />
+                                        <img src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'} class="img-responsive list_img" 
+                                        //  style={{ height: '200px', width: "100%", filter: 'brightness(0.5)' }} 
+                                         
+                                         />
                                         {/* <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}>{elem.postingtitle.slice(0, 23)}{elem.postingtitle.length > 22 ? '...' : ''}</p>
                                         <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}><b>{str}</b>
                                             <br/><b>{elem.contactname}</b>

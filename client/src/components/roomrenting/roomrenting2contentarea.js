@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Cascader, Pagination, Slider, Spin, Icon, Rate } from 'antd';
+import { Cascader, Pagination, Slider, Spin, Icon, Rate, Row, Col, Input, Button, Checkbox } from 'antd';
 import Burgermenu from '../header/burgermenu'
 import "./roomrenting2content.css";
 import { Link, BrowserRouter } from "react-router-dom";
@@ -197,58 +197,58 @@ class Roomrentingtwocontentarea extends Component {
     }
 
     onChangeCity(value) {
-    //     const { roomrents, eachState } = this.state;
+        //     const { roomrents, eachState } = this.state;
+        //     let data = roomrents.filter((elem) => {
+        //         return elem.state === eachState || elem.city === value[0]
+        //     })
+        //     this.setState({
+        //         filteredArr: data,
+        //         showroomrents: data.slice(0, 6),
+        //         add: 6
+        //     })
+    }
+
+    onChange(value) {
+        this.setState({ dropDownVal: value })
+    }
+
+    // formatter(value) {
+    //     return `${'$ ' + value}`;
+    // }
+
+    // onChangeSlider(value) {
+    //     const { roomrents } = this.state;
     //     let data = roomrents.filter((elem) => {
-    //         return elem.state === eachState || elem.city === value[0]
+    //         return elem.rent >= value[0] && elem.rent <= value[1]
+    //     })
+    //     this.setState({
+    //         to: value[0],
+    //         from: value[1],
+    //         filteredArr: data,
+    //         showroomrents: data.slice(0, 6),
+    //         add: 6
+    //     })
+    // }
+
+    // checkedBed(e) {
+    //     let { bedArr, roomrents } = this.state;
+    //     let target = e.target.id;
+    //     if (!bedArr.includes(target)) {
+    //         bedArr.push(target)
+    //         this.setState({ bedArr })
+    //     } else {
+    //         bedArr = bedArr.filter((elem) => elem !== target)
+    //         this.setState({ bedArr })
+    //     }
+    //     let data = roomrents.filter((elem) => {
+    //         return elem.subSubCategory && bedArr.includes(elem.subSubCategory)
     //     })
     //     this.setState({
     //         filteredArr: data,
     //         showroomrents: data.slice(0, 6),
     //         add: 6
     //     })
-    }
-    
-    onChange(value) {
-        this.setState({ dropDownVal: value })
-    }
-
-    formatter(value) {
-        return `${'$ ' + value}`;
-    }
-
-    onChangeSlider(value) {
-        const { roomrents } = this.state;
-        let data = roomrents.filter((elem) => {
-            return elem.rent >= value[0] && elem.rent <= value[1]
-        })
-        this.setState({
-            to: value[0],
-            from: value[1],
-            filteredArr: data,
-            showroomrents: data.slice(0, 6),
-            add: 6
-        })
-    }
-
-    checkedBed(e) {
-        let { bedArr, roomrents } = this.state;
-        let target = e.target.id;
-        if (!bedArr.includes(target)) {
-            bedArr.push(target)
-            this.setState({ bedArr })
-        } else {
-            bedArr = bedArr.filter((elem) => elem !== target)
-            this.setState({ bedArr })
-        }
-        let data = roomrents.filter((elem) => {
-            return elem.subSubCategory && bedArr.includes(elem.subSubCategory)
-        })
-        this.setState({
-            filteredArr: data,
-            showroomrents: data.slice(0, 6),
-            add: 6
-        })
-    }
+    // }
 
     mostPopular() {
         // const { dropDownVal, roomrents } = this.state;
@@ -281,7 +281,7 @@ class Roomrentingtwocontentarea extends Component {
     //     }
     // }
 
-  
+
 
     // searchArr(arr, text) {
     //     let data = arr;
@@ -296,7 +296,7 @@ class Roomrentingtwocontentarea extends Component {
     //     return data;
     // }
 
-   
+
     // funcIndexes(page) {
     //     let to = 6 * page;
     //     let from = to - 6;
@@ -312,7 +312,7 @@ class Roomrentingtwocontentarea extends Component {
     //     });
     // }
 
-   
+
     // onAddMore = () => {
     //     const { add, filteredArr, roomrents } = this.state;
     //     if (!!filteredArr.length) {
@@ -382,6 +382,7 @@ class Roomrentingtwocontentarea extends Component {
 
                                 {/* {this.state.moreFilter && <div className="row"> */}
                                 <div className="row">
+
                                     <div class="col-md-12 col-sm-12 spacing">
                                         <h3 className="col-md-12"><b>Location</b></h3>
                                         <div className="col-md-12 col-sm-12 col-xs-12">
@@ -389,10 +390,35 @@ class Roomrentingtwocontentarea extends Component {
                                         <div className="col-md-12 col-sm-12 col-xs-12" style={{ marginTop: '2vw', }}>
                                             <Cascader style={{ width: '100%' }} options={cities} onChange={this.onChangeCity.bind(this)} /></div>
                                     </div>
+                                </div>
+                                <div className="row">
                                     <div className="col-md-12">
                                         <h3 className="col-md-12"><b>Beds:</b></h3>
                                         <div className="row" style={{ padding: '0px' }}>
+                                            <div className="col-xs-10 col-md-10"></div>
+                                            <Checkbox.Group style={{ width: '100%' }}
+                                            //  onChange={onChange}
+                                            >
+                                                <Row>
+                                                    <Col span={8}>
+                                                        <Checkbox value="1">1</Checkbox>
+                                                    </Col>
+                                                    <Col span={8}>
+                                                        <Checkbox value="2">2</Checkbox>
+                                                    </Col>
+                                                    <Col span={8}>
+                                                        <Checkbox value="3">3</Checkbox>
+                                                    </Col>
+                                                    <Col span={8}>
+                                                        <Checkbox value="4+">4+</Checkbox>
+                                                    </Col>
+                                                    {/* <Col span={8}>
+                                                        <Checkbox value="E">E</Checkbox>
+                                                    </Col> */}
+                                                </Row>
+                                            </Checkbox.Group>
                                             <div className="col-xs-2 col-md-2"></div>
+                                            {/* <div className="col-xs-2 col-md-2"></div>
                                             <div className="col-xs-2 col-md-2">
                                                 <label><input type="checkbox" value="" id='1 Bed' onClick={this.checkedBed.bind(this)} />1</label>
                                             </div>
@@ -405,7 +431,7 @@ class Roomrentingtwocontentarea extends Component {
                                             <div className="col-xs-2 col-md-2">
                                                 <label><input type="checkbox" value="" id='4+ Beds' onClick={this.checkedBed.bind(this)} />4+</label>
                                             </div>
-                                            <div className="col-xs-2 col-md-2"></div>
+                                            <div className="col-xs-2 col-md-2"></div> */}
                                         </div>
                                     </div>
                                     <div className="col-md-12 col-sm-12 search-space1">
@@ -419,21 +445,65 @@ class Roomrentingtwocontentarea extends Component {
                                     </div>
                                     <div class="col-md-12 col-sm-12 spacing hidden-xs" style={{ marginTop: '2vw' }}>
                                         <h3 className="col-md-12"><b>Price</b></h3>
-                                        <div className="slidecontainer">
-                                            <Slider range min={0} max={1000} step={1} tipFormatter={this.formatter} defaultValue={[0, 1000]} onChange={this.onChangeSlider.bind(this)} />
-                                            <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p>
+                                        {/* <div className="slidecontainer"> */}
+                                        <div size="large" style={{ marginLeft: '10px' }}>
+                                            <Row gutter={8}>
+                                                <Col span={8}>
+                                                    <Input
+                                                        placeholder="Min"
+                                                    // onChange={e => this.setState({ minPrice: e.target.value })}
+                                                    />
+                                                </Col>
+                                                <Col span={8}>
+                                                    <Input
+                                                        // defaultValue="Max" 
+                                                        placeholder="Max"
+                                                    // onChange={e => this.setState({ maxPrice: e.target.value })}
+                                                    />
+                                                </Col>
+                                                <Col>
+                                                    <Button type="primary" icon="caret-right"
+                                                    // onClick={this.props.serachProductMinToMaxPrice.bind(this, minPrice, maxPrice)}
+                                                    />
+                                                </Col>
+                                            </Row>
                                         </div>
+                                        {/* <Slider range min={0} max={1000} step={1} tipFormatter={this.formatter} defaultValue={[0, 1000]} onChange={this.onChangeSlider.bind(this)} />
+                                            <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p> */}
                                     </div>
+                                    {/* </div> */}
                                     <div class="col-xs-12 spacing visible-xs">
                                         <div className="row">
                                             <div class="col-xs-1"></div>
                                             <div class="col-xs-10">
                                                 <span>Price</span>
-                                                <div className="slidecontainer" style={{ marginTop: '0px' }}>
-                                                    <Slider range min={0} max={1000} step={1} tipFormatter={this.formatter} defaultValue={[0, 1000]} onChange={this.onChangeSlider.bind(this)} />
-                                                    <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p>
+                                                {/* <div className="slidecontainer" style={{ marginTop: '0px' }}> */}
+                                                <div size="large" style={{ marginLeft: '10px' }}>
+                                                    <Row gutter={8}>
+                                                        <Col span={8}>
+                                                            <Input
+                                                                placeholder="Min"
+                                                            // onChange={e => this.setState({ minPrice: e.target.value })}
+                                                            />
+                                                        </Col>
+                                                        <Col span={8}>
+                                                            <Input
+                                                                // defaultValue="Max" 
+                                                                placeholder="Max"
+                                                            // onChange={e => this.setState({ maxPrice: e.target.value })}
+                                                            />
+                                                        </Col>
+                                                        <Col>
+                                                            <Button type="primary" icon="caret-right"
+                                                            // onClick={this.props.serachProductMinToMaxPrice.bind(this, minPrice, maxPrice)}
+                                                            />
+                                                        </Col>
+                                                    </Row>
                                                 </div>
+                                                {/* <Slider range min={0} max={1000} step={1} tipFormatter={this.formatter} defaultValue={[0, 1000]} onChange={this.onChangeSlider.bind(this)} />
+                                                    <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p> */}
                                             </div>
+                                            {/* </div> */}
                                             <div class="col-xs-1"></div>
                                         </div>
                                     </div>

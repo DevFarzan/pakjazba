@@ -164,11 +164,13 @@ class Roomrenting1content extends Component {
                             // let postedOn = moment(elem.posted, "LL").format('YYYY-MM-DD');
                             return (
                                 <Link key={key} to={{ pathname: `/detail_roomRent`, state: elem }}>
-                                    <div className="col-md-4 col-sm-4 col-xs-12 mobileMargBotom">
-                                        <img src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'} class="img-responsive list_img" 
-                                        //  style={{ height: '200px', width: "100%", filter: 'brightness(0.5)' }} 
+                                    {/* <div className="col-md-4 col-sm-4 col-xs-12 mobileMargBotom">
+                                        <img src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'} class="img-responsive list_img"  */}
+                                        {/* //  style={{ height: '200px', width: "100%", filter: 'brightness(0.5)' }} 
                                          
-                                         />
+                                         /> */}
+                                    <div className="col-md-4 col-sm-6 col-xs-12 mobileMargBotom">
+                                        <img src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'} className="img-responsive list_img imGCard" />
                                         {/* <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}>{elem.postingtitle.slice(0, 23)}{elem.postingtitle.length > 22 ? '...' : ''}</p>
                                         <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}><b>{str}</b>
                                             <br/><b>{elem.contactname}</b>
@@ -197,7 +199,7 @@ class Roomrenting1content extends Component {
                                         </div>
                                         <div className="roomdetailcardExplore">
                                             <p style={{ fontFamily: 'Poppins, sans-serif' }}>
-                                                {elem.postingtitle}
+                                                {elem.postingtitle.slice(0, 23)}..
                                             </p>
 
                                             <p style={{ fontFamily: 'Poppins, sans-serif' }}>
@@ -205,7 +207,7 @@ class Roomrenting1content extends Component {
                                                     style={{ color: "#008080", margin: "0", left: "-3px" }}
                                                 ></span>
                                                 <span>
-                                                    <b>{elem.propertylocation.slice(0, 35)}</b></span>
+                                                    <b>{elem.propertylocation.slice(0, 35)}..</b></span>
                                                 <br />
                                             </p>
                                         </div>
@@ -213,7 +215,7 @@ class Roomrenting1content extends Component {
                                             <tr>
                                                 <td><span className="fa fa-inbox"
                                                     style={{ color: "#236A4B", margin: "0", left: "-3px" }}
-                                                ></span><span>{elem.furnished}</span></td>
+                                                ></span><span>{elem.furnished.slice(0, 11)}</span></td>
 
                                                 <td><span className="fa fa-users"
                                                     style={{ color: "#236A4B", margin: "0", left: "-3px" }}

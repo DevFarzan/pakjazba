@@ -35,6 +35,7 @@ class BussinesCard extends Component {
             name = cardDetails.businessname || cardDetails.eventTitle ||
                 cardDetails.compName || cardDetails.postingtitle || cardDetails.title,
             obj = this.callFunc(cardDetails, detail);
+            console.log("TCL: BussinesCard -> render -> cardDetails", cardDetails)
 
         return (
             <Link key={1} to={obj}>
@@ -168,7 +169,7 @@ class BussinesCard extends Component {
                             </span> */}
                         </span>}
 
-                        {detail == 'jobListData' && <span>
+                        {detail == 'jobListData' && <span> 
                             <div className="jobcardcarousel">
                                 <div className="row">
                                     <div className="col-md-3 col-xs-3">
@@ -280,7 +281,7 @@ class BussinesCard extends Component {
                                         </div>
                                     </div>
                                     <div className="col-md-10 col-xs-10">
-                                        <h5 className="organisername"> Shayan Mutahir </h5>
+                                        <h5 className="organisername"> {cardDetails.name} </h5>
                                     </div>
                                 </div>
                             </div>

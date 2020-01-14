@@ -32,7 +32,6 @@ class MarketEvent extends Component {
                 });
             }
         }
-        // this.handleLocalStorage();
     }
 
     componentWillUnmount() {
@@ -50,15 +49,14 @@ class MarketEvent extends Component {
                     <div className="vissible-xs" style={{ "background": "#d8e7e4", marginTop: "102px", backgroundSize: 'cover' }}>
                         <div className="visible-xs" style={{ marginTop: '-119px' }}></div>
                         <div className="background-image">
-                            {/* <Burgermenu /> */}
-                            {/* <Slider mainH1="PakJazba Event Portal" mainH2="Find what you need" showBtn={this.state.showBtn} /> */}
+                            <Burgermenu /> 
+                            <Slider mainH1="PakJazba Event Portal" mainH2="Find what you need" showBtn={this.state.showBtn} />
                         </div>
                     </div>
                 </span>
-                {!this.props.text && <EventBanner events={this.state.events} />}
-                {/*{!this.props.text && <EventCategories/>}*/}
+                {/* {!this.props.text && <EventBanner events={this.state.events} />} */}
+                {/* {!this.props.text && <EventCategories/>} */}
                 <EventFeatured events={this.state.events} />
-                <Footer />
             </div>
 
         )

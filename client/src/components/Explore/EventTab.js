@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import EventFilterContent from '../events/eventFilterContent';
 import { Tabs, Icon } from 'antd';
-import EventFeatured from '../events/Eventfeaturedcard';
+import EventFeatured from '../events/bannerAndtop';
 import EventCategory from '../events/eventCategory';
 import { HttpUtils } from "../../Services/HttpUtils";
     

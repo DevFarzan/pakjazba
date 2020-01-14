@@ -28,83 +28,170 @@ class RoomRentTAB extends Component {
     }
 
     onChange = (value) => {
+        const { showroomrents, filteredData } = this.state;
+
         let categoryValue = [];
         categoryValue.push(value[1]);
         this.setState({
             categoryRoom: value[1],
         })
+        this.filterKeysGet()
 
-        // const { showroomrents, filteredData } = this.state;
-        // if (filteredData.length == 0){
-        //     let data = showroomrents.filter((elem) => {
-        //         return elem.subCategory && categoryValue.includes(elem.subCategory)
-        //     })
-        // }
-        // else{
-        //     let data = filteredData.filter((elem) => {
-        //         return elem.subCategory && categoryValue.includes(elem.subCategory)
-        //     })
-        // }
-
-        // console.log(data)
-
+        if (filteredData.length == 0) {
+            let data = showroomrents.filter((elem) => {
+                return elem.subCategory && categoryValue.includes(elem.subCategory)
+            })
+            this.setState({
+                filteredData: data
+            })
+        }
+        else {
+            let data = filteredData.filter((elem) => {
+                return elem.subCategory && categoryValue.includes(elem.subCategory)
+            })
+            this.setState({
+                filteredData: data
+            })
+        }
     }
 
     getCitiesAndState = (state, city) => {
+        // const { showroomrents, filteredData } = this.state;
         let stateValue = [];
         let cityValue = [];
-        stateValue.push(state)
         cityValue.push(city)
+        stateValue.push(state)
+
+        // filterCityName = cityValue;
+        // filterStateName = stateValue;
+        // this.filterKeysGet()
+
+        if (filteredData.length == 0) {
+            let data = showroomrents.filter((elem) => {
+                return elem.state && stateValue.includes(elem.state) && elem.state && cityValue.includes(elem.city)
+            })
+            this.setState({
+                filteredData: data
+            })
+        }
+        else {
+            let data = filteredData.filter((elem) => {
+                return elem.state && stateValue.includes(elem.state) && elem.state && cityValue.includes(elem.city)
+            })
+            this.setState({
+                filteredData: data
+            })
+        }
     }
 
     onChangeCheckBoxes = (value) => {
-        console.log(value, 'value')
-
+        // const { showroomrents, filteredData } = this.state;
+        filterAccomodatesNumber = value
+        this.filterKeysGet()
+        if (filteredData.length == 0) {
+            let data = showroomrents.filter((elem) => {
+                return elem.accomodates && value.includes(elem.accomodates)
+            })
+            this.setState({
+                filteredData: data
+            })
+        }
+        else {
+            let data = filteredData.filter((elem) => {
+                return elem.accomodates && value.includes(elem.accomodates)
+            })
+            this.setState({
+                filteredData: data
+            })
+        }
     }
 
+    // filterKeysGet = () => {
+    //     let categoroyOfRoom = [];
+    //     let stateOfRoom = [];
+    //     let cityOfRoom = [];
+    //     let accomodatesOfRoom = [];
+
+    //     let filterKeys = [];
+
+    //     if (filterSubCategoryName.length > 0) {
+    //         filterKeys.push('category')
+    //     }
+    //     if (filterCityName.length > 0) {
+    //         filterKeys.push('state')
+    //     }
+    //     if (filterStateName.length > 0) {
+    //         filterKeys.push('city')
+    //     }
+    //     if (filterAccomodatesNumber.length > 0) {
+    //         filterKeys.push('accommodates')
+    //     }
+
+    //     for (var i = 0; i < filterSubCategoryName.length; i++) {
+    //         categoroyOfRoom.push(filterSubCategoryName[i])
+    //     }
+    //     for (var i = 0; i < filterCityName.length; i++) {
+    //         stateOfRoom.push(filterCityName[i])
+    //     }
+    //     for (var i = 0; i < filterStateName.length; i++) {
+    //         cityOfRoom.push(filterStateName[i])
+    //     }
+    //     for (var i = 0; i < filterAccomodatesNumber.length; i++) {
+    //         accomodatesOfRoom.push(filterAccomodatesNumber[i])
+    //     }
+
+    //     // this.setState({
+    //     //     categoroyOfRoom: categoroyOfRoom,
+    //     //     stateOfRoom: stateOfRoom,
+    //     //     cityOfRoom: cityOfRoom,
+    //     //     accomodatesOfRoom: accomodatesOfRoom,
+    //     // })
+
+    //     this.filterBillboardData(filterKeys)
+
+    // }
 
 
-    filterKeysGet = () => {
-        let subCategoryName = [];
-        let stateName = [];
-        let cityName = [];
-        let accomodatesNumber = [];
 
-        let filterKeys = [];
+    // filterBillboardData = (filterKeys) => {
+    //     if (filterKeys.length == 1) {
+    //         this.filterDataWithOneKey(filterKeys);
+    //     }
+    //     else if (filterKeys.length == 2) {
+    //         this.filterDataWithTwoKeys(filterKeys);
+    //     }
+    //     else if (filterKeys.length == 3) {
+    //         this.filterDataWithThreeKeys(filterKeys);
+    //     }
+    //     else if (filterKeys.length == 4) {
+    //         this.filterDataWithFourKeys(filterKeys)
+    //     }
+    // }
 
-        if (filterSubCategoryName.length > 0) {
-            filterKeys.push('category')
-        }
-        if (filterCityName.length > 0) {
-            filterKeys.push('city')
-        }
-        if (filterStateName.length > 0) {
-            filterKeys.push('state')
-        }
-        if (filterAccomodatesNumber.length > 0) {
-            filterKeys.push('audianceType')
-        }
-        for (var i = 0; i < filterSubCategoryName.length; i++) {
-            subCategoryName.push(filterSubCategoryName[i])
-        }
-        for (var i = 0; i < filterCityName.length; i++) {
-            stateName.push(filterCityName[i])
-        }
-        for (var i = 0; i < filterStateName.length; i++) {
-            cityName.push(filterStateName[i])
-        }
-        for (var i = 0; i < filterAccomodatesNumber.length; i++) {
-            accomodatesNumber.push(filterAccomodatesNumber[i])
-        }
-        // this.setState({
-        //     subCategoryName: subCategoryName,
-        //     stateName: stateName,
-        //     cityName: cityName,
-        //     accomodatesNumber: accomodatesNumber,
-        // })
+    // filterDataWithOneKey = (filterKeys) => {
+    //     const { showroomrents } = this.state;
+    //     let data;
+    //     for (var i = 0; i < filterKeys.length; i++) {
+    //         if (filterKeys[i] == 'category') {
+    //             data = showroomrents.filter((elem) => {
+    //                 return elem.subCategory && filterSubCategoryName.includes(elem.subCategory)
+    //             })
+    //         }
+    //         else if (filterKeys[i] == 'state') {
 
-        // this.filterBillboardData(filterKeys)
-    }
+    //         }
+    //         else if (filterKeys[i] == 'city') {
+    //             data = showroomrents.filter((elem) => {
+    //                 return elem.state && filterStateName.includes(elem.state) && elem.city && filterCityName.includes(elem.city)
+    //             })
+    //         }
+    //         else if (filterKeys[i] == 'accommodates') {
+    //             data = filteredData.filter((elem) => {
+    //                 return elem.accomodates && filterAccomodatesNumber.includes(elem.accomodates)
+    //             })
+    //         }
+    //     }
+    // }
 
     handleLocalStorage = () => {
         AsyncStorage.getItem('user')
@@ -136,29 +223,10 @@ class RoomRentTAB extends Component {
         }
     }
 
-    // addingStarProp(arrforLoop, rateArr) {
-    //     return arrforLoop && arrforLoop.map((elem) => {
-    //         let rate = 0,
-    //             len = 0;
-    //         rateArr && rateArr.map((el) => {
-    //             if (elem._id == el.objid) {
-    //                 rate += el.star ? +el.star : 0;
-    //                 len++
-    //             }
-    //         });
-    //         let star = rate / len;
-    //         if (rate > 0 && len > 0) {
-    //             return { ...elem, ...{ star: star.toFixed(1) } };
-    //         }
-    //         return { ...elem, ...{ star: 0 } };
-    //     });
-    // }
-
     render() {
         const { TabPane } = Tabs;
-        const { categoryRoom, showroomrents } = this.state;
-        console.log(filterSubCategoryName, 'filterCategoryName')
-
+        const { categoryRoom, showroomrents, filteredData } = this.state;
+        console.log(filteredData, 'filteredData')
         return (
             <div>
                 <div className="row">

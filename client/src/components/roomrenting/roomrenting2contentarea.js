@@ -364,7 +364,7 @@ class Roomrentingtwocontentarea extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <h3 className="col-md-12"><b>Beds:</b></h3>
+                                        <h3 className="col-md-12"><b>Accommodates</b></h3>
                                         <div className="row" style={{ padding: '0px' }}>
                                             <div className="col-xs-10 col-md-10"></div>
                                             <Checkbox.Group style={{ width: '100%' }}
@@ -381,11 +381,14 @@ class Roomrentingtwocontentarea extends Component {
                                                         <Checkbox value="3">3</Checkbox>
                                                     </Col>
                                                     <Col span={8}>
-                                                        <Checkbox value="4+">4+</Checkbox>
+                                                        <Checkbox value="4+">4</Checkbox>
                                                     </Col>
-                                                    {/* <Col span={8}>
-                                                        <Checkbox value="E">E</Checkbox>
-                                                    </Col> */}
+                                                    <Col span={8}>
+                                                        <Checkbox value="5">5</Checkbox>
+                                                    </Col>
+                                                    <Col span={8}>
+                                                        <Checkbox value="6">6</Checkbox>
+                                                    </Col>
                                                 </Row>
                                             </Checkbox.Group>
                                             <div className="col-xs-2 col-md-2"></div>
@@ -405,7 +408,7 @@ class Roomrentingtwocontentarea extends Component {
                                             <div className="col-xs-2 col-md-2"></div> */}
                                         </div>
                                     </div>
-                                    <div className="col-md-12 col-sm-12 search-space1">
+                                    {/* <div className="col-md-12 col-sm-12 search-space1">
                                         <button
                                             className="btn"
                                             onClick={this.mostPopular.bind(this)}
@@ -413,7 +416,7 @@ class Roomrentingtwocontentarea extends Component {
                                         >
                                             Search
                                         </button>
-                                    </div>
+                                    </div> */}
                                     <div class="col-md-12 col-sm-12 spacing hidden-xs" style={{ marginTop: '2vw' }}>
                                         <h3 className="col-md-12"><b>Price</b></h3>
                                         {/* <div className="slidecontainer"> */}

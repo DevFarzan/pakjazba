@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import RoomRentFilterContent from '../roomrenting/roomrenting2contentarea';
+import EventFilterContent from '../events/eventFilterContent';
 import { Tabs, Icon } from 'antd';
-import EventFeatured from '../events/Eventfeaturedcard';
+import EventFeatured from '../events/bannerAndtop';
 import EventCategory from '../events/eventCategory';
 import { HttpUtils } from "../../Services/HttpUtils";
     
@@ -34,13 +34,13 @@ async getAllBusiness() {
     // this.handleLocalStorage();
 }
 
-componentWillUnmount() {
-    let inputValue = '';
-    if (this.props.text.length) {
-        const { dispatch } = this.props;
-        dispatch({ type: 'SEARCHON', inputValue })
-    }
-}
+// componentWillUnmount() {
+//     let inputValue = '';
+//     if (this.props.text.length) {
+//         const { dispatch } = this.props;
+//         dispatch({ type: 'SEARCHON', inputValue })
+//     }
+// }
 
 
     render(){
@@ -55,7 +55,7 @@ componentWillUnmount() {
                             <TabPane tab={
                                 <span><Icon type="apple" /> Filter </span>}
                                 key="1">
-                                <RoomRentFilterContent />
+                                <EventFilterContent />
                             </TabPane>
                             <TabPane tab={
                                 <span><Icon type="android" /> Category </span>}

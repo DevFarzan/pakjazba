@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Cascader } from 'antd';
 import './CategoriesJobs.css';
+import stateCities from "../../lib/countrycitystatejson";
 
 const type = [
       {
@@ -43,10 +44,63 @@ class CategoriesjobMarket extends Component{
       super(props);
       this.state = {
         typeR: '',
-        cat: ''
+        cat: '',
+        states: [],
+        cities: [],
       }
       this.clickItem = this.clickItem.bind(this);
   }
+
+
+  
+  componentDidMount() {
+    window.scrollTo(0, 0);
+    // this.getAllBusiness();
+    this.stateAndCities();
+  }
+
+  stateAndCities(res) {
+    let states = stateCities.getStatesByShort('US');
+    states = states.map((elem) => {
+      return {
+        label: elem,
+        value: elem
+      }
+    })
+    this.setState({
+      states: states,
+    })
+  }
+
+  onChangeState(value) {
+    if (!!value.length) {
+      let cities = stateCities.getCities('US', value[0])
+      cities = cities.map((elem) => {
+        return {
+          label: elem,
+          value: elem
+        }
+      })
+      this.setState({
+        cities: cities,
+        eachState: value[0]
+      })
+    }
+  }
+
+  onChangeCity(value) {
+    // const { roomrents, eachState } = this.state;
+    // let data = roomrents.filter((elem) => {
+    //     return elem.state === eachState || elem.city === value[0]
+    // })
+    // this.setState({
+    //     filteredArr: data,
+    //     showroomrents: data.slice(0, 6),
+    //     add: 6
+    // })
+  }
+
+
 
   onChangeType(value){
       this.setState({typeR: value[0]})
@@ -63,7 +117,9 @@ class CategoriesjobMarket extends Component{
   }
 
   render(){
-    const {typeR, cat} = this.state;
+    const { states, cities } = this.state;
+
+    // const {typeR, cat} = this.state;
     return(
       <div className="container categoriesbars" style={{width:"100%"}}>
       	<div className="row">
@@ -77,6 +133,16 @@ class CategoriesjobMarket extends Component{
         	        <Cascader style={{width: '100%'}} options={categ} onChange={this.onChangeCategory.bind(this)} placeholder="Please select" />
         	    </form>
 
+              {/* <div className="row"> */}
+                                    
+                                    <div class="col-md-12 col-sm-12 spacing">
+                                        <h3 className="col-md-12"><b>Location</b></h3>
+                                        <div className="col-md-12 col-sm-12 col-xs-12">
+                                            <Cascader style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)} /></div>
+                                        <div className="col-md-12 col-sm-12 col-xs-12" style={{ marginTop: '2vw', }}>
+                                            <Cascader style={{ width: '100%' }} options={cities} onChange={this.onChangeCity.bind(this)} /></div>
+                                    </div>
+                                    {/* </div> */}
               <div className="col-md-12">
                 <div className="input-group">
                   <label>Search:</label>
@@ -93,7 +159,7 @@ class CategoriesjobMarket extends Component{
                     </div>
                 </div>
               </div>
-              <div className="col-md-12">
+              {/* <div className="col-md-12">
                 <div className="custom-row">
                     <label>Keywords:</label>
                     <div className="marginLeft">
@@ -119,7 +185,7 @@ class CategoriesjobMarket extends Component{
                       </div>
                     </div>
                 </div>
-              </div>
+              </div> */}
             </div>
         </div>
       </div>

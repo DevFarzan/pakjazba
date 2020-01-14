@@ -1,12 +1,3 @@
-@media screen
-  and (min-device-width: 1200px)
-  and (max-device-width: 1600px)
-  and (-webkit-min-device-pixel-ratio: 1) {
-    .widthmobile{
-      width: 70% !important;
-      background: white;
-    }
-}
 
 
 @media only screen
@@ -17,9 +8,36 @@
       width: 100%;
       margin-top: -25px !important;
       background: white;
+      -webkit-transition: box-shadow .25s ease-in-out;
+      transition: box-shadow .25s ease-in-out;
+      box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
+      border-radius: 3px;
     }
 }
-
+@media screen
+  and (min-device-width: 1200px)
+  and (max-device-width: 1600px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .widthmobile{
+      width: 67% !important;
+      background: white;
+      -webkit-transition: box-shadow .25s ease-in-out;
+      transition: box-shadow .25s ease-in-out;
+      box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
+      border-radius: 3px;
+    }
+}
+@media screen
+  and (min-device-width: 1600px){
+    .widthmobile{
+      width: 67% !important;
+      background: white;
+      -webkit-transition: box-shadow .25s ease-in-out;
+      transition: box-shadow .25s ease-in-out;
+      box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
+      border-radius: 3px;
+    }
+}
 
 
 .ecardoutset{

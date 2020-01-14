@@ -35,6 +35,7 @@ class BussinesCard extends Component {
             name = cardDetails.businessname || cardDetails.eventTitle ||
                 cardDetails.compName || cardDetails.postingtitle || cardDetails.title,
             obj = this.callFunc(cardDetails, detail);
+            console.log("TCL: BussinesCard -> render -> cardDetails", cardDetails)
 
         return (
             <Link key={1} to={obj}>
@@ -67,34 +68,8 @@ class BussinesCard extends Component {
                                     </p>
                                 </div>
                             </div>
-                             {/* <div className="" style={{ 'marginBottom': '30px' }}>
-                        <div className="card" style={{ width: '100%' }}>
-                            <img alt='' src={src} style={{ height: '200px', width: "100%" }} />
-                            {detail == 'businessData' && <span>
-                                <h4 style={{ marginLeft: "-1px", marginBottom: "15px", marginTop: "20px" }}>
-                                    <b>{name}</b>
-                                </h4>
-                                <span>
-                                    <Rate disabled
-                                        style={{ paddingBottom: '20px', marginTop: "-10px" }}
-                                        allowHalf value={cardDetails.star}
-                                    />
-                                    {cardDetails.star}
-                                </span>
-                                <p style={{ marginTop: "-15px" }}> */}
                         </span>}
-                        {/* {detail == 'ecommerce' && <span>
-                            <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}>
-                                {cardDetails.product}
-                            </p>
-                            <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}>
-                                <b>{cardDetails.country}</b>
-                                <br/>{'$' + cardDetails.price }
-                            </p>
-                            <span>
-                               
-                            </span>
-                        </span>} */}
+                        
                         {detail == 'roomRentData' && <span>
                             <div className="row" style={{ padding: "0" }}>
                                 <div className="col-md-12" style={{ padding: "0" }}>
@@ -132,7 +107,7 @@ class BussinesCard extends Component {
                                 <tr>
                                     <td><span className="fa fa-inbox"
                                         style={{ color: "#236A4B", margin: "0", left: "-3px" }}
-                                    ></span><span>{cardDetails.furnished}</span></td>
+                                    ></span><span>{cardDetails.furnished.slice(0,11)}..</span></td>
 
                                     <td><span className="fa fa-users"
                                         style={{ color: "#236A4B", margin: "0", left: "-3px" }}
@@ -168,7 +143,7 @@ class BussinesCard extends Component {
                             </span> */}
                         </span>}
 
-                        {detail == 'jobListData' && <span>
+                        {detail == 'jobListData' && <span> 
                             <div className="jobcardcarousel">
                                 <div className="row">
                                     <div className="col-md-3 col-xs-3">
@@ -251,6 +226,7 @@ class BussinesCard extends Component {
 
                             
                         </span>}
+                        
                         {detail == 'eventPortalData' && <span>
                             <div className="pricingroom">  <p style={{ margin: "0" }}>
                                 <span className="glyphicon glyphicon-calendar"
@@ -280,11 +256,12 @@ class BussinesCard extends Component {
                                         </div>
                                     </div>
                                     <div className="col-md-10 col-xs-10">
-                                        <h5 className="organisername"> Shayan Mutahir </h5>
+                                        <h5 className="organisername"> {cardDetails.name} </h5>
                                     </div>
                                 </div>
                             </div>
                         </span>}
+                       
                         {detail == 'ecommerce' && <span>
                             <p style={{ color: 'black', margin: "0", fontFamily: 'Poppins, sans-serif' }}>
                                 {cardDetails.product}
@@ -305,6 +282,7 @@ class BussinesCard extends Component {
                                 </span>
                             </p>
                         </span>}
+                       
                         {detail == 'ecommerce' && <span>
                             <p style={{ color: 'black', margin: "0", fontFamily: 'Source Sans Pro, sans-serif' }}>
                                 {cardDetails.product}
@@ -317,6 +295,7 @@ class BussinesCard extends Component {
 
                             </span>
                         </span>}
+                    
                     </div>
                 </div>
             </Link>

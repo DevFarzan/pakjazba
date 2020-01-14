@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Burgermenu from '../header/burgermenu';
+import Headermenu from '../header/headermenu';
 import Footer from '../footer/footer';
 import Slider from '../header/Slider';
 import EcomCard from './EcomCard';
@@ -147,7 +147,7 @@ class EcommerceMarket extends Component {
               <div className="vissible-xs" style={{ "background": "#d8e7e4", marginTop: "102px", backgroundSize: 'cover' }}>
                 <div className="visible-xs" style={{ marginTop: '-119px' }}></div>
                 <div className="background-image">
-                  <Burgermenu />
+                  <Headermenu />
 
                   <Slider mainH1="Pakjazba Ecommerce" mainH2="" searcProduct={this.searcProduct} searchProduct={this.searchProduct}
                     onChange={this.onChange} searchBy={searchBy} checkRadioBtn={checkRadioBtn} />

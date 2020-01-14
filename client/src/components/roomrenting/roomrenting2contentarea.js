@@ -330,7 +330,7 @@ class Roomrentingtwocontentarea extends Component {
 
     render() {
         const { states, cities, } = this.state;
-        const { onChange, onChangeCheckBoxes } = this.props;
+        const { onChange, onChangeCheckBoxes, mostPopular } = this.props;
 
         return (
             <div className="exploreRentFilter">
@@ -381,7 +381,7 @@ class Roomrentingtwocontentarea extends Component {
                                                         <Checkbox value="3">3</Checkbox>
                                                     </Col>
                                                     <Col span={8}>
-                                                        <Checkbox value="4+">4</Checkbox>
+                                                        <Checkbox value="4">4</Checkbox>
                                                     </Col>
                                                     <Col span={8}>
                                                         <Checkbox value="5">5</Checkbox>
@@ -408,15 +408,15 @@ class Roomrentingtwocontentarea extends Component {
                                             <div className="col-xs-2 col-md-2"></div> */}
                                         </div>
                                     </div>
-                                    {/* <div className="col-md-12 col-sm-12 search-space1">
+                                    <div className="col-md-12 col-sm-12 search-space1">
                                         <button
                                             className="btn"
-                                            onClick={this.mostPopular.bind(this)}
+                                            onClick={mostPopular.bind(this)}
                                             style={{ backgroundColor: '#37a99b', color: 'white', width: '100%' }}
                                         >
                                             Search
                                         </button>
-                                    </div> */}
+                                    </div>
                                     <div class="col-md-12 col-sm-12 spacing hidden-xs" style={{ marginTop: '2vw' }}>
                                         <h3 className="col-md-12"><b>Price</b></h3>
                                         {/* <div className="slidecontainer"> */}

@@ -15,10 +15,13 @@ class RoomRentTAB extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            categoryRoom: '',
+            categoryRoom: [],
             user: false,
             showroomrents: [],
-            filteredData: []
+            filteredData: [],
+            city: [],
+            state: [],
+            accomodates: []
         }
     }
 
@@ -28,31 +31,31 @@ class RoomRentTAB extends Component {
     }
 
     onChange = (value) => {
-        const { showroomrents, filteredData } = this.state;
+        // const { showroomrents, filteredData } = this.state;
 
         let categoryValue = [];
         categoryValue.push(value[1]);
         this.setState({
-            categoryRoom: value[1],
+            categoryRoom: categoryValue,
         })
         this.filterKeysGet()
 
-        if (filteredData.length == 0) {
-            let data = showroomrents.filter((elem) => {
-                return elem.subCategory && categoryValue.includes(elem.subCategory)
-            })
-            this.setState({
-                filteredData: data
-            })
-        }
-        else {
-            let data = filteredData.filter((elem) => {
-                return elem.subCategory && categoryValue.includes(elem.subCategory)
-            })
-            this.setState({
-                filteredData: data
-            })
-        }
+        // if (filteredData.length == 0) {
+        //     let data = showroomrents.filter((elem) => {
+        //         return elem.subCategory && categoryValue.includes(elem.subCategory)
+        //     })
+        //     this.setState({
+        //         filteredData: data
+        //     })
+        // }
+        // else {
+        //     let data = filteredData.filter((elem) => {
+        //         return elem.subCategory && categoryValue.includes(elem.subCategory)
+        //     })
+        //     this.setState({
+        //         filteredData: data
+        //     })
+        // }
     }
 
     getCitiesAndState = (state, city) => {
@@ -62,49 +65,71 @@ class RoomRentTAB extends Component {
         cityValue.push(city)
         stateValue.push(state)
 
-        // filterCityName = cityValue;
-        // filterStateName = stateValue;
-        // this.filterKeysGet()
+        this.setState({
+            city: cityValue,
+            state: stateValue
+        })
 
-        if (filteredData.length == 0) {
-            let data = showroomrents.filter((elem) => {
-                return elem.state && stateValue.includes(elem.state) && elem.state && cityValue.includes(elem.city)
-            })
-            this.setState({
-                filteredData: data
-            })
-        }
-        else {
-            let data = filteredData.filter((elem) => {
-                return elem.state && stateValue.includes(elem.state) && elem.state && cityValue.includes(elem.city)
-            })
-            this.setState({
-                filteredData: data
-            })
-        }
+        filterCityName = cityValue;
+        filterStateName = stateValue;
+        this.filterKeysGet()
+
+        // if (filteredData.length == 0) {
+        //     let data = showroomrents.filter((elem) => {
+        //         return elem.state && stateValue.includes(elem.state) && elem.state && cityValue.includes(elem.city)
+        //     })
+        //     this.setState({
+        //         filteredData: data
+        //     })
+        // }
+        // else {
+        //     let data = filteredData.filter((elem) => {
+        //         return elem.state && stateValue.includes(elem.state) && elem.state && cityValue.includes(elem.city)
+        //     })
+        //     this.setState({
+        //         filteredData: data
+        //     })
+        // }
     }
 
     onChangeCheckBoxes = (value) => {
         // const { showroomrents, filteredData } = this.state;
+
+        this.setState({
+            accomodates: value
+        })
+
+
         filterAccomodatesNumber = value
         this.filterKeysGet()
-        if (filteredData.length == 0) {
-            let data = showroomrents.filter((elem) => {
-                return elem.accomodates && value.includes(elem.accomodates)
-            })
-            this.setState({
-                filteredData: data
-            })
-        }
-        else {
-            let data = filteredData.filter((elem) => {
-                return elem.accomodates && value.includes(elem.accomodates)
-            })
-            this.setState({
-                filteredData: data
-            })
-        }
+
+
+        // if (filteredData.length == 0) {
+        //     let data = showroomrents.filter((elem) => {
+        //         return elem.accomodates && value.includes(elem.accomodates)
+        //     })
+        //     this.setState({
+        //         filteredData: data
+        //     })
+        // }
+        // else {
+        //     let data = filteredData.filter((elem) => {
+        //         return elem.accomodates && value.includes(elem.accomodates)
+        //     })
+        //     this.setState({
+        //         filteredData: data
+        //     })
+        // }
     }
+
+    // mostPopular = () => {
+    //     const { categoryRoom, city, state, accomodates } = this.state;
+    //     console.log(categoryRoom, 'clicked')
+    //     console.log(city, 'city')
+    //     console.log(state, 'state')
+    //     console.log(accomodates, 'accomodates')
+
+    // }
 
     // filterKeysGet = () => {
     //     let categoroyOfRoom = [];
@@ -225,8 +250,7 @@ class RoomRentTAB extends Component {
 
     render() {
         const { TabPane } = Tabs;
-        const { categoryRoom, showroomrents, filteredData } = this.state;
-        console.log(filteredData, 'filteredData')
+        const { showroomrents, filteredData } = this.state;
         return (
             <div>
                 <div className="row">
@@ -235,7 +259,8 @@ class RoomRentTAB extends Component {
                             <TabPane tab={
                                 <span><Icon type="filter" /> Filter </span>}
                                 key="1">
-                                <RoomRentFilterContent onChange={this.onChange} getCitiesAndState={this.getCitiesAndState} onChangeCheckBoxes={this.onChangeCheckBoxes} />
+                                <RoomRentFilterContent onChange={this.onChange} getCitiesAndState={this.getCitiesAndState} onChangeCheckBoxes={this.onChangeCheckBoxes}
+                                     />
                             </TabPane>
                             <TabPane tab={
                                 <span><Icon type="android" /> Category </span>}
@@ -245,7 +270,7 @@ class RoomRentTAB extends Component {
                         </Tabs>
                     </div>
                     <div className="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                        <Roomrenting1content showroomrents={showroomrents} />
+                        <Roomrenting1content showroomrents={showroomrents} filteredData={filteredData} />
                     </div>
                 </div>
             </div>

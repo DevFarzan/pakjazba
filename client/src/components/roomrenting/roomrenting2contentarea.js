@@ -16,84 +16,84 @@ const category = [{
     children: [{
         value: 'Single Family Home',
         label: 'Single Family Home',
-        children: [{
-            value: '1 Bed',
-            label: '1 Bed',
-        }, {
-            value: '2 Beds',
-            label: '2 Beds',
-        }, {
-            value: '3 Beds',
-            label: '3 Beds',
-        }, {
-            value: '4+ Beds',
-            label: '4+ Beds',
-        }],
+        // children: [{
+        //     value: '1 Bed',
+        //     label: '1 Bed',
+        // }, {
+        //     value: '2 Beds',
+        //     label: '2 Beds',
+        // }, {
+        //     value: '3 Beds',
+        //     label: '3 Beds',
+        // }, {
+        //     value: '4+ Beds',
+        //     label: '4+ Beds',
+        // }],
     },
     {
         value: 'Appartment',
         label: 'Apartment',
-        children: [{
-            value: '1 Bed',
-            label: '1 Bed',
-        }, {
-            value: '2 Beds',
-            label: '2 Beds',
-        }, {
-            value: '3 Beds',
-            label: '3 Beds',
-        }, {
-            value: '4+ Beds',
-            label: '4+ Beds',
-        }],
+        // children: [{
+        //     value: '1 Bed',
+        //     label: '1 Bed',
+        // }, {
+        //     value: '2 Beds',
+        //     label: '2 Beds',
+        // }, {
+        //     value: '3 Beds',
+        //     label: '3 Beds',
+        // }, {
+        //     value: '4+ Beds',
+        //     label: '4+ Beds',
+        // }],
     }, {
         value: 'Condo',
         label: 'Condo',
-        children: [{
-            value: '1 Bed',
-            label: '1 Bed',
-        }, {
-            value: '2 Beds',
-            label: '2 Beds',
-        }, {
-            value: '3 Beds',
-            label: '3 Beds',
-        }, {
-            value: '4+ Beds',
-            label: '4+ Beds',
-        }],
+        // children: [{
+        //     value: '1 Bed',
+        //     label: '1 Bed',
+        // }, {
+        //     value: '2 Beds',
+        //     label: '2 Beds',
+        // }, {
+        //     value: '3 Beds',
+        //     label: '3 Beds',
+        // }, {
+        //     value: '4+ Beds',
+        //     label: '4+ Beds',
+        // }],
     }, {
         value: 'Town house',
         label: 'Town house',
-        children: [{
-            value: '1 Bed',
-            label: '1 Bed',
-        }, {
-            value: '2 Beds',
-            label: '2 Beds',
-        }, {
-            value: '3 Beds',
-            label: '3 Beds',
-        }, {
-            value: '4+ Beds',
-            label: '4+ Beds',
-        }],
+        // children: [{
+        //     value: '1 Bed',
+        //     label: '1 Bed',
+        // }, {
+        //     value: '2 Beds',
+        //     label: '2 Beds',
+        // }, {
+        //     value: '3 Beds',
+        //     label: '3 Beds',
+        // }, {
+        //     value: '4+ Beds',
+        //     label: '4+ Beds',
+        // }],
     }, {
         value: 'Homes',
         label: 'Homes',
-        children: [{
-            value: '1 Bed',
-            label: '1 Bed',
-        }, {
-            value: '2 Beds',
-            label: '2 Beds',
-        }, {
-            value: '3 Beds',
-            label: '3 Beds',
-        }, {
-            value: '4+ Beds',
-            label: '4+ Beds',
-        }],
+        // children: [{
+        //     value: '1 Bed',
+        //     label: '1 Bed',
+        // }, {
+        //     value: '2 Beds',
+        //     label: '2 Beds',
+        // }, {
+        //     value: '3 Beds',
+        //     label: '3 Beds',
+        // }, {
+        //     value: '4+ Beds',
+        //     label: '4+ Beds',
+        // }],
     }],
 }, {
     value: 'Room to rent',
@@ -122,10 +122,12 @@ const category = [{
         label: 'Others',
     }],
 
-}, {
-    value: 'Parking & storage to rent',
-    label: 'Parking & storage to rent',
-}];
+}
+    // , {
+    //     value: 'Parking & storage to rent',
+    //     label: 'Parking & storage to rent',
+    // }
+];
 
 class Roomrentingtwocontentarea extends Component {
     constructor(props) {
@@ -134,17 +136,18 @@ class Roomrentingtwocontentarea extends Component {
             states: [],
             eachState: '',
             citiess: [],
-            roomrents: [],
-            showroomrents: [],
-            filteredArr: [],
-            dropDownVal: [],
-            noText: true,
-            to: 0,
-            from: 1000,
-            bedArr: [],
-            loader: true,
-            add: 6,
-            moreFilter: false
+            category: '',
+            // roomrents: [],
+            // showroomrents: [],
+            // filteredArr: [],
+            // dropDownVal: [],
+            // noText: true,
+            // to: 0,
+            // from: 1000,
+            // bedArr: [],
+            // loader: true,
+            // add: 6,
+            // moreFilter: false
         }
     }
 
@@ -181,6 +184,7 @@ class Roomrentingtwocontentarea extends Component {
 
 
     onChangeState(value) {
+        console.log(value, 'value')
         if (!!value.length) {
             let cities = stateCities.getCities('US', value[0])
             cities = cities.map((elem) => {
@@ -197,20 +201,11 @@ class Roomrentingtwocontentarea extends Component {
     }
 
     onChangeCity(value) {
-        //     const { roomrents, eachState } = this.state;
-        //     let data = roomrents.filter((elem) => {
-        //         return elem.state === eachState || elem.city === value[0]
-        //     })
-        //     this.setState({
-        //         filteredArr: data,
-        //         showroomrents: data.slice(0, 6),
-        //         add: 6
-        //     })
+        const { eachState } = this.state;
+        this.props.getCitiesAndState(eachState, value[0])
     }
 
-    onChange(value) {
-        this.setState({ dropDownVal: value })
-    }
+
 
     // formatter(value) {
     //     return `${'$ ' + value}`;
@@ -334,18 +329,11 @@ class Roomrentingtwocontentarea extends Component {
     // }
 
     render() {
-        const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader, objData, goDetail } = this.state;
-        const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
-        if (!noText) {
-            // return <Redirect to='/market_roommates'/>
-            // return <Redirect to='/explore'/>
-        }
-        if (goDetail) {
-            return <Redirect to={{ pathname: `/detail_roomRent`, state: objData }} />
-        }
+        const { states, cities, } = this.state;
+        const { onChange, onChangeCheckBoxes } = this.props;
+
         return (
             <div className="exploreRentFilter">
-                {/*<Burgermenu/>*/}
                 <div className="" style={{ width: "100%" }}>
                     <div className="row">
                         <div className="col-md-1 col-sm-1"></div>
@@ -357,38 +345,21 @@ class Roomrentingtwocontentarea extends Component {
                                             <h3><b>Search By:</b></h3>
                                         </div>
                                         <div className="col-md-12 col-sm-12 search-space1">
-                                            <Cascader style={{ width: '100%' }} options={category} onChange={this.onChange.bind(this)} placeholder="Please select" />
+                                            <Cascader style={{ width: '100%' }} options={category} onChange={onChange.bind(this)}
+                                                placeholder="Please select category" />
                                         </div>
-                                        {/* <div className="col-md-12 col-sm-12 search-space1">
-                                <button
-                                    className="btn"
-                                    onClick={this.mostPopular.bind(this)}
-                                    style={{backgroundColor:'#37a99b', color:'white',width:'100%'}}
-                                >
-                                    Search
-                                </button> */}
-                                        {/* <button
-                                    className="btn"
-                                    style={{backgroundColor:'#37a99b', color:'white', marginLeft:'17px'}}
-                                    onClick={() => {this.setState({moreFilter: !this.state.moreFilter})}}
-                                >
-                                    More Filter
-                                </button> */}
-                                        {/*<button className="btn btn-filter" onClick={this.mostPopular.bind(this)} style={{backroundColor:"rgb(55, 169, 155)"}}>Search</button>
-                                <button className="btn btn-filter" style={{backroundColor:'rgb(55, 169, 155) !important',color:'white',marginLeft:'23px'}}>More Filter</button>*/}
-                                        {/* </div> */}
+
                                     </div>
                                 </div>
-
-                                {/* {this.state.moreFilter && <div className="row"> */}
                                 <div className="row">
-
                                     <div class="col-md-12 col-sm-12 spacing">
                                         <h3 className="col-md-12"><b>Location</b></h3>
                                         <div className="col-md-12 col-sm-12 col-xs-12">
-                                            <Cascader style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)} /></div>
+                                            <Cascader style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)}
+                                                placeholder="Please select state" /></div>
                                         <div className="col-md-12 col-sm-12 col-xs-12" style={{ marginTop: '2vw', }}>
-                                            <Cascader style={{ width: '100%' }} options={cities} onChange={this.onChangeCity.bind(this)} /></div>
+                                            <Cascader style={{ width: '100%' }} options={cities} onChange={this.onChangeCity.bind(this)}
+                                                placeholder="Please select city after select state" /></div>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -397,7 +368,7 @@ class Roomrentingtwocontentarea extends Component {
                                         <div className="row" style={{ padding: '0px' }}>
                                             <div className="col-xs-10 col-md-10"></div>
                                             <Checkbox.Group style={{ width: '100%' }}
-                                            //  onChange={onChange}
+                                             onChange={onChangeCheckBoxes}
                                             >
                                                 <Row>
                                                     <Col span={8}>

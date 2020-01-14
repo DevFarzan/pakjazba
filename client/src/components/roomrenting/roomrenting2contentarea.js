@@ -330,7 +330,7 @@ class Roomrentingtwocontentarea extends Component {
 
     render() {
         const { states, cities, } = this.state;
-        const { onChange, onChangeCheckBoxes, mostPopular } = this.props;
+        const { onChange, onChangeCheckBoxes } = this.props;
 
         return (
             <div className="exploreRentFilter">
@@ -408,7 +408,7 @@ class Roomrentingtwocontentarea extends Component {
                                             <div className="col-xs-2 col-md-2"></div> */}
                                         </div>
                                     </div>
-                                    <div className="col-md-12 col-sm-12 search-space1">
+                                    {/* <div className="col-md-12 col-sm-12 search-space1">
                                         <button
                                             className="btn"
                                             onClick={mostPopular.bind(this)}
@@ -416,7 +416,7 @@ class Roomrentingtwocontentarea extends Component {
                                         >
                                             Search
                                         </button>
-                                    </div>
+                                    </div> */}
                                     <div class="col-md-12 col-sm-12 spacing hidden-xs" style={{ marginTop: '2vw' }}>
                                         <h3 className="col-md-12"><b>Price</b></h3>
                                         {/* <div className="slidecontainer"> */}

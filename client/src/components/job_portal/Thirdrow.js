@@ -145,7 +145,7 @@ class Thirdrow extends Component {
 
         return (
             <div style={{ backgroundColor: '#f7f5ed' }}>
-                <div className="container" style={{ width: "70%"}}>
+                <div className="container containJobForm">
                     <div className="row">
                         <div className="col-md-12 col-sm-12 col-xs-12 des-space">
                             <div className="row">

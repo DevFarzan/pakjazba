@@ -137,6 +137,8 @@ class Roomrentingtwocontentarea extends Component {
             eachState: '',
             citiess: [],
             category: '',
+            minValue: '',
+            maxValue: ''
             // roomrents: [],
             // showroomrents: [],
             // filteredArr: [],
@@ -184,7 +186,6 @@ class Roomrentingtwocontentarea extends Component {
 
 
     onChangeState(value) {
-        console.log(value, 'value')
         if (!!value.length) {
             let cities = stateCities.getCities('US', value[0])
             cities = cities.map((elem) => {
@@ -197,15 +198,35 @@ class Roomrentingtwocontentarea extends Component {
                 cities: cities,
                 eachState: value[0]
             })
+            this.props.getState(value)
         }
     }
 
     onChangeCity(value) {
-        const { eachState } = this.state;
-        this.props.getCitiesAndState(eachState, value[0])
+        this.props.getCities(value)
     }
 
 
+    onChangeMin = (e) => {
+        this.setState({
+            minValue: e.target.value
+        })
+    }
+
+    onChangeMax = (e) => {
+        this.setState({
+            maxValue: e.target.value
+        })
+    }
+
+    filterRoomWithPrice = () => {
+        const { minValue, maxValue } = this.state
+        this.props.filterRoomWithMinToMax(minValue, maxValue)
+        this.setState({
+            minValue: '',
+            maxValue: ''
+        })
+    }
 
     // formatter(value) {
     //     return `${'$ ' + value}`;
@@ -330,7 +351,7 @@ class Roomrentingtwocontentarea extends Component {
 
     render() {
         const { states, cities, } = this.state;
-        const { onChange, onChangeCheckBoxes } = this.props;
+        const { onChange, onChangeCheckBoxes, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom, minValue, maxValue } = this.props;
 
         return (
             <div className="exploreRentFilter">
@@ -345,7 +366,9 @@ class Roomrentingtwocontentarea extends Component {
                                             <h3><b>Search By:</b></h3>
                                         </div>
                                         <div className="col-md-12 col-sm-12 search-space1">
-                                            <Cascader style={{ width: '100%' }} options={category} onChange={onChange.bind(this)}
+                                            <Cascader
+                                                value={categoroyOfRoom}
+                                                style={{ width: '100%' }} options={category} onChange={onChange.bind(this)}
                                                 placeholder="Please select category" />
                                         </div>
 
@@ -355,10 +378,14 @@ class Roomrentingtwocontentarea extends Component {
                                     <div class="col-md-12 col-sm-12 spacing">
                                         <h3 className="col-md-12"><b>Location</b></h3>
                                         <div className="col-md-12 col-sm-12 col-xs-12">
-                                            <Cascader style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)}
+                                            <Cascader
+                                                value={stateOfRoom}
+                                                style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)}
                                                 placeholder="Please select state" /></div>
                                         <div className="col-md-12 col-sm-12 col-xs-12" style={{ marginTop: '2vw', }}>
-                                            <Cascader style={{ width: '100%' }} options={cities} onChange={this.onChangeCity.bind(this)}
+                                            <Cascader
+                                                value={cityOfRoom}
+                                                style={{ width: '100%' }} options={cities} onChange={this.onChangeCity.bind(this)}
                                                 placeholder="Please select city after select state" /></div>
                                     </div>
                                 </div>
@@ -368,7 +395,8 @@ class Roomrentingtwocontentarea extends Component {
                                         <div className="row" style={{ padding: '0px' }}>
                                             <div className="col-xs-10 col-md-10"></div>
                                             <Checkbox.Group style={{ width: '100%' }}
-                                             onChange={onChangeCheckBoxes}
+                                                value={accomodatesOfRoom}
+                                                onChange={onChangeCheckBoxes}
                                             >
                                                 <Row>
                                                     <Col span={8}>
@@ -425,18 +453,25 @@ class Roomrentingtwocontentarea extends Component {
                                                 <Col span={8}>
                                                     <Input
                                                         placeholder="Min"
+                                                        onChange={this.onChangeMin}
+                                                        type="Number"
+                                                        // value={minValue}
                                                     // onChange={e => this.setState({ minPrice: e.target.value })}
                                                     />
                                                 </Col>
                                                 <Col span={8}>
                                                     <Input
                                                         // defaultValue="Max" 
+                                                        onChange={this.onChangeMax}
                                                         placeholder="Max"
+                                                        type="Number"
+                                                        // value={maxValue}
                                                     // onChange={e => this.setState({ maxPrice: e.target.value })}
                                                     />
                                                 </Col>
                                                 <Col>
                                                     <Button type="primary" icon="caret-right"
+                                                        onClick={this.filterRoomWithPrice}
                                                     // onClick={this.props.serachProductMinToMaxPrice.bind(this, minPrice, maxPrice)}
                                                     />
                                                 </Col>
@@ -457,11 +492,18 @@ class Roomrentingtwocontentarea extends Component {
                                                         <Col span={8}>
                                                             <Input
                                                                 placeholder="Min"
+                                                                onChange={this.onChangeMin}
+                                                                type="Number"
+
+                                                            // onChange={e => onChangeMin.bind(e)}
                                                             // onChange={e => this.setState({ minPrice: e.target.value })}
                                                             />
                                                         </Col>
                                                         <Col span={8}>
                                                             <Input
+                                                                onChange={this.onChangeMax}
+                                                                type="Number"
+
                                                                 // defaultValue="Max" 
                                                                 placeholder="Max"
                                                             // onChange={e => this.setState({ maxPrice: e.target.value })}

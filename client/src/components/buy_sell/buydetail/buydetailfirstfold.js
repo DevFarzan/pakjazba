@@ -25,9 +25,9 @@ class Buydetailfirstfold extends Component {
             <div>
                 <div className="row" style={{ marginTop: '-1.5vw' }}>
                     {data.images && <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
-                        <img src={data.images[0]} alt="banner" className="JobBannertoP" />
+                        <img src={data.images[0]} alt="banner" className="BuySellBannertoP" />
                         <div className="row mainEventBanerPadMarg">
-                            <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <div className="col-xs-12 col-sm-7 col-md-8 col-lg-8">
                                 <h1 className="EventBanerTextCsS">{data.title}</h1>
                                 <p className="bannerSubtext">{data.category}</p>
                             </div>
@@ -38,7 +38,7 @@ class Buydetailfirstfold extends Component {
                                     </h4>
                                 </div>
                             </div>
-                            <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                            <div className="col-xs-12 col-sm-3 col-md-2 col-lg-2">
                                 <button className="btnCallEventbaner">
                                     <Icon type="phone" /> <span>Call Now</span>
                                 </button>
@@ -53,7 +53,7 @@ class Buydetailfirstfold extends Component {
                     <div className="row">
                         <div className="col-md-1"></div>
                         <div className="col-md-5">
-                            <div className="row RoomMainDivS" style={{ height: "auto"  }}>
+                            <div className="row RoomMainDivS" style={{ height: "auto", margin: '0px 0px 20px 0px' }}>
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <Carousel autoplay>
                                         {images && images.map((elem, key) => {
@@ -66,41 +66,42 @@ class Buydetailfirstfold extends Component {
                                     </Carousel>
                                 </div>
                             </div>
-                            <div className="row RoomMainDivS" style={{ paddingBottom: '0px' }}>
+                            <div className="row RoomMainDivS" style={{ paddingBottom: '0px', margin: '0px 0px 20px 0px' }}>
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
                                     <Icon type="unordered-list" /><h5 className="headingMainRoom">Description</h5>
                                 </div>
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <p className="paraTextDivs">{data.description}</p>
                                 </div>
-                            </div>                           
-                            <div className="row RoomMainDivS" style={{ paddingBottom: '0px' }}>
+                            </div>
+                            <div className="row RoomMainDivS" style={{ paddingBottom: '0px', margin: '0px 0px 20px 0px' }}>
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
                                     <Icon type="unordered-list" /><h5 className="headingMainRoom">Contact Details</h5>
                                 </div>
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ marginTop: '15px' }}>
                                     <div className="row" style={{ padding: "0" }}>
-                                        <div className="col-md-3">
+                                        <div className="col-xs-3 col-md-3 col-sm-5">
                                             <div className="profile_img">
                                                 <img onClick={() => { this.goToProfile() }} src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="" alt="" style={{ width: '100%', cursor: 'pointer', marginBottom: "8px" }} />
                                             </div>
                                         </div>
-                                        <div className="col-md-9" style={{ marginTop: '34px' }}>
+                                        <div className="col-xs-9 col-md-9 col-sm-7 margMObileBuysell">
                                             <span style={{ fontWeight: 'bold' }}>{data.contactname}</span><br />
                                             <a onClick={() => { this.goToProfile() }} style={{ fontSize: '13px', cursor: 'pointer', color: 'rgb(55, 169, 155)' }}>
                                                 View Profile
                                             </a>
+                                            <h5>
+                                                <span className="glyphicon glyphicon-phone" style={{ marginRight: "15px", color: "#236A4B" }}></span>
+                                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.contactnumber}</span>
+                                            </h5>
+
+                                            <h5>
+                                                <span className="glyphicon glyphicon-globe" style={{ marginRight: "15px", color: "#236A4B" }}></span>
+                                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.contactemail}</span>
+                                            </h5>
                                         </div>
                                     </div>
-                                    <h5>
-                                        <span className="glyphicon glyphicon-phone" style={{ marginRight: "15px", color: "#236A4B" }}></span>
-                                        <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.contactnumber}</span>
-                                    </h5>
 
-                                    <h5>
-                                        <span className="glyphicon glyphicon-globe" style={{ marginRight: "15px", color: "#236A4B" }}></span>
-                                        <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.contactemail}</span>
-                                    </h5>
                                 </div>
                             </div>
                         </div>
@@ -154,7 +155,7 @@ class Buydetailfirstfold extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="row RoomMainDivS" style={{ margin: '0px' , paddingBottom: '0px' ,marginTop: '20px' }}>
+                            <div className="row RoomMainDivS" style={{ margin: '0px', paddingBottom: '0px', marginTop: '20px' }}>
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
                                     <Icon type="unordered-list" />
                                     <h5 className="headingMainRoom">
@@ -171,7 +172,7 @@ class Buydetailfirstfold extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="row RoomMainDivS" style={{ margin: '0px' , paddingBottom: '0px' ,marginTop: '20px' }}>
+                            <div className="row RoomMainDivS" style={{ margin: '0px', paddingBottom: '0px', marginTop: '20px' }}>
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
                                     <Icon type="unordered-list" /><h5 className="headingMainRoom">Location</h5>
                                 </div>

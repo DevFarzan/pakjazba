@@ -36,11 +36,7 @@
     font-size: 40px; 
     font-weight:bold;
   }
-  .socialMediadiv{
-    padding-bottom:0px;
-    margin-right:0;
-    height: 165px;
-  }
+  
   .experienceDiv{
     padding-bottom:0px;
     margin-left:0;
@@ -136,6 +132,11 @@
     padding-bottom: 0vw;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.09);
   }
+  .socialMediadiv{
+    padding-bottom:0px;
+    margin-right:0;
+    height: auto;
+  }
 }
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1365px){
   .elementMainDivS2{
@@ -164,6 +165,11 @@
     padding-bottom: 0vw;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.09);
 }
+.socialMediadiv{
+  padding-bottom:0px;
+  margin-right:0;
+  height: 165px;
+}
 }
 @media only screen and (min-device-width: 1366px){
   .elementMainDivS2{
@@ -191,6 +197,11 @@
     margin-top: -1.5vw;
     padding-bottom: 0vw;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.09);
+  }
+  .socialMediadiv{
+    padding-bottom:0px;
+    margin-right:0;
+    height: 165px;
   }
 }
 .headMainDivs{

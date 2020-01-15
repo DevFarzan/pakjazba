@@ -22,3 +22,46 @@ text-align: center;
 .EventBanner p{
   text-align: left;
 }
+
+.eventDate{
+  position: absolute;
+  top: -40px;
+  left: -5px;
+  color: white;
+  font-size: 15px;
+  border: 1px solid white;
+  padding: 5px;
+}
+
+.eventLocation{
+  position: absolute;
+  top: -40px;
+  left: 25px;
+  color: white;
+  font-weight: 600;
+}
+.eventImag{
+  height: 170px ;
+  width: 100% ;
+  border-top-left-radius: 12px; 
+  border-top-right-radius: 12px;
+  filter: brightness(0.6); 
+}
+.userNamEvent{
+  margin-top: 14px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.eventCard{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background-color: white !important;
+  margin-bottom: 35px;
+}
+.eventDetailcard{
+    border: 1px solid #ccc;
+    background-color: white;
+}
+.userImgEvent{
+  border-radius: 100px !important;
+  height: 50px;
+}

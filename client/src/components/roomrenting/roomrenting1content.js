@@ -135,7 +135,8 @@ class Roomrenting1content extends Component {
     render() {
         // const { showroomrents, filteredArr, roomrents, goForLogin, goDetail } = this.state;
         // const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
-        const { showroomrents } = this.props;
+        const { showroomrents, filteredData, notFoundFilterData, showRecord, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom,
+            removeValue, showAllRooms } = this.props;
         return (
             <section id="about">
                 {/*<!-- Top List start -->*/}
@@ -144,6 +145,47 @@ class Roomrenting1content extends Component {
                         <h4 style={{ margin: "0", textAlign: 'center', fontFamily: 'Source Sans Pro, sans-serif' }}><b>No Room for rent</b> </h4>
                     </div>
                 </div>} */}
+                {categoroyOfRoom && categoroyOfRoom.length > 0 ?
+                    categoroyOfRoom.map((elem, key) => {
+                        return (
+                            <div>
+                                <li>{elem}<span class="close"
+                                    onClick={removeValue.bind(this, 'category', elem)}
+                                >x</span></li>
+                            </div>)
+                    })
+                    : null}
+                {stateOfRoom && stateOfRoom.length > 0 ?
+                    stateOfRoom.map((elem, key) => {
+                        return (
+                            <div>
+                                <li>{elem}<span class="close"
+                                    onClick={removeValue.bind(this, 'state', elem)}
+                                >x</span></li>
+                            </div>)
+                    })
+                    : null}
+                {cityOfRoom && cityOfRoom.length > 0 ?
+                    cityOfRoom.map((elem, key) => {
+                        return (
+                            <div>
+                                <li>{elem}<span class="close"
+                                    onClick={removeValue.bind(this, 'city', elem)}
+                                >x</span></li>
+                            </div>)
+                    })
+                    : null}
+                {accomodatesOfRoom && accomodatesOfRoom.length > 0 ?
+                    accomodatesOfRoom.map((elem, key) => {
+                        return (
+                            <div>
+                                <li>{elem}<span class="close"
+                                    onClick={removeValue.bind(this, 'accommodates', elem)}
+                                >x</span></li>
+                            </div>)
+                    })
+                    : null}
+
                 {showroomrents.length > 0 && <div className="row exploreRent">
                     <div className="col-md-12 col-sm-12 col-xs-12">
                         <h4 style={{ margin: "0", fontFamily: 'Source Sans Pro, sans-serif' }}><b>Top Available Buy</b> </h4>
@@ -155,89 +197,155 @@ class Roomrenting1content extends Component {
                         {/*<div className="col-md-3" onClick={() => {this.clickItem()}}>
                             <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '387px', width: '100%', borderRadius: '17px'}}/>
                         </div>*/}
-                        {showroomrents && showroomrents.map((elem, key) => {
-                            let str = elem.propertylocation || '';
-                            if (str.length > 35) {
-                                str = str.substring(0, 35);
-                                str = str + '...'
-                            }
-                            // let postedOn = moment(elem.posted, "LL").format('YYYY-MM-DD');
-                            return (
-                                <Link key={key} to={{ pathname: `/detail_roomRent`, state: elem }}>
-                                    {/* <div className="col-md-4 col-sm-4 col-xs-12 mobileMargBotom">
-                                        <img src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'} class="img-responsive list_img"  */}
-                                        {/* //  style={{ height: '200px', width: "100%", filter: 'brightness(0.5)' }} 
-                                         
-                                         /> */}
-                                    <div className="col-md-4 col-sm-6 col-xs-12 mobileMargBotom">
-                                        <img src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'} className="img-responsive list_img imGCard" />
-                                        {/* <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}>{elem.postingtitle.slice(0, 23)}{elem.postingtitle.length > 22 ? '...' : ''}</p>
-                                        <p style={{color: 'black', margin:"0",fontFamily: 'Source Sans Pro, sans-serif'}}><b>{str}</b>
-                                            <br/><b>{elem.contactname}</b>
-                                        <br/>{'$' + elem.rent + ' ' + elem.pricemode}</p>
-                                        <span>
-                                            <Rate disabled style={{paddingBottom: '20px', marginTop:"-20px",fontFamily: 'Source Sans Pro, sans-serif'}} allowHalf value={elem.star}/>
-                                            {elem.star}
-                                        </span> */}
-                                        <div className="row" style={{ padding: "0" }}>
-                                            <div className="col-md-12" style={{ padding: "0" }}>
-                                                <div className="col-md-6 col-sm-5 col-xs-5">
-                                                    <div className="pricingroomExplore">
-                                                        {'$' + elem.rent + ' ' + elem.pricemode}
+                        {notFoundFilterData && filteredData.length == 0 ?
+                            <div>
+                                <p>
+                                    No Record Found
+                                </p>
+                                <button
+                                    onClick={showAllRooms}
+                                >Back</button>
+                            </div>
+                            :
+                            filteredData && filteredData.map((elem, key) => {
+                                let str = elem.propertylocation || '';
+                                if (str.length > 35) {
+                                    str = str.substring(0, 35);
+                                    str = str + '...'
+                                }
+                                return (
+                                    <Link key={key} to={{ pathname: `/detail_roomRent`, state: elem }}>
+                                        <div className="col-md-4 col-sm-6 col-xs-12 mobileMargBotom">
+                                            <img src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'} className="img-responsive list_img imGCard" />
+                                            <div className="row" style={{ padding: "0" }}>
+                                                <div className="col-md-12" style={{ padding: "0" }}>
+                                                    <div className="col-md-6 col-sm-5 col-xs-5">
+                                                        <div className="pricingroomExplore">
+                                                            {'$' + elem.rent + ' ' + elem.pricemode}
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-6 col-sm-7 col-xs-7">
+                                                        <span className="rentstarExplore">
+                                                            <Rate disabled
+                                                                style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif', fontSize: "12px" }}
+                                                                allowHalf value={elem.star}
+                                                            />
+                                                            {elem.star}
+                                                        </span>
                                                     </div>
                                                 </div>
-                                                <div className="col-md-6 col-sm-7 col-xs-7">
-                                                    <span className="rentstarExplore">
-                                                        <Rate disabled
-                                                            style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif', fontSize: "12px" }}
-                                                            allowHalf value={elem.star}
-                                                        />
-                                                        {elem.star}
-                                                    </span>
+                                            </div>
+                                            <div className="roomdetailcardExplore">
+                                                <p style={{ fontFamily: 'Poppins, sans-serif' }}>
+                                                    {elem.postingtitle.slice(0, 23)}..
+                                            </p>
+                                                <p style={{ fontFamily: 'Poppins, sans-serif' }}>
+                                                    <span className="glyphicon glyphicon-map-marker"
+                                                        style={{ color: "#008080", margin: "0", left: "-3px" }}
+                                                    ></span>
+                                                    <span>
+                                                        <b>{elem.propertylocation.slice(0, 35)}..</b></span>
+                                                    <br />
+                                                </p>
+                                            </div>
+                                            <table id="customers">
+                                                <tr>
+                                                    <td><span className="fa fa-inbox"
+                                                        style={{ color: "#236A4B", margin: "0", left: "-3px" }}
+                                                    ></span><span>{elem.furnished.slice(0, 11)}</span></td>
+
+                                                    <td><span className="fa fa-users"
+                                                        style={{ color: "#236A4B", margin: "0", left: "-3px" }}
+                                                    ></span><span>{elem.accomodates} People</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span className="fa fa-shower" style={{ color: "#236A4B", margin: "0", left: "-3px" }}>
+                                                        </span>
+                                                        <span>Bathroom</span>
+                                                    </td>
+                                                    <td>
+                                                        <span className="fa fa-bed" style={{ color: "#236A4B", margin: "0", left: "-3px" }}>
+                                                        </span>
+                                                        <span>{elem.subSubCategory}</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </Link>
+                                )
+                            })
+                        }
+                        {notFoundFilterData == false && filteredData.length == 0 && showRecord ?
+                            showroomrents && showroomrents.map((elem, key) => {
+                                let str = elem.propertylocation || '';
+                                if (str.length > 35) {
+                                    str = str.substring(0, 35);
+                                    str = str + '...'
+                                }
+                                return (
+                                    <Link key={key} to={{ pathname: `/detail_roomRent`, state: elem }}>
+                                        <div className="col-md-4 col-sm-6 col-xs-12 mobileMargBotom">
+                                            <img src={elem.imageurl.length ? elem.imageurl[0] : './images/def_card_img.jpg'} className="img-responsive list_img imGCard" />
+                                            <div className="row" style={{ padding: "0" }}>
+                                                <div className="col-md-12" style={{ padding: "0" }}>
+                                                    <div className="col-md-6 col-sm-5 col-xs-5">
+                                                        <div className="pricingroomExplore">
+                                                            {'$' + elem.rent + ' ' + elem.pricemode}
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-6 col-sm-7 col-xs-7">
+                                                        <span className="rentstarExplore">
+                                                            <Rate disabled
+                                                                style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif', fontSize: "12px" }}
+                                                                allowHalf value={elem.star}
+                                                            />
+                                                            {elem.star}
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="roomdetailcardExplore">
-                                            <p style={{ fontFamily: 'Poppins, sans-serif' }}>
-                                                {elem.postingtitle.slice(0, 23)}..
+                                            <div className="roomdetailcardExplore">
+                                                <p style={{ fontFamily: 'Poppins, sans-serif' }}>
+                                                    {elem.postingtitle.slice(0, 23)}..
                                             </p>
+                                                <p style={{ fontFamily: 'Poppins, sans-serif' }}>
+                                                    <span className="glyphicon glyphicon-map-marker"
+                                                        style={{ color: "#008080", margin: "0", left: "-3px" }}
+                                                    ></span>
+                                                    <span>
+                                                        <b>{elem.propertylocation.slice(0, 35)}..</b></span>
+                                                    <br />
+                                                </p>
+                                            </div>
+                                            <table id="customers">
+                                                <tr>
+                                                    <td><span className="fa fa-inbox"
+                                                        style={{ color: "#236A4B", margin: "0", left: "-3px" }}
+                                                    ></span><span>{elem.furnished.slice(0, 11)}</span></td>
 
-                                            <p style={{ fontFamily: 'Poppins, sans-serif' }}>
-                                                <span className="glyphicon glyphicon-map-marker"
-                                                    style={{ color: "#008080", margin: "0", left: "-3px" }}
-                                                ></span>
-                                                <span>
-                                                    <b>{elem.propertylocation.slice(0, 35)}..</b></span>
-                                                <br />
-                                            </p>
+                                                    <td><span className="fa fa-users"
+                                                        style={{ color: "#236A4B", margin: "0", left: "-3px" }}
+                                                    ></span><span>{elem.accomodates} People</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span className="fa fa-shower" style={{ color: "#236A4B", margin: "0", left: "-3px" }}>
+                                                        </span>
+                                                        <span>Bathroom</span>
+                                                    </td>
+                                                    <td>
+                                                        <span className="fa fa-bed" style={{ color: "#236A4B", margin: "0", left: "-3px" }}>
+                                                        </span>
+                                                        <span>{elem.subSubCategory}</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
-                                        <table id="customers">
-                                            <tr>
-                                                <td><span className="fa fa-inbox"
-                                                    style={{ color: "#236A4B", margin: "0", left: "-3px" }}
-                                                ></span><span>{elem.furnished.slice(0, 11)}</span></td>
-
-                                                <td><span className="fa fa-users"
-                                                    style={{ color: "#236A4B", margin: "0", left: "-3px" }}
-                                                ></span><span>{elem.accomodates} People</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span className="fa fa-shower" style={{ color: "#236A4B", margin: "0", left: "-3px" }}>
-                                                    </span>
-                                                    <span>Bathroom</span>
-                                                </td>
-                                                <td>
-                                                    <span className="fa fa-bed" style={{ color: "#236A4B", margin: "0", left: "-3px" }}>
-                                                    </span>
-                                                    <span>{elem.subSubCategory}</span>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </Link>
-                            )
-                        })
+                                    </Link>
+                                )
+                            })
+                            : null
                         }
                     </div>
                     {/* {this.state.loader && <div className="col-md-12" style={{ textAlign: 'center', marginBottom: '20px', marginLeft: '-50px' }}>

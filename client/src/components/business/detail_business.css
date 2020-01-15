@@ -141,3 +141,96 @@ margin-left: -40px;
 	  }
     
 }
+
+@media screen and (min-device-width: 360px) and (max-device-width: 767px) {
+  .bannerStarBusines{
+    color: white;
+      margin: 0px;
+      margin-left: -14px;
+  }
+  .bannerBusinessTop{
+    width: 100%;
+    margin-top: -5px;
+    height: 27vh;
+    position: absolute;
+    -webkit-filter: brightness(0.5);
+    filter: brightness(0.5);
+  }
+  .BannerTxtBusiness{
+    padding-top: 17vw !important;
+    padding-bottom: 2vw !important;
+  }
+}
+@media screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+  .bannerStarBusines{
+    color: white;
+      margin: 0px;
+      margin-left: -14px;
+  }
+  .bannerBusinessTop{
+    width: 100%;
+    margin-top: -9px;
+    height: 23vh;
+    position: absolute;
+    -webkit-filter: brightness(0.5);
+    filter: brightness(0.5);
+  }
+  .BannerTxtBusiness{
+    padding-top: 17vw !important;
+    padding-bottom: 2vw !important;
+  }
+}
+@media screen and (min-device-width: 1024px) and (max-device-width: 1365px) {
+  .bannerStarBusines{
+    color: white;
+      margin: 0px;
+      margin-left: -14px;
+  }
+  .bannerBusinessTop{
+      width: 100%;
+      margin-top: -100px;
+      height: 49vh;
+      position: absolute;
+      filter: brightness(0.5);
+  }
+  .BannerTxtBusiness{
+    padding-top: 17vw !important;
+    padding-bottom: 2vw !important;
+  }
+}
+@media screen and (min-device-width: 1366px) and (max-device-width: 1600px) {
+  .bannerStarBusines{
+    color: white;
+      margin: 0px;
+      margin-left: -14px;
+  }
+  .bannerBusinessTop{
+      width: 100%;
+      margin-top: -100px;
+      height: 65vh;
+      position: absolute;
+      filter: brightness(0.5);
+  }
+  .BannerTxtBusiness{
+    padding-top: 17vw !important;
+    padding-bottom: 2vw !important;
+  }
+}
+@media screen and (min-device-width: 1600px){
+  .bannerStarBusines{
+    color: white;
+      margin: 0px;
+      margin-left: -14px;
+  }
+  .bannerBusinessTop{
+      width: 100%;
+      margin-top: -100px;
+      height: 44vh;
+      position: absolute;
+      filter: brightness(0.5);
+  }
+  .BannerTxtBusiness{
+    padding-top: 17vw !important;
+    padding-bottom: 2vw !important;
+  }
+}

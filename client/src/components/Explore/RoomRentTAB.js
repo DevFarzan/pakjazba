@@ -527,7 +527,8 @@ class RoomRentTAB extends Component {
             showRecord: true,
             notFoundFilterData: false,
             billboardFilterdData: [],
-            statusValue: ''
+            statusValue: '',
+            
         })
         this.filterKeysGet();
     }

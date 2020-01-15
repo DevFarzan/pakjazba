@@ -45,14 +45,12 @@ class FilterBuySell extends Component {
     }
   }
 
-
   componentDidMount() {
     window.scrollTo(0, 0);
-    // this.getAllBusiness();
     this.stateAndCities();
   }
 
-  stateAndCities(res) {
+  stateAndCities() {
     let states = stateCities.getStatesByShort('US');
     states = states.map((elem) => {
       return {
@@ -64,6 +62,7 @@ class FilterBuySell extends Component {
       states: states,
     })
   }
+
 
   onChangeState(value) {
     if (!!value.length) {
@@ -78,23 +77,41 @@ class FilterBuySell extends Component {
         cities: cities,
         eachState: value[0]
       })
+      this.props.getState(value)
     }
   }
 
   onChangeCity(value) {
-    // const { roomrents, eachState } = this.state;
-    // let data = roomrents.filter((elem) => {
-    //     return elem.state === eachState || elem.city === value[0]
-    // })
-    // this.setState({
-    //     filteredArr: data,
-    //     showroomrents: data.slice(0, 6),
-    //     add: 6
-    // })
+    this.props.getCities(value)
   }
+
+
+  onChangeMin = (e) => {
+    this.setState({
+      minValue: e.target.value
+    })
+  }
+
+  onChangeMax = (e) => {
+    this.setState({
+      maxValue: e.target.value
+    })
+  }
+
+  filterRoomWithPrice = () => {
+    const { minValue, maxValue } = this.state
+    this.props.filterRoomWithMinToMax(minValue, maxValue)
+    this.setState({
+      minValue: '',
+      maxValue: ''
+    })
+  }
+
 
   render() {
     const { states, cities } = this.state;
+    const { onChange, onChangeCheckBoxes, categoroyOfRoom, stateOfRoom, cityOfRoom, conditionOfRoom, categoryRoom } = this.props;
+
     return (
       <div className="">
         <div className="container" style={{ width: "100%" }}>
@@ -104,11 +121,16 @@ class FilterBuySell extends Component {
                 <div class="col-md-12 col-sm-12 spacing">
                   <h3 className="col-md-12"><b>Location</b></h3>
                   {/* <div className="col-md-12 col-sm-12 col-xs-12"> */}
-                  <Cascader style={{ width: '100%' }} options={states}
+                  <Cascader
+                    value={stateOfRoom}
+                    style={{ width: '100%' }}
+                    options={states}
                     onChange={this.onChangeState.bind(this)}
                   /></div>
                 <div className="col-md-12 col-sm-12 col-xs-12" style={{ marginTop: '2vw', }}>
-                  <Cascader style={{ width: '100%' }} options={cities}
+                  <Cascader
+                    value={cityOfRoom}
+                    style={{ width: '100%' }} options={cities}
                     onChange={this.onChangeCity.bind(this)}
                   /></div>
                 {/* </div> */}
@@ -126,6 +148,8 @@ class FilterBuySell extends Component {
                 <div className="col-xs-10 col-md-10"></div>
 
                 <Checkbox.Group style={{ width: '100%' }}
+                  value={conditionOfRoom}
+                  onChange={onChangeCheckBoxes}
                 //  onChange={onChange}
                 >
                   <Row>
@@ -152,7 +176,7 @@ class FilterBuySell extends Component {
                 <div className="col-xs-2 col-md-2"></div>
               </div>
 
-              <div className="col-md-12 col-sm-12 search-space1">
+              {/* <div className="col-md-12 col-sm-12 search-space1">
                 <button
                   className="btn"
                   // onClick={this.mostPopular.bind(this)}
@@ -160,7 +184,7 @@ class FilterBuySell extends Component {
                 >
                   Search
                 </button>
-              </div>
+              </div> */}
               <div className="col-md-12">
                 <div className="row">
                   <div class="col-xs-1"></div>
@@ -172,11 +196,13 @@ class FilterBuySell extends Component {
                         <Col span={8}>
                           <Input
                             placeholder="Min"
+                            onChange={this.onChangeMin}
                           // onChange={e => this.setState({ minPrice: e.target.value })}
                           />
                         </Col>
                         <Col span={8}>
                           <Input
+                            onChange={this.onChangeMax}
                             // defaultValue="Max" 
                             placeholder="Max"
                           // onChange={e => this.setState({ maxPrice: e.target.value })}

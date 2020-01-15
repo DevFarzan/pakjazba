@@ -204,7 +204,7 @@ class FeaturedBox extends Component {
                             str = str + '...'
                         }
                         return (
-                            <div className="col-md-4">
+                            <div className="col-md-4 col-sm-5">
                                 <div className="">
                                     <div className="featuredjob-imitation">
                                         <Link to={{ pathname: `/detail_jobPortal`, state: { ...elem, sec: 'mainPart', user: user } }}>

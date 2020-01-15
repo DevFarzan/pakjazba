@@ -1,3 +1,44 @@
+@media only screen and (min-device-width: 330px) and (max-device-width: 767px){
+  .BuySellBannertoP{
+    width: 100%;
+    height: 280px;
+    position: absolute;
+    filter: brightness(0.5);
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1023px){
+  .BuySellBannertoP{
+    width: 100%;
+    height: 260px;
+    position: absolute;
+    filter: brightness(0.5);
+  }
+}
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1365px){
+  .BuySellBannertoP{
+    width: 100%;
+    height: 40vh;
+    position: absolute;
+    filter: brightness(0.5);
+  }
+}
+@media only screen and (min-device-width: 1366px) and (max-device-width: 1600px){
+  .BuySellBannertoP{
+    width: 100%;
+    height: 53vh;
+    position: absolute;
+    filter: brightness(0.5);
+  }
+}
+@media only screen and (min-device-width: 1600px){
+  .BuySellBannertoP{
+    width: 100%;
+    height: 42vh;
+    position: absolute;
+    filter: brightness(0.5);
+  }
+}
+
 .ant-carousel .slick-slide {
   text-align: center;
   height: 300px;
@@ -170,6 +211,9 @@ hr{
   .noIcon{
     margin-top: 4vw;
   }
+  .margMObileBuysell{
+    margin-top: 10px;
+  }
   .bannerPriceDivv{
     border: 2px solid white;
     margin-top: 6vw;
@@ -180,6 +224,9 @@ hr{
   .noIcon{
     
   }
+  .margMObileBuysell{
+    margin-top: 40px;
+  }
   .bannerPriceDivv{
     border: 2px solid white;
   }
@@ -187,6 +234,9 @@ hr{
 @media screen and (min-device-width: 1024px) and (max-device-width: 1365px) {
   .noIcon{
    
+  }
+  .margMObileBuysell{
+    margin-top: 0px;
   }
   .bannerPriceDivv{
     border: 2px solid white;
@@ -196,6 +246,9 @@ hr{
   .noIcon{
     
   }
+  .margMObileBuysell{
+    margin-top: 0px;
+  }
   .bannerPriceDivv{
     border: 2px solid white;
   }
@@ -203,6 +256,9 @@ hr{
 @media screen and (min-device-width: 1600px){
   .noIcon{
     
+  }
+  .margMObileBuysell{
+    margin-top: 20px;
   }
   .bannerPriceDivv{
     border: 2px solid white;

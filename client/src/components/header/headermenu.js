@@ -120,13 +120,13 @@ class HeaderMenu extends Component {
                                 <div className="col-md-1" style={{ marginTop: "33px" }}>
                                      <Link to={`/`} className="homeheader">More</Link>
                                 </div>
-                                <div className="col-md-2 col-sm-2 col-xs-12" style={{ marginTop: "33px" }}>
+                                <div className="col-md-2 col-sm-2 col-xs-12" style={{ marginTop: "29px" }}>
                                     <MainLogin />
                                 </div>{/*col-md-4*/}
                                 <div className="col-md-1 col-sm-2 col-xs-12" style={{ marginTop: "28px" }}>
-                                    <Link rel="noopener noreferrer" to={`/checkOutProduct`} style={{ color: 'black', fontSize: '14px' }}>
+                                    {/* <Link rel="noopener noreferrer" to={`/checkOutProduct`} style={{ color: 'black', fontSize: '14px' }}>
                                         <CartButton cartCount={this.props.cartCount} />
-                                    </Link>
+                                    </Link> */}
                                 </div>
                                 <div className="col-md-2 col-sm-2 col-xs-12" style={{ marginTop: "21px" }}>
                                     <Category />
@@ -200,11 +200,11 @@ class HeaderMenu extends Component {
                             <div className="col-xs-6">
                                 <MainLogin />
                             </div>
-                            <div className="col-xs-6">
+                            {/* <div className="col-xs-6">
                                 <Link rel="noopener noreferrer" to={`checkOutProduct`} style={isMobile? { color: 'black', fontSize: '14px', marginTop:'-5px' }: { color: 'black', fontSize: '14px' }}>
                                     <CartButton cartCount={this.props.cartCount} />
                                 </Link>
-                            </div>
+                            </div> */}
                             <div className="col-xs-12">
                                 <Category />
                             </div>{/*col-md-4*/}

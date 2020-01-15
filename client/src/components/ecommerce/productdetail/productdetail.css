@@ -38,7 +38,7 @@
 
 .product-title{
     position: relative;
-    top: -175px;
+    top: -325px;
     text-align: center;
 }
 
@@ -64,7 +64,7 @@
 }
 
 
-/*Iphones*/
+/* Iphones
 @media only screen 
   and (min-device-width: 375px) 
   and (max-device-width: 667px) 
@@ -138,7 +138,7 @@
 }
 
 /*Glaxy phones*/
-@media screen 
+/* @media screen 
   and (device-width: 360px) 
   and (device-height: 640px) 
   and (-webkit-device-pixel-ratio: 3) {
@@ -208,10 +208,10 @@
         margin-bottom: 0;
     }
 
-}
+} */
 
 /*Pixel phones*/
-@media screen 
+/* @media screen 
   and (device-width: 360px) 
   and (device-height: 640px) 
   and (-webkit-device-pixel-ratio: 4) {
@@ -247,7 +247,7 @@
 
 }
 
-/*Ipads*/
+ipads
 @media only screen 
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
@@ -278,12 +278,12 @@
         margin-bottom: 0;
     }
 
-}
+} */
 
 /* ----------- iPad Pro 10.5" ----------- */
 
 /* Portrait and Landscape */
-@media only screen 
+/* @media only screen 
   and (min-device-width: 834px) 
   and (max-device-width: 1112px)
   and (-webkit-min-device-pixel-ratio: 2) {
@@ -313,12 +313,12 @@
         color: #3C3C47;
         margin-bottom: 0;
     }
-}
+} */
 
 /* ----------- iPad Pro 12.9" ----------- */
 
 /* Portrait and Landscape */
-@media only screen 
+/* @media only screen 
   and (min-device-width: 1024px) 
   and (max-device-width: 1366px)
   and (-webkit-min-device-pixel-ratio: 2) {
@@ -380,10 +380,10 @@
         margin-bottom: 0;
     }
 
-  }
+  } */
 
 /* ----------- Non-Retina Screens ----------- */
-@media screen 
+/* @media screen 
   and (min-device-width: 1200px) 
   and (max-device-width: 1600px) 
   and (-webkit-min-device-pixel-ratio: 1) { 
@@ -405,4 +405,4 @@
         color: #3C3C47;
         margin-bottom: 0;
     }
-}
+}  */

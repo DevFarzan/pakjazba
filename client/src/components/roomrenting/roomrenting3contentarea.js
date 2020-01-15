@@ -199,7 +199,7 @@ class Roomrenting3contentarea extends Component {
                 }
                 key="1"
               >
-                <div className="row" style={{ backgroundColor: '#f7f5ed' }}>
+                {/* <div className="row" style={{ backgroundColor: '#f7f5ed' }}>
                   <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2"></div>
                   <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                     <div className="row" style={{ textAlign: 'center' }}>
@@ -230,7 +230,7 @@ class Roomrenting3contentarea extends Component {
                     </div>
                   </div>
                   <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2"></div>
-                </div>
+                </div> */}
                 <div style={{ backgroundColor: '#f7f5ed' }}>{/* style={{width:"70%"}} */}
                   <div className="row">
                     <div className="col-md-1"></div>

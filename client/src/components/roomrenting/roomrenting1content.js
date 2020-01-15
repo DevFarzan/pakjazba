@@ -125,6 +125,7 @@ class Roomrenting1content extends Component {
         // const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
         const { showroomrents, filteredData, notFoundFilterData, showRecord, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom,
             removeValue, showAllRooms } = this.props;
+            console.log("TCL: Roomrenting1content -> render -> showroomrents", showroomrents);
         return (
             <section id="about">
                 {/*<!-- Top List start -->*/}

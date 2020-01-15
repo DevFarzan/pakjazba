@@ -366,14 +366,6 @@ class DetailBusiness extends Component {
                                 }
                                 key="2"
                             >
-                                {/* <div className="col-md-12 col-sm-12 romRentForm" style={{ marginTop: "5%" }}>
-
-                                </div>
-                                <div className="container" style={{ marginTop: '5%', marginBottom: '5%' }}>
-                                    <div className="col-md-7">
-
-                                    </div>
-                                </div> */}
 
                                 <div style={{ backgroundColor: "rgb(247, 245, 237)", paddingTop: '20px' }}>
                                     <div className="row">

@@ -5,7 +5,7 @@ export class ImageDiv extends Component{
 		const { classHeight, srcImg, divStyle } = this.props;
 		return(
 			<div className={classHeight.class} style={divStyle}>
-				<img src={srcImg} alt="" height={classHeight.height} width="100%"/>
+				<img src={srcImg} alt="" height={classHeight.height} width="100%" style={{filter: 'brightness(0.7)'}}/>
 			</div>
 		)
 	}
@@ -23,7 +23,7 @@ class Gallery extends Component{
 						let divSt = {paddingRight: '0px', paddingLeft: '0px'};
 						let obj = { 
 							class: imgLen == 2 || imgLen >= 4 ? 'col-md-6' : 'col-md-4', 
-							height: imgLen == 2 ? '400' : imgLen == 3 ? '400' : '500'};
+							height: imgLen == 2 ? '450' : imgLen == 3 ? '450' : '550'};
 						if(imgLen === 5){
 							abc = true;
 						}

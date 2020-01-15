@@ -35,13 +35,7 @@
   font-size: 15px;
   opacity: .7;
 }
-.eventDayBaner{
-  margin:0;
-  font-size: 20px;
-  white-space: nowrap;
-  font-weight: 600;
-  color: white;
-}
+
 .hostedByPara{
   font-weight: bolder;
   font-size: 16px;
@@ -87,8 +81,15 @@
     font-weight: bolder;
     font-size: 14px;
   }
+  .eventMDayBaner{
+    margin:0;
+    font-size: 20px;
+    white-space: nowrap;
+    font-weight: 600;
+    color: white;
+  }
 }
-@media only screen and (min-device-width: 768px) and (max-device-width: 1365px){
+@media only screen and (min-device-width: 768px) and (max-device-width: 1023px){
   .EventBanerTextCsS{
     color: white;
     font-size: 40px;
@@ -115,6 +116,49 @@
     color: black;
     font-weight: bolder;
     font-size: 14px;
+  }
+  .eventMDayBaner{
+    margin:0;
+    font-size: 15px;
+    white-space: nowrap;
+    font-weight: 600;
+    color: white;
+  }
+}
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1365px){
+  .EventBanerTextCsS{
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+    margin-top: -0.9vw;
+  }
+  .timerDivPadd{
+    padding-bottom: 2vw; 
+    padding-top: 2vw;
+  }
+  .MainDivCount{
+    background: #6c1cff!important;
+    padding: 15px;
+    margin-left: 1vw;
+    margin-bottom: 25px;
+    -webkit-transition: box-shadow .25s ease-in-out;
+    transition: box-shadow .25s ease-in-out;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
+    border-radius: 3px;
+  }
+  .timerTExt{
+    margin: 0px;
+    color: black;
+    font-weight: bolder;
+    font-size: 14px;
+  }
+  .eventMDayBaner{
+    margin:0;
+    font-size: 20px;
+    white-space: nowrap;
+    font-weight: 600;
+    color: white;
   }
 }
 @media only screen and (min-device-width: 1366px) and (max-device-width: 1600px){
@@ -145,6 +189,13 @@
     font-weight: bolder;
     font-size: 14px;
   }
+  .eventMDayBaner{
+    margin:0;
+    font-size: 20px;
+    white-space: nowrap;
+    font-weight: 600;
+    color: white;
+  }
 }
 @media only screen and (min-device-width: 1600px){
   .EventBanerTextCsS{
@@ -152,7 +203,7 @@
     font-size: 40px;
     font-weight: bold;
     margin: 0;
-    margin-top: -0.9vw;
+    margin-top: -0.7vw;
   }
   .timerDivPadd{
     padding-bottom: 2vw; 
@@ -174,9 +225,16 @@
     font-weight: bolder;
     font-size: 17px;
   }
+  .eventMDayBaner{
+    margin:0;
+    font-size: 20px;
+    white-space: nowrap;
+    font-weight: 600;
+    color: white;
+  }
 }
 .eventBanersty{
-  height: 200px;
+  height: auto;
   width: 100%;
   margin: 15px 1px 20px 0px;
   border-radius: 1vw !important;
@@ -347,4 +405,45 @@
   background-repeat: no-repeat;
   background-size: cover;
   padding: 25px;
+}
+
+@media only screen and (min-device-width: 330px) and (max-device-width: 767px){
+  .EventDetailTopBanner{
+    width: 100%;
+    height: 260px;
+    position: absolute;
+    filter: brightness(0.5);
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1023px){
+  .EventDetailTopBanner{
+    width: 100%;
+    height: 280px;
+    position: absolute;
+    filter: brightness(0.5);
+  }
+}
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1365px){
+  .EventDetailTopBanner{
+    width: 100%;
+    height: 41vh;
+    position: absolute;
+    filter: brightness(0.5);
+  }
+}
+@media only screen and (min-device-width: 1366px) and (max-device-width: 1600px){
+  .EventDetailTopBanner{
+    width: 100%;
+    height: 55vh;
+    position: absolute;
+    filter: brightness(0.5);
+  }
+}
+@media only screen and (min-device-width: 1600px){
+  .EventDetailTopBanner{
+    width: 100%;
+    height: 42vh;
+    position: absolute;
+    filter: brightness(0.5);
+  }
 }

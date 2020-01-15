@@ -2,11 +2,24 @@
 
 @media only screen
   and (min-device-width: 375px)
-  and (max-device-width: 667px)
+  and (max-device-width: 767px)
   and (-webkit-min-device-pixel-ratio: 2) {
     .widthmobile{
       width: 100%;
       margin-top: -25px !important;
+      background: white;
+      -webkit-transition: box-shadow .25s ease-in-out;
+      transition: box-shadow .25s ease-in-out;
+      box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
+      border-radius: 3px;
+    }
+}
+@media screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1199px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .widthmobile{
+      width: 90% !important;
       background: white;
       -webkit-transition: box-shadow .25s ease-in-out;
       transition: box-shadow .25s ease-in-out;

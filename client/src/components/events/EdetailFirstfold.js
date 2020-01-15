@@ -24,17 +24,17 @@ class EdetailFirstfold extends Component {
         <div className="row" style={{ marginTop: '-1.5vw' }}>
           {/* <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,1.7)), url(${data.coverPhotoSrc})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center center"}}> */}
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
-            <img src={data.coverPhotoSrc} alt="banner" className="JobBannertoP" />
+            <img src={data.coverPhotoSrc} alt="banner" className="EventDetailTopBanner" />
             <div className="row mainEventBanerPadMarg">
-              <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+              <div className="col-xs-12 col-sm-7 col-md-8 col-lg-8">
                 <h1 className="EventBanerTextCsS">{data.eventTitle}</h1>
                 <p className="BanerSmalTextCsS">{data.city + ": " + data.address}</p>
               </div>
               <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2" style={{ textAlign: 'center' }}>
                 <p className="eventDateBaner">Event starts</p>
-                <h4 className="eventDayBaner">{date}</h4>
+                <h4 className="eventMDayBaner">{date}</h4>
               </div>
-              <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+              <div className="col-xs-12 col-sm-3 col-md-2 col-lg-2">
                 <button className="btnCallEventbaner">
                   <Icon type="phone" /> <span>Call Now</span>
                 </button>
@@ -44,7 +44,6 @@ class EdetailFirstfold extends Component {
         </div>
         <div className="row">
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <EventDetailTabIcons />
                 <EventDetailTab data={this.props.data} />
             {/* <Tabs defaultActiveKey="1">
               <TabPane

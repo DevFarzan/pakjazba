@@ -68,13 +68,13 @@ class EventDetailTab extends Component {
                                 <Icon type="bars" style={{ color: 'white' }} /><h5 className="CountText">Event starts in</h5>
                             </div>
                             <div className="row timerDivPadd">
-                                <div className="col-xs-3 col-md-3 col-sm-3 col-lg-3"></div>
-                                <div className="col-xs-6 col-md-6 col-sm-6 col-lg-6" style={{ textAlign: 'center' }}>
+                                <div className="col-xs-3 col-md-3 col-sm-2 col-lg-3"></div>
+                                <div className="col-xs-6 col-md-6 col-sm-8 col-lg-6" style={{ textAlign: 'center' }}>
                                     <div className="timerDicCsS">
                                         <p className="timerTExt"> {data.openingTime} </p>
                                     </div>
                                 </div>
-                                <div className="col-xs-3 col-md-3 col-sm-3 col-lg-3"></div>
+                                <div className="col-xs-3 col-md-3 col-sm-2 col-lg-3"></div>
                             </div>
                         </div><br />
                         <div className="row elementMainDivS2" style={{ paddingBottom: '0px' }}>

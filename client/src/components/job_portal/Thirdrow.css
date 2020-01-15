@@ -51,3 +51,13 @@ border: 1px solid rgba(204, 204, 204, 0.13);
     border-radius: 4px;
     /*background: #f5f5f5;*/
   }
+@media only screen and (min-device-width: 360px) and (max-device-width: 767px){
+  .containJobForm{
+    width: 100%;
+  }
+}
+@media only screen and (min-device-width: 768px){
+  .containJobForm{
+    width: 70%;
+  }
+}

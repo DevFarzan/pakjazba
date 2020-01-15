@@ -59,12 +59,10 @@ class RoomRentTAB extends Component {
     async getAllBusiness() {
         let res = await HttpUtils.get('marketplace');
         // let req = await HttpUtils.get('getreviews');
-
         if (res && res.code && res.code == 200) {
             this.setState({
                 showroomrents: res.roomrentsdata,
             });
-
         }
     }
 
@@ -72,7 +70,7 @@ class RoomRentTAB extends Component {
         let categoryValue = [];
         categoryValue.push(value[1]);
         this.setState({
-            categoryRoom: categoryValue,
+            categoryRoom: value,
         })
         filterSubCategoryName = categoryValue
         this.filterKeysGet()
@@ -479,7 +477,6 @@ class RoomRentTAB extends Component {
                 notFoundFilterData: false,
                 filteredData: filteredData,
                 showRecord: false
-
             })
         }
 
@@ -489,12 +486,16 @@ class RoomRentTAB extends Component {
         let arr = [];
         if (param == "category") {
             filterSubCategoryName = arr
+            this.setState({
+                categoryRoom: arr
+            })
         }
         else if (param == "city") {
             filterCityName = arr
         }
         else if (param == "state") {
             filterStateName = arr
+            filterCityName = arr
         }
         else if (param == 'accommodates') {
             let arr1 = [];
@@ -542,14 +543,12 @@ class RoomRentTAB extends Component {
                     rangeValues.push(filteredData[i])
                 }
             }
-            console.log(rangeValues, 'rangeValues')
 
             if (rangeValues.length == 0) {
                 this.setState({
                     notFoundFilterData: true,
                     filteredData: rangeValues,
                     showRecord: false
-
                 })
             }
             else {
@@ -566,14 +565,11 @@ class RoomRentTAB extends Component {
                     rangeValues.push(showroomrents[i])
                 }
             }
-            console.log(rangeValues, 'rangeValues')
-
             if (rangeValues.length == 0) {
                 this.setState({
                     notFoundFilterData: true,
                     filteredData: rangeValues,
                     showRecord: false
-
                 })
             }
             else {
@@ -625,7 +621,6 @@ class RoomRentTAB extends Component {
                     notFoundFilterData: true,
                     filteredData: rangeValues,
                     showRecord: false
-
                 })
             }
             else {
@@ -640,7 +635,7 @@ class RoomRentTAB extends Component {
 
     render() {
         const { TabPane } = Tabs;
-        const { showroomrents, filteredData, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom, notFoundFilterData, showRecord } = this.state;
+        const { showroomrents, filteredData, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom, notFoundFilterData, showRecord, categoryRoom } = this.state;
         return (
             <div>
                 <div className="row">
@@ -651,7 +646,7 @@ class RoomRentTAB extends Component {
                                 key="1">
                                 <RoomRentFilterContent onChange={this.onChange} getState={this.getState} getCities={this.getCities} onChangeCheckBoxes={this.onChangeCheckBoxes}
                                     categoroyOfRoom={categoroyOfRoom} stateOfRoom={stateOfRoom} cityOfRoom={cityOfRoom} accomodatesOfRoom={accomodatesOfRoom}
-                                    filterRoomWithMinToMax={this.filterRoomWithMinToMax}
+                                    filterRoomWithMinToMax={this.filterRoomWithMinToMax} categoryRoom={categoryRoom}
                                 />
                             </TabPane>
                             <TabPane tab={

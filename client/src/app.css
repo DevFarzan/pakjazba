@@ -1529,6 +1529,10 @@ figure {
     text-shadow: 0 0.1rem 0.2rem rgba(0,0,0,.6);
     display: block;
 }
+:root .ant-dropdown-trigger > .anticon.anticon-down, :root .ant-dropdown-link > .anticon.anticon-down {
+  font-size: 12px;
+  color: white !important;
+}
 .tag {
     background-color: #000;
     text-transform: uppercase;

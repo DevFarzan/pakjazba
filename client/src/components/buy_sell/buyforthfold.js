@@ -160,12 +160,7 @@ class Forthfold extends Component {
             removeValue, showAllRooms } = this.props;
         const { goDetail, detailPage, goProfile, objData } = this.state;
 
-        // const { buySell, showBuySell, filteredArr, goForLogin, goDetail, detailPage, goProfile, objData } = this.state;
         // const { text } = this.props;
-        // const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
-
-        // if (goForLogin) {
-        //     return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/postad_buysell" }}}}/>;
         // }
         // if(goDetail){
         //     return <Redirect to={{pathname: `/postad_buysell`}} />

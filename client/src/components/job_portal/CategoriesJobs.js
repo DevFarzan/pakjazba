@@ -85,8 +85,13 @@ class CategoriesjobMarket extends Component{
         cities: cities,
         eachState: value[0]
       })
+      this.props.getState(value)
     }
   }
+  onChangeCity(value) {
+    this.props.getCities(value)
+  }
+
 
   onChangeCity(value) {
     // const { roomrents, eachState } = this.state;
@@ -133,16 +138,25 @@ class CategoriesjobMarket extends Component{
         	        <Cascader style={{width: '100%'}} options={categ} onChange={this.onChangeCategory.bind(this)} placeholder="Please select" />
         	    </form>
 
-              {/* <div className="row"> */}
-                                    
-                                    {/* <div class="col-md-12 col-sm-12 spacing">
-                                        <h3 className="col-md-12"><b>Location</b></h3>
-                                        <div className="col-md-12 col-sm-12 col-xs-12">
-                                            <Cascader style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)} /></div>
-                                        <div className="col-md-12 col-sm-12 col-xs-12" style={{ marginTop: '2vw', }}>
-                                            <Cascader style={{ width: '100%' }} options={cities} onChange={this.onChangeCity.bind(this)} /></div>
-                                    </div> */}
-                                    {/* </div> */}
+              <div className="row">
+                <div class="col-md-12 col-sm-12 spacing">
+                    <h3><b>Location</b></h3>
+                    
+                        <Cascader 
+                          style={{ width: '100%' }}
+                          options={states} 
+                          onChange={this.onChangeState.bind(this)}
+                          placeholder="Please select state"
+                        />
+                    
+                        <Cascader 
+                          style={{marginTop: '2vw', width: '100%' }} 
+                          options={cities} 
+                          onChange={this.onChangeCity.bind(this)} 
+                          placeholder="Please select city"
+                        />
+                </div>
+              </div>
               <div className="col-md-12">
                 <div className="input-group">
                   <label>Search:</label>

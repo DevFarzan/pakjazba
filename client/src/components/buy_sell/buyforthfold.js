@@ -11,171 +11,171 @@ class Forthfold extends Component{
     constructor(props){
         super(props);
         this.state = {
-            current: 1,
-            buySell: [],
-            showBuySell: [],
-            filteredArr: [],
-            searchValue: '',
-            loader: true,
-            add: 5,
-            user: false,
-            visible: false
+            // current: 1,
+            // buySell: [],
+            // showBuySell: [],
+            // filteredArr: [],
+            // searchValue: '',
+            // loader: true,
+            // add: 5,
+            // user: false,
+            // visible: false
         }
     }
 
-    componentDidMount(){
-        this.getAllBusiness()
-    }
+    // componentDidMount(){
+    //     this.getAllBusiness()
+    // }
 
-    componentDidUpdate(prevProps, prevState){
-        const { buySell } = this.state;
-        const { text } = this.props;
-        if(prevProps.text !== text){
-            if(!!text){
-                this.searchedArr(text)
-            }else {
-                this.setState({
-                    showBuySell: buySell.slice(0, 7),
-                    filteredArr: [],
-                    add: 7
-                })
-            }
-        }
-    }
+    // componentDidUpdate(prevProps, prevState){
+    //     const { buySell } = this.state;
+    //     const { text } = this.props;
+    //     if(prevProps.text !== text){
+    //         if(!!text){
+    //             this.searchedArr(text)
+    //         }else {
+    //             this.setState({
+    //                 showBuySell: buySell.slice(0, 7),
+    //                 filteredArr: [],
+    //                 add: 7
+    //             })
+    //         }
+    //     }
+    // }
 
-    searchedArr(text){
-        const { buySell } = this.state;
-        let filteredArr = buySell.filter((elem) => {
-            return (elem.category && elem.category.toLowerCase().includes(text.toLowerCase())) ||
-                (elem.subcategory && elem.subcategory.toLowerCase().includes(text.toLowerCase()))
-        })
-        this.setState({
-            filteredArr,
-            showBuySell: filteredArr.slice(0, 7),
-            add: 7
-        })
-    }
+    // searchedArr(text){
+    //     const { buySell } = this.state;
+    //     let filteredArr = buySell.filter((elem) => {
+    //         return (elem.category && elem.category.toLowerCase().includes(text.toLowerCase())) ||
+    //             (elem.subcategory && elem.subcategory.toLowerCase().includes(text.toLowerCase()))
+    //     })
+    //     this.setState({
+    //         filteredArr,
+    //         showBuySell: filteredArr.slice(0, 7),
+    //         add: 7
+    //     })
+    // }
 
-    async getAllBusiness(){
-        let res = await HttpUtils.get('marketplace')
-        this.setState({
-            buySell: res.busell ? res.busell : [],
-            showBuySell: res.busell ? res.busell.slice(0, 7) : [],
-            loader: false
-        })
-        this.handleLocalStorage();
-    }
+    // async getAllBusiness(){
+    //     let res = await HttpUtils.get('marketplace')
+    //     this.setState({
+    //         buySell: res.busell ? res.busell : [],
+    //         showBuySell: res.busell ? res.busell.slice(0, 7) : [],
+    //         loader: false
+    //     })
+    //     this.handleLocalStorage();
+    // }
 
-    handleLocalStorage = () =>{
-        AsyncStorage.getItem('user')
-            .then((obj) => {
-                let userObj = JSON.parse(obj)
-                if(!!userObj){
-                    this.setState({
-                        user: true,
-                    })
-                }
-                else {
-                    this.setState({
-                        user: false
-                    })
-                }
-            })
-    }
+    // handleLocalStorage = () =>{
+    //     AsyncStorage.getItem('user')
+    //         .then((obj) => {
+    //             let userObj = JSON.parse(obj)
+    //             if(!!userObj){
+    //                 this.setState({
+    //                     user: true,
+    //                 })
+    //             }
+    //             else {
+    //                 this.setState({
+    //                     user: false
+    //                 })
+    //             }
+    //         })
+    // }
 
-    funcIndexes(page){
-        let to = 6 * page;
-        let from = to - 6;
-        return {from: page === 1 ? 0 : from, to: page === 1 ? 6 : to}
-    }
+    // funcIndexes(page){
+    //     let to = 6 * page;
+    //     let from = to - 6;
+    //     return {from: page === 1 ? 0 : from, to: page === 1 ? 6 : to}
+    // }
 
-    onChange = (page) => {
-        const { buySell, filteredArr } = this.state;
-        let indexes = this.funcIndexes(page)
-        if(!!filteredArr.length){
-            this.setState({
-                current: page,
-                showBuySell: filteredArr.slice(indexes.from, indexes.to)
-            });
-        }else {
+    // onChange = (page) => {
+    //     const { buySell, filteredArr } = this.state;
+    //     let indexes = this.funcIndexes(page)
+    //     if(!!filteredArr.length){
+    //         this.setState({
+    //             current: page,
+    //             showBuySell: filteredArr.slice(indexes.from, indexes.to)
+    //         });
+    //     }else {
 
-            this.setState({
-                current: page,
-                showBuySell: buySell.slice(indexes.from, indexes.to)
-            });
-        }
-    }
+    //         this.setState({
+    //             current: page,
+    //             showBuySell: buySell.slice(indexes.from, indexes.to)
+    //         });
+    //     }
+    // }
 
-    onAddMore = () => {
-        const { add, buySell, filteredArr } = this.state;
-        if(!!filteredArr.length){
-            this.setState({
-                showBuySell: filteredArr.slice(0, add + 7),
-                add: add + 7
-            });
-        }else {
+    // onAddMore = () => {
+    //     const { add, buySell, filteredArr } = this.state;
+    //     if(!!filteredArr.length){
+    //         this.setState({
+    //             showBuySell: filteredArr.slice(0, add + 7),
+    //             add: add + 7
+    //         });
+    //     }else {
 
-            this.setState({
-                showBuySell: buySell.slice(0, add + 7),
-                add: add + 7
-            });
-        }
-        if(this.props.text.length){
-            let inputValue = '';
-            const { dispatch } = this.props;
-            dispatch({type: 'SEARCHON', inputValue})
-        }
-    }
+    //         this.setState({
+    //             showBuySell: buySell.slice(0, add + 7),
+    //             add: add + 7
+    //         });
+    //     }
+    //     if(this.props.text.length){
+    //         let inputValue = '';
+    //         const { dispatch } = this.props;
+    //         dispatch({type: 'SEARCHON', inputValue})
+    //     }
+    // }
 
-    clickItem(){
-        const { user } = this.state;
-        if(user){
-            this.setState({goDetail: true})
-        }else {
-            this.setState({visible: true})
-        }
-    }
+    // clickItem(){
+    //     const { user } = this.state;
+    //     if(user){
+    //         this.setState({goDetail: true})
+    //     }else {
+    //         this.setState({visible: true})
+    //     }
+    // }
 
-    handleCancel = (e) => {
-        this.setState({visible: false});
-    }
+    // handleCancel = (e) => {
+    //     this.setState({visible: false});
+    // }
 
-    handleLogin = (e) => {
-        this.setState({goForLogin: true, visible: false})
-    }
+    // handleLogin = (e) => {
+    //     this.setState({goForLogin: true, visible: false})
+    // }
 
-    goToProfile(val, data){
-        if(val === 1){
-            this.setState({detailPage: true, objData: data})
-        }else {
-            this.setState({goProfile : true, objData: data})
-        }
-    }
+    // goToProfile(val, data){
+    //     if(val === 1){
+    //         this.setState({detailPage: true, objData: data})
+    //     }else {
+    //         this.setState({goProfile : true, objData: data})
+    //     }
+    // }
 
     render(){
-        const { buySell, showBuySell, filteredArr, goForLogin, goDetail, detailPage, goProfile, objData } = this.state;
-        const { text } = this.props;
-        const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
+        // const { buySell, showBuySell, filteredArr, goForLogin, goDetail, detailPage, goProfile, objData } = this.state;
+        // const { text } = this.props;
+        // const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 
-        if (goForLogin) {
-            return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/postad_buysell" }}}}/>;
-        }
-        if(goDetail){
-            return <Redirect to={{pathname: `/postad_buysell`}} />
-        }
-        if(detailPage){
-            return <Redirect to={{pathname: `/detail_buySell`, state: objData}} />
-        }
-        if(goProfile){
-            return <Redirect to={{pathname: `/profile_userDetail`, state: {userId: objData.userid, profileId: objData.profileid}}} />
-        }
+        // if (goForLogin) {
+        //     return <Redirect to={{pathname: '/sigin', state: {from: { pathname: "/postad_buysell" }}}}/>;
+        // }
+        // if(goDetail){
+        //     return <Redirect to={{pathname: `/postad_buysell`}} />
+        // }
+        // if(detailPage){
+        //     return <Redirect to={{pathname: `/detail_buySell`, state: objData}} />
+        // }
+        // if(goProfile){
+        //     return <Redirect to={{pathname: `/profile_userDetail`, state: {userId: objData.userid, profileId: objData.profileid}}} />
+        // }
 
         return(
             <div className="container" style={{width:"100%"}}>
-                {!this.state.loader && showBuySell == 0 && <span style={{textAlign:"center"}}><h1>Nothing to sell</h1></span>}
+                {/* {!this.state.loader && showBuySell == 0 && <span style={{textAlign:"center"}}><h1>Nothing to sell</h1></span>}
                 {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
                 {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
-                {text && !!filteredArr.length === false && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
+                {text && !!filteredArr.length === false && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>} */}
                 {/*<div className="col-md-3"  style={{'marginTop': '21px'}} onClick={() => {this.clickItem()}}>
                     <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '385px', width: '100%', borderRadius: '13px'}}/>
                 </div>*/}
@@ -220,12 +220,12 @@ class Forthfold extends Component{
                         )
                     })}
                 </div>
-                {this.state.loader && <div className="col-md-12" style={{textAlign: 'center', marginLeft: '-50px', marginBottom: '20px'}}>
+                {/* {this.state.loader && <div className="col-md-12" style={{textAlign: 'center', marginLeft: '-50px', marginBottom: '20px'}}>
                     <Spin indicator={antIcon} />
-                </div>}
-                {(showBuySell.length >= 7) && !(showBuySell.length === buySell.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore} style={{backgroundColor:"#37a99b", backgroundImage:"none", borderColor:"#37a99b"}}>View More ...</button></div>}
+                </div>} */}
+                {/* {(showBuySell.length >= 7) && !(showBuySell.length === buySell.length) && <div className="col-md-12" style={{textAlign:"center"}}><button type="button" className="btn btn-success" onClick={this.onAddMore} style={{backgroundColor:"#37a99b", backgroundImage:"none", borderColor:"#37a99b"}}>View More ...</button></div>} */}
                 {/*!!showBuySell.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={!!filteredArr.length ? filteredArr.length :buySell.length} onChange={this.onChange} /></span>*/}
-                {this.state.visible && <Modal
+                {/* {this.state.visible && <Modal
                     title="Kindly Login first"
                     visible={this.state.visible}
                     onOk={this.handleOk}
@@ -235,7 +235,7 @@ class Forthfold extends Component{
                         <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleLogin}>Login</button></div>
                         <div className="col-md-6" style={{textAlign:'center'}}><button className="btn btn-sm btn2-success" style={{width:'100%'}} onClick={this.handleCancel}>Cancel</button></div>
                     </div>
-                </Modal>}
+                </Modal>} */}
             </div>
         )
     }

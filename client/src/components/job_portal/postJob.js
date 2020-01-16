@@ -18,13 +18,14 @@ import Footer from '../footer/footer';
 import sha1 from "sha1";
 import moment from 'moment';
 import superagent from "superagent";
-import {HttpUtils} from "../../Services/HttpUtils";
+import { HttpUtils } from "../../Services/HttpUtils";
+import stateCities from "../../lib/countrycitystatejson";
 
 const { Link } = Anchor;
 
 const handleClick = (e, link) => {
-  e.preventDefault();
-  console.log(link);
+    e.preventDefault();
+    console.log(link);
 };
 
 const FormItem = Form.Item;
@@ -33,69 +34,69 @@ const { TextArea } = Input;
 const category = [{
     value: 'Accounting',
     label: 'Accounting'
-},{
+}, {
     value: 'Admin & Clerical',
     label: 'Admin & Clerical',
-},{
+}, {
     value: 'Banking & Finance',
     label: 'Banking & Finance',
-},{
-    value:'Business Opportunities',
-    label:'Business Opportunities'
-},{
-    value:'Contract & Freelance',
-    label:'Contract & Freelance',
-},{
-    value:'Customer Service',
-    label:'Customer Service',
-},{
-    label:'Diversity Opportunities',
-    value:'Diversity Opportunities',
-},{
-    label:'Engineering',
-    value:'Engineering',
-},{
-    value:'Executive',
-    label:'Executive',
-},{
-    value:'Franchise',
-    label:'Franchise',
-},{
-    value:'Government',
-    label:'Government',
-},{
-    value:'Health Care',
-    label:'Health Care',
-},{
-    value:'Hospitality',
-    label:'Hospitality',
-},{
-    value:'Human Resources',
-    label:'Human Resources',
-},{
-    value:'Information Technology',
-    label:'Information Technology',
-},{
-    value:'Internships & College',
-    label:'Internships & College',
-},{
-    value:'Manufacturing',
-    label:'Manufacturing',
-},{
-    value:'Nonprofit',
-    label:'Nonprofit',
-},{
-    value:'Retail',
-    label:'Retail',
-},{
-    value:'Sales & Marketing',
-    label:'Sales & Marketing',
-},{
-    value:'Science & Biotech',
-    label:'Science & Biotech',
-},{
-    value:'Transportation',
-    label:'Transportation',
+}, {
+    value: 'Business Opportunities',
+    label: 'Business Opportunities'
+}, {
+    value: 'Contract & Freelance',
+    label: 'Contract & Freelance',
+}, {
+    value: 'Customer Service',
+    label: 'Customer Service',
+}, {
+    label: 'Diversity Opportunities',
+    value: 'Diversity Opportunities',
+}, {
+    label: 'Engineering',
+    value: 'Engineering',
+}, {
+    value: 'Executive',
+    label: 'Executive',
+}, {
+    value: 'Franchise',
+    label: 'Franchise',
+}, {
+    value: 'Government',
+    label: 'Government',
+}, {
+    value: 'Health Care',
+    label: 'Health Care',
+}, {
+    value: 'Hospitality',
+    label: 'Hospitality',
+}, {
+    value: 'Human Resources',
+    label: 'Human Resources',
+}, {
+    value: 'Information Technology',
+    label: 'Information Technology',
+}, {
+    value: 'Internships & College',
+    label: 'Internships & College',
+}, {
+    value: 'Manufacturing',
+    label: 'Manufacturing',
+}, {
+    value: 'Nonprofit',
+    label: 'Nonprofit',
+}, {
+    value: 'Retail',
+    label: 'Retail',
+}, {
+    value: 'Sales & Marketing',
+    label: 'Sales & Marketing',
+}, {
+    value: 'Science & Biotech',
+    label: 'Science & Biotech',
+}, {
+    value: 'Transportation',
+    label: 'Transportation',
 }];
 
 class JobPortal extends Component {
@@ -114,15 +115,17 @@ class JobPortal extends Component {
             profileId: '',
             msg: false,
             objectId: '',
-            objData: {}
+            objData: {},
+            states:[],
+            cities:[],
         }
     }
 
     componentDidMount() {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
         this.handleLocalStorage();
         let data = this.props.location.state;
-        if(data) {
+        if (data) {
             this.setState({
                 faceBook: data.faceBook,
                 LinkdIn: data.LinkdIn,
@@ -143,13 +146,14 @@ class JobPortal extends Component {
                 objectId: data._id
             })
         }
+        this.stateAndCities();
     }
 
-    handleLocalStorage = () =>{
+    handleLocalStorage = () => {
         AsyncStorage.getItem('user')
             .then((obj) => {
                 let userObj = JSON.parse(obj)
-                if(!!userObj) {
+                if (!!userObj) {
                     this.setState({
                         userId: userObj._id,
                         profileId: userObj.profileId,
@@ -159,7 +163,7 @@ class JobPortal extends Component {
     }
 
     checkValue(rule, value, callback) {
-        this.setState({desLength: value ? value.length : 0})
+        this.setState({ desLength: value ? value.length : 0 })
         callback();
     }
 
@@ -176,34 +180,34 @@ class JobPortal extends Component {
     }
 
     handleChange = ({ fileList }) => {
-        this.setState({fileList})
+        this.setState({ fileList })
     }
     //--------------upload functions end ---------------------
 
     //--------------function for cloudnary url ---------------
-    uploadFile = (files) =>{
+    uploadFile = (files) => {
         const image = files.originFileObj
         const cloudName = 'dxk0bmtei'
-        const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/upload'
-        const timestamp = Date.now()/1000
+        const url = 'https://api.cloudinary.com/v1_1/' + cloudName + '/image/upload'
+        const timestamp = Date.now() / 1000
         const uploadPreset = 'toh6r3p2'
-        const paramsStr = 'timestamp='+timestamp+'&upload_preset='+uploadPreset+'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
+        const paramsStr = 'timestamp=' + timestamp + '&upload_preset=' + uploadPreset + 'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
         const signature = sha1(paramsStr)
         const params = {
-            'api_key':'878178936665133',
-            'timestamp':timestamp,
-            'upload_preset':uploadPreset,
-            'signature':signature
+            'api_key': '878178936665133',
+            'timestamp': timestamp,
+            'upload_preset': uploadPreset,
+            'signature': signature
         }
 
         return new Promise((res, rej) => {
             let uploadRequest = superagent.post(url)
             uploadRequest.attach('file', image)
-            Object.keys(params).forEach((key) =>{
+            Object.keys(params).forEach((key) => {
                 uploadRequest.field(key, params[key])
             })
 
-            uploadRequest.end((err, resp) =>{
+            uploadRequest.end((err, resp) => {
                 err ? rej(err) : res(resp);
             })
         })
@@ -214,7 +218,7 @@ class JobPortal extends Component {
         const { fileList } = this.state;
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                this.setState({loader: true})
+                this.setState({ loader: true })
                 if (fileList.length) {
                     this.postDataWithURL(values)
                 } else {
@@ -224,7 +228,7 @@ class JobPortal extends Component {
         })
     }
 
-    async postDataWithURL(values){
+    async postDataWithURL(values) {
         const { fileList } = this.state;
 
         Promise.all(fileList.map((val) => {
@@ -236,8 +240,8 @@ class JobPortal extends Component {
         })
     }
 
-    async postData(values, response){
-        const {userId, profileId, faceBook, LinkdIn, Google, Website, Tagline, objectId} = this.state;
+    async postData(values, response) {
+        const { userId, profileId, faceBook, LinkdIn, Google, Website, Tagline, objectId } = this.state;
         let obj = {
             user_id: userId,
             profileId: profileId,
@@ -262,7 +266,7 @@ class JobPortal extends Component {
             posted: moment().format('LL')
         }
         let req = await HttpUtils.post('postJobPortal', obj)
-        if(req.code === 200){
+        if (req.code === 200) {
             this.openNotification()
             this.setState({
                 objData: obj,
@@ -291,51 +295,80 @@ class JobPortal extends Component {
 
     onChangeValue(e) {
         if (e.target.id === 'faceBook') {
-            this.setState({faceBook: e.target.value})
+            this.setState({ faceBook: e.target.value })
         } else if (e.target.id === 'LinkdIn') {
-            this.setState({LinkdIn: e.target.value})
+            this.setState({ LinkdIn: e.target.value })
         } else if (e.target.id === 'Google') {
-            this.setState({Google: e.target.value})
+            this.setState({ Google: e.target.value })
         } else if (e.target.id === 'Website') {
-            this.setState({Website: e.target.value})
+            this.setState({ Website: e.target.value })
         } else if (e.target.id === 'Tagline') {
-            this.setState({Tagline: e.target.value})
+            this.setState({ Tagline: e.target.value })
         }
     }
 
-    deleteImage(e){
+    deleteImage(e) {
         let { imageList } = this.state;
         imageList = imageList.filter((elem) => elem !== e)
-        this.setState({imageList: imageList})
+        this.setState({ imageList: imageList })
     }
 
-    validateNumber(rule, value, callback){
-        if(isNaN(value)){
+    validateNumber(rule, value, callback) {
+        if (isNaN(value)) {
             callback('Please type Numbers');
-        }else {
+        } else {
             callback()
         }
     }
 
-    render(){
-        const {getFieldDecorator} = this.props.form;
-        const { email, jobTitle, jobType, jobCat, salary, compDescription, jobDescription, experience, compEmail, location, previewVisible, previewImage, fileList, objData } = this.state;
+    stateAndCities() {
+        let states = stateCities.getStatesByShort('US');
+        states = states.map((elem) => {
+            return {
+                label: elem,
+                value: elem
+            }
+        })
+        this.setState({
+            states: states,
+        })
+    }
+
+
+    onChangeState(value) {
+        if (!!value.length) {
+            let cities = stateCities.getCities('US', value[0])
+            cities = cities.map((elem) => {
+                return {
+                    label: elem,
+                    value: elem
+                }
+            })
+            this.setState({
+                cities: cities,
+                
+            })
+        }
+    }
+    render() {
+        const { getFieldDecorator } = this.props.form;
+        const { states ,cities, email, jobTitle, jobType, jobCat, salary, compDescription, jobDescription, experience, compEmail, location, previewVisible, previewImage, fileList, objData } = this.state;
 
         if (this.state.msg === true) {
-            return <Redirect to={{pathname: '/detail_jobPortal', state: {...objData, user: false}}} />
+            return <Redirect to={{ pathname: '/detail_jobPortal', state: { ...objData, user: false } }} />
         }
 
         const uploadedImages = (
-            <div style={{display: 'flex'}}>
+            <div style={{ display: 'flex' }}>
                 {this.state.imageList.map((elem) => {
-                    return(
+                    return (
                         <div className='insideDiv'>
                             <a>
-                            <img alt='img1' src={elem} />
-                            <span>
-                                <a><Icon title='Preview file' onClick={() => this.handlePreview(elem)} type="eye" theme="outlined" style={{zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'}} /></a>
-                                <Icon title='Remove file' type='delete' onClick={this.deleteImage.bind(this, elem)} style={{zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'}}/>
-                            </span>
+                                <img alt='img1' src={elem} />
+                                <span>
+                                    <a><Icon title='Preview file' onClick={() => this.handlePreview(elem)} type="eye" theme="outlined" style={{ zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px' }} /></a>
+                                    <Icon title='Remove file' type='delete' onClick={this.deleteImage.bind(this, elem)} style={{ zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px' }} />
+                                </span>
                             </a>
                         </div>
                     )
@@ -347,10 +380,10 @@ class JobPortal extends Component {
             {
                 label: 'Full Time',
                 value: 'Full Time',
-            },{
+            }, {
                 label: 'Part Time',
                 value: 'Part Time',
-            },{
+            }, {
                 label: 'Night Shift',
                 value: 'Night Shift',
             }
@@ -368,14 +401,14 @@ class JobPortal extends Component {
         );
 
         const antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
-
+        console.log("TCL: render -> states", states)
         return (
             <div>
-                <HeaderMenu/>
-                <div className="hidden-xs" style={{width:"100%", height:"67px", marginTop: "40px"}} />
+                <HeaderMenu />
+                <div className="hidden-xs" style={{ width: "100%", height: "67px", marginTop: "40px" }} />
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
-                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs" id="section1" style={{marginLeft: '4%', marginTop: '116px', position: 'fixed',}}>
-                    <Anchor className="" style={{margin: '2%',backgroundColor: '#f6f6f6'}}>
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs" id="section1" style={{ marginLeft: '4%', marginTop: '116px', position: 'fixed', }}>
+                    <Anchor className="" style={{ margin: '2%', backgroundColor: '#f6f6f6' }}>
                         <Link href="#scrollChange1" title="Job Details" />
                         <Link href="#scrollChange2" title="Upload" />
                         <Link href="#scrollChange3" title="Company Details" />
@@ -383,18 +416,18 @@ class JobPortal extends Component {
                     </Anchor>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div className="main_c_panel" style={{textAlign: 'center'}}>
-                        <h3 style={{color: 'black',fontWeight: 'bold'}}>Add Job<br/>
-                        Find all your Jobs in one place</h3>
+                    <div className="main_c_panel" style={{ textAlign: 'center' }}>
+                        <h3 style={{ color: 'black', fontWeight: 'bold' }}>Add Job<br />
+                            Find all your Jobs in one place</h3>
                     </div>
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="">{/* style={{panel-group paddingTop:"50px"}} */}
                             <div className="">{/*panel panel-default */}
-                                
+
                                 <div className=" row">{/*panel-body */}
                                     {/* <div className="col-md-2"/> */}
-                                    <div className="formRadius card" id="scrollChange1" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/* col-md-8 panel panel-default */}
-                                        <div className="bold_c_text" style={{color:'black',padding:'2%',borderBottom: '1px solid #d9d9d9'}}>
+                                    <div className="formRadius card" id="scrollChange1" style={{ paddingLeft: '0px', paddingRight: '0px' }}>{/* col-md-8 panel panel-default */}
+                                        <div className="bold_c_text" style={{ color: 'black', padding: '2%', borderBottom: '1px solid #d9d9d9' }}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-info-circle iconStyle"></i>
                                             <span className="margin_font_location">Job Details</span>
@@ -404,16 +437,16 @@ class JobPortal extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Your Email</label>
-                                                        <FormItem style={{padding: '2%'}}>
+                                                        <FormItem style={{ padding: '2%' }}>
                                                             {getFieldDecorator('email', {
                                                                 initialValue: email,
-                                                                rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true },{
+                                                                rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true }, {
                                                                     required: true,
                                                                     message: 'Please input your Email!',
                                                                     whitespace: true
                                                                 }],
                                                             })(
-                                                                <input type="text" className="form-control"/>
+                                                                <input type="text" className="form-control" />
                                                             )}
                                                         </FormItem>
                                                     </div>
@@ -421,7 +454,7 @@ class JobPortal extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="usr">Job Title</label>
-                                                        <FormItem style={{padding: '2%'}}>
+                                                        <FormItem style={{ padding: '2%' }}>
                                                             {getFieldDecorator('jobTitle', {
                                                                 initialValue: jobTitle,
                                                                 rules: [{
@@ -430,20 +463,20 @@ class JobPortal extends Component {
                                                                     whitespace: true
                                                                 }],
                                                             })(
-                                                                <input type="text" className="form-control"/>
+                                                                <input type="text" className="form-control" />
                                                             )}
                                                         </FormItem>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Location</label>
-                                                        <FormItem style={{padding: '2%'}}>
+                                                        <FormItem style={{ padding: '2%' }}>
                                                             {getFieldDecorator('location', {
                                                                 initialValue: location,
                                                                 rules: [{
@@ -452,7 +485,7 @@ class JobPortal extends Component {
                                                                     whitespace: true
                                                                 }],
                                                             })(
-                                                                <input type="text" className="form-control"/>
+                                                                <input type="text" className="form-control" />
                                                             )}
                                                         </FormItem>
                                                     </div>
@@ -460,29 +493,67 @@ class JobPortal extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="usr">Job Type</label>
-                                                        <FormItem style={{padding: '2%'}}>
+                                                        <FormItem style={{ padding: '2%' }}>
                                                             {getFieldDecorator('jobType', {
                                                                 initialValue: jobType,
                                                                 rules: [{ validator: this.onChangeState }],
                                                             })(
-                                                                <Cascader options={categ} showSearch={{ filter }}/>
+                                                                <Cascader options={categ} showSearch={{ filter }} />
                                                             )}
                                                         </FormItem>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
+
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label htmlFor="sel1">State</label>
+                                                        <FormItem style={{ padding: '2%' }}>
+                                                            {getFieldDecorator('state', {
+                                                                // initialValue: state,
+                                                                rules: [{ validator: this.onChangeState }],
+                                                            })(
+                                                                <Cascader
+                                                                    placeholder="State"
+                                                                    options={states}
+                                                                />
+                                                            )}
+                                                        </FormItem>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label htmlFor="usr">City</label>
+                                                        <FormItem style={{ padding: '2%' }}>
+                                                            {getFieldDecorator('city', {
+                                                                // initialValue: city,
+                                                                rules: [{ validator: this.onChangeState }],
+                                                            })(
+                                                                <Cascader
+                                                                    placeholder="City"
+                                                                    options={cities}
+                                                                />
+                                                            )}
+                                                        </FormItem>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr className="hrLineStyle" />
 
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Job Category</label>
-                                                        <FormItem style={{padding: '2%'}}>
+                                                        <FormItem style={{ padding: '2%' }}>
                                                             {getFieldDecorator('jobCat', {
                                                                 initialValue: jobCat,
-                                                                rules: [{ validator: this.onChangeState }],                                                            })(
-                                                                <Cascader options={category} showSearch={{ filter }}/>
+                                                                rules: [{ validator: this.onChangeState }],
+                                                            })(
+                                                                <Cascader options={category} showSearch={{ filter }} />
                                                             )}
                                                         </FormItem>
                                                     </div>
@@ -490,7 +561,7 @@ class JobPortal extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="usr">Salary</label>
-                                                        <FormItem style={{padding: '2%'}}>
+                                                        <FormItem style={{ padding: '2%' }}>
                                                             {getFieldDecorator('salary', {
                                                                 initialValue: salary,
                                                                 rules: [{
@@ -500,20 +571,20 @@ class JobPortal extends Component {
                                                                 },
                                                                 { validator: this.validateNumber.bind(this) }],
                                                             })(
-                                                                <input type="text" className="form-control"/>
+                                                                <input type="text" className="form-control" />
                                                             )}
                                                         </FormItem>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Description</label>
-                                                        <FormItem style={{padding: '2%'}}>
+                                                        <FormItem style={{ padding: '2%' }}>
                                                             {getFieldDecorator('jobDescription', {
                                                                 initialValue: jobDescription,
                                                                 rules: [
@@ -524,7 +595,7 @@ class JobPortal extends Component {
                                                                         validator: this.checkValue.bind(this)
                                                                     }],
                                                             })(
-                                                                <TextArea rows={6} maxLength="500"/>
+                                                                <TextArea rows={6} maxLength="500" />
                                                             )}
                                                         </FormItem>
                                                     </div>
@@ -532,7 +603,7 @@ class JobPortal extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="usr">Experience</label>
-                                                        <FormItem style={{padding: '2%'}}>
+                                                        <FormItem style={{ padding: '2%' }}>
                                                             {getFieldDecorator('experience', {
                                                                 initialValue: experience,
                                                                 rules: [{
@@ -541,20 +612,20 @@ class JobPortal extends Component {
                                                                     whitespace: true
                                                                 }],
                                                             })(
-                                                                <input type="text" className="form-control"/>
+                                                                <input type="text" className="form-control" />
                                                             )}
                                                         </FormItem>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Receiving CV/Resume Email</label>
-                                                        <FormItem style={{padding: '2%'}}>
+                                                        <FormItem style={{ padding: '2%' }}>
                                                             {getFieldDecorator('compEmail', {
                                                                 initialValue: compEmail,
                                                                 rules: [{
@@ -563,22 +634,22 @@ class JobPortal extends Component {
                                                                     whitespace: true
                                                                 }],
                                                             })(
-                                                                <input type="text" className="form-control"/>
+                                                                <input type="text" className="form-control" />
                                                             )}
                                                         </FormItem>
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                         </section>
                                     </div>
-                                    <div className="col-md-2"/>
+                                    <div className="col-md-2" />
                                 </div>
 
                                 <div className="row">{/*panel-body  */}
                                     {/* <div className="col-md-2"/> */}
-                                    <div className="topRadius card" id="scrollChange2" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/*panel panel-default col-md-8 */}
-                                        <div className="bold_c_text" style={{color:'black',padding:'2%',borderBottom: '1px solid #d9d9d9'}}>
+                                    <div className="topRadius card" id="scrollChange2" style={{ paddingLeft: '0px', paddingRight: '0px' }}>{/*panel panel-default col-md-8 */}
+                                        <div className="bold_c_text" style={{ color: 'black', padding: '2%', borderBottom: '1px solid #d9d9d9' }}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-upload iconStyle"></i>
                                             <span className="margin_font_location">Upload</span>
@@ -586,7 +657,7 @@ class JobPortal extends Component {
                                         <section className="bottomRadius card">{/* style={{backgroundColor: '#F1F2F2'}} */}
                                             <div className="col-md-12 bottomRadius card">
                                                 <div className="form-group">
-                                                    <label htmlFor="usr" style={{padding: '2%'}}>Job Banner/Image</label>
+                                                    <label htmlFor="usr" style={{ padding: '2%' }}>Job Banner/Image</label>
                                                     <div className="">{/*panel-body */}
                                                         <Upload
                                                             action="//jsonplaceholder.typicode.com/posts/"
@@ -604,15 +675,15 @@ class JobPortal extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                         </section>
                                     </div>
                                 </div>
 
                                 <div className="row">{/*panel-body  */}
                                     {/* <div className="col-md-2"/> */}
-                                    <div className="formRadius card" id="scrollChange3" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/*panel panel-default col-md-8 */}
-                                        <div className="bold_c_text" style={{color:'black',padding:'2%',borderBottom: '1px solid #d9d9d9'}}>
+                                    <div className="formRadius card" id="scrollChange3" style={{ paddingLeft: '0px', paddingRight: '0px' }}>{/*panel panel-default col-md-8 */}
+                                        <div className="bold_c_text" style={{ color: 'black', padding: '2%', borderBottom: '1px solid #d9d9d9' }}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-info-circle iconStyle"></i>
                                             <span className="margin_font_location">Company Details</span>
@@ -622,7 +693,7 @@ class JobPortal extends Component {
                                                 <div className="col-md-4">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Company Name</label>
-                                                        <FormItem style={{padding: '2%'}}>
+                                                        <FormItem style={{ padding: '2%' }}>
                                                             {getFieldDecorator('compName', {
                                                                 initialValue: email,
                                                                 rules: [{
@@ -631,7 +702,7 @@ class JobPortal extends Component {
                                                                     whitespace: true
                                                                 }],
                                                             })(
-                                                                <input type="text" className="form-control"/>
+                                                                <input type="text" className="form-control" />
                                                             )}
                                                         </FormItem>
                                                     </div>
@@ -639,32 +710,32 @@ class JobPortal extends Component {
                                                 <div className="col-md-4">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Website</label>
-                                                        <FormItem style={{padding: '2%'}}>
+                                                        <FormItem style={{ padding: '2%' }}>
                                                             <input type="text" id='Website'
                                                                 value={this.state.Website}
-                                                                className="form-control" onChange={this.onChangeValue.bind(this)}/>
+                                                                className="form-control" onChange={this.onChangeValue.bind(this)} />
                                                         </FormItem>
                                                     </div>
                                                 </div>
                                                 <div className="col-md-4">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Tagline</label>
-                                                        <FormItem style={{padding: '2%'}}>
+                                                        <FormItem style={{ padding: '2%' }}>
                                                             <input type="text" id='Tagline'
                                                                 value={this.state.Tagline}
-                                                                className="form-control" onChange={this.onChangeValue.bind(this)}/>
+                                                                className="form-control" onChange={this.onChangeValue.bind(this)} />
                                                         </FormItem>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Description</label>
-                                                        <FormItem style={{padding: '2%'}}>
+                                                        <FormItem style={{ padding: '2%' }}>
                                                             {getFieldDecorator('compDescription', {
                                                                 initialValue: compDescription,
                                                                 rules: [
@@ -675,23 +746,23 @@ class JobPortal extends Component {
                                                                         validator: this.checkValue.bind(this)
                                                                     }],
                                                             })(
-                                                                <TextArea rows={6} maxLength="500"/>
+                                                                <TextArea rows={6} maxLength="500" />
                                                             )}
                                                         </FormItem>
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                         </section>
                                     </div>
                                     <div className="col-md-2" />
                                 </div>
 
-                                
+
                                 <div className="row">{/*panel-body  */}
                                     {/* <div className="col-md-2"/> */}
-                                    <div className="topRadius card" id="scrollChange4" style={{paddingLeft: '0px', paddingRight: '0px'}}>{/*panel panel-default col-md-8 */}
-                                        <div className="bold_c_text " style={{color:'black',padding:'2%',borderBottom: '1px solid #d9d9d9'}}>
+                                    <div className="topRadius card" id="scrollChange4" style={{ paddingLeft: '0px', paddingRight: '0px' }}>{/*panel panel-default col-md-8 */}
+                                        <div className="bold_c_text " style={{ color: 'black', padding: '2%', borderBottom: '1px solid #d9d9d9' }}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-link iconStyle"></i>
                                             <span className="margin_font_location">Social Links</span>
@@ -699,65 +770,65 @@ class JobPortal extends Component {
                                         <section className="formRadius card">{/* style={{backgroundColor: '#F1F2F2'}} */}
                                             <div className="col-md-12 bottomRadius card">
                                                 <div className="form-group">
-                                                    <label htmlFor="usr" style={{padding: '2%'}}>Social Media Links</label>
+                                                    <label htmlFor="usr" style={{ padding: '2%' }}>Social Media Links</label>
                                                     <div className="">{/*panel-body */}
-                                                    <div className="col-md-6">
-                                                    <div className="form-group">
-                                                        <FormItem style={{padding: '2%'}}>
-                                                            <div className='row' style={{paddingTop: '0px', paddingBottom: '0px'}}>
-                                                                <button
-                                                                    type="button"
-                                                                    className="btn btn-fb btnSet"
-                                                                    style={{width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#3B5999'}}
-                                                                >
-                                                                    <i className="fa fa-facebook iconSet" style={{color: 'white'}}></i>
-                                                                </button>
-                                                                <input type="text"
-                                                                       id='faceBook'
-                                                                       value={this.state.faceBook}
-                                                                       className="form-control inputSet"
-                                                                       style={{width: '90%', display: 'inline-block', borderRadius: '0px'}}
-                                                                       onChange={this.onChangeValue.bind(this)}/>
+                                                        <div className="col-md-6">
+                                                            <div className="form-group">
+                                                                <FormItem style={{ padding: '2%' }}>
+                                                                    <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
+                                                                        <button
+                                                                            type="button"
+                                                                            className="btn btn-fb btnSet"
+                                                                            style={{ width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#3B5999' }}
+                                                                        >
+                                                                            <i className="fa fa-facebook iconSet" style={{ color: 'white' }}></i>
+                                                                        </button>
+                                                                        <input type="text"
+                                                                            id='faceBook'
+                                                                            value={this.state.faceBook}
+                                                                            className="form-control inputSet"
+                                                                            style={{ width: '90%', display: 'inline-block', borderRadius: '0px' }}
+                                                                            onChange={this.onChangeValue.bind(this)} />
+                                                                    </div>
+                                                                    <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
+                                                                        <button
+                                                                            type="button"
+                                                                            className="btn btn-fb btnSet"
+                                                                            style={{ width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#0077B5' }}
+                                                                        >
+                                                                            <i className="fa fa-linkedin" style={{ color: 'white' }}></i>
+                                                                        </button>
+                                                                        <input
+                                                                            type="text"
+                                                                            id='LinkdIn'
+                                                                            value={this.state.LinkdIn}
+                                                                            className="form-control inputSet"
+                                                                            style={{ width: '90%', display: 'inline-block', borderRadius: '0px' }}
+                                                                            onChange={this.onChangeValue.bind(this)} />
+                                                                    </div>
+                                                                    <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
+                                                                        <button
+                                                                            type="button"
+                                                                            className="btn btn-fb btnSet"
+                                                                            style={{ width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#DC4E41' }}
+                                                                        >
+                                                                            <i className="fa fa-google-plus" style={{ color: 'white' }}></i>
+                                                                        </button>
+                                                                        <input
+                                                                            type="text"
+                                                                            id='Google'
+                                                                            value={this.state.Google}
+                                                                            className="form-control inputSet"
+                                                                            style={{ width: '90%', display: 'inline-block', borderRadius: '0px' }}
+                                                                            onChange={this.onChangeValue.bind(this)} />
+                                                                    </div>
+                                                                </FormItem>
                                                             </div>
-                                                            <div className='row' style={{paddingTop: '0px', paddingBottom: '0px'}}>
-                                                                <button
-                                                                    type="button"
-                                                                    className="btn btn-fb btnSet"
-                                                                    style={{width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#0077B5'}}
-                                                                >
-                                                                    <i className="fa fa-linkedin" style={{color: 'white'}}></i>
-                                                                </button>
-                                                                <input
-                                                                    type="text"
-                                                                    id='LinkdIn'
-                                                                    value={this.state.LinkdIn}
-                                                                    className="form-control inputSet"
-                                                                    style={{width: '90%', display: 'inline-block', borderRadius: '0px'}}
-                                                                    onChange={this.onChangeValue.bind(this)}/>
-                                                            </div>
-                                                            <div className='row' style={{paddingTop: '0px', paddingBottom: '0px'}}>
-                                                                <button
-                                                                    type="button"
-                                                                    className="btn btn-fb btnSet"
-                                                                    style={{width: '10%', display: 'inline-block', marginBottom: '4px', borderRadius: '0px', backgroundColor: '#DC4E41'}}
-                                                                >
-                                                                    <i className="fa fa-google-plus" style={{color: 'white'}}></i>
-                                                                </button>
-                                                                <input
-                                                                    type="text"
-                                                                    id='Google'
-                                                                    value={this.state.Google}
-                                                                    className="form-control inputSet"
-                                                                    style={{width: '90%', display: 'inline-block', borderRadius: '0px'}}
-                                                                    onChange={this.onChangeValue.bind(this)}/>
-                                                            </div>
-                                                        </FormItem>
-                                                    </div>
-                                                </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                         </section>
                                     </div>
                                 </div>
@@ -766,7 +837,7 @@ class JobPortal extends Component {
 
                                     <div className="col-md-12 col-sm-12 col-xs-12">
                                         {this.state.loader && <Spin className="col-xs-2 col-md-6" indicator={antIcon} />}
-                                        <button style={{textAlign: 'center',width:'19%'}} disabled={!!this.state.loader} className="btn color_button">Submit</button>
+                                        <button style={{ textAlign: 'center', width: '19%' }} disabled={!!this.state.loader} className="btn color_button">Submit</button>
                                     </div>
                                 </div>
                             </div>

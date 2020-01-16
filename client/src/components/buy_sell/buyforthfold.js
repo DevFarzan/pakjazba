@@ -153,7 +153,7 @@ class Forthfold extends Component{
     // }
 
     render(){
-        // const { buySell, showBuySell, filteredArr, goForLogin, goDetail, detailPage, goProfile, objData } = this.state;
+        const { buySell, showBuySell, filteredArr, goForLogin, goDetail, detailPage, goProfile, objData } = this.state;
         // const { text } = this.props;
         // const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './buyforthfold.css';
-import {HttpUtils} from "../../Services/HttpUtils";
+import { HttpUtils } from "../../Services/HttpUtils";
 import { Pagination, Spin, Icon, Modal } from 'antd';
 import { connect } from 'react-redux';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 import { Redirect } from 'react-router';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-class Forthfold extends Component{
-    constructor(props){
+class Forthfold extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             // current: 1,
@@ -20,6 +20,9 @@ class Forthfold extends Component{
             // add: 5,
             // user: false,
             // visible: false
+            objData: {},
+            detailPage: false,
+            goProfile: false
         }
     }
 
@@ -144,15 +147,19 @@ class Forthfold extends Component{
     //     this.setState({goForLogin: true, visible: false})
     // }
 
-    // goToProfile(val, data){
-    //     if(val === 1){
-    //         this.setState({detailPage: true, objData: data})
-    //     }else {
-    //         this.setState({goProfile : true, objData: data})
-    //     }
-    // }
+    goToProfile(val, data) {
+        if (val === 1) {
+            this.setState({ detailPage: true, objData: data })
+        } else {
+            this.setState({ goProfile: true, objData: data })
+        }
+    }
 
-    render(){
+    render() {
+        const { showBuySell, filteredData, notFoundFilterData, showRecord, categoroyOfRoom, stateOfRoom, cityOfRoom, conditionOfRoom,
+            removeValue, showAllRooms } = this.props;
+        const { goDetail, detailPage, goProfile, objData } = this.state;
+
         // const { buySell, showBuySell, filteredArr, goForLogin, goDetail, detailPage, goProfile, objData } = this.state;
         // const { text } = this.props;
         // const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
@@ -163,15 +170,15 @@ class Forthfold extends Component{
         // if(goDetail){
         //     return <Redirect to={{pathname: `/postad_buysell`}} />
         // }
-        // if(detailPage){
-        //     return <Redirect to={{pathname: `/detail_buySell`, state: objData}} />
-        // }
-        // if(goProfile){
-        //     return <Redirect to={{pathname: `/profile_userDetail`, state: {userId: objData.userid, profileId: objData.profileid}}} />
-        // }
+        if(detailPage){
+            return <Redirect to={{pathname: `/detail_buySell`, state: objData}} />
+        }
+        if(goProfile){
+            return <Redirect to={{pathname: `/profile_userDetail`, state: {userId: objData.userid, profileId: objData.profileid}}} />
+        }
 
-        return(
-            <div className="container" style={{width:"100%"}}>
+        return (
+            <div className="container" style={{ width: "100%" }}>
                 {/* {!this.state.loader && showBuySell == 0 && <span style={{textAlign:"center"}}><h1>Nothing to sell</h1></span>}
                 {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h1>Not found....</h1></span>}
                 {text && !!filteredArr.length === false && <span style={{textAlign:"center"}}><h5>you can find your search by type</h5></span>}
@@ -179,46 +186,143 @@ class Forthfold extends Component{
                 {/*<div className="col-md-3"  style={{'marginTop': '21px'}} onClick={() => {this.clickItem()}}>
                     <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '385px', width: '100%', borderRadius: '13px'}}/>
                 </div>*/}
-                <div className="row">
-                    {showBuySell && showBuySell.map((elem, key) => {
-                        let str = elem.address || '';
-                        if(str.length > 25) {
-                            str = str.substring(0, 25);
-                            str = str + '...'
-                        }
-                        let des = elem.description || '';
-                        if(des.length > 25) {
-                            des = des.substring(0, 25);
-                            des = des + '...'
-                        }
+                {categoroyOfRoom && categoroyOfRoom.length > 0 ?
+                    categoroyOfRoom.map((elem, key) => {
                         return (
-                            <div className="col-md-4 col-sm-4 col-xs-12" onClick={() => {this.goToProfile(1, elem)}} style={{cursor:'pointer'}}>
-                                <img alt='' src={elem.images.length ? elem.images[0] : './images/def_card_img.jpg'}  style={{ height: '200px', width: "100%", filter: 'brightness(0.5)' }}  />
-                                <div className="pricingbuy">
-                                    <p>{!elem.hideprice ? '$' + elem.price : 'Hide'}</p>
-                                </div>
-                                <div className="sell-card">
-                                    <h4>{elem.modelname}</h4>
-                                    <p style={{ fontFamily: 'Poppins, sans-serif' }}>
-                                        <span className="glyphicon glyphicon-map-marker"
-                                            style={{ color: "#008080", margin: "0", left: "-3px" }}>
-                                        </span>
-                                        <span>
-                                            {elem.address.slice(0, 10)},{elem.state}
-                                        </span>
-                                    </p>
-                                    
-                                    <p style={{ fontFamily: 'Poppins, sans-serif' }}>
-                                        <span className="glyphicon glyphicon-phone"
-                                            style={{ color: "#008080", margin: "0", left: "-3px" }}></span>
-                                <span>{elem.contactnumber}</span>
+                            <div>
+                                <li>{elem}<span class="close"
+                                    onClick={removeValue.bind(this, 'category', elem)}
+                                >x</span></li>
+                            </div>)
+                    })
+                    : null}
+                {stateOfRoom && stateOfRoom.length > 0 ?
+                    stateOfRoom.map((elem, key) => {
+                        return (
+                            <div>
+                                <li>{elem}<span class="close"
+                                    onClick={removeValue.bind(this, 'state', elem)}
+                                >x</span></li>
+                            </div>)
+                    })
+                    : null}
+                {cityOfRoom && cityOfRoom.length > 0 ?
+                    cityOfRoom.map((elem, key) => {
+                        return (
+                            <div>
+                                <li>{elem}<span class="close"
+                                    onClick={removeValue.bind(this, 'city', elem)}
+                                >x</span></li>
+                            </div>)
+                    })
+                    : null}
+                {conditionOfRoom && conditionOfRoom.length > 0 ?
+                    conditionOfRoom.map((elem, key) => {
+                        return (
+                            <div>
+                                <li>{elem}<span class="close"
+                                    onClick={removeValue.bind(this, 'accommodates', elem)}
+                                >x</span></li>
+                            </div>)
+                    })
+                    : null}
+                <div className="row">
+
+                    {notFoundFilterData && filteredData.length == 0 ?
+                        <div>
+                            <p>
+                                No Record Found
                                 </p>
+                            <button
+                                onClick={showAllRooms}
+                            >Back</button>
+                        </div>
+                        :
+                        filteredData && filteredData.map((elem, key) => {
+                            let str = elem.address || '';
+                            if (str.length > 25) {
+                                str = str.substring(0, 25);
+                                str = str + '...'
+                            }
+                            let des = elem.description || '';
+                            if (des.length > 25) {
+                                des = des.substring(0, 25);
+                                des = des + '...'
+                            }
+                            return (
+                                <div className="col-md-4 col-sm-4 col-xs-12" onClick={() => { this.goToProfile(1, elem) }} style={{ cursor: 'pointer' }}>
+                                    <img alt='' src={elem.images.length ? elem.images[0] : './images/def_card_img.jpg'} style={{ height: '200px', width: "100%", filter: 'brightness(0.5)' }} />
+                                    <div className="pricingbuy">
+                                        <p>{!elem.hideprice ? '$' + elem.price : 'Hide'}</p>
+                                    </div>
+                                    <div className="sell-card">
+                                        <h4>{elem.modelname}</h4>
+                                        <p style={{ fontFamily: 'Poppins, sans-serif' }}>
+                                            <span className="glyphicon glyphicon-map-marker"
+                                                style={{ color: "#008080", margin: "0", left: "-3px" }}>
+                                            </span>
+                                            <span>
+                                                {elem.address.slice(0, 10)},{elem.state}
+                                            </span>
+                                        </p>
+
+                                        <p style={{ fontFamily: 'Poppins, sans-serif' }}>
+                                            <span className="glyphicon glyphicon-phone"
+                                                style={{ color: "#008080", margin: "0", left: "-3px" }}></span>
+                                            <span>{elem.contactnumber}</span>
+                                        </p>
+                                    </div>
+
+
                                 </div>
-                                
-                               
-                            </div>
-                        )
-                    })}
+                            )
+                        })
+                    }
+
+
+                    {notFoundFilterData == false && filteredData.length == 0 && showRecord ?
+                        showBuySell && showBuySell.map((elem, key) => {
+                            let str = elem.address || '';
+                            if (str.length > 25) {
+                                str = str.substring(0, 25);
+                                str = str + '...'
+                            }
+                            let des = elem.description || '';
+                            if (des.length > 25) {
+                                des = des.substring(0, 25);
+                                des = des + '...'
+                            }
+                            return (
+                                <div className="col-md-4 col-sm-4 col-xs-12" onClick={() => { this.goToProfile(1, elem) }} style={{ cursor: 'pointer' }}>
+                                    <img alt='' src={elem.images.length ? elem.images[0] : './images/def_card_img.jpg'} style={{ height: '200px', width: "100%", filter: 'brightness(0.5)' }} />
+                                    <div className="pricingbuy">
+                                        <p>{!elem.hideprice ? '$' + elem.price : 'Hide'}</p>
+                                    </div>
+                                    <div className="sell-card">
+                                        <h4>{elem.modelname}</h4>
+                                        <p style={{ fontFamily: 'Poppins, sans-serif' }}>
+                                            <span className="glyphicon glyphicon-map-marker"
+                                                style={{ color: "#008080", margin: "0", left: "-3px" }}>
+                                            </span>
+                                            <span>
+                                                {elem.address.slice(0, 10)},{elem.state}
+                                            </span>
+                                        </p>
+
+                                        <p style={{ fontFamily: 'Poppins, sans-serif' }}>
+                                            <span className="glyphicon glyphicon-phone"
+                                                style={{ color: "#008080", margin: "0", left: "-3px" }}></span>
+                                            <span>{elem.contactnumber}</span>
+                                        </p>
+                                    </div>
+
+
+                                </div>
+                            )
+                        })
+                        :
+                        null
+                    }
                 </div>
                 {/* {this.state.loader && <div className="col-md-12" style={{textAlign: 'center', marginLeft: '-50px', marginBottom: '20px'}}>
                     <Spin indicator={antIcon} />
@@ -242,7 +346,7 @@ class Forthfold extends Component{
 }
 
 const mapStateToProps = (state) => {
-    return({
+    return ({
         text: state.text
     })
 }

@@ -57,7 +57,7 @@ class BuyNsell extends Component {
 
     async getAllBusiness() {
         let res = await HttpUtils.get('marketplace');
-        console.log(res , 'res')
+        console.log(res, 'res')
         let req = await HttpUtils.get('getreviews');
         if (res && res.code && res.code == 200) {
             this.setState({
@@ -189,7 +189,7 @@ class BuyNsell extends Component {
 
         for (var i = 0; i < filterKeys.length; i++) {
             if (i == 0) {
-               if (filterKeys[i] == 'state') {
+                if (filterKeys[i] == 'state') {
                     data1 = showBuySell.filter((elem) => {
                         return elem.state && filterStateName.includes(elem.state)
                     })
@@ -250,7 +250,7 @@ class BuyNsell extends Component {
 
         for (var i = 0; i < filterKeys.length; i++) {
             if (i == 0) {
-               if (filterKeys[i] == 'state') {
+                if (filterKeys[i] == 'state') {
                     data1 = showBuySell.filter((elem) => {
                         return elem.state && filterStateName.includes(elem.state)
                     })
@@ -267,7 +267,7 @@ class BuyNsell extends Component {
                 }
             }
             if (i == 1) {
-               if (filterKeys[i] == 'state') {
+                if (filterKeys[i] == 'state') {
                     data2 = data1.filter((elem) => {
                         return elem.state && filterStateName.includes(elem.state)
                     })
@@ -284,7 +284,7 @@ class BuyNsell extends Component {
                 }
             }
             if (i == 2) {
-               if (filterKeys[i] == 'state') {
+                if (filterKeys[i] == 'state') {
                     filteredData = data2.filter((elem) => {
                         return elem.state && filterStateName.includes(elem.state)
                     })
@@ -329,7 +329,7 @@ class BuyNsell extends Component {
 
         for (var i = 0; i < filterKeys.length; i++) {
             if (i == 0) {
-               if (filterKeys[i] == 'state') {
+                if (filterKeys[i] == 'state') {
                     data1 = showBuySell.filter((elem) => {
                         return elem.state && filterStateName.includes(elem.state)
                     })
@@ -346,7 +346,7 @@ class BuyNsell extends Component {
                 }
             }
             if (i == 1) {
-               if (filterKeys[i] == 'state') {
+                if (filterKeys[i] == 'state') {
                     data2 = data1.filter((elem) => {
                         return elem.state && filterStateName.includes(elem.state)
                     })
@@ -380,7 +380,7 @@ class BuyNsell extends Component {
                 }
             }
             if (i == 3) {
-               if (filterKeys[i] == 'state') {
+                if (filterKeys[i] == 'state') {
                     filteredData = data3.filter((elem) => {
                         return elem.state && filterStateName.includes(elem.state)
                     })
@@ -417,7 +417,7 @@ class BuyNsell extends Component {
 
     removeValue = (param, value) => {
         let arr = [];
-       if (param == "city") {
+        if (param == "city") {
             filterCityName = arr
         }
         else if (param == "state") {
@@ -454,7 +454,7 @@ class BuyNsell extends Component {
             notFoundFilterData: false,
             billboardFilterdData: [],
             statusValue: '',
-            
+
         })
         this.filterKeysGet();
     }
@@ -513,7 +513,7 @@ class BuyNsell extends Component {
     mainCategoryFilter = (param) => {
         const { showBuySell, filteredData } = this.state;
         let rangeValues = [];
-
+        console.log(param, 'param')
         if (filteredData.length > 0) {
             for (var i = 0; i < filteredData.length; i++) {
                 if (filteredData[i].category.toLowerCase() == param.toLowerCase()) {
@@ -575,21 +575,21 @@ class BuyNsell extends Component {
                             <TabPane tab={
                                 <span><Icon type="apple" /> Filter </span>}
                                 key="1">
-                                <BuySellFilterContent 
-                                onChange={this.onChange} getState={this.getState} getCities={this.getCities} onChangeCheckBoxes={this.onChangeCheckBoxes}
-                                stateOfRoom={stateOfRoom} cityOfRoom={cityOfRoom} conditionOfRoom={conditionOfRoom}
-                                filterRoomWithMinToMax={this.filterRoomWithMinToMax} />
+                                <BuySellFilterContent
+                                    onChange={this.onChange} getState={this.getState} getCities={this.getCities} onChangeCheckBoxes={this.onChangeCheckBoxes}
+                                    stateOfRoom={stateOfRoom} cityOfRoom={cityOfRoom} conditionOfRoom={conditionOfRoom}
+                                    filterRoomWithMinToMax={this.filterRoomWithMinToMax} />
                             </TabPane>
                             <TabPane tab={
                                 <span><Icon type="android" /> Category </span>}
                                 key="2">
-                                <BuyCategory  mainCategoryFilter={this.mainCategoryFilter}/>
+                                <BuyCategory mainCategoryFilter={this.mainCategoryFilter} />
                             </TabPane>
                         </Tabs>
                     </div>
                     <div className="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                         <BuyNsellData showBuySell={showBuySell} filteredData={filteredData} notFoundFilterData={notFoundFilterData} showRecord={showRecord}
-                           stateOfRoom={stateOfRoom} cityOfRoom={cityOfRoom} conditionOfRoom={conditionOfRoom}
+                            stateOfRoom={stateOfRoom} cityOfRoom={cityOfRoom} conditionOfRoom={conditionOfRoom}
                             removeValue={this.removeValue} showAllRooms={this.showAllRooms}
                         />
                     </div>

@@ -17,7 +17,10 @@ class Firstfold extends Component {
     category(e) {
         const { dispatch } = this.props;
         var inputValue = e.target.textContent;
+        // console.log(inputValue , 'inputValue')
+        this.props.mainCategoryFilter(inputValue)
         dispatch({ type: 'SEARCHON', inputValue })
+
     }
 
     dropDown(e) {
@@ -30,10 +33,10 @@ class Firstfold extends Component {
     }
 
     render() {
-        const { open, goToFilter } = this.state;
-        if (goToFilter) {
-            return <Redirect to={{ pathname: `/filter_buySell` }} />
-        }
+        // const { open, goToFilter } = this.state;
+        // if (goToFilter) {
+        //     return <Redirect to={{ pathname: `/filter_buySell` }} />
+        // }
         return (
             <div className="container" style={{ width: "100%" }}>
                 <div className="row">
@@ -66,6 +69,17 @@ class Firstfold extends Component {
                     </div>
                 </div>
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+
+                    <div className="wrimagecard wrimagecard-topimage">
+                        <div className="wrimagecard-topimage_headerHomeBuy" onClick={this.dropDown.bind(this, 'Home')} >
+                            <center>
+                                <h3 className="categoryInnerText">Collectibles & Art</h3>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+
                     <div className="wrimagecard wrimagecard-topimage">
                         <div className="wrimagecard-topimage_headerHomeBuy" onClick={this.dropDown.bind(this, 'Home')} >
                             <center>
@@ -87,7 +101,34 @@ class Firstfold extends Component {
                     <div className="wrimagecard wrimagecard-topimage">
                         <div className="wrimagecard-topimage_headerToy" onClick={this.dropDown.bind(this, 'Toys')}>
                             <center>
-                                <h3 className="categoryInnerText">Toys</h3>
+                                <h3 className="categoryInnerText">Sporting Goods</h3>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                    <div className="wrimagecard wrimagecard-topimage">
+                        <div className="wrimagecard-topimage_headerToy" onClick={this.dropDown.bind(this, 'Toys')}>
+                            <center>
+                                <h3 className="categoryInnerText">Toys & Hobbies</h3>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                    <div className="wrimagecard wrimagecard-topimage">
+                        <div className="wrimagecard-topimage_headerToy" onClick={this.dropDown.bind(this, 'Toys')}>
+                            <center>
+                                <h3 className="categoryInnerText">Business & Industrial</h3>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                    <div className="wrimagecard wrimagecard-topimage">
+                        <div className="wrimagecard-topimage_headerToy" onClick={this.dropDown.bind(this, 'Toys')}>
+                            <center>
+                                <h3 className="categoryInnerText">Music</h3>
                             </center>
                         </div>
                     </div>

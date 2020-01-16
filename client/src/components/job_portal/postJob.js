@@ -218,12 +218,13 @@ class JobPortal extends Component {
         const { fileList } = this.state;
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                this.setState({ loader: true })
-                if (fileList.length) {
-                    this.postDataWithURL(values)
-                } else {
-                    this.postData(values)
-                }
+                console.log(values , 'values')
+                // this.setState({ loader: true })
+                // if (fileList.length) {
+                //     this.postDataWithURL(values)
+                // } else {
+                //     this.postData(values)
+                // }
             }
         })
     }

@@ -98,7 +98,6 @@ class RoomRentTAB extends Component {
         this.setState({
             accomodates: value
         })
-
         filterAccomodatesNumber = value;
         this.filterKeysGet();
     }

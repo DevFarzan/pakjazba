@@ -135,13 +135,13 @@ class CategoriesjobMarket extends Component{
 
               {/* <div className="row"> */}
                                     
-                                    <div class="col-md-12 col-sm-12 spacing">
+                                    {/* <div class="col-md-12 col-sm-12 spacing">
                                         <h3 className="col-md-12"><b>Location</b></h3>
                                         <div className="col-md-12 col-sm-12 col-xs-12">
                                             <Cascader style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)} /></div>
                                         <div className="col-md-12 col-sm-12 col-xs-12" style={{ marginTop: '2vw', }}>
                                             <Cascader style={{ width: '100%' }} options={cities} onChange={this.onChangeCity.bind(this)} /></div>
-                                    </div>
+                                    </div> */}
                                     {/* </div> */}
               <div className="col-md-12">
                 <div className="input-group">

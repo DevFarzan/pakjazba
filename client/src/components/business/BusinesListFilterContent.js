@@ -18,7 +18,10 @@ const category = [{
 }, {
     value: 'Audio Visual Equipment Hire',
     label: 'Audio Visual Equipment Hire',
-}, { value: 'Branding Consultant', label: 'Branding Consultant' }, {
+}, { 
+    value: 'Branding Consultant', 
+    label: 'Branding Consultant' 
+}, {
     value: 'Business Advisor',
     label: 'Business Advisor',
 }, {
@@ -286,30 +289,27 @@ class BusinesListFilterContent extends Component {
             states: [],
             eachState: '',
             citiess: [],
-            roomrents: [],
-            showroomrents: [],
-            filteredArr: [],
-            dropDownVal: [],
-            noText: true,
-            to: 0,
-            from: 1000,
-            bedArr: [],
-            loader: true,
-            add: 6,
-            moreFilter: false
+            // roomrents: [],
+            // showroomrents: [],
+            // filteredArr: [],
+            // dropDownVal: [],
+            // noText: true,
+            // to: 0,
+            // from: 1000,
+            // bedArr: [],
+            // loader: true,
+            // add: 6,
+            // moreFilter: false
         }
     }
 
+
     componentDidMount() {
         window.scrollTo(0, 0);
-        // this.getAllBusiness();
-        this.stateAndCities()
+        this.stateAndCities();
     }
 
-    stateAndCities(res) {
-        // console.log('get state')
-        // let text = this.props.text;
-        // let filter = this.searchArr(res, text)
+    stateAndCities() {
         let states = stateCities.getStatesByShort('US');
         states = states.map((elem) => {
             return {
@@ -318,23 +318,10 @@ class BusinesListFilterContent extends Component {
             }
         })
         this.setState({
-            // roomrents: res && res,
             states: states,
-            // showroomrents: filter ? filter.slice(0, 6) : [],
-            // filteredArr: filter ? filter : [],
-            // loader: false,
-            // add: 6
         })
-        // let inputValue = '';
-        // if (this.props.text.length) {
-        //     const { dispatch } = this.props;
-        //     dispatch({ type: 'SEARCHON', inputValue })
-        // }
     }
 
-    onChange(value) {
-        this.setState({ dropDownVal: value })
-    }
 
     onChangeState(value) {
         if (!!value.length) {
@@ -349,36 +336,81 @@ class BusinesListFilterContent extends Component {
                 cities: cities,
                 eachState: value[0]
             })
+            this.props.getState(value)
         }
     }
 
-
     onChangeCity(value) {
-    //     const { roomrents, eachState } = this.state;
-    //     let data = roomrents.filter((elem) => {
-    //         return elem.state === eachState || elem.city === value[0]
-    //     })
-    //     this.setState({
-    //         filteredArr: data,
-    //         showroomrents: data.slice(0, 6),
-    //         add: 6
-    //     })
+        this.props.getCities(value)
     }
 
-    
-     mostPopular() {
-    //     const { dropDownVal, roomrents } = this.state;
-    //     let data = roomrents.filter((elem) => {
-    //         return (elem.category && elem.category.includes(dropDownVal[0])) ||
-    //             (elem.subCategory && elem.subCategory.includes(dropDownVal[1])) ||
-    //             (elem.subSubCategory && elem.subSubCategory.includes(dropDownVal[2]))
+
+    // componentDidMount() {
+    //     window.scrollTo(0, 0);
+    //     // this.getAllBusiness();
+    //     this.stateAndCities()
+    // }
+
+    // stateAndCities() {
+    //     let states = stateCities.getStatesByShort('US');
+    //     states = states.map((elem) => {
+    //         return {
+    //             label: elem,
+    //             value: elem
+    //         }
     //     })
     //     this.setState({
-    //         filteredArr: data,
-    //         showroomrents: data.slice(0, 6),
-    //         add: 6
+    //         states: states,
     //     })
-    }
+    // }
+
+    // // onChange(value) {
+    // //     this.setState({ dropDownVal: value })
+    // // }
+
+    // onChangeState(value) {
+    //     if (!!value.length) {
+    //         let cities = stateCities.getCities('US', value[0])
+    //         cities = cities.map((elem) => {
+    //             return {
+    //                 label: elem,
+    //                 value: elem
+    //             }
+    //         })
+    //         this.setState({
+    //             cities: cities,
+    //             eachState: value[0]
+    //         })
+    //     }
+    // }
+
+
+    // onChangeCity(value) {
+    //     //     const { roomrents, eachState } = this.state;
+    //     //     let data = roomrents.filter((elem) => {
+    //     //         return elem.state === eachState || elem.city === value[0]
+    //     //     })
+    //     //     this.setState({
+    //     //         filteredArr: data,
+    //     //         showroomrents: data.slice(0, 6),
+    //     //         add: 6
+    //     //     })
+    // }
+
+
+    // mostPopular() {
+    //     //     const { dropDownVal, roomrents } = this.state;
+    //     //     let data = roomrents.filter((elem) => {
+    //     //         return (elem.category && elem.category.includes(dropDownVal[0])) ||
+    //     //             (elem.subCategory && elem.subCategory.includes(dropDownVal[1])) ||
+    //     //             (elem.subSubCategory && elem.subSubCategory.includes(dropDownVal[2]))
+    //     //     })
+    //     //     this.setState({
+    //     //         filteredArr: data,
+    //     //         showroomrents: data.slice(0, 6),
+    //     //         add: 6
+    //     //     })
+    // }
 
 
     // componentWillUnmount() {
@@ -390,7 +422,7 @@ class BusinesListFilterContent extends Component {
     // }
 
     // async getAllBusiness() {
-        
+
     //     if (this.props.text) {
     //         console.log('get state')
     //         let res = this.props.location.state;
@@ -414,8 +446,8 @@ class BusinesListFilterContent extends Component {
     //     return data;
     // }
 
-   
-    
+
+
     // funcIndexes(page) {
     //     let to = 6 * page;
     //     let from = to - 6;
@@ -489,16 +521,18 @@ class BusinesListFilterContent extends Component {
     // }
 
     render() {
-        const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader, objData, goDetail } = this.state;
+        const { states, cities } = this.state;
+        const { onChange, onChangeCheckBoxes, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom, categoryRoom } = this.props;
+
         // const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
         // console.log(states, 'states')
-        if (!noText) {
-            // return <Redirect to='/market_roommates'/>
-            // return <Redirect to='/explore'/>
-        }
-        if (goDetail) {
-            return <Redirect to={{ pathname: `/detail_roomRent`, state: objData }} />
-        }
+        // if (!noText) {
+        //     // return <Redirect to='/market_roommates'/>
+        //     // return <Redirect to='/explore'/>
+        // }
+        // if (goDetail) {
+        //     return <Redirect to={{ pathname: `/detail_roomRent`, state: objData }} />
+        // }
         return (
             <div className="exploreRentFilter">
                 {/*<Burgermenu/>*/}
@@ -513,8 +547,13 @@ class BusinesListFilterContent extends Component {
                                             <h3><b>Search By:</b></h3>
                                         </div>
                                         <div className="col-md-12 col-sm-12 search-space1">
-                                            <Cascader style={{ width: '100%' }} options={category} onChange={this.onChange.bind(this)} placeholder="Please select" />
+                                            <Cascader
+                                                value={categoryRoom}
+                                                options={category} onChange={onChange.bind(this)}
+                                                style={{ width: '100%' }}
+                                                placeholder="Please select" />
                                         </div>
+
                                         {/* <div className="col-md-12 col-sm-12 search-space1">
                                 <button
                                     className="btn"
@@ -540,11 +579,18 @@ class BusinesListFilterContent extends Component {
                                 <div className="row">
                                     <div class="col-md-12 col-sm-12 spacing">
                                         <h3 className="col-md-12"><b>Location</b></h3>
-                                        <div className="col-md-12 col-sm-12 col-xs-12"><Cascader style={{ width: '100%' }}
-                                            options={states} onChange={this.onChangeState.bind(this)} /></div>
+                                        <div className="col-md-12 col-sm-12 col-xs-12">
+                                            <Cascader
+                                                value={stateOfRoom}
+                                                style={{ width: '100%' }}
+                                                options={states} onChange={this.onChangeState.bind(this)}
+                                            /></div>
                                         <div className="col-md-12 col-sm-12 col-xs-12" style={{ marginTop: '2vw', }}>
-                                            <Cascader style={{ width: '100%' }}
-                                                options={cities} onChange={this.onChangeCity.bind(this)} /></div>
+                                            <Cascader
+                                                value={cityOfRoom}
+                                                style={{ width: '100%' }}
+                                                options={cities} onChange={this.onChangeCity.bind(this)}
+                                            /></div>
                                     </div>
                                     {/* <div className="col-md-12">
                                         <h3 className="col-md-12"><b>Beds:</b></h3>
@@ -565,7 +611,8 @@ class BusinesListFilterContent extends Component {
                                             <div className="col-xs-2 col-md-2"></div>
                                         </div>
                                     </div> */}
-                                    <div className="col-md-12 col-sm-12 search-space1">
+
+                                    {/* <div className="col-md-12 col-sm-12 search-space1">
                                         <button
                                             className="btn"
                                             onClick={this.mostPopular.bind(this)}
@@ -573,7 +620,8 @@ class BusinesListFilterContent extends Component {
                                         >
                                             Search
                                         </button>
-                                    </div>
+                                    </div> */}
+
                                     {/* <div class="col-md-12 col-sm-12 spacing hidden-xs" style={{ marginTop: '2vw' }}>
                                         <h3 className="col-md-12"><b>Price</b></h3>
                                         <div className="slidecontainer">
@@ -581,6 +629,7 @@ class BusinesListFilterContent extends Component {
                                             <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p>
                                         </div>
                                     </div> */}
+
                                     {/* <div class="col-xs-12 spacing visible-xs">
                                         <div className="row">
                                             <div class="col-xs-1"></div>

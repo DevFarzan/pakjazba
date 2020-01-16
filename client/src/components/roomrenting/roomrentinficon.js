@@ -5,19 +5,13 @@ import { connect } from 'react-redux'
 class RoomrentingIcon extends Component {
     constructor(props) {
         super(props);
-        // this.clickItem = this.clickItem.bind(this);
     }
 
     clickItem(item) {
-        // const { dispatch } = this.props;
-        // var inputValue = item;
-        // dispatch({ type: 'SEARCHON', inputValue })
-        console.log(item, 'item')
         this.props.mainCategoryFilter(item)
     }
 
     render() {
-        const { mainCategoryFilter } = this.props
         return (
             <div className="">
                 <div className="row">
@@ -58,20 +52,6 @@ class RoomrentingIcon extends Component {
                         </div>
                     </div>
                 </div>
-                {/*<!-- jambo section start -->*/}
-                {/* <div className="row Person" style={{border:'1px solid #80808057',width:'100%',marginTop:'-4%'}}>
-                            <div className="col-md-12 col-sm-12 col-xs-12 card">
-                                <div className="col-md-6">
-                                    <h1 className="" style={{marginTop:'-5%',fontSize:'25px'}}><b>Find your New Home With Pak Jazba Room Renting</b></h1>
-                                    <p><b>more than 100 of Rent and Sale Property Available</b></p>
-                                </div>
-                                <div className="col-md-6">
-                                    <img src="../images/room icon/jumbport.png" alt="img" className="img-responsive jambo_img" />
-                                </div>
-                            </div>
-                        </div>
-                        <br/><br/>*/}
-                {/*<!-- jambo section end -->*/}
             </div>
         )
     }

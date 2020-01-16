@@ -1,24 +1,13 @@
 import React, { Component } from 'react';
 import "./headerroomrenting.css";
-import { Pagination, Spin, Icon, Modal } from 'antd';
-import AsyncStorage from "@callstack/async-storage/lib/index";
 import { Link } from "react-router-dom";
-import { Redirect } from 'react-router';
-import { HttpUtils } from "../../Services/HttpUtils";
-import moment from 'moment';
 import { Rate } from 'antd';
 
 class Roomrenting1content extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // roomrents: [],
-            // showroomrents: [],
-            // filteredArr: [],
-            // loader: true,
-            // add: 7,
-            // user: false,
-            // visible: false
+
         }
     }
 
@@ -133,7 +122,6 @@ class Roomrenting1content extends Component {
     // }
 
     render() {
-        // const { showroomrents, filteredArr, roomrents, goForLogin, goDetail } = this.state;
         // const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
         const { showroomrents, filteredData, notFoundFilterData, showRecord, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom,
             removeValue, showAllRooms } = this.props;

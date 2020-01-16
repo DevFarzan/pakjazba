@@ -1367,6 +1367,8 @@ app.post('/api/postJobPortal', (req, res) => {
       email: postJobPortal.email,
       experience: postJobPortal.experience,
       jobCat: postJobPortal.jobCat,
+      city: postJobPortal.city,
+      state: postJobPortal.state,
       jobDescription: postJobPortal.jobDescription,
       jobTitle: postJobPortal.jobTitle,
       jobType: postJobPortal.jobType[0],
@@ -1414,6 +1416,9 @@ app.post('/api/postJobPortal', (req, res) => {
       jobData.email = postJobPortal.email;
       jobData.experience = postJobPortal.experience;
       jobData.jobCat = postJobPortal.jobCat;
+      jobData.city = postJobPortal.city;
+      jobData.state = postJobPortal.state;
+
       jobData.jobDescription = postJobPortal.jobDescription;
       jobData.jobTitle = postJobPortal.jobTitle;
       jobData.jobType = postJobPortal.jobType[0];

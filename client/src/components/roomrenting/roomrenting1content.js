@@ -125,7 +125,7 @@ class Roomrenting1content extends Component {
         // const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
         const { showroomrents, filteredData, notFoundFilterData, showRecord, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom,
             removeValue, showAllRooms } = this.props;
-            console.log("TCL: Roomrenting1content -> render -> showroomrents", showroomrents);
+            // console.log("TCL: Roomrenting1content -> render -> showroomrents", showroomrents);
         return (
             <section id="about">
                 {/*<!-- Top List start -->*/}
@@ -183,9 +183,6 @@ class Roomrenting1content extends Component {
                 </div>}
                 <div className="">
                     <div className="row" style={{ marginTop: '-4%' }}>
-                        {/*<div className="col-md-3" onClick={() => {this.clickItem()}}>
-                            <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '387px', width: '100%', borderRadius: '17px'}}/>
-                        </div>*/}
                         {notFoundFilterData && filteredData.length == 0 ?
                             <div>
                                 <p>

@@ -517,6 +517,7 @@ class RoomRentTAB extends Component {
             this.filterKeysGet();
         }
     }
+
     showAllRooms = () => {
         filterSubCategoryName = [];
         filterCityName = [];
@@ -527,7 +528,7 @@ class RoomRentTAB extends Component {
             notFoundFilterData: false,
             billboardFilterdData: [],
             statusValue: '',
-
+            categoryRoom:[]
         })
         this.filterKeysGet();
     }

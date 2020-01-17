@@ -17,8 +17,9 @@ class Buydetailfirstfold extends Component {
     render() {
         let data = this.props.data;
         let images = data.images || data.arr_url;
+        console.log(data , 'data')
         if (this.state.goProfile) {
-            return <Redirect to={{ pathname: '/profile_userDetail', state: { userId: data.userid, profileId: data.profileid } }} />
+            return <Redirect to={{ pathname: `/profile_user/${data.profileid}`, state: { userId: data.userid, profileId: data.profileid } }} />
         }
         console.log(data, 'dataaBuynsell');
         return (

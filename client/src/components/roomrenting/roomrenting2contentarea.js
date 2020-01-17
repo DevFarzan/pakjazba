@@ -130,7 +130,7 @@ class Roomrentingtwocontentarea extends Component {
 
     render() {
         const { states, cities, } = this.state;
-        const { onChange, onChangeCheckBoxes, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom, categoryRoom} = this.props;
+        const { onChange, onChangeCheckBoxes,  stateOfRoom, cityOfRoom, accomodatesOfRoom, categoryRoom} = this.props;
 
         return (
             <div className="exploreRentFilter">

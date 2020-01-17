@@ -110,7 +110,7 @@ class FilterBuySell extends Component {
 
   render() {
     const { states, cities } = this.state;
-    const { onChange, onChangeCheckBoxes, categoroyOfRoom, stateOfRoom, cityOfRoom, conditionOfRoom, categoryRoom } = this.props;
+    const { onChangeCheckBoxes, stateOfRoom, cityOfRoom, conditionOfRoom,  } = this.props;
 
     return (
       <div className="">
@@ -197,6 +197,7 @@ class FilterBuySell extends Component {
                           <Input
                             placeholder="Min"
                             onChange={this.onChangeMin}
+                            type="Number"
                           // onChange={e => this.setState({ minPrice: e.target.value })}
                           />
                         </Col>
@@ -205,6 +206,7 @@ class FilterBuySell extends Component {
                             onChange={this.onChangeMax}
                             // defaultValue="Max" 
                             placeholder="Max"
+                            type="Number"
                           // onChange={e => this.setState({ maxPrice: e.target.value })}
                           />
                         </Col>

@@ -218,6 +218,7 @@ class JobPortal extends Component {
         const { fileList } = this.state;
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
+                console.log(values , 'values')
                 this.setState({ loader: true })
                 if (fileList.length) {
                     this.postDataWithURL(values)
@@ -251,6 +252,8 @@ class JobPortal extends Component {
             email: values.email,
             experience: values.experience,
             jobCat: values.jobCat[0],
+            city: values.city[0],
+            state: values.state[0],
             jobDescription: values.jobDescription,
             jobTitle: values.jobTitle,
             jobType: values.jobType,
@@ -335,7 +338,8 @@ class JobPortal extends Component {
     }
 
 
-    onChangeState(value) {
+    onChangeStateValue(value) {
+        console.log(value)
         if (!!value.length) {
             let cities = stateCities.getCities('US', value[0])
             cities = cities.map((elem) => {
@@ -354,6 +358,7 @@ class JobPortal extends Component {
         const { getFieldDecorator } = this.props.form;
         const { states ,cities, email, jobTitle, jobType, jobCat, salary, compDescription, jobDescription, experience, compEmail, location, previewVisible, previewImage, fileList, objData } = this.state;
 
+        console.log(cities , 'cities')
         if (this.state.msg === true) {
             return <Redirect to={{ pathname: '/detail_jobPortal', state: { ...objData, user: false } }} />
         }
@@ -498,7 +503,8 @@ class JobPortal extends Component {
                                                                 initialValue: jobType,
                                                                 rules: [{ validator: this.onChangeState }],
                                                             })(
-                                                                <Cascader options={categ} showSearch={{ filter }} />
+                                                                <Cascader options={categ} showSearch={{ filter }} 
+                                                                />
                                                             )}
                                                         </FormItem>
                                                     </div>
@@ -519,6 +525,7 @@ class JobPortal extends Component {
                                                                 <Cascader
                                                                     placeholder="State"
                                                                     options={states}
+                                                                    onChange={this.onChangeStateValue.bind(this)}
                                                                 />
                                                             )}
                                                         </FormItem>
@@ -535,6 +542,7 @@ class JobPortal extends Component {
                                                                 <Cascader
                                                                     placeholder="City"
                                                                     options={cities}
+                                                                    
                                                                 />
                                                             )}
                                                         </FormItem>

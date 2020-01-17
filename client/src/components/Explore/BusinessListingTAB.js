@@ -350,7 +350,9 @@ class BussinesListing extends Component {
             showRecord: true,
             notFoundFilterData: false,
             billboardFilterdData: [],
-            statusValue: ''
+            statusValue: '',
+            categoryRoom:[]
+
         })
         this.filterKeysGet();
     }

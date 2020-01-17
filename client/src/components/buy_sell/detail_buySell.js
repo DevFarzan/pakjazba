@@ -17,7 +17,7 @@ class DetailBuySell extends Component {
     componentDidMount() {
         window.scrollTo(0, 0);
         let data = this.props.location.state;
-        console.log(data , 'data')
+        // console.log(data , 'data')
         if (data === undefined) {
             this.setState({
                 isData: true
@@ -31,7 +31,7 @@ class DetailBuySell extends Component {
         let _id = data.profileid ? data.profileid : data.profileId ? data.profileId : '';
         let req = await HttpUtils.get('getprofile?profileId=' + _id);
         let allData = { ...data, ...{ userImage: req ? req.content.imageurl : '' } }
-        console.log(allData , 'allData')
+        // console.log(allData , 'allData')
         this.setState({
             isData: true,
             data: allData

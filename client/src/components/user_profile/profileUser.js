@@ -60,8 +60,11 @@ class ProfileUser extends Component {
     handleLocalStorage = async () => {
         let userObj = JSON.parse(localStorage.getItem('user'))
         let profileIdFromPath = this.props.location.pathname.slice(14)
+
         if (userObj != null) {
             if (userObj.profileId == profileIdFromPath) {
+                // console.log(profileIdFromPath , 'profileIdFromPath')
+                // console.log(userObj , 'userObj')
                 this.getprofileData(userObj.profileId, userObj._id)
                 this.setState({
                     userId: userObj._id,
@@ -71,8 +74,13 @@ class ProfileUser extends Component {
             else {
                 let req = await HttpUtils.get('getprofile?profileId=' + profileIdFromPath)
                 await this.getprofileData(profileIdFromPath, req.content.user_id)
+                // console.log(req , 'req')
+                // console.log(profileIdFromPath , 'profileIdFromPath')
+
                 this.setState({
-                    reviewProfile: false
+                    reviewProfile: false,
+                    userId: req.content.user_id,
+                    profileId: profileIdFromPath
                 })
             }
         }
@@ -80,12 +88,19 @@ class ProfileUser extends Component {
             let req = await HttpUtils.get('getprofile?profileId=' + profileIdFromPath)
             await this.getprofileData(profileIdFromPath, req.content.user_id)
             this.setState({
-                reviewProfile: false
+                reviewProfile: false,
+                userId: req.content.user_id,
+                profileId: profileIdFromPath
             })
         }
     }
 
     async getprofileData(id, userId) {
+        // 1st pera is profileid
+        // 2nd pera is user id
+        console.log(id, 'id')
+        console.log(userId, 'userId')
+
         let req = await HttpUtils.get('getprofile?profileId=' + id)
         let user = req.content;
         this.setState({
@@ -104,13 +119,16 @@ class ProfileUser extends Component {
     }
 
     async getAllBusiness(id) {
+        const { userId } = this.state;
+        console.log(id, 'id')
         let arr1 = [];
         let arr2 = [];
         let arr3 = [];
         let arr4 = [];
-        let arr5 ;
+        let arr5;
 
         let req = await HttpUtils.get('marketplace')
+        console.log(req, 'req')
         req.roomrentsdata && req.roomrentsdata.map((elem) => {
             if (elem.user_id === id) {
                 let data = { ...elem, ...{ route: 'rooms' } }
@@ -135,6 +153,7 @@ class ProfileUser extends Component {
                 arr4.push(data)
             }
         })
+        console.log(arr1, 'arr1')
         // req.ecommerce && req.ecommerce.map((elem) => {
         //     if (elem.user_Id === id) {
         //         let data = { ...elem, ...{ route: 'ecommerce' } }
@@ -143,10 +162,11 @@ class ProfileUser extends Component {
         // })
         const userData = JSON.parse(localStorage.getItem('user'));
         let obj = {
-            userId: userData._id
+            userId: userId
         }
         let reqShopData = await HttpUtils.post('getShopById', obj)
-        if (reqShopData.code == 200){
+        console.log()
+        if (reqShopData.code == 200) {
             arr5 = reqShopData.content
         }
         this.setState({
@@ -386,6 +406,7 @@ class ProfileUser extends Component {
         const { imageUrl, profileSec, changePass, name, email, description, phone, twitter, facebook, location,
             listing, listData1, listData2, listData3, listData4, listData5, buySell, business, rooms, jobPortal,
             ecommerce, data, allData, publicSection, reviewProfile } = this.state;
+        console.log('render in profile')
         if (buySell) {
             return (
                 <Redirect to={{ pathname: '/postad_buysell', state: data }} />
@@ -417,9 +438,9 @@ class ProfileUser extends Component {
         let detail = this.props.location.state ? this.props.location.state : '';
 
         let passObj = {
-            arr1: listData3,
+            arr1: listData1,
             arr2: listData2,
-            arr3: listData1,
+            arr3: listData3,
             arr4: listData4,
             arr5: listData5,
             arr6: { imageUrl, name, description, twitter, facebook, email, phone, reviewProfile },
@@ -493,9 +514,9 @@ class ProfileUser extends Component {
                                                 </div>
                                             </div>}
                                             {profileSec && <div className="col-md-8">
-                                                
-                                                <section className=" profileCard profileFormRadius" style={{padding: '2%',}}>
-                                                    <div style={{borderBottom :'1px solid black', padding: '2% 0%'}}>
+
+                                                <section className=" profileCard profileFormRadius" style={{ padding: '2%', }}>
+                                                    <div style={{ borderBottom: '1px solid black', padding: '2% 0%' }}>
                                                         <i class="fa fa-address-card iconStyle"></i>
                                                         <span className="profileFormHeading">Personal Information</span>
                                                     </div>
@@ -582,8 +603,8 @@ class ProfileUser extends Component {
                                                         </div>
                                                     </div>
                                                 </section>
-                                                <section className=" profileCard profileFormRadius" style={{padding: '2%'}}>
-                                                    <div style={{borderBottom :'1px solid black', padding: '2% 0%'}}>
+                                                <section className=" profileCard profileFormRadius" style={{ padding: '2%' }}>
+                                                    <div style={{ borderBottom: '1px solid black', padding: '2% 0%' }}>
                                                         <i class="fa fa-address-card iconStyle"></i>
                                                         <span className="profileFormHeading">Contact</span>
                                                     </div>
@@ -605,7 +626,7 @@ class ProfileUser extends Component {
                                                             )}
                                                         </FormItem>
                                                     </div>
-                                                    
+
                                                     <hr className="profileHrLine" />
 
                                                     <div className="form-group" style={{ padding: "2% 0" }}>
@@ -629,8 +650,8 @@ class ProfileUser extends Component {
                                                         </FormItem>
                                                     </div>
                                                 </section>
-                                                <section className=" profileCard profileFormRadius" style={{padding: '2%'}}>
-                                                    <div style={{borderBottom :'1px solid black', padding: '2% 0%'}}>
+                                                <section className=" profileCard profileFormRadius" style={{ padding: '2%' }}>
+                                                    <div style={{ borderBottom: '1px solid black', padding: '2% 0%' }}>
                                                         <i class="fa fa-link iconStyle"></i>
                                                         <span className="profileFormHeading">Social</span>
                                                     </div>
@@ -678,19 +699,19 @@ class ProfileUser extends Component {
                                                     <div className="row">
                                                         <div className="col-md-12">
                                                             <button className="btn btn-primary btnStyle"
-                                                                style={{ "float": "right", backgroundImage: "none",}}>Save Changes
+                                                                style={{ "float": "right", backgroundImage: "none", }}>Save Changes
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </section>
                                             </div>}
                                             {changePass && <div className="col-md-8">
-                                                <section className=" profileCard profileFormRadius" style={{padding: '2%'}}>
-                                                    <div style={{borderBottom :'1px solid black', padding: '2% 0%'}}>
+                                                <section className=" profileCard profileFormRadius" style={{ padding: '2%' }}>
+                                                    <div style={{ borderBottom: '1px solid black', padding: '2% 0%' }}>
                                                         <i class="fa fa-key iconStyle"></i>
                                                         <span className="profileFormHeading">Change Password</span>
                                                     </div>
-                                                    <div className="form-group" style={{padding: '2%'}}>
+                                                    <div className="form-group" style={{ padding: '2%' }}>
                                                         <label htmlFor="currentpassword" className="col-form-label">Current
                                                             Password</label>
                                                         <FormItem>
@@ -770,7 +791,7 @@ class ProfileUser extends Component {
                                                 </div>
                                             </div>}
                                             {/*===============Ad Listing start=================*/}
-                                            {listing && <Tabs defaultActiveKey="2">
+                                            {listing && <Tabs defaultActiveKey="1">
                                                 <TabPane tab='Room Renting' key="1">
                                                     <div className="secondfold" style={{ backgroundColor: '#FBFAFA' }}>
                                                         <div className="index-content" style={{ marginTop: '20px' }}>
@@ -974,7 +995,7 @@ class ProfileUser extends Component {
                                                                                         </div>
                                                                                     </Link>
                                                                                 </div>
-                        
+
                                                                             </div>
                                                                         </div>
 

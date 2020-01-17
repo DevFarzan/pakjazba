@@ -529,7 +529,6 @@ class RoomRentTAB extends Component {
             billboardFilterdData: [],
             statusValue: '',
             categoryRoom:[]
-            
         })
         this.filterKeysGet();
     }
@@ -646,22 +645,40 @@ class RoomRentTAB extends Component {
                             <TabPane tab={
                                 <span><Icon type="filter" /> Filter </span>}
                                 key="1">
-                                <RoomRentFilterContent onChange={this.onChange} getState={this.getState} getCities={this.getCities} onChangeCheckBoxes={this.onChangeCheckBoxes}
-                                    categoroyOfRoom={categoroyOfRoom} stateOfRoom={stateOfRoom} cityOfRoom={cityOfRoom} accomodatesOfRoom={accomodatesOfRoom}
-                                    filterRoomWithMinToMax={this.filterRoomWithMinToMax} categoryRoom={categoryRoom}
+                                <RoomRentFilterContent
+                                    onChange={this.onChange}
+                                    getState={this.getState}
+                                    getCities={this.getCities}
+                                    categoroyOfRoom={categoroyOfRoom}
+                                    stateOfRoom={stateOfRoom}
+                                    cityOfRoom={cityOfRoom}
+                                    categoryRoom={categoryRoom}
+                                    accomodatesOfRoom={accomodatesOfRoom}
+                                    filterRoomWithMinToMax={this.filterRoomWithMinToMax}
+                                    onChangeCheckBoxes={this.onChangeCheckBoxes}
                                 />
                             </TabPane>
                             <TabPane tab={
                                 <span><Icon type="android" /> Category </span>}
                                 key="2">
-                                <RoomrentingCatagory mainCategoryFilter={this.mainCategoryFilter} />
+                                <RoomrentingCatagory
+                                    mainCategoryFilter={this.mainCategoryFilter}
+                                />
                             </TabPane>
                         </Tabs>
                     </div>
                     <div className="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                        <Roomrenting1content showroomrents={showroomrents} filteredData={filteredData} notFoundFilterData={notFoundFilterData} showRecord={showRecord}
-                            categoroyOfRoom={categoroyOfRoom} stateOfRoom={stateOfRoom} cityOfRoom={cityOfRoom} accomodatesOfRoom={accomodatesOfRoom}
-                            removeValue={this.removeValue} showAllRooms={this.showAllRooms}
+                        <Roomrenting1content
+                            showroomrents={showroomrents}
+                            filteredData={filteredData}
+                            notFoundFilterData={notFoundFilterData}
+                            showRecord={showRecord}
+                            categoroyOfRoom={categoroyOfRoom}
+                            stateOfRoom={stateOfRoom}
+                            cityOfRoom={cityOfRoom}
+                            accomodatesOfRoom={accomodatesOfRoom}
+                            removeValue={this.removeValue}
+                            showAllRooms={this.showAllRooms}
                         />
                     </div>
                 </div>

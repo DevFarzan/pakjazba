@@ -45,10 +45,11 @@ class CategoriesjobMarket extends Component{
       this.state = {
         typeR: '',
         cat: '',
+        eachState: '',
         states: [],
         cities: [],
       }
-      this.clickItem = this.clickItem.bind(this);
+      // this.clickItem = this.clickItem.bind(this);
   }
 
 
@@ -86,13 +87,22 @@ class CategoriesjobMarket extends Component{
         eachState: value[0]
       })
       this.props.getState(value)
+      console.log("TCL: CategoriesjobMarket -> onstate -> value", value);
     }
   }
   onChangeCity(value) {
+    console.log("TCL: CategoriesjobMarket -> onCity -> value", value);
     this.props.getCities(value)
   }
 
-
+  sortType(value){
+    // console.log(value,'value sdasdasdasd')
+    this.props.getSortType(value)
+  }
+  // CategoryFilter(value){
+  //   console.log(value,'value sdasdasdasd')
+  //   this.props.onChange(value)
+  // }
   onChangeCity(value) {
     // const { roomrents, eachState } = this.state;
     // let data = roomrents.filter((elem) => {
@@ -123,7 +133,7 @@ class CategoriesjobMarket extends Component{
 
   render(){
     const { states, cities } = this.state;
-
+    const { getSortType,onChange, categoroyOfJob, categoryJob ,stateOfJob, cityOfJob,TypeOfJob } = this.props;
     // const {typeR, cat} = this.state;
     return(
       <div className="container categoriesbars" style={{width:"100%"}}>
@@ -131,11 +141,23 @@ class CategoriesjobMarket extends Component{
           <div className="col-md-12">
         	    <form className="col-md-12">
         	        <label>Sort By:</label>
-        	        <Cascader style={{width: '100%'}} options={type} onChange={this.onChangeType.bind(this)} placeholder="Please select" />
+                  <Cascader
+                    value={TypeOfJob} 
+                    style={{width: '100%'}} 
+                    options={type} 
+                    onChange={this.sortType.bind(this)} 
+                    placeholder="Please select" 
+                  />
         	    </form>
               <form className="col-md-12">
         	        <label>Categoies:</label>
-        	        <Cascader style={{width: '100%'}} options={categ} onChange={this.onChangeCategory.bind(this)} placeholder="Please select" />
+                  <Cascader 
+                    value={categoroyOfJob} 
+                    style={{width: '100%'}} 
+                    options={categ} 
+                    // onChange={onChange(this)} 
+                    placeholder="Please select" 
+                  />
         	    </form>
 
               <div className="row">
@@ -143,6 +165,7 @@ class CategoriesjobMarket extends Component{
                     <h3><b>Location</b></h3>
                     
                         <Cascader 
+                          value={stateOfJob}
                           style={{ width: '100%' }}
                           options={states} 
                           onChange={this.onChangeState.bind(this)}
@@ -150,6 +173,7 @@ class CategoriesjobMarket extends Component{
                         />
                     
                         <Cascader 
+                          value={cityOfJob}
                           style={{marginTop: '2vw', width: '100%' }} 
                           options={cities} 
                           onChange={this.onChangeCity.bind(this)} 
@@ -157,7 +181,7 @@ class CategoriesjobMarket extends Component{
                         />
                 </div>
               </div>
-              <div className="col-md-12">
+              {/* <div className="col-md-12">
                 <div className="input-group">
                   <label>Search:</label>
                     <div className="flex">
@@ -172,7 +196,7 @@ class CategoriesjobMarket extends Component{
                       </button>
                     </div>
                 </div>
-              </div>
+              </div> */}
               {/* <div className="col-md-12">
                 <div className="custom-row">
                     <label>Keywords:</label>

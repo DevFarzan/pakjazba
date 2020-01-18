@@ -59,12 +59,10 @@ class RoomRentTAB extends Component {
     async getAllBusiness() {
         let res = await HttpUtils.get('marketplace');
         // let req = await HttpUtils.get('getreviews');
-
         if (res && res.code && res.code == 200) {
             this.setState({
                 showroomrents: res.roomrentsdata,
             });
-
         }
     }
 
@@ -72,7 +70,7 @@ class RoomRentTAB extends Component {
         let categoryValue = [];
         categoryValue.push(value[1]);
         this.setState({
-            categoryRoom: categoryValue,
+            categoryRoom: value,
         })
         filterSubCategoryName = categoryValue
         this.filterKeysGet()
@@ -98,7 +96,6 @@ class RoomRentTAB extends Component {
         this.setState({
             accomodates: value
         })
-
         filterAccomodatesNumber = value;
         this.filterKeysGet();
     }
@@ -479,7 +476,6 @@ class RoomRentTAB extends Component {
                 notFoundFilterData: false,
                 filteredData: filteredData,
                 showRecord: false
-
             })
         }
 
@@ -489,12 +485,16 @@ class RoomRentTAB extends Component {
         let arr = [];
         if (param == "category") {
             filterSubCategoryName = arr
+            this.setState({
+                categoryRoom: arr
+            })
         }
         else if (param == "city") {
             filterCityName = arr
         }
         else if (param == "state") {
             filterStateName = arr
+            filterCityName = arr
         }
         else if (param == 'accommodates') {
             let arr1 = [];
@@ -517,6 +517,7 @@ class RoomRentTAB extends Component {
             this.filterKeysGet();
         }
     }
+
     showAllRooms = () => {
         filterSubCategoryName = [];
         filterCityName = [];
@@ -526,7 +527,8 @@ class RoomRentTAB extends Component {
             showRecord: true,
             notFoundFilterData: false,
             billboardFilterdData: [],
-            statusValue: ''
+            statusValue: '',
+            categoryRoom:[]
         })
         this.filterKeysGet();
     }
@@ -542,14 +544,12 @@ class RoomRentTAB extends Component {
                     rangeValues.push(filteredData[i])
                 }
             }
-            console.log(rangeValues, 'rangeValues')
 
             if (rangeValues.length == 0) {
                 this.setState({
                     notFoundFilterData: true,
                     filteredData: rangeValues,
                     showRecord: false
-
                 })
             }
             else {
@@ -566,14 +566,11 @@ class RoomRentTAB extends Component {
                     rangeValues.push(showroomrents[i])
                 }
             }
-            console.log(rangeValues, 'rangeValues')
-
             if (rangeValues.length == 0) {
                 this.setState({
                     notFoundFilterData: true,
                     filteredData: rangeValues,
                     showRecord: false
-
                 })
             }
             else {
@@ -625,7 +622,6 @@ class RoomRentTAB extends Component {
                     notFoundFilterData: true,
                     filteredData: rangeValues,
                     showRecord: false
-
                 })
             }
             else {
@@ -640,7 +636,7 @@ class RoomRentTAB extends Component {
 
     render() {
         const { TabPane } = Tabs;
-        const { showroomrents, filteredData, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom, notFoundFilterData, showRecord } = this.state;
+        const { showroomrents, filteredData, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom, notFoundFilterData, showRecord, categoryRoom } = this.state;
         return (
             <div>
                 <div className="row">
@@ -649,22 +645,40 @@ class RoomRentTAB extends Component {
                             <TabPane tab={
                                 <span><Icon type="filter" /> Filter </span>}
                                 key="1">
-                                <RoomRentFilterContent onChange={this.onChange} getState={this.getState} getCities={this.getCities} onChangeCheckBoxes={this.onChangeCheckBoxes}
-                                    categoroyOfRoom={categoroyOfRoom} stateOfRoom={stateOfRoom} cityOfRoom={cityOfRoom} accomodatesOfRoom={accomodatesOfRoom}
+                                <RoomRentFilterContent
+                                    onChange={this.onChange}
+                                    getState={this.getState}
+                                    getCities={this.getCities}
+                                    categoroyOfRoom={categoroyOfRoom}
+                                    stateOfRoom={stateOfRoom}
+                                    cityOfRoom={cityOfRoom}
+                                    categoryRoom={categoryRoom}
+                                    accomodatesOfRoom={accomodatesOfRoom}
                                     filterRoomWithMinToMax={this.filterRoomWithMinToMax}
+                                    onChangeCheckBoxes={this.onChangeCheckBoxes}
                                 />
                             </TabPane>
                             <TabPane tab={
                                 <span><Icon type="android" /> Category </span>}
                                 key="2">
-                                <RoomrentingCatagory mainCategoryFilter={this.mainCategoryFilter} />
+                                <RoomrentingCatagory
+                                    mainCategoryFilter={this.mainCategoryFilter}
+                                />
                             </TabPane>
                         </Tabs>
                     </div>
                     <div className="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                        <Roomrenting1content showroomrents={showroomrents} filteredData={filteredData} notFoundFilterData={notFoundFilterData} showRecord={showRecord}
-                            categoroyOfRoom={categoroyOfRoom} stateOfRoom={stateOfRoom} cityOfRoom={cityOfRoom} accomodatesOfRoom={accomodatesOfRoom}
-                            removeValue={this.removeValue} showAllRooms={this.showAllRooms}
+                        <Roomrenting1content
+                            showroomrents={showroomrents}
+                            filteredData={filteredData}
+                            notFoundFilterData={notFoundFilterData}
+                            showRecord={showRecord}
+                            categoroyOfRoom={categoroyOfRoom}
+                            stateOfRoom={stateOfRoom}
+                            cityOfRoom={cityOfRoom}
+                            accomodatesOfRoom={accomodatesOfRoom}
+                            removeValue={this.removeValue}
+                            showAllRooms={this.showAllRooms}
                         />
                     </div>
                 </div>

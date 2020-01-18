@@ -10,17 +10,19 @@ class BusinessCategory extends Component {
         this.state = {
             intervalId: 0
         };
-        this.clickItem = this.clickItem.bind(this);
+        // this.clickItem = this.clickItem.bind(this);
     }
 
+    // clickItem(item) {
+    //     const { dispatch } = this.props;
+    //     var inputValue = item;
+    //     dispatch({ type: 'SEARCHON', inputValue });
+
+    // }
+    // /*Category props end*/
     clickItem(item) {
-        const { dispatch } = this.props;
-        var inputValue = item;
-        dispatch({ type: 'SEARCHON', inputValue });
-
+        this.props.mainCategoryFilter(item)
     }
-    /*Category props end*/
-
 
     render() {
         return (
@@ -28,33 +30,33 @@ class BusinessCategory extends Component {
                 <div className="row">
                     {/* <h1 className="headingtext" style={{fontWeight:'bold'}}> Browse Businessess by Category </h1> */}
                     <a href="#backToTop">
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('resturants') }} style={{ cursor: 'pointer' }}>
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Advertising Agency') }} style={{ cursor: 'pointer' }}>
                             <div className="wrimagecard wrimagecard-topimage">
                                 <div className="wrimagecard-topimage_headerBusines1">
                                     <center>
-                                        <h3 className="categoryInnerText">Active Life</h3>
+                                        <h3 className="categoryInnerText">Advertising Agency</h3>
                                     </center>
                                 </div>
                             </div>
                         </div>
                     </a>
                     <a href="#backToTop">
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('shopping') }} style={{ cursor: 'pointer' }}>
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Answering Service') }} style={{ cursor: 'pointer' }}>
                             <div className="wrimagecard wrimagecard-topimage">
                                 <div className="wrimagecard-topimage_headerBusines2">
                                     <center>
-                                        <h3 className="categoryInnerText">Automotive</h3>
+                                        <h3 className="categoryInnerText">Answering Service</h3>
                                     </center>
                                 </div>
                             </div>
                         </div>
                     </a>
                     <a href="#backToTop">
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('night life') }} style={{ cursor: 'pointer' }}>
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Audio Visual Equipment Hire') }} style={{ cursor: 'pointer' }}>
                             <div className="wrimagecard wrimagecard-topimage">
                                 <div className="wrimagecard-topimage_headerBusines3">
                                     <center>
-                                        <h3 className="categoryInnerText">Beauty</h3>
+                                        <h3 className="categoryInnerText">Audio Visual Equipment Hire</h3>
                                     </center>
                                 </div>
                             </div>
@@ -63,22 +65,22 @@ class BusinessCategory extends Component {
                 </div>
                 <div className="row">
                     <a href="#backToTop">
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('active life') }} style={{ cursor: 'pointer' }}>
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Branding Consultant') }} style={{ cursor: 'pointer' }}>
                             <div className="wrimagecard wrimagecard-topimage">
                                 <div className="wrimagecard-topimage_headerBusines4">
                                     <center>
-                                        <h3 className="categoryInnerText">Restaurant</h3>
+                                        <h3 className="categoryInnerText">Branding Consultant</h3>
                                     </center>
                                 </div>
                             </div>
                         </div>
                     </a>
                     <a href="#backToTop">
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('beauty & spa') }} style={{ cursor: 'pointer' }}>
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Business Advisor') }} style={{ cursor: 'pointer' }}>
                             <div className="wrimagecard wrimagecard-topimage">
                                 <div className="wrimagecard-topimage_headerBusines5">
                                     <center>
-                                        <h3 className="categoryInnerText">Shop</h3>
+                                        <h3 className="categoryInnerText">Business Advisor</h3>
                                     </center>
                                 </div>
                             </div>

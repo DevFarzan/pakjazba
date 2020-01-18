@@ -50,7 +50,7 @@ class TestComponent extends Component {
                     <h2 style={{ marginLeft: "15px" }}>Listings</h2>
 
                     {/* ===============Ad Listing start================= */}
-                    {<Tabs defaultActiveKey="2">
+                    {<Tabs defaultActiveKey="1">
                         <TabPane tab='Room Renting' key="1">
                             <div className="secondfold" style={{ backgroundColor: '#FBFAFA' }}>
                                 <div className="index-content" style={{ marginTop: '20px' }}>

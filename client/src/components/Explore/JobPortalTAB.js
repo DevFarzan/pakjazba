@@ -1,22 +1,572 @@
 import React, { Component } from 'react';
 import JobFilter from '../job_portal/CategoriesJobs';
 import JobCategory from '../job_portal/jobClassifiedicon';
-import JobAds from '../job_portal/featuredJob';
+import JobFeatured from '../job_portal/featuredJob';
 import { Tabs, Icon } from 'antd';
-    
-class JobPortal extends Component{
+import { HttpUtils } from "../../Services/HttpUtils";
+import AsyncStorage from "@callstack/async-storage/lib/index";
+
+let filterJobCat = [];
+let filterCityName = [];
+let filterStateName = [];
+let filterJobType = [];
+
+class JobPortal extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            
+            user: false,
+            showAllJobs: [],
+            filteredData: [],
+            notFoundFilterData: false,
+            showRecord: true,
+
+            categoryJob: [],
+            state: [],
+            city: [],
+            typeSortJob: [],
+
+            categoroyOfJob: [],
+            stateOfJob: [],
+            cityOfJob: [],
+            TypeOfJob: [],
+        }
     }
-}
-    
-    render(){
+    componentDidMount() {
+        this.getAllBusiness()
+        this.handleLocalStorage();
+    }
+
+    handleLocalStorage = () => {
+        AsyncStorage.getItem('user')
+            .then((obj) => {
+                let userObj = JSON.parse(obj)
+                if (!!userObj) {
+                    this.setState({
+                        user: true,
+                    })
+                }
+                else {
+                    this.setState({
+                        user: false
+                    })
+                }
+            })
+    }
+
+    async getAllBusiness() {
+        let res = await HttpUtils.get('marketplace');
+        // let req = await HttpUtils.get('getreviews');
+        if (res && res.code && res.code == 200) {
+            this.setState({
+                showAllJobs: res.jobPortalData,
+            });
+        }
+    }
+
+    onChange = (value) => {
+        let categoryValue = [];
+        categoryValue.push(value[1]);
+        this.setState({
+            categoryJob: value,
+        })
+        filterJobCat = categoryValue
+        this.filterKeysGet()
+    }
+
+    getState = (state) => {
+        this.setState({
+            state: state
+        })
+        filterStateName = state;
+        this.filterKeysGet()
+    }
+
+    getCities = (city) => {
+        this.setState({
+            city: city,
+        })
+        filterCityName = city;
+        this.filterKeysGet()
+    }
+
+    getSortType = (value) => {
+        this.setState({
+            typeSortJob: value
+        })
+        filterJobType = value;
+        this.filterKeysGet();
+    }
+
+    filterKeysGet = () => {
+        let categoroyOfJob = [];
+        let stateOfJob = [];
+        let cityOfJob = [];
+        let TypeOfJob = [];
+
+        let filterKeys = [];
+
+        if (filterJobCat.length > 0) {
+            filterKeys.push('category')
+        }
+        if (filterStateName.length > 0) {
+            filterKeys.push('state')
+        }
+        if (filterCityName.length > 0) {
+            filterKeys.push('city')
+        }
+        if (filterJobType.length > 0) {
+            filterKeys.push('type')
+        }
+
+        for (var i = 0; i < filterJobCat.length; i++) {
+            categoroyOfJob.push(filterJobCat[i])
+        }
+        for (var i = 0; i < filterStateName.length; i++) {
+            stateOfJob.push(filterStateName[i])
+        }
+        for (var i = 0; i < filterCityName.length; i++) {
+            cityOfJob.push(filterCityName[i])
+        }
+        for (var i = 0; i < filterJobType.length; i++) {
+            TypeOfJob.push(filterJobType[i])
+        }
+
+        this.setState({
+            categoroyOfJob: categoroyOfJob,
+            stateOfJob: stateOfJob,
+            cityOfJob: cityOfJob,
+            TypeOfJob: TypeOfJob,
+        })
+
+        this.filterJobData(filterKeys)
+    }
+
+    filterJobData = (filterKeys) => {
+        if (filterKeys.length == 1) {
+            this.filterDataWithOneKey(filterKeys);
+        }
+        else if (filterKeys.length == 2) {
+            this.filterDataWithTwoKeys(filterKeys);
+        }
+        else if (filterKeys.length == 3) {
+            this.filterDataWithThreeKeys(filterKeys);
+        }
+        else if (filterKeys.length == 4) {
+            this.filterDataWithFourKeys(filterKeys)
+        }
+    }
+
+    filterDataWithOneKey = (filterKeys) => {
+        const { showAllJobs } = this.state;
+        let data;
+        for (var i = 0; i < filterKeys.length; i++) {
+            if (filterKeys[i] == 'category') {
+                data = showAllJobs.filter((elem) => {
+                    return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                })
+            }
+            else if (filterKeys[i] == 'state') {
+                data = showAllJobs.filter((elem) => {
+                    return elem.state && filterStateName.includes(elem.state)
+                })
+            }
+            else if (filterKeys[i] == 'city') {
+                data = showAllJobs.filter((elem) => {
+                    return elem.city && filterCityName.includes(elem.city)
+                })
+            }
+            else if (filterKeys[i] == 'type') {
+                data = showAllJobs.filter((elem) => {
+                    return elem.jobType && filterJobType.includes(elem.jobType)
+                })
+            }
+        }
+
+        if (data.length == 0) {
+            this.setState({
+                notFoundFilterData: true,
+                filteredData: data,
+                showRecord: false
+            })
+        }
+        else {
+            this.setState({
+                notFoundFilterData: false,
+                filteredData: data,
+                showRecord: false
+            })
+        }
+    }
+
+
+    filterDataWithTwoKeys = (filterKeys) => {
+        const { showAllJobs } = this.state;
+        let data1;
+        let filteredData;
+
+        for (var i = 0; i < filterKeys.length; i++) {
+            if (i == 0) {
+                if (filterKeys[i] == 'category') {
+                    data1 = showAllJobs.filter((elem) => {
+                        return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                    })
+                }
+                else if (filterKeys[i] == 'state') {
+                    data1 = showAllJobs.filter((elem) => {
+                        return elem.state && filterStateName.includes(elem.state)
+                    })
+                }
+                else if (filterKeys[i] == 'city') {
+                    data1 = showAllJobs.filter((elem) => {
+                        return elem.city && filterCityName.includes(elem.city)
+                    })
+                }
+                else if (filterKeys[i] == 'type') {
+                    data1 = showAllJobs.filter((elem) => {
+                        return elem.jobType && filterJobType.includes(elem.jobType)
+                    })
+                }
+            }
+            if (i == 1) {
+                if (filterKeys[i] == 'category') {
+                    filteredData = data1.filter((elem) => {
+                        return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                    })
+                }
+                else if (filterKeys[i] == 'state') {
+                    filteredData = data1.filter((elem) => {
+                        return elem.state && filterStateName.includes(elem.state)
+                    })
+                }
+                else if (filterKeys[i] == 'city') {
+                    filteredData = data1.filter((elem) => {
+                        return elem.city && filterCityName.includes(elem.city)
+                    })
+                }
+                else if (filterKeys[i] == 'accommodates') {
+                    filteredData = data1.filter((elem) => {
+                        return elem.jobType && filterJobType.includes(elem.jobType)
+                    })
+                }
+            }
+        }
+
+
+        if (filteredData.length == 0) {
+            this.setState({
+                notFoundFilterData: true,
+                filteredData: filteredData,
+                showRecord: false
+            })
+        }
+        else {
+            this.setState({
+                notFoundFilterData: false,
+                filteredData: filteredData,
+                showRecord: false
+
+            })
+        }
+    }
+
+
+    filterDataWithThreeKeys = (filterKeys) => {
+        const { showAllJobs } = this.state
+        let data1;
+        let data2;
+        let filteredData;
+
+        for (var i = 0; i < filterKeys.length; i++) {
+            if (i == 0) {
+                if (filterKeys[i] == 'category') {
+                    data1 = showAllJobs.filter((elem) => {
+                        return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                    })
+                }
+                else if (filterKeys[i] == 'state') {
+                    data1 = showAllJobs.filter((elem) => {
+                        return elem.state && filterStateName.includes(elem.state)
+                    })
+                }
+                else if (filterKeys[i] == 'city') {
+                    data1 = showAllJobs.filter((elem) => {
+                        return elem.city && filterCityName.includes(elem.city)
+                    })
+                }
+                else if (filterKeys[i] == 'type') {
+                    data1 = showAllJobs.filter((elem) => {
+                        return elem.jobType && filterJobType.includes(elem.jobType)
+                    })
+                }
+            }
+            if (i == 1) {
+                if (filterKeys[i] == 'category') {
+                    data2 = data1.filter((elem) => {
+                        return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                    })
+                }
+                else if (filterKeys[i] == 'state') {
+                    data2 = data1.filter((elem) => {
+                        return elem.state && filterStateName.includes(elem.state)
+                    })
+                }
+                else if (filterKeys[i] == 'city') {
+                    data2 = data1.filter((elem) => {
+                        return elem.city && filterCityName.includes(elem.city)
+                    })
+                }
+                else if (filterKeys[i] == 'accommodates') {
+                    data2 = data1.filter((elem) => {
+                        return elem.jobType && filterJobType.includes(elem.jobType)
+                    })
+                }
+            }
+            if (i == 2) {
+                if (filterKeys[i] == 'category') {
+                    filteredData = data2.filter((elem) => {
+                        return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                    })
+                }
+                else if (filterKeys[i] == 'state') {
+                    filteredData = data2.filter((elem) => {
+                        return elem.state && filterStateName.includes(elem.state)
+                    })
+                }
+                else if (filterKeys[i] == 'city') {
+                    filteredData = data2.filter((elem) => {
+                        return elem.city && filterCityName.includes(elem.city)
+                    })
+                }
+                else if (filterKeys[i] == 'accommodates') {
+                    filteredData = data2.filter((elem) => {
+                        return elem.jobType && filterJobType.includes(elem.jobType)
+                    })
+                }
+            }
+        }
+
+        if (filteredData.length == 0) {
+            this.setState({
+                notFoundFilterData: true,
+                filteredData: filteredData,
+                showRecord: false
+            })
+        }
+        else {
+            this.setState({
+                notFoundFilterData: false,
+                filteredData: filteredData,
+                showRecord: false
+
+            })
+        }
+    }
+
+
+    filterDataWithFourKeys = (filterKeys) => {
+        const { showAllJobs } = this.state
+        let data1;
+        let data2;
+        let data3;
+        let filteredData;
+
+        for (var i = 0; i < filterKeys.length; i++) {
+            if (i == 0) {
+                if (filterKeys[i] == 'category') {
+                    data1 = showAllJobs.filter((elem) => {
+                        return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                    })
+                }
+                else if (filterKeys[i] == 'state') {
+                    data1 = showAllJobs.filter((elem) => {
+                        return elem.state && filterStateName.includes(elem.state)
+                    })
+                }
+                else if (filterKeys[i] == 'city') {
+                    data1 = showAllJobs.filter((elem) => {
+                        return elem.city && filterCityName.includes(elem.city)
+                    })
+                }
+                else if (filterKeys[i] == 'type') {
+                    data1 = showAllJobs.filter((elem) => {
+                        return elem.jobType && filterJobType.includes(elem.jobType)
+                    })
+                }
+            }
+            if (i == 1) {
+                if (filterKeys[i] == 'category') {
+                    data2 = data1.filter((elem) => {
+                        return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                    })
+                }
+                else if (filterKeys[i] == 'state') {
+                    data2 = data1.filter((elem) => {
+                        return elem.state && filterStateName.includes(elem.state)
+                    })
+                }
+                else if (filterKeys[i] == 'city') {
+                    data2 = data1.filter((elem) => {
+                        return elem.city && filterCityName.includes(elem.city)
+                    })
+                }
+                else if (filterKeys[i] == 'accommodates') {
+                    data2 = data1.filter((elem) => {
+                        return elem.jobType && filterJobType.includes(elem.jobType)
+                    })
+                }
+            }
+            if (i == 2) {
+                if (filterKeys[i] == 'category') {
+                    data3 = data2.filter((elem) => {
+                        return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                    })
+                }
+                else if (filterKeys[i] == 'state') {
+                    data3 = data2.filter((elem) => {
+                        return elem.state && filterStateName.includes(elem.state)
+                    })
+                }
+                else if (filterKeys[i] == 'city') {
+                    data3 = data2.filter((elem) => {
+                        return elem.city && filterCityName.includes(elem.city)
+                    })
+                }
+                else if (filterKeys[i] == 'accommodates') {
+                    data3 = data2.filter((elem) => {
+                        return elem.jobType && filterJobType.includes(elem.jobType)
+                    })
+                }
+            }
+            if (i == 3) {
+                if (filterKeys[i] == 'category') {
+                    filteredData = data3.filter((elem) => {
+                        return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                    })
+                }
+                else if (filterKeys[i] == 'state') {
+                    filteredData = data3.filter((elem) => {
+                        return elem.state && filterStateName.includes(elem.state)
+                    })
+                }
+                else if (filterKeys[i] == 'city') {
+                    filteredData = data3.filter((elem) => {
+                        return elem.city && filterCityName.includes(elem.city)
+                    })
+                }
+                else if (filterKeys[i] == 'accommodates') {
+                    filteredData = data3.filter((elem) => {
+                        return elem.jobType && filterJobType.includes(elem.jobType)
+                    })
+                }
+            }
+        }
+
+        if (filteredData.length == 0) {
+            this.setState({
+                notFoundFilterData: true,
+                filteredData: filteredData,
+                showRecord: false
+            })
+        }
+        else {
+            this.setState({
+                notFoundFilterData: false,
+                filteredData: filteredData,
+                showRecord: false
+            })
+        }
+
+    }
+
+    removeValue = (param) => {
+        let arr = [];
+        if (param == "category") {
+            filterJobCat = arr
+            this.setState({
+                categoryRoom: arr
+            })
+        }
+        else if (param == "city") {
+            filterCityName = arr
+        }
+        else if (param == "state") {
+            filterStateName = arr
+            filterCityName = arr
+        }
+        else if (param == 'type') {
+            filterJobType = arr;
+        }
+        this.filterKeysGet();
+        if (filterJobCat.length == 0 && filterCityName.length == 0 && filterStateName.length == 0 && filterJobType.length == 0) {
+            this.setState({
+                showRecord: true,
+                notFoundFilterData: false,
+                filteredData: [],
+            })
+        }
+        else {
+            this.filterKeysGet();
+        }
+    }
+
+    mainCategoryFilter = (param) => {
+        const { showAllJobs, filteredData } = this.state;
+        let rangeValues = [];
+        console.log('paramm',param);
+        if (filteredData.length > 0) {
+            for (var i = 0; i < filteredData.length; i++) {
+                if (filteredData[i].category == param) {
+                    rangeValues.push(filteredData[i])
+                }
+            }
+            if (rangeValues.length == 0) {
+                this.setState({
+                    notFoundFilterData: true,
+                    filteredData: rangeValues,
+                    showRecord: false
+
+                })
+            }
+            else {
+                this.setState({
+                    notFoundFilterData: false,
+                    filteredData: rangeValues,
+                    showRecord: false
+                })
+            }
+        }
+        else {
+            for (var i = 0; i < showAllJobs.length; i++) {
+                if (showAllJobs[i].category == param) {
+                    rangeValues.push(showAllJobs[i])
+                }
+            }
+
+            if (rangeValues.length == 0) {
+                this.setState({
+                    notFoundFilterData: true,
+                    filteredData: rangeValues,
+                    showRecord: false
+                })
+            }
+            else {
+                this.setState({
+                    notFoundFilterData: false,
+                    filteredData: rangeValues,
+                    showRecord: false
+                })
+            }
+        }
+    }
+
+
+    render() {
         const { TabPane } = Tabs;
-        const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader, objData, goDetail } = this.state;
+        const { showAllJobs, filteredData, categoroyOfJob, categoryJob, stateOfJob, cityOfJob, TypeOfJob, notFoundFilterData, showRecord } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
-        return(
+        // console.log("TCL: JobPortal -> getAllBusiness", showAllJobs);
+        return (
             <div>
                 <div className="row">
                     <div className="col-xs-12 col-sm-3 col-md-3 col-lg-3">
@@ -24,17 +574,38 @@ class JobPortal extends Component{
                             <TabPane tab={
                                 <span><Icon type="apple" /> Filter </span>}
                                 key="1">
-                                <JobFilter />
+                                <JobFilter
+                                    onChange={this.onChange}
+                                    getState={this.getState}
+                                    getCities={this.getCities}
+                                    getSortType={this.getSortType}
+                                    categoroyOfJob={categoroyOfJob}
+                                    stateOfJob={stateOfJob}
+                                    cityOfJob={cityOfJob}
+                                    categoryJob={categoryJob}
+                                    TypeOfJob={TypeOfJob}
+                                />
                             </TabPane>
-                            <TabPane tab={
-                                <span><Icon type="android" /> Category </span>}
-                                key="2">
-                                <JobCategory />
+                            <TabPane tab={<span><Icon type="android" /> Category </span>} key="2">
+                                <JobCategory
+                                    mainCategoryFilter={this.mainCategoryFilter}
+                                />
                             </TabPane>
                         </Tabs>
                     </div>
                     <div className="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                        <JobAds/>
+                        <JobFeatured
+                            stateOfJob={stateOfJob}
+                            cityOfJob={cityOfJob}
+                            categoroyOfJob={categoroyOfJob}
+                            TypeOfJob={TypeOfJob}
+                            removeValue={this.removeValue}
+                            showAllRooms={this.showAllRooms}
+                            showAllJobs={showAllJobs}
+                            filteredData={filteredData}
+                            notFoundFilterData={notFoundFilterData}
+                            showRecord={showRecord}
+                        />
                     </div>
                 </div>
             </div>

@@ -35,7 +35,6 @@ class BussinesCard extends Component {
             name = cardDetails.businessname || cardDetails.eventTitle ||
                 cardDetails.compName || cardDetails.postingtitle || cardDetails.title,
             obj = this.callFunc(cardDetails, detail);
-            console.log("TCL: BussinesCard -> render -> cardDetails", cardDetails)
 
         return (
             <Link key={1} to={obj}>

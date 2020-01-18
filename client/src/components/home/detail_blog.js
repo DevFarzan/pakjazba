@@ -49,14 +49,18 @@ class DetailBlog extends Component {
         var res = await HttpUtils.get('getBlogReviews');
         let review = []
         if(res.code === 200 && res.content){
-            review = res.content.filter((elem) => elem.objId === data._id);
+            // review = res.content.filter((elem) => elem.objId === data._id);
+            review = res.content;
+
         }
         this.setState({review});
+        console.log(review , 'review')
     }
 
     async getAllBlogs(){
         let req = await HttpUtils.get('getblog');
         this.setState({blogs: req})
+        console.log(req , 'req')
     }
 
     changeVal(e){
@@ -83,18 +87,25 @@ class DetailBlog extends Component {
 
     render(){
         const { review, data, userId } = this.state;
-        let bckImage = data.mainimage && !!data.mainimage.length ? (data.mainimage && data.mainimage) : (data.main && data.main[0].image[0]);
+        // let bckImage = data.mainimage && !!data.mainimage.length ? (data.mainimage && data.mainimage) : (data.main && data.main[0].image[0]);
+        let bckImage = review.mainimage && !!review.mainimage.length ? (review.mainimage && review.mainimage) : (review.main && review.main[0].image[0]);
+
+        console.log(bckImage , 'data in blog')
 
         return (
             <div>
-                <div className ="" style={{"backgroundImage": 'url('+bckImage+')', backgroundSize: '1500px 500px', height: "370px", marginTop: "104px", marginLeft:"-66px"}}>
+                <div className ="" 
+                style={{
+                    "backgroundImage": 'url('+bckImage+')',
+                 backgroundSize: '1500px 500px', height: "370px", marginTop: "104px", marginLeft:"-66px"}}
+                >
                     <div className="background-image">
                         <Burgermenu/>
                     </div>
                 </div>
                 <div className='row' style={{marginTop:'-11px'}}>
                     <div style={{marginTop: '20px'}} className="col-md-9 col-sm-12 col-xs-12">
-                    {data.main && data.main.map((elem) => {
+                    {review.main && review.main.map((elem) => {
                         return (
                             <div className="row">
                                 <h3><b>{elem.subtitle ? elem.subtitle : elem.maintitle}</b></h3>

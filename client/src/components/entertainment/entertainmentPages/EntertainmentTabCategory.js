@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
 import './EntertainmentTabCategory.css';
+import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
+import axios from "axios/index";
 
 class EntertainmentCategory extends Component {
-    constructor(props) {
-        super(props);
-        // this.clickItem = this.clickItem.bind(this);
-    }
-
-    clickItem(item) {
-        const { dispatch } = this.props;
-        var inputValue = item;
-        dispatch({ type: 'SEARCHON', inputValue })
-    }
-
+    
     render() {
+       
+        
         return (
             <div className="">
                 <div className="row">
@@ -22,7 +16,10 @@ class EntertainmentCategory extends Component {
                         <div className="wrimagecard wrimagecard-topimage">
                             <div className="wrimagecard-topimage_headerEntertain1">
                                 <center>
-                                    <h3 className="categoryInnerText">Drama</h3>
+                                    
+                                        <h3 className="categoryInnerText">Drama</h3>
+                                    
+                                    
                                 </center>
                             </div>
                         </div>

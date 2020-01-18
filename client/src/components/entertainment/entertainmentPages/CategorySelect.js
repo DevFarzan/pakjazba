@@ -44,7 +44,7 @@ class DramaSection extends Component{
         return(
             <div className="container" style={isTablet ? {width:"95%"} : {width:"75%"}}>
                 <div className="row">
-                    <div className="col-md-8 col-sm-8">
+                    <div className="col-md-12 col-sm-8">
                         <div className="row" style={{padding:"0px"}}>
                             {data.map((elem, key) => {
                                 let des = elem.description.length ? elem.description : elem.title;

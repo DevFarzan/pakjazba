@@ -29,9 +29,9 @@ class Stories extends Component{
         let detail = Object.values(this.props.entertainment);
 
         return(
-            <div className="container" style={isTablet ? {width:"95%"} : {width:"75%"}}>
-                <div className="row">
-                    <div className="col-md-8 col-sm-8">
+            <div className="container" style={{width:"100%"}}>
+                <div className="row" style={{padding:"0", marginTop:"45px"}}>
+                    <div className="col-md-12 col-sm-12">
                         {Object.keys(this.props.entertainment).map((el, k) => {
                           let arr = detail[k];
                           let str = el.split('')[0].toUpperCase() + el.slice(1, el.length);
@@ -39,7 +39,7 @@ class Stories extends Component{
                           if(str !== 'Musics'){
                           return (
                               <div key={k} className="row" style={{padding:"0px"}}>
-                                  <h4><strong>{str}</strong></h4>
+                                  {/* <h4><strong>{str}</strong></h4> */}
                                   {arr.map((elem, key) => {
                                     let des = !!elem.description ? elem.description : elem.title;
                                     if(des.length > 65){
@@ -52,26 +52,26 @@ class Stories extends Component{
                                                 onClick={this.nextVideo.bind(this, {elem, arr})}
                                                 style={{cursor: 'pointer'}}
                                             >
-                                                <img style={{height:"130px", width:"100%"}} src={elem.thumbnail_url} />
-                                                <p>{des}</p>
+                                                <img style={{height:"150px", width:"100%"}} src={elem.thumbnail_url} />
+                                                <p><strong>{des}</strong></p>
                                             </div>
                                         )
                                     }
                                   })}
 
                                   {/*<hr  style={{borderBottom:"1px solid black", width:"95%", marginTop:"220px", borderTop:"0"}}/>*/}
-                                  <p className="col-md-offset-7"
+                                  {/* <p className="col-md-offset-7"
                                       style={{float: 'right', marginRight: '20px', cursor: 'pointer'}}
                                        onClick={this.changeCat.bind(this, {arr, str})}
-                                      >See More...</p>
+                                      >See More...</p> */}
 
                               </div>
                             )}
                         })}
                     </div>
-                    <div className="col-md-4 col-sm-4">
+                    {/* <div className="col-md-4 col-sm-4">
                         <LatestNews data={{news, sports}} callRoute={this.nextVideo.bind(this)}/>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         )

@@ -43,6 +43,7 @@ import EproductDetails from './components/ecommerce/productdetail/EproductDetail
 import EcomForms from './components/ecommerce/EcomForms/EcomForms';
 import EntertainmentHome from './components/entertainment/entertainmenthome/EntertainmentHome';
 import EntCategory from './components/entertainment/entertainmentPages/EntCategory';
+import ECategory from './components/Explore/entertainment-category';
 import EntMusic from './components/entertainment/entertainmentPages/EntMusic';
 import MusicBrowse from './components/entertainment/EntDetailpages/MusicBrowse';
 import VideoBox from './components/entertainment/EntDetailpages/VideoBox';
@@ -163,6 +164,8 @@ ReactDOM.render(
         {/*=============Entertainment====================*/}
         <Route path="/entertainment_Home" component={EntertainmentHome}></Route>
         <Route path="/entertainment_Category/:value" component={EntCategory}></Route>
+        <Route path="/explore_entertainment_category/:value" component={ECategory}></Route>
+        
         <Route path="/entertainment_music" component={EntMusic}></Route>
         <Route path="/entertainment_detail/:value" component={VideoBox}></Route>
         <Route path="/music_detail" component={MusicBrowse}></Route>

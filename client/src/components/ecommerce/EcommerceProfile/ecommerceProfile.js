@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Burgermenu from '../../header/burgermenu';
+import HeaderMenu from '../../header/headermenu';
 import Footer from '../../footer/footer';
 import './ecommerceProfile.css';
 import { Redirect } from "react-router-dom";
@@ -646,7 +646,7 @@ class EcomProfile extends Component {
             marginTop: "-20px", backgroundSize: 'cover'
           }}>
             <div className="background-image">
-              <Burgermenu />
+              <HeaderMenu />
             </div>
           </div>
         </span>

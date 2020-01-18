@@ -148,7 +148,7 @@ class Roomrenting1content extends Component {
                 {categoroyOfRoom && categoroyOfRoom.length > 0 ?
                     categoroyOfRoom.map((elem, key) => {
                         return (
-                            <div>
+                            <div className="cross-card">
                                 <li>{elem}<span class="close"
                                     onClick={removeValue.bind(this, 'category', elem)}
                                 >x</span></li>
@@ -168,7 +168,7 @@ class Roomrenting1content extends Component {
                 {cityOfRoom && cityOfRoom.length > 0 ?
                     cityOfRoom.map((elem, key) => {
                         return (
-                            <div>
+                            <div className="cross-card">
                                 <li>{elem}<span class="close"
                                     onClick={removeValue.bind(this, 'city', elem)}
                                 >x</span></li>
@@ -178,7 +178,7 @@ class Roomrenting1content extends Component {
                 {accomodatesOfRoom && accomodatesOfRoom.length > 0 ?
                     accomodatesOfRoom.map((elem, key) => {
                         return (
-                            <div>
+                            <div className="cross-card">
                                 <li>{elem}<span class="close"
                                     onClick={removeValue.bind(this, 'accommodates', elem)}
                                 >x</span></li>

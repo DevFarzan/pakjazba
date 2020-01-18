@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import EntSlider from '../entertainmenthome/EntSlider';
 import EHeader from '../entertainmenthome/entertainmentHeader';
+import ECategory from '../../Explore/entertainment-category';
 import Footer from '../../footer/footer';
 import DramaSection from './CategorySelect';
 import Burgermenu from '../../header/burgermenu';
@@ -18,7 +19,7 @@ class EntCategory extends Component{
         return(
             <div className="">
                 <Burgermenu entertainment={obj.entertainment}/>
-                {/*<EHeader entertainment={obj.entertainment} {...this.props}/>*/}
+                {/* <EHeader entertainment={obj.entertainment} {...this.props}/> */}
                 <div style={{backgroundColor:"#032a30",width:"100%",height:"67px",marginTop:"-20px"}}>
                 </div>
                 <div>

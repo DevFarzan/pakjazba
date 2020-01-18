@@ -9,6 +9,7 @@ import JobPortal from './JobPortalTAB';
 import EventTab from './EventTab';
 import EntertainmentTab from './EntertainmentTAB';
 import EcommerceTab from './EcommerceTAB';
+
 import "./explore.css";
 
 class Explore extends Component {

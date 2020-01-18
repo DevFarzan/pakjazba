@@ -1,10 +1,10 @@
 .wizard {
-   margin-top: -75px;
+   margin-top: -56px;
 }
 
     .wizard .nav-tabs {
         position: relative;
-        margin: 40px auto;
+        margin-top: 75px;
         margin-bottom: 0;
         border-bottom: 0 !important;
     }
@@ -21,7 +21,7 @@
 
 span.round-tab {
     width: 70px;
-    height: 70px;
+    height: 50px;
     line-height: 70px;
     display: inline-block;
     border-radius: 100px;
@@ -79,7 +79,7 @@ span.round-tab:hover {
 
 .wizard .nav-tabs > li a {
     width: 70px;
-    height: 70px;
+    height: 50px;
     border-radius: 100%;
     padding: 0;
     border: 0;

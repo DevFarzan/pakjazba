@@ -7,6 +7,13 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+.cross-card{
+  background-color: brown;
+  font-size: 14px;
+  color: white;
+
+}
+
 body {
   background: #fff;
   color: #666666;

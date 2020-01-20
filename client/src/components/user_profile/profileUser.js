@@ -75,7 +75,7 @@ class ProfileUser extends Component {
                 let req = await HttpUtils.get('getprofile?profileId=' + profileIdFromPath)
                 await this.getprofileData(profileIdFromPath, req.content.user_id)
                 // console.log(req , 'req')
-                // console.log(profileIdFromPath , 'profileIdFromPath')
+                console.log(req.content.user_id , 'req.content.user_id')
 
                 this.setState({
                     reviewProfile: false,
@@ -87,6 +87,8 @@ class ProfileUser extends Component {
         else {
             let req = await HttpUtils.get('getprofile?profileId=' + profileIdFromPath)
             await this.getprofileData(profileIdFromPath, req.content.user_id)
+            console.log(req.content.user_id , 'req.content.user_id')
+
             this.setState({
                 reviewProfile: false,
                 userId: req.content.user_id,
@@ -162,8 +164,11 @@ class ProfileUser extends Component {
         // })
         const userData = JSON.parse(localStorage.getItem('user'));
         let obj = {
-            userId: userId
+            userId: id
         }
+        console.log(userId , 'userId')
+
+        console.log(obj , 'obj')
         let reqShopData = await HttpUtils.post('getShopById', obj)
         console.log()
         if (reqShopData.code == 200) {

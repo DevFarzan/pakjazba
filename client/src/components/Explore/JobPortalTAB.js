@@ -6,10 +6,10 @@ import { Tabs, Icon } from 'antd';
 import { HttpUtils } from "../../Services/HttpUtils";
 import AsyncStorage from "@callstack/async-storage/lib/index";
 
+let filterJobType = [];
 let filterJobCat = [];
 let filterCityName = [];
 let filterStateName = [];
-let filterJobType = [];
 
 class JobPortal extends Component {
     constructor(props) {
@@ -21,15 +21,15 @@ class JobPortal extends Component {
             notFoundFilterData: false,
             showRecord: true,
 
+            typeSortJob: [],
             categoryJob: [],
             state: [],
             city: [],
-            typeSortJob: [],
 
             categoroyOfJob: [],
+            TypeOfJob: [],
             stateOfJob: [],
             cityOfJob: [],
-            TypeOfJob: [],
         }
     }
     componentDidMount() {
@@ -64,13 +64,24 @@ class JobPortal extends Component {
         }
     }
 
+    getSortType = (value) => {
+        console.log(value , 'getSortType')
+        this.setState({
+            typeSortJob: value
+        })
+        filterJobType = value;
+        this.filterKeysGet();
+    }
+
     onChange = (value) => {
-        let categoryValue = [];
-        categoryValue.push(value[1]);
+        console.log(value , 'category')
+
+        // let categoryValue = [];
+        // categoryValue.push(value[1]);
         this.setState({
             categoryJob: value,
         })
-        filterJobCat = categoryValue
+        filterJobCat = value
         this.filterKeysGet()
     }
 
@@ -90,22 +101,17 @@ class JobPortal extends Component {
         this.filterKeysGet()
     }
 
-    getSortType = (value) => {
-        this.setState({
-            typeSortJob: value
-        })
-        filterJobType = value;
-        this.filterKeysGet();
-    }
-
     filterKeysGet = () => {
+        let TypeOfJob = [];
         let categoroyOfJob = [];
         let stateOfJob = [];
         let cityOfJob = [];
-        let TypeOfJob = [];
 
         let filterKeys = [];
 
+        if (filterJobType.length > 0) {
+            filterKeys.push('type')
+        }
         if (filterJobCat.length > 0) {
             filterKeys.push('category')
         }
@@ -115,10 +121,10 @@ class JobPortal extends Component {
         if (filterCityName.length > 0) {
             filterKeys.push('city')
         }
-        if (filterJobType.length > 0) {
-            filterKeys.push('type')
-        }
 
+        for (var i = 0; i < filterJobType.length; i++) {
+            TypeOfJob.push(filterJobType[i])
+        }
         for (var i = 0; i < filterJobCat.length; i++) {
             categoroyOfJob.push(filterJobCat[i])
         }
@@ -128,15 +134,12 @@ class JobPortal extends Component {
         for (var i = 0; i < filterCityName.length; i++) {
             cityOfJob.push(filterCityName[i])
         }
-        for (var i = 0; i < filterJobType.length; i++) {
-            TypeOfJob.push(filterJobType[i])
-        }
 
         this.setState({
+            TypeOfJob: TypeOfJob,
             categoroyOfJob: categoroyOfJob,
             stateOfJob: stateOfJob,
             cityOfJob: cityOfJob,
-            TypeOfJob: TypeOfJob,
         })
 
         this.filterJobData(filterKeys)
@@ -163,7 +166,7 @@ class JobPortal extends Component {
         for (var i = 0; i < filterKeys.length; i++) {
             if (filterKeys[i] == 'category') {
                 data = showAllJobs.filter((elem) => {
-                    return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                    return elem.jobCat && filterJobCat.includes(elem.jobCat)
                 })
             }
             else if (filterKeys[i] == 'state') {
@@ -209,7 +212,7 @@ class JobPortal extends Component {
             if (i == 0) {
                 if (filterKeys[i] == 'category') {
                     data1 = showAllJobs.filter((elem) => {
-                        return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                        return elem.jobCat && filterJobCat.includes(elem.jobCat)
                     })
                 }
                 else if (filterKeys[i] == 'state') {
@@ -231,7 +234,7 @@ class JobPortal extends Component {
             if (i == 1) {
                 if (filterKeys[i] == 'category') {
                     filteredData = data1.filter((elem) => {
-                        return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                        return elem.jobCat && filterJobCat.includes(elem.jobCat)
                     })
                 }
                 else if (filterKeys[i] == 'state') {
@@ -244,8 +247,8 @@ class JobPortal extends Component {
                         return elem.city && filterCityName.includes(elem.city)
                     })
                 }
-                else if (filterKeys[i] == 'accommodates') {
-                    filteredData = data1.filter((elem) => {
+                else if (filterKeys[i] == 'type') {
+                    filteredData = showAllJobs.filter((elem) => {
                         return elem.jobType && filterJobType.includes(elem.jobType)
                     })
                 }
@@ -281,7 +284,7 @@ class JobPortal extends Component {
             if (i == 0) {
                 if (filterKeys[i] == 'category') {
                     data1 = showAllJobs.filter((elem) => {
-                        return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                        return elem.jobCat && filterJobCat.includes(elem.jobCat)
                     })
                 }
                 else if (filterKeys[i] == 'state') {
@@ -303,7 +306,7 @@ class JobPortal extends Component {
             if (i == 1) {
                 if (filterKeys[i] == 'category') {
                     data2 = data1.filter((elem) => {
-                        return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                        return elem.jobCat && filterJobCat.includes(elem.jobCat)
                     })
                 }
                 else if (filterKeys[i] == 'state') {
@@ -325,7 +328,7 @@ class JobPortal extends Component {
             if (i == 2) {
                 if (filterKeys[i] == 'category') {
                     filteredData = data2.filter((elem) => {
-                        return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                        return elem.jobCat && filterJobCat.includes(elem.jobCat)
                     })
                 }
                 else if (filterKeys[i] == 'state') {
@@ -375,7 +378,7 @@ class JobPortal extends Component {
             if (i == 0) {
                 if (filterKeys[i] == 'category') {
                     data1 = showAllJobs.filter((elem) => {
-                        return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                        return elem.jobCat && filterJobCat.includes(elem.jobCat)
                     })
                 }
                 else if (filterKeys[i] == 'state') {
@@ -397,7 +400,7 @@ class JobPortal extends Component {
             if (i == 1) {
                 if (filterKeys[i] == 'category') {
                     data2 = data1.filter((elem) => {
-                        return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                        return elem.jobCat && filterJobCat.includes(elem.jobCat)
                     })
                 }
                 else if (filterKeys[i] == 'state') {
@@ -419,7 +422,7 @@ class JobPortal extends Component {
             if (i == 2) {
                 if (filterKeys[i] == 'category') {
                     data3 = data2.filter((elem) => {
-                        return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                        return elem.jobCat && filterJobCat.includes(elem.jobCat)
                     })
                 }
                 else if (filterKeys[i] == 'state') {
@@ -441,7 +444,7 @@ class JobPortal extends Component {
             if (i == 3) {
                 if (filterKeys[i] == 'category') {
                     filteredData = data3.filter((elem) => {
-                        return elem.JobCat && filterJobCat.includes(elem.JobCat)
+                        return elem.jobCat && filterJobCat.includes(elem.jobCat)
                     })
                 }
                 else if (filterKeys[i] == 'state') {

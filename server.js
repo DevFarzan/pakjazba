@@ -2391,8 +2391,9 @@ app.post('/api/getShopProducts', (req, res) => {
   })
 })
 
-app.get('/api/getShops', (req, res) => {
+app.post('/api/getShops', (req, res) => {
   postShopCollection.find(function (err, shopCollection) {
+    console.log(shopCollection , 'shopCollection')
     if (err) {
       res.send({
         code: 404,

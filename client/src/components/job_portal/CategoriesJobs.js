@@ -4,56 +4,100 @@ import './CategoriesJobs.css';
 import stateCities from "../../lib/countrycitystatejson";
 
 const type = [
-      {
-          label: 'Full Time',
-          value: 'Full Time',
-      },{
-          label: 'Part Time',
-          value: 'Part Time',
-      },{
-          label: 'Night Shift',
-          value: 'Night Shift',
-      }
-  ];
-
-const categ = [
-    {
-        label: 'Information Technology',
-        value: 'Information Technology',
-    },{
-        label: 'Banking',
-        value: 'Banking',
-    },{
-        label: 'Accounting',
-        value: 'Accounting',
-    },
-    {
-        label: 'Management',
-        value: 'Management',
-    },{
-        label: 'Digital and Creative',
-        value: 'Digital and Creative',
-    },{
-        label: 'Sales and Marketing',
-        value: 'Sales and Marketing',
-    }
+  {
+    label: 'Full Time',
+    value: 'Full Time',
+  }, {
+    label: 'Part Time',
+    value: 'Part Time',
+  }, {
+    label: 'Night Shift',
+    value: 'Night Shift',
+  }
 ];
 
-class CategoriesjobMarket extends Component{
-  constructor(props){
-      super(props);
-      this.state = {
-        typeR: '',
-        cat: '',
-        eachState: '',
-        states: [],
-        cities: [],
-      }
-      // this.clickItem = this.clickItem.bind(this);
+const category = [{
+  value: 'Accounting',
+  label: 'Accounting'
+}, {
+  value: 'Admin & Clerical',
+  label: 'Admin & Clerical',
+}, {
+  value: 'Banking & Finance',
+  label: 'Banking & Finance',
+}, {
+  value: 'Business Opportunities',
+  label: 'Business Opportunities'
+}, {
+  value: 'Contract & Freelance',
+  label: 'Contract & Freelance',
+}, {
+  value: 'Customer Service',
+  label: 'Customer Service',
+}, {
+  label: 'Diversity Opportunities',
+  value: 'Diversity Opportunities',
+}, {
+  label: 'Engineering',
+  value: 'Engineering',
+}, {
+  value: 'Executive',
+  label: 'Executive',
+}, {
+  value: 'Franchise',
+  label: 'Franchise',
+}, {
+  value: 'Government',
+  label: 'Government',
+}, {
+  value: 'Health Care',
+  label: 'Health Care',
+}, {
+  value: 'Hospitality',
+  label: 'Hospitality',
+}, {
+  value: 'Human Resources',
+  label: 'Human Resources',
+}, {
+  value: 'Information Technology',
+  label: 'Information Technology',
+}, {
+  value: 'Internships & College',
+  label: 'Internships & College',
+}, {
+  value: 'Manufacturing',
+  label: 'Manufacturing',
+}, {
+  value: 'Nonprofit',
+  label: 'Nonprofit',
+}, {
+  value: 'Retail',
+  label: 'Retail',
+}, {
+  value: 'Sales & Marketing',
+  label: 'Sales & Marketing',
+}, {
+  value: 'Science & Biotech',
+  label: 'Science & Biotech',
+}, {
+  value: 'Transportation',
+  label: 'Transportation',
+}];
+class CategoriesjobMarket extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      typeR: '',
+      cat: '',
+      eachState: '',
+      states: [],
+      cities: [],
+    }
+    // this.clickItem = this.clickItem.bind(this);
   }
 
 
-  
+
   componentDidMount() {
     window.scrollTo(0, 0);
     // this.getAllBusiness();
@@ -95,7 +139,7 @@ class CategoriesjobMarket extends Component{
     this.props.getCities(value)
   }
 
-  sortType(value){
+  sortType(value) {
     // console.log(value,'value sdasdasdasd')
     this.props.getSortType(value)
   }
@@ -117,71 +161,71 @@ class CategoriesjobMarket extends Component{
 
 
 
-  onChangeType(value){
-      this.setState({typeR: value[0]})
+  onChangeType(value) {
+    this.setState({ typeR: value[0] })
   }
 
-  onChangeCategory(value){
-      this.setState({cat: value[0]})
+  onChangeCategory(value) {
+    this.setState({ cat: value[0] })
   }
 
-  clickItem(item){
-      const { cat, typeR } = this.state;
-      let str = typeof(item) == 'string' ? item : {cat, typeR};
-      this.props.filteringData(str)
+  clickItem(item) {
+    const { cat, typeR } = this.state;
+    let str = typeof (item) == 'string' ? item : { cat, typeR };
+    this.props.filteringData(str)
   }
 
-  render(){
+  render() {
     const { states, cities } = this.state;
-    const { getSortType,onChange, categoroyOfJob, categoryJob ,stateOfJob, cityOfJob,TypeOfJob } = this.props;
+    const { getSortType, onChange, categoroyOfJob, categoryJob, stateOfJob, cityOfJob, TypeOfJob } = this.props;
     // const {typeR, cat} = this.state;
-    return(
-      <div className="container categoriesbars" style={{width:"100%"}}>
-      	<div className="row">
+    return (
+      <div className="container categoriesbars" style={{ width: "100%" }}>
+        <div className="row">
           <div className="col-md-12">
-        	    <form className="col-md-12">
-        	        <label>Sort By:</label>
-                  <Cascader
-                    value={TypeOfJob} 
-                    style={{width: '100%'}} 
-                    options={type} 
-                    onChange={this.sortType.bind(this)} 
-                    placeholder="Please select" 
-                  />
-        	    </form>
-              <form className="col-md-12">
-        	        <label>Categoies:</label>
-                  <Cascader 
-                    value={categoroyOfJob} 
-                    style={{width: '100%'}} 
-                    options={categ} 
-                    // onChange={onChange(this)} 
-                    placeholder="Please select" 
-                  />
-        	    </form>
+            <form className="col-md-12">
+              <label>Sort By:</label>
+              <Cascader
+                value={TypeOfJob}
+                style={{ width: '100%' }}
+                options={type}
+                onChange={this.sortType.bind(this)}
+                placeholder="Please select"
+              />
+            </form>
+            <form className="col-md-12">
+              <label>Categoies:</label>
+              <Cascader
+                value={categoroyOfJob}
+                style={{ width: '100%' }}
+                options={category}
+                onChange={onChange}
+                placeholder="Please select"
+              />
+            </form>
 
-              <div className="row">
-                <div class="col-md-12 col-sm-12 spacing">
-                    <h3><b>Location</b></h3>
-                    
-                        <Cascader 
-                          value={stateOfJob}
-                          style={{ width: '100%' }}
-                          options={states} 
-                          onChange={this.onChangeState.bind(this)}
-                          placeholder="Please select state"
-                        />
-                    
-                        <Cascader 
-                          value={cityOfJob}
-                          style={{marginTop: '2vw', width: '100%' }} 
-                          options={cities} 
-                          onChange={this.onChangeCity.bind(this)} 
-                          placeholder="Please select city"
-                        />
-                </div>
+            <div className="row">
+              <div class="col-md-12 col-sm-12 spacing">
+                <h3><b>Location</b></h3>
+
+                <Cascader
+                  value={stateOfJob}
+                  style={{ width: '100%' }}
+                  options={states}
+                  onChange={this.onChangeState.bind(this)}
+                  placeholder="Please select state"
+                />
+
+                <Cascader
+                  value={cityOfJob}
+                  style={{ marginTop: '2vw', width: '100%' }}
+                  options={cities}
+                  onChange={this.onChangeCity.bind(this)}
+                  placeholder="Please select city"
+                />
               </div>
-              {/* <div className="col-md-12">
+            </div>
+            {/* <div className="col-md-12">
                 <div className="input-group">
                   <label>Search:</label>
                     <div className="flex">
@@ -197,7 +241,7 @@ class CategoriesjobMarket extends Component{
                     </div>
                 </div>
               </div> */}
-              {/* <div className="col-md-12">
+            {/* <div className="col-md-12">
                 <div className="custom-row">
                     <label>Keywords:</label>
                     <div className="marginLeft">
@@ -224,7 +268,7 @@ class CategoriesjobMarket extends Component{
                     </div>
                 </div>
               </div> */}
-            </div>
+          </div>
         </div>
       </div>
 

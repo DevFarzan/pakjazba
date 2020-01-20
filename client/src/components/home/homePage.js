@@ -35,10 +35,10 @@ class HomePage extends Component {
     }
 
     async marketplace() {
+        let reqe = await HttpUtils.post('getShops');
+        console.log(reqe, 'reqest')
 
         let req = await HttpUtils.get('marketplace');
-        let reqest = await HttpUtils.get('getShops');
-        console.log(reqest, 'reqest')
         if (req && req.code && req.code == 200) {
             let res = await HttpUtils.get('getreviews'),
                 business = [],
@@ -77,7 +77,6 @@ class HomePage extends Component {
 
     render() {
         const { business, roomRenting, buySell, jobPortal, event } = this.state
-        console.log(business, 'business')
 
         return (
             <div className="">

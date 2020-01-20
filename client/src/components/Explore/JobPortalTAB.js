@@ -319,7 +319,7 @@ class JobPortal extends Component {
                         return elem.city && filterCityName.includes(elem.city)
                     })
                 }
-                else if (filterKeys[i] == 'accommodates') {
+                else if (filterKeys[i] == 'type') {
                     data2 = data1.filter((elem) => {
                         return elem.jobType && filterJobType.includes(elem.jobType)
                     })
@@ -341,7 +341,7 @@ class JobPortal extends Component {
                         return elem.city && filterCityName.includes(elem.city)
                     })
                 }
-                else if (filterKeys[i] == 'accommodates') {
+                else if (filterKeys[i] == 'type') {
                     filteredData = data2.filter((elem) => {
                         return elem.jobType && filterJobType.includes(elem.jobType)
                     })
@@ -413,7 +413,7 @@ class JobPortal extends Component {
                         return elem.city && filterCityName.includes(elem.city)
                     })
                 }
-                else if (filterKeys[i] == 'accommodates') {
+                else if (filterKeys[i] == 'type') {
                     data2 = data1.filter((elem) => {
                         return elem.jobType && filterJobType.includes(elem.jobType)
                     })
@@ -435,7 +435,7 @@ class JobPortal extends Component {
                         return elem.city && filterCityName.includes(elem.city)
                     })
                 }
-                else if (filterKeys[i] == 'accommodates') {
+                else if (filterKeys[i] == 'type') {
                     data3 = data2.filter((elem) => {
                         return elem.jobType && filterJobType.includes(elem.jobType)
                     })
@@ -457,7 +457,7 @@ class JobPortal extends Component {
                         return elem.city && filterCityName.includes(elem.city)
                     })
                 }
-                else if (filterKeys[i] == 'accommodates') {
+                else if (filterKeys[i] == 'type') {
                     filteredData = data3.filter((elem) => {
                         return elem.jobType && filterJobType.includes(elem.jobType)
                     })
@@ -516,7 +516,6 @@ class JobPortal extends Component {
     mainCategoryFilter = (param) => {
         const { showAllJobs, filteredData } = this.state;
         let rangeValues = [];
-        console.log('paramm',param);
         if (filteredData.length > 0) {
             for (var i = 0; i < filteredData.length; i++) {
                 if (filteredData[i].category == param) {

@@ -11,151 +11,151 @@ class FeaturedBox extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            job: [],
-            showJob: [],
-            filteredArr: [],
-            loader: true,
-            add: 6,
-            noText: true,
-            visible: false,
-            goForLogin: false,
-            objData: {},
-            user: false,
-            goDetail: false
+            // job: [],
+            // showJob: [],
+            // filteredArr: [],
+            // loader: true,
+            // add: 6,
+            // noText: true,
+            // visible: false,
+            // goForLogin: false,
+            // objData: {},
+            // user: false,
+            // goDetail: false
         };
     }
 
-    componentDidMount() {
-        this.getAllBusiness();
-        this.handleLocalStorage();
-    }
+    // componentDidMount() {
+    //     this.getAllBusiness();
+    //     this.handleLocalStorage();
+    // }
 
-    componentDidUpdate(prevProps, prevState) {
-        const { job } = this.state;
-        const { text } = this.props;
-        if (prevProps.text !== text) {
-            if (!!text) {
-                this.searchedArr(text)
-            } else {
-                this.setState({
-                    showJob: job.slice(0, 6),
-                    filteredArr: [],
-                    add: 6
-                })
-            }
-        }
-    }
+    // componentDidUpdate(prevProps, prevState) {
+    //     const { job } = this.state;
+    //     const { text } = this.props;
+    //     if (prevProps.text !== text) {
+    //         if (!!text) {
+    //             this.searchedArr(text)
+    //         } else {
+    //             this.setState({
+    //                 showJob: job.slice(0, 6),
+    //                 filteredArr: [],
+    //                 add: 6
+    //             })
+    //         }
+    //     }
+    // }
 
-    handleLocalStorage = () => {
-        AsyncStorage.getItem('user')
-            .then((obj) => {
-                let userObj = JSON.parse(obj)
-                if (!!userObj) {
-                    this.setState({
-                        user: true,
-                    })
-                }
-                else {
-                    this.setState({
-                        user: false
-                    })
-                }
-            })
-    }
+    // handleLocalStorage = () => {
+    //     AsyncStorage.getItem('user')
+    //         .then((obj) => {
+    //             let userObj = JSON.parse(obj)
+    //             if (!!userObj) {
+    //                 this.setState({
+    //                     user: true,
+    //                 })
+    //             }
+    //             else {
+    //                 this.setState({
+    //                     user: false
+    //                 })
+    //             }
+    //         })
+    // }
 
-    searchedArr(text) {
-        const { job } = this.state;
-        let filteredArr = job.filter((elem) => {
-            return (elem.jobCat.toLowerCase().includes(text.toLowerCase())) ||
-                (elem.jobType.toLowerCase().includes(text.toLowerCase()))
-        })
-        this.setState({
-            filteredArr,
-            showJob: filteredArr.slice(0, 7),
-            add: 7
-        })
-    }
+    // searchedArr(text) {
+    //     const { job } = this.state;
+    //     let filteredArr = job.filter((elem) => {
+    //         return (elem.jobCat.toLowerCase().includes(text.toLowerCase())) ||
+    //             (elem.jobType.toLowerCase().includes(text.toLowerCase()))
+    //     })
+    //     this.setState({
+    //         filteredArr,
+    //         showJob: filteredArr.slice(0, 7),
+    //         add: 7
+    //     })
+    // }
 
-    async getAllBusiness() {
-        var res = await HttpUtils.get('marketplace');
-        this.setState({
-            job: res.jobPortalData && res.jobPortalData,
-            showJob: res.jobPortalData ? res.jobPortalData.slice(0, 7) : [],
-            loader: false
-        });
-    }
+    // async getAllBusiness() {
+    //     var res = await HttpUtils.get('marketplace');
+    //     this.setState({
+    //         job: res.jobPortalData && res.jobPortalData,
+    //         showJob: res.jobPortalData ? res.jobPortalData.slice(0, 7) : [],
+    //         loader: false
+    //     });
+    // }
 
-    funcIndexes(page) {
-        var to = 6 * page;
-        var from = to - 6;
-        return { from: page === 1 ? 0 : from, to: page === 1 ? 6 : to }
-    }
+    // funcIndexes(page) {
+    //     var to = 6 * page;
+    //     var from = to - 6;
+    //     return { from: page === 1 ? 0 : from, to: page === 1 ? 6 : to }
+    // }
 
-    onChange = (page) => {
-        const { job, filteredArr } = this.state;
-        var indexes = this.funcIndexes(page)
-        if (!!filteredArr.length) {
-            this.setState({
-                current: page,
-                showJob: filteredArr.slice(indexes.from, indexes.to)
-            });
-        } else {
-            this.setState({
-                current: page,
-                showJob: job.slice(indexes.from, indexes.to)
-            });
-        }
-    }
+    // onChange = (page) => {
+    //     const { job, filteredArr } = this.state;
+    //     var indexes = this.funcIndexes(page)
+    //     if (!!filteredArr.length) {
+    //         this.setState({
+    //             current: page,
+    //             showJob: filteredArr.slice(indexes.from, indexes.to)
+    //         });
+    //     } else {
+    //         this.setState({
+    //             current: page,
+    //             showJob: job.slice(indexes.from, indexes.to)
+    //         });
+    //     }
+    // }
 
-    onAddMore = () => {
-        const { add, job, filteredArr } = this.state;
-        if (!!filteredArr.length) {
-            this.setState({
-                showJob: filteredArr.slice(0, add + 8),
-                add: add + 8
-            });
-        } else {
-            this.setState({
-                showJob: job.slice(0, add + 8),
-                add: add + 8
-            });
-        }
-        if (this.props.text.length) {
-            let inputValue = '';
-            const { dispatch } = this.props;
-            dispatch({ type: 'SEARCHON', inputValue })
-        }
-    }
+    // onAddMore = () => {
+    //     const { add, job, filteredArr } = this.state;
+    //     if (!!filteredArr.length) {
+    //         this.setState({
+    //             showJob: filteredArr.slice(0, add + 8),
+    //             add: add + 8
+    //         });
+    //     } else {
+    //         this.setState({
+    //             showJob: job.slice(0, add + 8),
+    //             add: add + 8
+    //         });
+    //     }
+    //     if (this.props.text.length) {
+    //         let inputValue = '';
+    //         const { dispatch } = this.props;
+    //         dispatch({ type: 'SEARCHON', inputValue })
+    //     }
+    // }
 
-    clickItem(item) {
-        const { user } = this.state;
-        if (user) {
-            this.setState({ goDetail: true, objData: item })
-        } else {
-            this.setState({ visible: true, objData: item })
-        }
-    }
+    // clickItem(item) {
+    //     const { user } = this.state;
+    //     if (user) {
+    //         this.setState({ goDetail: true, objData: item })
+    //     } else {
+    //         this.setState({ visible: true, objData: item })
+    //     }
+    // }
 
-    addJob() {
-        const { user } = this.state;
-        if (user) {
-            this.setState({ goForward: true })
-        } else {
-            this.setState({ visible: true, objData: {} })
-        }
-    }
+    // addJob() {
+    //     const { user } = this.state;
+    //     if (user) {
+    //         this.setState({ goForward: true })
+    //     } else {
+    //         this.setState({ visible: true, objData: {} })
+    //     }
+    // }
 
-    handleCancel = (e) => {
-        this.setState({ visible: false, objData: {} });
-    }
+    // handleCancel = (e) => {
+    //     this.setState({ visible: false, objData: {} });
+    // }
 
-    handleLogin = (e) => {
-        const { dispatch } = this.props;
-        const { objData, user } = this.state;
-        let otherData = { ...objData, user: true };
-        dispatch({ type: 'ANOTHERDATA', otherData })
-        this.setState({ goForLogin: true, visible: false })
-    }
+    // handleLogin = (e) => {
+    //     const { dispatch } = this.props;
+    //     const { objData, user } = this.state;
+    //     let otherData = { ...objData, user: true };
+    //     dispatch({ type: 'ANOTHERDATA', otherData })
+    //     this.setState({ goForLogin: true, visible: false })
+    // }
 
     render() {
         const { showJob, filteredArr, job, noText, goForLogin, objData, goDetail, user, goForward } = this.state;
@@ -190,6 +190,16 @@ class FeaturedBox extends Component {
         return (
             <div className="container" style={{ width: "100%" }}>
 
+                {TypeOfJob && TypeOfJob.length > 0 ?
+                    TypeOfJob.map((elem, key) => {
+                        return (
+                            <div>
+                                <li>{elem}<span class="close"
+                                    onClick={removeValue.bind(this, 'type', elem)}
+                                >x</span></li>
+                            </div>)
+                    })
+                    : null}
 
                 {categoroyOfJob && categoroyOfJob.length > 0 ?
                     categoroyOfJob.map((elem, key) => {
@@ -217,16 +227,6 @@ class FeaturedBox extends Component {
                             <div>
                                 <li>{elem}<span class="close"
                                     onClick={removeValue.bind(this, 'city', elem)}
-                                >x</span></li>
-                            </div>)
-                    })
-                    : null}
-                {TypeOfJob && TypeOfJob.length > 0 ?
-                    TypeOfJob.map((elem, key) => {
-                        return (
-                            <div>
-                                <li>{elem}<span class="close"
-                                    onClick={removeValue.bind(this, 'type', elem)}
                                 >x</span></li>
                             </div>)
                     })

@@ -96,15 +96,12 @@ class CategoriesjobMarket extends Component {
     // this.clickItem = this.clickItem.bind(this);
   }
 
-
-
   componentDidMount() {
     window.scrollTo(0, 0);
-    // this.getAllBusiness();
     this.stateAndCities();
   }
 
-  stateAndCities(res) {
+  stateAndCities() {
     let states = stateCities.getStatesByShort('US');
     states = states.map((elem) => {
       return {
@@ -116,6 +113,7 @@ class CategoriesjobMarket extends Component {
       states: states,
     })
   }
+
 
   onChangeState(value) {
     if (!!value.length) {
@@ -131,11 +129,10 @@ class CategoriesjobMarket extends Component {
         eachState: value[0]
       })
       this.props.getState(value)
-      console.log("TCL: CategoriesjobMarket -> onstate -> value", value);
     }
   }
+
   onChangeCity(value) {
-    console.log("TCL: CategoriesjobMarket -> onCity -> value", value);
     this.props.getCities(value)
   }
 
@@ -147,23 +144,23 @@ class CategoriesjobMarket extends Component {
   //   console.log(value,'value sdasdasdasd')
   //   this.props.onChange(value)
   // }
-  onChangeCity(value) {
-    // const { roomrents, eachState } = this.state;
-    // let data = roomrents.filter((elem) => {
-    //     return elem.state === eachState || elem.city === value[0]
-    // })
-    // this.setState({
-    //     filteredArr: data,
-    //     showroomrents: data.slice(0, 6),
-    //     add: 6
-    // })
-  }
+  // onChangeCity(value) {
+  //   // const { roomrents, eachState } = this.state;
+  //   // let data = roomrents.filter((elem) => {
+  //   //     return elem.state === eachState || elem.city === value[0]
+  //   // })
+  //   // this.setState({
+  //   //     filteredArr: data,
+  //   //     showroomrents: data.slice(0, 6),
+  //   //     add: 6
+  //   // })
+  // }
 
 
 
-  onChangeType(value) {
-    this.setState({ typeR: value[0] })
-  }
+  // onChangeType(value) {
+  //   this.setState({ typeR: value[0] })
+  // }
 
   onChangeCategory(value) {
     this.setState({ cat: value[0] })

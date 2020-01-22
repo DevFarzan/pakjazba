@@ -98,9 +98,13 @@ class EventFilterContent extends Component {
                 eachState: value[0]
             })
         }
+        this.props.getState(value)
+
     }
 
     onChangeCity(value) {
+        this.props.getCities(value)
+
         //     const { roomrents, eachState } = this.state;
         //     let data = roomrents.filter((elem) => {
         //         return elem.state === eachState || elem.city === value[0]
@@ -112,21 +116,24 @@ class EventFilterContent extends Component {
         //     })
     }
 
-    
+
     mostPopular() {
-     
+
     }
 
     render() {
-        const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader, objData, goDetail } = this.state;
-        const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
-        if (!noText) {
-            // return <Redirect to='/market_roommates'/>
-            // return <Redirect to='/explore'/>
-        }
-        if (goDetail) {
-            return <Redirect to={{ pathname: `/detail_roomRent`, state: objData }} />
-        }
+        // const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader, objData, goDetail } = this.state;
+        // const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
+        // if (!noText) {
+        //     // return <Redirect to='/market_roommates'/>
+        //     // return <Redirect to='/explore'/>
+        // }
+        // if (goDetail) {
+        //     return <Redirect to={{ pathname: `/detail_roomRent`, state: objData }} />
+        // }
+        const { states, cities } = this.state;
+        const { onChange, stateOfRoom, cityOfRoom, categoryEvents } = this.props;
+
         return (
             <div className="exploreRentFilter">
                 {/*<Burgermenu/>*/}
@@ -141,9 +148,12 @@ class EventFilterContent extends Component {
                                             <h3><b>Search By:</b></h3>
                                         </div>
                                         <div className="col-md-12 col-sm-12 search-space1">
-                                            <Cascader style={{ width: '100%' }} options={category} 
-                                            // onChange={this.onChange.bind(this)} 
-                                            placeholder="Please select" />
+                                            <Cascader style={{ width: '100%' }}
+                                                options={category}
+                                                onChange={onChange.bind(this)}
+                                                value={categoryEvents}
+                                                // onChange={this.onChange.bind(this)} 
+                                                placeholder="Please select" />
                                         </div>
                                     </div>
                                 </div>
@@ -154,13 +164,21 @@ class EventFilterContent extends Component {
                                     <div class="col-md-12 col-sm-12 spacing">
                                         <h3 className="col-md-12"><b>Location</b></h3>
                                         <div className="col-md-12 col-sm-12 col-xs-12">
-                                            <Cascader style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)} /></div>
+                                            <Cascader style={{ width: '100%' }}
+                                                value={stateOfRoom}
+
+                                                options={states} onChange={this.onChangeState.bind(this)}
+                                            /></div>
                                         <div className="col-md-12 col-sm-12 col-xs-12" style={{ marginTop: '2vw', }}>
-                                            <Cascader style={{ width: '100%' }} options={cities} onChange={this.onChangeCity.bind(this)} /></div>
+                                            <Cascader style={{ width: '100%' }}
+                                                value={cityOfRoom}
+
+                                                options={cities} onChange={this.onChangeCity.bind(this)}
+                                            /></div>
                                     </div>
                                 </div>
-                                <div className="row">
-                                    <div className="col-md-12 col-sm-12 search-space1">
+                                {/* <div className="row"> */}
+                                {/* <div className="col-md-12 col-sm-12 search-space1">
                                         <button
                                             className="btn"
                                             onClick={this.mostPopular.bind(this)}
@@ -168,8 +186,8 @@ class EventFilterContent extends Component {
                                         >
                                             Search
                                         </button>
-                                    </div>
-                                    {/* <div class="col-md-12 col-sm-12 spacing hidden-xs" style={{ marginTop: '2vw' }}>
+                                    </div> */}
+                                {/* <div class="col-md-12 col-sm-12 spacing hidden-xs" style={{ marginTop: '2vw' }}>
                                         <h3 className="col-md-12"><b>Price</b></h3>
                                         {/* <div className="slidecontainer"> 
                                         <div size="large" style={{ marginLeft: '10px' }}>
@@ -194,9 +212,9 @@ class EventFilterContent extends Component {
                                             </Row>
                                         </div>
                                     </div> */}
-                                   
 
-                                </div>
+
+                                {/* </div> */}
                             </span>
                         </div>
                     </div>

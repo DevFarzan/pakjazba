@@ -160,6 +160,7 @@ class Signup extends Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 this.setState({ showloader: true })
+                console.log(values , 'values')
                 this.funcLogin(values)
             }
         });

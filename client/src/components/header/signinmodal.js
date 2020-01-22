@@ -178,6 +178,7 @@ class Signin extends Component {
                     loader: true
                 })
                 this.funcSignUp(values)
+                console.log(values, 'values')
             }
         });
     }//end handleSubmit
@@ -294,7 +295,7 @@ class Signin extends Component {
         const { data } = this.props;
         const { visible, secModal, email2, dropdown, termCondition } = this.state;
         const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
-        
+
         return (
             <div className="">
                 <span>

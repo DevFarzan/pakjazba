@@ -483,8 +483,8 @@ class EcommerceTAB extends Component {
                                 key="1">
                                 <EcomFilter onChange={this.onChange} categoryofProduct={categoryofProduct} colorsofProduct={colorsofProduct} onChangeCheckBoxes={this.onChangeCheckBoxes} 
                                 brandofProducts={brandofProducts}    onChangeBrand={this.onChangeBrand} />
-                                <Slider mainH1="Pakjazba Ecommerce" mainH2="" searcProduct={this.searcProduct} searchProduct={this.searchProduct}
-                                    onChange={this.onChange} searchBy={searchBy} checkRadioBtn={checkRadioBtn} />
+                                {/* <Slider mainH1="Pakjazba Ecommerce" mainH2="" searcProduct={this.searcProduct} searchProduct={this.searchProduct}
+                                    onChange={this.onChange} searchBy={searchBy} checkRadioBtn={checkRadioBtn} /> */}
                             </TabPane>
                             <TabPane tab={
                                 <span><Icon type="android" /> Category </span>}

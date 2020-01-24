@@ -24,7 +24,8 @@ class HomePage extends Component {
             roomRenting: [],
             buySell: [],
             jobPortal: [],
-            event: []
+            event: [], 
+            ecommerce: [],
         };
 
     }
@@ -52,7 +53,8 @@ class HomePage extends Component {
                 buySell: req.busell,
                 roomRenting,
                 jobPortal: req.jobPortalData,
-                event: req.eventPortalData
+                event: req.eventPortalData,
+                ecommerce: req.ecommerce,
             })
         }
     }
@@ -76,7 +78,7 @@ class HomePage extends Component {
     }
 
     render() {
-        const { business, roomRenting, buySell, jobPortal, event } = this.state
+        const { business, roomRenting, buySell, jobPortal, event, ecommerce } = this.state
 
         return (
             <div className="">
@@ -110,7 +112,7 @@ class HomePage extends Component {
                     </div>
                     <div className="">
                         <h2 className="headingtext4home"> Room Renting </h2>
-                        <h4 className="headingtexth4">Handpicked business by our team</h4>
+                        <h4 className="headingtexth4">Handpicked Rooms by our team</h4>
                         <div style={{ marginTop: '80px' }}>
                             <CarouselHome data={roomRenting} detail='roomRentData' />
                         </div>
@@ -118,7 +120,7 @@ class HomePage extends Component {
                     </div>
                     <div className="">
                         <h2 className="headingtext4home"> Job Listing </h2>
-                        <h4 className="headingtexth4">Handpicked business by our team</h4>
+                        <h4 className="headingtexth4">Featured Jobs for your carier</h4>
                         <div style={{ marginTop: '80px' }}>
                             <CarouselHome data={jobPortal} detail='jobListData' />
                         </div>
@@ -126,7 +128,7 @@ class HomePage extends Component {
                     </div>
                     <div className="">
                         <h2 className="headingtext4home">Buy & Sell </h2>
-                        <h4 className="headingtexth4">Handpicked business by our team</h4>
+                        <h4 className="headingtexth4">Handpicked Products to Buy</h4>
                         <div style={{ marginTop: '80px' }}>
                             <CarouselHome data={buySell} detail='buySellData' />
                         </div>
@@ -134,9 +136,16 @@ class HomePage extends Component {
                     </div>
                     <div className="">
                         <h2 className="headingtext4home"> Events </h2>
-                        <h4 className="headingtexth4">Handpicked business by our team</h4>
+                        <h4 className="headingtexth4">Handpicked Events For You</h4>
                         <div style={{ marginTop: '80px' }}>
                             <CarouselHome data={event} detail='eventPortalData' />
+                        </div>
+                    </div>
+                    <div className="">
+                        <h2 className="headingtext4home"> Ecommerce </h2>
+                        <h4 className="headingtexth4">Handpicked Products by our team</h4>
+                        <div style={{ marginTop: '80px' }}>
+                            <CarouselHome data={ecommerce} detail='ecommerce' />
                         </div>
                     </div>
                 </div>

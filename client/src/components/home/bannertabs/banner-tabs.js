@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './banner-tabs.css';
+import RoomTabs from './room-tabs';
 import { Link } from "react-router-dom";
 import { Select, Input, Icon } from 'antd';
 
@@ -76,39 +77,7 @@ class BannerTabs extends Component{
                                     <div class="tab-content">
                                     
                                         <div class="tab-pane active" role="tabpanel" id="tab1">
-                                            <div className="row">
-                                                <div className="col-md-12">
-                                                    <div className="col-md-3 col-sm-6">
-                                                        <Input placeholder="Basic usage"
-                                                            suffix={ <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }}/>}/>
-                                                    </div>
-                                                    <div className="col-md-3 col-sm-6">
-                                                        <Select defaultValue="lucy" onChange={handleChange}>
-                                                            <OptGroup label="Manager">
-                                                            <Option value="jack">Jack</Option>
-                                                            <Option value="lucy">Lucy</Option>
-                                                            </OptGroup>
-                                                            <OptGroup label="Engineer">
-                                                            <Option value="Yiminghe">yiminghe</Option>
-                                                            </OptGroup>
-                                                        </Select>
-                                                    </div>
-                                                    <div className="col-md-3 col-sm-6">
-                                                        <Input placeholder="Basic usage"/>
-                                                    </div>
-                                                    <div className="col-md-3 col-sm-6">
-                                                        <button className="btn insidebutton" style={{ width: '100%' }}>
-                                                            <span className="fa fa-search">
-                                                            
-                                                            </span>
-                                                            <span>
-                                                            
-                                                            Submit</span>
-                                                            </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
+                                            <RoomTabs/>
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab2">
                                             <div className="row">

@@ -40,7 +40,7 @@ class BussinesCard extends Component {
             <Link key={1} to={obj}>
                 <div className="" style={{ 'marginBottom': '30px' }}>
                     <div className="card" style={{ width: '100%', backgroundColor: "#000000" }}>
-                        <img alt='' src={src} style={{ height: '200px', width: "100%", filter: 'brightness(0.5)' }} />
+                        <img alt='' src={src} style={{ height: '200px', width: "100%", filter: 'brightness(0.5)', backgroundColor:"white" }} />
 
                         {detail == 'businessData' && <span>
                             <div className="businessborder">
@@ -249,12 +249,12 @@ class BussinesCard extends Component {
                             </div>
                             <div className="eventborder">
                                 <div className="row" style={{ padding: "5px 10px" }}>
-                                    <div className="col-md-2 col-xs-2">
+                                    <div className="col-md-3 col-xs-2">
                                         <div className="organiserimage">
                                             <img src="./images/images.jpg" alt="" />
                                         </div>
                                     </div>
-                                    <div className="col-md-10 col-xs-10">
+                                    <div className="col-md-9 col-xs-10">
                                         <h5 className="organisername"> {cardDetails.name} </h5>
                                     </div>
                                 </div>
@@ -262,38 +262,24 @@ class BussinesCard extends Component {
                         </span>}
                        
                         {detail == 'ecommerce' && <span>
+                            <div className="pricingSell">
+                            {'$' + cardDetails.price}
+        
+                            
+                            </div>
                             <p style={{ color: 'black', margin: "0", fontFamily: 'Poppins, sans-serif' }}>
-                                {cardDetails.product}
-                            </p>
-                            {/* <p style={{color: 'black', margin:"0",fontFamily: 'Poppins, sans-serif'}}></p> */}
-                            <h5 style={{ marginTop: '5px', marginLeft: "0", marginBottom: "5px" }}>
-                                <b>{cardDetails.eventTitle}</b>
-                            </h5>
-                            <p style={{ marginBottom: "0px" }}>
-                                <span style={{ color: "black" }}>{cardDetails.city}</span>
-                            </p>
-                            <p>
-                                <span className="glyphicon glyphicon-calendar"
-                                    style={{ color: "#008080", margin: "-1px" }}
-                                ></span>
-                                <span style={{ color: "black", marginLeft: "5px" }}>
-                                    {moment(cardDetails.posted, "LL").format('YYYY-MM-DD')}
-                                </span>
-                            </p>
-                        </span>}
-                       
-                        {detail == 'ecommerce' && <span>
-                            <p style={{ color: 'black', margin: "0", fontFamily: 'Source Sans Pro, sans-serif' }}>
-                                {cardDetails.product}
-                            </p>
-                            <p style={{ color: 'black', margin: "0", fontFamily: 'Source Sans Pro, sans-serif' }}>
                                 <b>{cardDetails.country}</b>
-                                <br />{'$' + cardDetails.price}
+                                <br />
                             </p>
                             <span>
 
                             </span>
+                           
                         </span>}
+                       
+                        {/* {detail == 'ecommerce' && <span>
+
+                        </span>} */}
                     
                     </div>
                 </div>

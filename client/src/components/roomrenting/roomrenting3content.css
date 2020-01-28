@@ -10,3 +10,144 @@
   
 }
 
+@media only screen and (min-device-width: 330px) and (max-device-width: 767px){
+  .roomDateBaner{
+    color: white;
+    font-size: 20px; 
+    font-weight:bold;
+    margin: 0;
+  }
+  .roomDayBaner{
+    margin:0;
+    font-size: 20px;
+    white-space: nowrap;
+    font-weight: 600;
+    color: white;
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1023px){
+  .roomDateBaner{
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0;
+    margin-top: -0.5vw;
+  }
+  .roomDayBaner{
+    margin:0;
+    font-size: 15px;
+    white-space: nowrap;
+    font-weight: 600;
+    color: white;
+  }
+}
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1365px){
+  .roomDateBaner{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+    margin-top: -0.2vw;
+  }
+  .roomDayBaner{
+    margin:0;
+    font-size: 20px;
+    white-space: nowrap;
+    font-weight: 600;
+    color: white;
+  }
+}
+@media only screen and (min-device-width: 1366px) and (max-device-width: 1600px){
+  .roomDateBaner{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+    margin-top: -0.1vw;
+  }
+  .roomDayBaner{
+    margin:0;
+    font-size: 20px;
+    white-space: nowrap;
+    font-weight: 600;
+    color: white;
+  }
+}
+@media only screen and (min-device-width: 1600px){
+  .roomDateBaner{
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0;
+    margin-top: -0.1vw;
+  }
+  .roomDayBaner{
+    margin:0;
+    font-size: 20px;
+    white-space: nowrap;
+    font-weight: 600;
+    color: white;
+  }
+}
+
+.spaNTxtDetails{
+  font-family: Source Sans Pro, sans-serif;
+  font-weight: bold;
+}
+@media screen and (min-device-width: 360px) and (max-device-width: 767px) {
+ 
+  .profilePicContactRent{
+    width: 100%; 
+    cursor: pointer; 
+    margin-top: 35px;
+  }
+  .margMObilerent{
+    margin-top: 25px;
+  }
+}
+@media screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+  
+  .profilePicContactRent{
+    width: 100%;
+    cursor: pointer;
+    margin-top: 19px;
+    margin-bottom: 3vw;
+  }
+  .margMObilerent{
+    margin-top: 30px;
+  }
+}
+@media screen and (min-device-width: 1024px) and (max-device-width: 1365px) {
+  
+  .profilePicContactRent{
+    width: 100%; 
+    cursor: pointer; 
+    margin-top: 25px;
+  }
+  .margMObilerent{
+    margin-top: 25px;
+  }
+}
+@media screen and (min-device-width: 1366px) and (max-device-width: 1600px) {
+  
+  .profilePicContactRent{
+    width: 100%; 
+    cursor: pointer; 
+    margin-top: 25px;
+  }
+  .margMObilerent{
+    margin-top: 25px;
+  }
+}
+@media screen and (min-device-width: 1600px){
+  
+  .profilePicContactRent{
+    width: 100%; 
+    cursor: pointer; 
+    margin-top: 19px;
+    margin-bottom: 2vw;
+  }
+  .margMObilerent{
+    margin-top: 35px;
+  }
+}

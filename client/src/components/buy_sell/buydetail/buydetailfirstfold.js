@@ -17,7 +17,7 @@ class Buydetailfirstfold extends Component {
     render() {
         let data = this.props.data;
         let images = data.images || data.arr_url;
-        console.log(data , 'data')
+        // console.log(data.sizedimension && data.sizedimension[0], 'data')
         if (this.state.goProfile) {
             return <Redirect to={{ pathname: `/profile_user/${data.profileid}`, state: { userId: data.userid, profileId: data.profileid } }} />
         }
@@ -40,9 +40,11 @@ class Buydetailfirstfold extends Component {
                                 </div>
                             </div>
                             <div className="col-xs-12 col-sm-3 col-md-2 col-lg-2">
-                                <button className="btnCallEventbaner">
-                                    <Icon type="phone" /> <span>Call Now</span>
-                                </button>
+                                <a href={data.contactnumber}>
+                                    <button className="btnCallEventbaner">
+                                        <Icon type="phone" /> <span>Call Now</span>
+                                    </button>
+                                </a>
                                 <span>
                                     <p className="adPOsted">Ad Posted On {data.posted}</p>
                                 </span>
@@ -56,8 +58,8 @@ class Buydetailfirstfold extends Component {
                         <div className="col-md-5">
                             <div className="row RoomMainDivS" style={{ height: "auto", margin: '0px 0px 20px 0px' }}>
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <Carousel autoplay>
-                                        {images && images.map((elem, key) => {
+                                    <Carousel>
+                                        {data.images && data.images.map((elem, key) => {
                                             return (
                                                 <div key={key}>
                                                     <img alt='' src={elem} />
@@ -91,19 +93,48 @@ class Buydetailfirstfold extends Component {
                                             <a onClick={() => { this.goToProfile() }} style={{ fontSize: '13px', cursor: 'pointer', color: 'rgb(55, 169, 155)' }}>
                                                 View Profile
                                             </a>
-                                            <h5>
+                                            <h5 style={{ marginTop: '10px', marginBottom: '7px' }}>
                                                 <span className="glyphicon glyphicon-phone" style={{ marginRight: "15px", color: "#236A4B" }}></span>
                                                 <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.contactnumber}</span>
                                             </h5>
-
-                                            <h5>
+                                            <h5 style={{ marginBottom: '7px' }}>
                                                 <span className="glyphicon glyphicon-globe" style={{ marginRight: "15px", color: "#236A4B" }}></span>
                                                 <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.contactemail}</span>
+                                            </h5>
+                                            <h5>
+                                                <span className="glyphicon glyphicon-home"
+                                                    style={{ marginRight: "15px", color: "#36a89f" }}></span>
+                                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.address}, {data.city}. {data.state}</span>
                                             </h5>
                                         </div>
                                     </div>
 
                                 </div>
+                            </div>
+                            <div className="row RoomMainDivS" style={{ paddingBottom: '0px', margin: '0px 0px 20px 0px' }}>
+                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
+                                    <Icon type="unordered-list" />
+                                    <h5 className="headingMainRoom">
+                                        Delivery
+                                    </h5>
+                                </div><br />
+                                {data.delivery && <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div className="row" style={{ textAlign: 'center' }}>
+                                        <div className="col-xs-1 col-md-2 col-sm-2 col-lg-2"></div>
+                                        <div className="col-xs-10 col-md-8 col-sm-8 col-lg-8">
+                                            <p className="eductionPara">
+                                                {data.delivery.map((elem,key)=>{
+                                                    return (
+                                                        <span>
+                                                            {elem} , 
+                                                        </span>
+                                                    )
+                                                })}
+                                            </p>
+                                        </div>
+                                        <div className="col-xs-1 col-md-2 col-sm-2 col-lg-2"></div>
+                                    </div>
+                                </div>}
                             </div>
                         </div>
                         <div className="col-md-5">
@@ -117,7 +148,7 @@ class Buydetailfirstfold extends Component {
                                             <p style={{ margin: "0", fontWeight: 'bold' }}>Condition:</p>
                                         </div>
                                         <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev" style={{ textAlign: 'right' }}>
-                                            <span style={{ fontFamily: 'Source Sans Pro, sans-serif', fontWeight: 'bold' }}>{data.condition}</span>
+                                            <span className="spaNTxtBuyNsel">{data.condition}</span>
                                         </div>
                                         <div className="hidden-xs col-sm-4 col-md-4 col-lg-4"></div>
                                     </div>
@@ -128,7 +159,7 @@ class Buydetailfirstfold extends Component {
                                             <p style={{ margin: "0", fontWeight: 'bold' }}>Model Make:</p>
                                         </div>
                                         <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev" style={{ textAlign: 'right' }}>
-                                            <span style={{ fontFamily: 'Source Sans Pro, sans-serif', fontWeight: 'bold' }}>{data.modelmake || data.make}</span>
+                                            <span className="spaNTxtBuyNsel">{data.modelmake || data.make}</span>
                                         </div>
                                         <div className="hidden-xs col-sm-4 col-md-4 col-lg-4"></div>
                                     </div>
@@ -139,7 +170,7 @@ class Buydetailfirstfold extends Component {
                                             <p style={{ margin: "0", fontWeight: 'bold' }}> Model Name: </p>
                                         </div>
                                         <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev" style={{ textAlign: 'right' }}>
-                                            <span style={{ fontFamily: 'Source Sans Pro, sans-serif', fontWeight: 'bold' }}>{data.modelname || data.modelName}</span>
+                                            <span className="spaNTxtBuyNsel">{data.modelname || data.modelName}</span>
                                         </div>
                                         <div className="hidden-xs col-sm-4 col-md-4 col-lg-4"></div>
                                     </div>
@@ -150,11 +181,44 @@ class Buydetailfirstfold extends Component {
                                             <p style={{ margin: "0", fontWeight: 'bold' }}> Model Number:</p>
                                         </div>
                                         <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev" style={{ textAlign: 'right' }}>
-                                            <span style={{ fontFamily: 'Source Sans Pro, sans-serif', fontWeight: 'bold' }}>{data.modelnumber || data.number}</span>
+                                            <span className="spaNTxtBuyNsel">{data.modelnumber || data.number}</span>
                                         </div>
                                         <div className="hidden-xs col-sm-4 col-md-4 col-lg-4"></div>
                                     </div>
                                 </div>
+                                {data.sizedimension && <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
+                                    <div className="row" style={{ paddingBottom: '0' }}>
+                                        <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev">
+                                            <p style={{ margin: "0", fontWeight: 'bold' }}>Length</p>
+                                        </div>
+                                        <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev" style={{ textAlign: 'right' }}>
+                                            <span className="spaNTxtBuyNsel">{data.sizedimension[0].length}</span>
+                                        </div>
+                                        <div className="hidden-xs col-sm-4 col-md-4 col-lg-4"></div>
+                                    </div>
+                                </div>}
+                                {data.sizedimension && <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
+                                    <div className="row" style={{ paddingBottom: '0' }}>
+                                        <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev">
+                                            <p style={{ margin: "0", fontWeight: 'bold' }}>Width</p>
+                                        </div>
+                                        <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev" style={{ textAlign: 'right' }}>
+                                            <span className="spaNTxtBuyNsel">{data.sizedimension[0].width}</span>
+                                        </div>
+                                        <div className="hidden-xs col-sm-4 col-md-4 col-lg-4"></div>
+                                    </div>
+                                </div>}
+                                {data.sizedimension && <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
+                                    <div className="row" style={{ paddingBottom: '0' }}>
+                                        <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev">
+                                            <p style={{ margin: "0", fontWeight: 'bold' }}>Height</p>
+                                        </div>
+                                        <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev" style={{ textAlign: 'right' }}>
+                                            <span className="spaNTxtBuyNsel">{data.sizedimension[0].height}</span>
+                                        </div>
+                                        <div className="hidden-xs col-sm-4 col-md-4 col-lg-4"></div>
+                                    </div>
+                                </div>}
                             </div>
                             <div className="row RoomMainDivS" style={{ margin: '0px', paddingBottom: '0px', marginTop: '20px' }}>
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
@@ -165,11 +229,14 @@ class Buydetailfirstfold extends Component {
                                 </div><br />
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <div className="row" style={{ textAlign: 'center' }}>
-                                        <div className="col-xs-1 col-md-3 col-sm-3 col-lg-3"></div>
-                                        <div className="col-xs-10 col-md-6 col-sm-6 col-lg-6">
-                                            <p className="eductionPara">{data.subcategory || data.category}</p>
+                                        <div className="col-xs-1 col-md-2 col-sm-2 col-lg-2"></div>
+                                        <div className="col-xs-10 col-md-8 col-sm-8 col-lg-8">
+                                            <p className="eductionPara">
+                                                {data.subcategory || data.category}<br />
+                                                {data.subsubcategory || data.category}
+                                            </p>
                                         </div>
-                                        <div className="col-xs-1 col-md-3 col-sm-4 col-lg-3"></div>
+                                        <div className="col-xs-1 col-md-2 col-sm-2 col-lg-2"></div>
                                     </div>
                                 </div>
                             </div>

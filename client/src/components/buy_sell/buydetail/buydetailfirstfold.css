@@ -17,7 +17,7 @@
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1365px){
   .BuySellBannertoP{
     width: 100%;
-    height: 40vh;
+    height: 41vh;
     position: absolute;
     filter: brightness(0.5);
   }
@@ -25,7 +25,7 @@
 @media only screen and (min-device-width: 1366px) and (max-device-width: 1600px){
   .BuySellBannertoP{
     width: 100%;
-    height: 53vh;
+    height: 54vh;
     position: absolute;
     filter: brightness(0.5);
   }
@@ -33,7 +33,7 @@
 @media only screen and (min-device-width: 1600px){
   .BuySellBannertoP{
     width: 100%;
-    height: 42vh;
+    height: 43vh;
     position: absolute;
     filter: brightness(0.5);
   }
@@ -263,4 +263,9 @@ hr{
   .bannerPriceDivv{
     border: 2px solid white;
   }
+}
+
+.spaNTxtBuyNsel{
+  font-family: Source Sans Pro, sans-serif;
+  font-weight: bold;
 }

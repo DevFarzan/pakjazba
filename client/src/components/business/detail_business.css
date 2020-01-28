@@ -151,7 +151,7 @@ margin-left: -40px;
   .bannerBusinessTop{
     width: 100%;
     margin-top: -5px;
-    height: 27vh;
+    height: 24vh;
     position: absolute;
     -webkit-filter: brightness(0.5);
     filter: brightness(0.5);
@@ -159,6 +159,14 @@ margin-left: -40px;
   .BannerTxtBusiness{
     padding-top: 17vw !important;
     padding-bottom: 2vw !important;
+  }
+  .profilePicContact{
+    width: 100%; 
+    cursor: pointer; 
+    margin-top: 35px;
+  }
+  .margMObileBusiness{
+    margin-top: 25px;
   }
 }
 @media screen and (min-device-width: 768px) and (max-device-width: 1023px) {
@@ -179,6 +187,14 @@ margin-left: -40px;
     padding-top: 17vw !important;
     padding-bottom: 2vw !important;
   }
+  .profilePicContact{
+    width: 100%; 
+    cursor: pointer; 
+    margin-top: 25px;
+  }
+  .margMObileBusiness{
+    margin-top: 25px;
+  }
 }
 @media screen and (min-device-width: 1024px) and (max-device-width: 1365px) {
   .bannerStarBusines{
@@ -196,6 +212,14 @@ margin-left: -40px;
   .BannerTxtBusiness{
     padding-top: 17vw !important;
     padding-bottom: 2vw !important;
+  }
+  .profilePicContact{
+    width: 100%; 
+    cursor: pointer; 
+    margin-top: 25px;
+  }
+  .margMObileBusiness{
+    margin-top: 25px;
   }
 }
 @media screen and (min-device-width: 1366px) and (max-device-width: 1600px) {
@@ -215,6 +239,14 @@ margin-left: -40px;
     padding-top: 17vw !important;
     padding-bottom: 2vw !important;
   }
+  .profilePicContact{
+    width: 100%; 
+    cursor: pointer; 
+    margin-top: 25px;
+  }
+  .margMObileBusiness{
+    margin-top: 25px;
+  }
 }
 @media screen and (min-device-width: 1600px){
   .bannerStarBusines{
@@ -232,5 +264,13 @@ margin-left: -40px;
   .BannerTxtBusiness{
     padding-top: 17vw !important;
     padding-bottom: 2vw !important;
+  }
+  .profilePicContact{
+    width: 100%; 
+    cursor: pointer; 
+    margin-top: 30px;
+  }
+  .margMObileBusiness{
+    margin-top: 25px;
   }
 }

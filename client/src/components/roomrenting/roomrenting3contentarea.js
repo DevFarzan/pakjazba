@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios/index";
 import { Carousel, Rate, notification, Icon, Spin, Cascader } from 'antd';
 import "./roomrenting2content.css";
+import "./roomrenting3content.css";
 import moment from 'moment'
 import { Redirect } from 'react-router';
 import Gallery from './gallery';
@@ -170,22 +171,25 @@ class Roomrenting3contentarea extends Component {
       phone = data.contactnumber;
     }
     let postedOn = moment(data.posted, "LL").format('YYYY-MM-DD');
+    console.log("TCL: Roomrenting3contentarea -> render -> data", data)
     return (
       <div>
         <Gallery images={images} style={{ marginTop: '0%' }} />
         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 mainRoomBanerPadMarg">
           <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8">
             <h1 className="EventBanerTextCsS">{data.postingtitle || data.postingTitle}</h1>
-            <p className="BanerSmalTextCsS">{data.propertylocation || data.propertyLocation}</p>
+            <p className="BanerSmalTextCsS">{data.propertylocation}, {data.state}, {data.city}</p>
           </div>
           <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2" style={{ textAlign: 'center' }}>
-            <p className="eventDateBaner">Price per month</p>
-            <h4 className="eventDayBaner">${data.rent || data.price}</h4>
+            <p className="roomDateBaner">Price per month</p>
+            <h4 className="roomDayBaner">${data.rent || data.price}</h4>
           </div>
           <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-            <button className="btnCallEventbaner">
-              <Icon type="phone" /> <span>Call Now</span>
-            </button>
+            <a href={data.contactnumber}>
+              <button className="btnCallEventbaner">
+                <Icon type="phone" /> <span>Call Now</span>
+              </button>
+            </a>
           </div>
         </div>
         <div className="row tabMainDiV">
@@ -199,38 +203,7 @@ class Roomrenting3contentarea extends Component {
                 }
                 key="1"
               >
-                {/* <div className="row" style={{ backgroundColor: '#f7f5ed' }}>
-                  <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2"></div>
-                  <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                    <div className="row" style={{ textAlign: 'center' }}>
-                      <div className="col-xs-4 col-sm-2 col-md-2 col-lg-2">
-                        <Icon type="phone" className="tabIcon" />
-                        <p>Call now</p>
-                      </div>
-                      <div className="col-xs-4 col-sm-2 col-md-2 col-lg-2">
-                        <Icon type="heart" className="tabIcon" />
-                        <p>Bookmark</p>
-                      </div>
-                      <div className="col-xs-4 col-sm-2 col-md-2 col-lg-2">
-                        <Icon type="share-alt" className="tabIcon" />
-                        <p>Share</p>
-                      </div>
-                      <div className="col-xs-4 col-sm-2 col-md-2 col-lg-2">
-                        <Icon type="environment" className="tabIcon" />
-                        <p>Direction</p>
-                      </div>
-                      <div className="col-xs-4 col-sm-2 col-md-2 col-lg-2">
-                        <Icon type="branches" className="tabIcon" />
-                        <p>Website</p>
-                      </div>
-                      <div className="col-xs-4 col-sm-2 col-md-2 col-lg-2">
-                        <Icon type="mail" className="tabIcon" />
-                        <p>Send email</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2"></div>
-                </div> */}
+
                 <div style={{ backgroundColor: '#f7f5ed' }}>{/* style={{width:"70%"}} */}
                   <div className="row">
                     <div className="col-md-1"></div>
@@ -303,16 +276,44 @@ class Roomrenting3contentarea extends Component {
                         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
                           <Icon type="unordered-list" /><h5 className="headingMainRoom">Contact Details</h5>
                         </div>
-                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ marginTop: '15px' }}>
-                          <h5>
-                            <span className="glyphicon glyphicon-phone" style={{ marginRight: "15px", color: "#236A4B" }}></span>
-                            <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{phone}</span>
-                          </h5>
+                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ marginTop: '0px' }}>
+                          <div className="row" style={{ padding: "0" }}>
+                            <div className="col-xs-6 col-md-3 col-sm-3">
+                              <div className="profile_img">
+                                <img onClick={() => { this.goToProfile() }} src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="profilePicContactRent" alt="" />
+                              </div>
+                            </div>
+                            <div className="col-xs-12 col-md-9 col-sm-9 margMObilerent">
+                              <span style={{ fontWeight: 'bold' }}>{data.contactname}</span><br />
+                              <a onClick={() => { this.goToProfile() }} style={{ fontSize: '13px', cursor: 'pointer', color: 'rgb(55, 169, 155)' }}>
+                                View Profile
+                              </a>
+                              <h5 style={{ marginTop: '10px', marginBottom: '7px' }}>
+                                <span className="glyphicon glyphicon-phone" style={{ marginRight: "15px", color: "#236A4B" }}></span>
+                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{phone}</span>
+                              </h5>
+                              <h5>
+                                <span className="glyphicon glyphicon-globe" style={{ marginRight: "15px", color: "#236A4B" }}></span>
+                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{email}</span>
+                              </h5>
+                              {/* <h5 style={{ marginTop: '10px', marginBottom: '7px' }}>
+                                <span className="glyphicon glyphicon-phone"
+                                  style={{ marginRight: "15px", color: "#36a89f" }}></span>
+                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.businessnumber || data.businessNumber}</span>
+                              </h5>
+                              <h5 style={{ marginBottom: '7px' }}>
+                                <span className="glyphicon glyphicon-globe"
+                                  style={{ marginRight: "15px", color: "#36a89f" }}></span>
+                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.businessemailid || data.businessEmail}</span>
+                              </h5>
+                              <h5 style={{ marginBottom: '7px' }}>
+                                <span className="glyphicon glyphicon-home"
+                                  style={{ marginRight: "15px", color: "#36a89f" }}></span>
+                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.address || data.businessAddress}, {data.city || data.businessCity}. {data.state || data.businessState}</span>
+                              </h5> */}
+                            </div>
+                          </div>
 
-                          <h5>
-                            <span className="glyphicon glyphicon-globe" style={{ marginRight: "15px", color: "#236A4B" }}></span>
-                            <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{email}</span>
-                          </h5>
                         </div>
                       </div>
                       <div className="row RoomMainDivS" style={{ padding: "0px" }}>
@@ -324,37 +325,37 @@ class Roomrenting3contentarea extends Component {
                             if (key <= item - 1)
                               return (
                                 <div className="card-body space" style={{ marginBottom: "0px" }}>
-                                  <div className="row" style={{ margin:'35px 0px 0px 0px' }}>
-                                      <div className="col-md-2 col-sm-4 col-xs-12">
-                                        <img
-                                          src={elem.userImg ? elem.userImg : "../images/images.jpg"}
-                                          className="image-circle"
-                                          alt="" width="100" height="50"
-                                          style={{ cursor: 'pointer' }}
-                                          onClick={this.goToProfile.bind(this, elem.userId, elem.profileId)}
-                                        />
-                                      </div>
-                                      <div className="col-md-2 col-sm-4" style={{ paddingTop: "10px" }}>
-                                        <h5 className=""
-                                          style={{ margin: "0", cursor: 'pointer' }}
-                                          onClick={this.goToProfile.bind(this, elem.userId, elem.profileId)}
-                                        >
-                                          {elem.name}
-                                        </h5>
-                                      </div>
-                                      <div className="col-md-4 col-sm-4" style={{ paddingTop: "7px" }}>
-                                        <Rate disabled allowHalf value={elem.star} />
-                                      </div>                                       
-                                      <div className="col-md-4 col-sm-4 col-xs-12" style={{ paddingTop: "7px" }}>
-                                        <a name="linkReview"><p className="star-space1">Writen On {elem.written} </p></a>
-                                      </div>
-                                   
-                                      <div className="col-md-12 col-sm-12 col-xs-12">
-                                        <p style={{margin:'0'}}>{elem.message}.</p>
-                                      </div>
-                                    
+                                  <div className="row" style={{ margin: '35px 0px 0px 0px' }}>
+                                    <div className="col-md-2 col-sm-4 col-xs-12">
+                                      <img
+                                        src={elem.userImg ? elem.userImg : "../images/images.jpg"}
+                                        className="image-circle"
+                                        alt="" width="100" height="50"
+                                        style={{ cursor: 'pointer' }}
+                                        onClick={this.goToProfile.bind(this, elem.userId, elem.profileId)}
+                                      />
+                                    </div>
+                                    <div className="col-md-2 col-sm-4" style={{ paddingTop: "10px" }}>
+                                      <h5 className=""
+                                        style={{ margin: "0", cursor: 'pointer' }}
+                                        onClick={this.goToProfile.bind(this, elem.userId, elem.profileId)}
+                                      >
+                                        {elem.name}
+                                      </h5>
+                                    </div>
+                                    <div className="col-md-4 col-sm-4" style={{ paddingTop: "7px" }}>
+                                      <Rate disabled allowHalf value={elem.star} />
+                                    </div>
+                                    <div className="col-md-4 col-sm-4 col-xs-12" style={{ paddingTop: "7px" }}>
+                                      <a name="linkReview"><p className="star-space1">Writen On {elem.written} </p></a>
+                                    </div>
+
+                                    <div className="col-md-12 col-sm-12 col-xs-12">
+                                      <p style={{ margin: '0' }}>{elem.message}.</p>
+                                    </div>
+
                                   </div>
-                                  <hr/>
+                                  <hr />
                                 </div>
                               )
                           })}
@@ -373,72 +374,84 @@ class Roomrenting3contentarea extends Component {
                         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
                           <Icon type="unordered-list" /><h5 className="headingMainRoom">Details</h5>
                         </div>
-                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
+                        {data.petFriendly != '' && <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
                           <div className="row" style={{ paddingBottom: '0' }}>
                             <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev">
                               <p style={{ margin: "0", fontWeight: 'bold' }}> Pets </p>
                             </div>
                             <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev" style={{ textAlign: 'right' }}>
-                              <span style={{ fontFamily: 'Source Sans Pro, sans-serif', fontWeight: 'bold' }}>{petFriendly}</span>
+                              <span className="spaNTxtDetails" >{petFriendly}</span>
                             </div>
                             <div className="hidden-xs col-sm-4 col-md-4 col-lg-4"></div>
                           </div>
-                        </div>
-                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
+                        </div>}
+                        {data.smoking != '' && <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
                           <div className="row" style={{ paddingBottom: '0' }}>
                             <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev">
                               <p style={{ margin: "0", fontWeight: 'bold' }}> Smoking </p>
                             </div>
                             <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev" style={{ textAlign: 'right' }}>
-                              <span style={{ fontFamily: 'Source Sans Pro, sans-serif', fontWeight: 'bold' }}>{data.smoking}</span>
+                              <span className="spaNTxtDetails">{data.smoking}</span>
                             </div>
                             <div className="hidden-xs col-sm-4 col-md-4 col-lg-4"></div>
                           </div>
-                        </div>
-                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
+                        </div>}
+                        {data.vegetariansprefered != '' && <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
                           <div className="row" style={{ paddingBottom: '0' }}>
                             <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev">
                               <p style={{ margin: "0", fontWeight: 'bold' }}> Vegetarian </p>
                             </div>
                             <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev" style={{ textAlign: 'right' }}>
-                              <span style={{ fontFamily: 'Source Sans Pro, sans-serif', fontWeight: 'bold' }}>{data.vegetariansprefered || data.vegNoVeg}</span>
+                              <span className="spaNTxtDetails">{data.vegetariansprefered}</span>
                             </div>
                             <div className="hidden-xs col-sm-4 col-md-4 col-lg-4"></div>
                           </div>
-                        </div>
-                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
+                        </div>}
+                        {data.furnished != '' && <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
                           <div className="row" style={{ paddingBottom: '0' }}>
-                            <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev">
+                            <div className="col-xs-4 col-sm-3 col-md-3 col-lg-3 borderDetailDev">
                               <p style={{ margin: "0", fontWeight: 'bold' }}> Furnished </p>
                             </div>
-                            <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev" style={{ textAlign: 'right' }}>
-                              <span style={{ fontFamily: 'Source Sans Pro, sans-serif', fontWeight: 'bold' }}>{data.furnished}</span>
+                            <div className="col-xs-8 col-sm-5 col-md-5 col-lg-5 borderDetailDev" style={{ textAlign: 'right' }}>
+                              <span className="spaNTxtDetails">{data.furnished}</span>
                             </div>
                             <div className="hidden-xs col-sm-4 col-md-4 col-lg-4"></div>
                           </div>
-                        </div>
-                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
+                        </div>}
+                        {data.Attachedbath != false && <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
+                          <div className="row" style={{ paddingBottom: '0' }}>
+                            <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev">
+                              <p style={{ margin: "0", fontWeight: 'bold' }}> Attached Bath </p>
+                            </div>
+                            <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev" style={{ textAlign: 'right' }}>
+                              <span className="spaNTxtDetails">Yes</span>
+                            </div>
+                            <div className="hidden-xs col-sm-4 col-md-4 col-lg-4"></div>
+                          </div>
+                        </div>}
+                        {data.accommodates != '' && <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
                           <div className="row" style={{ paddingBottom: '0' }}>
                             <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev">
                               <p style={{ margin: "0", fontWeight: 'bold' }}> Accomodates </p>
                             </div>
                             <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev" style={{ textAlign: 'right' }}>
-                              <span style={{ fontFamily: 'Source Sans Pro, sans-serif', fontWeight: 'bold' }}>{accommodates}</span>
+                              <span className="spaNTxtDetails">{accommodates}</span>
                             </div>
                             <div className="hidden-xs col-sm-4 col-md-4 col-lg-4"></div>
                           </div>
-                        </div>
-                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
+                        </div>}
+                        {data.startdate != '' && <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
                           <div className="row">
-                            <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev">
+                            <div className="col-xs-3 col-sm-2 col-md-2 col-lg-2 borderDetailDev">
                               <p style={{ margin: "0", fontWeight: 'bold' }}> Dates </p>
                             </div>
-                            <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4 borderDetailDev" style={{ textAlign: 'right' }}>
-                              <input style={{ width: '100%' }} value={" " + from + " ~ " + to + " "} />
+                            <div className="col-xs-9 col-sm-6 col-md-6 col-lg-6 borderDetailDev" style={{ textAlign: 'right' }}>
+                              <span className="spaNTxtDetails" >{from} to {to}</span>
+                              {/* <input style={{ width: '100%' }} value={" " + from + " ~ " + to + " "} /> */}
                             </div>
                             <div className="hidden-xs col-sm-4 col-md-4 col-lg-4"></div>
                           </div>
-                        </div>
+                        </div>}
                       </div>
 
                       <div className="col-md-12 RoomMainDivS" style={{ margin: '5% 0%' }}>

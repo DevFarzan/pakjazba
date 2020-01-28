@@ -180,7 +180,7 @@ class DetailBusiness extends Component {
             return <Redirect to='/' />
         }
         if (goProfile) {
-            return <Redirect to={{ pathname: '/profile_userDetail', state: { userId: reviewUserId, profileId: reviewProfileId } }} />
+            return <Redirect to={{ pathname: `/profile_user/${data.profileId}`, state: { userId: reviewUserId, profileId: reviewProfileId } }} />
         }
         console.log("TCL: DetailBusiness -> data -> data", data);
 
@@ -197,9 +197,11 @@ class DetailBusiness extends Component {
                             </p>
                         </div>
                         <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                            <button className="btnCallEventbaner">
-                                <Icon type="phone" /> <span>Call Now</span>
-                            </button>
+                            <a href={data.businessnumber}>
+                                <button className="btnCallEventbaner">
+                                    <Icon type="phone" /> <span>Call Now</span>
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>}
@@ -330,24 +332,36 @@ class DetailBusiness extends Component {
                                                         <Icon type="unordered-list" /><h5 className="headingMainRoom">Contact Info</h5>
                                                     </div>
                                                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                        <div className="" style={{ marginTop: '17px' }}>
-                                                            <h5>
-                                                                <span className="glyphicon glyphicon-home"
-                                                                    style={{ marginRight: "15px", color: "#36a89f" }}></span>
-                                                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.address || data.businessAddress}, {data.city || data.businessCity}. {data.state || data.businessState}</span>
-                                                            </h5>
-
-                                                            <h5>
-                                                                <span className="glyphicon glyphicon-phone"
-                                                                    style={{ marginRight: "15px", color: "#36a89f" }}></span>
-                                                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.businessnumber || data.businessNumber}</span>
-                                                            </h5>
-
-                                                            <h5>
-                                                                <span className="glyphicon glyphicon-globe"
-                                                                    style={{ marginRight: "15px", color: "#36a89f" }}></span>
-                                                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.businessemailid || data.businessEmail}</span>
-                                                            </h5>
+                                                        <div className="row" style={{ padding: "0" }}>
+                                                            <div className="col-xs-6 col-md-3 col-sm-3">
+                                                                <div className="profile_img">
+                                                                    <img onClick={() => { this.goToProfile() }} src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="profilePicContact" alt="" />
+                                                                </div>
+                                                            </div>
+                                                            <div className="col-xs-12 col-md-9 col-sm-9 margMObileBusiness">
+                                                                <span style={{ fontWeight: 'bold' }}>{data.firstname}</span><br />
+                                                                <a onClick={() => { this.goToProfile() }} style={{ fontSize: '13px', cursor: 'pointer', color: 'rgb(55, 169, 155)' }}>
+                                                                    View Profile
+                                                                </a>
+                                                                
+                                                                <h5 style={{marginTop: '10px' ,marginBottom: '7px'}}>
+                                                                    <span className="glyphicon glyphicon-phone"
+                                                                        style={{ marginRight: "15px", color: "#36a89f" }}></span>
+                                                                    <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.businessnumber || data.businessNumber}</span>
+                                                                </h5>
+                                                                <h5 style={{marginBottom: '7px'}}>
+                                                                    <span className="glyphicon glyphicon-globe"
+                                                                        style={{ marginRight: "15px", color: "#36a89f" }}></span>
+                                                                    <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.businessemailid || data.businessEmail}</span>
+                                                                </h5>
+                                                                <h5 style={{marginBottom: '7px'}}>
+                                                                    <span className="glyphicon glyphicon-home"
+                                                                        style={{ marginRight: "15px", color: "#36a89f" }}></span>
+                                                                    <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.address || data.businessAddress}, {data.city || data.businessCity}. {data.state || data.businessState}</span>
+                                                                </h5>
+                                                            </div>
+                                                        </div>
+                                                        <div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -366,6 +380,33 @@ class DetailBusiness extends Component {
                                                             <p className="eductionPara">{data.businesscategory}</p>
                                                         </div>
                                                         <div className="col-xs-1 col-md-3 col-sm-4 col-lg-3"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="row RoomMainDivS" style={{ margin: '0px', paddingBottom: '0px', marginTop: '20px' }}>
+                                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
+                                                    <Icon type="unordered-list" />
+                                                    <h5 className="headingMainRoom">
+                                                        Social media
+                                                    </h5>
+                                                </div><br />
+                                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <div className="row" style={{ textAlign: 'center' }}>
+                                                        <div className="col-xs-4 col-md-4 col-sm-12 col-lg-4">
+                                                            {/* <Icon type="facebook" className="fbLinkCsS" /><br/> */}
+                                                            <a href={data.socialFaceBook} target="_blank" className="fa fa-facebook social_button" style={{ width: "40px", height: "40px", color: '#2f55a4' }}></a><br />
+                                                            <p className="eductionPara">Facebook</p>
+                                                        </div>
+                                                        <div className="col-xs-4 col-md-4 col-sm-12 col-lg-4">
+                                                            {/* <Icon type="linkedin" className="LinkeDinCsS" /><br/> */}
+                                                            <a href={data.socialLinkIn} target="_blank" className="fa fa-linkedin social_button" style={{ width: "40px", height: "40px", color: '#2867B2' }}></a><br />
+                                                            <p className="eductionPara">Linkdin</p>
+                                                        </div>
+                                                        <div className="col-xs-4 col-md-4 col-sm-12 col-lg-4">
+                                                            {/* <Icon type="google-plus" className="gooGlePlusCsS" /><br/> */}
+                                                            <a href={data.socialGoogle} target="_blank" className="fa fa-google-plus social_button" style={{ width: "40px", height: "40px", color: '#db4a39' }}></a><br />
+                                                            <p className="eductionPara">Google+</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './burgermenu.css';
+import './headermenu.css'
 import MainLogin from '../header/mainLogin';
 import Category from '../header/getcategory';
+import MoreBtnDropdown from './moreBtnDropdown';
 import EHeader from '../entertainment/entertainmenthome/entertainmentHeader';
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -83,7 +85,7 @@ class HeaderMenu extends Component {
                                     <span className="icon-bar"></span>
                                 </button>
                                 <p onClick={() => this.renderList('')} className="navbar-brand hidden-sm">
-                                    <img alt='' src="../images/PakJazbaLogo-01.png" style={{ "width": "100%", marginTop: "32px", marginLeft: '35%', cursor: 'pointer' }} />
+                                    <img alt='' src="../images/PakJazbaLogo-01.png" className="headerLogoNav" />
                                 </p>
                                 <Link to={`/`} className="navbar-brand visible-sm">
                                     <img alt='' src="../images/PakJazbaLogo-01.png" style={{ "width": "100%", marginTop: "8px" }} />
@@ -96,13 +98,13 @@ class HeaderMenu extends Component {
                         <div className="col-md-8 col-sm-6 col-xs-6">
                             <div className="row">
                                 <div className="col-md-2" style={{ marginTop: "26px" }}>
-                                    <form action="" class="search-form">
+                                    {/* <form action="" class="search-form">
                                         <div class="form-group has-feedback">
                                             <label for="search" class="sr-only">Search</label>
                                             <input type="text" class="form-control" name="search" id="search" placeholder="search"></input>
                                             <span class="glyphicon glyphicon-search form-control-feedback"></span>
                                         </div>
-                                    </form>
+                                    </form> */}
                                 </div>
                                 <div className="col-md-1" style={{ marginTop: "33px" }}>
                                      <Link to={`/`} className="homeheader">Home</Link>
@@ -117,18 +119,19 @@ class HeaderMenu extends Component {
                                     </a>
                                 </Dropdown>
                                 </div> */}
-                                <div className="col-md-1" style={{ marginTop: "33px" }}>
-                                     <Link to={`/`} className="homeheader">More</Link>
+                                <div className="col-md-2" style={{ marginTop: "33.2px" }}>
+                                    <MoreBtnDropdown />
+                                     {/* <Link to={`/`} className="homeheader">More</Link> */}
                                 </div>
                                 <div className="col-md-2 col-sm-2 col-xs-12" style={{ marginTop: "29px" }}>
                                     <MainLogin />
                                 </div>{/*col-md-4*/}
-                                <div className="col-md-1 col-sm-2 col-xs-12" style={{ marginTop: "28px" }}>
-                                    {/* <Link rel="noopener noreferrer" to={`/checkOutProduct`} style={{ color: 'black', fontSize: '14px' }}>
+                                {/* <div className="col-md-1 col-sm-2 col-xs-12" style={{ marginTop: "28px" }}>
+                                    <Link rel="noopener noreferrer" to={`/checkOutProduct`} style={{ color: 'black', fontSize: '14px' }}>
                                         <CartButton cartCount={this.props.cartCount} />
-                                    </Link> */}
-                                </div>
-                                <div className="col-md-2 col-sm-2 col-xs-12" style={{ marginTop: "21px" }}>
+                                    </Link>
+                                </div> */}
+                                <div className="col-md-3 col-sm-2 col-xs-12" style={{ marginTop: "21px" }}>
                                     <Category />
                                 </div>{/*col-md-4*/}
                             </div>{/*row*/}

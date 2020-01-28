@@ -108,7 +108,8 @@ class EshopCard extends Component {
                             </div>
                             
                           </div>
-                          </Link>
+                        </Link>
+                        
                       </div>
                     )
                   })

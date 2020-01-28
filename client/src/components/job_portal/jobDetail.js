@@ -13,7 +13,7 @@ import {
 } from 'antd';
 import Imggg from '../job_portal/ilusss-1.png';
 import Burgermenu from '../header/burgermenu';
-import Header from '../header/headermenu';
+import Headermenu from '../header/headermenu';
 import Slider from '../header/Slider';
 import Footer from '../footer/footer';
 import JobDetailpage from './DetailjobUi';
@@ -52,7 +52,7 @@ class JobDetail extends Component {
             }
             this.setState({ data, user: data.user });
         }
-        // window.scroll(0,0);
+        window.scroll(0,0);
     }
 
     clickItem(item) {
@@ -92,7 +92,7 @@ class JobDetail extends Component {
                         </div>
                     </div>
                 </span> */}
-                <Header />
+                <Headermenu />
                 {data.arr_url && <div className="row" style={{ marginTop: '-1.5vw' }}>
                     {/* {data.arr_url && <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ backgroundImage: `url(${data.arr_url[0]})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center center" }}> */}
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">    

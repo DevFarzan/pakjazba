@@ -182,7 +182,7 @@ class DetailBusiness extends Component {
         if (goProfile) {
             return <Redirect to={{ pathname: '/profile_userDetail', state: { userId: reviewUserId, profileId: reviewProfileId } }} />
         }
-        console.log("TCL: DetailBusiness -> reviews -> reviews", reviews);
+        console.log("TCL: DetailBusiness -> data -> data", data);
 
         return (
             <div>
@@ -334,7 +334,7 @@ class DetailBusiness extends Component {
                                                             <h5>
                                                                 <span className="glyphicon glyphicon-home"
                                                                     style={{ marginRight: "15px", color: "#36a89f" }}></span>
-                                                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.address || data.businessAddress}</span>
+                                                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.address || data.businessAddress}, {data.city || data.businessCity}. {data.state || data.businessState}</span>
                                                             </h5>
 
                                                             <h5>
@@ -346,9 +346,26 @@ class DetailBusiness extends Component {
                                                             <h5>
                                                                 <span className="glyphicon glyphicon-globe"
                                                                     style={{ marginRight: "15px", color: "#36a89f" }}></span>
-                                                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.businessemail || data.businessEmail}</span>
+                                                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.businessemailid || data.businessEmail}</span>
                                                             </h5>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="row RoomMainDivS" style={{ margin: '0px', paddingBottom: '0px', marginTop: '20px' }}>
+                                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
+                                                    <Icon type="unordered-list" />
+                                                    <h5 className="headingMainRoom">
+                                                        Category
+                                                    </h5>
+                                                </div><br />
+                                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <div className="row" style={{ textAlign: 'center' }}>
+                                                        <div className="col-xs-1 col-md-3 col-sm-3 col-lg-3"></div>
+                                                        <div className="col-xs-10 col-md-6 col-sm-6 col-lg-6">
+                                                            <p className="eductionPara">{data.businesscategory}</p>
+                                                        </div>
+                                                        <div className="col-xs-1 col-md-3 col-sm-4 col-lg-3"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -447,7 +464,7 @@ class DetailBusiness extends Component {
                                         </div>
                                         <div className="col-md-5">
                                             <div className="row RoomMainDivS" style={{ margin: '0px 0px 20px 0px' }}>
-                                                <div className="row" style={{ }}>
+                                                <div className="row" style={{}}>
                                                     <div className="col-md-12 col-sm-12 col-xs-12">
                                                         <h3><b><a name="linkReview" className="black" name="name_of_target">Add Review</a></b></h3>
                                                     </div>

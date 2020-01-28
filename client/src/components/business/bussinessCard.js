@@ -40,7 +40,7 @@ class BussinesCard extends Component {
             <Link key={1} to={obj}>
                 <div className="" style={{ 'marginBottom': '30px' }}>
                     <div className="card" style={{ width: '100%', backgroundColor: "#000000" }}>
-                        <img alt='' src={src} style={{ height: '200px', width: "100%", filter: 'brightness(0.5)', backgroundColor:"white" }} />
+                        <img alt='' src={src} style={{ height: '200px', width: "100%", filter: 'brightness(0.5)', backgroundColor: "white" }} />
 
                         {detail == 'businessData' && <span>
                             <div className="businessborder">
@@ -59,8 +59,8 @@ class BussinesCard extends Component {
                                     </h4>
 
                                     <p style={{ marginTop: "-15px" }}>
-                
-                                    <span className="glyphicon glyphicon-map-marker"
+
+                                        <span className="glyphicon glyphicon-map-marker"
                                             style={{ color: "#008080", margin: "2px" }}
                                         ></span>
                                         <span style={{ color: "black" }}>{locate}</span>
@@ -68,7 +68,7 @@ class BussinesCard extends Component {
                                 </div>
                             </div>
                         </span>}
-                        
+
                         {detail == 'roomRentData' && <span>
                             <div className="row" style={{ padding: "0" }}>
                                 <div className="col-md-12" style={{ padding: "0" }}>
@@ -106,7 +106,7 @@ class BussinesCard extends Component {
                                 <tr>
                                     <td><span className="fa fa-inbox"
                                         style={{ color: "#236A4B", margin: "0", left: "-3px" }}
-                                    ></span><span>{cardDetails.furnished.slice(0,11)}..</span></td>
+                                    ></span><span>{cardDetails.furnished.slice(0, 11)}..</span></td>
 
                                     <td><span className="fa fa-users"
                                         style={{ color: "#236A4B", margin: "0", left: "-3px" }}
@@ -142,7 +142,7 @@ class BussinesCard extends Component {
                             </span> */}
                         </span>}
 
-                        {detail == 'jobListData' && <span> 
+                        {detail == 'jobListData' && <span>
                             <div className="jobcardcarousel">
                                 <div className="row">
                                     <div className="col-md-3 col-xs-3">
@@ -159,7 +159,7 @@ class BussinesCard extends Component {
                                                 <span className="glyphicon glyphicon-map-marker"
                                                     style={{ color: "#236A4B", marginRight: "2px" }}
                                                 ></span>
-                                                <span style={{ color: "black" }}>{cardDetails.location.slice(0,7)}..</span>
+                                                <span style={{ color: "black" }}>{cardDetails.location.slice(0, 7)}..</span>
                                             </div>
                                             <div className="col-md-7 col-xs-8" style={{ padding: "0" }}>
                                                 <span className="fa fa-phone" style={{ color: "#236A4B", margin: "0", left: "-3px", padding: "0" }}>
@@ -201,31 +201,31 @@ class BussinesCard extends Component {
                                 <span style={{ color: "black" }}>{cardDetails.location}</span>
                             </p> */}
                         </span>}
-                        
+
                         {detail == 'buySellData' && <span>
                             <div className="pricingSell">
-                                 {!cardDetails.hideprice ? '$' + cardDetails.price : 'Hide'}
+                                {!cardDetails.hideprice ? '$' + cardDetails.price : 'Hide'}
                             </div>
 
-                                
+
 
                             <div className="buy-card">
                                 <h4>{cardDetails.modelname}</h4>
                                 <p style={{ fontFamily: 'Poppins, sans-serif' }}>
-                                        <span className="glyphicon glyphicon-map-marker"
-                                            style={{ color: "#008080", margin: "0", left: "-3px" }}
-                                        ></span><span>{cardDetails.address},{cardDetails.state}</span>
+                                    <span className="glyphicon glyphicon-map-marker"
+                                        style={{ color: "#008080", margin: "0", left: "-3px" }}
+                                    ></span><span>{cardDetails.address},{cardDetails.state}</span>
                                 </p>
                                 <p style={{ fontFamily: 'Poppins, sans-serif' }}>
-                                        <span className="glyphicon glyphicon-phone"
-                                            style={{ color: "#008080", margin: "0", left: "-3px" }}></span>
-                                <span>{cardDetails.contactnumber}</span>
+                                    <span className="glyphicon glyphicon-phone"
+                                        style={{ color: "#008080", margin: "0", left: "-3px" }}></span>
+                                    <span>{cardDetails.contactnumber}</span>
                                 </p>
                             </div>
 
-                            
+
                         </span>}
-                        
+
                         {detail == 'eventPortalData' && <span>
                             <div className="pricingroom">  <p style={{ margin: "0" }}>
                                 <span className="glyphicon glyphicon-calendar"
@@ -260,33 +260,36 @@ class BussinesCard extends Component {
                                 </div>
                             </div>
                         </span>}
-                       
+
                         {detail == 'ecommerce' && <span>
                             <div className="pricingSell">
-                            {'$' + cardDetails.price}
-        
-                            
+                                {'$' + cardDetails.price}
                             </div>
-                            <p style={{ color: 'black', margin: "0", fontFamily: 'Poppins, sans-serif' }}>
-                                <b>{cardDetails.country}</b>
-                                <br />
-                            </p>
-                            <span>
-
-                            </span>
-                           
+                            <div className="ecomshopcard">
+                                <div className="category">
+                                    <h4>
+                                        {cardDetails.category[1]}
+                                    </h4>
+                                </div>
+                                <div className="otherdetails">
+                                    <span><h3>{cardDetails.product.slice(0, 15)}....</h3></span>
+                                    <span><h5>By:{cardDetails.shopName}</h5></span>
+                                    <span><h6>{cardDetails.country}</h6></span>
+                                    <Link rel="noopener noreferrer" to={{ pathname: `/products_DetailStyle/${cardDetails._id}`, state: cardDetails }} ><button className="shop-btn">Shop Now</button></Link>
+                                </div>
+                            </div>
                         </span>}
-                       
+
                         {/* {detail == 'ecommerce' && <span>
 
                         </span>} */}
-                    
+
                     </div>
                 </div>
             </Link>
 
-                    )
-                }
-            }
-            
-            export default BussinesCard;
+        )
+    }
+}
+
+export default BussinesCard;

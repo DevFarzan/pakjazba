@@ -137,6 +137,22 @@ class DateCard extends Component{
                   </div>
                 </div>}
 
+                {/* {(earlyBird || normalTicket) && <div className="ticketbuy">
+                  <div className="row" style={{padding:"0"}}>
+                    <div className="col-md-5 col-sm-5 " style={{marginTop:"15px"}}>
+                        <h4>Total Amount </h4>
+                    </div>
+                    <div className="col-md-4 col-sm-3  col-xs-6" style={{marginTop:"15px"}}>
+                      <p style={{margin:"0"}}>{'$' + totalPrice}</p>
+                    </div>
+                    <div className="col-md-3 col-sm-4  col-xs-6">
+                    <div className="text-center text-md-left" onClick={() => {this.purchaseTicket()}}>
+                        <a className="btn button_custom" style={{width: "100%", marginTop:"10px", marginLeft:"-58px", backgroundColor:"rgb(55, 169, 155)"}}>{earlyBird || normalTicket ? 'Purchase Ticket' : 'Collect Ticket'}</a>
+                    </div>
+                    </div>
+                  </div>
+                </div>} */}
+
                 {(earlyBird || normalTicket) && <div className="ticketbuy">
                   <div className="row" style={{padding:"0"}}>
                     <div className="col-md-5 col-sm-5">
@@ -156,29 +172,13 @@ class DateCard extends Component{
                   </div>
                 </div>}
 
-                {(earlyBird || normalTicket) && <div className="ticketbuy">
+                {data.customTicketDetail && data.customTicketDetail.length > 0 && <div className="ticketbuy">
                   <div className="row" style={{padding:"0"}}>
                     <div className="col-md-5 col-sm-5 " style={{marginTop:"15px"}}>
                         <h4>Total Amount </h4>
                     </div>
                     <div className="col-md-4 col-sm-3  col-xs-6" style={{marginTop:"15px"}}>
                       <p style={{margin:"0"}}>{'$' + totalPrice}</p>
-                    </div>
-                    <div className="col-md-3 col-sm-4  col-xs-6">
-                    <div className="text-center text-md-left" onClick={() => {this.purchaseTicket()}}>
-                        <a className="btn button_custom" style={{width: "100%", marginTop:"10px", marginLeft:"-58px", backgroundColor:"rgb(55, 169, 155)"}}>{earlyBird || normalTicket ? 'Purchase Ticket' : 'Collect Ticket'}</a>
-                    </div>
-                    </div>
-                  </div>
-                </div>}
-
-                {data.customTicketDetail && data.customTicketDetail.length > 0 && <div className="ticketbuy">
-                  <div className="row" style={{padding:"0"}}>
-                    <div className="col-md-5 col-sm-5 " style={{marginTop:"15px"}}>
-                        {/*<h4>Total Amount </h4>*/}
-                    </div>
-                    <div className="col-md-4 col-sm-3  col-xs-6" style={{marginTop:"15px"}}>
-                      {/*<p style={{margin:"0"}}>{'$' + totalPrice}</p>*/}
                     </div>
                     <div className="col-md-3 col-sm-4  col-xs-6">
                     <div className="text-center text-md-left" onClick={() => {this.purchaseTicket()}}>

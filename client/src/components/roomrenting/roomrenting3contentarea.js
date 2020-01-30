@@ -160,7 +160,7 @@ class Roomrenting3contentarea extends Component {
       email = data.contactMode && data.contactMode.includes('email') ? data.contactEmail : '*****@gmail.com',
       phone = data.contactMode && data.contactMode.includes('phone') ? data.contactNumber : '***********';
     if (goProfile) {
-      return <Redirect to={{ pathname: '/profile_userDetail', state: { userId: reviewUserId, profileId: reviewProfileId } }} />
+      return <Redirect to={{ pathname: `/profile_userDetail/${data.profileId}`, state: { userId: reviewUserId, profileId: reviewProfileId } }} />
     }
 
     if (data.modeofcontact && data.modeofcontact.includes('email')) {

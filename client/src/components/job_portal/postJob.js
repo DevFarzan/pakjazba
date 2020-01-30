@@ -647,7 +647,23 @@ class JobPortal extends Component {
                                                         </FormItem>
                                                     </div>
                                                 </div>
-
+                                                {/* <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label htmlFor="sel1">Contact No.</label>
+                                                        <FormItem style={{ padding: '2%' }}>
+                                                            {getFieldDecorator('contNumber', {
+                                                                initialValue: contNumber,
+                                                                rules: [{
+                                                                    required: true,
+                                                                    message: 'Please input your Company Email!',
+                                                                    whitespace: true
+                                                                }],
+                                                            })(
+                                                                <input type="text" className="form-control" />
+                                                            )}
+                                                        </FormItem>
+                                                    </div>
+                                                </div> */}
                                             </div>
                                         </section>
                                     </div>

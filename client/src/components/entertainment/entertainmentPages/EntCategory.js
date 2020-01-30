@@ -15,7 +15,7 @@ class EntCategory extends Component{
         let obj = this.props.location.state;
         let keys = Object.keys(obj),
         arr = keys.includes('news') ? obj.news : keys.includes('sports') ? obj.sports : keys.includes('dramas') ? obj.dramas : keys.includes('movies') ? obj.movies : keys.includes('musics') ? obj.musics : obj.arr; 
-        
+        console.log(arr , 'arr in burger menu')
         return(
             <div className="">
                 <Burgermenu entertainment={obj.entertainment}/>

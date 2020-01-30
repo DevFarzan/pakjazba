@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Tabs, Icon } from 'antd';
-import EntertainmentHome from '../entertainment/entertainmenthome/EntertainmentHome';
 import Stories from '../entertainment/entertainmenthome/LatestStories';
 import EntertainmentCategory from '../entertainment/entertainmentPages/EntertainmentTabCategory';
-import ECategory from './entertainment-category';
 import axios from "axios/index";
-    
-class EntertainmentTab extends Component{
-    componentDidMount(){
-        window.scrollTo(0,0);
+// import ECategory from './entertainment-category';
+// import EntertainmentHome from '../entertainment/entertainmenthome/EntertainmentHome';
+
+class EntertainmentTab extends Component {
+    componentDidMount() {
+        window.scrollTo(0, 0);
     }
     constructor(props) {
         super(props)
@@ -28,17 +28,17 @@ class EntertainmentTab extends Component{
     }
 
     componentDidMount() {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
         this.callApi()
     }
 
-    async callApi(){
+    async callApi() {
         const { newsApi, sportsApi, dramasApi, moviesApi, musicsApi } = this.state,
-        news = await axios.get(newsApi),
-        sports = await axios.get(sportsApi),
-        dramas = await axios.get(dramasApi),
-        movies = await axios.get(moviesApi),
-        musics = await axios.get(musicsApi);
+            news = await axios.get(newsApi),
+            sports = await axios.get(sportsApi),
+            dramas = await axios.get(dramasApi),
+            movies = await axios.get(moviesApi),
+            musics = await axios.get(musicsApi);
         this.setState({
             news: news.data.list,
             sports: sports.data.list,
@@ -49,29 +49,97 @@ class EntertainmentTab extends Component{
         });
     }
 
-    render(){
+    onChange = async (keyValue) => {
+        const { newsApi, sportsApi, dramasApi, moviesApi, musicsApi } = this.state;
 
-        const { TabPane } = Tabs;
-        
-        const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader, objData, goDetail } = this.state;
-        const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
+        if (keyValue == 'entertainment') {
+            let news = await axios.get(newsApi);
+            let sports = await axios.get(sportsApi);
+            let dramas = await axios.get(dramasApi);
+            let movies = await axios.get(moviesApi);
+            let musics = await axios.get(musicsApi);
+
+            this.setState({
+                news: news.data.list,
+                sports: sports.data.list,
+                dramas: dramas.data.list,
+                movies: movies.data.list,
+                musics: musics.data.list
+
+            });
+        }
+        else if (keyValue == 'movies') {
+            let movies = await axios.get(moviesApi);
+            this.setState({
+                news: [],
+                sports: [],
+                dramas: [],
+                movies: movies.data.list,
+                musics: []
+
+            });
+        }
+        else if (keyValue == 'dramas') {
+            let dramas = await axios.get(dramasApi);
+            this.setState({
+                news: [],
+                sports: [],
+                dramas: dramas.data.list,
+                movies: [],
+                musics: []
+
+            });
+        }
+        else if (keyValue == 'news') {
+            let news = await axios.get(newsApi);
+            this.setState({
+                news: news.data.list,
+                sports: [],
+                dramas: [],
+                movies: [],
+                musics: []
+
+            });
+        }
+        else if (keyValue == 'sports') {
+            let sports = await axios.get(sportsApi);
+            this.setState({
+                news: [],
+                sports: sports.data.list,
+                dramas: [],
+                movies: [],
+                musics: []
+
+            });
+        }
+        // else if(keyValue == 'upload'){
+
+        // }
+
+    }
+
+    render() {
         const { news, sports, dramas, movies, musics } = this.state;
-        
-        return(
+        const { TabPane } = Tabs;
+        console.log(this.props, 'this,props in entertainment tab')
+        // const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader, objData, goDetail } = this.state;
+        // const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
+
+        return (
             <div>
                 <div className="row">
                     <div className="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                         <Tabs defaultActiveKey="2">
-                            
+
                             <TabPane tab={
                                 <span><Icon type="android" /> Category </span>}
                                 key="2">
-                                    <EntertainmentCategory/>
+                                <EntertainmentCategory onChange={this.onChange} />
                             </TabPane>
                         </Tabs>
                     </div>
                     <div className="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                        <Stories entertainment={{news, sports, dramas, movies, musics}} {...this.props}/>
+                        <Stories entertainment={{ news, sports, dramas, movies, musics }} {...this.props} />
                     </div>
                 </div>
             </div>

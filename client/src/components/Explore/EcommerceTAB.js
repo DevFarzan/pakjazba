@@ -73,92 +73,92 @@ class EcommerceTAB extends Component {
         }
     }
 
-          searcProduct = (e) => {
-            const { allData } = this.state;
-            this.setState({
-              ecomSerchValue: e.target.value
-            })
-            if (e.target.value == '') {
-              this.setState({
-                productsData: allData,
-                featuredCategories: true,
-                noRecordFound: false,
-                recordFound: true
-              })
-            }
-          }
+    // searcProduct = (e) => {
+    //     const { allData } = this.state;
+    //     this.setState({
+    //         ecomSerchValue: e.target.value
+    //     })
+    //     if (e.target.value == '') {
+    //         this.setState({
+    //             productsData: allData,
+    //             featuredCategories: true,
+    //             noRecordFound: false,
+    //             recordFound: true
+    //         })
+    //     }
+    // }
 
-          searchProduct = async (e) => {
-            const { ecomSerchValue, allData, searchBy } = this.state;
-            e.preventDefault();
-            let data;
-            let res = await HttpUtils.get('getecommercedata');
-            if (res) {
-              if (res.code = 200) {
-                data = res.content;
-              }
-            }
-            let ecomSearchValue = ecomSerchValue.toLowerCase();
-            let ecommreceFilterData = [];
-            if (searchBy != '') {
-              if (ecomSerchValue != '') {
-                for (let i in data) {
-                  if (searchBy == 'product') {
-                    if (ecomSearchValue == data[i].product.toLowerCase()) {
-                      ecommreceFilterData.push(data[i])
-                    }
-                  }
-                  else if (searchBy == 'shop') {
-                    if (ecomSearchValue == data[i].shopName.toLowerCase()) {
-                      ecommreceFilterData.push(data[i])
-                    }
-                  }
-                  else if (searchBy == 'brandName') {
-                    if (ecomSearchValue == data[i].brandName.toLowerCase() || ecomSearchValue == data[i].manufacturer.toLowerCase()) {
-                      ecommreceFilterData.push(data[i])
-                    }
-                  }
-                }
-                if (ecommreceFilterData.length == 0) {
-                  this.setState({
-                    recordFound: false,
-                    noRecordFound: true,
-                    featuredCategories: false,
-                  })
-                }
-                else {
-                  this.setState({
-                    productsData: ecommreceFilterData,
-                    featuredCategories: false,
-                    recordFound: true,
-                    noRecordFound: false,
-                  })
-                }
-              }
-            }
-            else {
-              this.setState({
-                checkRadioBtn: true
-              })
-            }
-          }
+    // searchProduct = async (e) => {
+    //     const { ecomSerchValue, allData, searchBy } = this.state;
+    //     e.preventDefault();
+    //     let data;
+    //     let res = await HttpUtils.get('getecommercedata');
+    //     if (res) {
+    //         if (res.code = 200) {
+    //             data = res.content;
+    //         }
+    //     }
+    //     let ecomSearchValue = ecomSerchValue.toLowerCase();
+    //     let ecommreceFilterData = [];
+    //     if (searchBy != '') {
+    //         if (ecomSerchValue != '') {
+    //             for (let i in data) {
+    //                 if (searchBy == 'product') {
+    //                     if (ecomSearchValue == data[i].product.toLowerCase()) {
+    //                         ecommreceFilterData.push(data[i])
+    //                     }
+    //                 }
+    //                 else if (searchBy == 'shop') {
+    //                     if (ecomSearchValue == data[i].shopName.toLowerCase()) {
+    //                         ecommreceFilterData.push(data[i])
+    //                     }
+    //                 }
+    //                 else if (searchBy == 'brandName') {
+    //                     if (ecomSearchValue == data[i].brandName.toLowerCase() || ecomSearchValue == data[i].manufacturer.toLowerCase()) {
+    //                         ecommreceFilterData.push(data[i])
+    //                     }
+    //                 }
+    //             }
+    //             if (ecommreceFilterData.length == 0) {
+    //                 this.setState({
+    //                     recordFound: false,
+    //                     noRecordFound: true,
+    //                     featuredCategories: false,
+    //                 })
+    //             }
+    //             else {
+    //                 this.setState({
+    //                     productsData: ecommreceFilterData,
+    //                     featuredCategories: false,
+    //                     recordFound: true,
+    //                     noRecordFound: false,
+    //                 })
+    //             }
+    //         }
+    //     }
+    //     else {
+    //         this.setState({
+    //             checkRadioBtn: true
+    //         })
+    //     }
+    // }
 
-          onAddMore = () => {
-            const { allData } = this.state;
-            this.setState({
-              productsData: allData,
-              featuredCategories: true,
-              recordFound: true,
-              noRecordFound: false
-            })
-          }
+    // onAddMore = () => {
+    //     const { allData } = this.state;
+    //     this.setState({
+    //         productsData: allData,
+    //         featuredCategories: true,
+    //         recordFound: true,
+    //         noRecordFound: false
+    //     })
+    // }
 
-          onChange = e => {
-            this.setState({
-              searchBy: e.target.value,
-              checkRadioBtn: false
-            });
-          };
+    onChange = e => {
+        this.setState({
+            searchBy: e.target.value,
+            checkRadioBtn: false
+        });
+    };
 
 
     /*Color Filteration*/
@@ -218,7 +218,7 @@ class EcommerceTAB extends Component {
         for (var i = 0; i < filterColorFamily.length; i++) {
             colorsofProduct.push(filterColorFamily[i])
         }
-        for (var i = 0; i <filterBrand.length; i++){
+        for (var i = 0; i < filterBrand.length; i++) {
             categoryofProduct.push(filterBrand[i])
         }
 
@@ -267,7 +267,7 @@ class EcommerceTAB extends Component {
                     return elem.brandName && filterBrand.includes(elem.brandName)
                 })
             }
-            
+
         }
         console.log(data, "Products data")
         if (data.length == 0) {
@@ -300,12 +300,12 @@ class EcommerceTAB extends Component {
                         return elem.category[2] && filterSubCategoryName.includes(elem.category[2])
                     })
                 }
-                else if (filterKeys[i] == 'color') { 
+                else if (filterKeys[i] == 'color') {
                     data1 = productsData.filter((elem) => {
                         return elem.color && filterColorFamily.includes(elem.color)
                     })
                 }
-                else if (filterKeys[i] == 'brandName') { 
+                else if (filterKeys[i] == 'brandName') {
                     data1 = productsData.filter((elem) => {
                         return elem.brandName && filterBrand.includes(elem.brandName)
                     })
@@ -423,7 +423,7 @@ class EcommerceTAB extends Component {
         }
     }
 
-    removeValue=(param, value) =>{
+    removeValue = (param, value) => {
         let arr = [];
         if (param == "category") {
             filterSubCategoryName = arr
@@ -451,7 +451,7 @@ class EcommerceTAB extends Component {
         else {
             this.filterKeysGet();
         }
-    
+
     }
 
     showAllProducts = () => {
@@ -465,7 +465,7 @@ class EcommerceTAB extends Component {
             statusValue: ''
         })
         this.filterKeysGet();
-    
+
     }
     render() {
         const { TabPane } = Tabs;
@@ -481,8 +481,8 @@ class EcommerceTAB extends Component {
                             <TabPane tab={
                                 <span><Icon type="apple" /> Filter </span>}
                                 key="1">
-                                <EcomFilter onChange={this.onChange} categoryofProduct={categoryofProduct} colorsofProduct={colorsofProduct} onChangeCheckBoxes={this.onChangeCheckBoxes} 
-                                brandofProducts={brandofProducts}    onChangeBrand={this.onChangeBrand} />
+                                <EcomFilter onChange={this.onChange} categoryofProduct={categoryofProduct} colorsofProduct={colorsofProduct} onChangeCheckBoxes={this.onChangeCheckBoxes}
+                                    brandofProducts={brandofProducts} onChangeBrand={this.onChangeBrand} />
                                 {/* <Slider mainH1="Pakjazba Ecommerce" mainH2="" searcProduct={this.searcProduct} searchProduct={this.searchProduct}
                                     onChange={this.onChange} searchBy={searchBy} checkRadioBtn={checkRadioBtn} /> */}
                             </TabPane>
@@ -495,14 +495,15 @@ class EcommerceTAB extends Component {
                     </div>
                     <div className="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                         {noRecordFound && <span style={{ textAlign: "center" }}><h1>Not found....</h1></span>}
-                        {noRecordFound && <span style={{ textAlign: "center" }}><h5>you can find your search by type</h5></span>}
+                        {/* {noRecordFound && <span style={{ textAlign: "center" }}><h5>you can find your search by type</h5></span>}
                         {noRecordFound && <div className="col-md-12" style={{ textAlign: "center" }}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
                         {recordFound ?
-                            <Eshopcard
-                                productsData={productsData} colorsofProduct={colorsofProduct} brandofProducts={brandofProducts}
-                                filteredData={filteredData} notFoundFilterData={notFoundFilterData} removeValue={this.removeValue}
-                                allData={allData} />
-                            : null}
+                           
+                            : null} */}
+                        <Eshopcard
+                            productsData={productsData} colorsofProduct={colorsofProduct} brandofProducts={brandofProducts}
+                            filteredData={filteredData} notFoundFilterData={notFoundFilterData} removeValue={this.removeValue}
+                            allData={allData} />
 
                     </div>
                 </div>

@@ -14,7 +14,7 @@ import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import './homePage.css';
 import HomeBanner from './homebanner';
 import HeaderMenu from '../header/headermenu';
-
+// import Burgermenu
 
 class HomePage extends Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class HomePage extends Component {
             roomRenting: [],
             buySell: [],
             jobPortal: [],
-            event: [], 
+            event: [],
             ecommerce: [],
         };
 
@@ -85,10 +85,12 @@ class HomePage extends Component {
                 <div className="visible-xs" style={{ marginTop: '0', backgroundColor: "#33333354", backgroundSize: 'cover', zIndex: "999", width: "100%", position: "fixed" }}>
                     <div className="background-image">
                         <HeaderMenu />
+                        {/* <Burgermenu /> */}
                     </div>
                 </div>
                 <div className="hidden-xs hidden-sm" style={{ marginTop: '86px', backgroundSize: 'cover' }}>
                     <div className="background-image">
+                        {/* <Burgermenu /> */}
 
                         <HeaderMenu />
                     </div>

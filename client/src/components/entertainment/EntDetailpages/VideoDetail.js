@@ -146,7 +146,7 @@ class VideoDetail extends Component {
                       <div className="col-md-2">
                         <img src="../images/images.jpg" />
                       </div>
-                      <div className="col-md-10 col-sm-6">
+                      {/* <div className="col-md-10 col-sm-6">
                         <div id="imaginary_container">
                           <div className="input-group stylish-input-group">
                             <input type="text" className="form-control" placeholder="Add a comment" style={{ width: "100%" }} />
@@ -157,7 +157,7 @@ class VideoDetail extends Component {
                             </span>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   <div className="videoheading">

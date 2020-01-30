@@ -20,6 +20,7 @@
     color: white;
     font-size: 30px; 
     font-weight:bold;
+    margin: 0;
   }
   .socialMediadiv{
     padding-bottom:0px;
@@ -35,6 +36,7 @@
     color: white;
     font-size: 40px; 
     font-weight:bold;
+    margin: 0; 
   }
   
   .experienceDiv{
@@ -103,7 +105,17 @@
     margin-top: 36.5vw;
     padding-bottom: 0vw;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.09);
-}
+  }
+  .banertitleText{
+    font-size: 18px;
+    font-weight: 500;
+    color: #e2dada;
+  }
+  .resumeTxt{
+    font-size : 13px;
+    font-weight: 600;
+    margin-top: 0px;
+  }
 }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1023px){
   .elementMainDivS2{
@@ -131,6 +143,17 @@
     margin-top: 10.5vw;
     padding-bottom: 0vw;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.09);
+  }
+  .banertitleText{
+    margin: 0px;
+    font-size: 19px;
+    font-weight: 500;
+    color: #e2dada;
+  }
+  .resumeTxt{
+    font-size : 12px;
+    font-weight: 600;
+    margin-top: 0px;
   }
   .socialMediadiv{
     padding-bottom:0px;
@@ -164,14 +187,25 @@
     margin-top: -1.5vw;
     padding-bottom: 0vw;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.09);
-}
+  }
+  .banertitleText{
+    margin: 0px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #e2dada;
+  }
+  .resumeTxt{
+    font-size : 12px;
+    font-weight: 600;
+    margin-top: 0px;
+  }
 .socialMediadiv{
   padding-bottom:0px;
   margin-right:0;
   height: 165px;
 }
 }
-@media only screen and (min-device-width: 1366px){
+@media only screen and (min-device-width: 1366px) and (max-device-width: 1600px){
   .elementMainDivS2{
     background: #fff;
     padding: 15px;
@@ -197,6 +231,61 @@
     margin-top: -1.5vw;
     padding-bottom: 0vw;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.09);
+  }
+  .banertitleText{
+    margin: 0px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #e2dada;
+  }
+  .resumeTxt{
+    font-size : 13px;
+    font-weight: 600;
+    margin-top: 0px;
+  }
+  .socialMediadiv{
+    padding-bottom:0px;
+    margin-right:0;
+    height: 165px;
+  }
+}
+@media only screen and (min-device-width: 1600px){
+  .elementMainDivS2{
+    background: #fff;
+    padding: 15px;
+    margin-left: 1vw;
+    margin-bottom: 25px;
+    -webkit-transition: box-shadow .25s ease-in-out;
+    transition: box-shadow .25s ease-in-out;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
+    border-radius: 3px;
+  }
+  .elementMainDivS222{
+    background: #fff;
+    padding: 15px;
+    padding-bottom: 4px;
+    margin-bottom: 25px;
+    -webkit-transition: box-shadow .25s ease-in-out;
+    transition: box-shadow .25s ease-in-out;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
+    border-radius: 3px;
+  }
+  .tabMainDiV{
+    background-color: white;
+    margin-top: -1.5vw;
+    padding-bottom: 0vw;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.09);
+  }
+  .banertitleText{
+    margin: 0px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #e2dada;
+  }
+  .resumeTxt{
+    font-size : 13px;
+    font-weight: 600;
+    margin-top: 0px;
   }
   .socialMediadiv{
     padding-bottom:0px;

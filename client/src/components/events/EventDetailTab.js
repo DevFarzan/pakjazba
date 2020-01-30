@@ -63,20 +63,46 @@ class EventDetailTab extends Component {
                                 </div>
                             </div>
                         </div><br />
-                        <div className="row MainDivCount" style={{ paddingBottom: '0px' }}>
+                        <div className="row elementMainDivS2" style={{ paddingBottom: '0px' }}>
+                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
+                                <Icon type="bars" /><h5 className="headMainDivs">Category</h5>
+                            </div>
+                            <div className="row" style={{ paddingBottom: '0px', paddingTop: '0px' }}>
+                                <div className="col-xs-12 col-md-12 col-sm-12 col-lg-12" style={{ textAlign: 'center' }}>
+                                    <p className="hostedByPara">{data.eventCategory}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {data.dateRange && <div className="row MainDivCount" style={{ paddingBottom: '0px' }}>
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
                                 <Icon type="bars" style={{ color: 'white' }} /><h5 className="CountText">Event starts in</h5>
                             </div>
                             <div className="row timerDivPadd">
                                 <div className="col-xs-3 col-md-3 col-sm-2 col-lg-3"></div>
                                 <div className="col-xs-6 col-md-6 col-sm-8 col-lg-6" style={{ textAlign: 'center' }}>
+                                    <p className="">{data.dateRange[0].from}</p>
                                     <div className="timerDicCsS">
                                         <p className="timerTExt"> {data.openingTime} </p>
                                     </div>
                                 </div>
                                 <div className="col-xs-3 col-md-3 col-sm-2 col-lg-3"></div>
                             </div>
-                        </div><br />
+                        </div>}
+                        {data.dateRange && <div className="row MainDivCount" style={{ paddingBottom: '0px' }}>
+                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
+                                <Icon type="bars" style={{ color: 'white' }} /><h5 className="CountText">Event End in</h5>
+                            </div>
+                            <div className="row timerDivPadd">
+                                <div className="col-xs-3 col-md-3 col-sm-2 col-lg-3"></div>
+                                <div className="col-xs-6 col-md-6 col-sm-8 col-lg-6" style={{ textAlign: 'center' }}>
+                                    <p className="">{data.dateRange[0].to}</p>
+                                    <div className="timerDicCsS">
+                                        <p className="timerTExt"> {data.closingTime} </p>
+                                    </div>
+                                </div>
+                                <div className="col-xs-3 col-md-3 col-sm-2 col-lg-3"></div>
+                            </div>
+                        </div>}<br />
                         <div className="row elementMainDivS2" style={{ paddingBottom: '0px' }}>
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
                                 <Icon type="unordered-list" /><h5 className="headMainDivs">Event Info</h5>

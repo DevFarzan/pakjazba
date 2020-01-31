@@ -55,7 +55,7 @@ class Explore extends Component {
                                         <i className="fa fa-bed"></i> Room Renting{" "}
                                     </span>
                                 }
-                                key="2"
+                                key="1"
                             >
                                 <RoomRentTAB />
                             </TabPane>
@@ -65,7 +65,7 @@ class Explore extends Component {
                                         <i className="fa fa-briefcase"></i> Business Listing{" "}
                                     </span>
                                 }
-                                key="3"
+                                key="2"
                             >
                                 <BusinesListing />
                             </TabPane>
@@ -75,7 +75,7 @@ class Explore extends Component {
                                         <Icon type="shopping" /> Buy & Sell{" "}
                                     </span>
                                 }
-                                key="4"
+                                key="3"
                             >
                                 <BuyNsell />
                             </TabPane>
@@ -85,7 +85,7 @@ class Explore extends Component {
                                         <i className="fa fa-user-md"></i> Job Portal{" "}
                                     </span>
                                 }
-                                key="1"
+                                key="4"
                             >
                                 <JobPortal />
                             </TabPane>

@@ -44,6 +44,7 @@ class EcomProfile extends Component {
   componentDidMount() {
     this.shops();
   }
+
   shops = async () => {
     let shopId = this.props.location.pathname.slice(18)
     let shopData = this.props.location.state;
@@ -182,43 +183,61 @@ class EcomProfile extends Component {
 
   //Collect the filtraion keys and values in seprate array for filtration
   onChange = (key, value) => {
-    let filterKey = [];
+
+    console.log(key, 'key')
+    console.log(value, 'value')
+
     if (value.length == 0) {
       if (key == 'brand name') {
         brandNameArr = [];
       }
       else if (key == 'location') {
         locationArr = [];
-
       }
       else if (key == 'color') {
         colorArr = [];
       }
     }
+
     //add filter values in the seprate arrays
     if (key == 'categories') {
       categoriesArr = [];
-      categoriesArr.push(value)
+      categoriesArr.push(value);
+
     }
     else if (key == 'brand name') {
       brandNameArr = [];
       for (var i = 0; i < value.length; i++) {
         brandNameArr.push(value[i])
       }
+
     }
     else if (key == 'location') {
       locationArr = [];
       for (var i = 0; i < value.length; i++) {
         locationArr.push(value[i])
       }
+
     }
     else if (key == 'color') {
       colorArr = [];
       for (var i = 0; i < value.length; i++) {
         colorArr.push(value[i])
       }
+
     }
 
+    this.getFilterKeys()
+
+  }
+
+  getFilterKeys = () => {
+    let categoroyOfShop = [];
+    let brandName = [];
+    let color = [];
+    let location = [];
+    
+    let filterKey = [];
 
     //keys of the filter in array
     if (categoriesArr.length > 0) {
@@ -233,6 +252,27 @@ class EcomProfile extends Component {
     if (locationArr.length > 0) {
       filterKey.push('location')
     }
+
+    for (var i = 0; i < categoriesArr.length; i++) {
+      categoroyOfShop.push(categoriesArr[i])
+    }
+    for (var i = 0; i < brandNameArr.length; i++) {
+      brandName.push(brandNameArr[i])
+    }
+    for (var i = 0; i < locationArr.length; i++) {
+      color.push(locationArr[i])
+    }
+    for (var i = 0; i < colorArr.length; i++) {
+      location.push(colorArr[i])
+    }
+
+    this.setState({
+      categoroyOfRoom: categoroyOfShop,
+      stateOfRoom: brandName,
+      cityOfRoom: color,
+      accomodatesOfRoom: location,
+    })
+
     //call the function
     this.pushFilterArrayData(filterKey)
   }
@@ -676,17 +716,16 @@ class EcomProfile extends Component {
                 </div>
                 {shopData.profileId == profileId &&
                   <div className="col-md-4 col-sm-5">
-                    <div className="col-md-6 col-sm-6 col-xs-6">
+                    {/* <div className="col-md-6 col-sm-6 col-xs-6">
                       <div className="buttontoleft">
                         <button type="button" className="btn btn-sm btn-editprofile" style={{ width: "100%" }}
                           onClick={this.oderList}>
-                          {/* Edit Home */}
                           <div className="font-style fontClolor">
                             Order List
                         </div>
                         </button>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="col-md-6 col-sm-6 col-xs-6">
                       <div className="buttontoleft">
                         <button type="button" className="btn btn-sm btn-editprofile" style={{ width: "100%" }}

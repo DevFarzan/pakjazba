@@ -10,15 +10,15 @@ class EshopCard extends Component {
     }
   }
   render() {
-    // const { productsData } = this.props;
-    const {notFoundFilterData, categoryofProduct, filteredData, removeValue, showAllProducts, showproducts, allData ,productsData, colorsofProduct, brandofProducts} = this.props;
-    console.log(productsData,'productsData')
+    // const { allProducts } = this.props;
+    const {notFoundFilterData, categoryProduct, filteredData, removeValue, showAllProducts, showproducts, showRecord ,allProducts, colorsofProduct, brandofProducts} = this.props;
+
     return (
 
       <div className="container" style={{ width: "95%" }}>
 
-          {categoryofProduct && categoryofProduct.length > 0 ?
-                    categoryofProduct.map((elem, key) => {
+          {/* {categoryProduct && categoryProduct.length > 0 ?
+                    categoryProduct.map((elem, key) => {
                         return (
                           <div className="row">
                               <div className="cross-card">
@@ -50,14 +50,13 @@ class EshopCard extends Component {
                                 >x</span></li>
                             </div>)
                     })
-                    : null}
+                    : null} */}
 
 
-        {productsData.length > 0 &&  
+        {allProducts.length > 0 &&  
         <div className="row" style={{ marginTop: "20px" }}>
           <span>
             <h3 className="exploreHead"> Products </h3>
-            {/* <p style={{ marginLeft: "365px", marginTop: "-40px" }}> see detail </p> */}
           </span>
         </div>}
 
@@ -66,7 +65,7 @@ class EshopCard extends Component {
                       
           <div className="col-md-12">
               
-              
+              {/* filtered data  render*/}
               {notFoundFilterData && filteredData.length == 0 ?
                             <div>
                                 <p>
@@ -114,8 +113,12 @@ class EshopCard extends Component {
                     )
                   })
               }
-                  {notFoundFilterData == false && filteredData.length == 0 && allData ?
-                    productsData && productsData.map((elem, key) => {
+
+
+              {/* all products data  render*/}
+
+                  {notFoundFilterData == false && filteredData.length == 0 && showRecord ?
+                    allProducts && allProducts.map((elem, key) => {
                         let str = elem.shopName || '';
                         if (str.length > 35) {
                             str = str.substring(0, 35);

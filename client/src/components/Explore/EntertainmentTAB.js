@@ -121,7 +121,7 @@ class EntertainmentTab extends Component {
     render() {
         const { news, sports, dramas, movies, musics } = this.state;
         const { TabPane } = Tabs;
-        console.log(this.props, 'this,props in entertainment tab')
+        // console.log(this.props, 'this,props in entertainment tab')
         // const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader, objData, goDetail } = this.state;
         // const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
 

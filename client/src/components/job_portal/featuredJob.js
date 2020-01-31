@@ -246,7 +246,7 @@ class FeaturedBox extends Component {
                                 No Record Found
                                 </p>
                             <button
-                                onClick={showAllJobs}
+                                onClick={showAllRooms}
                             >Back</button>
                         </div>
                         :

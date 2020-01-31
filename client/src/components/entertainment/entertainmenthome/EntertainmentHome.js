@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import EHeader from './entertainmentHeader';
 import Footer from '../../footer/footer';
-import Slider from '../../header/Slider';
 import './entertainmenthome.css';
 import EntSlider from './EntSlider';
 import Stories from './LatestStories';
 import axios from "axios/index";
-import Burgermenu from '../../header/burgermenu';
 
 class EntertainmentHome extends Component{
     constructor(props) {
@@ -38,6 +36,7 @@ class EntertainmentHome extends Component{
         dramas = await axios.get(dramasApi),
         movies = await axios.get(moviesApi),
         musics = await axios.get(musicsApi);
+
         this.setState({
             news: news.data.list,
             sports: sports.data.list,
@@ -52,9 +51,7 @@ class EntertainmentHome extends Component{
         return(
             <div className="">
               <div className="visible-xs" style={{marginTop:'-20px'}}></div>
-                  {/* <Burgermenu entertainment={{news, sports, dramas, movies, musics}}/> */}
                 <EHeader entertainment={{news, sports, dramas, movies, musics}} {...this.props}/>
-
                 <div>
                     <div className="visible-xs" style={{marginTop:'-100px'}}>
                     <EntSlider entertainment={{news, sports, dramas, movies, musics}} {...this.props} style={{marginTop:'20%'}} />

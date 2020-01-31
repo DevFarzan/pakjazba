@@ -135,14 +135,14 @@ class VideoDetail extends Component {
                     </div>
                   </div>
                   <div>
-                    <div className="row" style={{ padding: '0' }}>
+                    {/* <div className="row" style={{ padding: '0' }}>
                       <span><Rate allowHalf defaultValue={2.5} /> <span className="starSpanSty">Rate This </span></span>
-                    </div>
-                    <div className="row">
+                    </div> */}
+                    {/* <div className="row">
                       <h4 className="h4"> Comments </h4>
                       <p> 0 Comments </p>
-                    </div>
-                    <div className="row" style={{ padding: '0' }}>
+                    </div> */}
+                    {/* <div className="row" style={{ padding: '0' }}>
                       <div className="col-md-2">
                         <img src="../images/images.jpg" />
                       </div>
@@ -158,7 +158,7 @@ class VideoDetail extends Component {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="videoheading">
                     <p className="precomend">MORE FROM DRAMAS</p>

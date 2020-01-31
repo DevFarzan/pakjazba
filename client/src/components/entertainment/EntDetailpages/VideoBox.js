@@ -18,7 +18,6 @@ class VideoBox extends Component{
 
     render(){
         let obj = this.props.location.state;
-        
         return(
             <div className="">
                 <HeaderMenu />

@@ -38,7 +38,6 @@ class Explore extends Component {
     render() {
         const { TabPane } = Tabs;
         const { keyOfTab } = this.state;
-        console.log(keyOfTab, 'keyOfTab')
         return (
             <div>
                 <div className="headerDivv">
@@ -108,7 +107,7 @@ class Explore extends Component {
                                 }
                                 key="6"
                             >
-                                <EntertainmentTab />
+                                <EntertainmentTab {...this.props}/>
                             </TabPane>
                             <TabPane
                                 tab={

@@ -17,24 +17,30 @@ class EHeader extends Component{
         }
     }
 
-    onChange(e){
-        this.setState({ inputValue: e.target.value });
-    }
+    // onChange(e){
+    //     this.setState({ inputValue: e.target.value });
+    // }
 
-    searchText = async (e) => {
-        e.preventDefault();
-        const { inputValue } = this.state,
-        { entertainment } = this.props;
-        if(!!inputValue){
-            let data = await axios.get(`https://api.dailymotion.com/videos?fields=embed_url,id,thumbnail_120_url,description,thumbnail_url,title,&country=pk&sort=recent&tags=${inputValue}&page=1&limit=100`);
-            let arr = data.data.list;
-            this.props.history.push({pathname: `/entertainment_Category/${inputValue}`, state: {arr,entertainment}})
-        }
-    }
+    // searchText = async (e) => {
+    //     e.preventDefault();
+    //     const { inputValue } = this.state,
+    //     { entertainment } = this.props;
+    //     if(!!inputValue){
+    //         let data = await axios.get(`https://api.dailymotion.com/videos?fields=embed_url,id,thumbnail_120_url,description,thumbnail_url,title,&country=pk&sort=recent&tags=${inputValue}&page=1&limit=100`);
+    //         let arr = data.data.list;
+    //         this.props.history.push({pathname: `/entertainment_Category/${inputValue}`, state: {arr,entertainment}})
+    //     }
+    // }
 
   render(){
     const { entertainment } = this.props,
     { news, sports, dramas, movies, musics } = entertainment;
+    // console.log(news , 'news header')
+    // console.log(sports , 'sports header')
+    // console.log(dramas , 'dramas header')
+    // console.log(movies , 'movies header')
+    // console.log(musics , 'musics header')
+    // console.log(entertainment , 'entertainment header')
 
     return(
       <span>
@@ -74,11 +80,13 @@ class EHeader extends Component{
                         className="form-control"
                         // style={{width: '20%', float: 'right'}}
                         placeholder="Search"
-                        onChange={this.onChange.bind(this)}/>
+                        // onChange={this.onChange.bind(this)}
+                        />
                     <span className="input-group-btn">
                         <button className="btn btn-theme" type="submit"
                             style={{backgroundColor:'#37a99b',color:'white', padding:"3px", marginBottom:"6px"}}
-                            onClick={this.searchText}><i className="fa fa-search"/>
+                            // onClick={this.searchText}
+                            ><i className="fa fa-search"/>
                         </button>
                     </span>
                   </div>

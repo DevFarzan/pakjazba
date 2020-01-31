@@ -132,7 +132,7 @@ class EntertainmentTab extends Component {
                         <Tabs defaultActiveKey="2">
 
                             <TabPane tab={
-                                <span><Icon type="android" /> Category </span>}
+                                <span><i class="fa fa-list-alt" aria-hidden="true"></i> Category </span>}
                                 key="2">
                                 <EntertainmentCategory onChange={this.onChange} />
                             </TabPane>

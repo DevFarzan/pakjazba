@@ -31,48 +31,49 @@ class EventBanner extends Component {
 
     render() {
         // const { events } = this.props;
-        console.log(this.props.events , 'events')
+        console.log(this.props.events, 'events')
         const { events, filteredData, notFoundFilterData, showRecord, categoroyOfEvents, stateOfRoom, cityOfRoom, removeValue, showAllRooms
         } = this.props;
-        console.log(categoroyOfEvents , 'categoroyOfEvents')
+        console.log(categoroyOfEvents, 'categoroyOfEvents')
         return (
             <div>
                 {/* <h4 style={{textAlign:"left", fontWeight:"bolder", marginTop:"20px", marginBottom:"0", fontSize:"26px"}}>Top Events</h4> */}
+                
                 <div className="row">
-
-                    {categoroyOfEvents && categoroyOfEvents.length > 0 ?
-                        categoroyOfEvents.map((elem, key) => {
+                    {categoroyOfEvents && categoroyOfEvents.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                        {categoroyOfEvents.map((elem, key) => {
                             return (
                                 <div className="cross-card">
-                                    <li>{elem}<span class="close"
+                                    <li>{elem}<span class="close crossBtnExlpre"
                                         onClick={removeValue.bind(this, 'category', elem)}
                                     >x</span></li>
                                 </div>)
-                        })
-                        : null}
-                    {stateOfRoom && stateOfRoom.length > 0 ?
-                        stateOfRoom.map((elem, key) => {
+                        })}
+                    </div>}
+                    {stateOfRoom && stateOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                        {stateOfRoom.map((elem, key) => {
                             return (
-                                <div>
-                                    <li>{elem}<span class="close"
+                                <div className="cross-card">
+                                    <li>{elem}<span class="close crossBtnExlpre"
                                         onClick={removeValue.bind(this, 'state', elem)}
                                     >x</span></li>
                                 </div>)
-                        })
-                        : null}
-                    {cityOfRoom && cityOfRoom.length > 0 ?
-                        cityOfRoom.map((elem, key) => {
+                        })}
+                    </div>}
+                    {cityOfRoom && cityOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                        {cityOfRoom.map((elem, key) => {
                             return (
                                 <div className="cross-card">
-                                    <li>{elem}<span class="close"
+                                    <li>{elem}<span class="close crossBtnExlpre"
                                         onClick={removeValue.bind(this, 'city', elem)}
                                     >x</span></li>
                                 </div>)
-                        })
-                        : null}
-
+                        })}
+                    </div>}
+                </div>    
+                <div className="row">
                     {notFoundFilterData && filteredData.length == 0 ?
-                        <div>
+                        <div className="noRecrdTxt">
                             <p>
                                 No Record Found
                                 </p>

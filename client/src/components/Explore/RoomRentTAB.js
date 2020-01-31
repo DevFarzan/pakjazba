@@ -659,7 +659,7 @@ class RoomRentTAB extends Component {
                                 />
                             </TabPane>
                             <TabPane tab={
-                                <span><Icon type="android" /> Category </span>}
+                                <span><i class="fa fa-list-alt" aria-hidden="true"></i> Category </span>}
                                 key="2">
                                 <RoomrentingCatagory
                                     mainCategoryFilter={this.mainCategoryFilter}

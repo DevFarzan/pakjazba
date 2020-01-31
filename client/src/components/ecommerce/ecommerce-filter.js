@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import { Cascader, Pagination, Slider, Spin, Icon, Rate, Row, Col, Input, Button, Checkbox } from 'antd';
-import Burgermenu from '../header/burgermenu'
-import { Link, BrowserRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { Redirect, withRouter } from 'react-router';
+import {
+  Cascader, Row, Col, Checkbox,
+} from 'antd';
 
-
-
-// const stateCities= require('countrycitystatejson')
-
-const electronics = [{
+const optionsValue = [{
   value: 'Electronic',
   label: 'Electronics Devices',
   children: [{
@@ -2105,87 +2099,79 @@ const electronics = [{
   }]
 }];
 
-function onChange(checkedValues) {
-  console.log('checked = ', checkedValues);
-}
 
-function onChange(values) {
+
+class EcomFilter extends Component {
+  render() {
+    const { categoryofProduct, colorsValues, brandValues, onChange, onChangeCheckBoxes, onChangeBrand } = this.props;
+    return (
+      <div className="container">
+        <div className="">
+          <h4 style={{ margin: "0" }}>Select Category</h4>
+          <Cascader
+            value={categoryofProduct}
+            style={{ width: '33%' }} options={optionsValue} onChange={onChange}
+            placeholder="Please select category" />
+        </div>
+
+        <div className="">
+          <h4 style={{ margin: "0" }}>Select Color</h4>
+          <Checkbox.Group style={{ width: '33%', display: "block" }}
+            value={colorsValues}
+            onChange={onChangeCheckBoxes}>
+            <Row style={{ display: "grid" }}>
+              <Col span={8}>
+                <Checkbox value="Black">Black</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Blue">Blue</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Red">Red</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Green">Green</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Yellow">Yellow</Checkbox>
+              </Col>
+            </Row>
+          </Checkbox.Group>
+        </div>
+
+        <div className="">
+          <h4 style={{ margin: "0" }}>Select Brand</h4>
+          <Checkbox.Group style={{ width: '33%', display: "block" }}
+            value={brandValues}
+            onChange={onChangeBrand}>
+            <Row style={{ display: "grid" }}>
+              <Col span={8}>
+                <Checkbox value="Canon">Canon</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Nikon">Nikon</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Apple">Apple</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Dell">Dell</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Vaio">Vaio</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Lenovo">Lenovo</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Vivo">Vivo</Checkbox>
+              </Col>
+            </Row>
+          </Checkbox.Group>
+        </div>
+      </div>
+    )
   }
-
-class EcomFilter extends Component{
-   
-    
-
-    render(){
-        const { onChange, categoryofProduct, onChangeCheckBoxes, onChangeBrand} = this.props
-        return(
-                <div className="container">
-                    <div className="">
-                      <h4 style={{margin:"0"}}>Select Category</h4>
-                    <Cascader
-                            value={categoryofProduct}
-                            style={{ width: '33%' }} options={electronics} onChange={onChange}
-                        placeholder="Please select category" />
-                    </div>
-
-                    <div className="">
-                      <h4 style={{margin:"0"}}>Select Color</h4>
-                      <Checkbox.Group style={{ width: '33%', display:"block" }} onChange={onChangeCheckBoxes}>
-                        <Row style={{display:"grid"}}>
-                          <Col span={8}>
-                              <Checkbox value="Black">Black</Checkbox>
-                            </Col>
-                            <Col span={8}>
-                              <Checkbox value="Blue">Blue</Checkbox>
-                            </Col>
-                            <Col span={8}>
-                              <Checkbox value="Red">Red</Checkbox>
-                            </Col>
-                            <Col span={8}>
-                              <Checkbox value="Green">Green</Checkbox>
-                            </Col>
-                            <Col span={8}>
-                              <Checkbox value="Yellow">Yellow</Checkbox>
-                            </Col>
-                        </Row>
-                      </Checkbox.Group>
-                    </div>
-
-                    <div className="">
-                      <h4 style={{margin:"0"}}>Select Brand</h4>
-                      <Checkbox.Group style={{ width: '33%', display:"block" }} onChange={onChangeBrand}>
-                        <Row style={{display:"grid"}}>
-                          <Col span={8}>
-                            <Checkbox value="Canon">Canon</Checkbox>
-                          </Col>
-                          <Col span={8}>
-                            <Checkbox value="Nikon">Nikon</Checkbox>
-                          </Col>
-                          <Col span={8}>
-                            <Checkbox value="Apple">Apple</Checkbox>
-                          </Col>
-                          <Col span={8}>
-                            <Checkbox value="Dell">Dell</Checkbox>
-                          </Col>
-                          <Col span={8}>
-                            <Checkbox value="Vaio">Vaio</Checkbox>
-                          </Col>
-                          <Col span={8}>
-                            <Checkbox value="Lenovo">Lenovo</Checkbox>
-                          </Col>
-                          <Col span={8}>
-                            <Checkbox value="Vivo">Vivo</Checkbox>
-                          </Col>
-                        </Row>
-                      </Checkbox.Group>
-                    </div>
-
-                    
-
-
-                </div>
-        )
-    }
 }
 
 export default EcomFilter;

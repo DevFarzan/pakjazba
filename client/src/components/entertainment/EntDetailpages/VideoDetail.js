@@ -75,7 +75,7 @@ class VideoDetail extends Component {
           <div className="row">
             <div className="col-md-8">
               <div className="videoheading">
-                <h6>DRAMA</h6>
+                {/* <h6>DRAMA</h6> */}
                 <h4 className="h4">{description}</h4>
                 <div className="videotag">
                   <iframe frameBorder="0" width="100%" height="400" src={URL} allowFullScreen allow="autoplay"></iframe>

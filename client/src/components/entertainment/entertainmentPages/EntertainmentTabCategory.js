@@ -10,7 +10,6 @@ class EntertainmentCategory extends Component {
     }
 
     clickItem(item) {
-        console.log(item , 'item')
         // this.props.mainCategoryFilter(item)
         this.props.onChange(item)
     }

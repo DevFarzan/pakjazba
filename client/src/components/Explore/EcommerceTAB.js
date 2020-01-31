@@ -1,71 +1,44 @@
 import React, { Component } from 'react';
-import { Tabs, Icon, Form } from 'antd';
-import Slider from '../header/Slider';
-import EcommerceFilter from './ecommerce-filter';
+import { Tabs, Icon } from 'antd';
 import { HttpUtils } from "../../Services/HttpUtils";
 import Eshopcard from '../ecommerce/EcomShopcard';
 import BuyCategory from '../buy_sell/buyfirstfold';
 import EcomFilter from '../ecommerce/ecommerce-filter';
-import DealsEcom from '../ecommerce/EcomDeals';
 
-// const FormItem = Form.Item;
-// const Option = Select.Option;
-
-
-
-
-
-let filterSubCategoryName = [];
-let filterBrand = [];
+let filterCategoryName = [];
 let filterColorFamily = [];
+let filterBrand = [];
 
 class EcommerceTAB extends Component {
     constructor(props) {
         super(props)
         this.state = {
             user: false,
-            productsData: '',
-            featureData: '',
-            allData: true,
-            ecomSerchValue: '',
-            featuredCategories: true,
-            noRecordFound: false,
-            recordFound: true,
-            loader: true,
-            searchBy: '',
-            checkRadioBtn: false,
+            allProducts: [],
             filteredData: [],
             notFoundFilterData: false,
+            showRecord: true,
+
+            categoryProduct: [],
+            colors: [],
+            brands: [],
 
             categoryofProduct: [],
-            brandName: [],
-            color: [],
-
-            colorsofProduct: [],
-            brandofProducts: [],
-
+            colorsValues: [],
+            brandValues: [],
         }
     }
 
     async componentDidMount() {
         let res = await HttpUtils.get('getecommercedata');
         let featureData = [];
-        console.log(res, 'res.content.length')
         if (res.content.length >= 4) {
             for (var i = 0; i < 4; i++) {
                 featureData.push(res.content[i])
                 if (res) {
                     if (res.code == 200) {
-                        if (res.content.length >= 4) {
-                            for (var i = 0; i < 4; i++) {
-                                featureData.push(res.content[i])
-                            }
-                        }
                         this.setState({
-                            productsData: res.content,
-                            // featureData: featureData,
-                            // allData: res.content,
-                            // loader: false
+                            allProducts: res.content,
                         })
                     }
                 }
@@ -73,100 +46,24 @@ class EcommerceTAB extends Component {
         }
     }
 
-    // searcProduct = (e) => {
-    //     const { allData } = this.state;
-    //     this.setState({
-    //         ecomSerchValue: e.target.value
-    //     })
-    //     if (e.target.value == '') {
-    //         this.setState({
-    //             productsData: allData,
-    //             featuredCategories: true,
-    //             noRecordFound: false,
-    //             recordFound: true
-    //         })
-    //     }
-    // }
 
-    // searchProduct = async (e) => {
-    //     const { ecomSerchValue, allData, searchBy } = this.state;
-    //     e.preventDefault();
-    //     let data;
-    //     let res = await HttpUtils.get('getecommercedata');
-    //     if (res) {
-    //         if (res.code = 200) {
-    //             data = res.content;
-    //         }
-    //     }
-    //     let ecomSearchValue = ecomSerchValue.toLowerCase();
-    //     let ecommreceFilterData = [];
-    //     if (searchBy != '') {
-    //         if (ecomSerchValue != '') {
-    //             for (let i in data) {
-    //                 if (searchBy == 'product') {
-    //                     if (ecomSearchValue == data[i].product.toLowerCase()) {
-    //                         ecommreceFilterData.push(data[i])
-    //                     }
-    //                 }
-    //                 else if (searchBy == 'shop') {
-    //                     if (ecomSearchValue == data[i].shopName.toLowerCase()) {
-    //                         ecommreceFilterData.push(data[i])
-    //                     }
-    //                 }
-    //                 else if (searchBy == 'brandName') {
-    //                     if (ecomSearchValue == data[i].brandName.toLowerCase() || ecomSearchValue == data[i].manufacturer.toLowerCase()) {
-    //                         ecommreceFilterData.push(data[i])
-    //                     }
-    //                 }
-    //             }
-    //             if (ecommreceFilterData.length == 0) {
-    //                 this.setState({
-    //                     recordFound: false,
-    //                     noRecordFound: true,
-    //                     featuredCategories: false,
-    //                 })
-    //             }
-    //             else {
-    //                 this.setState({
-    //                     productsData: ecommreceFilterData,
-    //                     featuredCategories: false,
-    //                     recordFound: true,
-    //                     noRecordFound: false,
-    //                 })
-    //             }
-    //         }
-    //     }
-    //     else {
-    //         this.setState({
-    //             checkRadioBtn: true
-    //         })
-    //     }
-    // }
+    // /*category filteration*/
 
-    // onAddMore = () => {
-    //     const { allData } = this.state;
-    //     this.setState({
-    //         productsData: allData,
-    //         featuredCategories: true,
-    //         recordFound: true,
-    //         noRecordFound: false
-    //     })
-    // }
-
-    onChange = e => {
+    onChange = (value) => {
+        let categoryFilterValue = [];
+        categoryFilterValue.push(value[2]);
+        filterCategoryName = categoryFilterValue
         this.setState({
-            searchBy: e.target.value,
-            checkRadioBtn: false
-        });
-    };
-
+            categoryofProduct: value,
+        })
+        this.filterKeysGet()
+    }
 
     /*Color Filteration*/
     onChangeCheckBoxes = (value) => {
         this.setState({
-            color: value
+            colorsValues: value
         })
-
         filterColorFamily = value;
         this.filterKeysGet();
     }
@@ -175,35 +72,22 @@ class EcommerceTAB extends Component {
 
     onChangeBrand = (value) => {
         this.setState({
-            brandName: value
+            brandValues: value
         })
 
         filterBrand = value;
         this.filterKeysGet();
     }
 
-    /*category filteration*/
-
-    onChange = (value) => {
-        let categoryValue = [];
-        categoryValue.push(value[2]);
-        this.setState({
-            categoryProduct: categoryValue,
-        })
-        filterSubCategoryName = categoryValue
-        this.filterKeysGet()
-        console.log(filterSubCategoryName, "categoryvalue")
-    }
 
     filterKeysGet = () => {
-        console.log("Get Products")
-        let categoryofProduct = [];
+        let categoryProduct = [];
         let colorsofProduct = [];
         let brandofProducts = [];
 
         let filterKeys = [];
 
-        if (filterSubCategoryName.length > 0) {
+        if (filterCategoryName.length > 0) {
             filterKeys.push('category')
         }
         if (filterColorFamily.length > 0) {
@@ -212,27 +96,26 @@ class EcommerceTAB extends Component {
         if (filterBrand.length > 0) {
             filterKeys.push('brandName')
         }
-        for (var i = 0; i < filterSubCategoryName.length; i++) {
-            categoryofProduct.push(filterSubCategoryName[i])
+        for (var i = 0; i < filterCategoryName.length; i++) {
+            categoryProduct.push(filterCategoryName[i])
         }
         for (var i = 0; i < filterColorFamily.length; i++) {
             colorsofProduct.push(filterColorFamily[i])
         }
         for (var i = 0; i < filterBrand.length; i++) {
-            categoryofProduct.push(filterBrand[i])
+            brandofProducts.push(filterBrand[i])
         }
 
         this.setState({
-            categoryofProduct: categoryofProduct,
-            colorsofProduct: colorsofProduct,
-            brandofProducts: brandofProducts,
+            categoryProduct: categoryProduct,
+            colors: colorsofProduct,
+            brands: brandofProducts,
         })
 
-        this.filterProductsData(filterKeys)
+        // this.filterProductsData(filterKeys)
     }
 
     filterProductsData = (filterKeys) => {
-        console.log("Get Products 2")
         if (filterKeys.length == 1) {
             this.filterDataWithOneKey(filterKeys);
         }
@@ -247,232 +130,232 @@ class EcommerceTAB extends Component {
         }
     }
 
-    filterDataWithOneKey = (filterKeys) => {
-        console.log("Get Products 3")
-        const { productsData } = this.state;
-        let data;
-        for (var i = 0; i < filterKeys.length; i++) {
-            if (filterKeys[i] == 'category') {
-                data = productsData.filter((elem) => {
-                    return elem.category[2] && filterSubCategoryName.includes(elem.category[2])
-                })
-            }
-            else if (filterKeys[i] == 'color') {
-                data = productsData.filter((elem) => {
-                    return elem.color && filterColorFamily.includes(elem.color)
-                })
-            }
-            else if (filterKeys[i] == 'brandName') {
-                data = productsData.filter((elem) => {
-                    return elem.brandName && filterBrand.includes(elem.brandName)
-                })
-            }
+    // filterDataWithOneKey = (filterKeys) => {
+    //     const { allProducts } = this.state;
+    //     let data;
+    //     for (var i = 0; i < filterKeys.length; i++) {
+    //         if (filterKeys[i] == 'category') {
+    //             data = allProducts.filter((elem) => {
+    //                 return elem.category[2] && filterSubCategoryName.includes(elem.category[2])
+    //             })
+    //         }
+    //         else if (filterKeys[i] == 'color') {
+    //             data = allProducts.filter((elem) => {
+    //                 return elem.color && filterColorFamily.includes(elem.color)
+    //             })
+    //         }
+    //         else if (filterKeys[i] == 'brandName') {
+    //             data = allProducts.filter((elem) => {
+    //                 return elem.brandName && filterBrand.includes(elem.brandName)
+    //             })
+    //         }
 
-        }
-        console.log(data, "Products data")
-        if (data.length == 0) {
-            this.setState({
-                notFoundFilterData: true,
-                filteredData: data,
-                allData: false
-            })
-        }
-        else {
-            this.setState({
-                notFoundFilterData: false,
-                filteredData: data,
-                allData: false
-            })
-        }
-    }
+    //     }
+    //     if (data.length == 0) {
+    //         this.setState({
+    //             notFoundFilterData: true,
+    //             filteredData: data,
+    //             allData: false
+    //         })
+    //     }
+    //     else {
+    //         this.setState({
+    //             notFoundFilterData: false,
+    //             filteredData: data,
+    //             allData: false
+    //         })
+    //     }
+    // }
 
-    filterDataWithTwoKeys = (filterKeys) => {
-        const { productsData } = this.state;
-        let data1;
-        let filteredData;
+    // filterDataWithTwoKeys = (filterKeys) => {
+    //     const { allProducts } = this.state;
+    //     let data1;
+    //     let filteredData;
 
 
-        for (var i = 0; i < filterKeys.length; i++) {
-            if (i == 0) {
-                if (filterKeys[i] == 'category') {
+    //     for (var i = 0; i < filterKeys.length; i++) {
+    //         if (i == 0) {
+    //             if (filterKeys[i] == 'category') {
 
-                    data1 = productsData.filter((elem) => {
-                        return elem.category[2] && filterSubCategoryName.includes(elem.category[2])
-                    })
-                }
-                else if (filterKeys[i] == 'color') {
-                    data1 = productsData.filter((elem) => {
-                        return elem.color && filterColorFamily.includes(elem.color)
-                    })
-                }
-                else if (filterKeys[i] == 'brandName') {
-                    data1 = productsData.filter((elem) => {
-                        return elem.brandName && filterBrand.includes(elem.brandName)
-                    })
-                }
-            }
-            if (i == 1) {
-                if (filterKeys[i] == 'category') {
-                    filteredData = data1.filter((elem) => {
-                        return elem.category[2] && filterSubCategoryName.includes(elem.category[2])
-                    })
-                }
-                else if (filterKeys[i] == 'color') {
-                    filteredData = data1.filter((elem) => {
-                        return elem.color && filterColorFamily.includes(elem.color)
-                    })
-                }
-                else if (filterKeys[i] == 'brandName') {
-                    filteredData = data1.filter((elem) => {
-                        return elem.brandName && filterBrand.includes(elem.brandName)
-                    })
-                }
-            }
-        }
-        if (filteredData.length == 0) {
-            this.setState({
-                notFoundFilterData: true,
-                filteredData: filteredData,
-                allData: false
-            })
-        }
-        else {
-            this.setState({
-                notFoundFilterData: false,
-                filteredData: filteredData,
-                allData: false
+    //                 data1 = allProducts.filter((elem) => {
+    //                     return elem.category[2] && filterSubCategoryName.includes(elem.category[2])
+    //                 })
+    //             }
+    //             else if (filterKeys[i] == 'color') {
+    //                 data1 = allProducts.filter((elem) => {
+    //                     return elem.color && filterColorFamily.includes(elem.color)
+    //                 })
+    //             }
+    //             else if (filterKeys[i] == 'brandName') {
+    //                 data1 = allProducts.filter((elem) => {
+    //                     return elem.brandName && filterBrand.includes(elem.brandName)
+    //                 })
+    //             }
+    //         }
+    //         if (i == 1) {
+    //             if (filterKeys[i] == 'category') {
+    //                 filteredData = data1.filter((elem) => {
+    //                     return elem.category[2] && filterSubCategoryName.includes(elem.category[2])
+    //                 })
+    //             }
+    //             else if (filterKeys[i] == 'color') {
+    //                 filteredData = data1.filter((elem) => {
+    //                     return elem.color && filterColorFamily.includes(elem.color)
+    //                 })
+    //             }
+    //             else if (filterKeys[i] == 'brandName') {
+    //                 filteredData = data1.filter((elem) => {
+    //                     return elem.brandName && filterBrand.includes(elem.brandName)
+    //                 })
+    //             }
+    //         }
+    //     }
+    //     if (filteredData.length == 0) {
+    //         this.setState({
+    //             notFoundFilterData: true,
+    //             filteredData: filteredData,
+    //             allData: false
+    //         })
+    //     }
+    //     else {
+    //         this.setState({
+    //             notFoundFilterData: false,
+    //             filteredData: filteredData,
+    //             allData: false
 
-            })
-        }
-    }
+    //         })
+    //     }
+    // }
 
 
-    filterDataWithThreeKeys = (filterKeys) => {
-        const { productsData } = this.state
-        let data1;
-        let data2;
-        let filteredData;
+    // filterDataWithThreeKeys = (filterKeys) => {
+    //     const { allProducts } = this.state
+    //     let data1;
+    //     let data2;
+    //     let filteredData;
 
-        for (var i = 0; i < filterKeys.length; i++) {
-            if (i == 0) {
-                if (filterKeys[i] == 'category') {
-                    data1 = productsData.filter((elem) => {
-                        return elem.category[2] && filterSubCategoryName.includes(elem.category[2])
-                    })
-                }
-                else if (filterKeys[i] == 'color') {
-                    data1 = productsData.filter((elem) => {
-                        return elem.color && filterColorFamily.includes(elem.color)
-                    })
-                }
-                else if (filterKeys[i] == 'brandName') {
-                    data1 = productsData.filter((elem) => {
-                        return elem.brandName && filterBrand.includes(elem.brandName)
-                    })
-                }
-            }
-            if (i == 1) {
-                if (filterKeys[i] == 'category') {
-                    data2 = data1.filter((elem) => {
-                        return elem.category[2] && filterSubCategoryName.includes(elem.category[2])
-                    })
-                }
-                else if (filterKeys[i] == 'color') {
-                    data2 = data1.filter((elem) => {
-                        return elem.color && filterColorFamily.includes(elem.color)
-                    })
-                }
-                else if (filterKeys[i] == 'brandName') {
-                    data2 = data1.filter((elem) => {
-                        return elem.brandName && filterBrand.includes(elem.brandName)
-                    })
-                }
-            }
-            if (i == 2) {
-                if (filterKeys[i] == 'category') {
-                    filteredData = data2.filter((elem) => {
-                        return elem.category[2] && filterSubCategoryName.includes(elem.category[2])
-                    })
-                }
-                else if (filterKeys[i] == 'color') {
-                    filteredData = data2.filter((elem) => {
-                        return elem.color && filterColorFamily.includes(elem.color)
-                    })
-                }
-                else if (filterKeys[i] == 'brandName') {
-                    filteredData = data2.filter((elem) => {
-                        return elem.brandName && filterBrand.includes(elem.brandName)
-                    })
-                }
-            }
-        }
-        if (filteredData.length == 0) {
-            this.setState({
-                notFoundFilterData: true,
-                filteredData: filteredData,
-                allData: false
-            })
-        }
-        else {
-            this.setState({
-                notFoundFilterData: false,
-                filteredData: filteredData,
-                allData: false
+    //     for (var i = 0; i < filterKeys.length; i++) {
+    //         if (i == 0) {
+    //             if (filterKeys[i] == 'category') {
+    //                 data1 = allProducts.filter((elem) => {
+    //                     return elem.category[2] && filterSubCategoryName.includes(elem.category[2])
+    //                 })
+    //             }
+    //             else if (filterKeys[i] == 'color') {
+    //                 data1 = allProducts.filter((elem) => {
+    //                     return elem.color && filterColorFamily.includes(elem.color)
+    //                 })
+    //             }
+    //             else if (filterKeys[i] == 'brandName') {
+    //                 data1 = allProducts.filter((elem) => {
+    //                     return elem.brandName && filterBrand.includes(elem.brandName)
+    //                 })
+    //             }
+    //         }
+    //         if (i == 1) {
+    //             if (filterKeys[i] == 'category') {
+    //                 data2 = data1.filter((elem) => {
+    //                     return elem.category[2] && filterSubCategoryName.includes(elem.category[2])
+    //                 })
+    //             }
+    //             else if (filterKeys[i] == 'color') {
+    //                 data2 = data1.filter((elem) => {
+    //                     return elem.color && filterColorFamily.includes(elem.color)
+    //                 })
+    //             }
+    //             else if (filterKeys[i] == 'brandName') {
+    //                 data2 = data1.filter((elem) => {
+    //                     return elem.brandName && filterBrand.includes(elem.brandName)
+    //                 })
+    //             }
+    //         }
+    //         if (i == 2) {
+    //             if (filterKeys[i] == 'category') {
+    //                 filteredData = data2.filter((elem) => {
+    //                     return elem.category[2] && filterSubCategoryName.includes(elem.category[2])
+    //                 })
+    //             }
+    //             else if (filterKeys[i] == 'color') {
+    //                 filteredData = data2.filter((elem) => {
+    //                     return elem.color && filterColorFamily.includes(elem.color)
+    //                 })
+    //             }
+    //             else if (filterKeys[i] == 'brandName') {
+    //                 filteredData = data2.filter((elem) => {
+    //                     return elem.brandName && filterBrand.includes(elem.brandName)
+    //                 })
+    //             }
+    //         }
+    //     }
+    //     if (filteredData.length == 0) {
+    //         this.setState({
+    //             notFoundFilterData: true,
+    //             filteredData: filteredData,
+    //             allData: false
+    //         })
+    //     }
+    //     else {
+    //         this.setState({
+    //             notFoundFilterData: false,
+    //             filteredData: filteredData,
+    //             allData: false
 
-            })
-        }
-    }
+    //         })
+    //     }
+    // }
 
-    removeValue = (param, value) => {
-        let arr = [];
-        if (param == "category") {
-            filterSubCategoryName = arr
-        }
-        else if (param == "color") {
-            filterColorFamily = arr
-        }
-        else if (param == 'brandName') {
-            let arr1 = [];
-            for (var i = 0; i < filterBrand.length; i++) {
-                if (filterBrand[i] != value) {
-                    arr1.push(filterBrand[i])
-                }
-            }
-            filterBrand = arr1;
-        }
-        this.filterKeysGet();
-        if (filterSubCategoryName.length == 0 && filterColorFamily.length == 0 && filterBrand.length == 0) {
-            this.setState({
-                showRecord: true,
-                notFoundFilterData: false,
-                filteredData: [],
-            })
-        }
-        else {
-            this.filterKeysGet();
-        }
+    // removeValue = (param, value) => {
 
-    }
+    //     let arr = [];
+    //     if (param == "category") {
+    //         filterSubCategoryName = arr
+    //     }
+    //     else if (param == "color") {
+    //         filterColorFamily = arr
+    //     }
+    //     else if (param == 'brandName') {
+    //         let arr1 = [];
+    //         for (var i = 0; i < filterBrand.length; i++) {
+    //             if (filterBrand[i] != value) {
+    //                 arr1.push(filterBrand[i])
+    //             }
+    //         }
+    //         filterBrand = arr1;
+    //     }
+    //     this.filterKeysGet();
+    //     if (filterSubCategoryName.length == 0 && filterColorFamily.length == 0 && filterBrand.length == 0) {
+    //         this.setState({
+    //             showRecord: true,
+    //             notFoundFilterData: false,
+    //             filteredData: [],
+    //         })
+    //     }
+    //     else {
+    //         this.filterKeysGet();
+    //     }
 
-    showAllProducts = () => {
-        filterSubCategoryName = [];
-        filterColorFamily = [];
-        filterBrand = [];
-        this.setState({
-            showRecord: true,
-            notFoundFilterData: false,
-            billboardFilterdData: [],
-            statusValue: ''
-        })
-        this.filterKeysGet();
+    // }
 
-    }
+    // showAllProducts = () => {
+    //     filterSubCategoryName = [];
+    //     filterColorFamily = [];
+    //     filterBrand = [];
+    //     this.setState({
+    //         showRecord: true,
+    //         notFoundFilterData: false,
+    //         billboardFilterdData: [],
+    //         statusValue: ''
+    //     })
+    //     this.filterKeysGet();
+
+    // }
+
+
+
+
     render() {
         const { TabPane } = Tabs;
-        const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
-        const { productsData, featureData, featuredCategories, noRecordFound, recordFound, loader, searchBy, checkRadioBtn, categoryofProduct, filteredData, notFoundFilterData, showAllProducts, allData, colorsofProduct, brandofProducts } = this.state;
-
-        console.log(productsData, " color family")
+        const { allProducts, filteredData, notFoundFilterData, showRecord, categoryProduct, colors, brand, categoryofProduct, colorsValues, brandValues } = this.state;
         return (
             <div>
                 <div className="row">
@@ -481,10 +364,9 @@ class EcommerceTAB extends Component {
                             <TabPane tab={
                                 <span><Icon type="filter" /> Filter </span>}
                                 key="1">
-                                <EcomFilter onChange={this.onChange} categoryofProduct={categoryofProduct} colorsofProduct={colorsofProduct} onChangeCheckBoxes={this.onChangeCheckBoxes}
-                                    brandofProducts={brandofProducts} onChangeBrand={this.onChangeBrand} />
-                                {/* <Slider mainH1="Pakjazba Ecommerce" mainH2="" searcProduct={this.searcProduct} searchProduct={this.searchProduct}
-                                    onChange={this.onChange} searchBy={searchBy} checkRadioBtn={checkRadioBtn} /> */}
+                                <EcomFilter categoryofProduct={categoryofProduct} colorsValues={colorsValues} brandValues={brandValues}
+                                    onChange={this.onChange} onChangeCheckBoxes={this.onChangeCheckBoxes} onChangeBrand={this.onChangeBrand}
+                                />
                             </TabPane>
                             <TabPane tab={
                                 <span><i class="fa fa-list-alt" aria-hidden="true"></i> Category </span>}
@@ -494,16 +376,18 @@ class EcommerceTAB extends Component {
                         </Tabs>
                     </div>
                     <div className="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                        {noRecordFound && <span style={{ textAlign: "center" }}><h1>Not found....</h1></span>}
+                        {/* {noRecordFound && <span style={{ textAlign: "center" }}><h1>Not found....</h1></span>} */}
                         {/* {noRecordFound && <span style={{ textAlign: "center" }}><h5>you can find your search by type</h5></span>}
                         {noRecordFound && <div className="col-md-12" style={{ textAlign: "center" }}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
                         {recordFound ?
                            
                             : null} */}
                         <Eshopcard
-                            productsData={productsData} colorsofProduct={colorsofProduct} brandofProducts={brandofProducts}
+                            allProducts={allProducts}
+                            // colorsofProduct={colorsofProduct} brandofProducts={brandofProducts} categoryProduct={categoryProduct}
                             filteredData={filteredData} notFoundFilterData={notFoundFilterData} removeValue={this.removeValue}
-                            allData={allData} />
+                            showRecord={showRecord}
+                        />
 
                     </div>
                 </div>

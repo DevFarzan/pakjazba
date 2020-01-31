@@ -7,30 +7,30 @@ import { isBrowser, isMobile } from "react-device-detect";
 class Firstfold extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            open: '',
-            goToFilter: false
-        }
-        this.category = this.category.bind(this);
+        // this.state = {
+        //     open: '',
+        //     goToFilter: false
+        // }
+        // this.category = this.category.bind(this);
     }
 
-    category(e) {
-        const { dispatch } = this.props;
-        var inputValue = e.target.textContent;
-        // console.log(inputValue , 'inputValue')
-        this.props.mainCategoryFilter(inputValue)
-        dispatch({ type: 'SEARCHON', inputValue })
+    // category(e) {
+    //     const { dispatch } = this.props;
+    //     var inputValue = e.target.textContent;
+    //     // console.log(inputValue , 'inputValue')
+    //     this.props.mainCategoryFilter(inputValue)
+    //     dispatch({ type: 'SEARCHON', inputValue })
 
-    }
+    // }
 
-    dropDown(e) {
-        const { open } = this.state;
-        this.setState({ open: open === e ? '' : e })
-    }
+    // dropDown(e) {
+    //     const { open } = this.state;
+    //     this.setState({ open: open === e ? '' : e })
+    // }
 
-    filterPage = () => {
-        this.setState({ goToFilter: true })
-    }
+    // filterPage = () => {
+    //     this.setState({ goToFilter: true })
+    // }
 
     render() {
         // const { open, goToFilter } = this.state;
@@ -40,7 +40,7 @@ class Firstfold extends Component {
         return (
             <div className="container" style={{ width: "100%" }}>
                 <div className="row">
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style={{ cursor: 'pointer' }}>
                         <div className="wrimagecard wrimagecard-topimage">
                             <div className="wrimagecard-topimage_headerMotor" onClick={this.dropDown.bind(this, 'motors')}>
                                 <center>
@@ -49,7 +49,7 @@ class Firstfold extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" style={{ cursor: 'pointer' }}>
                         <div className="wrimagecard wrimagecard-topimage">
                             <div className="wrimagecard-topimage_headerFashion" onClick={this.dropDown.bind(this, 'Fashion')}>
                                 <center>
@@ -58,7 +58,7 @@ class Firstfold extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" style={{ cursor: 'pointer' }}>
                         <div className="wrimagecard wrimagecard-topimage">
                             <div className="wrimagecard-topimage_headerElectric" onClick={this.dropDown.bind(this, 'Electronics')} >
                                 <center>
@@ -68,7 +68,7 @@ class Firstfold extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style={{ cursor: 'pointer' }}>
 
                     <div className="wrimagecard wrimagecard-topimage">
                         <div className="wrimagecard-topimage_headerHomeBuy" onClick={this.dropDown.bind(this, 'Home')} >
@@ -78,7 +78,7 @@ class Firstfold extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style={{ cursor: 'pointer' }}>
 
                     <div className="wrimagecard wrimagecard-topimage">
                         <div className="wrimagecard-topimage_headerHomeBuy" onClick={this.dropDown.bind(this, 'Home')} >
@@ -88,7 +88,7 @@ class Firstfold extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style={{ cursor: 'pointer' }}>
                     <div className="wrimagecard wrimagecard-topimage">
                         <div className="wrimagecard-topimage_headerGarden" onClick={this.dropDown.bind(this, 'Garden')} >
                             <center>
@@ -97,7 +97,7 @@ class Firstfold extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style={{ cursor: 'pointer' }}>
                     <div className="wrimagecard wrimagecard-topimage">
                         <div className="wrimagecard-topimage_headerToy" onClick={this.dropDown.bind(this, 'Toys')}>
                             <center>
@@ -106,7 +106,7 @@ class Firstfold extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style={{ cursor: 'pointer' }}>
                     <div className="wrimagecard wrimagecard-topimage">
                         <div className="wrimagecard-topimage_headerToy" onClick={this.dropDown.bind(this, 'Toys')}>
                             <center>
@@ -115,7 +115,7 @@ class Firstfold extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style={{ cursor: 'pointer' }}>
                     <div className="wrimagecard wrimagecard-topimage">
                         <div className="wrimagecard-topimage_headerToy" onClick={this.dropDown.bind(this, 'Toys')}>
                             <center>
@@ -124,7 +124,7 @@ class Firstfold extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={this.category} style={{ cursor: 'pointer' }}>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style={{ cursor: 'pointer' }}>
                     <div className="wrimagecard wrimagecard-topimage">
                         <div className="wrimagecard-topimage_headerToy" onClick={this.dropDown.bind(this, 'Toys')}>
                             <center>
@@ -139,7 +139,7 @@ class Firstfold extends Component {
                     </div>
                 </div> */}
                 {/* <div className="row" style={{padding:'0px'}}>
-                    <div className="col-md-4 col-sm-4 col-xs-12" style={{marginRight:'-30px'}} onClick={this.category}>
+                    <div className="col-md-4 col-sm-4 col-xs-12" style={{marginRight:'-30px'}} >
                         <div style={{border:'1px solid black',padding:'6px'}}>
                             <i className="fa fa-car margin_right_c"></i>
                             <span className="margin_right_c">Motors</span>
@@ -155,7 +155,7 @@ class Firstfold extends Component {
                         </ul>
                         </div>}
                     </div>
-                    <div className="col-md-4 col-sm-4 col-xs-12" style={{marginRight:'-30px'}} onClick={this.category}>
+                    <div className="col-md-4 col-sm-4 col-xs-12" style={{marginRight:'-30px'}} >
                         <div style={{border:'1px solid black',padding:'6px'}}>
                             <i className="fa fa-tv margin_right_c"></i>
                             <span className="margin_right_c">Fashion</span>

@@ -65,7 +65,7 @@ class JobPortal extends Component {
     }
 
     getSortType = (value) => {
-        console.log(value , 'getSortType')
+        console.log(value, 'getSortType')
         this.setState({
             typeSortJob: value
         })
@@ -74,7 +74,7 @@ class JobPortal extends Component {
     }
 
     onChange = (value) => {
-        console.log(value , 'category')
+        console.log(value, 'category')
 
         // let categoryValue = [];
         // categoryValue.push(value[1]);
@@ -512,6 +512,22 @@ class JobPortal extends Component {
             this.filterKeysGet();
         }
     }
+
+
+    showAllRooms = () => {
+
+        filterJobType = [];
+        filterJobCat = [];
+        filterCityName = [];
+        filterStateName = [];
+
+        this.setState({
+            showRecord: true,
+            notFoundFilterData: false,
+        })
+        this.filterKeysGet();
+    }
+
 
     mainCategoryFilter = (param) => {
         const { showAllJobs, filteredData } = this.state;

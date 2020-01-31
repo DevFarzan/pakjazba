@@ -15,3 +15,12 @@
 .orederform{
   font-size: 17px;
 }
+.formHeadEvent{
+  background:linear-gradient(90deg, rgba(35,106,75,1) 0%, rgba(34,75,105,1) 100%);
+  color: white;
+  padding: 8px;
+}
+
+.formInputEventBuyer{
+    border: 1px solid #b3aaaa !important;
+}

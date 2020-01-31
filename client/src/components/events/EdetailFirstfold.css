@@ -54,7 +54,12 @@
   margin: 1vw;
   border-radius: 50vw !important;
 }
-
+.dateTextTim{
+  margin: 0px 0px -10px 0px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
 @media only screen and (min-device-width: 330px) and (max-device-width: 767px){
   .EventBanerTextCsS{
     color: white;

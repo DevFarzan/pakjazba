@@ -53,47 +53,47 @@ class Explore extends Component {
                             <TabPane
                                 tab={
                                     <span>
-                                        <Icon type="apple" /> Room Renting{" "}
+                                        <i className="fa fa-bed"></i> Room Renting{" "}
                                     </span>
                                 }
-                                key="1"
+                                key="2"
                             >
                                 <RoomRentTAB />
                             </TabPane>
                             <TabPane
                                 tab={
                                     <span>
-                                        <Icon type="android" /> Business Listing{" "}
+                                        <i className="fa fa-briefcase"></i> Business Listing{" "}
                                     </span>
                                 }
-                                key="2"
+                                key="3"
                             >
                                 <BusinesListing />
                             </TabPane>
                             <TabPane
                                 tab={
                                     <span>
-                                        <Icon type="apple" /> Buy & Sell{" "}
+                                        <Icon type="shopping" /> Buy & Sell{" "}
                                     </span>
                                 }
-                                key="3"
+                                key="4"
                             >
                                 <BuyNsell />
                             </TabPane>
                             <TabPane
                                 tab={
                                     <span>
-                                        <Icon type="android" /> Job Portal{" "}
+                                        <i className="fa fa-user-md"></i> Job Portal{" "}
                                     </span>
                                 }
-                                key="4"
+                                key="1"
                             >
                                 <JobPortal />
                             </TabPane>
                             <TabPane
                                 tab={
                                     <span>
-                                        <Icon type="apple" /> Events{" "}
+                                        <i className="fa fa-microphone"></i> Events{" "}
                                     </span>
                                 }
                                 key="5"
@@ -103,7 +103,7 @@ class Explore extends Component {
                             <TabPane
                                 tab={
                                     <span>
-                                        <Icon type="android" /> Entertainment{" "}
+                                        <i className="fa fa-tv"></i> Entertainment{" "}
                                     </span>
                                 }
                                 key="6"
@@ -113,7 +113,7 @@ class Explore extends Component {
                             <TabPane
                                 tab={
                                     <span>
-                                        <Icon type="android" /> Ecommerce{" "}
+                                        <i className="fa fa-shopping-cart"></i> Ecommerce{" "}
                                     </span>
                                 }
                                 key="7"

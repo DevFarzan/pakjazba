@@ -187,29 +187,29 @@ class JobDetailpage extends Component {
                     <div className="col-xs-12 col-sm-1 col-md-1 col-lg-1"></div>
                     <div className="col-xs-12 col-sm-10 col-md-10 col-lg-10" style={{ padding: '0' }}>
                         <div className="row">
-                            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                            {data.Google != '' && <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                 <div className="row elementMainDivS socialMediadiv">
                                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
                                         <Icon type="unordered-list" /><h5 className="headMainDivs">Social media</h5>
                                     </div>
                                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <div className="row" style={{ textAlign: 'center' }}>
-                                            {data.faceBook != '' && <div className="col-xs-4 col-md-4 col-sm-12 col-lg-4">
+                                            <div className="col-xs-4 col-md-4 col-sm-12 col-lg-4">
                                                 <a href={data.faceBook} target="_blank" className="fa fa-facebook social_button" style={{ width: "40px", height: "40px", color: '#2f55a4' }}><i></i></a><br />
                                                 <p className="eductionPara">Facebook</p>
-                                            </div>}
-                                            {data.LinkdIn != '' && <div className="col-xs-4 col-md-4 col-sm-12 col-lg-4">
+                                            </div>
+                                            <div className="col-xs-4 col-md-4 col-sm-12 col-lg-4">
                                                 <a href={data.LinkdIn} target="_blank" className="fa fa-linkedin social_button" style={{ width: "40px", height: "40px", color: '#2867B2' }}></a><br />
                                                 <p className="eductionPara">Linkdin</p>
-                                            </div>}
-                                            {data.Google != '' && <div className="col-xs-4 col-md-4 col-sm-12 col-lg-4">
+                                            </div>
+                                            <div className="col-xs-4 col-md-4 col-sm-12 col-lg-4">
                                                 <a href={data.Google} target="_blank" className="fa fa-google-plus social_button" style={{ width: "40px", height: "40px", color: '#db4a39' }}></a><br />
                                                 <p className="eductionPara">Google+</p>
-                                            </div>}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>}
                             <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                 <div className="row elementMainDivS222" style={{ paddingBottom: '0px', height: '165px' }}>
                                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>

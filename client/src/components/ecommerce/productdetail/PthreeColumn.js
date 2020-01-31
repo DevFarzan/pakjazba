@@ -17,6 +17,7 @@ class PthreeColumn extends Component {
       imgUrl: '',
       count: 0,
       commentData: [],
+      goProfile: false,
       editProduct: false
     }
   }
@@ -63,8 +64,11 @@ class PthreeColumn extends Component {
       editProduct: true
     })
   }
-  render() {
 
+  goToProfile() {
+    this.setState({ goProfile: true })
+  }
+  render() {
     const { data, count, commentData, editProduct } = this.state;
     let length = data.itemLength;
     let weight = data.itemWeight;
@@ -75,6 +79,10 @@ class PthreeColumn extends Component {
         <Redirect to={{ pathname: `/Forms_Ecommerce`, state: data }} />
       )
     }
+    if (this.state.goProfile) {
+      return <Redirect to={{ pathname: `/profile_user/${data.profileId}`, state: { userId: data.user_Id, profileId: data.profileId } }} />
+    }
+    console.log("TCL: ecommerce detail -> render -> data", data)
     return (
 
       <div class="container" style={isMobile ? { width: "100%", padding: "0px" } : { width: "80%", padding: "0px" }}>
@@ -168,40 +176,77 @@ class PthreeColumn extends Component {
 
               {/* <RelatedInformation/> */}
             </div>
-
-            <div class="col-md-12">
-              <div className="new-card">
-                <div className="produc-description">
-                  <span style={{ display: 'inline-flex' }}>
-                    <Icon type="unordered-list" style={{ marginRight: "5px" }} />
-                    <h5>Description</h5>
-                  </span>
-
-                  <p>{data.description}</p>
-
-                </div>
-
-              </div>
-            </div>
-
-            <div className="col-md-6">
-              <div className="new-card" style={{ marginTop: "20px" }}>
-                <div className="product-manufacturer">
-                  <span style={{ display: 'inline-flex' }}>
-                    <Icon type="unordered-list" style={{ marginRight: "5px" }} />
-                    <h5>Manufacturer </h5>
-                  </span>
-                  <p>Manufacturer: <strong>{data.manufacturer}</strong></p>
-                  <p>Part Number: <strong>{data.manufacturerPart}</strong></p>
-                  <h4>Warranty Desciption</h4>
-                  <p>{data.warrantyDescription}</p>
+            <div className="row" style={{ marginTop: "20px" }}>
+              <div class="col-md-6">
+                <div className="new-card">
+                  <div className="produc-description">
+                    <span style={{ display: 'inline-flex' }}>
+                      <Icon type="unordered-list" style={{ marginRight: "5px" }} />
+                      <h5>Description</h5>
+                    </span>
+                    <p>{data.description}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col-md-6">
-              <ProductInformation data={this.props.data} />
+              {/* <div class="col-md-6">
+                <div className="new-card">
+                  <div className="produc-description">
+                    <span style={{ display: 'inline-flex' }}>
+                      <Icon type="unordered-list" style={{ marginRight: "5px" }} />
+                      <h5>Contact Details</h5>
+                    </span>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ marginTop: '15px' }}>
+                      <div className="row" style={{ padding: "0" }}>
+                        <div className="col-xs-3 col-md-3 col-sm-5">
+                          <div className="profile_img">
+                            <img onClick={() => { this.goToProfile() }} src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="" alt="" style={{ width: '100%', cursor: 'pointer', marginBottom: "8px" }} />
+                          </div>
+                        </div>
+                        <div className="col-xs-9 col-md-9 col-sm-7 margMObileBuysell">
+                          <span style={{ fontWeight: 'bold' }}>{data.seller}</span><br />
+                          <a onClick={() => { this.goToProfile() }} style={{ fontSize: '13px', cursor: 'pointer', color: 'rgb(55, 169, 155)' }}>
+                            View Profile
+                          </a>
+                          <h5 style={{ marginTop: '10px', marginBottom: '7px' }}>
+                            <span className="glyphicon glyphicon-phone" style={{ marginRight: "15px", color: "#236A4B" }}></span>
+                            <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.contactnumber}</span>
+                          </h5>
+                          <h5 style={{ marginBottom: '7px' }}>
+                            <span className="glyphicon glyphicon-globe" style={{ marginRight: "15px", color: "#236A4B" }}></span>
+                            <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.contactemail}</span>
+                          </h5>
+                          <h5>
+                            <span className="glyphicon glyphicon-home"
+                              style={{ marginRight: "15px", color: "#36a89f" }}></span>
+                            <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.address}, {data.city}. {data.state}</span>
+                          </h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> */}
             </div>
 
+            <div className="row" style={{ marginTop: "20px" }}>
+              <div className="col-md-6">
+                <div className="new-card">
+                  <div className="product-manufacturer">
+                    <span style={{ display: 'inline-flex' }}>
+                      <Icon type="unordered-list" style={{ marginRight: "5px" }} />
+                      <h5>Manufacturer </h5>
+                    </span>
+                    <p>Manufacturer: <strong>{data.manufacturer}</strong></p>
+                    <p>Part Number: <strong>{data.manufacturerPart}</strong></p>
+                    <h4>Warranty Desciption</h4>
+                    <p>{data.warrantyDescription}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-6">
+                <ProductInformation data={this.props.data} />
+              </div>
+            </div>
             <div className="col-md-12">
               <div className="new-card">
                 <span style={{ display: 'inline-flex' }}>

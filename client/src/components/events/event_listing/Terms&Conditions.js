@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-
+import  './OrderSummarycard.css';
 class TermsandConditions extends Component{
   render(){
     return(
       <div className="panel-body">
           <div className="panel panel-default">
-              <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}>
+              <div className="bold_c_text formHeadEvent">
                   <icon type="info-circle"/>
                   <span className="margin_font_location">Terms & Conditions</span>
               </div>

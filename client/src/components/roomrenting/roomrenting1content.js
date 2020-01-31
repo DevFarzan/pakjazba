@@ -125,57 +125,57 @@ class Roomrenting1content extends Component {
         // const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
         const { showroomrents, filteredData, notFoundFilterData, showRecord, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom,
             removeValue, showAllRooms } = this.props;
-            // console.log("TCL: Roomrenting1content -> render -> showroomrents", showroomrents);
+        // console.log("TCL: Roomrenting1content -> render -> showroomrents", showroomrents);
         return (
-            <section id="about">
-                {/*<!-- Top List start -->*/}
-                {/* {!this.state.loader && showroomrents.length == 0 && <div className="row">
-                    <div className="col-md-12 col-sm-12 col-xs-12">
-                        <h4 style={{ margin: "0", textAlign: 'center', fontFamily: 'Source Sans Pro, sans-serif' }}><b>No Room for rent</b> </h4>
-                    </div>
-                </div>} */}
-                {categoroyOfRoom && categoroyOfRoom.length > 0 ?
-                    categoroyOfRoom.map((elem, key) => {
-                        return (
-                            <div className="cross-card">
-                                <li>{elem}<span class="close"
-                                    onClick={removeValue.bind(this, 'category', elem)}
-                                >x</span></li>
-                            </div>)
-                    })
-                    : null}
-                {stateOfRoom && stateOfRoom.length > 0 ?
-                    stateOfRoom.map((elem, key) => {
-                        return (
-                            <div>
-                                <li>{elem}<span class="close"
-                                    onClick={removeValue.bind(this, 'state', elem)}
-                                >x</span></li>
-                            </div>)
-                    })
-                    : null}
-                {cityOfRoom && cityOfRoom.length > 0 ?
-                    cityOfRoom.map((elem, key) => {
-                        return (
-                            <div className="cross-card">
-                                <li>{elem}<span class="close"
-                                    onClick={removeValue.bind(this, 'city', elem)}
-                                >x</span></li>
-                            </div>)
-                    })
-                    : null}
-                {accomodatesOfRoom && accomodatesOfRoom.length > 0 ?
-                    accomodatesOfRoom.map((elem, key) => {
-                        return (
-                            <div className="cross-card">
-                                <li>{elem}<span class="close"
-                                    onClick={removeValue.bind(this, 'accommodates', elem)}
-                                >x</span></li>
-                            </div>)
-                    })
-                    : null}
+            <div>
+                <div className="row">
 
-                {showroomrents.length > 0 && <div className="row exploreRent">
+                    {categoroyOfRoom && categoroyOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                        {categoroyOfRoom.map((elem, key) => {
+                            return (
+                                <div className="cross-card">
+                                    <li>{elem}<span class="close crossBtnExlpre"
+                                        onClick={removeValue.bind(this, 'category', elem)}
+                                    >x</span></li>
+                                </div>)
+                        })}
+                    </div>}
+                    
+                    {stateOfRoom && stateOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                        {stateOfRoom.map((elem, key) => {
+                            return (
+                                <div className="cross-card">
+                                    <li>{elem}<span class="close crossBtnExlpre"
+                                        onClick={removeValue.bind(this, 'state', elem)}
+                                    >x</span></li>
+                                </div>)
+                        })}
+                    </div>}
+
+                    {cityOfRoom && cityOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                        {cityOfRoom.map((elem, key) => {
+                            return (
+                                <div className="cross-card">
+                                    <li>{elem}<span class="close crossBtnExlpre"
+                                        onClick={removeValue.bind(this, 'city', elem)}
+                                    >x</span></li>
+                                </div>)
+                        })}
+                    </div>}
+
+                    {accomodatesOfRoom && accomodatesOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                        {accomodatesOfRoom.map((elem, key) => {
+                            return (
+                                <div className="cross-card">
+                                    <li>{elem}<span class="close crossBtnExlpre"
+                                        onClick={removeValue.bind(this, 'accommodates', elem)}
+                                    >x</span></li>
+                                </div>)
+                        })}
+                    </div>}
+                </div>
+                
+                {showroomrents.length > 0 && <div className="row">
                     <div className="col-md-12 col-sm-12 col-xs-12">
                         <h4 style={{ margin: "0", fontFamily: 'Source Sans Pro, sans-serif' }}><b>Top Available Buy</b> </h4>
                         <br />
@@ -184,7 +184,7 @@ class Roomrenting1content extends Component {
                 <div className="">
                     <div className="row" style={{ marginTop: '-4%' }}>
                         {notFoundFilterData && filteredData.length == 0 ?
-                            <div>
+                            <div className="noRecrdTxt">
                                 <p>
                                     No Record Found
                                 </p>
@@ -344,7 +344,7 @@ class Roomrenting1content extends Component {
                         </div>
                     } */}
                 </div>
-            </section>
+            </div>
         )
     }
 }

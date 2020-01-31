@@ -144,14 +144,14 @@ class Buydetailfirstfold extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="row RoomMainDivS" style={{ paddingBottom: '0px', margin: '0px 0px 20px 0px' }}>
+                            {data.delivery && <div className="row RoomMainDivS" style={{ paddingBottom: '0px', margin: '0px 0px 20px 0px' }}>
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
                                     <Icon type="unordered-list" />
                                     <h5 className="headingMainRoom">
                                         Delivery
                                     </h5>
                                 </div><br />
-                                {data.delivery && <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <div className="row" style={{ textAlign: 'center' }}>
                                         <div className="col-xs-1 col-md-2 col-sm-2 col-lg-2"></div>
                                         <div className="col-xs-10 col-md-8 col-sm-8 col-lg-8">
@@ -167,8 +167,8 @@ class Buydetailfirstfold extends Component {
                                         </div>
                                         <div className="col-xs-1 col-md-2 col-sm-2 col-lg-2"></div>
                                     </div>
-                                </div>}
-                            </div>
+                                </div>
+                            </div>}
                         </div>
                         <div className="col-md-5">
                             <div className="row RoomMainDivS" style={{ margin: '0px' }}>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Input, Select, Modal, Button, Form, Cascader } from 'antd';
 import OrderCard from '../event_listing/OrderSummarycard';
+import  './OrderSummarycard.css';
 import ModalOrderCard from '../event_listing/ModalForm';
 import AsyncStorage from "@callstack/async-storage/lib/index";
 import stateCities from "../../../lib/countrycitystatejson";
@@ -153,7 +154,7 @@ class ContactDetail extends Component{
         return(
             <div className="panel-body">
                 <div className="panel panel-default">
-                    <div className="bold_c_text" style={{backgroundColor:'#37a99b',color:'white',padding:'8px',fontFamily:'Crimson Text, serif !important'}}>
+                    <div className="bold_c_text formHeadEvent">
                         <icon type="info-circle"/>
                         <span className="margin_font_location">Share Your Contact Details</span>
                     </div>
@@ -187,7 +188,7 @@ class ContactDetail extends Component{
                                                     rules: [{ required: true, message: 'Please input your First Name!', whitespace: true },
                                                         { validator: this.changeNameEmail.bind(this) }],
                                                 })(
-                                                    <Input type="text" className="form-control"/>
+                                                    <Input type="text" className="form-control formInputEventBuyer"/>
                                                 )}
                                             </FormItem>
                                         </div>
@@ -198,7 +199,7 @@ class ContactDetail extends Component{
                                                     initialValue: this.state.lastName,
                                                     rules: [{ required: true, message: 'Please input your Last Name!', whitespace: true }],
                                                 })(
-                                                    <Input type="text" className="form-control"/>
+                                                    <Input type="text" className="form-control formInputEventBuyer"/>
                                                 )}
                                             </FormItem>
                                         </div>
@@ -215,7 +216,7 @@ class ContactDetail extends Component{
                                                         { required: true, message: 'Please input your Contact Email!', whitespace: true },
                                                         { validator: this.changeNameEmail.bind(this) }],
                                                 })(
-                                                    <Input  />
+                                                    <Input type="text" className="form-control formInputEventBuyer"  />
                                                 )}
                                             </FormItem>
                                         </div>
@@ -227,7 +228,7 @@ class ContactDetail extends Component{
                                                     rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true },
                                                         { required: true, message: 'Please input your Contact Email!', whitespace: true }],
                                                 })(
-                                                    <Input  />
+                                                    <Input type="text" className="form-control formInputEventBuyer" />
                                                 )}
                                             </FormItem>
                                         </div>
@@ -236,7 +237,7 @@ class ContactDetail extends Component{
                                     <div className="col-md-12" style={{marginTop:"20px"}}>
                                         <div className="col-md-6">
                                             <label> Home Phone </label>
-                                            <Input placeholder="" id="name1" value={this.state.hoNumber} onChange={this.onChangeReview.bind(this)}/>
+                                            <Input placeholder="" id="name1" value={this.state.hoNumber} onChange={this.onChangeReview.bind(this)} className="form-control formInputEventBuyer" />
                                         </div>
                                         <div className="col-md-6">
                                             <label> Mobile Phone </label>
@@ -246,7 +247,7 @@ class ContactDetail extends Component{
                                                     rules: [{ required: true, message: 'Please input your Mobile Phone Number!', whitespace: true },
                                                         { validator: this.validateNumber.bind(this) }],
                                                 })(
-                                                    <Input type="text" className="form-control"/>
+                                                    <Input type="text" className="form-control formInputEventBuyer"/>
                                                 )}
                                             </FormItem>
                                         </div>
@@ -260,7 +261,7 @@ class ContactDetail extends Component{
                                                     initialValue: this.state.address,
                                                     rules: [{ required: true, message: 'Please input your Address!', whitespace: true }],
                                                 })(
-                                                    <Input  />
+                                                    <Input  type="text" className="form-control formInputEventBuyer" />
                                                 )}
                                             </FormItem>
                                         </div>
@@ -296,7 +297,7 @@ class ContactDetail extends Component{
                                                     rules: [{ required: true, message: 'Please input your Zip Code Number!', whitespace: true },
                                                         { validator: this.validateNumber.bind(this) }],
                                                 })(
-                                                    <Input type="text" className="form-control"/>
+                                                    <Input type="text" className="form-control formInputEventBuyer"/>
                                                 )}
                                             </FormItem>
                                         </div>

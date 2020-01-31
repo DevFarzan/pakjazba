@@ -165,11 +165,11 @@ class Forthfold extends Component {
         // if(goDetail){
         //     return <Redirect to={{pathname: `/postad_buysell`}} />
         // }
-        if(detailPage){
-            return <Redirect to={{pathname: `/detail_buySell`, state: objData}} />
+        if (detailPage) {
+            return <Redirect to={{ pathname: `/detail_buySell`, state: objData }} />
         }
-        if(goProfile){
-            return <Redirect to={{pathname: `/profile_userDetail`, state: {userId: objData.userid, profileId: objData.profileid}}} />
+        if (goProfile) {
+            return <Redirect to={{ pathname: `/profile_userDetail`, state: { userId: objData.userid, profileId: objData.profileid } }} />
         }
 
         return (
@@ -181,50 +181,52 @@ class Forthfold extends Component {
                 {/*<div className="col-md-3"  style={{'marginTop': '21px'}} onClick={() => {this.clickItem()}}>
                     <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '385px', width: '100%', borderRadius: '13px'}}/>
                 </div>*/}
-                {categoroyOfRoom && categoroyOfRoom.length > 0 ?
-                    categoroyOfRoom.map((elem, key) => {
-                        return (
-                            <div>
-                                <li>{elem}<span class="close"
-                                    onClick={removeValue.bind(this, 'category', elem)}
-                                >x</span></li>
-                            </div>)
-                    })
-                    : null}
-                {stateOfRoom && stateOfRoom.length > 0 ?
-                    stateOfRoom.map((elem, key) => {
-                        return (
-                            <div>
-                                <li>{elem}<span class="close"
-                                    onClick={removeValue.bind(this, 'state', elem)}
-                                >x</span></li>
-                            </div>)
-                    })
-                    : null}
-                {cityOfRoom && cityOfRoom.length > 0 ?
-                    cityOfRoom.map((elem, key) => {
-                        return (
-                            <div>
-                                <li>{elem}<span class="close"
-                                    onClick={removeValue.bind(this, 'city', elem)}
-                                >x</span></li>
-                            </div>)
-                    })
-                    : null}
-                {conditionOfRoom && conditionOfRoom.length > 0 ?
-                    conditionOfRoom.map((elem, key) => {
-                        return (
-                            <div>
-                                <li>{elem}<span class="close"
-                                    onClick={removeValue.bind(this, 'accommodates', elem)}
-                                >x</span></li>
-                            </div>)
-                    })
-                    : null}
+                <div className="row">
+                    {categoroyOfRoom && categoroyOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                        {categoroyOfRoom.map((elem, key) => {
+                            return (
+                                <div className="cross-card">
+                                    <li>{elem}<span class="close crossBtnExlpre"
+                                        onClick={removeValue.bind(this, 'category', elem)}
+                                    >x</span></li>
+                                </div>)
+                        })}
+                    </div>}
+                    {stateOfRoom && stateOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                        {stateOfRoom.map((elem, key) => {
+                            return (
+                                <div className="cross-card">
+                                    <li>{elem}<span class="close crossBtnExlpre"
+                                        onClick={removeValue.bind(this, 'state', elem)}
+                                    >x</span></li>
+                                </div>)
+                        })}
+                    </div>}
+                    {cityOfRoom && cityOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                        {cityOfRoom.map((elem, key) => {
+                            return (
+                                <div className="cross-card">
+                                    <li>{elem}<span class="close crossBtnExlpre"
+                                        onClick={removeValue.bind(this, 'city', elem)}
+                                    >x</span></li>
+                                </div>)
+                        })}
+                    </div>}
+                    {conditionOfRoom && conditionOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                        {conditionOfRoom.map((elem, key) => {
+                            return (
+                                <div className="cross-card">
+                                    <li>{elem}<span class="close crossBtnExlpre"
+                                        onClick={removeValue.bind(this, 'accommodates', elem)}
+                                    >x</span></li>
+                                </div>)
+                        })}
+                    </div>}
+                </div>
                 <div className="row">
 
                     {notFoundFilterData && filteredData.length == 0 ?
-                        <div>
+                        <div className="noRecrdTxt">
                             <p>
                                 No Record Found
                                 </p>

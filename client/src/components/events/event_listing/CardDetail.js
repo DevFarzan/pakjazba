@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Form, DatePicker, TimePicker, Button } from 'antd';
+import  './OrderSummarycard.css';
+
 import { Input } from 'antd';
 import moment from 'moment';
 import Stripe from '../../form/mainpayment';
@@ -16,6 +18,7 @@ class CardDetail extends Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0,0)
         this.props.onRef(this);
     }
 
@@ -49,7 +52,7 @@ class CardDetail extends Component {
         return (
             <div className="panel-body">
                 <div className="panel panel-default">
-                    <div className="bold_c_text" style={{ backgroundColor: '#37a99b', color: 'white', padding: '8px', fontFamily: 'Crimson Text, serif !important' }}>
+                    <div className="bold_c_text formHeadEvent">
                         <icon type="info-circle" />
                         <span className="margin_font_location">Credit Card Details</span>
                     </div>

@@ -133,11 +133,9 @@ class Roomrentingtwocontentarea extends Component {
         const { onChange, onChangeCheckBoxes, stateOfRoom, cityOfRoom, accomodatesOfRoom, categoryRoom } = this.props;
 
         return (
-            <div className="exploreRentFilter">
+            <div>
                 <div className="row">
-                    <div className="col-md-12 col-sm-12" style={{ textAlign: 'center' }}>
-                        <h3><b>Search By:</b></h3>
-                    </div>
+                    
                     <div className="row">
                         <div className="col-md-12 col-sm-12">
                             <p style={{ marginBottom: '5px' }}><b>Category</b></p>

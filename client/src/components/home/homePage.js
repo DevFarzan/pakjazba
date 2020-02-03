@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 import Footer from '../footer/footer';
-import { Carousel, Icon } from 'antd';
-import Burgermenu from '../header/burgermenu';
-//import {HttpUtils} from "../../Services/HttpUtils";
-import { connect } from 'react-redux';
-import BannerHome from './bannerHome';
-import SliderHome from './sliderHome';
 import { HttpUtils } from "../../Services/HttpUtils";
 import CarouselHome from './carouselHome';
 import SecondfoldCard from './secondfold_card';
-import { isMobile, isTablet, isBrowser } from 'react-device-detect';
+import { isMobile, isTablet } from 'react-device-detect';
 import './homePage.css';
 import HomeBanner from './homebanner';
 import HeaderMenu from '../header/headermenu';
+// import { Link } from "react-router-dom";
+// import { Carousel, Icon } from 'antd';
+// import Burgermenu from '../header/burgermenu';
+// //import {HttpUtils} from "../../Services/HttpUtils";
+// import { connect } from 'react-redux';
+// import BannerHome from './bannerHome';
+// import SliderHome from './sliderHome';
 // import Burgermenu
 
 class HomePage extends Component {
@@ -36,9 +36,6 @@ class HomePage extends Component {
     }
 
     async marketplace() {
-        let reqe = await HttpUtils.post('getShops');
-        console.log(reqe, 'reqest')
-
         let req = await HttpUtils.get('marketplace');
         if (req && req.code && req.code == 200) {
             let res = await HttpUtils.get('getreviews'),

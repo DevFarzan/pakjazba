@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Modal, Tabs, Icon } from 'antd';
+import { Tabs, Icon } from 'antd';
 import Headermenu from "../header/headermenu";
 import RoomRentTAB from './RoomRentTAB';
 import BusinesListing from './BusinessListingTAB';
@@ -9,6 +8,7 @@ import JobPortal from './JobPortalTAB';
 import EventTab from './EventTab';
 import EntertainmentTab from './EntertainmentTAB';
 import EcommerceTab from './EcommerceTAB';
+// import { Link } from "react-router-dom";
 
 import "./explore.css";
 
@@ -24,7 +24,6 @@ class Explore extends Component {
         // console.log(this.props.location.state, 'key')
         window.scrollTo(0, 0);
         let data = this.props.location.state;
-        console.log(data, 'data of key')
         if (data) {
             this.setState({
                 keyOfTab: data

@@ -17,3 +17,24 @@
     width: 95%;
     border-top-width: 1px;
 }
+.pricingroomInProfileMyad {
+    position: absolute;
+    top: -190px;
+    left: 25px;
+    color: white;
+    font-size: 15px;
+    border: 1px solid white;
+    padding: 5px;
+}
+.rentstarInProfileMyad {
+    position: absolute;
+    top: -185px;
+    left: 0;
+}
+.roomdetailcardInProfileMyad {
+    position: absolute;
+    top: 130px;
+    left: 25px;
+    color: white;
+    font-weight: 600;
+}

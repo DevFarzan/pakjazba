@@ -206,9 +206,6 @@ class BussinesCard extends Component {
                             <div className="pricingSell">
                                 {!cardDetails.hideprice ? '$' + cardDetails.price : 'Hide'}
                             </div>
-
-
-
                             <div className="buy-card">
                                 <h4>{cardDetails.modelname}</h4>
                                 <p style={{ fontFamily: 'Poppins, sans-serif' }}>
@@ -222,8 +219,6 @@ class BussinesCard extends Component {
                                     <span>{cardDetails.contactnumber}</span>
                                 </p>
                             </div>
-
-
                         </span>}
 
                         {detail == 'eventPortalData' && <span>

@@ -2136,11 +2136,8 @@ class EcomFilter extends Component {
     const { categoryofProduct, colorsValues, brandValues, onChange, onChangeCheckBoxes, onChangeBrand } = this.props;
     return (
       <div>
-        <div className="exploreRentFilter">
+        <div className="">
           <div className="row">
-            <div className="col-md-12 col-sm-12" style={{ textAlign: 'center' }}>
-              <h3><b>Search By:</b></h3>
-            </div>
             <div className="row">
               <div className="col-md-12 col-sm-12" style={{ marginTop: '1vw' }}>
                 <p style={{ marginBottom: '5px' }}><b>Category</b></p>

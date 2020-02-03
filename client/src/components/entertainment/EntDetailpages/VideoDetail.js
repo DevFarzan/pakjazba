@@ -13,6 +13,7 @@ class VideoDetail extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0,0);
     const { text } = this.props,
       { showDetail } = this.state;
     this.setState({ showDetail: text.length > 0 ? text : showDetail });

@@ -135,94 +135,142 @@ class EventFilterContent extends Component {
         const { onChange, stateOfRoom, cityOfRoom, categoryEvents } = this.props;
 
         return (
-            <div className="exploreRentFilter">
-                {/*<Burgermenu/>*/}
-                <div className="" style={{ width: "100%" }}>
+            <div>
+                <div className="exploreRentFilter">
                     <div className="row">
-                        <div className="col-md-1 col-sm-1"></div>
-                        <div className="">
-                            <span className="search-space2">
-                                <div className="r ow">
-                                    <div className="col-md-12 col-sm-12">
-                                        <div className="col-md-12 col-sm-12">
-                                            <h3><b>Search By:</b></h3>
-                                        </div>
-                                        <div className="col-md-12 col-sm-12 search-space1">
-                                            <Cascader style={{ width: '100%' }}
-                                                options={category}
-                                                onChange={onChange.bind(this)}
-                                                value={categoryEvents}
-                                                // onChange={this.onChange.bind(this)} 
-                                                placeholder="Please select" />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* {this.state.moreFilter && <div className="row"> */}
-                                <div className="row">
-
-                                    <div class="col-md-12 col-sm-12 spacing">
-                                        <h3 className="col-md-12"><b>Location</b></h3>
-                                        <div className="col-md-12 col-sm-12 col-xs-12">
-                                            <Cascader style={{ width: '100%' }}
-                                                value={stateOfRoom}
-
-                                                options={states} onChange={this.onChangeState.bind(this)}
-                                            /></div>
-                                        <div className="col-md-12 col-sm-12 col-xs-12" style={{ marginTop: '2vw', }}>
-                                            <Cascader style={{ width: '100%' }}
-                                                value={cityOfRoom}
-
-                                                options={cities} onChange={this.onChangeCity.bind(this)}
-                                            /></div>
-                                    </div>
-                                </div>
-                                {/* <div className="row"> */}
-                                {/* <div className="col-md-12 col-sm-12 search-space1">
-                                        <button
-                                            className="btn"
-                                            onClick={this.mostPopular.bind(this)}
-                                            style={{ backgroundColor: '#37a99b', color: 'white', width: '100%' }}
-                                        >
-                                            Search
-                                        </button>
-                                    </div> */}
-                                {/* <div class="col-md-12 col-sm-12 spacing hidden-xs" style={{ marginTop: '2vw' }}>
-                                        <h3 className="col-md-12"><b>Price</b></h3>
-                                        {/* <div className="slidecontainer"> 
-                                        <div size="large" style={{ marginLeft: '10px' }}>
-                                            <Row gutter={8}>
-                                                <Col span={8}>
-                                                    <Input
-                                                        placeholder="Min"
-                                                    // onChange={e => this.setState({ minPrice: e.target.value })}
-                                                    />
-                                                </Col>
-                                                <Col span={8}>
-                                                    <Input
-                                                        placeholder="Max"
-                                                    // onChange={e => this.setState({ maxPrice: e.target.value })}
-                                                    />
-                                                </Col>
-                                                <Col>
-                                                    <Button type="primary" icon="caret-right"
-                                                    // onClick={this.props.serachProductMinToMaxPrice.bind(this, minPrice, maxPrice)}
-                                                    />
-                                                </Col>
-                                            </Row>
-                                        </div>
-                                    </div> */}
-
-
-                                {/* </div> */}
-                            </span>
+                        <div className="col-md-12 col-sm-12" style={{ textAlign: 'center' }}>
+                            <h3><b>Search By:</b></h3>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-12 col-sm-12" style={{ marginTop: '1vw' }}>
+                                <p style={{ marginBottom: '5px' }}><b>Category</b></p>
+                            </div>
+                            <div className="col-md-12 col-sm-12">
+                                <Cascader style={{ width: '100%' }}
+                                    options={category}
+                                    onChange={onChange.bind(this)}
+                                    value={categoryEvents}
+                                    // onChange={this.onChange.bind(this)} 
+                                    placeholder="Please select category"
+                                />
+                            </div>
+                            <div className="col-md-12 col-sm-12" style={{ marginTop: '1vw' }}>
+                                <p style={{ marginBottom: '5px' }}><b>State</b></p>
+                            </div>
+                            <div className="col-md-12 col-sm-12 col-xs-12">
+                                <Cascader style={{ width: '100%' }}
+                                    value={stateOfRoom}
+                                    options={states}
+                                    onChange={this.onChangeState.bind(this)}
+                                    placeholder="Please select state"
+                                />
+                            </div>
+                            <div className="col-md-12 col-sm-12" style={{ marginTop: '1vw' }}>
+                                <p style={{ marginBottom: '5px' }}><b>City</b></p>
+                            </div>
+                            <div className="col-md-12 col-sm-12 col-xs-12">
+                                <Cascader style={{ width: '100%' }}
+                                    value={cityOfRoom}
+                                    options={cities}
+                                    onChange={this.onChangeCity.bind(this)}
+                                    placeholder="Please select city after state"
+                                />
+                            </div>
                         </div>
                     </div>
-                    <div className="col-md-1 col-sm-1"></div>
                 </div>
+                {/* <div className="exploreRentFilter">
+                    <div className="" style={{ width: "100%" }}>
+                        <div className="row">
+                            <div className="col-md-1 col-sm-1"></div>
+                            <div className="">
+                                <span className="search-space2">
+                                    <div className="r ow">
+                                        <div className="col-md-12 col-sm-12">
+                                            <div className="col-md-12 col-sm-12">
+                                                <h3><b>Search By:</b></h3>
+                                            </div>
+                                            <div className="col-md-12 col-sm-12 search-space1">
+                                                <Cascader style={{ width: '100%' }}
+                                                    options={category}
+                                                    onChange={onChange.bind(this)}
+                                                    value={categoryEvents}
+                                                    // onChange={this.onChange.bind(this)} 
+                                                    placeholder="Please select category"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="row">
+
+                                        <div class="col-md-12 col-sm-12 spacing">
+                                            <h3 className="col-md-12"><b>Location</b></h3>
+                                            <div className="col-md-12 col-sm-12 col-xs-12">
+                                                <Cascader style={{ width: '100%' }}
+                                                    value={stateOfRoom}
+                                                    options={states}
+                                                    onChange={this.onChangeState.bind(this)}
+                                                />
+                                            </div>
+                                            <div className="col-md-12 col-sm-12 col-xs-12" style={{ marginTop: '2vw', }}>
+                                                <Cascader style={{ width: '100%' }}
+                                                    value={cityOfRoom}
+                                                    options={cities}
+                                                    onChange={this.onChangeCity.bind(this)}
+                                                    placeholder="Please select city after state"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                        <div className="col-md-1 col-sm-1"></div>
+                    </div>
+                </div> */}
             </div>
         )
     }
 }
 
 export default EventFilterContent;
+
+{/* <div className="row"> */ }
+{/* <div className="col-md-12 col-sm-12 search-space1">
+    <button
+        className="btn"
+        onClick={this.mostPopular.bind(this)}
+        style={{ backgroundColor: '#37a99b', color: 'white', width: '100%' }}
+    >
+        Search
+    </button>
+</div> */}
+{/* <div class="col-md-12 col-sm-12 spacing hidden-xs" style={{ marginTop: '2vw' }}>
+    <h3 className="col-md-12"><b>Price</b></h3>
+    {/* <div className="slidecontainer"> 
+    <div size="large" style={{ marginLeft: '10px' }}>
+        <Row gutter={8}>
+            <Col span={8}>
+                <Input
+                    placeholder="Min"
+                // onChange={e => this.setState({ minPrice: e.target.value })}
+                />
+            </Col>
+            <Col span={8}>
+                <Input
+                    placeholder="Max"
+                // onChange={e => this.setState({ maxPrice: e.target.value })}
+                />
+            </Col>
+            <Col>
+                <Button type="primary" icon="caret-right"
+                // onClick={this.props.serachProductMinToMaxPrice.bind(this, minPrice, maxPrice)}
+                />
+            </Col>
+        </Row>
+    </div>
+</div> */}
+
+
+{/* </div> */ }

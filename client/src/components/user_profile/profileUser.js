@@ -75,7 +75,7 @@ class ProfileUser extends Component {
                 let req = await HttpUtils.get('getprofile?profileId=' + profileIdFromPath)
                 await this.getprofileData(profileIdFromPath, req.content.user_id)
                 // console.log(req , 'req')
-                console.log(req.content.user_id , 'req.content.user_id')
+                console.log(req.content.user_id, 'req.content.user_id')
 
                 this.setState({
                     reviewProfile: false,
@@ -87,7 +87,7 @@ class ProfileUser extends Component {
         else {
             let req = await HttpUtils.get('getprofile?profileId=' + profileIdFromPath)
             await this.getprofileData(profileIdFromPath, req.content.user_id)
-            console.log(req.content.user_id , 'req.content.user_id')
+            console.log(req.content.user_id, 'req.content.user_id')
 
             this.setState({
                 reviewProfile: false,
@@ -166,9 +166,9 @@ class ProfileUser extends Component {
         let obj = {
             userId: id
         }
-        console.log(userId , 'userId')
+        console.log(userId, 'userId')
 
-        console.log(obj , 'obj')
+        console.log(obj, 'obj')
         let reqShopData = await HttpUtils.post('getShopById', obj)
         console.log()
         if (reqShopData.code == 200) {
@@ -411,7 +411,7 @@ class ProfileUser extends Component {
         const { imageUrl, profileSec, changePass, name, email, description, phone, twitter, facebook, location,
             listing, listData1, listData2, listData3, listData4, listData5, buySell, business, rooms, jobPortal,
             ecommerce, data, allData, publicSection, reviewProfile } = this.state;
-        console.log('render in profile')
+        console.log(listData1,'render in profile')
         if (buySell) {
             return (
                 <Redirect to={{ pathname: '/postad_buysell', state: data }} />
@@ -797,6 +797,7 @@ class ProfileUser extends Component {
                                             </div>}
                                             {/*===============Ad Listing start=================*/}
                                             {listing && <Tabs defaultActiveKey="1">
+
                                                 <TabPane tab='Room Renting' key="1">
                                                     <div className="secondfold" style={{ backgroundColor: '#FBFAFA' }}>
                                                         <div className="index-content" style={{ marginTop: '20px' }}>
@@ -821,19 +822,20 @@ class ProfileUser extends Component {
                                                                                     <img alt='' src={img} />
                                                                                     <h4>{title}</h4>
                                                                                     <p>{str}</p>
+
+                                                                                    <a onClick={this.editBusiness.bind(this, elem)}>
+                                                                                        <i className="glyphicon glyphicon-edit"
+                                                                                            style={{ padding: "16px", marginTop: "8px", color: "gray" }}>
+                                                                                            <span style={{ margin: "7px" }}>
+                                                                                                Edit</span>
+                                                                                        </i></a>
+                                                                                    <i className="glyphicon glyphicon-trash"
+                                                                                        style={{
+                                                                                            padding: "16px", marginTop: "8px", float: "right",
+                                                                                            color: "gray"
+                                                                                        }}><span style={{ margin: "7px" }}>
+                                                                                            Remove</span></i>
                                                                                 </Link>
-                                                                                <a onClick={this.editBusiness.bind(this, elem)}>
-                                                                                    <i className="glyphicon glyphicon-edit"
-                                                                                        style={{ padding: "16px", marginTop: "8px", color: "gray" }}>
-                                                                                        <span style={{ margin: "7px" }}>
-                                                                                            Edit</span>
-                                                                                    </i></a>
-                                                                                <i className="glyphicon glyphicon-trash"
-                                                                                    style={{
-                                                                                        padding: "16px", marginTop: "8px", float: "right",
-                                                                                        color: "gray"
-                                                                                    }}><span style={{ margin: "7px" }}>
-                                                                                        Remove</span></i>
                                                                             </div>
                                                                         </div>
 

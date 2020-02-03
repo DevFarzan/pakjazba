@@ -23,9 +23,9 @@ class Stories extends Component {
         let detail = Object.values(this.props.entertainment);
 
         return (
-            <div className="container" style={{ width: "100%" }}>
+            <div>
                 <div className="row" style={{ padding: "0", marginTop: "45px" }}>
-                    <div className="col-md-12 col-sm-12">
+                    <div className="col-md-9 col-sm-9">
                         {detail && detail[0].length > 0 && detail[1].length > 0 && detail[2].length > 0 &&
                             detail[3].length > 0 && detail[4].length > 0 ? Object.keys(detail).map((el, k) => {
                                 let arr = detail[k];
@@ -47,7 +47,7 @@ class Stories extends Component {
                                                             style={{ cursor: 'pointer' }}
                                                         >
                                                             <img style={{ height: "150px", width: "100%" }} src={elem.thumbnail_url} />
-                                                            <p><strong>{des}</strong></p>
+                                                            <p><strong>{des.slice(0,15)}</strong></p>
                                                         </div>
                                                     )
                                                 }
@@ -80,7 +80,7 @@ class Stories extends Component {
                                                             style={{ cursor: 'pointer' }}
                                                         >
                                                             <img style={{ height: "150px", width: "100%" }} src={elem.thumbnail_url} />
-                                                            <p><strong>{des}</strong></p>
+                                                            <p><strong>{des.slice(0,17)}..</strong></p>
                                                         </div>
                                                     )
                                                 }
@@ -90,9 +90,9 @@ class Stories extends Component {
                                 }
                             })}
                         }
-                    <div className="col-md-4 col-sm-4">
+                    </div>    
+                    <div className="col-md-3 col-sm-3">
                             <LatestNews data={{ news, sports }} callRoute={this.nextVideo.bind(this)} />
-                        </div>
                     </div>
                 </div>
             </div>

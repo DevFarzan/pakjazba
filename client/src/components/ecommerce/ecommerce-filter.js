@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Cascader, Row, Col, Checkbox,
+  Cascader, Row, Col, Checkbox, Input , Button
 } from 'antd';
 
 const optionsValue = [{
@@ -2102,6 +2102,36 @@ const optionsValue = [{
 
 
 class EcomFilter extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      minValue: '',
+      maxValue: ''
+    }
+  }
+
+
+  onChangeMin = (e) => {
+    this.setState({
+      minValue: e.target.value
+    })
+  }
+
+  onChangeMax = (e) => {
+    this.setState({
+      maxValue: e.target.value
+    })
+  }
+
+  filterRoomWithPrice = () => {
+    const { minValue, maxValue } = this.state
+    this.props.filterRoomWithMinToMax(minValue, maxValue)
+    this.setState({
+      minValue: '',
+      maxValue: ''
+    })
+  }
+
   render() {
     const { categoryofProduct, colorsValues, brandValues, onChange, onChangeCheckBoxes, onChangeBrand } = this.props;
     return (
@@ -2274,6 +2304,41 @@ class EcomFilter extends Component {
               </Col>
             </Row>
           </Checkbox.Group>
+        </div>
+        <div class="col-md-12 col-sm-12 spacing hidden-xs">
+          <div className="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+              <span>Price</span>
+              <div size="large" style={{ marginLeft: '10px' }}>
+                <Row gutter={8}>
+                  <Col span={8}>
+                    <Input
+                      placeholder="Min"
+                      onChange={this.onChangeMin}
+                      type="Number"
+                    />
+                  </Col>
+                  <Col span={8}>
+                    <Input
+                      onChange={this.onChangeMax}
+                      type="Number"
+                      placeholder="Max"
+                    />
+                  </Col>
+                  <Col>
+                    <Button type="primary" icon="caret-right"
+                      onClick={this.filterRoomWithPrice}
+
+                    />
+                  </Col>
+                </Row>
+              </div>
+            </div>
+            <div class="col-xs-1"></div>
+          </div>
+        </div>
+=======
         </div> */}
       </div>
     )

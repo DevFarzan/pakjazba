@@ -306,6 +306,38 @@ class Roomrentingtwocontentarea extends Component {
                                                 placeholder="Please select city after select state" /></div>
                                     </div>
                                 </div>
+                                <div className="row">
+                                    <div className="col-md-12">
+                                        <h3 className="col-md-12"><b>Accommodates</b></h3>
+                                        <div className="row" style={{ padding: '0px' }}>
+                                            <div className="col-xs-10 col-md-10"></div>
+                                            <Checkbox.Group style={{ width: '100%' }}
+                                                value={accomodatesOfRoom}
+                                                onChange={onChangeCheckBoxes}
+                                            >
+                                                <Row>
+                                                    <Col span={8}>
+                                                        <Checkbox value="1">1</Checkbox>
+                                                    </Col>
+                                                    <Col span={8}>
+                                                        <Checkbox value="2">2</Checkbox>
+                                                    </Col>
+                                                    <Col span={8}>
+                                                        <Checkbox value="3">3</Checkbox>
+                                                    </Col>
+                                                    <Col span={8}>
+                                                        <Checkbox value="4">4</Checkbox>
+                                                    </Col>
+                                                    <Col span={8}>
+                                                        <Checkbox value="5">5</Checkbox>
+                                                    </Col>
+                                                    <Col span={8}>
+                                                        <Checkbox value="6">6</Checkbox>
+                                                    </Col>
+                                                </Row>
+                                            </Checkbox.Group>
+                                            <div className="col-xs-2 col-md-2"></div>
+=======
                                 <div className="col-md-12">
                                     <h3 className="col-md-12"><b>Accommodates</b></h3>
                                     <Checkbox.Group style={{ width: '100%' }}
@@ -343,6 +375,7 @@ class Roomrentingtwocontentarea extends Component {
                                                     <Checkbox value="6">6</Checkbox>
                                                 </Col>
                                             </div>
+>>>>>>> d0a363d3665f544c7c4729c821d2fd8112f93c4c
                                         </div>
                                     </Checkbox.Group>
                                 </div>
@@ -396,6 +429,7 @@ class Roomrentingtwocontentarea extends Component {
                                                         </Col>
                                                         <Col>
                                                             <Button type="primary" icon="caret-right"
+                                                                onClick={this.filterRoomWithPrice}
                                                             />
                                                         </Col>
                                                     </Row>

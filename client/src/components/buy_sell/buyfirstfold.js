@@ -7,36 +7,15 @@ import { isBrowser, isMobile } from "react-device-detect";
 class Firstfold extends Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     open: '',
-        //     goToFilter: false
-        // }
-        // this.category = this.category.bind(this);
     }
 
-    // category(e) {
-    //     const { dispatch } = this.props;
-    //     var inputValue = e.target.textContent;
-    //     // console.log(inputValue , 'inputValue')
-    //     this.props.mainCategoryFilter(inputValue)
-    //     dispatch({ type: 'SEARCHON', inputValue })
+    dropDown(e) {
+        this.props.mainCategoryFilter(e)
+    }
 
-    // }
-
-    // dropDown(e) {
-    //     const { open } = this.state;
-    //     this.setState({ open: open === e ? '' : e })
-    // }
-
-    // filterPage = () => {
-    //     this.setState({ goToFilter: true })
-    // }
+  
 
     render() {
-        // const { open, goToFilter } = this.state;
-        // if (goToFilter) {
-        //     return <Redirect to={{ pathname: `/filter_buySell` }} />
-        // }
         return (
             <div className="container" style={{ width: "100%" }}>
                 <div className="row">

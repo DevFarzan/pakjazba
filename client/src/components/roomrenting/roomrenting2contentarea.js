@@ -130,7 +130,7 @@ class Roomrentingtwocontentarea extends Component {
 
     render() {
         const { states, cities, } = this.state;
-        const { onChange, onChangeCheckBoxes,  stateOfRoom, cityOfRoom, accomodatesOfRoom, categoryRoom} = this.props;
+        const { onChange, onChangeCheckBoxes, stateOfRoom, cityOfRoom, accomodatesOfRoom, categoryRoom } = this.props;
 
         return (
             <div className="exploreRentFilter">
@@ -173,31 +173,31 @@ class Roomrentingtwocontentarea extends Component {
                                         <h3 className="col-md-12"><b>Accommodates</b></h3>
                                         <div className="row" style={{ padding: '0px' }}>
                                             <div className="col-xs-10 col-md-10"></div>
-                                                <Checkbox.Group style={{ width: '100%' }}
-                                                    value={accomodatesOfRoom}
-                                                    onChange={onChangeCheckBoxes}
-                                                >
-                                                    <Row>
-                                                        <Col span={8}>
-                                                            <Checkbox value="1">1</Checkbox>
-                                                        </Col>
-                                                        <Col span={8}>
-                                                            <Checkbox value="2">2</Checkbox>
-                                                        </Col>
-                                                        <Col span={8}>
-                                                            <Checkbox value="3">3</Checkbox>
-                                                        </Col>
-                                                        <Col span={8}>
-                                                            <Checkbox value="4">4</Checkbox>
-                                                        </Col>
-                                                        <Col span={8}>
-                                                            <Checkbox value="5">5</Checkbox>
-                                                        </Col>
-                                                        <Col span={8}>
-                                                            <Checkbox value="6">6</Checkbox>
-                                                        </Col>
-                                                    </Row>
-                                                </Checkbox.Group>
+                                            <Checkbox.Group style={{ width: '100%' }}
+                                                value={accomodatesOfRoom}
+                                                onChange={onChangeCheckBoxes}
+                                            >
+                                                <Row>
+                                                    <Col span={8}>
+                                                        <Checkbox value="1">1</Checkbox>
+                                                    </Col>
+                                                    <Col span={8}>
+                                                        <Checkbox value="2">2</Checkbox>
+                                                    </Col>
+                                                    <Col span={8}>
+                                                        <Checkbox value="3">3</Checkbox>
+                                                    </Col>
+                                                    <Col span={8}>
+                                                        <Checkbox value="4">4</Checkbox>
+                                                    </Col>
+                                                    <Col span={8}>
+                                                        <Checkbox value="5">5</Checkbox>
+                                                    </Col>
+                                                    <Col span={8}>
+                                                        <Checkbox value="6">6</Checkbox>
+                                                    </Col>
+                                                </Row>
+                                            </Checkbox.Group>
                                             <div className="col-xs-2 col-md-2"></div>
                                         </div>
                                     </div>
@@ -252,6 +252,7 @@ class Roomrentingtwocontentarea extends Component {
                                                         </Col>
                                                         <Col>
                                                             <Button type="primary" icon="caret-right"
+                                                                onClick={this.filterRoomWithPrice}
                                                             />
                                                         </Col>
                                                     </Row>

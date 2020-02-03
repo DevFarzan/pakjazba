@@ -2105,16 +2105,125 @@ class EcomFilter extends Component {
   render() {
     const { categoryofProduct, colorsValues, brandValues, onChange, onChangeCheckBoxes, onChangeBrand } = this.props;
     return (
-      <div className="container">
+      <div>
+        <div className="exploreRentFilter">
+          <div className="row">
+            <div className="col-md-12 col-sm-12" style={{ textAlign: 'center' }}>
+              <h3><b>Search By:</b></h3>
+            </div>
+            <div className="row">
+              <div className="col-md-12 col-sm-12" style={{ marginTop: '1vw' }}>
+                <p style={{ marginBottom: '5px' }}><b>Category</b></p>
+              </div>
+              <div className="col-md-12 col-sm-12">
+                <Cascader
+                  value={categoryofProduct}
+                  style={{ width: '100%' }}
+                  options={optionsValue}
+                  onChange={onChange}
+                  placeholder="Please select category"
+                />
+              </div>
+              <div className="col-md-12 col-sm-12" style={{ marginTop: '1vw' }}>
+                <p style={{ marginBottom: '5px' }}><b>Select Color</b></p>
+              </div>
+              <div className="col-md-12 col-sm-12 col-xs-12">
+                <Checkbox.Group
+                  value={colorsValues}
+                  onChange={onChangeCheckBoxes}>
+                  <div className="row" style={{ padding: '0' }}>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <Col>
+                        <Checkbox value="Black">Black</Checkbox>
+                      </Col>
+                    </div>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <Col>
+                        <Checkbox value="Blue">Blue</Checkbox>
+                      </Col>
+                    </div>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <Col>
+                        <Checkbox value="Red">Red</Checkbox>
+                      </Col>
+                    </div>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <Col>
+                        <Checkbox value="Green">Green</Checkbox>
+                      </Col>
+                    </div>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <Col>
+                        <Checkbox value="Yellow">Yellow</Checkbox>
+                      </Col>
+                    </div>
+                  </div>
+                </Checkbox.Group>
+              </div>
+              <div className="col-md-12 col-sm-12" style={{ marginTop: '1vw' }}>
+                <p style={{ marginBottom: '5px' }}><b>Select Brand</b></p>
+              </div>
+              <div className="col-md-12 col-sm-12 col-xs-12">
+                <Checkbox.Group
+                  value={brandValues}
+                  onChange={onChangeBrand}>
+                  <div className="row" style={{ padding: '0' }}>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <Col>
+                      <Checkbox value="Canon">Canon</Checkbox>
+                      </Col>
+                    </div>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <Col>
+                      <Checkbox value="Nikon">Nikon</Checkbox>
+                      </Col>
+                    </div>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <Col>
+                      <Checkbox value="Apple">Apple</Checkbox>
+                      </Col>
+                    </div>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <Col>
+                      <Checkbox value="Dell">Dell</Checkbox>
+                      </Col>
+                    </div>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <Col>
+                      <Checkbox value="Vaio">Vaio</Checkbox>
+                      </Col>
+                    </div>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <Col>
+                      <Checkbox value="Lenovo">Lenovo</Checkbox>
+                      </Col>
+                    </div>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <Col>
+                      <Checkbox value="Vivo">Vivo</Checkbox>
+                      </Col>
+                    </div>
+                  </div>
+                </Checkbox.Group>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        {/* 
         <div className="">
           <h4 style={{ margin: "0" }}>Select Category</h4>
           <Cascader
             value={categoryofProduct}
-            style={{ width: '33%' }} options={optionsValue} onChange={onChange}
-            placeholder="Please select category" />
-        </div>
+            style={{ width: '33%' }}
+            options={optionsValue}
+            onChange={onChange}
+            placeholder="Please select category"
+          />
+        </div> */}
 
-        <div className="">
+        {/* <div className="">
           <h4 style={{ margin: "0" }}>Select Color</h4>
           <Checkbox.Group style={{ width: '33%', display: "block" }}
             value={colorsValues}
@@ -2137,9 +2246,9 @@ class EcomFilter extends Component {
               </Col>
             </Row>
           </Checkbox.Group>
-        </div>
+        </div> */}
 
-        <div className="">
+        {/* <div className="">
           <h4 style={{ margin: "0" }}>Select Brand</h4>
           <Checkbox.Group style={{ width: '33%', display: "block" }}
             value={brandValues}
@@ -2168,7 +2277,7 @@ class EcomFilter extends Component {
               </Col>
             </Row>
           </Checkbox.Group>
-        </div>
+        </div> */}
       </div>
     )
   }

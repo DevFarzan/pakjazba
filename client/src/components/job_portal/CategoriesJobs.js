@@ -177,7 +177,65 @@ class CategoriesjobMarket extends Component {
     const { getSortType, onChange, categoroyOfJob, categoryJob, stateOfJob, cityOfJob, TypeOfJob } = this.props;
     // const {typeR, cat} = this.state;
     return (
-      <div className="container categoriesbars" style={{ width: "100%" }}>
+      <div>
+        <div className="exploreRentFilter">
+          <div className="row">
+            <div className="col-md-12 col-sm-12" style={{ textAlign: 'center' }}>
+              <h3><b>Search By:</b></h3>
+            </div>
+            <div className="row">
+              <div className="col-md-12 col-sm-12">
+                <p style={{ marginBottom: '5px' }}><b>Sort By Type</b></p>
+              </div>
+              <div className="col-md-12 col-sm-12">
+                <Cascader
+                  value={TypeOfJob}
+                  style={{ width: '100%' }}
+                  options={type}
+                  onChange={this.sortType.bind(this)}
+                  placeholder="Please select type"
+                />
+              </div>
+              <div className="col-md-12 col-sm-12" style={{ marginTop: '1vw' }}>
+                <p style={{ marginBottom: '5px'}}><b>Category</b></p>
+              </div>
+              <div className="col-md-12 col-sm-12">
+                <Cascader
+                  value={categoroyOfJob}
+                  style={{ width: '100%' }}
+                  options={category}
+                  onChange={onChange}
+                  placeholder="Please select category"
+                />
+              </div>
+              <div className="col-md-12 col-sm-12" style={{ marginTop: '1vw' }}>
+                <p style={{ marginBottom: '5px' }}><b>State</b></p>
+              </div>
+              <div className="col-md-12 col-sm-12 col-xs-12">
+                <Cascader
+                  value={stateOfJob}
+                  style={{ width: '100%' }}
+                  options={states}
+                  onChange={this.onChangeState.bind(this)}
+                  placeholder="Please select state"
+                />
+              </div>
+              <div className="col-md-12 col-sm-12" style={{ marginTop: '1vw' }}>
+                <p style={{ marginBottom: '5px' }}><b>City</b></p>
+              </div>
+              <div className="col-md-12 col-sm-12 col-xs-12">
+                <Cascader
+                  value={cityOfJob}
+                  style={{ width: '100%' }}
+                  options={cities}
+                  onChange={this.onChangeCity.bind(this)}
+                  placeholder="Please select city"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <div className="container categoriesbars" style={{ width: "100%" }}>
         <div className="row">
           <div className="col-md-12">
             <form className="col-md-12">
@@ -222,55 +280,56 @@ class CategoriesjobMarket extends Component {
                 />
               </div>
             </div>
-            {/* <div className="col-md-12">
-                <div className="input-group">
-                  <label>Search:</label>
-                    <div className="flex">
-                      <button
-                          type="button"
-                          className="btn btn-sm btn2-success
-                          font-style"
-                          style={{backgroundColor:"#8cbc40"}}
-                          onClick={this.clickItem}
-                      >
-                          Search
-                      </button>
-                    </div>
-                </div>
-              </div> */}
-            {/* <div className="col-md-12">
-                <div className="custom-row">
-                    <label>Keywords:</label>
-                    <div className="marginLeft">
-                      <div className="col-md-12 col-sm-12">
-                      <button type="button" className="btn btn-sm btn3-success font-style" onClick={() => {this.clickItem('Content Writer')}}>
-                          Content Writer
-                      </button>
-                      </div>
-                      <div className="col-md-12 col-sm-12">
-                        <button type="button" className="btn btn-sm btn3-success font-style" onClick={() => {this.clickItem('IT Specialist')}}>
-                            IT Specialist
-                        </button>
-                      </div>
-                      <div className="col-md-12 col-sm-12">
-                        <button type="button" className="btn btn-sm btn3-success font-style" onClick={() => {this.clickItem('Web Developer')}}>
-                            Web Developer
-                        </button>
-                      </div>
-                      <div className="col-md-12 col-sm-12">
-                        <button type="button" className="btn btn-sm btn3-success font-style" onClick={() => {this.clickItem('Business management')}}>
-                            Business management
-                        </button>
-                      </div>
-                    </div>
-                </div>
-              </div> */}
           </div>
         </div>
+      </div> */}
       </div>
-
     )
   }
 }
 
 export default CategoriesjobMarket;
+
+{/* <div className="col-md-12">
+    <div className="input-group">
+      <label>Search:</label>
+        <div className="flex">
+          <button
+              type="button"
+              className="btn btn-sm btn2-success
+              font-style"
+              style={{backgroundColor:"#8cbc40"}}
+              onClick={this.clickItem}
+          >
+              Search
+          </button>
+        </div>
+    </div>
+  </div> */}
+{/* <div className="col-md-12">
+    <div className="custom-row">
+        <label>Keywords:</label>
+        <div className="marginLeft">
+          <div className="col-md-12 col-sm-12">
+          <button type="button" className="btn btn-sm btn3-success font-style" onClick={() => {this.clickItem('Content Writer')}}>
+              Content Writer
+          </button>
+          </div>
+          <div className="col-md-12 col-sm-12">
+            <button type="button" className="btn btn-sm btn3-success font-style" onClick={() => {this.clickItem('IT Specialist')}}>
+                IT Specialist
+            </button>
+          </div>
+          <div className="col-md-12 col-sm-12">
+            <button type="button" className="btn btn-sm btn3-success font-style" onClick={() => {this.clickItem('Web Developer')}}>
+                Web Developer
+            </button>
+          </div>
+          <div className="col-md-12 col-sm-12">
+            <button type="button" className="btn btn-sm btn3-success font-style" onClick={() => {this.clickItem('Business management')}}>
+                Business management
+            </button>
+          </div>
+        </div>
+    </div>
+  </div> */}

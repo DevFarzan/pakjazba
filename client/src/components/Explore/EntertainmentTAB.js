@@ -130,7 +130,6 @@ class EntertainmentTab extends Component {
                 <div className="row">
                     <div className="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                         <Tabs defaultActiveKey="2">
-
                             <TabPane tab={
                                 <span><i class="fa fa-list-alt" aria-hidden="true"></i> Category </span>}
                                 key="2">

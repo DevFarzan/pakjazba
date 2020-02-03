@@ -11,7 +11,7 @@ class LatestNews extends Component {
         let detail = data && Object.values(data);
 
         return (
-            <div className="container" style={{ width: "100%" }}>
+            <div>
                 <div className="row">
                     <NewsTab />
                 </div>
@@ -35,7 +35,7 @@ class LatestNews extends Component {
                                                 <img src={elem.thumbnail_url} alt='img' />
                                             </div>
                                             <div className="col-md-6 col-sm-7">
-                                                <p>{des}</p>
+                                                <p>{des.slice(0,19)}..</p>
                                             </div>
                                         </div>
                                     )

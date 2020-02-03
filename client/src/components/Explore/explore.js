@@ -22,6 +22,7 @@ class Explore extends Component {
 
     componentWillMount() {
         // console.log(this.props.location.state, 'key')
+        window.scrollTo(0, 0);
         let data = this.props.location.state;
         console.log(data, 'data of key')
         if (data) {
@@ -32,7 +33,7 @@ class Explore extends Component {
     }
 
     componentDidUpdate() {
-
+       
     }
 
     render() {

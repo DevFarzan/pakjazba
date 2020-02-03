@@ -134,7 +134,144 @@ class Roomrentingtwocontentarea extends Component {
 
         return (
             <div className="exploreRentFilter">
-                <div className="" style={{ width: "100%" }}>
+                <div className="row">
+                    <div className="col-md-12 col-sm-12" style={{ textAlign: 'center' }}>
+                        <h3><b>Search By:</b></h3>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12 col-sm-12">
+                            <p style={{ marginBottom: '5px' }}><b>Category</b></p>
+                        </div>
+                        <div className="col-md-12 col-sm-12">
+                            <Cascader
+                                value={categoryRoom}
+                                style={{ width: '100%' }} options={category} onChange={onChange.bind(this)}
+                                placeholder="Please select category"
+                            />
+                        </div>
+                        <div className="col-md-12 col-sm-12" style={{ marginTop: '1vw' }}>
+                            <p style={{ marginBottom: '5px' }}><b>State</b></p>
+                        </div>
+                        <div className="col-md-12 col-sm-12 col-xs-12">
+                            <Cascader
+                                value={stateOfRoom}
+                                style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)}
+                                placeholder="Please select state"
+                            />
+                        </div>
+                        <div className="col-md-12 col-sm-12" style={{ marginTop: '1vw' }}>
+                            <p style={{ marginBottom: '5px' }}><b>City</b></p>
+                        </div>
+                        <div className="col-md-12 col-sm-12 col-xs-12">
+                            <Cascader
+                                value={cityOfRoom}
+                                style={{ width: '100%' }} options={cities} onChange={this.onChangeCity.bind(this)}
+                                placeholder="Please select city after select state"
+                            />
+                        </div>
+                        <div className="col-md-12 col-sm-12" style={{ marginTop: '1vw' }}>
+                            <p style={{ marginBottom: '5px' }}><b>Accommodates</b></p>
+                        </div>
+                        <div className="col-md-12 col-sm-12 col-xs-12">
+                            <Checkbox.Group style={{ width: '100%' }}
+                                value={accomodatesOfRoom}
+                                onChange={onChangeCheckBoxes}
+                            >
+                                <div className="row" style={{ padding: '0' }}>
+                                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <Col>
+                                            <Checkbox value="1">1</Checkbox>
+                                        </Col>
+                                    </div>
+                                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <Col>
+                                            <Checkbox value="2">2</Checkbox>
+                                        </Col>
+                                    </div>
+                                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <Col>
+                                            <Checkbox value="3">3</Checkbox>
+                                        </Col>
+                                    </div>
+                                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <Col>
+                                            <Checkbox value="4">4</Checkbox>
+                                        </Col>
+                                    </div>
+                                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <Col>
+                                            <Checkbox value="5">5</Checkbox>
+                                        </Col>
+                                    </div>
+                                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <Col>
+                                            <Checkbox value="6">6</Checkbox>
+                                        </Col>
+                                    </div>
+                                </div>
+                            </Checkbox.Group>
+                        </div>
+                        <div className="col-md-12 col-sm-12" style={{ marginTop: '1vw' }}>
+                            <p style={{ marginBottom: '5px' }}><b>Price</b></p>
+                        </div>
+                        <div className="col-md-12 col-sm-12 hidden-xs">
+                            <div size="large" style={{ marginLeft: '10px' }}>
+                                <Row gutter={8}>
+                                    <Col span={8}>
+                                        <Input
+                                            placeholder="Min"
+                                            onChange={this.onChangeMin}
+                                            type="Number"
+                                        />
+                                    </Col>
+                                    <Col span={8}>
+                                        <Input
+                                            onChange={this.onChangeMax}
+                                            placeholder="Max"
+                                            type="Number"
+                                        />
+                                    </Col>
+                                    <Col>
+                                        <Button type="primary" icon="caret-right"
+                                            onClick={this.filterRoomWithPrice}
+                                        />
+                                    </Col>
+                                </Row>
+                            </div>
+                        </div>
+                        <div className="col-xs-12 visible-xs">
+                            <div className="row">
+                                <div class="col-xs-12">
+                                    <div size="large">
+                                        <Row gutter={8}>
+                                            <Col span={8}>
+                                                <Input
+                                                    placeholder="Min"
+                                                    onChange={this.onChangeMin}
+                                                    type="Number"
+                                                />
+                                            </Col>
+                                            <Col span={8}>
+                                                <Input
+                                                    onChange={this.onChangeMax}
+                                                    type="Number"
+                                                    placeholder="Max"
+                                                />
+                                            </Col>
+                                            <Col>
+                                                <Button type="primary" icon="caret-right"
+                                                />
+                                            </Col>
+                                        </Row>
+                                    </div>
+                                    {/* <Slider range min={0} max={1000} step={1} tipFormatter={this.formatter} defaultValue={[0, 1000]} onChange={this.onChangeSlider.bind(this)} />
+                                                    <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p> */}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* <div className="" style={{ width: "100%" }}>
                     <div className="row">
                         <div className="col-md-1 col-sm-1"></div>
                         <div className="">
@@ -148,7 +285,8 @@ class Roomrentingtwocontentarea extends Component {
                                             <Cascader
                                                 value={categoryRoom}
                                                 style={{ width: '100%' }} options={category} onChange={onChange.bind(this)}
-                                                placeholder="Please select category" />
+                                                placeholder="Please select category"
+                                            />
                                         </div>
 
                                     </div>
@@ -160,7 +298,9 @@ class Roomrentingtwocontentarea extends Component {
                                             <Cascader
                                                 value={stateOfRoom}
                                                 style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)}
-                                                placeholder="Please select state" /></div>
+                                                placeholder="Please select state"
+                                            />
+                                        </div>
                                         <div className="col-md-12 col-sm-12 col-xs-12" style={{ marginTop: '2vw', }}>
                                             <Cascader
                                                 value={cityOfRoom}
@@ -199,8 +339,49 @@ class Roomrentingtwocontentarea extends Component {
                                                 </Row>
                                             </Checkbox.Group>
                                             <div className="col-xs-2 col-md-2"></div>
+=======
+                                <div className="col-md-12">
+                                    <h3 className="col-md-12"><b>Accommodates</b></h3>
+                                    <Checkbox.Group style={{ width: '100%' }}
+                                        value={accomodatesOfRoom}
+                                        onChange={onChangeCheckBoxes}
+                                    >
+                                        <div className="row" style={{ padding: '0' }}>
+                                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <Col>
+                                                    <Checkbox value="1">1</Checkbox>
+                                                </Col>
+                                            </div>
+                                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <Col>
+                                                    <Checkbox value="2">2</Checkbox>
+                                                </Col>
+                                            </div>
+                                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <Col>
+                                                    <Checkbox value="3">3</Checkbox>
+                                                </Col>
+                                            </div>
+                                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <Col>
+                                                    <Checkbox value="4">4</Checkbox>
+                                                </Col>
+                                            </div>
+                                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <Col>
+                                                    <Checkbox value="5">5</Checkbox>
+                                                </Col>
+                                            </div>
+                                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <Col>
+                                                    <Checkbox value="6">6</Checkbox>
+                                                </Col>
+                                            </div>
+>>>>>>> d0a363d3665f544c7c4729c821d2fd8112f93c4c
                                         </div>
-                                    </div>
+                                    </Checkbox.Group>
+                                </div>
+                                <div className="row">
                                     <div class="col-md-12 col-sm-12 spacing hidden-xs" style={{ marginTop: '2vw' }}>
                                         <h3 className="col-md-12"><b>Price</b></h3>
                                         <div size="large" style={{ marginLeft: '10px' }}>
@@ -226,8 +407,6 @@ class Roomrentingtwocontentarea extends Component {
                                                 </Col>
                                             </Row>
                                         </div>
-                                        {/* <Slider range min={0} max={1000} step={1} tipFormatter={this.formatter} defaultValue={[0, 1000]} onChange={this.onChangeSlider.bind(this)} />
-                                            <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p> */}
                                     </div>
                                     <div class="col-xs-12 spacing visible-xs">
                                         <div className="row">
@@ -257,20 +436,16 @@ class Roomrentingtwocontentarea extends Component {
                                                         </Col>
                                                     </Row>
                                                 </div>
-                                                {/* <Slider range min={0} max={1000} step={1} tipFormatter={this.formatter} defaultValue={[0, 1000]} onChange={this.onChangeSlider.bind(this)} />
-                                                    <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p> */}
                                             </div>
-                                            {/* </div> */}
                                             <div class="col-xs-1"></div>
                                         </div>
                                     </div>
-
                                 </div>
                             </span>
                         </div>
                     </div>
                     <div className="col-md-1 col-sm-1"></div>
-                </div>
+                </div> */}
                 {/* <div className="container" style={{ width: "100%" }}>
                     <div className="col-md-12 col-sm-12 col-xs-12">
                         {!!showroomrents.length === false && <span style={{ textAlign: "center" }}><h3>Not found....</h3></span>}

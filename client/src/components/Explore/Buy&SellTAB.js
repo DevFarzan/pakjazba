@@ -573,7 +573,7 @@ class BuyNsell extends Component {
                     <div className="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                         <Tabs defaultActiveKey="1">
                             <TabPane tab={
-                                <span><Icon type="apple" /> Filter </span>}
+                                <span><Icon type="filter" /> Filter </span>}
                                 key="1">
                                 <BuySellFilterContent
                                     onChange={this.onChange} getState={this.getState} getCities={this.getCities} onChangeCheckBoxes={this.onChangeCheckBoxes}
@@ -581,7 +581,7 @@ class BuyNsell extends Component {
                                     filterRoomWithMinToMax={this.filterRoomWithMinToMax} />
                             </TabPane>
                             <TabPane tab={
-                                <span><Icon type="android" /> Category </span>}
+                                <span><i class="fa fa-list-alt" aria-hidden="true"></i> Category </span>}
                                 key="2">
                                 <BuyCategory mainCategoryFilter={this.mainCategoryFilter} />
                             </TabPane>

@@ -445,7 +445,7 @@ class EventTab extends Component {
                     <div className="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                         <Tabs defaultActiveKey="1">
                             <TabPane tab={
-                                <span><Icon type="apple" /> Filter </span>}
+                                <span><Icon type="filter" /> Filter </span>}
                                 key="1">
                                 <EventFilterContent
                                     onChange={this.onChange}
@@ -459,7 +459,7 @@ class EventTab extends Component {
                                 />
                             </TabPane>
                             <TabPane tab={
-                                <span><Icon type="android" /> Category </span>}
+                                <span><i class="fa fa-list-alt" aria-hidden="true"></i> Category </span>}
                                 key="2">
                                 <EventCategory  mainCategoryFilter={this.mainCategoryFilter}/>
                             </TabPane>

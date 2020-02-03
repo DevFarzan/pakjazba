@@ -110,17 +110,57 @@ class FilterBuySell extends Component {
 
   render() {
     const { states, cities } = this.state;
-    const { onChangeCheckBoxes, stateOfRoom, cityOfRoom, conditionOfRoom,  } = this.props;
+    const { onChangeCheckBoxes, stateOfRoom, cityOfRoom, conditionOfRoom, } = this.props;
 
     return (
-      <div className="">
+      // <div className="exploreRentFilter">
+      //   <div className="row">
+      //     <div className="col-md-12 col-sm-12" style={{ textAlign: 'center' }}>
+      //       <h3><b>Search By:</b></h3>
+      //     </div>
+      //     <div className="row">
+      //       <div className="col-md-12 col-sm-12">
+      //         <p style={{ marginBottom: '5px' }}><b>Category</b></p>
+      //       </div>
+      //       <div className="col-md-12 col-sm-12">
+      //         <Cascader
+      //           value={categoryRoom}
+      //           options={category} onChange={onChange.bind(this)}
+      //           style={{ width: '100%' }}
+      //           placeholder="Please Select Category" />
+      //       </div>
+      //       <div className="col-md-12 col-sm-12" style={{ marginTop: '1vw' }}>
+      //         <p style={{ marginBottom: '5px' }}><b>State</b></p>
+      //       </div>
+      //       <div className="col-md-12 col-sm-12 col-xs-12">
+      //         <Cascader
+      //           value={stateOfRoom}
+      //           style={{ width: '100%' }}
+      //           options={states} onChange={this.onChangeState.bind(this)}
+      //           placeholder="Please Select State"
+      //         />
+      //       </div>
+      //       <div className="col-md-12 col-sm-12" style={{ marginTop: '1vw' }}>
+      //         <p style={{ marginBottom: '5px' }}><b>City</b></p>
+      //       </div>
+      //       <div className="col-md-12 col-sm-12 col-xs-12">
+      //         <Cascader
+      //           value={cityOfRoom}
+      //           style={{ width: '100%' }}
+      //           options={cities} onChange={this.onChangeCity.bind(this)}
+      //           placeholder="Please Select City After State"
+      //         />
+      //       </div>
+      //     </div>
+      //   </div>
+      // </div>
+      <div>
         <div className="container" style={{ width: "100%" }}>
           <div className="filterbox">
             <div className="row">
               <div className="col-md-12">
                 <div class="col-md-12 col-sm-12 spacing">
                   <h3 className="col-md-12"><b>Location</b></h3>
-                  {/* <div className="col-md-12 col-sm-12 col-xs-12"> */}
                   <Cascader
                     value={stateOfRoom}
                     style={{ width: '100%' }}
@@ -133,64 +173,52 @@ class FilterBuySell extends Component {
                     style={{ width: '100%' }} options={cities}
                     onChange={this.onChangeCity.bind(this)}
                   /></div>
-                {/* </div> */}
-                {/* <Search
-                  placeholder="Location"
-                  onSearch={value => console.log(value)}
-                  enterButton
-                  style={{width:'100%'}}
-                /> */}
               </div>
               <div className="col-md-12">
-                {/* <Input placeholder="Condition" style={{ width: '100%', marginTop: '2vw' }} /> */}
                 <h3 className="col-md-12"><b>Condition</b></h3>
-                <div className="row" style={{ padding: '0px' }}></div>
-                <div className="col-xs-10 col-md-10"></div>
-
                 <Checkbox.Group style={{ width: '100%' }}
                   value={conditionOfRoom}
                   onChange={onChangeCheckBoxes}
-                //  onChange={onChange}
                 >
-                  <Row>
-                    <Col span={8}>
-                      <Checkbox value="New">New</Checkbox>
-                    </Col>
-                    <Col span={8}>
-                      <Checkbox value="Used">Used</Checkbox>
-                    </Col>
-                    <Col span={8}>
-                      <Checkbox value="Good">Good</Checkbox>
-                    </Col>
-                    <Col span={8}>
-                      <Checkbox value="Excellent">Excellent</Checkbox>
-                    </Col>
-                    <Col span={8}>
-                      <Checkbox value="Age-Worn">Age-Worn</Checkbox>
-                    </Col>
-                    <Col span={8}>
-                      <Checkbox value="Refurbished">Refurbished</Checkbox>
-                    </Col>
-                  </Row>
+                  <div className="row" style={{ padding: '0' }}>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <Col>
+                        <Checkbox value="New">New</Checkbox>
+                      </Col>
+                    </div>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <Col>
+                        <Checkbox value="Refurbished">Refurbished</Checkbox>
+                      </Col>
+                    </div>   
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <Col>
+                        <Checkbox value="Good">Good</Checkbox>
+                      </Col>
+                    </div>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <Col>
+                        <Checkbox value="Excellent">Excellent</Checkbox>
+                      </Col>
+                    </div>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <Col>
+                        <Checkbox value="Age-Worn">Age-Worn</Checkbox>
+                      </Col>
+                    </div>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <Col>
+                        <Checkbox value="Used">Used</Checkbox>
+                      </Col>
+                    </div>
+                    </div>
                 </Checkbox.Group>
-                <div className="col-xs-2 col-md-2"></div>
               </div>
-
-              {/* <div className="col-md-12 col-sm-12 search-space1">
-                <button
-                  className="btn"
-                  // onClick={this.mostPopular.bind(this)}
-                  style={{ backgroundColor: '#37a99b', color: 'white', width: '100%' }}
-                >
-                  Search
-                </button>
-              </div> */}
               <div className="col-md-12">
                 <div className="row">
                   <div class="col-xs-1"></div>
                   <div class="col-xs-10">
                     <span>Price</span>
-                    {/* <div className="slidecontainer" style={{ marginTop: '0px' }}> */}
                     <div size="large" style={{ marginLeft: '10px' }}>
                       <Row gutter={8}>
                         <Col span={8}>
@@ -198,50 +226,28 @@ class FilterBuySell extends Component {
                             placeholder="Min"
                             onChange={this.onChangeMin}
                             type="Number"
-                          // onChange={e => this.setState({ minPrice: e.target.value })}
                           />
                         </Col>
                         <Col span={8}>
                           <Input
                             onChange={this.onChangeMax}
-                            // defaultValue="Max" 
                             placeholder="Max"
                             type="Number"
-                          // onChange={e => this.setState({ maxPrice: e.target.value })}
                           />
                         </Col>
                         <Col>
                           <Button type="primary" icon="caret-right"
-                          // onClick={this.props.serachProductMinToMaxPrice.bind(this, minPrice, maxPrice)}
                           />
                         </Col>
                       </Row>
                     </div>
-                    {/* <Slider range min={0} max={1000} step={1} tipFormatter={this.formatter} defaultValue={[0, 1000]} onChange={this.onChangeSlider.bind(this)} />
-                                                    <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p> */}
                   </div>
-                  {/* </div> */}
                   <div class="col-xs-1"></div>
                 </div>
-                {/* <Input placeholder="Price" style={{ width: '100%', marginTop: '2vw' }} /> */}
               </div>
-              {/* <div className="col-md-12">
-              <Input placeholder="Size" style={{ width: '100%', marginTop: '2vw' }} />
-            </div> */}
-              {/* <div className="col-md-12">
-              <Input placeholder="Category" style={{ width: '100%', marginTop: '2vw' }} />
-            </div> */}
-              {/* <div className="col-md-12">
-              <Cascader options={options} onChange={onChange} placeholder="More Filter" style={{ width: '100%', marginTop: '2vw' }} />
-            </div> */}
             </div>
           </div>
-          {/* <span>
-              <h4 style={{marginTop:"30px", marginBottom:"0px"}}> Suggest For You </h4>
-            </span> */}
         </div>
-
-        {/* <BuyFourthFold /> */}
       </div >
     )
   }

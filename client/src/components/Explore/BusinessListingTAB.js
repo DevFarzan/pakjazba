@@ -418,14 +418,14 @@ class BussinesListing extends Component {
                     <div className="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                         <Tabs defaultActiveKey="1">
                             <TabPane tab={
-                                <span><Icon type="apple" /> Filter </span>}
+                                <span><Icon type="filter" /> Filter </span>}
                                 key="1">
                                 <BusinesListFilterContent onChange={this.onChange} getState={this.getState} getCities={this.getCities} onChangeCheckBoxes={this.onChangeCheckBoxes}
                                     categoroyOfRoom={categoroyOfRoom} stateOfRoom={stateOfRoom} cityOfRoom={cityOfRoom} accomodatesOfRoom={accomodatesOfRoom} categoryRoom={categoryRoom}
                                 />
                             </TabPane>
                             <TabPane tab={
-                                <span><Icon type="android" /> Category </span>}
+                                <span><i class="fa fa-list-alt" aria-hidden="true"></i> Category </span>}
                                 key="2">
                                 <BusinessCategory mainCategoryFilter={this.mainCategoryFilter} />
                             </TabPane>

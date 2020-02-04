@@ -8,8 +8,6 @@ import JobPortal from './JobPortalTAB';
 import EventTab from './EventTab';
 import EntertainmentTab from './EntertainmentTAB';
 import EcommerceTab from './EcommerceTAB';
-// import { Link } from "react-router-dom";
-
 import "./explore.css";
 
 class Explore extends Component {
@@ -21,7 +19,6 @@ class Explore extends Component {
     }
 
     componentWillMount() {
-        // console.log(this.props.location.state, 'key')
         window.scrollTo(0, 0);
         let data = this.props.location.state;
         if (data) {
@@ -30,11 +27,7 @@ class Explore extends Component {
             })
         }
     }
-
-    componentDidUpdate() {
-       
-    }
-
+    
     render() {
         const { TabPane } = Tabs;
         const { keyOfTab } = this.state;

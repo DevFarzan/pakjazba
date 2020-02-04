@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import './banner-tabs.css';
 import RoomTabs from './room-tabs';
 import BusinessTabs from './BusinessTabs'
-
+import BuyTab from './buy-tabs';
+import JobTabs from './job-tabs';
+import EventTabs from './event-tabs';
+import EcommerceTabs from './ecommerce-tabs'
 // import { Select, Input, Icon } from 'antd';
 // import { Link } from "react-router-dom";
 // const { Option, OptGroup } = Select;
@@ -48,9 +51,9 @@ class BannerTabs extends Component {
                                     </li>
 
                                     <li role="presentation">
-                                        <a href="#tab4" data-toggle="tab" aria-controls="tab4" role="tab" title="Ecommerce">
+                                        <a href="#tab4" data-toggle="tab" aria-controls="tab6" role="tab" title="Jobs">
                                             <span>
-                                                <img src="./images/homeicon/ecommerce.png" alt="" />
+                                                <img src="./images/homeicon/jobPortal.png" alt="" />
                                             </span>
                                         </a>
                                     </li>
@@ -62,21 +65,20 @@ class BannerTabs extends Component {
                                             </span>
                                         </a>
                                     </li>
-
                                     <li role="presentation">
-                                        <a href="#tab6" data-toggle="tab" aria-controls="tab6" role="tab" title="Jobs">
+                                        <a href="#tab6" data-toggle="tab" aria-controls="tab4" role="tab" title="Ecommerce">
                                             <span>
-                                                <img src="./images/homeicon/jobPortal.png" alt="" />
+                                                <img src="./images/homeicon/ecommerce.png" alt="" />
                                             </span>
                                         </a>
                                     </li>
+
                                 </ul>
                             </div>
 
                             <form role="form">
                                 <div className="cardinside">
                                     <div class="tab-content">
-
                                         <div class="tab-pane active" role="tabpanel" id="tab1">
                                             <RoomTabs />
                                         </div>
@@ -89,22 +91,34 @@ class BannerTabs extends Component {
 
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab3">
-                                            <h3>Step 3</h3>
-                                            <p>This is step 3</p>
-
+                                            <div className="row">
+                                                <div className="col-md-12">
+                                                    <BuyTab />
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab4">
-                                            <h3>Complete</h3>
-                                            <p>You have successfully completed all steps.</p>
+                                            <div className="row">
+                                                <div className="col-md-12">
+                                                    <JobTabs />
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab5">
-                                            <h3>Step 3</h3>
-                                            <p>This is step 3</p>
 
+                                            <div className="row">
+                                                <div className="col-md-12">
+                                                    <EventTabs />
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab6">
-                                            <h3>Complete</h3>
-                                            <p>You have successfully completed all steps.</p>
+
+                                            <div className="row">
+                                                <div className="col-md-12">
+                                                    <EcommerceTabs />
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>

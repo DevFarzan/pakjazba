@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import BusinesListFilterContent from '../business/BusinesListFilterContent';
 import BusinessCategory from '../business/BusinessCategories';
-import BusinessCard from '../business/bussinessCard';
 import SecondFoldCard from '../business/secondfold';
 import { Tabs, Icon } from 'antd';
 import { HttpUtils } from "../../Services/HttpUtils";
 import AsyncStorage from "@callstack/async-storage/lib/index";
+// import BusinessCard from '../business/bussinessCard';
 
 let filterCategoryName = [];
 let filterCityName = [];
@@ -56,7 +56,6 @@ class BussinesListing extends Component {
     async getAllBusiness() {
         let res = await HttpUtils.get('marketplace');
         // let req = await HttpUtils.get('getreviews');
-        console.log(res.business, 'res')
         if (res && res.code && res.code == 200) {
             this.setState({
                 showBusiness: res.business,
@@ -142,7 +141,6 @@ class BussinesListing extends Component {
         let data;
         for (var i = 0; i < filterKeys.length; i++) {
             if (filterKeys[i] == 'category') {
-                console.log(filterCategoryName, 'filterCategoryName')
                 data = showBusiness.filter((elem) => {
                     return elem.businesscategory && filterCategoryName.includes(elem.businesscategory)
                 })
@@ -411,7 +409,6 @@ class BussinesListing extends Component {
     render() {
         const { TabPane } = Tabs;
         const { showBusiness, filteredData, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom, notFoundFilterData, showRecord, categoryRoom } = this.state;
-        // const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
         return (
             <div>
                 <div className="row">

@@ -57,12 +57,21 @@ class RoomRentTAB extends Component {
     }
 
     async getAllBusiness() {
+        let data = this.props.dataFromHome;
         let res = await HttpUtils.get('marketplace');
-        // let req = await HttpUtils.get('getreviews');
         if (res && res.code && res.code == 200) {
             this.setState({
                 showroomrents: res.roomrentsdata,
             });
+        }
+        if (data) {
+            filterSubCategoryName = data.filterCategory
+            filterCityName = data.city
+            filterStateName = data.state
+            this.setState({
+                categoryRoom: data.dropdownCategory
+            })
+            this.filterKeysGet()
         }
     }
 
@@ -528,7 +537,7 @@ class RoomRentTAB extends Component {
             notFoundFilterData: false,
             billboardFilterdData: [],
             statusValue: '',
-            categoryRoom:[]
+            categoryRoom: []
         })
         this.filterKeysGet();
     }

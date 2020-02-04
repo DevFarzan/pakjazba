@@ -80,7 +80,11 @@ class BannerTabs extends Component {
                                 <div className="cardinside">
                                     <div class="tab-content">
                                         <div class="tab-pane active" role="tabpanel" id="tab1">
-                                            <RoomTabs />
+                                            <div className="row">
+                                                <div className="col-md-12">
+                                                    <RoomTabs />
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab2">
                                             <div className="row">

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {  Cascader, Button } from 'antd';
+import { Cascader, Button } from 'antd';
 import stateCities from "../../../lib/countrycitystatejson";
-
+import {  Redirect } from "react-router-dom";
 
 const category = [{
     value: 'Property to rent',
@@ -57,10 +57,14 @@ class RoomTabs extends Component {
         super(props)
         this.state = {
             states: [],
-            eachState: '',
             citiess: [],
-            category:'',
-
+            filterCategoryValue: [],
+            dropdownCategoryValue: [],
+            eachState: [],
+            eachCity: [],
+            keyOfTab: '',
+            valueObj: '',
+            redirectToExplore: false
         }
     }
 
@@ -84,6 +88,7 @@ class RoomTabs extends Component {
 
 
     onChangeState(value) {
+        console.log(value, 'VALUES')
         if (!!value.length) {
             let cities = stateCities.getCities('US', value[0])
             cities = cities.map((elem) => {
@@ -94,23 +99,48 @@ class RoomTabs extends Component {
             })
             this.setState({
                 cities: cities,
-                eachState: value[0]
+                eachState: value
             })
-            // this.props.getState(value)
         }
     }
 
     onChangeCity(value) {
-        // this.props.getCities(value)
+        this.setState({
+            eachCity: value
+        })
     }
 
 
     onChange = (value) => {
-        console.log(value, 'e value')
+        let searchValue = [];
+        searchValue.push(value[1])
+        this.setState({
+            filterCategoryValue: searchValue,
+            dropdownCategoryValue: value
+        })
     }
 
+    routeAndSearchTabs = () => {
+        const { filterCategoryValue, dropdownCategoryValue, eachState, eachCity } = this.state;
+        let obj = {
+            filterCategory: filterCategoryValue,
+            dropdownCategory: dropdownCategoryValue,
+            state: eachState,
+            city: eachCity,
+            keyOfTab: '1'
+        }
+        this.setState({
+            valueObj: obj,
+            redirectToExplore: true
+        })
+
+    }
     render() {
-        const { states, cities } = this.state;
+        const { states, cities, valueObj, redirectToExplore } = this.state;
+        if(redirectToExplore){
+            return <Redirect to={{ pathname: `explore` , state: valueObj }} />;
+        }
+
         return (
 
             <div className="row">
@@ -118,13 +148,13 @@ class RoomTabs extends Component {
                     <div className="col-md-3 col-sm-6">
                         <Cascader
                             style={{ width: '100%' }} options={category} onChange={this.onChange.bind(this)}
-                            placeholder="Please select category"
+                            placeholder="Select category"
                         />
                     </div>
                     <div className="col-md-3 col-sm-6">
                         <Cascader
                             style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)}
-                            placeholder="Please select state"
+                            placeholder="Select state"
                         />
                     </div>
                     <div className="col-md-3 col-sm-6">
@@ -135,7 +165,7 @@ class RoomTabs extends Component {
                         />
                     </div>
                     <div className="col-md-3 col-sm-6">
-                        <Button className="btn insidebutton" style={{ width: '100%' }}>
+                        <Button className="btn insidebutton" style={{ width: '100%' }} onClick={this.routeAndSearchTabs}>
                             <span className="fa fa-search">
 
                             </span>

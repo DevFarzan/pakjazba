@@ -14,7 +14,8 @@ class Explore extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            keyOfTab: '1'
+            keyOfTab: '1',
+            dataFromHome: ''
         };
     }
 
@@ -22,15 +23,23 @@ class Explore extends Component {
         window.scrollTo(0, 0);
         let data = this.props.location.state;
         if (data) {
-            this.setState({
-                keyOfTab: data
-            })
+            if (data.state != undefined) {
+                this.setState({
+                    keyOfTab: data.keyOfTab,
+                    dataFromHome: data
+                })
+            }
+            else if (data) {
+                this.setState({
+                    keyOfTab: data
+                })
+            }
         }
     }
-    
+
     render() {
         const { TabPane } = Tabs;
-        const { keyOfTab } = this.state;
+        const { keyOfTab, dataFromHome } = this.state;
         return (
             <div>
                 <div className="headerDivv">
@@ -50,7 +59,7 @@ class Explore extends Component {
                                 }
                                 key="1"
                             >
-                                <RoomRentTAB />
+                                <RoomRentTAB dataFromHome={dataFromHome} />
                             </TabPane>
                             <TabPane
                                 tab={
@@ -100,7 +109,7 @@ class Explore extends Component {
                                 }
                                 key="6"
                             >
-                                <EntertainmentTab {...this.props}/>
+                                <EntertainmentTab {...this.props} />
                             </TabPane>
                             <TabPane
                                 tab={

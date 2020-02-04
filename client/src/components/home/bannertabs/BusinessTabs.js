@@ -279,10 +279,14 @@ class BusinessTabs extends Component {
         super(props)
         this.state = {
             states: [],
-            eachState: '',
             citiess: [],
-            category:'',
-
+            filterCategoryValue: [],
+            dropdownCategoryValue: [],
+            eachState: [],
+            eachCity: [],
+            keyOfTab: '',
+            valueObj: '',
+            redirectToExplore: false
         }
     }
 
@@ -316,21 +320,41 @@ class BusinessTabs extends Component {
             })
             this.setState({
                 cities: cities,
-                eachState: value[0]
+                eachState: value
             })
-            // this.props.getState(value)
         }
     }
 
     onChangeCity(value) {
-        // this.props.getCities(value)
+        this.setState({
+            eachCity: value
+        })
     }
 
 
     onChange = (value) => {
-        console.log(value, 'e value')
+        this.setState({
+            filterCategoryValue: value,
+            dropdownCategoryValue: value
+        })
     }
 
+    
+    routeAndSearchTabs = () => {
+        const { filterCategoryValue, dropdownCategoryValue, eachState, eachCity } = this.state;
+        let obj = {
+            filterCategory: filterCategoryValue,
+            dropdownCategory: dropdownCategoryValue,
+            state: eachState,
+            city: eachCity,
+            keyOfTab: '1'
+        }
+        this.setState({
+            valueObj: obj,
+            redirectToExplore: true
+        })
+
+    }
     render() {
         const { states, cities } = this.state;
         return (
@@ -340,13 +364,13 @@ class BusinessTabs extends Component {
                     <div className="col-md-3 col-sm-6">
                         <Cascader
                             style={{ width: '100%' }} options={category} onChange={this.onChange.bind(this)}
-                            placeholder="Please select category"
+                            placeholder="Select category"
                         />
                     </div>
                     <div className="col-md-3 col-sm-6">
                         <Cascader
                             style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)}
-                            placeholder="Please select state"
+                            placeholder="Select state"
                         />
                     </div>
                     <div className="col-md-3 col-sm-6">

@@ -7,14 +7,6 @@ import { isMobile, isTablet } from 'react-device-detect';
 import './homePage.css';
 import HomeBanner from './homebanner';
 import HeaderMenu from '../header/headermenu';
-// import { Link } from "react-router-dom";
-// import { Carousel, Icon } from 'antd';
-// import Burgermenu from '../header/burgermenu';
-// //import {HttpUtils} from "../../Services/HttpUtils";
-// import { connect } from 'react-redux';
-// import BannerHome from './bannerHome';
-// import SliderHome from './sliderHome';
-// import Burgermenu
 
 class HomePage extends Component {
     constructor(props) {

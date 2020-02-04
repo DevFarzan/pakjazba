@@ -99,7 +99,7 @@ background: #428bca;
     padding-bottom: 34px;
 }
 .block-text {
-    background-color: #fff;
+    /* background-color: #fff; */
     border-radius: 5px;
     box-shadow: 0 3px 0 #2c2222;
     color: #626262;

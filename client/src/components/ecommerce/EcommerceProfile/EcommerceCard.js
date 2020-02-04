@@ -13,7 +13,7 @@ class EcomCardsfor extends Component {
         return (
 
             <Link rel="noopener noreferrer" to={{ pathname: `/products_DetailStyle/${cardDetails._id}`, state: cardDetails }} >
-                <div className="container" style={{ padding: '0px', width: '100%' }}>
+                <div className="" style={{ padding: '0px', width: '100%' }}>
                     <div className="sellercardopacity" style={{ cursor: 'pointer' }}>
                         <div className="sellerstorecard" >
                             <img alt='' src={cardDetails.images[0]} />
@@ -22,10 +22,10 @@ class EcomCardsfor extends Component {
                         <p> {`$ ${cardDetails.price}`}</p>
                         <div className='row' style={{ padding: '0' }}>
                             <div className='col-md-8 col-xs-8'>
-                                <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} allowHalf value={cardDetails.averageRateProduct} />
+                                <Rate style={{ fontSize: '14px',paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} allowHalf value={cardDetails.averageRateProduct} />
                             </div>
-                            <div className="vol-md-4 col-xs-4">
-                                <p style={{ marginTop: '0', color: '#D3D3D3', marginLeft: '0px' }}>{cardDetails.country}</p>
+                            <div className="col-md-4 col-xs-4">
+                                <p className="EcomerceCardCompAny">{cardDetails.country}</p>
                             </div>
                         </div>
                     </div>

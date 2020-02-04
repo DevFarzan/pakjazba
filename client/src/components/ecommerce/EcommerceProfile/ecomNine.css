@@ -1,6 +1,6 @@
 .sellerstorecard {
-    background-color: #D3D3D3;
-    border: 2px solid 	#D3D3D3;
+    background-color: #e6e6e6;
+    border: 2px solid 	#e6e6e6;
     border-radius: 10px 10px 0 0 !important;
     padding: 10px;
 
@@ -45,12 +45,17 @@
 }
 
 .text {
-  background-color: #4CAF50;
+  background-color: #23674d;
   color: white;
   font-size: 16px;
   padding: 16px 32px;
 }
-
+.text:hover {
+  background-color: #0b3123;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
   /* .button {
     position: absolute;
     width: 250px;
@@ -78,12 +83,18 @@
     opacity: 1;
   }
 
-  
-.sellercardopacity img{
-        height: auto;
-        border-radius: 5px !important;
+.EcomerceCardCompAny{
+  margin-top: 0!important;
+  color: #D3D3D3!important;
+  margin-left: -10px !important;
 }
+.sellercardopacity img{
+        height: 170px;
+        border-radius: 5px !important;
+        filter: brightness(0.7);
+        width: 100%;
 
+}
 .sellercardopacity p{
     color: rgb(55, 169, 155);
     text-align: left;

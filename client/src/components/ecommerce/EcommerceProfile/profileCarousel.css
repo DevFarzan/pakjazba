@@ -74,3 +74,18 @@
 .rel {
     position: relative;
 } */
+
+@media only screen and (min-device-width: 330px) and (max-device-width: 767px){}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1023px){}
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1365px){}
+@media only screen and (min-device-width: 1366px) and (max-device-width: 1600px){
+    .carouselArrowShopPgLeft{
+        margin-left: -6vw !important;
+        color: black;
+    }
+    .carouselArrowShopPgRight{
+        margin-left: 85vw !important;
+        color: black;
+    }
+}
+@media only screen and (min-device-width: 1600px){}

@@ -2,6 +2,28 @@ import React, { Component } from 'react';
 import { Cascader, Button } from 'antd';
 import stateCities from "../../../lib/countrycitystatejson";
 
+const condition = [
+    {
+        label: 'New',
+        value: 'New',
+    }, {
+        label: 'Refurbished',
+        value: 'Refurbished',
+    }, {
+        label: 'Good',
+        value: 'Good',
+    }, {
+        label: 'Excellent',
+        value: 'Excellent',
+    }, {
+        label: 'Age-Worn',
+        value: 'Age-Worn',
+    }, {
+        label: 'Used',
+        value: 'Used',
+    }
+];
+
 class BuyTab extends Component {
     constructor(props) {
         super(props)
@@ -73,18 +95,18 @@ class BuyTab extends Component {
                     </div> */}
                     <div className="col-md-3 col-sm-6">
                         <Cascader
+                            // value={cityOfRoom}
+                            style={{ width: '100%' }} options={condition} onChange={this.onChangeCity.bind(this)}
+                            placeholder="Select condition"
+                        />
+                    </div>
+                    <div className="col-md-5 col-sm-6">
+                        <Cascader
                             style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)}
                             placeholder="Please select state"
                         />
                     </div>
-                    <div className="col-md-3 col-sm-6">
-                        <Cascader
-                            // value={cityOfRoom}
-                            style={{ width: '100%' }} options={cities} onChange={this.onChangeCity.bind(this)}
-                            placeholder="Select city after select state"
-                        />
-                    </div>
-                    <div className="col-md-3 col-sm-6">
+                    <div className="col-md-4 col-sm-6">
                         <Button className="btn insidebutton" style={{ width: '100%' }}>
                             <span className="fa fa-search">
 
@@ -93,6 +115,9 @@ class BuyTab extends Component {
 
                                 Submit</span>
                         </Button>
+                        <div className="col-md-3 col-sm-6">
+
+                        </div>
                     </div>
                 </div>
             </div>

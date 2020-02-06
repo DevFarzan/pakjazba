@@ -116,26 +116,26 @@ class EventTabs extends Component {
 
             <div className="row">
                 <div className="col-md-12">
-                    <div className="col-md-3 col-sm-6">
+                    <div className="col-md-4 col-sm-6">
                         <Cascader
                             style={{ width: '100%' }} options={category} onChange={this.onChange.bind(this)}
                             placeholder="Please select category"
                         />
                     </div>
-                    <div className="col-md-3 col-sm-6">
+                    <div className="col-md-4 col-sm-6">
                         <Cascader
                             style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)}
                             placeholder="Please select state"
                         />
                     </div>
-                    <div className="col-md-3 col-sm-6">
+                    {/* <div className="col-md-3 col-sm-6">
                         <Cascader
                             // value={cityOfRoom}
                             style={{ width: '100%' }} options={cities} onChange={this.onChangeCity.bind(this)}
                             placeholder="Select city after select state"
                         />
-                    </div>
-                    <div className="col-md-3 col-sm-6">
+                    </div> */}
+                    <div className="col-md-4 col-sm-6">
                         <Button className="btn insidebutton" style={{ width: '100%' }}>
                             <span className="fa fa-search">
 

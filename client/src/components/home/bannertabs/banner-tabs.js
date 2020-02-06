@@ -80,6 +80,7 @@ class BannerTabs extends Component {
                                 <div className="cardinside">
                                     <div class="tab-content">
                                         <div class="tab-pane active" role="tabpanel" id="tab1">
+                                        <h3>Roomrent</h3>
                                             <div className="row">
                                                 <div className="col-md-12">
                                                     <RoomTabs />
@@ -87,6 +88,7 @@ class BannerTabs extends Component {
                                             </div>
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab2">
+                                        <h3>Business</h3>
                                             <div className="row">
                                                 <div className="col-md-12">
                                                     <BusinessTabs />
@@ -95,6 +97,7 @@ class BannerTabs extends Component {
 
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab3">
+                                        <h3>Buy & Sell</h3>
                                             <div className="row">
                                                 <div className="col-md-12">
                                                     <BuyTab />
@@ -102,6 +105,7 @@ class BannerTabs extends Component {
                                             </div>
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab4">
+                                        <h3>Jobs</h3>
                                             <div className="row">
                                                 <div className="col-md-12">
                                                     <JobTabs />
@@ -109,7 +113,7 @@ class BannerTabs extends Component {
                                             </div>
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab5">
-
+                                        <h3>Events</h3>
                                             <div className="row">
                                                 <div className="col-md-12">
                                                     <EventTabs />
@@ -117,7 +121,7 @@ class BannerTabs extends Component {
                                             </div>
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab6">
-
+                                        <h3>Ecommerce</h3>
                                             <div className="row">
                                                 <div className="col-md-12">
                                                     <EcommerceTabs />

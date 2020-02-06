@@ -57,7 +57,6 @@ class BuyNsell extends Component {
 
     async getAllBusiness() {
         let res = await HttpUtils.get('marketplace');
-        console.log(res, 'res')
         let req = await HttpUtils.get('getreviews');
         if (res && res.code && res.code == 200) {
             this.setState({

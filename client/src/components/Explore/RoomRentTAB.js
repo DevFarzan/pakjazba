@@ -30,11 +30,11 @@ class RoomRentTAB extends Component {
             stateOfRoom: [],
             cityOfRoom: [],
             accomodatesOfRoom: [],
-
+            cities: []
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.getAllBusiness()
         this.handleLocalStorage();
     }
@@ -66,10 +66,12 @@ class RoomRentTAB extends Component {
         }
         if (data) {
             filterSubCategoryName = data.filterCategory
-            filterCityName = data.city
+            filterAccomodatesNumber = data.accomodates
             filterStateName = data.state
             this.setState({
-                categoryRoom: data.dropdownCategory
+                categoryRoom: data.dropdownCategory,
+                cities: data.cities
+
             })
             this.filterKeysGet()
         }
@@ -645,7 +647,7 @@ class RoomRentTAB extends Component {
 
     render() {
         const { TabPane } = Tabs;
-        const { showroomrents, filteredData, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom, notFoundFilterData, showRecord, categoryRoom } = this.state;
+        const { showroomrents, filteredData, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom, notFoundFilterData, showRecord, categoryRoom, cities } = this.state;
         return (
             <div>
                 <div className="row">
@@ -665,6 +667,7 @@ class RoomRentTAB extends Component {
                                     accomodatesOfRoom={accomodatesOfRoom}
                                     filterRoomWithMinToMax={this.filterRoomWithMinToMax}
                                     onChangeCheckBoxes={this.onChangeCheckBoxes}
+                                    cities={this.props.dataFromHome.cities}
                                 />
                             </TabPane>
                             <TabPane tab={

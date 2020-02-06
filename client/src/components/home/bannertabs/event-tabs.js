@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {  Cascader, Button } from 'antd';
+import { Cascader, Button } from 'antd';
 import stateCities from "../../../lib/countrycitystatejson";
+import { Redirect } from "react-router-dom";
 
 
 const category = [{
@@ -58,10 +59,12 @@ class EventTabs extends Component {
         super(props)
         this.state = {
             states: [],
-            eachState: '',
-            citiess: [],
-            category:'',
-
+            cities: [],
+            filterCategoryValue: [],
+            eachState: [],
+            keyOfTab: '',
+            valueObj: '',
+            redirectToExplore: false
         }
     }
 
@@ -83,6 +86,11 @@ class EventTabs extends Component {
         })
     }
 
+    onChange = (value) => {
+        this.setState({
+            filterCategoryValue: value
+        })
+    }
 
     onChangeState(value) {
         if (!!value.length) {
@@ -95,23 +103,33 @@ class EventTabs extends Component {
             })
             this.setState({
                 cities: cities,
-                eachState: value[0]
+                eachState: value
             })
-            // this.props.getState(value)
         }
     }
 
-    onChangeCity(value) {
-        // this.props.getCities(value)
+
+    routeAndSearchTabs = () => {
+        const { filterCategoryValue, eachState, cities } = this.state;
+        let obj = {
+            filterCategoryEvent: filterCategoryValue,
+            stateEvent: eachState,
+            citiesEvent: cities,
+            keyOfTab: '5',
+            homefilter: true
+        }
+        this.setState({
+            valueObj: obj,
+            redirectToExplore: true
+        })
     }
-
-
-    onChange = (value) => {
-        console.log(value, 'e value')
-    }
-
     render() {
-        const { states, cities } = this.state;
+        const { states, valueObj, redirectToExplore } = this.state;
+
+        if (redirectToExplore) {
+            return <Redirect to={{ pathname: `explore`, state: valueObj }} />;
+        }
+
         return (
 
             <div className="row">
@@ -128,15 +146,8 @@ class EventTabs extends Component {
                             placeholder="Please select state"
                         />
                     </div>
-                    {/* <div className="col-md-3 col-sm-6">
-                        <Cascader
-                            // value={cityOfRoom}
-                            style={{ width: '100%' }} options={cities} onChange={this.onChangeCity.bind(this)}
-                            placeholder="Select city after select state"
-                        />
-                    </div> */}
                     <div className="col-md-4 col-sm-6">
-                        <Button className="btn insidebutton" style={{ width: '100%' }}>
+                        <Button className="btn insidebutton" style={{ width: '100%' }}  onClick={this.routeAndSearchTabs}>
                             <span className="fa fa-search">
 
                             </span>

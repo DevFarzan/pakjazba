@@ -78,7 +78,7 @@ class RoomTabs extends Component {
         super(props)
         this.state = {
             states: [],
-            citiess: [],
+            cities: [],
             filterCategoryValue: [],
             dropdownCategoryValue: [],
             eachState: [],
@@ -109,7 +109,6 @@ class RoomTabs extends Component {
 
 
     onChange = (value) => {
-        console.log(value, 'values categories')
         let searchValue = [];
         searchValue.push(value[1])
         this.setState({
@@ -119,7 +118,6 @@ class RoomTabs extends Component {
     }
 
     onChangeState(value) {
-        console.log(value, 'values state')
         if (!!value.length) {
             let cities = stateCities.getCities('US', value[0])
             cities = cities.map((elem) => {
@@ -132,12 +130,10 @@ class RoomTabs extends Component {
                 cities: cities,
                 eachState: value
             })
-            console.log(cities, 'cities')
         }
     }
 
     onChangeAccomodates(value) {
-        console.log(value, 'values accommodates')
         this.setState({
             accomodates: value
         })
@@ -148,12 +144,13 @@ class RoomTabs extends Component {
     routeAndSearchTabs = () => {
         const { filterCategoryValue, dropdownCategoryValue, eachState, cities, accomodates } = this.state;
         let obj = {
-            filterCategory: filterCategoryValue,
-            dropdownCategory: dropdownCategoryValue,
-            state: eachState,
-            cities: cities,
-            accomodates: accomodates,
-            keyOfTab: '1'
+            filterCategoryRoom: filterCategoryValue,
+            dropdownCategoryRoom: dropdownCategoryValue,
+            stateRoom: eachState,
+            citiesRoom: cities,
+            accomodatesRoom: accomodates,
+            keyOfTab: '1',
+            homefilter:true
         }
         this.setState({
             valueObj: obj,
@@ -168,7 +165,6 @@ class RoomTabs extends Component {
 
         return (
             <div>
-                {/* <h3>RoomRent</h3> */}
                 <div className="row">
                     <div className="col-md-12">
                         <div className="col-md-3 col-sm-6">

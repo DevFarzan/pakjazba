@@ -56,12 +56,20 @@ class BuyNsell extends Component {
     }
 
     async getAllBusiness() {
+        let data = this.props.dataFromHome;
         let res = await HttpUtils.get('marketplace');
-        let req = await HttpUtils.get('getreviews');
         if (res && res.code && res.code == 200) {
             this.setState({
                 showBuySell: res.busell,
             });
+        }
+        if (data) {
+            filterCondition = data.filterCategoryBuy
+            filterStateName = data.stateBuy
+            this.setState({
+                categoryRoom: data.filterCategoryBuy,
+            })
+            this.filterKeysGet()
         }
     }
 
@@ -92,31 +100,34 @@ class BuyNsell extends Component {
 
 
     filterKeysGet = () => {
-        let categoroyOfRoom = [];
         let stateOfRoom = [];
         let cityOfRoom = [];
         let conditionOfRoom = [];
 
         let filterKeys = [];
-
-        if (filterStateName.length > 0) {
-            filterKeys.push('state')
+        if (filterStateName) {
+            if (filterStateName.length > 0) {
+                filterKeys.push('state')
+            }
+            for (var i = 0; i < filterStateName.length; i++) {
+                stateOfRoom.push(filterStateName[i])
+            }
         }
-        if (filterCityName.length > 0) {
-            filterKeys.push('city')
+        if (filterCityName) {
+            if (filterCityName.length > 0) {
+                filterKeys.push('city')
+            }
+            for (var i = 0; i < filterCityName.length; i++) {
+                cityOfRoom.push(filterCityName[i])
+            }
         }
-        if (filterCondition.length > 0) {
-            filterKeys.push('condition')
-        }
-
-        for (var i = 0; i < filterStateName.length; i++) {
-            stateOfRoom.push(filterStateName[i])
-        }
-        for (var i = 0; i < filterCityName.length; i++) {
-            cityOfRoom.push(filterCityName[i])
-        }
-        for (var i = 0; i < filterCondition.length; i++) {
-            conditionOfRoom.push(filterCondition[i])
+        if (filterCondition) {
+            if (filterCondition.length > 0) {
+                filterKeys.push('condition')
+            }
+            for (var i = 0; i < filterCondition.length; i++) {
+                conditionOfRoom.push(filterCondition[i])
+            }
         }
 
         this.setState({
@@ -512,7 +523,6 @@ class BuyNsell extends Component {
     mainCategoryFilter = (param) => {
         const { showBuySell, filteredData } = this.state;
         let rangeValues = [];
-        console.log(param, 'param')
         if (filteredData.length > 0) {
             for (var i = 0; i < filteredData.length; i++) {
                 if (filteredData[i].category.toLowerCase() == param.toLowerCase()) {
@@ -577,7 +587,7 @@ class BuyNsell extends Component {
                                 <BuySellFilterContent
                                     onChange={this.onChange} getState={this.getState} getCities={this.getCities} onChangeCheckBoxes={this.onChangeCheckBoxes}
                                     stateOfRoom={stateOfRoom} cityOfRoom={cityOfRoom} conditionOfRoom={conditionOfRoom}
-                                    filterRoomWithMinToMax={this.filterRoomWithMinToMax} />
+                                    filterRoomWithMinToMax={this.filterRoomWithMinToMax} cities={this.props.dataFromHome.citiesBuy} />
                             </TabPane>
                             <TabPane tab={
                                 <span><i class="fa fa-list-alt" aria-hidden="true"></i> Category </span>}

@@ -55,17 +55,26 @@ class JobPortal extends Component {
     }
 
     async getAllBusiness() {
+        let data = this.props.dataFromHome;
         let res = await HttpUtils.get('marketplace');
-        // let req = await HttpUtils.get('getreviews');
         if (res && res.code && res.code == 200) {
             this.setState({
                 showAllJobs: res.jobPortalData,
             });
         }
+        if (data) {
+            filterJobCat = data.filterCategoryJob
+            filterJobType = data.filterTypeJob
+            filterStateName = data.stateJob
+            this.setState({
+                typeSortJob: data.filterTypeJob,
+                categoryJob: data.filterCategoryJob,
+            })
+            this.filterKeysGet()
+        }
     }
 
     getSortType = (value) => {
-        console.log(value, 'getSortType')
         this.setState({
             typeSortJob: value
         })
@@ -74,10 +83,6 @@ class JobPortal extends Component {
     }
 
     onChange = (value) => {
-        console.log(value, 'category')
-
-        // let categoryValue = [];
-        // categoryValue.push(value[1]);
         this.setState({
             categoryJob: value,
         })
@@ -109,31 +114,41 @@ class JobPortal extends Component {
 
         let filterKeys = [];
 
-        if (filterJobType.length > 0) {
-            filterKeys.push('type')
+        if (filterJobType) {
+            if (filterJobType.length > 0) {
+                filterKeys.push('type')
+            }
+            for (var i = 0; i < filterJobType.length; i++) {
+                TypeOfJob.push(filterJobType[i])
+            }
         }
-        if (filterJobCat.length > 0) {
-            filterKeys.push('category')
+        if (filterJobCat) {
+            if (filterJobCat.length > 0) {
+                filterKeys.push('category')
+            }
+
+            for (var i = 0; i < filterJobCat.length; i++) {
+                categoroyOfJob.push(filterJobCat[i])
+            }
         }
-        if (filterStateName.length > 0) {
-            filterKeys.push('state')
+        if (filterStateName) {
+            if (filterStateName.length > 0) {
+                filterKeys.push('state')
+            }
+
+            for (var i = 0; i < filterStateName.length; i++) {
+                stateOfJob.push(filterStateName[i])
+            }
         }
-        if (filterCityName.length > 0) {
-            filterKeys.push('city')
+        if (filterCityName) {
+            if (filterCityName.length > 0) {
+                filterKeys.push('city')
+            }
+            for (var i = 0; i < filterCityName.length; i++) {
+                cityOfJob.push(filterCityName[i])
+            }
         }
 
-        for (var i = 0; i < filterJobType.length; i++) {
-            TypeOfJob.push(filterJobType[i])
-        }
-        for (var i = 0; i < filterJobCat.length; i++) {
-            categoroyOfJob.push(filterJobCat[i])
-        }
-        for (var i = 0; i < filterStateName.length; i++) {
-            stateOfJob.push(filterStateName[i])
-        }
-        for (var i = 0; i < filterCityName.length; i++) {
-            cityOfJob.push(filterCityName[i])
-        }
 
         this.setState({
             TypeOfJob: TypeOfJob,
@@ -515,12 +530,10 @@ class JobPortal extends Component {
 
 
     showAllRooms = () => {
-
         filterJobType = [];
         filterJobCat = [];
         filterCityName = [];
         filterStateName = [];
-
         this.setState({
             showRecord: true,
             notFoundFilterData: false,
@@ -582,8 +595,6 @@ class JobPortal extends Component {
     render() {
         const { TabPane } = Tabs;
         const { showAllJobs, filteredData, categoroyOfJob, categoryJob, stateOfJob, cityOfJob, TypeOfJob, notFoundFilterData, showRecord } = this.state;
-        const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
-        // console.log("TCL: JobPortal -> getAllBusiness", showAllJobs);
         return (
             <div>
                 <div className="row">
@@ -602,6 +613,7 @@ class JobPortal extends Component {
                                     cityOfJob={cityOfJob}
                                     categoryJob={categoryJob}
                                     TypeOfJob={TypeOfJob}
+                                    cities={this.props.dataFromHome.citiesJob}
                                 />
                             </TabPane>
                             <TabPane tab={

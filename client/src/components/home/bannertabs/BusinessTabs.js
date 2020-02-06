@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {  Cascader, Button } from 'antd';
+import { Cascader, Button } from 'antd';
 import stateCities from "../../../lib/countrycitystatejson";
+import { Redirect } from "react-router-dom";
 
 const category = [{
     value: 'Advertising Agency',
@@ -279,11 +280,9 @@ class BusinessTabs extends Component {
         super(props)
         this.state = {
             states: [],
-            citiess: [],
+            cities: [],
             filterCategoryValue: [],
-            dropdownCategoryValue: [],
             eachState: [],
-            eachCity: [],
             keyOfTab: '',
             valueObj: '',
             redirectToExplore: false
@@ -309,6 +308,12 @@ class BusinessTabs extends Component {
     }
 
 
+    onChange = (value) => {
+        this.setState({
+            filterCategoryValue: value,
+        })
+    }
+
     onChangeState(value) {
         if (!!value.length) {
             let cities = stateCities.getCities('US', value[0])
@@ -325,38 +330,26 @@ class BusinessTabs extends Component {
         }
     }
 
-    onChangeCity(value) {
-        this.setState({
-            eachCity: value
-        })
-    }
-
-
-    onChange = (value) => {
-        this.setState({
-            filterCategoryValue: value,
-            dropdownCategoryValue: value
-        })
-    }
-
-    
     routeAndSearchTabs = () => {
-        const { filterCategoryValue, dropdownCategoryValue, eachState, eachCity } = this.state;
+        const { filterCategoryValue, eachState, cities } = this.state;
         let obj = {
-            filterCategory: filterCategoryValue,
-            dropdownCategory: dropdownCategoryValue,
-            state: eachState,
-            city: eachCity,
-            keyOfTab: '1'
+            filterCategoryBusniess: filterCategoryValue,
+            stateBusniess: eachState,
+            citiesBusniess: cities,
+            keyOfTab: '2',
+            homefilter:true
         }
         this.setState({
             valueObj: obj,
             redirectToExplore: true
         })
-
     }
+
     render() {
-        const { states, cities } = this.state;
+        const { states, valueObj, redirectToExplore } = this.state;
+        if (redirectToExplore) {
+            return <Redirect to={{ pathname: `explore`, state: valueObj }} />;
+        }
         return (
 
             <div className="row">
@@ -373,15 +366,9 @@ class BusinessTabs extends Component {
                             placeholder="Select state"
                         />
                     </div>
-                    {/* <div className="col-md-3 col-sm-6">
-                        <Cascader
-                            // value={cityOfRoom}
-                            style={{ width: '100%' }} options={cities} onChange={this.onChangeCity.bind(this)}
-                            placeholder="Select city after select state"
-                        />
-                    </div> */}
                     <div className="col-md-4 col-sm-6">
-                        <Button className="btn insidebutton" style={{ width: '100%' }}>
+                        <Button className="btn insidebutton" style={{ width: '100%' }}
+                            onClick={this.routeAndSearchTabs}>
                             <span className="fa fa-search">
 
                             </span>

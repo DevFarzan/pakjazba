@@ -65,13 +65,11 @@ class RoomRentTAB extends Component {
             });
         }
         if (data) {
-            filterSubCategoryName = data.filterCategory
-            filterAccomodatesNumber = data.accomodates
-            filterStateName = data.state
+            filterSubCategoryName = data.filterCategoryRoom
+            filterAccomodatesNumber = data.accomodatesRoom
+            filterStateName = data.stateRoom
             this.setState({
-                categoryRoom: data.dropdownCategory,
-                cities: data.cities
-
+                categoryRoom: data.dropdownCategoryRoom,
             })
             this.filterKeysGet()
         }
@@ -119,31 +117,38 @@ class RoomRentTAB extends Component {
         let accomodatesOfRoom = [];
 
         let filterKeys = [];
+        if (filterSubCategoryName) {
+            if (filterSubCategoryName.length > 0) {
+                filterKeys.push('category')
+            }
+            for (var i = 0; i < filterSubCategoryName.length; i++) {
+                categoroyOfRoom.push(filterSubCategoryName[i])
+            }
+        }
+        if (filterStateName) {
+            if (filterStateName.length > 0) {
+                filterKeys.push('state')
+            }
 
-        if (filterSubCategoryName.length > 0) {
-            filterKeys.push('category')
+            for (var i = 0; i < filterStateName.length; i++) {
+                stateOfRoom.push(filterStateName[i])
+            }
         }
-        if (filterStateName.length > 0) {
-            filterKeys.push('state')
+        if (filterCityName) {
+            if (filterCityName.length > 0) {
+                filterKeys.push('city')
+            }
+            for (var i = 0; i < filterCityName.length; i++) {
+                cityOfRoom.push(filterCityName[i])
+            }
         }
-        if (filterCityName.length > 0) {
-            filterKeys.push('city')
-        }
-        if (filterAccomodatesNumber.length > 0) {
-            filterKeys.push('accommodates')
-        }
-
-        for (var i = 0; i < filterSubCategoryName.length; i++) {
-            categoroyOfRoom.push(filterSubCategoryName[i])
-        }
-        for (var i = 0; i < filterStateName.length; i++) {
-            stateOfRoom.push(filterStateName[i])
-        }
-        for (var i = 0; i < filterCityName.length; i++) {
-            cityOfRoom.push(filterCityName[i])
-        }
-        for (var i = 0; i < filterAccomodatesNumber.length; i++) {
-            accomodatesOfRoom.push(filterAccomodatesNumber[i])
+        if (filterAccomodatesNumber) {
+            if (filterAccomodatesNumber.length > 0) {
+                filterKeys.push('accommodates')
+            }
+            for (var i = 0; i < filterAccomodatesNumber.length; i++) {
+                accomodatesOfRoom.push(filterAccomodatesNumber[i])
+            }
         }
 
         this.setState({
@@ -667,7 +672,7 @@ class RoomRentTAB extends Component {
                                     accomodatesOfRoom={accomodatesOfRoom}
                                     filterRoomWithMinToMax={this.filterRoomWithMinToMax}
                                     onChangeCheckBoxes={this.onChangeCheckBoxes}
-                                    cities={this.props.dataFromHome.cities}
+                                    cities={this.props.dataFromHome.citiesRoom}
                                 />
                             </TabPane>
                             <TabPane tab={

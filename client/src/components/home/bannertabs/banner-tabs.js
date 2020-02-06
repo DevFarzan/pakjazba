@@ -6,15 +6,6 @@ import BuyTab from './buy-tabs';
 import JobTabs from './job-tabs';
 import EventTabs from './event-tabs';
 import EcommerceTabs from './ecommerce-tabs'
-// import { Select, Input, Icon } from 'antd';
-// import { Link } from "react-router-dom";
-// const { Option, OptGroup } = Select;
-
-// function handleChange(value) {
-//   console.log(`selected ${value}`);
-// }
-
-
 
 class BannerTabs extends Component {
     render() {

@@ -173,7 +173,7 @@ class Secondfold extends Component {
 
 
     render() {
-        const { showBusiness, filteredData, notFoundFilterData, showRecord, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom,
+        const { showBusiness, filteredData, notFoundFilterData, showRecord, categoroyOfRoom, stateOfBusniess, cityOfRoom, accomodatesOfRoom,
             removeValue, showAllRooms } = this.props;
         // const { business, showBusiness, filteredArr, goForLogin, goDetail } = this.state;
         // const { text } = this.props;
@@ -203,8 +203,8 @@ class Secondfold extends Component {
                                 </div>)
                         })}
                     </div>}
-                    {stateOfRoom && stateOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
-                        {stateOfRoom.map((elem, key) => {
+                    {stateOfBusniess && stateOfBusniess.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                        {stateOfBusniess.map((elem, key) => {
                             return (
                                 <div className="cross-card">
                                     <li>{elem}<span class="close crossBtnExlpre"

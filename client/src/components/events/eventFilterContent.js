@@ -68,6 +68,12 @@ class EventFilterContent extends Component {
     componentDidMount() {
         window.scrollTo(0, 0);
         this.stateAndCities();
+        let data = this.props.cities;
+        if (data) {
+            this.setState({
+                cities: data
+            })
+        }
     }
 
     stateAndCities(res) {

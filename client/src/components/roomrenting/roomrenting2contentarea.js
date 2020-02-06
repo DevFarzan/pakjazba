@@ -69,7 +69,14 @@ class Roomrentingtwocontentarea extends Component {
     componentDidMount() {
         window.scrollTo(0, 0);
         this.stateAndCities();
+        let data = this.props.cities;
+        if(data){
+            this.setState({
+                cities:data
+            })
+        }
     }
+
 
     stateAndCities() {
         let states = stateCities.getStatesByShort('US');
@@ -135,7 +142,7 @@ class Roomrentingtwocontentarea extends Component {
         return (
             <div>
                 <div className="row">
-                    
+
                     <div className="row">
                         <div className="col-md-12 col-sm-12">
                             <p style={{ marginBottom: '5px' }}><b>Category</b></p>
@@ -262,7 +269,7 @@ class Roomrentingtwocontentarea extends Component {
                                             </Col>
                                         </Row>
                                     </div>
-                                 </div>
+                                </div>
                             </div>
                         </div>
                     </div>

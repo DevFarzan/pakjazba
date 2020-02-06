@@ -5,7 +5,6 @@ import SecondFoldCard from '../business/secondfold';
 import { Tabs, Icon } from 'antd';
 import { HttpUtils } from "../../Services/HttpUtils";
 import AsyncStorage from "@callstack/async-storage/lib/index";
-// import BusinessCard from '../business/bussinessCard';
 
 let filterCategoryName = [];
 let filterCityName = [];
@@ -21,12 +20,12 @@ class BussinesListing extends Component {
             notFoundFilterData: false,
             showRecord: true,
 
-            categoryRoom: [],
+            categoryBusniess: [],
             state: [],
             city: [],
 
             categoroyOfRoom: [],
-            stateOfRoom: [],
+            stateOfBusniess: [],
             cityOfRoom: [],
         }
     }
@@ -54,6 +53,7 @@ class BussinesListing extends Component {
     }
 
     async getAllBusiness() {
+        let data = this.props.dataFromHome;
         let res = await HttpUtils.get('marketplace');
         // let req = await HttpUtils.get('getreviews');
         if (res && res.code && res.code == 200) {
@@ -61,11 +61,19 @@ class BussinesListing extends Component {
                 showBusiness: res.business,
             });
         }
+        if (data) {
+            filterCategoryName = data.filterCategoryBusniess
+            filterStateName = data.stateBusniess
+            this.setState({
+                categoryBusniess: data.filterCategoryBusniess,
+            })
+            this.filterKeysGet()
+        }
     }
 
     onChange = (value) => {
         this.setState({
-            categoryRoom: value,
+            categoryBusniess: value,
         })
         filterCategoryName = value
         this.filterKeysGet()
@@ -90,34 +98,39 @@ class BussinesListing extends Component {
 
     filterKeysGet = () => {
         let categoroyOfRoom = [];
-        let stateOfRoom = [];
+        let stateOfBusniess = [];
         let cityOfRoom = [];
 
         let filterKeys = [];
+        if (filterCategoryName) {
+            if (filterCategoryName.length > 0) {
+                filterKeys.push('category')
+            }
+            for (var i = 0; i < filterCategoryName.length; i++) {
+                categoroyOfRoom.push(filterCategoryName[i])
+            }
+        }
+        if (filterStateName) {
+            if (filterStateName.length > 0) {
+                filterKeys.push('state')
+            }
+            for (var i = 0; i < filterStateName.length; i++) {
+                stateOfBusniess.push(filterStateName[i])
+            }
+        }
+        if (filterCityName) {
+            if (filterCityName.length > 0) {
+                filterKeys.push('city')
+            }
+            for (var i = 0; i < filterCityName.length; i++) {
+                cityOfRoom.push(filterCityName[i])
+            }
+        }
 
-        if (filterCategoryName.length > 0) {
-            filterKeys.push('category')
-        }
-        if (filterStateName.length > 0) {
-            filterKeys.push('state')
-        }
-        if (filterCityName.length > 0) {
-            filterKeys.push('city')
-        }
-
-        for (var i = 0; i < filterCategoryName.length; i++) {
-            categoroyOfRoom.push(filterCategoryName[i])
-        }
-        for (var i = 0; i < filterStateName.length; i++) {
-            stateOfRoom.push(filterStateName[i])
-        }
-        for (var i = 0; i < filterCityName.length; i++) {
-            cityOfRoom.push(filterCityName[i])
-        }
 
         this.setState({
             categoroyOfRoom: categoroyOfRoom,
-            stateOfRoom: stateOfRoom,
+            stateOfBusniess: stateOfBusniess,
             cityOfRoom: cityOfRoom,
         })
 
@@ -316,7 +329,7 @@ class BussinesListing extends Component {
         if (param == "category") {
             filterCategoryName = arr
             this.setState({
-                categoryRoom: arr
+                categoryBusniess: arr
             })
         }
         else if (param == "city") {
@@ -349,7 +362,7 @@ class BussinesListing extends Component {
             notFoundFilterData: false,
             billboardFilterdData: [],
             statusValue: '',
-            categoryRoom:[]
+            categoryBusniess: []
 
         })
         this.filterKeysGet();
@@ -408,7 +421,7 @@ class BussinesListing extends Component {
 
     render() {
         const { TabPane } = Tabs;
-        const { showBusiness, filteredData, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom, notFoundFilterData, showRecord, categoryRoom } = this.state;
+        const { showBusiness, filteredData, categoroyOfRoom, stateOfBusniess, cityOfRoom, notFoundFilterData, showRecord, categoryBusniess } = this.state;
         return (
             <div>
                 <div className="row">
@@ -417,8 +430,16 @@ class BussinesListing extends Component {
                             <TabPane tab={
                                 <span><Icon type="filter" /> Filter </span>}
                                 key="1">
-                                <BusinesListFilterContent onChange={this.onChange} getState={this.getState} getCities={this.getCities} onChangeCheckBoxes={this.onChangeCheckBoxes}
-                                    categoroyOfRoom={categoroyOfRoom} stateOfRoom={stateOfRoom} cityOfRoom={cityOfRoom} accomodatesOfRoom={accomodatesOfRoom} categoryRoom={categoryRoom}
+                                <BusinesListFilterContent
+                                    onChange={this.onChange}
+                                    getState={this.getState}
+                                    getCities={this.getCities}
+                                    onChangeCheckBoxes={this.onChangeCheckBoxes}
+                                    categoroyOfRoom={categoroyOfRoom}
+                                    stateOfBusniess={stateOfBusniess}
+                                    cityOfRoom={cityOfRoom}
+                                    categoryBusniess={categoryBusniess}
+                                    cities={this.props.dataFromHome.citiesBusniess}
                                 />
                             </TabPane>
                             <TabPane tab={
@@ -430,7 +451,7 @@ class BussinesListing extends Component {
                     </div>
                     <div className="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                         <SecondFoldCard showBusiness={showBusiness} filteredData={filteredData} notFoundFilterData={notFoundFilterData} showRecord={showRecord}
-                            categoroyOfRoom={categoroyOfRoom} stateOfRoom={stateOfRoom} cityOfRoom={cityOfRoom} accomodatesOfRoom={accomodatesOfRoom}
+                            categoroyOfRoom={categoroyOfRoom} stateOfBusniess={stateOfBusniess} cityOfRoom={cityOfRoom}
                             removeValue={this.removeValue} showAllRooms={this.showAllRooms} />
                     </div>
                 </div>

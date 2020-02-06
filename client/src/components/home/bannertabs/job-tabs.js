@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Cascader, Button } from 'antd';
 import stateCities from "../../../lib/countrycitystatejson";
+import { Redirect } from "react-router-dom";
 
 const type = [
     {
@@ -89,10 +90,13 @@ class JobTabs extends Component {
         super(props)
         this.state = {
             states: [],
-            eachState: '',
-            citiess: [],
-            category: '',
-
+            cities: [],
+            filterCategoryValue: [],
+            filterTypeValue:[],
+            eachState: [],
+            keyOfTab: '',
+            valueObj: '',
+            redirectToExplore: false
         }
     }
 
@@ -114,6 +118,17 @@ class JobTabs extends Component {
         })
     }
 
+    onChange = (value) => {
+        this.setState({
+            filterTypeValue:value
+        })
+    }
+
+    onChangeCate(value) {
+        this.setState({
+            filterCategoryValue:value
+        })
+    }
 
     onChangeState(value) {
         if (!!value.length) {
@@ -126,60 +141,65 @@ class JobTabs extends Component {
             })
             this.setState({
                 cities: cities,
-                eachState: value[0]
+                eachState: value
             })
-            // this.props.getState(value)
         }
     }
 
-    onChangeCity(value) {
-        // this.props.getCities(value)
+    routeAndSearchTabs = () => {
+        const { filterCategoryValue,filterTypeValue , eachState, cities } = this.state;
+        let obj = {
+            filterCategoryJob: filterCategoryValue,
+            filterTypeJob: filterTypeValue,
+            stateJob: eachState,
+            citiesJob: cities,
+            keyOfTab: '4',
+            homefilter:true
+        }
+        this.setState({
+            valueObj: obj,
+            redirectToExplore: true
+        })
     }
 
 
-    onChange = (value) => {
-        console.log(value, 'e value')
-    }
+   
 
     render() {
-        const { states, cities } = this.state;
+        const { states, valueObj, redirectToExplore } = this.state;
+        if (redirectToExplore) {
+            return <Redirect to={{ pathname: `explore`, state: valueObj }} />;
+        }
         return (
 
             <div className="row">
                 <div className="col-md-12">
-                <div className="col-md-2 col-sm-6">
+                <div className="col-md-3 col-sm-6">
                         <Cascader
                             style={{ width: '100%' }} options={type} onChange={this.onChange.bind(this)}
                             placeholder="Select type"
                         />
                     </div>
-                    <div className="col-md-3 col-sm-6">
+                    <div className="col-md-4 col-sm-6">
                         <Cascader
-                            style={{ width: '100%' }} options={category} onChange={this.onChange.bind(this)}
+                            style={{ width: '100%' }} options={category} onChange={this.onChangeCate.bind(this)}
                             placeholder="Select category"
                         />
                     </div>
-                    <div className="col-md-2 col-sm-6">
+                    <div className="col-md-3 col-sm-6">
                         <Cascader
                             style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)}
                             placeholder="Select state"
                         />
                     </div>
-                    <div className="col-md-3 col-sm-6">
-                        <Cascader
-                            // value={cityOfRoom}
-                            style={{ width: '100%' }} options={cities} onChange={this.onChangeCity.bind(this)}
-                            placeholder="Select city after select state"
-                        />
-                    </div>
                     <div className="col-md-2 col-sm-6">
-                        <Button className="btn insidebutton" style={{ width: '100%' }}>
+                        <Button className="btn insidebutton" style={{ width: '100%' }} onClick={this.routeAndSearchTabs}>
                             <span className="fa fa-search">
 
                             </span>
                             <span>
-
-                                Submit</span>
+                                Submit
+                            </span>
                         </Button>
                     </div>
                 </div>

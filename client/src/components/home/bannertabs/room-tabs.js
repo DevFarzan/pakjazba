@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Cascader, Button } from 'antd';
 import stateCities from "../../../lib/countrycitystatejson";
-import {  Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 const category = [{
     value: 'Property to rent',
@@ -52,16 +52,37 @@ const category = [{
 
 }];
 
+const accomodates = [
+    {
+        label: '1',
+        value: '1',
+    }, {
+        label: '2',
+        value: '2',
+    }, {
+        label: '3',
+        value: '3',
+    }, {
+        label: '4',
+        value: '4',
+    }, {
+        label: '5',
+        value: '5',
+    }, {
+        label: '6',
+        value: '6',
+    }
+];
 class RoomTabs extends Component {
     constructor(props) {
         super(props)
         this.state = {
             states: [],
-            citiess: [],
+            cities: [],
             filterCategoryValue: [],
             dropdownCategoryValue: [],
             eachState: [],
-            eachCity: [],
+            accomodates: [],
             keyOfTab: '',
             valueObj: '',
             redirectToExplore: false
@@ -87,8 +108,16 @@ class RoomTabs extends Component {
     }
 
 
+    onChange = (value) => {
+        let searchValue = [];
+        searchValue.push(value[1])
+        this.setState({
+            filterCategoryValue: searchValue,
+            dropdownCategoryValue: value
+        })
+    }
+
     onChangeState(value) {
-        console.log(value, 'VALUES')
         if (!!value.length) {
             let cities = stateCities.getCities('US', value[0])
             cities = cities.map((elem) => {
@@ -104,78 +133,73 @@ class RoomTabs extends Component {
         }
     }
 
-    onChangeCity(value) {
+    onChangeAccomodates(value) {
         this.setState({
-            eachCity: value
+            accomodates: value
         })
     }
 
 
-    onChange = (value) => {
-        let searchValue = [];
-        searchValue.push(value[1])
-        this.setState({
-            filterCategoryValue: searchValue,
-            dropdownCategoryValue: value
-        })
-    }
 
     routeAndSearchTabs = () => {
-        const { filterCategoryValue, dropdownCategoryValue, eachState, eachCity } = this.state;
+        const { filterCategoryValue, dropdownCategoryValue, eachState, cities, accomodates } = this.state;
         let obj = {
-            filterCategory: filterCategoryValue,
-            dropdownCategory: dropdownCategoryValue,
-            state: eachState,
-            city: eachCity,
-            keyOfTab: '1'
+            filterCategoryRoom: filterCategoryValue,
+            dropdownCategoryRoom: dropdownCategoryValue,
+            stateRoom: eachState,
+            citiesRoom: cities,
+            accomodatesRoom: accomodates,
+            keyOfTab: '1',
+            homefilter:true
         }
         this.setState({
             valueObj: obj,
             redirectToExplore: true
         })
-
     }
     render() {
-        const { states, cities, valueObj, redirectToExplore } = this.state;
-        if(redirectToExplore){
-            return <Redirect to={{ pathname: `explore` , state: valueObj }} />;
+        const { states, valueObj, redirectToExplore } = this.state;
+        if (redirectToExplore) {
+            return <Redirect to={{ pathname: `explore`, state: valueObj }} />;
         }
 
         return (
+            <div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="col-md-3 col-sm-6">
+                            <Cascader
+                                style={{ width: '100%' }} options={category} onChange={this.onChange.bind(this)}
+                                placeholder="Select category"
+                            />
+                        </div>
+                        <div className="col-md-3 col-sm-6">
+                            <Cascader
+                                style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)}
+                                placeholder="Select state"
+                            />
+                        </div>
+                        <div className="col-md-3 col-sm-6">
+                            <Cascader
+                                // value={cityOfRoom}
+                                style={{ width: '100%' }} options={accomodates} onChange={this.onChangeAccomodates.bind(this)}
+                                placeholder="Select accomodates no"
+                            />
+                        </div>
+                        <div className="col-md-3 col-sm-6">
+                            <Button className="btn insidebutton" style={{ width: '100%' }} onClick={this.routeAndSearchTabs}>
+                                <span className="fa fa-search">
 
-            <div className="row">
-                <div className="col-md-12">
-                    <div className="col-md-3 col-sm-6">
-                        <Cascader
-                            style={{ width: '100%' }} options={category} onChange={this.onChange.bind(this)}
-                            placeholder="Select category"
-                        />
-                    </div>
-                    <div className="col-md-3 col-sm-6">
-                        <Cascader
-                            style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)}
-                            placeholder="Select state"
-                        />
-                    </div>
-                    <div className="col-md-3 col-sm-6">
-                        <Cascader
-                            // value={cityOfRoom}
-                            style={{ width: '100%' }} options={cities} onChange={this.onChangeCity.bind(this)}
-                            placeholder="Select city after select state"
-                        />
-                    </div>
-                    <div className="col-md-3 col-sm-6">
-                        <Button className="btn insidebutton" style={{ width: '100%' }} onClick={this.routeAndSearchTabs}>
-                            <span className="fa fa-search">
+                                </span>
+                                <span>
 
-                            </span>
-                            <span>
-
-                                Submit</span>
-                        </Button>
+                                    Submit</span>
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>
+
         )
     }
 }

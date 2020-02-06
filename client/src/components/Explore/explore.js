@@ -23,7 +23,7 @@ class Explore extends Component {
         window.scrollTo(0, 0);
         let data = this.props.location.state;
         if (data) {
-            if (data.state != undefined) {
+            if (data.homefilter) {
                 this.setState({
                     keyOfTab: data.keyOfTab,
                     dataFromHome: data
@@ -69,7 +69,7 @@ class Explore extends Component {
                                 }
                                 key="2"
                             >
-                                <BusinesListing />
+                                <BusinesListing dataFromHome={dataFromHome} />
                             </TabPane>
                             <TabPane
                                 tab={
@@ -79,7 +79,7 @@ class Explore extends Component {
                                 }
                                 key="3"
                             >
-                                <BuyNsell />
+                                <BuyNsell dataFromHome={dataFromHome}/>
                             </TabPane>
                             <TabPane
                                 tab={
@@ -89,7 +89,7 @@ class Explore extends Component {
                                 }
                                 key="4"
                             >
-                                <JobPortal />
+                                <JobPortal dataFromHome={dataFromHome}/>
                             </TabPane>
                             <TabPane
                                 tab={
@@ -99,7 +99,7 @@ class Explore extends Component {
                                 }
                                 key="5"
                             >
-                                <EventTab />
+                                <EventTab dataFromHome={dataFromHome}/>
                             </TabPane>
                             <TabPane
                                 tab={
@@ -119,7 +119,7 @@ class Explore extends Component {
                                 }
                                 key="7"
                             >
-                                <EcommerceTab />
+                                <EcommerceTab dataFromHome={dataFromHome}/>
                             </TabPane>
                         </Tabs>
                         }

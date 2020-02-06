@@ -30,19 +30,25 @@ class EcommerceTAB extends Component {
     }
 
     async componentDidMount() {
+        let data = this.props.dataFromHome;
         let res = await HttpUtils.get('getecommercedata');
-        let featureData = [];
-        if (res.content.length >= 4) {
-            for (var i = 0; i < 4; i++) {
-                featureData.push(res.content[i])
-                if (res) {
-                    if (res.code == 200) {
-                        this.setState({
-                            allProducts: res.content,
-                        })
-                    }
-                }
+        if (res) {
+            if (res.code == 200) {
+                this.setState({
+                    allProducts: res.content,
+                })
             }
+        }
+        if (data) {
+            filterCategoryName = data.filterCategoryEcom
+            filterColorFamily = data.colorEcom
+            filterBrand = data.brandEcom
+            this.setState({
+                categoryofProduct: data.dropdownCategoryEcom,
+                colorsValues: data.colorEcom,
+                brandValues: data.brandEcom
+            })
+            this.filterKeysGet()
         }
     }
 
@@ -71,7 +77,6 @@ class EcommerceTAB extends Component {
     /*Brand Filteration*/
 
     onChangeBrand = (value) => {
-        console.log(value, 'values')
         this.setState({
             brandValues: value
         })
@@ -490,7 +495,7 @@ class EcommerceTAB extends Component {
                             <TabPane tab={
                                 <span><i class="fa fa-list-alt" aria-hidden="true"></i> Category </span>}
                                 key="2">
-                                <BuyCategory  mainCategoryFilter={this.mainCategoryFilter}/>
+                                <BuyCategory mainCategoryFilter={this.mainCategoryFilter} />
                             </TabPane>
                         </Tabs>
                     </div>

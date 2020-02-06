@@ -57,6 +57,8 @@ class EventTab extends Component {
     }
 
     async getAllBusiness() {
+        let data = this.props.dataFromHome;
+
         var res = await HttpUtils.get('marketplace');
         if (res) {
             if (res.code === 200) {
@@ -68,16 +70,16 @@ class EventTab extends Component {
                 });
             }
         }
-        // this.handleLocalStorage();
+        if (data) {
+            filterEventCategory = data.filterCategoryEvent
+            filterStateName = data.stateEvent
+            this.setState({
+                categoryEvents: data.filterCategoryEvent,
+            })
+            this.filterKeysGet()
+        }
     }
 
-    // componentWillUnmount() {
-    //     let inputValue = '';
-    //     if (this.props.text.length) {
-    //         const { dispatch } = this.props;
-    //         dispatch({ type: 'SEARCHON', inputValue })
-    //     }
-    // }
 
     onChange = (value) => {
 
@@ -85,7 +87,6 @@ class EventTab extends Component {
             categoryEvents: value,
         })
         filterEventCategory = value
-        // console.log(filterEventCategory, 'filterEventCategory')
         this.filterKeysGet()
     }
 
@@ -94,7 +95,6 @@ class EventTab extends Component {
             state: state
         })
         filterStateName = state;
-        // console.log(filterStateName , 'filterStateName')
         this.filterKeysGet()
     }
 
@@ -103,7 +103,6 @@ class EventTab extends Component {
             city: city,
         })
         filterCityName = city;
-        // console.log(filterCityName , 'filterCityName')
 
         this.filterKeysGet()
     }
@@ -114,25 +113,29 @@ class EventTab extends Component {
         let cityOfRoom = [];
 
         let filterKeys = [];
-
-        if (filterEventCategory.length > 0) {
-            filterKeys.push('category')
+        if (filterEventCategory) {
+            if (filterEventCategory.length > 0) {
+                filterKeys.push('category')
+            }
+            for (var i = 0; i < filterEventCategory.length; i++) {
+                categoroyOfRoom.push(filterEventCategory[i])
+            }
         }
-        if (filterStateName.length > 0) {
-            filterKeys.push('state')
+        if (filterStateName) {
+            if (filterStateName.length > 0) {
+                filterKeys.push('state')
+            }
+            for (var i = 0; i < filterStateName.length; i++) {
+                stateOfRoom.push(filterStateName[i])
+            }
         }
-        if (filterCityName.length > 0) {
-            filterKeys.push('city')
-        }
-
-        for (var i = 0; i < filterEventCategory.length; i++) {
-            categoroyOfRoom.push(filterEventCategory[i])
-        }
-        for (var i = 0; i < filterStateName.length; i++) {
-            stateOfRoom.push(filterStateName[i])
-        }
-        for (var i = 0; i < filterCityName.length; i++) {
-            cityOfRoom.push(filterCityName[i])
+        if (filterCityName) {
+            if (filterCityName.length > 0) {
+                filterKeys.push('city')
+            }
+            for (var i = 0; i < filterCityName.length; i++) {
+                cityOfRoom.push(filterCityName[i])
+            }
         }
 
         this.setState({
@@ -436,9 +439,6 @@ class EventTab extends Component {
     render() {
         const { TabPane } = Tabs;
         const { events, filteredData, categoroyOfEvents, stateOfRoom, cityOfRoom, notFoundFilterData, showRecord, categoryEvents } = this.state;
-        // console.log(categoryEvents, 'categoryEvents')
-        // const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader, objData, goDetail } = this.state;
-        // const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
         return (
             <div>
                 <div className="row">
@@ -456,12 +456,13 @@ class EventTab extends Component {
                                     cityOfRoom={cityOfRoom}
                                     categoryEvents={categoryEvents}
                                     filterRoomWithMinToMax={this.filterRoomWithMinToMax}
+                                    cities={this.props.dataFromHome.citiesEvent}
                                 />
                             </TabPane>
                             <TabPane tab={
                                 <span><i class="fa fa-list-alt" aria-hidden="true"></i> Category </span>}
                                 key="2">
-                                <EventCategory  mainCategoryFilter={this.mainCategoryFilter}/>
+                                <EventCategory mainCategoryFilter={this.mainCategoryFilter} />
                             </TabPane>
                         </Tabs>
                     </div>

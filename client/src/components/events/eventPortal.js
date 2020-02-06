@@ -730,7 +730,7 @@ class EventPortal extends Component {
                                                             fileList={fileList}
                                                             onPreview={this.handlePreview}
                                                             onChange={this.handleChange}
-                                                            style={{padding:'5vw'}}
+                                                            style={{ padding: '5vw' }}
                                                         >
                                                             {fileList.length > 1 ? null : uploadButton}
                                                         </Upload>
@@ -754,6 +754,7 @@ class EventPortal extends Component {
                                                             // fileList={fileList}
                                                             onPreview={this.handlePreview}
                                                             onChange={this.onChangeBanner}
+
                                                         >
                                                             {bannerButton}
                                                         </Upload>}
@@ -908,26 +909,28 @@ class EventPortal extends Component {
                                             </div>
                                         </div>}
 
-                                        <hr className="hrLineStyle" />
 
-                                        {this.state.earlyBird && <div className="row">
-                                            {!this.state.earlyBirdFree && <div className="col-md-6">
-                                                <label>Ticket Delivery</label>
-                                                <FormItem style={{ padding: '2% 0%' }}>
-                                                    {getFieldDecorator('earlyBirdDelivery', {
-                                                        initialValue: this.state.earlyBirdDelivery,
-                                                        rules: [{ validator: this.checkCheckBox }],
-                                                    })(
-                                                        <CheckboxGroup options={optionsDelivery} />
-                                                    )}
-                                                </FormItem>
-                                            </div>}
+
+                                        {this.state.earlyBird && <div>
+                                            <hr className="hrLineStyle" />
+                                            <div className="row">
+                                                {!this.state.earlyBirdFree && <div className="col-md-6">
+                                                    <label>Ticket Delivery</label>
+                                                    <FormItem style={{ padding: '2% 0%' }}>
+                                                        {getFieldDecorator('earlyBirdDelivery', {
+                                                            initialValue: this.state.earlyBirdDelivery,
+                                                            rules: [{ validator: this.checkCheckBox }],
+                                                        })(
+                                                            <CheckboxGroup options={optionsDelivery} />
+                                                        )}
+                                                    </FormItem>
+                                                </div>}
+                                            </div>
                                             <div className="col-md-6">
 
                                             </div>
                                         </div>}
 
-                                        {this.state.normalTicket && this.state.earlyBird && <hr className="hrLineStyle" />}
                                         {this.state.normalTicket && <div className="row">
                                             <div className="col-md-12">
                                                 <div className="col-md-6">
@@ -992,22 +995,25 @@ class EventPortal extends Component {
                                             </div>
                                         </div>}
 
-                                        <hr className="hrLineStyle" />
 
-                                        {this.state.normalTicket && <div className="row">
-                                            {!this.state.normalTicketFree && <div className="col-md-6">
-                                                <label>Ticket Delivery</label>
-                                                <FormItem style={{ padding: '2% 0%' }}>
-                                                    {getFieldDecorator('normalTicketDelivery', {
-                                                        initialValue: this.state.normalTicketDelivery,
-                                                        rules: [{ validator: this.checkCheckBox }],
-                                                    })(
-                                                        <CheckboxGroup options={optionsDelivery} />
-                                                    )}
-                                                </FormItem>
-                                            </div>}
-                                            <div className="col-md-6">
 
+                                        {this.state.normalTicket && <div>
+                                            <hr className="hrLineStyle" />
+                                            <div className="row">
+                                                {!this.state.normalTicketFree && <div className="col-md-6">
+                                                    <label>Ticket Delivery</label>
+                                                    <FormItem style={{ padding: '2% 0%' }}>
+                                                        {getFieldDecorator('normalTicketDelivery', {
+                                                            initialValue: this.state.normalTicketDelivery,
+                                                            rules: [{ validator: this.checkCheckBox }],
+                                                        })(
+                                                            <CheckboxGroup options={optionsDelivery} />
+                                                        )}
+                                                    </FormItem>
+                                                </div>}
+                                                <div className="col-md-6">
+
+                                                </div>
                                             </div>
                                         </div>}
                                         {this.state.customTicket && <div className="row">

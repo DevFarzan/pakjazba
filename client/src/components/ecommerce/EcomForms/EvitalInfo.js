@@ -10,6 +10,7 @@ import WeightInput from './WeightComponent';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
+
 const electronics = [{
   value: 'Electronic',
   label: 'Electronics Devices',
@@ -41,10 +42,17 @@ const electronics = [{
       value: 'Oneplus',
       label: 'Oneplus Mobiles'
     }],
-  }, {
+  },
+  {
     value: 'Tablets',
     label: 'Tablets',
-  }, {
+    children: [{
+      value: 'Tablets',
+      label: 'Tablets',
+
+    }]
+  },
+  {
     value: 'Laptops',
     label: 'Laptops',
     children: [{
@@ -120,6 +128,11 @@ const electronics = [{
   }, {
     value: 'Insurance',
     label: 'Insurance & Protection',
+    children: [{
+      value: 'Insurance',
+      label: 'Insurance & Protection',
+
+    }]
   }]
 
 }, {
@@ -290,6 +303,11 @@ const electronics = [{
   }, {
     value: 'Network Components',
     label: 'Network Components',
+    children: [{
+      value: 'Network Components',
+      label: 'Network Components',
+
+    }]
   }]
 }, {
   value: 'TV',
@@ -512,15 +530,35 @@ const electronics = [{
   }, {
     value: 'Makeup',
     label: 'Makeup',
+    children: [{
+      value: 'Makeup',
+      label: 'Makeup',
+
+    }]
   }, {
     value: 'Mens Care',
     label: 'Mens Care',
+    children: [{
+      value: 'Mens Care',
+      label: 'Mens Care',
+
+    }]
   }, {
     value: 'Personal Care',
     label: 'Personal Care',
+    children: [{
+      value: 'Personal Care',
+      label: 'Personal Care',
+
+    }]
   }, {
     value: 'Skin Care',
     label: 'Skin Care',
+    children: [{
+      value: 'Skin Care',
+      label: 'Skin Care',
+
+    }]
   }]
 }, {
   value: 'Babies',
@@ -856,6 +894,11 @@ const electronics = [{
   }, {
     value: 'Dairy & Chilled',
     label: 'Dairy & Chilled',
+    children: [{
+      value: 'Dairy & Chilled',
+      label: 'Dairy & Chilled',
+
+    }]
   }, {
     value: 'Laundary & Household',
     label: 'Laundary & Household',
@@ -1336,6 +1379,7 @@ const electronics = [{
     }, {
       value: 'T-shirts',
       label: 'T-Shirts',
+      
     }]
   }, {
     value: 'Bras, Panties & Lingerie',
@@ -1499,6 +1543,11 @@ const electronics = [{
   children: [{
     value: 'T-Shirts',
     label: 'T-Shirts',
+    children: [{
+      value: 'T-Shirts',
+      label: 'T-Shirts',
+
+    }]
   }, {
     value: 'Shirts',
     label: 'Shirts',
@@ -1512,6 +1561,11 @@ const electronics = [{
   }, {
     value: 'Polo',
     label: 'Polo',
+    children: [{
+      value: 'Polo',
+      label: 'Polo',
+
+    }]
   }, {
     value: 'Pants & Suits',
     label: 'Pants & Suits',
@@ -1528,6 +1582,11 @@ const electronics = [{
   }, {
     value: 'Shorts',
     label: 'Shorts',
+    children: [{
+      value: 'Shorts',
+      label: 'Shorts',
+
+    }]
   }, {
     value: 'Kurtas & Shalwar Kameez',
     label: 'Kurtas & Shalwar Kameez',
@@ -1795,6 +1854,11 @@ const electronics = [{
   }, {
     value: 'Lenses',
     label: 'Lenses',
+    children: [{
+      value: 'Lenses',
+      label: 'Lenses',
+
+    }]
   }]
 }, {
   value: 'Sports',

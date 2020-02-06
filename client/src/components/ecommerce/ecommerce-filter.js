@@ -3,7 +3,8 @@ import {
   Cascader, Row, Col, Checkbox, Input , Button
 } from 'antd';
 
-const optionsValue = [{
+
+const category = [{
   value: 'Electronic',
   label: 'Electronics Devices',
   children: [{
@@ -34,10 +35,17 @@ const optionsValue = [{
       value: 'Oneplus',
       label: 'Oneplus Mobiles'
     }],
-  }, {
+  },
+  {
     value: 'Tablets',
     label: 'Tablets',
-  }, {
+    children: [{
+      value: 'Tablets',
+      label: 'Tablets',
+
+    }]
+  },
+  {
     value: 'Laptops',
     label: 'Laptops',
     children: [{
@@ -113,6 +121,11 @@ const optionsValue = [{
   }, {
     value: 'Insurance',
     label: 'Insurance & Protection',
+    children: [{
+      value: 'Insurance',
+      label: 'Insurance & Protection',
+
+    }]
   }]
 
 }, {
@@ -283,6 +296,11 @@ const optionsValue = [{
   }, {
     value: 'Network Components',
     label: 'Network Components',
+    children: [{
+      value: 'Network Components',
+      label: 'Network Components',
+
+    }]
   }]
 }, {
   value: 'TV',
@@ -505,15 +523,35 @@ const optionsValue = [{
   }, {
     value: 'Makeup',
     label: 'Makeup',
+    children: [{
+      value: 'Makeup',
+      label: 'Makeup',
+
+    }]
   }, {
     value: 'Mens Care',
     label: 'Mens Care',
+    children: [{
+      value: 'Mens Care',
+      label: 'Mens Care',
+
+    }]
   }, {
     value: 'Personal Care',
     label: 'Personal Care',
+    children: [{
+      value: 'Personal Care',
+      label: 'Personal Care',
+
+    }]
   }, {
     value: 'Skin Care',
     label: 'Skin Care',
+    children: [{
+      value: 'Skin Care',
+      label: 'Skin Care',
+
+    }]
   }]
 }, {
   value: 'Babies',
@@ -849,6 +887,11 @@ const optionsValue = [{
   }, {
     value: 'Dairy & Chilled',
     label: 'Dairy & Chilled',
+    children: [{
+      value: 'Dairy & Chilled',
+      label: 'Dairy & Chilled',
+
+    }]
   }, {
     value: 'Laundary & Household',
     label: 'Laundary & Household',
@@ -1329,6 +1372,7 @@ const optionsValue = [{
     }, {
       value: 'T-shirts',
       label: 'T-Shirts',
+      
     }]
   }, {
     value: 'Bras, Panties & Lingerie',
@@ -1492,6 +1536,11 @@ const optionsValue = [{
   children: [{
     value: 'T-Shirts',
     label: 'T-Shirts',
+    children: [{
+      value: 'T-Shirts',
+      label: 'T-Shirts',
+
+    }]
   }, {
     value: 'Shirts',
     label: 'Shirts',
@@ -1505,6 +1554,11 @@ const optionsValue = [{
   }, {
     value: 'Polo',
     label: 'Polo',
+    children: [{
+      value: 'Polo',
+      label: 'Polo',
+
+    }]
   }, {
     value: 'Pants & Suits',
     label: 'Pants & Suits',
@@ -1521,6 +1575,11 @@ const optionsValue = [{
   }, {
     value: 'Shorts',
     label: 'Shorts',
+    children: [{
+      value: 'Shorts',
+      label: 'Shorts',
+
+    }]
   }, {
     value: 'Kurtas & Shalwar Kameez',
     label: 'Kurtas & Shalwar Kameez',
@@ -1788,6 +1847,11 @@ const optionsValue = [{
   }, {
     value: 'Lenses',
     label: 'Lenses',
+    children: [{
+      value: 'Lenses',
+      label: 'Lenses',
+
+    }]
   }]
 }, {
   value: 'Sports',
@@ -2100,7 +2164,6 @@ const optionsValue = [{
 }];
 
 
-
 class EcomFilter extends Component {
   constructor(props) {
     super(props)
@@ -2146,7 +2209,7 @@ class EcomFilter extends Component {
                 <Cascader
                   value={categoryofProduct}
                   style={{ width: '100%' }}
-                  options={optionsValue}
+                  options={category}
                   onChange={onChange}
                   placeholder="Please select category"
                 />

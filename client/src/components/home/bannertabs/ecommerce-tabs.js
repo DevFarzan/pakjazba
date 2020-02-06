@@ -33,10 +33,17 @@ const category = [{
       value: 'Oneplus',
       label: 'Oneplus Mobiles'
     }],
-  }, {
+  },
+  {
     value: 'Tablets',
     label: 'Tablets',
-  }, {
+    children: [{
+      value: 'Tablets',
+      label: 'Tablets',
+
+    }]
+  },
+  {
     value: 'Laptops',
     label: 'Laptops',
     children: [{
@@ -112,6 +119,11 @@ const category = [{
   }, {
     value: 'Insurance',
     label: 'Insurance & Protection',
+    children: [{
+      value: 'Insurance',
+      label: 'Insurance & Protection',
+
+    }]
   }]
 
 }, {
@@ -282,6 +294,11 @@ const category = [{
   }, {
     value: 'Network Components',
     label: 'Network Components',
+    children: [{
+      value: 'Network Components',
+      label: 'Network Components',
+
+    }]
   }]
 }, {
   value: 'TV',
@@ -504,15 +521,35 @@ const category = [{
   }, {
     value: 'Makeup',
     label: 'Makeup',
+    children: [{
+      value: 'Makeup',
+      label: 'Makeup',
+
+    }]
   }, {
     value: 'Mens Care',
     label: 'Mens Care',
+    children: [{
+      value: 'Mens Care',
+      label: 'Mens Care',
+
+    }]
   }, {
     value: 'Personal Care',
     label: 'Personal Care',
+    children: [{
+      value: 'Personal Care',
+      label: 'Personal Care',
+
+    }]
   }, {
     value: 'Skin Care',
     label: 'Skin Care',
+    children: [{
+      value: 'Skin Care',
+      label: 'Skin Care',
+
+    }]
   }]
 }, {
   value: 'Babies',
@@ -848,6 +885,11 @@ const category = [{
   }, {
     value: 'Dairy & Chilled',
     label: 'Dairy & Chilled',
+    children: [{
+      value: 'Dairy & Chilled',
+      label: 'Dairy & Chilled',
+
+    }]
   }, {
     value: 'Laundary & Household',
     label: 'Laundary & Household',
@@ -1328,6 +1370,7 @@ const category = [{
     }, {
       value: 'T-shirts',
       label: 'T-Shirts',
+      
     }]
   }, {
     value: 'Bras, Panties & Lingerie',
@@ -1491,6 +1534,11 @@ const category = [{
   children: [{
     value: 'T-Shirts',
     label: 'T-Shirts',
+    children: [{
+      value: 'T-Shirts',
+      label: 'T-Shirts',
+
+    }]
   }, {
     value: 'Shirts',
     label: 'Shirts',
@@ -1504,6 +1552,11 @@ const category = [{
   }, {
     value: 'Polo',
     label: 'Polo',
+    children: [{
+      value: 'Polo',
+      label: 'Polo',
+
+    }]
   }, {
     value: 'Pants & Suits',
     label: 'Pants & Suits',
@@ -1520,6 +1573,11 @@ const category = [{
   }, {
     value: 'Shorts',
     label: 'Shorts',
+    children: [{
+      value: 'Shorts',
+      label: 'Shorts',
+
+    }]
   }, {
     value: 'Kurtas & Shalwar Kameez',
     label: 'Kurtas & Shalwar Kameez',
@@ -1787,6 +1845,11 @@ const category = [{
   }, {
     value: 'Lenses',
     label: 'Lenses',
+    children: [{
+      value: 'Lenses',
+      label: 'Lenses',
+
+    }]
   }]
 }, {
   value: 'Sports',
@@ -2193,26 +2256,26 @@ class EcommerceTabs extends Component {
     })
   }
   routeAndSearchTabs = () => {
-    const { filterCategoryValue, dropdownCategoryValue, color , brand } = this.state;
+    const { filterCategoryValue, dropdownCategoryValue, color, brand } = this.state;
     let obj = {
-        filterCategoryEcom: filterCategoryValue,
-        dropdownCategoryEcom: dropdownCategoryValue,
-        colorEcom: color,
-        brandEcom: brand,
-        keyOfTab: '7',
-        homefilter:true
+      filterCategoryEcom: filterCategoryValue,
+      dropdownCategoryEcom: dropdownCategoryValue,
+      colorEcom: color,
+      brandEcom: brand,
+      keyOfTab: '7',
+      homefilter: true
     }
     this.setState({
-        valueObj: obj,
-        redirectToExplore: true
+      valueObj: obj,
+      redirectToExplore: true
     })
-}
+  }
 
   render() {
     const { valueObj, redirectToExplore } = this.state;
-        if (redirectToExplore) {
-            return <Redirect to={{ pathname: `explore`, state: valueObj }} />;
-        }
+    if (redirectToExplore) {
+      return <Redirect to={{ pathname: `explore`, state: valueObj }} />;
+    }
     return (
 
       <div className="row">

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SalmanKhan from './SalmanKhan';
 import Sittingarrangements from './sittingarrangments';
-import Burgermenu from '../../header/burgermenu';
+import Headermenu from '../../header//headermenu';
 import EventHeader from './Eventheader';
 import EventFilter from './eventfilter';
 import BookedSeats from './bookedSeats';
@@ -82,7 +82,7 @@ class SeatMap extends Component {
 
 		return (
 			<div>
-				<Burgermenu />
+				<Headermenu />
 				<div className="" style={{ "background": "#d8e7e4", backgroundSize: 'cover', marginTop: '90px' }}>
 					<div className="background-image">
 						<EventHeader

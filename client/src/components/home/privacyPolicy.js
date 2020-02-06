@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Burgermenu from '../header/burgermenu';
+import HeaderMenu from '../header/headermenu';
 import { Link } from "react-router-dom";
 import './privacyPolicy.css'
 
@@ -8,17 +8,8 @@ class PrivacyPolicy extends Component {
   render() {
     return (
       <div>
-      <div className="visible-xs" style={{marginTop:'-19px',backgroundSize: 'cover'}}>
-          <div className="background-image">
-              <Burgermenu/>
-          </div>
-      </div>
-      <div className ="hidden-xs" style={{marginTop:'86px',backgroundSize: 'cover'}}>
-          <div className="background-image">
-              <Burgermenu/>
-          </div>
-      </div>
-    		<div className="container Policy" style={{marginTop: '7%', width: '90%'}}>
+			<HeaderMenu/>
+    		<div className="container Policy" style={{marginTop: '10%', width: '90%'}}>
     			<h1>Privacy Policy</h1>
 
     			<p>PAKJAZBA US (“PAKJAZBA”) respects the privacy of others. This PRIVACY POLICY (this “Privacy Policy”) is intended to explain PAKJAZBA’s privacy practices with respect to the PAKJAZBA US website (or www.pakjazba.com) (together with its pages and features, the “Site”), and its associated mobile software application commonly known as the “PAKJAZBA” app (together with its pages and features, the “App”). This Privacy Policy is also intended to provide you (and any person helping you visit, access, register with or use the Site and/or the App, collectively, “you” or “your”) with an overview of the following:</p><br/>

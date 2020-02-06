@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import BussinesCard from '../../business/bussinessCard';
 import '../../home/carouselHome.css';
+import './profileCarousel.css';
 import EomCardsfor from './EcommerceCard';
 import EcomCardsfor from './EcommerceCard';
 
@@ -65,7 +66,7 @@ class ProfileCarousel extends Component {
                                             return (
                                                 <div key={key} className="item active">
                                                     <div className="col-md-3 col-sm-6">
-                                                        <div className="block-text rel zmin">
+                                                        <div className="block-textShop rel zmin">
                                                             <EcomCardsfor cardDetails={elem} />
                                                         </div>
                                                     </div>
@@ -74,16 +75,16 @@ class ProfileCarousel extends Component {
                                         }
                                     })}
                                 </div>
-                                <div className="carouselArrowShopPgLeft">
-                                    <a disabled={backward} className="" href="#carouselShop" role="button" data-slide="prev">
-                                        <span className="glyphicon glyphicon-chevron-left" id="leftProfile" onClick={e => this.handleBackward(e)}></span>
-                                    </a>
-                                </div>
-                                <div className="carouselArrowShopPgRight">
-                                    <a disabled={farward} className="" href="#carouselShop" role="button" data-slide="next">
-                                        <span className="glyphicon glyphicon-chevron-right" id="rightProfile" onClick={e => this.handleFarward(e)}></span>
-                                    </a>
-                                </div>
+                                {arrayListing && arrayListing.length > 4 ? <div> 
+                                <a disabled={backward} className="carouselArrowShopPgLeft carousel-control" href="#carouselShop" role="button" data-slide="prev">
+                                    <span className="glyphicon glyphicon-chevron-left" id="leftProfile" onClick={e => this.handleBackward(e)}></span>
+                                </a>
+                                <a disabled={farward} className="carouselArrowShopPgRight carousel-control" href="#carouselShop" role="button" data-slide="next">
+                                    <span className="glyphicon glyphicon-chevron-right" id="rightProfile" onClick={e => this.handleFarward(e)}></span>
+                                </a></div>
+                                :
+                                    null
+                                }
                             </div>
                         </div>
                     </div>

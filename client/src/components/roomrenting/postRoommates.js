@@ -457,13 +457,13 @@ class Postroommates extends Component {
             arr_url: [...response, ...imageList],
             objectId: objectId,
             posted: moment().format('LL'),
-            beds:values.beds
+            beds: values.beds
         }
         let req = await HttpUtils.post('postroomrent', obj)
-        if(req.code === 200) {
+        if (req.code === 200) {
             this.props.form.resetFields();
             this.openNotification()
-            this.setState({msg: true, objData: obj, loader: false})
+            this.setState({ msg: true, objData: obj, loader: false })
         }
     }
 
@@ -683,38 +683,6 @@ class Postroommates extends Component {
                                         <div className="formRadius" style={{ backgroundColor: 'white', padding: '1vw 0px 5px 0px', }}>{/*panel-body */}
                                             <FormItem
                                                 {...formItemLayout}
-                                                label="State"
-
-                                                style={{ padding: '2%' }}
-                                            >
-                                                {getFieldDecorator('state', {
-                                                    initialValue: this.state.dataState,
-                                                    rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
-                                                })(
-                                                    <Cascader options={statesUS} onChange={this.onChangeCat.bind(this)} showSearch={{ filter }} />
-                                                )}
-                                            </FormItem>
-
-                                            <hr className="hrLineStyle" />
-
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="City"
-
-                                                style={{ padding: '2%' }}
-                                            >
-                                                {getFieldDecorator('city', {
-                                                    initialValue: this.state.dataCity,
-                                                    rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
-                                                })(
-                                                    <Cascader options={citiesUS} showSearch={{ filter }} />
-                                                )}
-                                            </FormItem>
-
-                                            <hr className="hrLineStyle" />
-
-                                            <FormItem
-                                                {...formItemLayout}
                                                 label="Property Location"
 
                                                 style={{ padding: '2%' }}
@@ -730,6 +698,33 @@ class Postroommates extends Component {
                                                     <Input />
                                                 )}
                                             </FormItem>
+
+                                            <hr className="hrLineStyle" />
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <label htmlFor="sel1">State</label>
+                                                    <FormItem>
+                                                        {getFieldDecorator('state', {
+                                                            initialValue: this.state.dataState,
+                                                            rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
+                                                        })(
+                                                            <Cascader options={statesUS} onChange={this.onChangeCat.bind(this)} showSearch={{ filter }} />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <label htmlFor="sel1">City</label>
+                                                    <FormItem>
+                                                        {getFieldDecorator('city', {
+                                                            initialValue: this.state.dataCity,
+                                                            rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
+                                                        })(
+                                                            <Cascader options={citiesUS} showSearch={{ filter }} />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                            </div>
+
 
                                             <hr className="hrLineStyle" />
 
@@ -822,18 +817,18 @@ class Postroommates extends Component {
                                                 })(
                                                     <CheckboxGroup style={{ width: '100%' }} onChange={this.onChangeAmenities.bind(this)}>
                                                         <Row>
-                                                            <Col span={8}><Checkbox value="Gym/Fitness Center">Gym/Fitness Center</Checkbox></Col>
-                                                            <Col span={8}><Checkbox value="Swimming Pool">Swimming Pool</Checkbox></Col>
-                                                            <Col span={8}><Checkbox value="Car Park">Car Park</Checkbox></Col>
-                                                            <Col span={8}><Checkbox value="Visitors Parking">Visitors Parking</Checkbox></Col>
-                                                            <Col span={8}><Checkbox value="Power Backup">Power Backup</Checkbox></Col>
-                                                            <Col span={8}><Checkbox value="Garbage Disposal">Garbage Disposal</Checkbox></Col>
-                                                            <Col span={8}><Checkbox value="Private Lawn">Private Lawn</Checkbox></Col>
-                                                            <Col span={8}><Checkbox value="Water Heater Plant">Water Heater Plant</Checkbox></Col>
-                                                            <Col span={8}><Checkbox value="Security System">Security System</Checkbox></Col>
-                                                            <Col span={8}><Checkbox value="Laundry Service">Laundry Service </Checkbox></Col>
-                                                            <Col span={8}><Checkbox value="Elevator">Elevator</Checkbox></Col>
-                                                            <Col span={8}><Checkbox value="Club House">Club House</Checkbox></Col>
+                                                            <Col span={17}><Checkbox value="Gym/Fitness Center">Gym/Fitness Center</Checkbox></Col>
+                                                            <Col span={17}><Checkbox value="Swimming Pool">Swimming Pool</Checkbox></Col>
+                                                            <Col span={17}><Checkbox value="Car Park">Car Park</Checkbox></Col>
+                                                            <Col span={17}><Checkbox value="Visitors Parking">Visitors Parking</Checkbox></Col>
+                                                            <Col span={17}><Checkbox value="Power Backup">Power Backup</Checkbox></Col>
+                                                            <Col span={17}><Checkbox value="Garbage Disposal">Garbage Disposal</Checkbox></Col>
+                                                            <Col span={17}><Checkbox value="Private Lawn">Private Lawn</Checkbox></Col>
+                                                            <Col span={17}><Checkbox value="Water Heater Plant">Water Heater Plant</Checkbox></Col>
+                                                            <Col span={17}><Checkbox value="Security System">Security System</Checkbox></Col>
+                                                            <Col span={17}><Checkbox value="Laundry Service">Laundry Service </Checkbox></Col>
+                                                            <Col span={17}><Checkbox value="Elevator">Elevator</Checkbox></Col>
+                                                            <Col span={17}><Checkbox value="Club House">Club House</Checkbox></Col>
                                                         </Row>
                                                     </CheckboxGroup>
                                                 )}
@@ -894,11 +889,11 @@ class Postroommates extends Component {
                                         <div className="bold_c_text topRadius" style={{ color: 'black', padding: '2%', border: 'none', borderBottom: '1px solid #d9d9d9', borderRadius: '3px !important', }}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-upload iconStyle"></i>
-                                            <span className="margin_font_location">Upload</span>
+                                            <label {...formItemLayout} className="margin_font_location">Upload</label>
                                         </div>
                                         <div className="formRadius">{/* panel-body*/}
                                             <FormItem
-                                                {...formItemLayout}
+                                                
                                                 label="Images"
 
                                                 style={{ padding: '2%' }}

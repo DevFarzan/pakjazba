@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Burgermenu from '../../header/burgermenu';
+import Headermenu from '../../header/headermenu';
 import Footer from '../../footer/footer';
 import Slider from '../../header/Slider';
 import TicketFirst from '../event_listing/FirstCard';
@@ -51,7 +51,7 @@ class TicketDetail extends Component{
         resToFixed = (+totalPrice + +webSiteRate + +stripeRate).toFixed(2);
         return(
             <div className="" style={{marginTop:"100px"}}>
-                <Burgermenu />
+                <Headermenu />
                 <div className="row">
                     <div className="col-md-12">
                         <div className="col-md-3">

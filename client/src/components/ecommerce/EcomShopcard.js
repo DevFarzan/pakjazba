@@ -17,50 +17,50 @@ class EshopCard extends Component {
     return (
 
       <div className="container" style={{ width: "95%" }}>
-
-        {categoryProduct && categoryProduct.length > 0 ?
-          categoryProduct.map((elem, key) => {
-            return (
-              <div className="row">
+        <div className="row">
+          {categoryProduct && categoryProduct.length > 0 && <div className="col-xs-5 col-sm-4 col-md-4 col-lg-4">
+            {categoryProduct.map((elem, key) => {
+              return (
                 <div className="cross-card">
 
-                  <li>{elem}<span class="close"
+                  <li>{elem}<span class="close crossBtnExlpre"
                     onClick={removeValue.bind(this, 'category', elem)}
                   >x</span></li>
                 </div>
-              </div>
-            )
-          })
-          : null}
-        {colors && colors.length > 0 ?
-          colors.map((elem, key) => {
-            return (
-              <div className="cross-card">
-                <li>{elem}<span class="close"
-                  onClick={removeValue.bind(this, 'color', elem)}
-                >x</span></li>
-              </div>)
-          })
-          : null}
-        {brands && brands.length > 0 ?
-          brands.map((elem, key) => {
-            return (
-              <div className="cross-card">
-                <li>{elem}<span class="close"
-                  onClick={removeValue.bind(this, 'brandName', elem)}
-                >x</span></li>
-              </div>)
-          })
-          : null}
-
-
-        {allProducts.length > 0 &&
-          <div className="row" style={{ marginTop: "20px" }}>
-            <span>
-              <h3 className="exploreHead"> Products </h3>
-            </span>
+              )
+            })}
           </div>}
 
+          {colors && colors.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+            {colors.map((elem, key) => {
+              return (
+                <div className="cross-card">
+                  <li>{elem}<span class="close crossBtnExlpre"
+                    onClick={removeValue.bind(this, 'color', elem)}
+                  >x</span></li>
+                </div>)
+            })}
+          </div>}
+
+          {brands && brands.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+            {brands.map((elem, key) => {
+              return (
+                <div className="cross-card">
+                  <li>{elem}<span class="close crossBtnExlpre"
+                    onClick={removeValue.bind(this, 'brandName', elem)}
+                  >x</span></li>
+                </div>)
+            })}
+          </div>}
+        </div>
+        <div className="row">
+          {allProducts.length > 0 &&
+            <div className="row" style={{ marginTop: "20px" }}>
+              <span>
+                <h3 className="exploreHead"> Products </h3>
+              </span>
+            </div>}
+        </div>
 
         <div className="row">
 
@@ -68,7 +68,7 @@ class EshopCard extends Component {
 
             {/* filtered data  render*/}
             {notFoundFilterData && filteredData.length == 0 ?
-              <div>
+              <div className="noRecrdTxt">
                 <p>
                   No Record Found
                 </p>

@@ -211,7 +211,7 @@ class BussinesCard extends Component {
                                 <p style={{ fontFamily: 'Poppins, sans-serif' }}>
                                     <span className="glyphicon glyphicon-map-marker"
                                         style={{ color: "#008080", margin: "0", left: "-3px" }}
-                                    ></span><span>{cardDetails.address},{cardDetails.state}</span>
+                                    ></span><span>{cardDetails.address.slice(0,10)},{cardDetails.state}</span>
                                 </p>
                                 <p style={{ fontFamily: 'Poppins, sans-serif' }}>
                                     <span className="glyphicon glyphicon-phone"

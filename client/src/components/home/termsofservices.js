@@ -5,21 +5,13 @@ import Burgermenu from '../header/burgermenu';
 import Termsofservices1 from './termsofservices1';
 import Footer from '../footer/footer';
 import './termsofservices.css'
+import HeaderMenu from '../header/headermenu';
 
 class Termsofservices extends Component {
   render() {
     return (
         <div>
-        <div className="visible-xs" style={{marginTop:'-19px',backgroundSize: 'cover'}}>
-            <div className="background-image">
-                <Burgermenu/>
-            </div>
-        </div>
-        <div className ="hidden-xs" style={{marginTop:'86px',backgroundSize: 'cover'}}>
-            <div className="background-image">
-                <Burgermenu/>
-            </div>
-        </div>
+            <HeaderMenu/>
         	<Termsofservices1/>
         <Footer/>
   		</div>

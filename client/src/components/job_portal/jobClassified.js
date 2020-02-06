@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Burgermenu from '../header/burgermenu';
+import Headermenu from '../header/headermenu';
 import Slider from '../header/Slider';
 import ClassifiedIcons from './jobClassifiedicon';
 import FeaturedBox from './featuredJob';
@@ -7,6 +7,7 @@ import { Redirect } from 'react-router';
 import Footer from '../footer/footer';
 import { connect } from 'react-redux';
 import { HttpUtils } from "../../Services/HttpUtils";
+import headermenu from '../header/headermenu';
 
 class JobClassified extends Component {
     constructor(props) {
@@ -44,13 +45,7 @@ class JobClassified extends Component {
         }
         return (
             <div>
-                <div className="vissible-xs" style={{ "background": "#d8e7e4", marginTop: "102px", backgroundSize: 'cover' }}>
-                    <div className="visible-xs" style={{ marginTop: '-119px' }}></div>
-                    <div className="background-image">
-                        {/* <Burgermenu /> */}
-                        <Slider mainH1="PakJazba Job Portal" mainH2="" />
-                    </div>
-                </div>
+                <Headermenu/>
                 {!this.props.text && <ClassifiedIcons />}
                 <FeaturedBox />
                 <Footer />

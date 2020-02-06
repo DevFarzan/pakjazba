@@ -1112,7 +1112,7 @@ console.log()
                                             <i class="fa fa-upload iconStyle"></i>
                                             <span className="margin_font_location">Upload</span>
                                         </div>
-                                        <div className="bottomRadius card" style={{padding: '15px'}}>
+                                        <div className="bottomRadius card uplodBusiness">
                                             <Upload
                                                 action="//jsonplaceholder.typicode.com/posts/"
                                                 listType="picture-card"

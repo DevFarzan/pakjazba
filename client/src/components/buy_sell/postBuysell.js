@@ -18,15 +18,15 @@ import Footer from '../footer/footer';
 import sha1 from "sha1";
 import superagent from "superagent";
 import { Redirect } from 'react-router';
-import {HttpUtils} from "../../Services/HttpUtils";
+import { HttpUtils } from "../../Services/HttpUtils";
 import moment from 'moment';
 import stateCities from "../../lib/countrycitystatejson";
 
 const { Link } = Anchor;
 
 const handleClick = (e, link) => {
-  e.preventDefault();
-  console.log(link);
+    e.preventDefault();
+    console.log(link);
 };
 
 const { TextArea } = Input;
@@ -37,25 +37,25 @@ const FormItem = Form.Item
 const condition = [{
     value: 'New',
     label: 'New'
-},{
+}, {
     value: 'Used',
     label: 'Used',
-},{
+}, {
     value: 'Good',
     label: 'Good',
-},{
+}, {
     value: 'Excellent',
     label: 'Excellent',
-},{
+}, {
     value: 'Age-Worn',
     label: 'Age-Worn',
-},{
+}, {
     value: 'Refurbished',
     label: 'Refurbished',
 }];
 
-class Postbuysell extends Component{
-    constructor(props){
+class Postbuysell extends Component {
+    constructor(props) {
         super(props)
         this.state = {
             userId: '',
@@ -104,13 +104,13 @@ class Postbuysell extends Component{
         }
     }
 
-    componentDidMount(){
-        window.scrollTo(0,0);
+    componentDidMount() {
+        window.scrollTo(0, 0);
         this.categorylist();
         this.handleLocalStorage();
         let data = this.props.location.state;
 
-        if(data){
+        if (data) {
             this.setState({
                 dataCat: [data.category],
                 dataCatSub: [data.subcategory],
@@ -141,9 +141,9 @@ class Postbuysell extends Component{
         }
     }
 
-    async categorylist(){
+    async categorylist() {
         let res = await HttpUtils.get('categoryclassifieddata');
-        console.log(res , 'res')
+        console.log(res, 'res')
         let mainCategory = res.data[1]
         let categ = Object.keys(mainCategory)
         categ = categ.filter((val) => val !== '_id')
@@ -159,7 +159,7 @@ class Postbuysell extends Component{
         })
     }
 
-    handleLocalStorage = () =>{
+    handleLocalStorage = () => {
         let states = stateCities.getStatesByShort('US');
         states = states.map((elem) => {
             return {
@@ -170,7 +170,7 @@ class Postbuysell extends Component{
         AsyncStorage.getItem('user')
             .then((obj) => {
                 var userObj = JSON.parse(obj)
-                if(!!userObj) {
+                if (!!userObj) {
                     this.setState({
                         userId: userObj._id,
                         profileId: userObj.profileId,
@@ -181,11 +181,11 @@ class Postbuysell extends Component{
     }
 
     checkValue(rule, value, callback) {
-        this.setState({desLength: value ? value.length : 0})
+        this.setState({ desLength: value ? value.length : 0 })
         callback();
     }
 
-    checkPriceValue(rule, value, callback){
+    checkPriceValue(rule, value, callback) {
         if (!value) {
             callback('Please input your Price!');
         } else {
@@ -214,33 +214,33 @@ class Postbuysell extends Component{
     }
 
     handleChange = ({ fileList }) => {
-        this.setState({fileList})
+        this.setState({ fileList })
     }
     //--------------upload functions end ---------------------
 
     //--------------function for cloudnary url ---------------
-    uploadFile = (files) =>{
+    uploadFile = (files) => {
         const image = files.originFileObj
         const cloudName = 'dxk0bmtei'
-        const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/upload'
-        const timestamp = Date.now()/1000
+        const url = 'https://api.cloudinary.com/v1_1/' + cloudName + '/image/upload'
+        const timestamp = Date.now() / 1000
         const uploadPreset = 'toh6r3p2'
-        const paramsStr = 'timestamp='+timestamp+'&upload_preset='+uploadPreset+'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
+        const paramsStr = 'timestamp=' + timestamp + '&upload_preset=' + uploadPreset + 'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
         const signature = sha1(paramsStr)
         const params = {
-            'api_key':'878178936665133',
-            'timestamp':timestamp,
-            'upload_preset':uploadPreset,
-            'signature':signature
+            'api_key': '878178936665133',
+            'timestamp': timestamp,
+            'upload_preset': uploadPreset,
+            'signature': signature
         }
 
         return new Promise((res, rej) => {
             let uploadRequest = superagent.post(url)
             uploadRequest.attach('file', image)
-            Object.keys(params).forEach((key) =>{
+            Object.keys(params).forEach((key) => {
                 uploadRequest.field(key, params[key])
             })
-            uploadRequest.end((err, resp) =>{
+            uploadRequest.end((err, resp) => {
                 err ? rej(err) : res(resp);
             })
         })
@@ -251,14 +251,14 @@ class Postbuysell extends Component{
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
-            if(!err) {
-                this.setState({loader: true})
+            if (!err) {
+                this.setState({ loader: true })
                 this.funcForUpload(values)
             }
         })
     }
 
-    async funcForUpload(values){
+    async funcForUpload(values) {
         const { fileList } = this.state;
         Promise.all(fileList.map((val) => {
             return this.uploadFile(val).then((result) => {
@@ -270,7 +270,7 @@ class Postbuysell extends Component{
     }
 
     async postData(values, response) {
-        const {userId, dLength, dWidth, dHeight, profileId, objectId, imageList} = this.state;
+        const { userId, dLength, dWidth, dHeight, profileId, objectId, imageList } = this.state;
         let obj = {
             user_id: userId,
             profileId: profileId,
@@ -285,7 +285,7 @@ class Postbuysell extends Component{
             contactName: values.contactName,
             contactEmail: values.contactEmail,
             contactNumber: values.contactNumber,
-            sizedimension: !!(dLength && dWidth && dHeight) ? [{length: dLength, width: dWidth, height: dHeight}] : !!(dLength) ? [{length: dLength}] : !!(dWidth) ? [{width: dWidth}] : !!(dHeight) ? [{height: dHeight}] : [],
+            sizedimension: !!(dLength && dWidth && dHeight) ? [{ length: dLength, width: dWidth, height: dHeight }] : !!(dLength) ? [{ length: dLength }] : !!(dWidth) ? [{ width: dWidth }] : !!(dHeight) ? [{ height: dHeight }] : [],
             contactMode: values.contactMode,
             delivery: values.delivery,
             description: values.description,
@@ -300,10 +300,10 @@ class Postbuysell extends Component{
             posted: moment().format('LL')
         }
         let req = await HttpUtils.post('postbuyselldata', obj);
-        if(req.code === 200){
+        if (req.code === 200) {
             this.props.form.resetFields();
             this.openNotification()
-            this.setState({objData: obj, msg: true, dLength: '', dWidth: '', dHeight: '', loader: false})
+            this.setState({ objData: obj, msg: true, dLength: '', dWidth: '', dHeight: '', loader: false })
         }
     }
 
@@ -315,30 +315,30 @@ class Postbuysell extends Component{
     };
 
     onChangePrice(e) {
-        this.setState({hidePrice: e.target.checked});
+        this.setState({ hidePrice: e.target.checked });
     }
 
     onChangeAddress(e) {
-        this.setState({hideAddress: e.target.checked});
+        this.setState({ hideAddress: e.target.checked });
     }
 
     onDimensionChange = (e) => {
         if (!isNaN(e.target.value)) {
-            this.setState({err: false, errMsg: ''})
+            this.setState({ err: false, errMsg: '' })
             if (e.target.placeholder === 'Length') {
-                this.setState({dLength: e.target.value})
+                this.setState({ dLength: e.target.value })
             } else if (e.target.placeholder === 'Width') {
-                this.setState({dWidth: e.target.value})
+                this.setState({ dWidth: e.target.value })
             } else if (e.target.placeholder === 'Height') {
-                this.setState({dHeight: e.target.value})
+                this.setState({ dHeight: e.target.value })
             }
         } else {
             if (e.target.placeholder === 'Length') {
-                this.setState({err: true, errMsg: 'Input must be number', dLength: ''})
+                this.setState({ err: true, errMsg: 'Input must be number', dLength: '' })
             } else if (e.target.placeholder === 'Width') {
-                this.setState({err: true, errMsg: 'Input must be number', dWidth: ''})
+                this.setState({ err: true, errMsg: 'Input must be number', dWidth: '' })
             } else if (e.target.placeholder === 'Height') {
-                this.setState({err: true, errMsg: 'Input must be number', dHeight: ''})
+                this.setState({ err: true, errMsg: 'Input must be number', dHeight: '' })
             }
         }
     }
@@ -358,9 +358,9 @@ class Postbuysell extends Component{
         }
     }
 
-    onChangeCat(value){
-        if(!!value.length) {
-            const {allCateg} = this.state;
+    onChangeCat(value) {
+        if (!!value.length) {
+            const { allCateg } = this.state;
             let selected = allCateg[value[0]]
             let selectedArr = Object.keys(selected[0])
             selectedArr = selectedArr.map((elem) => {
@@ -378,8 +378,8 @@ class Postbuysell extends Component{
         }
     }
 
-    onChangeSubCat(value){
-        if(!!value.length) {
+    onChangeSubCat(value) {
+        if (!!value.length) {
             const { selectedCat } = this.state;
             let selected = selectedCat[value[0]]
             selected = selected.map((elem) => {
@@ -395,27 +395,27 @@ class Postbuysell extends Component{
         }
     }
 
-    deleteImage(e){
+    deleteImage(e) {
         let { imageList } = this.state;
         imageList = imageList.filter((elem) => elem !== e)
-        this.setState({imageList: imageList})
+        this.setState({ imageList: imageList })
     }
 
-    validateNumber(rule, value, callback){
-        if(isNaN(value)){
+    validateNumber(rule, value, callback) {
+        if (isNaN(value)) {
             callback('Please type Numbers');
-        }else {
+        } else {
             callback()
         }
     }
 
-    render(){
+    render() {
         const { previewVisible, previewImage, fileList, desLength, categ, subCat, selectSubCat, secSubCat, statesUS, citiesUS, objData } = this.state,
-        {getFieldDecorator} = this.props.form,
-        antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
-        
+            { getFieldDecorator } = this.props.form,
+            antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
+
         if (this.state.msg === true) {
-            return <Redirect to={{pathname: '/detail_buySell', state: objData}} />
+            return <Redirect to={{ pathname: '/detail_buySell', state: objData }} />
         }
 
         function filter(inputValue, path) {
@@ -423,16 +423,16 @@ class Postbuysell extends Component{
         }
 
         const uploadedImages = (
-            <div style={{display: 'flex'}}>
+            <div style={{ display: 'flex' }}>
                 {this.state.imageList.map((elem) => {
-                    return(
+                    return (
                         <div className='insideDiv'>
                             <a>
-                            <img alt='img1' src={elem} />
-                            <span>
-                                <a><Icon title='Preview file' onClick={() => this.handlePreview(elem)} type="eye" theme="outlined" style={{zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'}} /></a>
-                                <Icon title='Remove file' type='delete' onClick={this.deleteImage.bind(this, elem)} style={{zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'}}/>
-                            </span>
+                                <img alt='img1' src={elem} />
+                                <span>
+                                    <a><Icon title='Preview file' onClick={() => this.handlePreview(elem)} type="eye" theme="outlined" style={{ zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px' }} /></a>
+                                    <Icon title='Remove file' type='delete' onClick={this.deleteImage.bind(this, elem)} style={{ zIndex: 10, transition: 'all .3s', fontSize: '16px', width: '16px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px' }} />
+                                </span>
                             </a>
                         </div>
                     )
@@ -461,26 +461,26 @@ class Postbuysell extends Component{
 
         const formItemLayout = {
             labelCol: {
-                md:{span:6},
-                xs: {span: 24},
-                sm: {span: 5},
+                md: { span: 6 },
+                xs: { span: 24 },
+                sm: { span: 5 },
             },
             wrapperCol: {
-                md:{span:12},
-                xs: {span: 24},
-                sm: {span: 16},
+                md: { span: 12 },
+                xs: { span: 24 },
+                sm: { span: 16 },
             },
         };
 
-        return(
+        return (
             <div>
                 {/*================================App component include Start===========================*/}
-                <HeaderMenu/>
-                <div className="hidden-xs" style={{width:"100%",height:"67px",marginTop:"3px"}}></div>
+                <HeaderMenu />
+                <div className="hidden-xs" style={{ width: "100%", height: "67px", marginTop: "3px" }}></div>
                 {/*================================post business form start============================*/}
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
-                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs" id="section1" style={{marginLeft: '4%',marginTop: '116px', position: 'fixed',}}>
-                    <Anchor className="" style={{margin: '2%',backgroundColor: '#f6f6f6'}}>
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs" id="section1" style={{ marginLeft: '4%', marginTop: '116px', position: 'fixed', }}>
+                    <Anchor className="" style={{ margin: '2%', backgroundColor: '#f6f6f6' }}>
                         <Link href="#scrollChange1" title="General" />
                         <Link href="#scrollChange2" title="Brand Details" />
                         <Link href="#scrollChange3" title="Upload" />
@@ -488,149 +488,150 @@ class Postbuysell extends Component{
                     </Anchor>
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div className="main_c_panel" style={{textAlign:'center',marginTop: '40px'}}>
-                        <h3 style={{color: 'black',fontWeight: 'bold'}}>Submit your Items</h3>
+                    <div className="main_c_panel" style={{ textAlign: 'center', marginTop: '40px' }}>
+                        <h3 style={{ color: 'black', fontWeight: 'bold' }}>Submit your Items</h3>
                     </div>
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <div className="">{/*panel-group */}
                             <div className="">{/*panel panel-default */}
-                            
+
                                 <div className="formRadius">{/*panel-body */}
-                                <div className="formRadius card" id="scrollChange1">{/*panel panel-default */}
-                                        <div className="topRadius" style={{color:'black',padding:'2%',fontFamily:'Crimson Text, serif !important',borderBottom: '1px solid #d9d9d9'}}>
+                                    <div className="formRadius card" id="scrollChange1">{/*panel panel-default */}
+                                        <div className="topRadius" style={{ color: 'black', padding: '2%', fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid #d9d9d9' }}>
                                             {/* <Icon type="info-circle"/> */}
                                             <i class="fa fa-info-circle iconStyle"></i>
                                             <span className="margin_font_location">General</span>
                                         </div>
-                                    <FormItem
-                                        {...formItemLayout}
-                                        label="Category"
+                                        <FormItem
+                                            {...formItemLayout}
+                                            label="Posting Title"
 
-                                        style={{marginTop: "20px", padding: '2%'}}>
+                                            style={{ padding: '2%' }}
+                                        >
+                                            {getFieldDecorator('postingTitle', {
+                                                initialValue: this.state.dataTitle,
+                                                rules: [{ required: true, message: 'Please input your Posting Title!', whitespace: true }],
+                                            })(
+                                                <Input />
+                                            )}
+                                        </FormItem>
 
-                                        {getFieldDecorator('category', {
-                                            initialValue: this.state.dataCat,
-                                            rules: [{ type: 'array', required: true, message: 'Please select your Category!' }],
-                                        })(
-                                            <Cascader options={categ} showSearch={{ filter }} onChange={this.onChangeCat.bind(this)}/>
-                                        )}
-                                    </FormItem>
+                                        <hr className="hrLineStyle" />
 
-                                    <hr className="hrLineStyle"/>
+                                        <FormItem
+                                            {...formItemLayout}
+                                            label="Category"
 
-                                    <FormItem
-                                        {...formItemLayout}
-                                        label="Sub-Category"
+                                            style={{ marginTop: "20px", padding: '2%' }}>
 
-                                        style={{padding: '2%'}}
-                                    >
-                                        {getFieldDecorator('subcategory', {
-                                            initialValue: this.state.dataCatSub,
-                                            rules: [{ type: 'array', required: true, message: 'Please select your Sub-Category!' }],
-                                        })(
-                                            <Cascader options={subCat} showSearch={{ filter }} onChange={this.onChangeSubCat.bind(this)}/>
-                                        )}
-                                    </FormItem>
+                                            {getFieldDecorator('category', {
+                                                initialValue: this.state.dataCat,
+                                                rules: [{ type: 'array', required: true, message: 'Please select your Category!' }],
+                                            })(
+                                                <Cascader options={categ} showSearch={{ filter }} onChange={this.onChangeCat.bind(this)} />
+                                            )}
+                                        </FormItem>
 
-                                    <hr className="hrLineStyle"/>
+                                        <hr className="hrLineStyle" />
 
-                                    {(!!this.state.dataSubSub.length || selectSubCat) && <div className="row">
-                                        <div className="col-md-3"></div>
-                                        <div className="col-md-6" style={{padding: 0}}>
-                                            <FormItem style={{padding: '2%'}}>
-                                                {getFieldDecorator('subsubcategory', {
-                                                    initialValue: this.state.dataSubSub,
-                                                    rules: [{ type: 'array', required: true, message: 'Please select your Posting Type!' }],
-                                                })(
-                                                    <Cascader options={secSubCat} />
-                                                )}
-                                            </FormItem>
+                                        <FormItem
+                                            {...formItemLayout}
+                                            label="Sub-Category"
+
+                                            style={{ padding: '2%' }}
+                                        >
+                                            {getFieldDecorator('subcategory', {
+                                                initialValue: this.state.dataCatSub,
+                                                rules: [{ type: 'array', required: true, message: 'Please select your Sub-Category!' }],
+                                            })(
+                                                <Cascader options={subCat} showSearch={{ filter }} onChange={this.onChangeSubCat.bind(this)} />
+                                            )}
+                                        </FormItem>
+
+                                        <div className="row" style={{marginTop:'-1vw'}}>
+                                            <div className="col-md-3"></div>
+                                            <div className="col-md-6" style={{ padding: 0 }}>
+                                                <FormItem style={{ padding: '2%' }}>
+                                                    {getFieldDecorator('subsubcategory', {
+                                                        initialValue: this.state.dataSubSub,
+                                                        rules: [{ type: 'array', required: true, message: 'Please select your Posting Type!' }],
+                                                    })(
+                                                        <Cascader options={secSubCat} />
+                                                    )}
+                                                </FormItem>
+                                            </div>
+                                            <div className="col-md-3"></div>
                                         </div>
-                                        <div className="col-md-3"></div>
-                                    </div>}
-                                    <FormItem
-                                        {...formItemLayout}
-                                        label="Posting Title"
 
-                                        style={{padding: '2%'}}
-                                    >
-                                        {getFieldDecorator('postingTitle', {
-                                            initialValue: this.state.dataTitle,
-                                            rules: [{ required: true, message: 'Please input your Posting Title!', whitespace: true }],
-                                        })(
-                                            <Input  />
-                                        )}
-                                    </FormItem>
+                                        <hr className="hrLineStyle" />
 
-                                    <hr className="hrLineStyle"/>
-                                    
-                                    <FormItem
-                                        {...formItemLayout}
-                                        label="Description"
+                                        <FormItem
+                                            {...formItemLayout}
+                                            label="Description"
 
-                                        style={{padding: '2%'}}
-                                    >
-                                        {getFieldDecorator('description', {
-                                            initialValue: this.state.dataDescription,
-                                            rules: [
-                                                {
-                                                    required: true, message: 'Please input your Description!', whitespace: true
-                                                },
-                                                {
-                                                    validator: this.checkValue.bind(this)
-                                                }],
-                                        })(
-                                            <TextArea
-                                                rows={6}
-                                                maxLength="500"
-                                           style={{"marginBottom": "10px",float:'right'}} />
-                                        )}
-                                        <br />
-                                        <span>{500 - desLength} Words</span>
-                                    </FormItem>
+                                            style={{ padding: '2%' }}
+                                        >
+                                            {getFieldDecorator('description', {
+                                                initialValue: this.state.dataDescription,
+                                                rules: [
+                                                    {
+                                                        required: true, message: 'Please input your Description!', whitespace: true
+                                                    },
+                                                    {
+                                                        validator: this.checkValue.bind(this)
+                                                    }],
+                                            })(
+                                                <TextArea
+                                                    rows={6}
+                                                    maxLength="500"
+                                                    style={{ "marginBottom": "10px", float: 'right' }} />
+                                            )}
+                                            <br />
+                                            <span>{500 - desLength} Words</span>
+                                        </FormItem>
 
-                                    <hr className="hrLineStyle"/>
+                                        <hr className="hrLineStyle" />
 
-                                    <div className="row" style={{'textAlign': 'center'}}>
-                                        <div className="col-md-2"></div>
-                                        <div className="col-md-5">
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Price"
+                                        <div className="row" style={{ 'textAlign': 'center' }}>
+                                            <div className="col-md-2"></div>
+                                            <div className="col-md-5">
+                                                <FormItem
+                                                    {...formItemLayout}
+                                                    label="Price"
 
-                                                style={{padding: '2%'}}
-                                            >
-                                                {getFieldDecorator('price', {
-                                                    initialValue: this.state.dataPrice,
-                                                    rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
-                                                            { validator: this.validateNumber.bind(this) }],
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem>
+                                                    style={{ padding: '2%' }}
+                                                >
+                                                    {getFieldDecorator('price', {
+                                                        initialValue: this.state.dataPrice,
+                                                        rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
+                                                        { validator: this.validateNumber.bind(this) }],
+                                                    })(
+                                                        <Input />
+                                                    )}
+                                                </FormItem>
+                                            </div>
+                                            <div className="col-md-3" style={{ 'textAlign': 'left' }}>
+                                                <Checkbox checked={this.state.hidePrice} onChange={this.onChangePrice.bind(this)}>(Hide Price)</Checkbox>
+                                            </div>
+                                            <div className="col-md-2"></div>
                                         </div>
-                                        <div className="col-md-3" style={{'textAlign': 'left'}}>
-                                            <Checkbox checked={this.state.hidePrice} onChange={this.onChangePrice.bind(this)}>(Hide Price)</Checkbox>
-                                        </div>
-                                        <div className="col-md-2"></div>
                                     </div>
                                 </div>
                             </div>
-                            </div>
-                            <br/>
+                            <br />
                             <div className="card formRadius" id="scrollChange2">{/*panel panel-default  */}
-                                <div className="bold_c_text topRadius" style={{backgroundColor:'white',color:'black',padding:'2%',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                <div className="bold_c_text topRadius" style={{ backgroundColor: 'white', color: 'black', padding: '2%', border: 'none', borderBottom: '1px solid #d9d9d9', borderRadius: '3px !important', }}>
                                     {/* <Icon type="info-circle"/> */}
                                     <i class="fa fa-info-circle iconStyle"></i>
                                     <span className="margin_font_location">Brand Details</span>
                                 </div>
                                 <div className="">{/*panel-body */}
-                                    
+
                                     <FormItem
                                         {...formItemLayout}
                                         label="Condition"
 
-                                        style={{padding: '2%'}}
+                                        style={{ padding: '2%' }}
                                     >
                                         {getFieldDecorator('condition', {
                                             initialValue: this.state.dataCondition,
@@ -640,65 +641,65 @@ class Postbuysell extends Component{
                                         )}
                                     </FormItem>
 
-                                    <hr className="hrLineStyle"/>
+                                    <hr className="hrLineStyle" />
 
                                     <FormItem
                                         {...formItemLayout}
                                         label="Brand"
 
-                                        style={{padding: '2%'}}
+                                        style={{ padding: '2%' }}
                                     >
                                         {getFieldDecorator('make', {
                                             initialValue: this.state.dataMake,
                                             rules: [{ required: true, message: 'Please input your Make!', whitespace: true }],
                                         })(
-                                            <Input  />
+                                            <Input />
                                         )}
                                     </FormItem>
 
-                                    <hr className="hrLineStyle"/>
+                                    <hr className="hrLineStyle" />
 
                                     <FormItem
                                         {...formItemLayout}
                                         label="Model Name"
 
-                                        style={{padding: '2%'}}
+                                        style={{ padding: '2%' }}
                                     >
                                         {getFieldDecorator('modelName', {
                                             initialValue: this.state.dataModelName,
                                             rules: [{ required: true, message: 'Please input your Model Name!', whitespace: true }],
                                         })(
-                                            <Input  />
+                                            <Input />
                                         )}
                                     </FormItem>
 
-                                    <hr className="hrLineStyle"/>
+                                    <hr className="hrLineStyle" />
 
                                     <FormItem
                                         {...formItemLayout}
                                         label="Model Number"
 
-                                        style={{padding: '2%'}}
+                                        style={{ padding: '2%' }}
                                     >
                                         {getFieldDecorator('number', {
                                             initialValue: this.state.dataModelNumber,
                                             rules: [{ required: true, message: 'Please input your Number!', whitespace: true },
-                                                    { validator: this.validateNumber.bind(this) }],
+                                            { validator: this.validateNumber.bind(this) }],
                                         })(
-                                            <Input  />
+                                            <Input />
                                         )}
                                     </FormItem>
 
-                                    <hr className="hrLineStyle"/>
+                                    <hr className="hrLineStyle" />
 
                                     <div className="row">
-                                    <div></div>
-                                    <div className="col-md-3" style={{textAlign:"right"}}><label style={{"color":"black"}}>Length/Width/Height:</label></div>
-                                    <div className="col-md-6">
-                                        <Input style={{ width: '20%' }} value={this.state.dLength} onChange={this.onDimensionChange} placeholder="Length" />
-                                        <Input style={{ width: '20%' }} value={this.state.dWidth} onChange={this.onDimensionChange} placeholder="Width"/>
-                                        <Input style={{ width: '20%' }} value={this.state.dHeight} onChange={this.onDimensionChange} placeholder="Height"/>
-                                    </div>
+                                        <div></div>
+                                        <div className="col-md-3" style={{ textAlign: "right" }}><label style={{ "color": "black" }}>Length/Width/Height:</label></div>
+                                        <div className="col-md-6">
+                                            <Input style={{ width: '20%' }} value={this.state.dLength} onChange={this.onDimensionChange} placeholder="Length" />
+                                            <Input style={{ width: '20%' }} value={this.state.dWidth} onChange={this.onDimensionChange} placeholder="Width" />
+                                            <Input style={{ width: '20%' }} value={this.state.dHeight} onChange={this.onDimensionChange} placeholder="Height" />
+                                        </div>
                                     </div>
                                     <span>{this.state.err && this.state.errMsg}</span>
                                     {/* <FormItem
@@ -733,25 +734,26 @@ class Postbuysell extends Component{
                                     </FormItem> */}
                                 </div>
                             </div>
-                            <br/>
+                            <br />
                             <div className="card formRadius" id="scrollChange3">{/*panel panel-default  */}
-                                <div className="bold_c_text topRadius" style={{backgroundColor:'white',color:'black',padding:'2%',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                <div className="bold_c_text topRadius" style={{ backgroundColor: 'white', color: 'black', padding: '2%', border: 'none', borderBottom: '1px solid #d9d9d9', borderRadius: '3px !important', }}>
                                     {/* <Icon type="info-circle"/> */}
                                     <i class="fa fa-info-circle iconStyle"></i>
                                     <span className="margin_font_location">Upload</span>
                                 </div>
                                 <div className="">{/*panel-body */}
                                     <FormItem
-                                        {...formItemLayout}
                                         label="Images"
 
-                                        style={{padding: '2%'}}
+                                        style={{ padding: '2%' }}
                                     >
                                         {getFieldDecorator('images', {
                                             initialValues: this.state.imageList,
-                                            rules: [{ required: true, 
-                                                message: 'Please upload your Images!', 
-                                                whitespace: true }],
+                                            rules: [{
+                                                required: true,
+                                                message: 'Please upload your Images!',
+                                                whitespace: true
+                                            }],
                                         })(
                                             <div>
                                                 <Upload
@@ -761,13 +763,13 @@ class Postbuysell extends Component{
                                                     onPreview={this.handlePreview}
                                                     onChange={this.handleChange}
                                                 >
-                                                    {this.state.imageList.length + fileList.length >= 3 
+                                                    {this.state.imageList.length + fileList.length >= 3
                                                         ? null : uploadButton}
                                                 </Upload>
-                                                <Modal visible={previewVisible} 
-                                                footer={null} onCancel={this.handleCancel}>
-                                                    <img alt="example" style={{ width: '100%' }} 
-                                                    src={previewImage} />
+                                                <Modal visible={previewVisible}
+                                                    footer={null} onCancel={this.handleCancel}>
+                                                    <img alt="example" style={{ width: '100%' }}
+                                                        src={previewImage} />
                                                 </Modal>
                                                 {uploadedImages}
                                             </div>
@@ -775,72 +777,73 @@ class Postbuysell extends Component{
                                     </FormItem>
                                 </div>
                             </div>
-                            <br/>
+                            <br />
                             <div className="card formRadius" id="scrollChange4">{/*panel panel-default */}
-                                <div className="bold_c_text topRadius" style={{backgroundColor:'white',color:'black',padding:'8px',border: 'none', borderBottom: '1px solid #d9d9d9',borderRadius: '3px !important',}}>
+                                <div className="bold_c_text topRadius" style={{ backgroundColor: 'white', color: 'black', padding: '8px', border: 'none', borderBottom: '1px solid #d9d9d9', borderRadius: '3px !important', }}>
                                     {/* <Icon type="info-circle"/> */}
                                     <i class="fa fa-address-card iconStyle"></i>
                                     <span className="margin_font_location">Contact</span>
                                 </div>
                                 <div className="">{/*panel-body */}
-                                        
+
                                     <FormItem
                                         {...formItemLayout}
                                         label="Contact Name"
 
-                                        style={{padding: '2%'}}
+                                        style={{ padding: '2%' }}
                                     >
                                         {getFieldDecorator('contactName', {
                                             initialValue: this.state.dataContact,
                                             rules: [{ required: true, message: 'Please input your Contact Name!', whitespace: true }],
                                         })(
-                                            <Input  />
+                                            <Input />
                                         )}
                                     </FormItem>
 
-                                    <hr className="hrLineStyle"/>
+                                    <hr className="hrLineStyle" />
 
                                     <FormItem
                                         {...formItemLayout}
                                         label="Contact Email"
 
-                                        style={{padding: '2%'}}
+                                        style={{ padding: '2%' }}
                                     >
                                         {getFieldDecorator('contactEmail', {
                                             initialValue: this.state.dataEmail,
                                             rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true },
-                                                    { 
-                                                        required: true, 
-                                                        message: 'Please input your Contact Email!', whitespace: true }],
+                                            {
+                                                required: true,
+                                                message: 'Please input your Contact Email!', whitespace: true
+                                            }],
                                         })(
-                                            <Input  />
+                                            <Input />
                                         )}
                                     </FormItem>
 
-                                    <hr className="hrLineStyle"/>
+                                    <hr className="hrLineStyle" />
 
                                     <FormItem
                                         {...formItemLayout}
                                         label="Contact Number"
 
-                                        style={{padding: '2%'}}
+                                        style={{ padding: '2%' }}
                                     >
                                         {getFieldDecorator('contactNumber', {
                                             initialValue: this.state.dataNumber,
                                             rules: [{ required: true, message: 'Please input your Contact Number!', whitespace: true },
-                                                    { validator: this.validateNumber.bind(this) }],
+                                            { validator: this.validateNumber.bind(this) }],
                                         })(
-                                            <Input  />
+                                            <Input />
                                         )}
                                     </FormItem>
 
-                                    <hr className="hrLineStyle"/>
+                                    <hr className="hrLineStyle" />
 
                                     <FormItem
                                         {...formItemLayout}
                                         label="Mode of Contact"
 
-                                        style={{padding: '2%'}}
+                                        style={{ padding: '2%' }}
                                     >
                                         {getFieldDecorator('contactMode', {
                                             initialValue: this.state.dataCheckedList,
@@ -850,13 +853,13 @@ class Postbuysell extends Component{
                                         )}
                                     </FormItem>
 
-                                    <hr className="hrLineStyle"/>
+                                    <hr className="hrLineStyle" />
 
                                     <FormItem
                                         {...formItemLayout}
                                         label="Delivery"
 
-                                        style={{padding: '2%'}}
+                                        style={{ padding: '2%' }}
                                     >
                                         {getFieldDecorator('delivery', {
                                             initialValue: this.state.dataDelivery,
@@ -866,48 +869,15 @@ class Postbuysell extends Component{
                                         )}
                                     </FormItem>
 
-                                    <hr className="hrLineStyle"/>
-
-                                    <FormItem
-                                        {...formItemLayout}
-                                        label="State"
-
-                                        style={{padding: '2%'}}
-                                    >
-                                        {getFieldDecorator('state', {
-                                            initialValue: this.state.dataState,
-                                            rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
-                                        })(
-                                            <Cascader options={statesUS} showSearch={{ filter }} onChange={this.onChangeState.bind(this)}/>
-                                        )}
-                                    </FormItem>
-
-                                    <hr className="hrLineStyle"/>
-
-                                    <FormItem
-                                        {...formItemLayout}
-                                        label="City"
-
-                                        style={{padding: '2%'}}
-                                    >
-                                        {getFieldDecorator('city', {
-                                            initialValue: this.state.dataCity,
-                                            rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
-                                        })(
-                                            <Cascader options={citiesUS} showSearch={{ filter }}/>
-                                        )}
-                                    </FormItem>
-
-                                    <hr className="hrLineStyle"/>
+                                    <hr className="hrLineStyle" />
 
                                     <div className="row">
-                                        <div className="col-md-2"></div>
-                                        <div className="col-md-5">
+                                        <div className="col-md-6">
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Address"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 {getFieldDecorator('address', {
                                                     initialValue: this.state.dataAddress,
@@ -917,24 +887,55 @@ class Postbuysell extends Component{
                                                         whitespace: true
                                                     }],
                                                 })(
-                                                    <Input/>
+                                                    <Input />
                                                 )}
                                             </FormItem>
                                         </div>
-                                        <div className="col-md-3" style={{'textAlign': 'left'}}>
+                                        <div className="col-md-6" style={{ 'textAlign': 'left' }}>
                                             <Checkbox checked={this.state.hideAddress} onChange={this.onChangeAddress.bind(this)}>(Hide Address)</Checkbox>
                                         </div>
-                                        <div className="col-md-2"></div>
                                     </div>
+
+                                    <hr className="hrLineStyle" />
+                                    
+                                    <FormItem
+                                        {...formItemLayout}
+                                        label="State"
+
+                                        style={{ padding: '2%' }}
+                                    >
+                                        {getFieldDecorator('state', {
+                                            initialValue: this.state.dataState,
+                                            rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
+                                        })(
+                                            <Cascader options={statesUS} showSearch={{ filter }} onChange={this.onChangeState.bind(this)} />
+                                        )}
+                                    </FormItem>
+
+                                    <hr className="hrLineStyle" />
+
+                                    <FormItem
+                                        {...formItemLayout}
+                                        label="City"
+
+                                        style={{ padding: '2%' }}
+                                    >
+                                        {getFieldDecorator('city', {
+                                            initialValue: this.state.dataCity,
+                                            rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
+                                        })(
+                                            <Cascader options={citiesUS} showSearch={{ filter }} />
+                                        )}
+                                    </FormItem>
                                 </div>
                             </div>
                             <div className="row center_global">
                                 {this.state.loader && <Spin indicator={antIcon} />}
-                                <button disabled={!!this.state.loader} className="btn color_button" style={{"width": "20%"}}>Submit</button>
+                                <button disabled={!!this.state.loader} className="btn color_button" style={{ "width": "20%" }}>Submit</button>
                             </div>
                         </div>
                     </Form>
-                    
+
                 </div>
                 {/* <Footer /> */}
             </div>

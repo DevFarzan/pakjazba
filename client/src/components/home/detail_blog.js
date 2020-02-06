@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Burgermenu from '../header/burgermenu';
+import Headermenu from '../header/headermenu';
 import Slider from '../header/Slider';
 import Footer from '../footer/footer'
-import {HttpUtils} from "../../Services/HttpUtils";
+import { HttpUtils } from "../../Services/HttpUtils";
 import moment from 'moment';
 import NewsTab from './newsTab';
 import AsyncStorage from "@callstack/async-storage/lib/index";
@@ -13,7 +13,7 @@ class DetailBlog extends Component {
         this.state = {
             comment: '',
             review: [],
-            userId : '',
+            userId: '',
             profileId: '',
             userImg: '',
             data: {}
@@ -21,19 +21,19 @@ class DetailBlog extends Component {
     }
 
     componentDidMount() {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
         let data = this.props.location.state;
-        this.setState({data})
+        this.setState({ data })
         this.getAllBlogs()
         this.handleLocalStorage()
         this.getAllReviews(data)
     }
 
-    handleLocalStorage = () =>{
+    handleLocalStorage = () => {
         AsyncStorage.getItem('user')
             .then((obj) => {
                 let userObj = JSON.parse(obj)
-                if(!!userObj) {
+                if (!!userObj) {
                     // this.getprofileData(userObj.profileId, userObj._id)
                     this.setState({
                         userId: userObj._id,
@@ -44,30 +44,30 @@ class DetailBlog extends Component {
                 }
             })
     }
-    
-    async getAllReviews(data){
+
+    async getAllReviews(data) {
         var res = await HttpUtils.get('getBlogReviews');
         let review = []
-        if(res.code === 200 && res.content){
+        if (res.code === 200 && res.content) {
             // review = res.content.filter((elem) => elem.objId === data._id);
             review = res.content;
 
         }
-        this.setState({review});
-        console.log(review , 'review')
+        this.setState({ review });
+        console.log(review, 'review')
     }
 
-    async getAllBlogs(){
+    async getAllBlogs() {
         let req = await HttpUtils.get('getblog');
-        this.setState({blogs: req})
-        console.log(req , 'req')
+        this.setState({ blogs: req })
+        console.log(req, 'req')
     }
 
-    changeVal(e){
-        this.setState({comment: e.target.value})
+    changeVal(e) {
+        this.setState({ comment: e.target.value })
     }
 
-    async publishComment(){
+    async publishComment() {
         let { review, comment, userImg, userName, userId, data } = this.state;
         let obj = {
             written: moment().format('LL'),
@@ -78,46 +78,38 @@ class DetailBlog extends Component {
             userId
         }
         let req = await HttpUtils.post('addBlogReviews', obj)
-        if(req.code === 200){
+        if (req.code === 200) {
             review.push(obj)
             this.getAllReviews(data);
-            this.setState({review, comment: ''})
+            this.setState({ review, comment: '' })
         }
     }
 
-    render(){
+    render() {
         const { review, data, userId } = this.state;
         // let bckImage = data.mainimage && !!data.mainimage.length ? (data.mainimage && data.mainimage) : (data.main && data.main[0].image[0]);
         let bckImage = review.mainimage && !!review.mainimage.length ? (review.mainimage && review.mainimage) : (review.main && review.main[0].image[0]);
 
-        console.log(bckImage , 'data in blog')
+        console.log(bckImage, 'data in blog')
 
         return (
             <div>
-                <div className ="" 
-                style={{
-                    "backgroundImage": 'url('+bckImage+')',
-                 backgroundSize: '1500px 500px', height: "370px", marginTop: "104px", marginLeft:"-66px"}}
-                >
-                    <div className="background-image">
-                        <Burgermenu/>
-                    </div>
-                </div>
-                <div className='row' style={{marginTop:'-11px'}}>
-                    <div style={{marginTop: '20px'}} className="col-md-9 col-sm-12 col-xs-12">
-                    {review.main && review.main.map((elem) => {
-                        return (
-                            <div className="row">
-                                <h3><b>{elem.subtitle ? elem.subtitle : elem.maintitle}</b></h3>
-                                <div className="col-md-6">
-                                    <p>{elem.description}</p>
+                <Headermenu />
+                <div className='row' style={{ marginTop: '10%' }}>
+                    <div style={{ marginTop: '20px' }} className="col-md-9 col-sm-12 col-xs-12">
+                        {review.main && review.main.map((elem) => {
+                            return (
+                                <div className="row">
+                                    <h3><b>{elem.subtitle ? elem.subtitle : elem.maintitle}</b></h3>
+                                    <div className="col-md-6">
+                                        <p>{elem.description}</p>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <img src={elem.image[0]} width="350" height="200" />
+                                    </div>
                                 </div>
-                                <div className="col-md-6">
-                                    <img src={elem.image[0]} width="350" height="200"/>
-                                </div>
-                            </div>
-                        )
-                    })}
+                            )
+                        })}
                         {/*<div className="col-md-12">
                             <br/>
                             <div className="b-head">
@@ -176,89 +168,89 @@ class DetailBlog extends Component {
                                     Koram Posam Loram Ipsum Koram Posam.</p>
                             </div>
                         </div>*/}
-                        <hr/>
+                        <hr />
                         {review && review.map((elem) => {
-                            return(
+                            return (
                                 <div className="col-md-12">
-                                    <br/> <br/>
+                                    <br /> <br />
                                     <div className="col-md-2">
-                                        <img src={elem.userImg ? elem.userImg : "../images/images.jpg"} className="img-circle" width="100" height="100"/>
+                                        <img src={elem.userImg ? elem.userImg : "../images/images.jpg"} className="img-circle" width="100" height="100" />
                                     </div>
                                     <div className="col-md-10">
                                         <h3>{elem.user}</h3>
                                         <p>{elem.written}</p>
                                         <p>{elem.comm}</p>
-                                        <hr/>
+                                        <hr />
                                     </div>
                                 </div>
                             )
                         })}
                         {userId && <div className="col-md-12">
-                            <br/><br/>
+                            <br /><br />
                             <div className="col-md-4">
-                                <hr/>
+                                <hr />
                             </div>
                             <div className="col-md-3 text-center"><h4><b>Leave A Reply</b></h4></div>
                             <div className="col-md-5">
-                                <hr/>
+                                <hr />
                             </div>
                         </div>}
                         {userId && <div className="col-md-12">
-                            <div style={{border:'1px solid gray'}}>
+                            <div style={{ border: '1px solid gray' }}>
                                 <div className="card-body space tag1 bspace">
-                                    <br/><br/>
-                                    <textarea cols="80" rows="5" value={this.state.comment} placeholder="Enter Your Comment..." onChange={this.changeVal.bind(this)} style={{marginLeft: "21px",paddingLeft: "13px",width:'95%'}}> </textarea>
-                                    <br/><br/>
-                                    <button className="btn" onClick={this.publishComment.bind(this)} style={{marginLeft: "21px",backgroundColor:"#008080",color: "white"}}>Publish</button>
-                                    <br/><br/>
+                                    <br /><br />
+                                    <textarea cols="80" rows="5" value={this.state.comment} placeholder="Enter Your Comment..." onChange={this.changeVal.bind(this)} style={{ marginLeft: "21px", paddingLeft: "13px", width: '95%' }}> </textarea>
+                                    <br /><br />
+                                    <button className="btn" onClick={this.publishComment.bind(this)} style={{ marginLeft: "21px", backgroundColor: "#008080", color: "white" }}>Publish</button>
+                                    <br /><br />
                                 </div>
                             </div>
                         </div>}
                         <div className="col-md-12">
-                            <br/><br/>
+                            <br /><br />
                             <div className="col-md-4">
-                                <hr/>
+                                <hr />
                             </div>
                             <div className="col-md-3 text-center"><h4><b>More Blog</b></h4></div>
                             <div className="col-md-5">
-                                <hr/>
+                                <hr />
                             </div>
                         </div>
                         <div className="col-md-12">
                             <div className="col-md-4">
-                                <img src="./images/shutterstock_536667610.jpg" width="250px" height="200"/>
+                                <img src="./images/shutterstock_536667610.jpg" width="250px" height="200" />
                                 <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
-                                <p>By Hills Estate 13.09.2018 <br/><br/></p>
+                                <p>By Hills Estate 13.09.2018 <br /><br /></p>
                             </div>
                             <div className="col-md-4">
-                                <img src="./images/blog1.jpg" width="250px" height="200"/>
+                                <img src="./images/blog1.jpg" width="250px" height="200" />
                                 <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
-                                <p>By Hills Estate 13.09.2018 <br/><br/></p>
+                                <p>By Hills Estate 13.09.2018 <br /><br /></p>
                             </div>
                             <div className="col-md-4">
-                                <img src="./images/black.jpg" width="250px" height="200"/>
+                                <img src="./images/black.jpg" width="250px" height="200" />
                                 <h5><b>Loram Ipsum, Loram Ipsum, Loram Ipsum </b></h5>
-                                <p>By Hills Estate 13.09.2018 <br/><br/></p>
+                                <p>By Hills Estate 13.09.2018 <br /><br /></p>
                             </div>
                         </div>
                     </div>
                     <div className="col-md-3 col-sm-12 col-xs-12">
                         <NewsTab />
-                        <br/><br/>
+                        <br /><br />
                         <h3><b>Popular</b></h3>
-                        <br/><br/><br/>
-                        <img src="./images/shutterstock_536667610.jpg" width="300" height="250"/>
-                        <br/><br/><br/>
-                        <img src="./images/blog1.jpg" width="300" height="250"/>
-                        <br/><br/><br/>
-                        <img src="./images/black.jpg" width="300" height="250"/>
-                        <br/><br/>
+                        <br /><br /><br />
+                        <img src="./images/shutterstock_536667610.jpg" width="300" height="250" />
+                        <br /><br /><br />
+                        <img src="./images/blog1.jpg" width="300" height="250" />
+                        <br /><br /><br />
+                        <img src="./images/black.jpg" width="300" height="250" />
+                        <br /><br />
                         <h3><b> MostPopular</b></h3>
-                        <br/><br/><br/>
-                        <img src="./images/black.jpg" width="300" height="250"/>
-                        <br/><br/><br/>
-                        <img src="./images/shutterstock_536667610.jpg" width="300" height="250"/>
-                        <br/><br/>
+                        <br /><br /><br />
+                        <img src="./images/black.jpg" width="300" height="250" />
+                        <br /><br /><br />
+                        <img src="./images/shutterstock_536667610.jpg" width="300" height="250" />
+                        <br /><br />
                     </div>
                 </div>
                 <Footer />

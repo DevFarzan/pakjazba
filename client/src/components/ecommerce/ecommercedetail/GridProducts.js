@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Burgermenu from '../../header/burgermenu';
+import Headermenu from '../../header/headermenu';
 import Footer from '../../footer/footer';
 import FourEcom from './fourEcom';
 import GridView from './GridView';
@@ -15,7 +15,7 @@ class GridProducts extends Component {
     const { ecommreceFilterData, searchValue } = this.props.location.state;
     return (
       <div className="">
-        <Burgermenu />
+        <Headermenu />
         <div className="row jobdetail-page"
           style={isMobile ?
             { backgroundColor: "#37a99b", marginTop: "0px" }

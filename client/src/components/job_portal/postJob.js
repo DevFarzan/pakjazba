@@ -116,8 +116,8 @@ class JobPortal extends Component {
             msg: false,
             objectId: '',
             objData: {},
-            states:[],
-            cities:[],
+            states: [],
+            cities: [],
         }
     }
 
@@ -218,7 +218,7 @@ class JobPortal extends Component {
         const { fileList } = this.state;
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log(values , 'values')
+                console.log(values, 'values')
                 this.setState({ loader: true })
                 if (fileList.length) {
                     this.postDataWithURL(values)
@@ -350,15 +350,15 @@ class JobPortal extends Component {
             })
             this.setState({
                 cities: cities,
-                
+
             })
         }
     }
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { states ,cities, email, jobTitle, jobType, jobCat, salary, compDescription, jobDescription, experience, compEmail, location, previewVisible, previewImage, fileList, objData } = this.state;
+        const { states, cities, email, jobTitle, jobType, jobCat, salary, compDescription, jobDescription, experience, compEmail, location, previewVisible, previewImage, fileList, objData } = this.state;
 
-        console.log(cities , 'cities')
+        console.log(cities, 'cities')
         if (this.state.msg === true) {
             return <Redirect to={{ pathname: '/detail_jobPortal', state: { ...objData, user: false } }} />
         }
@@ -458,28 +458,6 @@ class JobPortal extends Component {
                                                 </div>
                                                 <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <label htmlFor="usr">Job Title</label>
-                                                        <FormItem style={{ padding: '2%' }}>
-                                                            {getFieldDecorator('jobTitle', {
-                                                                initialValue: jobTitle,
-                                                                rules: [{
-                                                                    required: true,
-                                                                    message: 'Please input your Job Title!',
-                                                                    whitespace: true
-                                                                }],
-                                                            })(
-                                                                <input type="text" className="form-control" />
-                                                            )}
-                                                        </FormItem>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <hr className="hrLineStyle" />
-
-                                            <div className="row">
-                                                <div className="col-md-6">
-                                                    <div className="form-group">
                                                         <label htmlFor="sel1">Location</label>
                                                         <FormItem style={{ padding: '2%' }}>
                                                             {getFieldDecorator('location', {
@@ -491,20 +469,6 @@ class JobPortal extends Component {
                                                                 }],
                                                             })(
                                                                 <input type="text" className="form-control" />
-                                                            )}
-                                                        </FormItem>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="form-group">
-                                                        <label htmlFor="usr">Job Type</label>
-                                                        <FormItem style={{ padding: '2%' }}>
-                                                            {getFieldDecorator('jobType', {
-                                                                initialValue: jobType,
-                                                                rules: [{ validator: this.onChangeState }],
-                                                            })(
-                                                                <Cascader options={categ} showSearch={{ filter }} 
-                                                                />
                                                             )}
                                                         </FormItem>
                                                     </div>
@@ -542,7 +506,43 @@ class JobPortal extends Component {
                                                                 <Cascader
                                                                     placeholder="City"
                                                                     options={cities}
-                                                                    
+
+                                                                />
+                                                            )}
+                                                        </FormItem>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr className="hrLineStyle" />
+
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label htmlFor="usr">Job Title</label>
+                                                        <FormItem style={{ padding: '2%' }}>
+                                                            {getFieldDecorator('jobTitle', {
+                                                                initialValue: jobTitle,
+                                                                rules: [{
+                                                                    required: true,
+                                                                    message: 'Please input your Job Title!',
+                                                                    whitespace: true
+                                                                }],
+                                                            })(
+                                                                <input type="text" className="form-control" />
+                                                            )}
+                                                        </FormItem>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label htmlFor="usr">Job Type</label>
+                                                        <FormItem style={{ padding: '2%' }}>
+                                                            {getFieldDecorator('jobType', {
+                                                                initialValue: jobType,
+                                                                rules: [{ validator: this.onChangeState }],
+                                                            })(
+                                                                <Cascader options={categ} showSearch={{ filter }}
                                                                 />
                                                             )}
                                                         </FormItem>
@@ -636,7 +636,7 @@ class JobPortal extends Component {
                                                         <FormItem style={{ padding: '2%' }}>
                                                             {getFieldDecorator('compEmail', {
                                                                 initialValue: compEmail,
-                                                                rules: [{
+                                                                rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true }, {
                                                                     required: true,
                                                                     message: 'Please input your Company Email!',
                                                                     whitespace: true

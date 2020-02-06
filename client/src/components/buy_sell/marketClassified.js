@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Burgermenu from '../header/burgermenu';
+import Headermenu from '../header/headermenu';
 import Slider from '../header/Slider';
 import BuyFirstFold from './buyfirstfold'
 import BuyThirdFold from './buythirdfold'
@@ -23,13 +23,14 @@ class MarketClassified extends Component{
     render(){
         return(
             <div>
-            <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "102px",backgroundSize: 'cover'}}>
+                <Headermenu/>
+            {/* <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "102px",backgroundSize: 'cover'}}>
                 <div className="visible-xs" style={{marginTop:'-119px'}}></div>
                 <div className="background-image">
                     <Burgermenu/>
                     <Slider mainH1="Pakjazba Classified" mainH2=""/>
                 </div>
-            </div>
+            </div> */}
 
                 {!this.props.text && <BuyFirstFold />}
                 <BuyFourthFold />

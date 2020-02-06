@@ -5,43 +5,7 @@
     background: url("http://myinstantcms.ru/images/bg-broun1.jpg") repeat scroll center top rgba(0, 0, 0, 0);
     padding-bottom: 34px;
 }
-.block-text {
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 3px 0 #2c2222;
-    color: #626262;
-    font-size: 14px;
-    margin-top: 27px;
-    padding: 15px 18px;
-}
-.block-text a {
- color: #7d4702;
-    font-size: 25px;
-    font-weight: bold;
-    line-height: 21px;
-    text-decoration: none;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-.mark {
-    padding: 12px 0;background:none;
-}
-.block-text p {
-    color: #585858;
-    font-family: Georgia;
-    font-style: italic;
-    line-height: 20px;
-}
 
-.sprite-i-triangle {
-    background-position: 0 -1298px;
-    height: 44px;
-    width: 50px;
-}
-.block-text ins {
-    bottom: -44px;
-    left: 50%;
-    margin-left: -60px;
-}
 
 
 .block {
@@ -74,10 +38,60 @@
 .rel {
     position: relative;
 } */
+.block-textShop {
+    /* background-color: #fff; */
+    border-radius: 5px;
+    color: #626262;
+    font-size: 14px;
+    margin-top: 27px;
+    padding: 15px 18px;
+}
+.block-textShop a {
+    color: #7d4702;
+    font-size: 14px;
+    line-height: 21px;
+    text-decoration: none;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.block-textShop p {
+    color: #585858;
+    line-height: 20px;
+}
+.block-textShop ins {
+    bottom: -44px;
+    left: 50%;
+    margin-left: -60px;
+}
 
-@media only screen and (min-device-width: 330px) and (max-device-width: 767px){}
-@media only screen and (min-device-width: 768px) and (max-device-width: 1023px){}
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1365px){}
+@media only screen and (min-device-width: 330px) and (max-device-width: 767px){
+    .carouselArrowShopPgLeft{
+        color: black; 
+    }
+    .carouselArrowShopPgRight{
+        margin-left: 69vw !important;
+        color: black;
+    }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1023px){
+    .carouselArrowShopPgLeft{
+        margin-left: -6vw !important;
+        color: black;
+    }
+    .carouselArrowShopPgRight{
+        margin-left: 75vw !important;
+        color: black;
+    }
+}
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1365px){
+    .carouselArrowShopPgLeft{
+        margin-left: -6vw !important;
+        color: black;
+    }
+    .carouselArrowShopPgRight{
+        margin-left: 84vw !important;
+        color: black;
+    }
+}
 @media only screen and (min-device-width: 1366px) and (max-device-width: 1600px){
     .carouselArrowShopPgLeft{
         margin-left: -6vw !important;
@@ -88,4 +102,13 @@
         color: black;
     }
 }
-@media only screen and (min-device-width: 1600px){}
+@media only screen and (min-device-width: 1600px){
+    .carouselArrowShopPgLeft{
+        margin-left: -6.5vw !important;
+        color: black;
+    }
+    .carouselArrowShopPgRight{
+        margin-left: 86vw !important;
+        color: black;
+    }
+}

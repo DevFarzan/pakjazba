@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Burgermenu from '../../header/burgermenu';
+import Headermenu from '../../header/headermenu';
 import Slider from '../../header/Slider';
 import Footer from '../../footer/footer';
 import EcomTabs from './EcomTabs';
@@ -15,7 +15,7 @@ class EcomForms extends Component {
   render() {
     return (
       <div className="">
-        <Burgermenu />
+        <Headermenu />
         <div className="row jobdetail-page" style={isMobile ? { backgroundColor: "#37a99b", marginTop: "0px" } : { backgroundColor: "#37a99b", marginTop: "100px" }}>
           <div className="col-md-12 col-sm-12 col-xs-12" style={{ textAlign: "center", marginTop: "25px" }}>
             <div className="">

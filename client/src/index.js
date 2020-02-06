@@ -132,7 +132,7 @@ ReactDOM.render(
         <PrivateRoute path="/postad_jobPortal" component={JobPortal}></PrivateRoute>
         <Route path="/market_jobPortal" component={JobClassified}></Route>
         <Route path="/detail_jobPortal" component={JobDetail}></Route>
-        <Route path="/apply_forJob" component={ApplyJob}></Route>
+        <Route path="/apply_forJob" component={ApplyJob}></Route>{/*not opening*/}
         {/*============Job End=============*/}
 
 
@@ -166,9 +166,9 @@ ReactDOM.render(
         <Route path="/entertainment_Category/:value" component={EntCategory}></Route>
         <Route path="/explore_entertainment_category/:value" component={ECategory}></Route>
         
-        <Route path="/entertainment_music" component={EntMusic}></Route>
+        <Route path="/entertainment_music" component={EntMusic}></Route>{/*not opening*/}
         <Route path="/entertainment_detail/:value" component={VideoBox}></Route>
-        <Route path="/music_detail" component={MusicBrowse}></Route>
+        <Route path="/music_detail" component={MusicBrowse}></Route>{/*not opening*/}
         <Route path="/UploadVideo" component={UploadVideo}></Route>
         {/*===============Entertainement end===============================*/}
 
@@ -178,7 +178,7 @@ ReactDOM.render(
         <Route path="/profile_userDetail" component={ProfileUser}></Route>
 
 
-        <Route path="/user_profile" component={ProfileMain}></Route>
+        <Route path="/user_profile" component={ProfileMain}></Route>{/*not opening*/}
 
         <Route path="/detail_blog" component={DetailBlog}></Route>
         <Route path="/privacypolicy" component={Privacy}></Route>

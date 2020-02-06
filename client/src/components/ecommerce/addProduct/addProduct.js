@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Burgermenu from '../../header/burgermenu';
+import Headermenu from '../../header/headermenu';
 import AddSearch from './addSearch';
 import BrowseProduct from './browseProduct';
 import { isMobile, isTablet, isBrowser } from 'react-device-detect';
@@ -9,7 +9,7 @@ class AddProduct extends Component{
   render(){
     return(
       <div>
-        <Burgermenu/>
+        <Headermenu/>
         <div className="row jobdetail-page" style={ isMobile ? {backgroundColor:"#37a99b", marginTop:"0px"} : {backgroundColor:"#37a99b", marginTop:"100px"} }>
             <div className="col-md-12 col-sm-12 col-xs-12" style={{textAlign:"center", marginTop:"25px"}}>
                 <div className="">

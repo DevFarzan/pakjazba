@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Burgermenu from '../../header/burgermenu';
+import HeaderMenu from '../../header/headermenu';
 import EHeader from '../entertainmenthome/entertainmentHeader';
 import LatestNews from '../entertainmenthome/LatestnewsSec';
 import { HttpUtils } from '../../../Services/HttpUtils';
@@ -90,10 +90,11 @@ class UploadVideo extends Component{
 
       return(
           <div className="">
-              <Burgermenu entertainment={{news, sports, dramas, movies, musics}}/>
-              {/*<EHeader entertainment={{news, sports, dramas, movies, musics}} {...this.props}/>*/}
-              <div style={{width:"100%",height:"67px",marginTop:"100px"}}>
+              {/* <Burgermenu entertainment={{news, sports, dramas, movies, musics}}/>
+              <EHeader entertainment={{news, sports, dramas, movies, musics}} {...this.props}/> */}
+              <div style={{width:"100%",height:"50px",marginTop:"100px"}}>
               </div>
+              <HeaderMenu/>
               <div className="container" style={isTablet ? {width:"100%"} : {width:"70%"}}>
                   <UploadFunction onLoader={this.getvideos}/>
               <div className="row">

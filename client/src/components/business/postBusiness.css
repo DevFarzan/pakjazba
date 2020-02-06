@@ -63,8 +63,6 @@
 
   .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    /* transition: 0.3s; */
-    /* width: 40%; */
     background-color: white !important;
   }
 
@@ -174,4 +172,16 @@ a:hover {
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   margin-bottom: 6px;
+}
+@media only screen and (min-device-width: 330px) and (max-device-width: 767px){
+  .uplodBusiness{
+    padding: 15px;
+    height: 330px;
+  }
+}
+@media only screen and (min-device-width: 768px){
+  .uplodBusiness{
+    padding: 15px;
+    height: 180px;
+  }
 }

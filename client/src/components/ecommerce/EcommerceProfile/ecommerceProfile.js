@@ -771,9 +771,9 @@ class EcomProfile extends Component {
                     serachProductMinToMaxPrice={this.serachProductMinToMaxPrice}
                     priceRangeNotGiven={priceRangeNotGiven} />
                 </TabPane>
-                <TabPane tab="Profile" key="3">
+                {/* <TabPane tab="Profile" key="3">
                   Content of Tab Pane 3
-                </TabPane>
+                </TabPane> */}
               </Tabs>
             </div>
           </div>

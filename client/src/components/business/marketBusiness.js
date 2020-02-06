@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Burgermenu from '../header/burgermenu';
+import Headermenu from '../header/headermenu';
 import Slider from '../header/Slider';
 import Firstfold from "./firstfold";
 import Secondfold from './secondfold'
@@ -7,42 +7,43 @@ import Footer from '../footer/footer';
 import { connect } from 'react-redux';
 import BusinessCategory from "./BusinessCategories";
 
-class MarketBusiness extends Component{
+class MarketBusiness extends Component {
     componentDidMount() {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }
 
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         let inputValue = '';
-        if(this.props.text.length){
+        if (this.props.text.length) {
             const { dispatch } = this.props;
-            dispatch({type: 'SEARCHON', inputValue})
+            dispatch({ type: 'SEARCHON', inputValue })
         }
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
-              <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "102px",backgroundSize: 'cover'}}>
+                <Headermenu />
+                {/* <div className ="vissible-xs" style={{"background":"#d8e7e4",marginTop : "102px",backgroundSize: 'cover'}}>
                   <div className="visible-xs" style={{marginTop:'-119px'}}></div>
                   <div className="background-image">
-                      {/* <Burgermenu/> */}
+                     <Burgermenu/> 
                       <Slider mainH1="Pakjazba Business Listing" mainH2=""/>
                   </div>
-              </div>
+              </div> */}
 
-                  {!this.props.text && <Firstfold/>}
-                  <Secondfold/>
-                  <BusinessCategory/>
-                  <Footer/>
+                {!this.props.text && <Firstfold />}
+                <Secondfold />
+                <BusinessCategory />
+                <Footer />
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    return({
+    return ({
         text: state.text
     })
 }

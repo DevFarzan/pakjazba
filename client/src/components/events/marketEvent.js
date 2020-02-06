@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Burgermenu from '../header/burgermenu';
+import Headermenu from '../header/headermenu';
 import Slider from '../header/Slider';
 import Footer from '../footer/footer';
 import { connect } from 'react-redux';
@@ -46,13 +46,7 @@ class MarketEvent extends Component {
         return (
             <div>
                 <span>
-                    <div className="vissible-xs" style={{ "background": "#d8e7e4", marginTop: "102px", backgroundSize: 'cover' }}>
-                        <div className="visible-xs" style={{ marginTop: '-119px' }}></div>
-                        <div className="background-image">
-                            <Burgermenu /> 
-                            <Slider mainH1="PakJazba Event Portal" mainH2="Find what you need" showBtn={this.state.showBtn} />
-                        </div>
-                    </div>
+                    <Headermenu/>
                 </span>
                 {/* {!this.props.text && <EventBanner events={this.state.events} />} */}
                 {/* {!this.props.text && <EventCategories/>} */}

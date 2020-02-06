@@ -74,18 +74,16 @@ class ProfileCarousel extends Component {
                                         }
                                     })}
                                 </div>
-                                <a disabled={backward} className="left carousel-control" href="#carouselShop" role="button" data-slide="prev">
-                                    <span className="glyphicon glyphicon-chevron-left" id="leftProfile" onClick={e => this.handleBackward(e)}></span>
-                                </a>
-                                <a disabled={farward} className="right carousel-control" href="#carouselShop" role="button" data-slide="next">
-                                    <span className="glyphicon glyphicon-chevron-right" id="rightProfile" onClick={e => this.handleFarward(e)}></span>
-                                </a>
-                                {/* <a disabled={backward} className="left carousel-control" href="#carousel-reviews" role="button" data-slide="prev">
-                                    <span className="glyphicon glyphicon-chevron-left" id="left" onClick={e => this.handleBackward(e)}></span>
-                                </a>
-                                <a disabled={farward} className="right carousel-control" href="#carousel-reviews" role="button" data-slide="next">
-                                    <span className="glyphicon glyphicon-chevron-right" id="right" onClick={e => this.handleFarward(e)}></span>
-                                </a> */}
+                                <div className="carouselArrowShopPgLeft">
+                                    <a disabled={backward} className="" href="#carouselShop" role="button" data-slide="prev">
+                                        <span className="glyphicon glyphicon-chevron-left" id="leftProfile" onClick={e => this.handleBackward(e)}></span>
+                                    </a>
+                                </div>
+                                <div className="carouselArrowShopPgRight">
+                                    <a disabled={farward} className="" href="#carouselShop" role="button" data-slide="next">
+                                        <span className="glyphicon glyphicon-chevron-right" id="rightProfile" onClick={e => this.handleFarward(e)}></span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

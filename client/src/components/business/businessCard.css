@@ -387,7 +387,7 @@ color: #224B69;
     background-color: white;
     border-bottom: 1px solid #ccc;
     border-right: 1px solid #ccc;
-    height: 100px;
+    /* height: 100px; */
     /* border-left-style: solid; */
     border-radius: 5px 0 0 5px!important;
 }

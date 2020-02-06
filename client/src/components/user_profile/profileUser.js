@@ -412,7 +412,7 @@ class ProfileUser extends Component {
         const { imageUrl, profileSec, changePass, name, email, description, phone, twitter, facebook, location,
             listing, listData1, listData2, listData3, listData4, listData5, buySell, business, rooms, jobPortal,
             ecommerce, data, allData, publicSection, reviewProfile } = this.state;
-        console.log(listData4, 'render in profile')
+        console.log(listData4, 'render in profile of JOb')
         if (buySell) {
             return (
                 <Redirect to={{ pathname: '/postad_buysell', state: data }} />
@@ -813,11 +813,12 @@ class ProfileUser extends Component {
                                                                         str = str + '...'
                                                                     }
                                                                     return (
-                                                                        <div className="col-md-4" style={{ marginBottom: '20px', marginTop: '20px' }}>
+                                                                        <div className="col-sm-6 col-md-4" style={{ marginBottom: '20px', marginTop: '20px' }}>
                                                                             <div className="card">
                                                                                 <Link to={{ pathname: `/detail_roomRent`, state: elem }}>
-                                                                                    <img alt='' src={img} style={{ height: '200px', width: "100%", filter: 'brightness(0.5)', marginBottom: '-20px' }} />
-
+                                                                                    <div>
+                                                                                        <img alt='' src={img} className="cardsImggRoom" style={{ marginBottom: '-10px' }} />
+                                                                                    </div>
                                                                                     <div className="row" style={{ padding: "0" }}>
                                                                                         <div className="col-md-12" style={{ padding: "0" }}>
                                                                                             <div className="col-md-6 col-sm-5 col-xs-5">
@@ -850,11 +851,11 @@ class ProfileUser extends Component {
                                                                                             <br />
                                                                                         </p>
                                                                                     </div>
-                                                                                    <table id="customers">
+                                                                                    <table id="customers" className="margTopMobileDesk">
                                                                                         <tr>
                                                                                             <td><span className="fa fa-inbox"
                                                                                                 style={{ color: "#236A4B", margin: "0", left: "-3px" }}
-                                                                                            ></span><span>{elem.furnished.slice(0, 11)}..</span></td>
+                                                                                            ></span><span>{elem.furnished.slice(0, 9)}..</span></td>
 
                                                                                             <td><span className="fa fa-users"
                                                                                                 style={{ color: "#236A4B", margin: "0", left: "-3px" }}
@@ -911,10 +912,10 @@ class ProfileUser extends Component {
                                                                         str = str + '...'
                                                                     }
                                                                     return (
-                                                                        <div className="col-md-4" style={{ marginBottom: '20px', marginTop: '20px' }}>
+                                                                        <div className="col-sm-6 col-md-4" style={{ marginBottom: '20px', marginTop: '20px' }}>
                                                                             <div className="card">
                                                                                 <Link to={{ pathname: `/detail_business`, state: elem }}>
-                                                                                    <img alt='' src={img} style={{ height: '200px', width: "100%", filter: 'brightness(0.5)' }} />
+                                                                                    <img alt='' src={img} className="cardsImgg" />
                                                                                     <div className="businessborder">
                                                                                         <div className="ratewithbox">
                                                                                             <span>
@@ -926,7 +927,7 @@ class ProfileUser extends Component {
                                                                                             </span>
                                                                                         </div>
                                                                                         <div className="businessname">
-                                                                                            <h4 style={{ marginLeft: "-1px", marginBottom: "15px", marginTop: "20px" }}>
+                                                                                            <h4 style={{ fontSize: '15px', marginLeft: "-1px", marginBottom: "15px", marginTop: "10px !important" }}>
                                                                                                 <b>{elem.businessname}</b>
                                                                                             </h4>
 
@@ -972,19 +973,19 @@ class ProfileUser extends Component {
                                                                         str = str + '...'
                                                                     }
                                                                     return (
-                                                                        <div className="col-md-4" style={{ marginBottom: '20px', marginTop: '20px' }}>
+                                                                        <div className="col-sm-6 col-md-4" style={{ marginBottom: '20px', marginTop: '20px' }}>
                                                                             <div className="card">
                                                                                 <Link to={{ pathname: `/detail_buySell`, state: elem }}>
-                                                                                    <img alt='' src={img} style={{ height: '200px', width: "100%", filter: 'brightness(0.5)' }} />
+                                                                                    <img alt='' src={img} className="cardsImgg" />
                                                                                     <div className="pricingSell">
                                                                                         {!elem.hideprice ? '$' + elem.price : 'Hide'}
                                                                                     </div>
-                                                                                    <div className="buy-card">
-                                                                                        <h4>{elem.modelname}</h4>
+                                                                                    <div className="buyCardProfile">
+                                                                                        <h3 style={{ marginBottom: '5px', fontSize: '20px' }}>{elem.modelname}</h3>
                                                                                         <p style={{ fontFamily: 'Poppins, sans-serif' }}>
                                                                                             <span className="glyphicon glyphicon-map-marker"
                                                                                                 style={{ color: "#008080", margin: "0", left: "-3px" }}
-                                                                                            ></span><span>{elem.address},{elem.state}</span>
+                                                                                            ></span><span>{elem.address.slice(0, 7)},{elem.state}..</span>
                                                                                         </p>
                                                                                         <p style={{ fontFamily: 'Poppins, sans-serif' }}>
                                                                                             <span className="glyphicon glyphicon-phone"
@@ -1008,7 +1009,7 @@ class ProfileUser extends Component {
                                                 </TabPane>
                                                 <TabPane tab='Job Portal' key="4">
                                                     <div className="secondfold" style={{ backgroundColor: '#FBFAFA' }}>
-                                                        <div className="index-content" style={{ marginTop: '20px' }}>
+                                                        <div className="index-content" style={{ marginTop: '0px' }}>
                                                             <div className="row">
                                                                 {listData4.length ? listData4.map((elem) => {
                                                                     let img = elem.arr_url && elem.arr_url[0] || '../images/images.jpg';
@@ -1019,45 +1020,32 @@ class ProfileUser extends Component {
                                                                         str = str + '...'
                                                                     }
                                                                     return (
-                                                                        <div className="col-md-4" style={{ marginBottom: '20px', marginTop: '20px' }}>
+                                                                        <div className="col-sm-6 col-md-4" style={{ marginBottom: '20px', marginTop: '20px' }}>
                                                                             <div className="card">
                                                                                 <Link to={{ pathname: `/detail_jobPortal`, state: elem }}>
-                                                                                    <img alt='' src={img} style={{ height: '200px', width: "100%", filter: 'brightness(0.5)', marginBottom: '-20px' }} />
-                                                                                    <div className="jobcardcarousel">
+                                                                                    <img alt='' src={img} className="cardsImgg" style={{ marginBottom: '-20px' }} />
+                                                                                    <div className="jobcardcarouselProfile">
                                                                                         <div className="row">
-                                                                                            <div className="col-md-3 col-xs-3">
-                                                                                                <div className="jobownerimage">
-                                                                                                    <img src="./images/images.jpg" alt="" />
-                                                                                                </div>
-                                                                                            </div>
                                                                                             <div className="col-md-9 col-xs-9">
-                                                                                                <h4 style={{ margin: "0" }}>
-                                                                                                    <b>{elem.jobCat}</b>
-                                                                                                </h4>
-                                                                                                <div className="row" style={{ padding: "10px" }}>
-                                                                                                    <div className="col-md-5 col-xs-4" style={{ padding: "0" }}>
-                                                                                                        <span className="glyphicon glyphicon-map-marker"
-                                                                                                            style={{ color: "#236A4B", marginRight: "2px" }}
-                                                                                                        ></span>
-                                                                                                        <span style={{ color: "black" }}>{elem.location.slice(0, 7)}..</span>
-                                                                                                    </div>
-                                                                                                    <div className="col-md-7 col-xs-8" style={{ padding: "0" }}>
-                                                                                                        <span className="fa fa-phone" style={{ color: "#236A4B", margin: "0", left: "-3px", padding: "0" }}>
-                                                                                                        </span>
-                                                                                                        <span style={{ color: "black" }}></span>
-                                                                                                    </div>
+                                                                                                <h5 className="jobCatProfile">
+                                                                                                    <b>{elem.jobCat.slice(0, 9)}...</b>
+                                                                                                </h5>
+                                                                                                <div>
+                                                                                                    <span className="glyphicon glyphicon-map-marker" style={{ color: "#236A4B", marginRight: "2px" }}></span>
+                                                                                                    <span style={{ color: "black" }}>{elem.location.slice(0, 7)}..</span>
                                                                                                 </div>
                                                                                             </div>
+                                                                                            <div className="col-md-3 col-xs-3"></div>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div className="jobcategorycarousel">
                                                                                         <div className="row">
-                                                                                            <div className="col-md-7" style={{ left: "15px" }}>
+                                                                                            <div className="col-md-9">
                                                                                                 <span className="fa fa-bookmark das">
                                                                                                 </span>
                                                                                                 <span style={{ color: "black" }}>{elem.jobType && elem.jobType}</span>
                                                                                             </div>
-                                                                                            <div className="col-md-5">
+                                                                                            <div className="col-md-3">
 
                                                                                             </div>
                                                                                         </div>
@@ -1094,12 +1082,9 @@ class ProfileUser extends Component {
                                                                         str = str + '...'
                                                                     }
                                                                     return (
-                                                                        <div className="col-md-4 col-sm-4" style={{
-                                                                            marginBottom: '20px',
-                                                                            marginTop: '20px'
-                                                                        }}>
+                                                                        <div className="col-sm-6 col-md-4" style={{ marginBottom: '20px', marginTop: '20px' }}>
                                                                             <div className="sellercardopacity" style={{ cursor: 'pointer' }}>
-                                                                                <div className="overlay1">
+                                                                                <div className="">
                                                                                     <Link to={{
                                                                                         pathname: `/EcommerceProfile/${elem._id}`,
                                                                                         state: elem
@@ -1107,11 +1092,27 @@ class ProfileUser extends Component {
                                                                                         <div className="sellerstorecard" >
                                                                                             <img alt='img' src={img} />
                                                                                         </div>
-                                                                                        <h4 style={{ marginTop: "20px", textAlign: "left" }}>{elem.shopTitle}</h4>
-                                                                                        <div class="middle">
+                                                                                        <div style={{ marginLeft: '15px', marginTop: "20px", textAlign: "left", marginBottom: "10px" }}>
+                                                                                            <h5 className="myProfileShoptitle">{elem.shopTitle}</h5>
+                                                                                            <span className="glyphicon glyphicon-map-marker"
+                                                                                                style={{ color: "#236A4B", marginRight: "2px" }}
+                                                                                            ></span>
+                                                                                            <span style={{ color: "black" }}>{elem.shopAddress.slice(0, 10)}..</span>
+                                                                                        </div>
+                                                                                        <div>
                                                                                             <div class="text">View Shop</div>
                                                                                         </div>
                                                                                     </Link>
+                                                                                    <a onClick={this.editBusiness.bind(this, elem)}>
+                                                                                        <i className="glyphicon glyphicon-edit"
+                                                                                            style={{ padding: "16px", marginTop: "8px", color: "gray" }}>
+                                                                                            <span style={{ margin: "7px" }}>Edit</span>
+                                                                                        </i>
+                                                                                    </a>
+                                                                                    <i className="glyphicon glyphicon-trash"
+                                                                                        style={{ padding: "16px", marginTop: "8px", float: "right", color: "gray" }}>
+                                                                                        <span style={{ margin: "7px" }}>Remove</span>
+                                                                                    </i>
                                                                                 </div>
 
                                                                             </div>

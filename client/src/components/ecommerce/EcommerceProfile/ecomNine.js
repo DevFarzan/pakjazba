@@ -106,7 +106,7 @@ class EcomNine extends Component {
                                     <div className="col-md-3 col-sm-4">
                                         <Link rel="noopener noreferrer" to={{ pathname: `/products_DetailStyle/${elem._id}`, state: elem }} >
                                             <div className="sellercardopacity" style={{ cursor: 'pointer' }}>
-                                                <div className="sellerstorecard" >
+                                                <div className="sellerstorecard">
                                                     <img alt='' src={elem.images[0]} />
                                                 </div>
                                                 <h4 style={{ marginTop: "20px", textAlign: "left" }}>{elem.product}</h4>

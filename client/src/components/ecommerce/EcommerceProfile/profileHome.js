@@ -12,16 +12,12 @@ class ProfileHome extends Component {
     render() {
         const { shopData, allProducts } = this.props;
         return (
-            <div className="">
+            <div>
                 <div>
                     <ProfileBanner shopData={shopData} />
                 </div>
-                <div className="">
-                    <h4 className="headingtext" style={{ marginLeft: '-11px', marginTop: '-15px' }}> </h4>
-                    <hr />
-                    <div style={{ marginTop: '-2%' }}>
-                        <ProfileCarousel data={allProducts} />
-                    </div>
+                <div style={{ marginTop: '-2%' }}>
+                    <ProfileCarousel data={allProducts} />
                 </div>
                 <div>
                     <ProfileCatologe shopData={shopData} />

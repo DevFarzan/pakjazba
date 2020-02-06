@@ -25,7 +25,7 @@ class Stories extends Component {
         return (
             <div>
                 <div className="row" style={{ padding: "0", marginTop: "45px" }}>
-                    <div className="col-md-9 col-sm-9">
+                    <div className="col-md-8 col-sm-8">
                         {detail && detail[0].length > 0 && detail[1].length > 0 && detail[2].length > 0 &&
                             detail[3].length > 0 && detail[4].length > 0 ? Object.keys(detail).map((el, k) => {
                                 let arr = detail[k];
@@ -42,7 +42,7 @@ class Stories extends Component {
                                                 }
                                                 if (key <= 5) {
                                                     return (
-                                                        <div key={key} className="col-md-4 col-sm-4"
+                                                        <div key={key} className="col-md-6 col-sm-6"
                                                             onClick={this.nextVideo.bind(this, { elem, arr })}
                                                             style={{ cursor: 'pointer' }}
                                                         >
@@ -91,7 +91,7 @@ class Stories extends Component {
                             })}
                         }
                     </div>    
-                    <div className="col-md-3 col-sm-3">
+                    <div className="col-md-4 col-sm-4">
                             <LatestNews data={{ news, sports }} callRoute={this.nextVideo.bind(this)} />
                     </div>
                 </div>

@@ -17,24 +17,247 @@
     width: 95%;
     border-top-width: 1px;
 }
-.pricingroomInProfileMyad {
-    position: absolute;
-    top: -190px;
-    left: 25px;
-    color: white;
-    font-size: 15px;
-    border: 1px solid white;
-    padding: 5px;
+
+
+.jobCatProfile{
+    margin: 0 !important;
+    font-size: 20px;
+    margin-top: 15px !important;
 }
-.rentstarInProfileMyad {
-    position: absolute;
-    top: -185px;
-    left: 0;
-}
-.roomdetailcardInProfileMyad {
-    position: absolute;
-    top: 130px;
-    left: 25px;
-    color: white;
+.myProfileShoptitle{
+    font-size: 19px;
     font-weight: 600;
+    margin-bottom: 5px;
 }
+.jobcardcarouselProfile {
+    border-left: 5px solid #224B69;
+    background-color: white;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    height: 80px;
+    /* border-left-style: solid; */
+    border-radius: 5px 0 0 5px!important;
+}
+.buyCardProfile {
+    display: grid;
+    color: black;
+    padding: 10px;
+    border-bottom: 2px solid #e1e1e1;
+}
+
+@media only screen and (min-device-width: 330px) and (max-device-width: 767px){
+    .cardsImggRoom{
+        height: 200px !important;
+        width: 100%!important;
+        filter: brightness(0.5);
+    }
+    .cardsImgg{
+        height: 150px !important;
+        width: 100%!important;
+        filter: brightness(0.5);
+    }
+    .pricingroomInProfileMyad {
+        position: absolute;
+        top: -170px;
+        left: 25px;
+        color: white;
+        font-size: 15px;
+        border: 1px solid white;
+        padding: 5px;
+    }
+    .rentstarInProfileMyad {
+        position: absolute;
+        top: -165px;
+        left: 0;
+    }
+    .roomdetailcardInProfileMyad {
+        position: absolute;
+        top: 130px;
+        left: 25px;
+        color: white;
+        font-weight: 600;
+    }
+    .roomdetailcardMainProfilefront {
+        position: absolute;
+        top: 140px;
+        left: 25px;
+        color: white;
+        font-weight: 600;
+    }
+    .margTopMobileDesk{
+        margin-top: 10px;
+    }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1023px){
+    .cardsImggRoom{
+        height: 200px !important;
+        width: 100%!important;
+        filter: brightness(0.5);
+    }
+    .cardsImgg{
+        height: 150px !important;
+        width: 100%!important;
+        filter: brightness(0.5);
+    }
+    .pricingroomInProfileMyad {
+        position: absolute;
+        top: -170px;
+        left: 25px;
+        color: white;
+        font-size: 15px;
+        border: 1px solid white;
+        padding: 5px;
+    }
+    .rentstarInProfileMyad {
+        position: absolute;
+        top: -165px;
+        left: 0;
+    }
+    .roomdetailcardInProfileMyad {
+        position: absolute;
+        top: 130px;
+        left: 25px;
+        color: white;
+        font-weight: 600;
+    }
+    .roomdetailcardMainProfilefront {
+        position: absolute;
+        top: 140px;
+        left: 25px;
+        color: white;
+        font-weight: 600;
+    }
+    .margTopMobileDesk{
+        margin-top: 10px;
+    }
+}
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1365px){
+    .cardsImggRoom{
+        height: 185px !important;
+        width: 100%!important;
+        filter: brightness(0.5);
+    }
+    .cardsImgg{
+        height: 150px !important;
+        width: 100%!important;
+        filter: brightness(0.5);
+    }
+    .pricingroomInProfileMyad {
+        position: absolute;
+        top: -170px;
+        left: 25px;
+        color: white;
+        font-size: 12px;
+        border: 1px solid white;
+        padding: 5px;
+    }
+    .rentstarInProfileMyad {
+        position: absolute;
+        top: -165px;
+        margin-left: -2vw;
+    }
+    .roomdetailcardInProfileMyad {
+        position: absolute;
+        top: 120px;
+        left: 25px;
+        color: white;
+        font-weight: 600;
+    }
+    .roomdetailcardMainProfilefront {
+        position: absolute;
+        top: 130px;
+        left: 25px;
+        color: white;
+        font-weight: 600;
+    }
+    .margTopMobileDesk{
+        margin-top: 5px;
+    }
+}
+@media only screen and (min-device-width: 1366px) and (max-device-width: 1600px){
+    .cardsImggRoom{
+        height: 200px !important;
+        width: 100%!important;
+        filter: brightness(0.5);
+    }
+    .cardsImgg{
+        height: 150px !important;
+        width: 100%!important;
+        filter: brightness(0.5);
+    }
+    .pricingroomInProfileMyad {
+        position: absolute;
+        top: -170px;
+        left: 25px;
+        color: white;
+        font-size: 15px;
+        border: 1px solid white;
+        padding: 5px;
+    }
+    .rentstarInProfileMyad {
+        position: absolute;
+        top: -165px;
+        left: 0;
+    }
+    .roomdetailcardInProfileMyad {
+        position: absolute;
+        top: 120px;
+        left: 25px;
+        color: white;
+        font-weight: 600;
+    }
+    .roomdetailcardMainProfilefront {
+        position: absolute;
+        top: 130px;
+        left: 25px;
+        color: white;
+        font-weight: 600;
+    }
+    .margTopMobileDesk{
+        margin-top: 10px;
+    }
+}
+@media only screen and (min-device-width: 1600px){
+    .cardsImggRoom{
+        height: 200px !important;
+        width: 100%!important;
+        filter: brightness(0.5);
+    }
+    .cardsImgg{
+        height: 150px !important;
+        width: 100%!important;
+        filter: brightness(0.5);
+    }
+    .pricingroomInProfileMyad {
+        position: absolute;
+        top: -170px;
+        left: 25px;
+        color: white;
+        font-size: 15px;
+        border: 1px solid white;
+        padding: 5px;
+    }
+    .rentstarInProfileMyad {
+        position: absolute;
+        top: -165px;
+        left: 0;
+    }
+    .roomdetailcardInProfileMyad {
+        position: absolute;
+        top: 130px;
+        left: 25px;
+        color: white;
+        font-weight: 600;
+    }
+    .roomdetailcardMainProfilefront {
+        position: absolute;
+        top: 140px;
+        left: 25px;
+        color: white;
+        font-weight: 600;
+    }
+    .margTopMobileDesk{
+        margin-top: 10px;
+    }
+}
+

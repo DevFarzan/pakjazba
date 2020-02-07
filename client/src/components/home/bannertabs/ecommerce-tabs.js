@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Cascader, Button } from 'antd';
 import { Redirect } from "react-router-dom";
+import './banner-tabs.css';
 
 const category = [{
   value: 'Electronic',
@@ -1370,7 +1371,7 @@ const category = [{
     }, {
       value: 'T-shirts',
       label: 'T-Shirts',
-      
+
     }]
   }, {
     value: 'Bras, Panties & Lingerie',
@@ -2280,25 +2281,28 @@ class EcommerceTabs extends Component {
 
       <div className="row">
         <div className="col-md-12">
+          <h3 className="homeFilterHead">Ecommerce</h3>
+        </div>
+        <div className="col-md-12">
           <div className="col-md-4 col-sm-6">
             <Cascader
               style={{ width: '100%' }} options={category} onChange={this.onChange.bind(this)}
               placeholder="Please select category"
             />
           </div>
-          <div className="col-md-2 col-sm-6">
+          <div className="col-md-2 col-sm-6 mobMargTopp">
             <Cascader
               style={{ width: '100%' }} options={colors} onChange={this.onChangeColor.bind(this)}
               placeholder="Select color"
             />
           </div>
-          <div className="col-md-3 col-sm-6">
+          <div className="col-md-3 col-sm-6 mobMargTopp">
             <Cascader
               style={{ width: '100%' }} options={brands} onChange={this.onChangeBrand.bind(this)}
               placeholder="Select brand"
             />
           </div>
-          <div className="col-md-3 col-sm-6">
+          <div className="col-md-3 col-sm-6 mobMargTopp">
             <Button className="btn insidebutton" style={{ width: '100%' }} onClick={this.routeAndSearchTabs}>
               <span className="fa fa-search">
 

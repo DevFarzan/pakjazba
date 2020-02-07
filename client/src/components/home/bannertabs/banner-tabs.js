@@ -71,53 +71,22 @@ class BannerTabs extends Component {
                                 <div className="cardinside">
                                     <div class="tab-content">
                                         <div class="tab-pane active" role="tabpanel" id="tab1">
-                                        <h3>Roomrent</h3>
-                                            <div className="row">
-                                                <div className="col-md-12">
-                                                    <RoomTabs />
-                                                </div>
-                                            </div>
+                                            <RoomTabs />
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab2">
-                                        <h3>Business</h3>
-                                            <div className="row">
-                                                <div className="col-md-12">
-                                                    <BusinessTabs />
-                                                </div>
-                                            </div>
-
+                                            <BusinessTabs />
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab3">
-                                        <h3>Buy & Sell</h3>
-                                            <div className="row">
-                                                <div className="col-md-12">
-                                                    <BuyTab />
-                                                </div>
-                                            </div>
+                                            <BuyTab />
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab4">
-                                        <h3>Jobs</h3>
-                                            <div className="row">
-                                                <div className="col-md-12">
-                                                    <JobTabs />
-                                                </div>
-                                            </div>
+                                            <JobTabs />
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab5">
-                                        <h3>Events</h3>
-                                            <div className="row">
-                                                <div className="col-md-12">
-                                                    <EventTabs />
-                                                </div>
-                                            </div>
+                                            <EventTabs />
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab6">
-                                        <h3>Ecommerce</h3>
-                                            <div className="row">
-                                                <div className="col-md-12">
-                                                    <EcommerceTabs />
-                                                </div>
-                                            </div>
+                                            <EcommerceTabs />
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>

@@ -26,7 +26,7 @@ class SecondfoldCard extends Component {
                             <div className="col-md-12">
                                 <div className="col-md-6 col-sm-6">
                                     <div className="cardsecond_fold">
-                                        <Link to={{ pathname: `/explore`, state: '2'}}>
+                                        <Link to={{ pathname: `/explore`, state: '2' }}>
                                             <img src="./images/homepage/businessListing.jpg" />
                                         </Link>
 
@@ -52,8 +52,8 @@ class SecondfoldCard extends Component {
 
                                     </div>
                                     <div className="row" style={{ padding: "0" }}>
-                                        <div className="col-md-12" style={{ padding: "0" }}>
-                                            <div className="col-md-6 col-sm-6" style={{ padding: "10px 15px" }}>
+                                        <div className="col-md-12">
+                                            {/* <div className="col-md-6 col-sm-6" style={{ padding: "10px 15px" }}>
                                                 <div className="cardsecond_fold">
 
                                                     <img src="./images/homepage/comingsoon.jpg" />
@@ -67,9 +67,13 @@ class SecondfoldCard extends Component {
                                                     </Link>
 
                                                 </div>
+                                            </div> */}
+                                            <div className="cardsecond_fold">
+                                                <Link to={{ pathname: `/explore`, state: '1' }}>
+                                                    <img src="./images/homepage/roomRenting.jpg" />
+                                                </Link>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-sm-6">
@@ -99,12 +103,28 @@ class SecondfoldCard extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="cardsecond_fold">
+                                    <div className="col-md-12">
+                                            <div className="col-md-6 col-sm-6 comeSonImg">
+                                                <div className="cardsecond_fold">
+
+                                                    <img src="./images/homepage/comingsoon.jpg" />
+
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6 col-sm-6" style={{ padding: "10px 15px" }}>
+                                                {/* <div className="cardsecond_fold">
+                                                    <Link to={"./detail_blog"}>
+                                                        <img src="./images/homepage/blog.jpg" />
+                                                    </Link>
+
+                                                </div> */}
+                                            </div>
+                                        </div>
+                                    {/* <div className="cardsecond_fold">
                                         <Link to={{ pathname: `/explore`, state: '1' }}>
                                             <img src="./images/homepage/roomRenting.jpg" />
                                         </Link>
-
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
@@ -112,7 +132,7 @@ class SecondfoldCard extends Component {
                 </div>
 
                 <div className="container visible-xs" style={{ marginTop: "185px" }}>
-                    <div className="hometext">
+                    <div className="hometextMob">
                         <h1> WHAT YOU ARE LOOKING FOR </h1>
                         <h4> FILTER BY CATEGORY </h4>
                     </div>
@@ -139,26 +159,6 @@ class SecondfoldCard extends Component {
                                                 <div className="cardsecond_fold">
                                                     <Link to={{ pathname: `/explore`, state: '5' }}>
                                                         <img src="./images/homepage/event-m.jpg" />
-                                                    </Link>
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div className="row" style={{ padding: "0" }}>
-                                        <div className="col-md-12" style={{ padding: "0" }}>
-                                            <div className="col-md-6" style={{ padding: "10px 15px" }}>
-                                                <div className="cardsecond_fold">
-
-                                                    <img src="./images/homepage/comingsoon-m.jpg" />
-
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6" style={{ padding: "10px 15px" }}>
-                                                <div className="cardsecond_fold">
-                                                    <Link to={"./detail_blog"}>
-                                                        <img src="./images/homepage/blog-m.jpg" />
                                                     </Link>
 
                                                 </div>
@@ -198,6 +198,26 @@ class SecondfoldCard extends Component {
                                         <Link to={{ pathname: `/explore`, state: '1' }}>
                                             <img src="./images/homepage/roomRenting-m.jpg" />
                                         </Link>
+
+                                    </div>
+                                    <div className="row" style={{ padding: "0" }}>
+                                        <div className="col-md-12" style={{ padding: "0" }}>
+                                            <div className="col-md-6" style={{ padding: "10px 15px" }}>
+                                                <div className="cardsecond_fold">
+
+                                                    <img src="./images/homepage/comingsoon-m.jpg" />
+
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6" style={{ padding: "10px 15px" }}>
+                                                {/* <div className="cardsecond_fold">
+                                                    <Link to={"./detail_blog"}>
+                                                        <img src="./images/homepage/blog-m.jpg" />
+                                                    </Link>
+
+                                                </div> */}
+                                            </div>
+                                        </div>
 
                                     </div>
                                 </div>

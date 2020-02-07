@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Cascader, Button } from 'antd';
 import stateCities from "../../../lib/countrycitystatejson";
 import { Redirect } from "react-router-dom";
+import './banner-tabs.css';
 
 const category = [{
     value: 'Property to rent',
@@ -150,7 +151,7 @@ class RoomTabs extends Component {
             citiesRoom: cities,
             accomodatesRoom: accomodates,
             keyOfTab: '1',
-            homefilter:true
+            homefilter: true
         }
         this.setState({
             valueObj: obj,
@@ -167,26 +168,29 @@ class RoomTabs extends Component {
             <div>
                 <div className="row">
                     <div className="col-md-12">
+                        <h3 className="homeFilterHead">Roomrent</h3>
+                    </div>
+                    <div className="col-md-12">
                         <div className="col-md-3 col-sm-6">
                             <Cascader
                                 style={{ width: '100%' }} options={category} onChange={this.onChange.bind(this)}
                                 placeholder="Select category"
                             />
                         </div>
-                        <div className="col-md-3 col-sm-6">
+                        <div className="col-md-3 col-sm-6 mobMargTopp">
                             <Cascader
                                 style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)}
                                 placeholder="Select state"
                             />
                         </div>
-                        <div className="col-md-3 col-sm-6">
+                        <div className="col-md-3 col-sm-6 mobMargTopp">
                             <Cascader
                                 // value={cityOfRoom}
                                 style={{ width: '100%' }} options={accomodates} onChange={this.onChangeAccomodates.bind(this)}
                                 placeholder="Select accomodates no"
                             />
                         </div>
-                        <div className="col-md-3 col-sm-6">
+                        <div className="col-md-3 col-sm-6 mobMargTopp">
                             <Button className="btn insidebutton" style={{ width: '100%' }} onClick={this.routeAndSearchTabs}>
                                 <span className="fa fa-search">
 

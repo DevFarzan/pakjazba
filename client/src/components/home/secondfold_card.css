@@ -1,7 +1,10 @@
 .hometext{
     text-align: center;
 }
-
+.hometextMob{
+    text-align: center;
+    margin-top: 42vw;
+}
 .hometext h1{
     color: black;
     font-weight: 700;
@@ -29,4 +32,7 @@
     transition: all 1s ease;
 
 }
-
+.comeSonImg{
+    padding: 1px 0px 0px 0px;
+    margin-left: -15px;
+}

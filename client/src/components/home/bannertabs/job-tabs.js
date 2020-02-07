@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Cascader, Button } from 'antd';
 import stateCities from "../../../lib/countrycitystatejson";
 import { Redirect } from "react-router-dom";
+import './banner-tabs.css';
 
 const type = [
     {
@@ -92,7 +93,7 @@ class JobTabs extends Component {
             states: [],
             cities: [],
             filterCategoryValue: [],
-            filterTypeValue:[],
+            filterTypeValue: [],
             eachState: [],
             keyOfTab: '',
             valueObj: '',
@@ -120,13 +121,13 @@ class JobTabs extends Component {
 
     onChange = (value) => {
         this.setState({
-            filterTypeValue:value
+            filterTypeValue: value
         })
     }
 
     onChangeCate(value) {
         this.setState({
-            filterCategoryValue:value
+            filterCategoryValue: value
         })
     }
 
@@ -147,14 +148,14 @@ class JobTabs extends Component {
     }
 
     routeAndSearchTabs = () => {
-        const { filterCategoryValue,filterTypeValue , eachState, cities } = this.state;
+        const { filterCategoryValue, filterTypeValue, eachState, cities } = this.state;
         let obj = {
             filterCategoryJob: filterCategoryValue,
             filterTypeJob: filterTypeValue,
             stateJob: eachState,
             citiesJob: cities,
             keyOfTab: '4',
-            homefilter:true
+            homefilter: true
         }
         this.setState({
             valueObj: obj,
@@ -163,7 +164,7 @@ class JobTabs extends Component {
     }
 
 
-   
+
 
     render() {
         const { states, valueObj, redirectToExplore } = this.state;
@@ -174,25 +175,28 @@ class JobTabs extends Component {
 
             <div className="row">
                 <div className="col-md-12">
-                <div className="col-md-3 col-sm-6">
+                    <h3 className="homeFilterHead">Jobs</h3>
+                </div>
+                <div className="col-md-12">
+                    <div className="col-md-3 col-sm-6">
                         <Cascader
                             style={{ width: '100%' }} options={type} onChange={this.onChange.bind(this)}
                             placeholder="Select type"
                         />
                     </div>
-                    <div className="col-md-4 col-sm-6">
+                    <div className="col-md-4 col-sm-6 mobMargTopp">
                         <Cascader
                             style={{ width: '100%' }} options={category} onChange={this.onChangeCate.bind(this)}
                             placeholder="Select category"
                         />
                     </div>
-                    <div className="col-md-3 col-sm-6">
+                    <div className="col-md-3 col-sm-6 mobMargTopp">
                         <Cascader
                             style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)}
                             placeholder="Select state"
                         />
                     </div>
-                    <div className="col-md-2 col-sm-6">
+                    <div className="col-md-2 col-sm-6 mobMargTopp">
                         <Button className="btn insidebutton" style={{ width: '100%' }} onClick={this.routeAndSearchTabs}>
                             <span className="fa fa-search">
 

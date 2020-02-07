@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Cascader, Button } from 'antd';
 import stateCities from "../../../lib/countrycitystatejson";
 import { Redirect } from "react-router-dom";
+import './banner-tabs.css';
 
 
 const category = [{
@@ -134,19 +135,22 @@ class EventTabs extends Component {
 
             <div className="row">
                 <div className="col-md-12">
+                    <h3 className="homeFilterHead">Events</h3>
+                </div>
+                <div className="col-md-12">
                     <div className="col-md-4 col-sm-6">
                         <Cascader
                             style={{ width: '100%' }} options={category} onChange={this.onChange.bind(this)}
                             placeholder="Please select category"
                         />
                     </div>
-                    <div className="col-md-4 col-sm-6">
+                    <div className="col-md-4 col-sm-6 mobMargTopp">
                         <Cascader
                             style={{ width: '100%' }} options={states} onChange={this.onChangeState.bind(this)}
                             placeholder="Please select state"
                         />
                     </div>
-                    <div className="col-md-4 col-sm-6">
+                    <div className="col-md-4 col-sm-6 mobMargTopp">
                         <Button className="btn insidebutton" style={{ width: '100%' }}  onClick={this.routeAndSearchTabs}>
                             <span className="fa fa-search">
 

@@ -97,14 +97,21 @@ span.round-tab:hover {
 .wizard h3 {
     margin-top: 0;
 }
+.homeFilterHead{
+    margin-left: 18px;
+    font-size: 21px;
+    font-weight: 600
+}
 
 @media( max-width : 585px ) {
 
     .wizard {
-        width: 90%;
+        width: 100%;
         height: auto !important;
     }
-
+    .mobMargTopp{
+       margin-top: 15px; 
+    }
     span.round-tab {
         font-size: 16px;
         width: 50px;

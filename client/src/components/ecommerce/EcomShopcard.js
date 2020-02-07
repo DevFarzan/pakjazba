@@ -198,4 +198,3 @@ class EshopCard extends Component {
 
 export default EshopCard;
 
-/*featureData, featuredCategories, noRecordFound, recordFound, loader, searchBy, checkRadioBtn,*/

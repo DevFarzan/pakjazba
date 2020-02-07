@@ -101,17 +101,6 @@ class FourEcom extends Component {
           </div> : null}
         </div>
         <hr className="filterdivider" />
-        {/* <div>
-          <h4 style={{ fontWeight: '700' }}>Rating</h4>
-          <div style={{ marginLeft: "15px", display: 'grid' }}>
-            <Radio> <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} allowHalf value={4.5} /></Radio>
-            <Radio> <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} allowHalf value={4} /></Radio>
-            <Radio> <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} allowHalf value={3.5} /></Radio>
-            <Radio> <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} allowHalf value={3} /></Radio>
-            <Radio> <Rate style={{ paddingBottom: '20px', marginTop: "-20px", fontFamily: 'Source Sans Pro, sans-serif' }} allowHalf value={2} /></Radio>
-          </div>
-        </div> */}
-
       </div>
     )
   }

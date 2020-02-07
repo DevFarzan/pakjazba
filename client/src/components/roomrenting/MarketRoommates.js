@@ -115,9 +115,9 @@ class MarketRoommates extends Component{
                 </span>
                 <div className="container" style={isMobile && !isTablet ? {width: '100%'} : {width:"70%"}}>
                     <div className="hidden-xs">
-                      <RoomrentingIcon/>
+                      {/* <RoomrentingIcon/> */}
                     </div>
-                      <Roomrenting1content/>
+                      {/* <Roomrenting1content/> */}
                 </div>
                 <Footer />
                 {this.state.visible && <Modal

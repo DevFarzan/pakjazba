@@ -6,126 +6,11 @@ import { Rate } from 'antd';
 class Roomrenting1content extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-
-        }
     }
 
-    // componentDidMount() {
-    //     this.getAllBusiness()
-    //     this.handleLocalStorage();
-    // }
-
-    // handleLocalStorage = () => {
-    //     AsyncStorage.getItem('user')
-    //         .then((obj) => {
-    //             let userObj = JSON.parse(obj)
-    //             if (!!userObj) {
-    //                 this.setState({
-    //                     user: true,
-    //                 })
-    //             }
-    //             else {
-    //                 this.setState({
-    //                     user: false
-    //                 })
-    //             }
-    //         })
-    // }
-
-    // async getAllBusiness() {
-    //     let res = await HttpUtils.get('marketplace'),
-    //         req = await HttpUtils.get('getreviews'),
-    //         roomrents = [];
-    //     if (res && res.code && res.code == 200 && req && req.code && req.code === 200) {
-    //         roomrents = this.addingStarProp(res.roomrentsdata, req.content);
-    //         this.setState({
-    //             roomrents,
-    //             showroomrents: roomrents.slice(0, 7),
-    //             loader: false
-    //         });
-
-    //     }
-    // }
-
-    // addingStarProp(arrforLoop, rateArr) {
-    //     return arrforLoop && arrforLoop.map((elem) => {
-    //         let rate = 0,
-    //             len = 0;
-    //         rateArr && rateArr.map((el) => {
-    //             if (elem._id == el.objid) {
-    //                 rate += el.star ? +el.star : 0;
-    //                 len++
-    //             }
-    //         });
-    //         let star = rate / len;
-    //         if (rate > 0 && len > 0) {
-    //             return { ...elem, ...{ star: star.toFixed(1) } };
-    //         }
-    //         return { ...elem, ...{ star: 0 } };
-    //     });
-    // }
-
-    // funcIndexes(page) {
-    //     let to = 6 * page;
-    //     let from = to - 6;
-    //     return { from: page === 1 ? 0 : from, to: page === 1 ? 6 : to }
-    // }
-
-    // onChange = (page) => {
-    //     const { roomrents, filteredArr } = this.state;
-    //     let indexes = this.funcIndexes(page)
-
-    //     if (!!filteredArr.length) {
-    //         this.setState({
-    //             current: page,
-    //             showroomrents: filteredArr.slice(indexes.from, indexes.to)
-    //         });
-    //     } else {
-    //         this.setState({
-    //             current: page,
-    //             showroomrents: roomrents.slice(indexes.from, indexes.to)
-    //         });
-    //     }
-    // }
-
-    // onAddMore = () => {
-    //     const { add, roomrents, filteredArr } = this.state;
-    //     if (!!filteredArr.length) {
-    //         this.setState({
-    //             showroomrents: filteredArr.slice(0, add + 8),
-    //             add: add + 8
-    //         });
-    //     } else {
-    //         this.setState({
-    //             showroomrents: roomrents.slice(0, add + 8),
-    //             add: add + 8
-    //         });
-    //     }
-    // }
-
-    // clickItem() {
-    //     const { user } = this.state;
-    //     if (user) {
-    //         this.setState({ goDetail: true })
-    //     } else {
-    //         this.setState({ visible: true })
-    //     }
-    // }
-
-    // handleCancel = (e) => {
-    //     this.setState({ visible: false });
-    // }
-
-    // handleLogin = (e) => {
-    //     this.setState({ goForLogin: true, visible: false })
-    // }
-
     render() {
-        // const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
         const { showroomrents, filteredData, notFoundFilterData, showRecord, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom,
             removeValue, showAllRooms } = this.props;
-        // console.log("TCL: Roomrenting1content -> render -> showroomrents", showroomrents);
         return (
             <div>
                 <div className="row">
@@ -334,15 +219,6 @@ class Roomrenting1content extends Component {
                             : null
                         }
                     </div>
-                    {/* {this.state.loader && <div className="col-md-12" style={{ textAlign: 'center', marginBottom: '20px', marginLeft: '-50px' }}>
-                        <Spin indicator={antIcon} />
-                    </div>} */}
-                    {/* {(showroomrents.length >= 7) && !(showroomrents.length === roomrents.length) &&
-                        <div className="col-md-12" style={{ textAlign: "center" }}>
-                            <button type="button" className="btn btn-success" onClick={this.onAddMore} style={{ backgroundColor: "#37a99b", backgroundImage: "none", borderColor: "#37a99b" }}>View More ...
-                        </button>
-                        </div>
-                    } */}
                 </div>
             </div>
         )

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import Headermenu from '../../header/headermenu';
 import Footer from '../../footer/footer';
-import Slider from '../../header/Slider';
-import TicketFirst from '../event_listing/FirstCard';
-import TicketSecond from '../event_listing/SecondCard';
 import { Icon } from 'antd';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';

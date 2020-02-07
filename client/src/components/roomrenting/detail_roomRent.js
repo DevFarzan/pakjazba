@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Burgermenu from '../header/burgermenu';
 import Headermenu from '../header/headermenu';
 import Slider from '../header/Slider';
 import Footer from '../footer/footer'
@@ -55,7 +54,7 @@ class DetailRoommates extends Component{
                         </div>
                     </div>
                 </span> 
-                <div className="">{/*container  style={{"width":"90%"}}*/}
+                <div className="">
                     {!!data && <Roomrentingthreecontentarea data={data} {...this.props}/>}
                 </div>
                 <div>

@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import Headermenu from '../header/headermenu';
-import Slider from '../header/Slider';
-import Footer from '../footer/footer';
 import { connect } from 'react-redux';
 import EventFeatured from './Eventfeaturedcard';
-import EventBanner from './bannerAndtop';
 import { HttpUtils } from "../../Services/HttpUtils";
 
 class MarketEvent extends Component {

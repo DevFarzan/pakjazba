@@ -998,9 +998,9 @@ class EventPortal extends Component {
 
 
                                         {this.state.normalTicket && <div>
-                                            <hr className="hrLineStyle" />
                                             <div className="row">
-                                                {!this.state.normalTicketFree && <div className="col-md-6">
+                                                {!this.state.normalTicketFree && <div className="col-md-12">
+                                                    <hr className="hrLineStyle" />
                                                     <label>Ticket Delivery</label>
                                                     <FormItem style={{ padding: '2% 0%' }}>
                                                         {getFieldDecorator('normalTicketDelivery', {
@@ -1011,9 +1011,6 @@ class EventPortal extends Component {
                                                         )}
                                                     </FormItem>
                                                 </div>}
-                                                <div className="col-md-6">
-
-                                                </div>
                                             </div>
                                         </div>}
                                         {this.state.customTicket && <div className="row">

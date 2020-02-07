@@ -4,22 +4,14 @@ import './firstfold.css';
 import { connect } from 'react-redux';
 
 class BusinessCategory extends Component {
-    /*Category*/
     constructor(props) {
         super(props);
         this.state = {
             intervalId: 0
         };
-        // this.clickItem = this.clickItem.bind(this);
     }
 
-    // clickItem(item) {
-    //     const { dispatch } = this.props;
-    //     var inputValue = item;
-    //     dispatch({ type: 'SEARCHON', inputValue });
-
-    // }
-    // /*Category props end*/
+   
     clickItem(item) {
         this.props.mainCategoryFilter(item)
     }

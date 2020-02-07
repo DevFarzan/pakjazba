@@ -107,80 +107,80 @@ ReactDOM.render(
 
         {/*============Room Renting=============*/}
         <PrivateRoute path="/postad_Roommates" component={Postroommates}></PrivateRoute>
-        <Route path="/filter_roomRent" component={Roomrentingtwocontentarea}></Route>
-        <Route path="/market_roommates" component={MarketRoommates}></Route>
         <Route path="/detail_roomRent" component={DetailRoommates}></Route>
+        {/* <Route path="/filter_roomRent" component={Roomrentingtwocontentarea}></Route> */}
+        {/* <Route path="/market_roommates" component={MarketRoommates}></Route> */}
         {/*============Room Renting End=============*/}
        
 
         {/*============Bussiness=============*/}
         <PrivateRoute path="/postad_business" component={Postbusiness}></PrivateRoute>
         <Route path="/detail_business" component={DetailBusiness}></Route>
-        <Route path="/market_business" component={MarketBusiness}></Route>
+        {/* <Route path="/market_business" component={MarketBusiness}></Route> */}
         {/*============Bussiness End=============*/}
 
         {/*============Buy And Sell start=============*/}
         <PrivateRoute path="/postad_buysell" component={Postbuysell}></PrivateRoute>
-        <Route path="/market_classified" component={MarketClassified}></Route>
-        <Route path="/Buyer_Detailpage" component={BuyerDetail}></Route>
         <Route path="/detail_buySell" component={DetailBuySell}></Route>
-        <Route path="/filter_buySell" component={FilterBuySell}></Route>
+        {/* <Route path="/market_classified" component={MarketClassified}></Route> */}
+        {/* <Route path="/Buyer_Detailpage" component={BuyerDetail}></Route> */}
+        {/* <Route path="/filter_buySell" component={FilterBuySell}></Route> */}
         {/*============Buy and Sell End=============*/}
 
 
         {/*============Job=============*/}
         <PrivateRoute path="/postad_jobPortal" component={JobPortal}></PrivateRoute>
-        <Route path="/market_jobPortal" component={JobClassified}></Route>
         <Route path="/detail_jobPortal" component={JobDetail}></Route>
-        <Route path="/apply_forJob" component={ApplyJob}></Route>{/*not opening*/}
+        {/* <Route path="/market_jobPortal" component={JobClassified}></Route> */}
+        {/* <Route path="/apply_forJob" component={ApplyJob}></Route>not opening */}
         {/*============Job End=============*/}
 
 
         {/*============Events Start=============*/}
         <PrivateRoute path="/postad_eventPortal" component={EventPortal}></PrivateRoute>
-        <Route path="/market_eventPortal" component={MarketEvent}></Route>
         <Route path="/detail_eventPortal/:value" component={EventDetail}></Route>
-        <Route path="/Ticket_eventPortals" component={TicketDetail}></Route>
-        <Route path="/seat_map" component={SeatMap}></Route>
+        {/* <Route path="/market_eventPortal" component={MarketEvent}></Route> */}
+        {/* <Route path="/Ticket_eventPortals" component={TicketDetail}></Route> */}
+        {/* <Route path="/seat_map" component={SeatMap}></Route> */}
         {/*============Events Start=============*/}
 
 
         {/*============Ecommerce=============*/}
-        <Route path="/market_ecommerceMarket" component={EcommerceMarket}></Route>
-        <Route path="/detail_ecommercedetail" component={EcomDetail}></Route>
-        <Route path="/products_GridStyle" component={GridProducts}></Route>
-        <Route path="/products_DetailStyle/:value" component={EproductDetails}></Route>
+        {/* <Route path="/market_ecommerceMarket" component={EcommerceMarket}></Route> */}
+        {/* <Route path="/detail_ecommercedetail" component={EcomDetail}></Route> */}
+        {/* <Route path="/products_GridStyle" component={GridProducts}></Route> */}
+        {/* <Route path="/Forms_addproduct" component={AddProduct}></Route> */}
+        {/* <Route path="/checkOutProduct" component={CheckOutPage}></Route> */}
+        {/* <Route path="/oderList/:value" component={OrderList}></Route> */}
         <Route path="/Forms_Ecommerce" component={EcomForms}></Route>
-        <Route path="/Forms_addproduct" component={AddProduct}></Route>
-        <Route path="/checkOutProduct" component={CheckOutPage}></Route>
+        <Route path="/products_DetailStyle/:value" component={EproductDetails}></Route>
         <Route path="/shopForm" component={ShopForm}></Route>
         <Route path="/EcommerceProfile/:value" component={EcomProile}></Route>
-        <Route path="/oderList/:value" component={OrderList}></Route>
 
 
         {/*============Ecommerce=============*/}
 
 
         {/*=============Entertainment====================*/}
-        <Route path="/entertainment_Home" component={EntertainmentHome}></Route>
-        <Route path="/entertainment_Category/:value" component={EntCategory}></Route>
+        {/* <Route path="/entertainment_Home" component={EntertainmentHome}></Route> */}
+        {/* <Route path="/entertainment_Category/:value" component={EntCategory}></Route>
         <Route path="/explore_entertainment_category/:value" component={ECategory}></Route>
+        <Route path="/entertainment_music" component={EntMusic}></Route>not opening */}
+        {/* <Route path="/music_detail" component={MusicBrowse}></Route>not opening */}
         
-        <Route path="/entertainment_music" component={EntMusic}></Route>{/*not opening*/}
         <Route path="/entertainment_detail/:value" component={VideoBox}></Route>
-        <Route path="/music_detail" component={MusicBrowse}></Route>{/*not opening*/}
         <Route path="/UploadVideo" component={UploadVideo}></Route>
         {/*===============Entertainement end===============================*/}
 
 
 
         <Route path="/profile_user/:value" component={ProfileUser}></Route>
-        <Route path="/profile_userDetail" component={ProfileUser}></Route>
+        {/* <Route path="/profile_userDetail" component={ProfileUser}></Route> */}
 
 
-        <Route path="/user_profile" component={ProfileMain}></Route>{/*not opening*/}
+        {/* <Route path="/user_profile" component={ProfileMain}></Route>not opening */}
 
-        <Route path="/detail_blog" component={DetailBlog}></Route>
+        {/* <Route path="/detail_blog" component={DetailBlog}></Route> */}
         <Route path="/privacypolicy" component={Privacy}></Route>
         <Route path="/termofservice" component={TermOfServices}></Route> 
 

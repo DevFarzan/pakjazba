@@ -1,31 +1,15 @@
 import React, { Component } from 'react';
-import axios from "axios/index";
-import { Carousel, Rate, notification, Icon, Spin, Cascader } from 'antd';
+import { Rate, notification, Icon, Spin } from 'antd';
 import "./roomrenting2content.css";
 import "./roomrenting3content.css";
 import moment from 'moment'
 import { Redirect } from 'react-router';
 import Gallery from './gallery';
 import { HttpUtils } from "../../Services/HttpUtils";
-import { DatePicker } from 'antd';
 import AsyncStorage from "@callstack/async-storage/lib/index";
-import RoomRenting3ContentArea2 from './roomRenting3ContentArea2';
-import RoomRenting3ContentArea3 from './roomRenting3ContentArea2';
 import { Tabs } from 'antd';
 
-const { MonthPicker, RangePicker } = DatePicker;
-const dateFormat = 'YYYY-MM-DD';
-const monthFormat = 'YYYY/MM';
-const options = [{
-  value: '2 guests',
-  label: '2 guests',
-},
-{
-  value: '3 guests',
-  label: '3 guests',
 
-}
-];
 
 class Roomrenting3contentarea extends Component {
   constructor(props) {
@@ -204,7 +188,7 @@ class Roomrenting3contentarea extends Component {
                 key="1"
               >
 
-                <div style={{ backgroundColor: '#f7f5ed' }}>{/* style={{width:"70%"}} */}
+                <div style={{ backgroundColor: '#f7f5ed' }}>
                   <div className="row">
                     <div className="col-md-1"></div>
                     <div className="col-md-5">
@@ -221,7 +205,6 @@ class Roomrenting3contentarea extends Component {
                           <Icon type="unordered-list" />
                           <h5 className="headingMainRoom">
                             Info
-                            {/* {data.postingtitle || data.postingTitle} Available in {data.propertylocation || data.propertyLocation} */}
                           </h5>
                         </div><br />
 
@@ -296,24 +279,8 @@ class Roomrenting3contentarea extends Component {
                                 <span className="glyphicon glyphicon-globe" style={{ marginRight: "15px", color: "#236A4B" }}></span>
                                 <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{email}</span>
                               </h5>
-                              {/* <h5 style={{ marginTop: '10px', marginBottom: '7px' }}>
-                                <span className="glyphicon glyphicon-phone"
-                                  style={{ marginRight: "15px", color: "#36a89f" }}></span>
-                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.businessnumber || data.businessNumber}</span>
-                              </h5>
-                              <h5 style={{ marginBottom: '7px' }}>
-                                <span className="glyphicon glyphicon-globe"
-                                  style={{ marginRight: "15px", color: "#36a89f" }}></span>
-                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.businessemailid || data.businessEmail}</span>
-                              </h5>
-                              <h5 style={{ marginBottom: '7px' }}>
-                                <span className="glyphicon glyphicon-home"
-                                  style={{ marginRight: "15px", color: "#36a89f" }}></span>
-                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.address || data.businessAddress}, {data.city || data.businessCity}. {data.state || data.businessState}</span>
-                              </h5> */}
                             </div>
                           </div>
-
                         </div>
                       </div>
                       <div className="row RoomMainDivS" style={{ padding: "0px" }}>
@@ -349,11 +316,9 @@ class Roomrenting3contentarea extends Component {
                                     <div className="col-md-4 col-sm-4 col-xs-12" style={{ paddingTop: "7px" }}>
                                       <a name="linkReview"><p className="star-space1">Writen On {elem.written} </p></a>
                                     </div>
-
                                     <div className="col-md-12 col-sm-12 col-xs-12">
                                       <p style={{ margin: '0' }}>{elem.message}.</p>
                                     </div>
-
                                   </div>
                                   <hr />
                                 </div>
@@ -570,9 +535,9 @@ class Roomrenting3contentarea extends Component {
                     </div>
                   </div>
                   <div className="col-md-5">
-                    <div className="col-md-12" style={{ padding: '0%' }}>{/*container style={{width:"68%"}} width:'70' */}
+                    <div className="col-md-12" style={{ padding: '0%' }}>
                       <div className="row" style={{ padding: '0%' }}>
-                        <div className=" RoomMainDivS">{/*card outset  style={{ boxShadow: "none", background:"whitesmoke"}}*/}
+                        <div className=" RoomMainDivS">
                           <div className="card-body space">
                             <div className="row">
                               <div className="col-md-12 col-sm-12 col-xs-12">
@@ -584,7 +549,7 @@ class Roomrenting3contentarea extends Component {
                                 {/*Section: Contact v.2*/}
                                 <section className="section">
                                   <h4>Your Rating:
-                                                        <Rate onChange={this.handleChange.bind(this)} allowHalf value={this.state.star} />
+                                    <Rate onChange={this.handleChange.bind(this)} allowHalf value={this.state.star} />
                                   </h4>
                                 </section>
                                 {/*Section: Contact v.2*/}

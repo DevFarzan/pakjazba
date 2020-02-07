@@ -1,35 +1,8 @@
 import React, { Component } from 'react';
-import Burgermenu from '../header/burgermenu';
-import BuyFourthFold from './buyforthfold';
 import './filterBuySell.css';
 import { Input, Cascader, Checkbox, Row, Col, Button } from 'antd';
 import stateCities from "../../lib/countrycitystatejson";
 
-const Search = Input.Search;
-
-const options = [{
-  value: 'zhejiang',
-  label: 'Zhejiang',
-  children: [{
-    value: 'hangzhou',
-    label: 'Hangzhou',
-    children: [{
-      value: 'xihu',
-      label: 'West Lake',
-    }],
-  }],
-}, {
-  value: 'jiangsu',
-  label: 'Jiangsu',
-  children: [{
-    value: 'nanjing',
-    label: 'Nanjing',
-    children: [{
-      value: 'zhonghuamen',
-      label: 'Zhong Hua Men',
-    }],
-  }],
-}];
 
 function onChange(value) {
   console.log(value);
@@ -235,53 +208,12 @@ class FilterBuySell extends Component {
                         </Col>
                       </Row>
                     </div>
-                    {/* <Slider range min={0} max={1000} step={1} tipFormatter={this.formatter} defaultValue={[0, 1000]} onChange={this.onChangeSlider.bind(this)} />
-                                                    <p>Value: <span id="demo">{'$' + to + ' ' + 'to $' + from}</span></p> */}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* <div>
-          <div className="container" style={{ width: "100%" }}>
-            <div className="filterbox">
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="row">
-                    <div class="col-xs-1"></div>
-                    <div class="col-xs-10">
-                      <span>Price</span>
-                      <div size="large" style={{ marginLeft: '10px' }}>
-                        <Row gutter={8}>
-                          <Col span={8}>
-                            <Input
-                              placeholder="Min"
-                              onChange={this.onChangeMin}
-                              type="Number"
-                            />
-                          </Col>
-                          <Col span={8}>
-                            <Input
-                              onChange={this.onChangeMax}
-                              placeholder="Max"
-                              type="Number"
-                            />
-                          </Col>
-                          <Col>
-                            <Button type="primary" icon="caret-right"
-                            />
-                          </Col>
-                        </Row>
-                      </div>
-                    </div>
-                    <div class="col-xs-1"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div > */}
       </div>
     )
   }

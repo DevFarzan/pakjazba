@@ -1,151 +1,18 @@
 import React, { Component } from 'react';
 import './buyforthfold.css';
-import { HttpUtils } from "../../Services/HttpUtils";
-import { Pagination, Spin, Icon, Modal } from 'antd';
 import { connect } from 'react-redux';
-import AsyncStorage from "@callstack/async-storage/lib/index";
 import { Redirect } from 'react-router';
-import { Link } from "react-router-dom";
 
 class Forthfold extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // current: 1,
-            // buySell: [],
-            // showBuySell: [],
-            // filteredArr: [],
-            // searchValue: '',
-            // loader: true,
-            // add: 5,
-            // user: false,
-            // visible: false
             objData: {},
             detailPage: false,
             goProfile: false
         }
     }
 
-    // componentDidMount(){
-    //     this.getAllBusiness()
-    // }
-
-    // componentDidUpdate(prevProps, prevState){
-    //     const { buySell } = this.state;
-    //     const { text } = this.props;
-    //     if(prevProps.text !== text){
-    //         if(!!text){
-    //             this.searchedArr(text)
-    //         }else {
-    //             this.setState({
-    //                 showBuySell: buySell.slice(0, 7),
-    //                 filteredArr: [],
-    //                 add: 7
-    //             })
-    //         }
-    //     }
-    // }
-
-    // searchedArr(text){
-    //     const { buySell } = this.state;
-    //     let filteredArr = buySell.filter((elem) => {
-    //         return (elem.category && elem.category.toLowerCase().includes(text.toLowerCase())) ||
-    //             (elem.subcategory && elem.subcategory.toLowerCase().includes(text.toLowerCase()))
-    //     })
-    //     this.setState({
-    //         filteredArr,
-    //         showBuySell: filteredArr.slice(0, 7),
-    //         add: 7
-    //     })
-    // }
-
-    // async getAllBusiness(){
-    //     let res = await HttpUtils.get('marketplace')
-    //     this.setState({
-    //         buySell: res.busell ? res.busell : [],
-    //         showBuySell: res.busell ? res.busell.slice(0, 7) : [],
-    //         loader: false
-    //     })
-    //     this.handleLocalStorage();
-    // }
-
-    // handleLocalStorage = () =>{
-    //     AsyncStorage.getItem('user')
-    //         .then((obj) => {
-    //             let userObj = JSON.parse(obj)
-    //             if(!!userObj){
-    //                 this.setState({
-    //                     user: true,
-    //                 })
-    //             }
-    //             else {
-    //                 this.setState({
-    //                     user: false
-    //                 })
-    //             }
-    //         })
-    // }
-
-    // funcIndexes(page){
-    //     let to = 6 * page;
-    //     let from = to - 6;
-    //     return {from: page === 1 ? 0 : from, to: page === 1 ? 6 : to}
-    // }
-
-    // onChange = (page) => {
-    //     const { buySell, filteredArr } = this.state;
-    //     let indexes = this.funcIndexes(page)
-    //     if(!!filteredArr.length){
-    //         this.setState({
-    //             current: page,
-    //             showBuySell: filteredArr.slice(indexes.from, indexes.to)
-    //         });
-    //     }else {
-
-    //         this.setState({
-    //             current: page,
-    //             showBuySell: buySell.slice(indexes.from, indexes.to)
-    //         });
-    //     }
-    // }
-
-    // onAddMore = () => {
-    //     const { add, buySell, filteredArr } = this.state;
-    //     if(!!filteredArr.length){
-    //         this.setState({
-    //             showBuySell: filteredArr.slice(0, add + 7),
-    //             add: add + 7
-    //         });
-    //     }else {
-
-    //         this.setState({
-    //             showBuySell: buySell.slice(0, add + 7),
-    //             add: add + 7
-    //         });
-    //     }
-    //     if(this.props.text.length){
-    //         let inputValue = '';
-    //         const { dispatch } = this.props;
-    //         dispatch({type: 'SEARCHON', inputValue})
-    //     }
-    // }
-
-    // clickItem(){
-    //     const { user } = this.state;
-    //     if(user){
-    //         this.setState({goDetail: true})
-    //     }else {
-    //         this.setState({visible: true})
-    //     }
-    // }
-
-    // handleCancel = (e) => {
-    //     this.setState({visible: false});
-    // }
-
-    // handleLogin = (e) => {
-    //     this.setState({goForLogin: true, visible: false})
-    // }
 
     goToProfile(val, data) {
         if (val === 1) {
@@ -158,13 +25,9 @@ class Forthfold extends Component {
     render() {
         const { showBuySell, filteredData, notFoundFilterData, showRecord, categoroyOfRoom, stateOfRoom, cityOfRoom, conditionOfRoom,
             removeValue, showAllRooms } = this.props;
-        const { goDetail, detailPage, goProfile, objData } = this.state;
+        const { detailPage, goProfile, objData } = this.state;
 
-        // const { text } = this.props;
-        // }
-        // if(goDetail){
-        //     return <Redirect to={{pathname: `/postad_buysell`}} />
-        // }
+       
         if (detailPage) {
             return <Redirect to={{ pathname: `/detail_buySell`, state: objData }} />
         }

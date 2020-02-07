@@ -5,12 +5,10 @@ import { connect } from 'react-redux'
 class ClassifiedIcons extends Component {
   constructor(props) {
     super(props);
-    // this.clickItem = this.clickItem.bind(this);
   }
 
   clickItem(item) {
     this.props.mainCategoryFilter(item);
-    console.log("TCL: ClassifiedIcons -> clickItem -> item", item)
   }
 
   render() {

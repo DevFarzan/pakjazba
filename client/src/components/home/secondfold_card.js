@@ -120,7 +120,7 @@ class SecondfoldCard extends Component {
                                                 </div>
                                             </div> */}
                                             <div className="cardsecond_fold">
-                                                    <img src="./images/homepage/comingsoon.jpg" />
+                                                    <img src="./images/homepage/comingsoond.jpg" />
                                             </div>
                                         </div>
                                     </div>

@@ -56,6 +56,8 @@ import EcomProile from './components/ecommerce/EcommerceProfile/ecommerceProfile
 import OrderList from './components/ecommerce/shops/orderList';
 import AddListing from './components/header/addAlisting';
 import Explore from './components/Explore/explore';
+import AboutUs from './components/About us/aboutUs';
+import ContactUs from './components/Contact us/contactUs';
 
 //css
 import './app.css';
@@ -183,7 +185,8 @@ ReactDOM.render(
         {/* <Route path="/detail_blog" component={DetailBlog}></Route> */}
         <Route path="/privacypolicy" component={Privacy}></Route>
         <Route path="/termofservice" component={TermOfServices}></Route> 
-
+        <Route path="/aboutus" component={AboutUs}></Route>
+        <Route path="/contactus" component={ContactUs}></Route> 
 
         {/*<Route path="/detail_roomRent" component={DetailRoommates}></Route>
 					<Route path="/market_business" component={MarketBusiness}></Route>

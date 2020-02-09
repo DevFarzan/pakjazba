@@ -145,14 +145,11 @@
     color: rgba(0, 0, 0, 0.65);
     background-color: #fff;
     background-image: none;
-    /* border: 1px solid #d9d9d9; */
+    border: 1px solid #ccc7c7;
     border-radius: 4px;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
-    border-top: 0 !important;
-    border-left: 0 !important;
-    border-right: 0 !important;
 }
 
 .insidebutton{

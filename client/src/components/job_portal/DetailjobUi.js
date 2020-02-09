@@ -82,7 +82,7 @@ class JobDetailpage extends Component {
                                                 </a>
                                         <h5 style={{ marginTop: '10px', marginBottom: '7px' }}>
                                             <span className="glyphicon glyphicon-phone" style={{ marginRight: "15px", color: "#236A4B" }}></span>
-                                            <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.contactnumber}03232323232</span>
+                                            <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.contactnumber}</span>
                                         </h5>
                                         <h5 style={{ marginBottom: '7px' }}>
                                             <span className="glyphicon glyphicon-globe" style={{ marginRight: "15px", color: "#236A4B" }}></span>
@@ -101,7 +101,7 @@ class JobDetailpage extends Component {
                                     </div>
                                     <div className="col-xs-12 col-md-9 col-lg-9 col-xl-9 col-sm-7">
                                         <span className="glyphicon glyphicon-globe" style={{ marginRight: "15px", color: "#236A4B" }}></span>
-                                        <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>danyal@krlceratiea.com</span>
+                                        <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.compEmail}</span>
                                     </div>
                                 </div>
                             </div>

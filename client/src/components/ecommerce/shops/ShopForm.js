@@ -1028,7 +1028,7 @@ class ShopForm extends Component {
                                                             // {...formItemLayout}
                                                             // label="Contact Number"
 
-                                                            style={{ padding: '2%' }}
+                                                            // style={{ padding: '2%' }}
                                                         >
                                                             {getFieldDecorator('contactNumber', {
                                                                 initialValue: this.state.dataNumber,
@@ -1047,7 +1047,7 @@ class ShopForm extends Component {
                                                             // {...formItemLayout}
                                                             // label="Contact Email"
 
-                                                            style={{ padding: '2%' }}
+                                                            // style={{ padding: '2%' }}
                                                         >
                                                             {getFieldDecorator('contactEmail', {
                                                                 initialValue: this.state.dataEmail,

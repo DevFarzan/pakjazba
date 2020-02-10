@@ -1,28 +1,16 @@
 import React, { Component } from 'react';
 import {
-    Form,
-    Input,
     Icon,
-    Cascader,
-    Spin,
-    notification,
-    Upload,
     Modal,
-    TimePicker,
     Tabs
 } from 'antd';
 import Imggg from '../job_portal/ilusss-1.png';
-import Burgermenu from '../header/burgermenu';
 import Headermenu from '../header/headermenu';
-import Slider from '../header/Slider';
 import Footer from '../footer/footer';
 import JobDetailpage from './DetailjobUi';
-import JobDetailTabIcons from '../job_portal/JobDetailTabIcons';
-import JobSecondrow from './secondRow';
 import Thirdrow from './Thirdrow';
 import { Redirect } from 'react-router';
 import './jobDetail.css';
-import AsyncStorage from "@callstack/async-storage";
 import { connect } from "react-redux";
 
 

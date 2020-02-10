@@ -2295,6 +2295,9 @@ app.post('/api/postshop', (req, res) => {
       bankName: shopData.bankName,
       ibank: shopData.ibank,
       swift: shopData.swift,
+      contactEmail:shopData.contactEmail,
+      contactNumber:shopData.contactNumber,
+
     })
     postShopData.save(function (err, data) {
       if (err) {

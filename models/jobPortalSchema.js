@@ -5,6 +5,7 @@ var JobSchema = new mongoose.Schema({
     profileId: { type: String },
     compDescription: { type: String },
     compEmail: { type: String },
+    contactnumber: { type: String },
     compName: { type: String },
     email: { type: String },
     experience: { type: String },

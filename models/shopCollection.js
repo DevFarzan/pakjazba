@@ -17,11 +17,13 @@ var shopCollection = new mongoose.Schema({
     shopPurpose: { type: String },
     shopLogo: { type: Array },
     percantageOfShop: { type: Number },
-    accountTitle:{type: String},
-    bankAddress:{type: String},
-    bankName:{type: String},
-    ibank:{type: String},
-    swift:{type: String},
+    accountTitle: { type: String },
+    bankAddress: { type: String },
+    bankName: { type: String },
+    ibank: { type: String },
+    swift: { type: String },
+    contactNumber: { type: String },
+    contactEmail: { type: String }
 
 });
 //categorySchema.plugin(uniqueValidator);

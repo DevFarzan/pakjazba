@@ -15,7 +15,6 @@ import {
 import moment from 'moment';
 import { Redirect } from 'react-router';
 import AsyncStorage from "@callstack/async-storage/lib/index";
-import Burgermenu from '../header/burgermenu';
 import HeaderMenu from '../header/headermenu';
 import Footer from '../footer/footer';
 import sha1 from "sha1";
@@ -395,17 +394,7 @@ class EventPortal extends Component {
         }
     };
 
-    // validateNumber(rule, value, callback){
-    //     if(isNaN(value)){
-    //         callback('Please type Numbers');
-    //     }else if(rule.field === 'earlyBirdPrice' || rule.field === 'normalTicketPrice'){
-    //         if(value < 5){
-    //             callback('put atleast $5')
-    //         }else {
-    //             callback()
-    //         }
-    //     }
-    // }
+   
 
     onChangeValue(e) {
         if (e.target.id === 'faceBook') {

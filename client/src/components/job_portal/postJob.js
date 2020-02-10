@@ -118,6 +118,7 @@ class JobPortal extends Component {
             objData: {},
             states: [],
             cities: [],
+            contactnumber: ''
         }
     }
 
@@ -134,6 +135,7 @@ class JobPortal extends Component {
                 Tagline: data.Tagline,
                 compDescription: data.compDescription,
                 compEmail: data.compEmail,
+                contactnumber: data.contactnumber,
                 email: data.email,
                 experience: data.experience,
                 jobCat: data.jobCat,
@@ -247,6 +249,7 @@ class JobPortal extends Component {
             user_id: userId,
             profileId: profileId,
             compDescription: values.compDescription,
+            contactnumber: values.contactnumber,
             compEmail: values.compEmail,
             compName: values.compName,
             email: values.email,
@@ -356,7 +359,7 @@ class JobPortal extends Component {
     }
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { states, cities, email, jobTitle, jobType, jobCat, salary, compDescription, jobDescription, experience, compEmail, location, previewVisible, previewImage, fileList, objData } = this.state;
+        const { states, cities, email, jobTitle, jobType, jobCat, salary, compDescription, jobDescription, experience, compEmail, location, previewVisible, previewImage, fileList, objData, contactnumber } = this.state;
 
         console.log(cities, 'cities')
         if (this.state.msg === true) {
@@ -647,23 +650,6 @@ class JobPortal extends Component {
                                                         </FormItem>
                                                     </div>
                                                 </div>
-                                                {/* <div className="col-md-6">
-                                                    <div className="form-group">
-                                                        <label htmlFor="sel1">Contact No.</label>
-                                                        <FormItem style={{ padding: '2%' }}>
-                                                            {getFieldDecorator('contNumber', {
-                                                                initialValue: contNumber,
-                                                                rules: [{
-                                                                    required: true,
-                                                                    message: 'Please input your Company Email!',
-                                                                    whitespace: true
-                                                                }],
-                                                            })(
-                                                                <input type="text" className="form-control" />
-                                                            )}
-                                                        </FormItem>
-                                                    </div>
-                                                </div> */}
                                             </div>
                                         </section>
                                     </div>
@@ -785,7 +771,7 @@ class JobPortal extends Component {
                                                         // style={{ padding: '2%' }}
                                                         >
                                                             {getFieldDecorator('contactnumber', {
-                                                                // initialValue: this.state.dataBnumber,
+                                                                initialValue: contactnumber,
                                                                 rules: [{ required: true, message: 'Please input your Number!', whitespace: true },
                                                                 { validator: this.validateNumber.bind(this) }]
                                                             })(

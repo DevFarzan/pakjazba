@@ -874,19 +874,19 @@ class ProfileUser extends Component {
                                                                                             </td>
                                                                                         </tr>
                                                                                     </table>
-                                                                                    <a onClick={this.editBusiness.bind(this, elem)}>
-                                                                                        <i className="glyphicon glyphicon-edit"
-                                                                                            style={{ padding: "16px", marginTop: "8px", color: "gray" }}>
-                                                                                            <span style={{ margin: "7px" }}>
-                                                                                                Edit</span>
-                                                                                        </i></a>
-                                                                                    <i className="glyphicon glyphicon-trash"
-                                                                                        style={{
-                                                                                            padding: "16px", marginTop: "8px", float: "right",
-                                                                                            color: "gray"
-                                                                                        }}><span style={{ margin: "7px" }}>
-                                                                                            Remove</span></i>
                                                                                 </Link>
+                                                                                <a onClick={this.editBusiness.bind(this, elem)}>
+                                                                                    <i className="glyphicon glyphicon-edit"
+                                                                                        style={{ padding: "16px", marginTop: "8px", color: "gray" }}>
+                                                                                        <span style={{ margin: "7px" }}>
+                                                                                            Edit</span>
+                                                                                    </i></a>
+                                                                                <i className="glyphicon glyphicon-trash"
+                                                                                    style={{
+                                                                                        padding: "16px", marginTop: "8px", float: "right",
+                                                                                        color: "gray"
+                                                                                    }}><span style={{ margin: "7px" }}>
+                                                                                        Remove</span></i>
                                                                             </div>
                                                                         </div>
 

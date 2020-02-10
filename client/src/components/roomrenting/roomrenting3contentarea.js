@@ -122,12 +122,13 @@ class Roomrenting3contentarea extends Component {
     });
   };
 
-  goToProfile = (reviewUserId, reviewProfileId) => {
-    this.setState({ goProfile: true, reviewUserId, reviewProfileId })
-  }
-
+  
   handleChange(value) {
     this.setState({ star: value })
+  }
+  
+  goToProfile = (reviewUserId, reviewProfileId) => {
+    this.setState({ goProfile: true, reviewUserId, reviewProfileId })
   }
 
   render() {
@@ -136,15 +137,17 @@ class Roomrenting3contentarea extends Component {
       { goProfile, reviews, item, reviewUserId, reviewProfileId } = this.state,
       antIcon = <Icon type="loading" style={{ fontSize: 24, marginRight: '10px' }} spin />;
     let from = data.startdate || data.dateRange && data.dateRange.from,
-      to = data.enddate || data.dateRange && data.dateRange.to,
+      to = data.enddate || data.dateRange && data.d3ateRange.to,
       petFriendly = data.petfriendly || data.petFriendly,
       accommodates = data.accomodates || data.accommodates,
       images = data.imageurl || data.arr_url,
       AIncludes = data.amenitiesinclude || data.amenities,
       email = data.contactMode && data.contactMode.includes('email') ? data.contactEmail : '*****@gmail.com',
       phone = data.contactMode && data.contactMode.includes('phone') ? data.contactNumber : '***********';
+
     if (goProfile) {
-      return <Redirect to={{ pathname: `/profile_userDetail/${data.profileId}`, state: { userId: reviewUserId, profileId: reviewProfileId } }} />
+      return <Redirect to={{ pathname: `/profile_user/${data.profileId}`, 
+                    state: { userId: reviewUserId, profileId: reviewProfileId } }} />
     }
 
     if (data.modeofcontact && data.modeofcontact.includes('email')) {

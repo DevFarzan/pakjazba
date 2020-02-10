@@ -147,7 +147,24 @@ img {
 }
 
 
-
+.contctCard{
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 25px;
+  -webkit-transition: box-shadow .25s ease-in-out;
+  transition: box-shadow .25s ease-in-out;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
+  border-radius: 3px;
+}
+.contctCardInner{
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 25px;
+  -webkit-transition: box-shadow .25s ease-in-out;
+  transition: box-shadow .25s ease-in-out;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
+  border-radius: 3px;
+}
 
 
 .new-card{

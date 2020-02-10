@@ -66,7 +66,6 @@ class EproductDetail extends Component {
         shopLogo: reqShopData.content[0].shopLogo[0]
       })
     }
-
     else {
       let obj = {
         productId: this.props.location.pathname.slice(22)

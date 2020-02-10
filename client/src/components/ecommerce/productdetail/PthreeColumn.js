@@ -94,8 +94,44 @@ class PthreeColumn extends Component {
                   <div class="tab-pane active" id="pic-1"><img src={this.state.imgUrl} /></div>
                 </div>
                 <ul class="preview-thumbnail nav nav-tabs">
-                  {this.state.images.map(img => <li onClick={() => this.renderImagesinLi(img)}><a ><img src={img} /></a></li>)}
+                  {this.state.images.map(img =>
+                    <li onClick={() => this.renderImagesinLi(img)}>
+                      <a ><img src={img} /></a>
+                    </li>)
+                  }
                 </ul>
+              </div>
+              <br />
+              <div className="">
+                <div className="produc-description">
+                  <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 contctCardInner" style={{ marginTop: '15px' }}>
+                    <span style={{ display: 'inline-flex' }}>
+                      <Icon type="unordered-list" style={{ marginRight: "5px" }} />
+                      <h5 style={{ fontWeight: '600' }}>Contact Details</h5>
+                    </span>
+                    <div className="row" style={{ padding: "0" }}>
+                      <div className="col-xs-3 col-md-3 col-sm-5">
+                        <div className="profile_img">
+                          <img onClick={() => { this.goToProfile() }} src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="" alt="" style={{ width: '100%', cursor: 'pointer', marginBottom: "8px" }} />
+                        </div>
+                      </div>
+                      <div className="col-xs-9 col-md-9 col-sm-7 margMObileBuysell">
+                        <span style={{ fontWeight: 'bold' }}>{data.shopName}</span><br />
+                        <a onClick={() => { this.goToProfile() }} style={{ fontSize: '13px', cursor: 'pointer', color: 'rgb(55, 169, 155)' }}>
+                          View Profile
+                          </a>
+                        <h5 style={{ marginTop: '10px', marginBottom: '7px' }}>
+                          <span className="glyphicon glyphicon-phone" style={{ marginRight: "15px", color: "#236A4B" }}></span>
+                          <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.contactNumber}</span>
+                        </h5>
+                        <h5 style={{ marginBottom: '7px' }}>
+                          <span className="glyphicon glyphicon-globe" style={{ marginRight: "15px", color: "#236A4B" }}></span>
+                          <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.contactEmail}</span>
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="col-md-6">
@@ -188,44 +224,6 @@ class PthreeColumn extends Component {
                   </div>
                 </div>
               </div>
-              {/* <div class="col-md-6">
-                <div className="new-card">
-                  <div className="produc-description">
-                    <span style={{ display: 'inline-flex' }}>
-                      <Icon type="unordered-list" style={{ marginRight: "5px" }} />
-                      <h5>Contact Details</h5>
-                    </span>
-                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ marginTop: '15px' }}>
-                      <div className="row" style={{ padding: "0" }}>
-                        <div className="col-xs-3 col-md-3 col-sm-5">
-                          <div className="profile_img">
-                            <img onClick={() => { this.goToProfile() }} src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="" alt="" style={{ width: '100%', cursor: 'pointer', marginBottom: "8px" }} />
-                          </div>
-                        </div>
-                        <div className="col-xs-9 col-md-9 col-sm-7 margMObileBuysell">
-                          <span style={{ fontWeight: 'bold' }}>{data.seller}</span><br />
-                          <a onClick={() => { this.goToProfile() }} style={{ fontSize: '13px', cursor: 'pointer', color: 'rgb(55, 169, 155)' }}>
-                            View Profile
-                          </a>
-                          <h5 style={{ marginTop: '10px', marginBottom: '7px' }}>
-                            <span className="glyphicon glyphicon-phone" style={{ marginRight: "15px", color: "#236A4B" }}></span>
-                            <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.contactnumber}</span>
-                          </h5>
-                          <h5 style={{ marginBottom: '7px' }}>
-                            <span className="glyphicon glyphicon-globe" style={{ marginRight: "15px", color: "#236A4B" }}></span>
-                            <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.contactemail}</span>
-                          </h5>
-                          <h5>
-                            <span className="glyphicon glyphicon-home"
-                              style={{ marginRight: "15px", color: "#36a89f" }}></span>
-                            <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.address}, {data.city}. {data.state}</span>
-                          </h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
             </div>
 
             <div className="row" style={{ marginTop: "20px" }}>

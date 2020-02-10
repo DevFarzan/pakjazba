@@ -1031,7 +1031,6 @@ class ShopForm extends Component {
                                                             // style={{ padding: '2%' }}
                                                         >
                                                             {getFieldDecorator('contactNumber', {
-                                                                initialValue: this.state.dataNumber,
                                                                 rules: [{ required: true, message: 'Please input your Contact Number!', whitespace: true },
                                                                 { validator: this.validateNumber.bind(this) }],
                                                             })(
@@ -1050,7 +1049,6 @@ class ShopForm extends Component {
                                                             // style={{ padding: '2%' }}
                                                         >
                                                             {getFieldDecorator('contactEmail', {
-                                                                initialValue: this.state.dataEmail,
                                                                 rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true },
                                                                 {
                                                                     required: true,

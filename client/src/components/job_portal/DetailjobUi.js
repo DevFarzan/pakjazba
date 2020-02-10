@@ -6,7 +6,6 @@ import {
 import { Redirect } from 'react-router';
 import CategoryImg from './catogoryicon.PNG';
 import SimpleIcon from './simpleicon.PNG';
-import JobdetailIconPanel from './JobDetailTabIcons';
 import './DetailjobUi.css';
 
 class JobDetailpage extends Component {
@@ -17,7 +16,7 @@ class JobDetailpage extends Component {
             goProfile: false,
         }
     }
-    goToProfile() {
+    goToProfile = () => {
         this.setState({ goProfile: true })
     }
     // componentWillUpdate() {
@@ -30,12 +29,14 @@ class JobDetailpage extends Component {
     // }
 
     render() {
-        if (this.state.goProfile === true) {
-            return <Redirect to={{ pathname: `/profile_user/${data.user_id}` }} />
-        }
         const { data } = this.props;
+        console.log(this.state.goProfile, 'this.state.goProfile ')
+        console.log(data, 'data ')
+
+        if (this.state.goProfile === true) {
+            return <Redirect to={{ pathname: `/profile_user/${data.profileId}` }} />
+        }
         const { TabPane } = Tabs;
-        console.log("TCL: JobDetailpage -> render -> data", data);
         return (
             <div style={{ backgroundColor: '#f7f5ed' }}>
                 <div className="row" style={{ paddingBottom: '0px' }}>
@@ -72,7 +73,7 @@ class JobDetailpage extends Component {
                                 <div className="row" style={{ padding: "0" }}>
                                     <div className="col-xs-3 col-md-3 col-sm-5">
                                         <div className="profile_img">
-                                            <img onClick={() => { this.goToProfile() }} src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="" alt="" style={{ width: '100%', cursor: 'pointer', marginBottom: "8px" }} />
+                                            <img onClick={() => { this.goToProfile }} src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="" alt="" style={{ width: '100%', cursor: 'pointer', marginBottom: "8px" }} />
                                         </div>
                                     </div>
                                     <div className="col-xs-9 col-md-9 col-sm-7 margMObileBuysell">

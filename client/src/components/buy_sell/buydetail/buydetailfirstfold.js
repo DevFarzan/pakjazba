@@ -15,28 +15,31 @@ class Buydetailfirstfold extends Component {
     }
     componentDidMount() {
         window.scrollTo(0, 0);
-        // let data = this.props.data;
-        // if (data === undefined) {
-        //     this.setState({
-        //     })
-        //   } else {
-        //     this.setState({
-        //         images: data.images,
-        //         imgPath: data.images[0]
-        //     })
-        //   }
-      }
-    goToProfile() {
-        this.setState({ goProfile: true })
+        let data = this.props.data;
+        if(data){
+            this.setState({
+                images: data.images,
+                imgPath: data.images
+            })
+        }
     }
     renderImagesPathinLi = (img) => {
         this.setState({
-          imgPath: img
+            imgPath: img
         })
-      }
+    }
+    // renderImagesinLi = (img) => {
+    //     this.setState({
+    //       imgUrl: img
+    //     })
+    //   }
+    goToProfile() {
+        this.setState({ goProfile: true })
+    }
     render() {
         let data = this.props.data;
-        let images = data.images || data.arr_url;
+        // const { images } = this.state;
+        // let images = data.images || data.arr_url;
         // console.log(data.sizedimension && data.sizedimension[0], 'data')
         if (this.state.goProfile) {
             return <Redirect to={{ pathname: `/profile_user/${data.profileid}`, state: { userId: data.userid, profileId: data.profileid } }} />
@@ -79,20 +82,25 @@ class Buydetailfirstfold extends Component {
                             <div className="row RoomMainDivS" style={{ height: "auto", margin: '0px 0px 20px 0px' }}>
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <div className="preview">
-                                        {/* <div class="preview-pic tab-content">
+                                        <div class="preview-pic tab-content">
                                             <div class="tab-pane active" id="pic-1"><img src={this.state.imgPath} /></div>
                                         </div>
                                         <ul class="preview-thumbnail nav nav-tabs">
-                                            {this.state.images.map(img => 
+                                            {/* {this.state.images.map(img =>
                                                 <li onClick={() => this.renderImagesPathinLi(img)}>
                                                     <a >
                                                         <img src={img} />
                                                     </a>
                                                 </li>
-                                            )}
-                                        </ul> */}
+                                            )} */}
+                                            {/* {this.state.images.map(img =>
+                                                <li onClick={() => this.renderImagesinLi(img)}>
+                                                    <a ><img src={img} /></a>
+                                                </li>)
+                                            } */}
+                                        </ul>
                                     </div>
-                                    {data.images && <Carousel>
+                                    {/* {data.images && <Carousel>
                                         {data.images.map((elem, key) => {
                                             return (
                                                 <div key={key}>
@@ -100,7 +108,7 @@ class Buydetailfirstfold extends Component {
                                                 </div>
                                             )
                                         })}
-                                    </Carousel>}
+                                    </Carousel>} */}
                                 </div>
                             </div>
                             <div className="row RoomMainDivS" style={{ paddingBottom: '0px', margin: '0px 0px 20px 0px' }}>

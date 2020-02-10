@@ -40,6 +40,7 @@ class JobDetail extends Component {
 
     componentDidMount() {
         let data = this.props.location.state || this.props.otherData;
+        console.log(data , 'data in com job detail main ')
         if (data === undefined) {
             this.setState({
                 isData: false
@@ -73,6 +74,7 @@ class JobDetail extends Component {
 
     render() {
         const { data, isData, user, goForLogin } = this.state;
+        console.log(data , 'data in render main detail')
         const { TabPane } = Tabs;
         if (!isData) {
             return <Redirect to='/' />

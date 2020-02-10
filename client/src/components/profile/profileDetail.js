@@ -67,7 +67,6 @@ class ProfileDetail extends Component {
                                 <a href={twitterlink} target="_blank" className="fa fa-twitter"></a>
                                 } 
                             </div> */}
-
                         </div>
                     </div>
                 </div>

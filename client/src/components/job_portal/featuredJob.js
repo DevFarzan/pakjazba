@@ -11,21 +11,20 @@ class FeaturedBox extends Component {
 
    
     render() {
-        const {  goForLogin, objData, goDetail, user, goForward } = this.state;
 
-        if (goForLogin) {
-            if (Object.keys(objData).length > 0) {
-                return <Redirect to={{ pathname: '/sigin', state: { from: { pathname: "/detail_jobPortal" }, state: objData } }} />;
-            } else {
-                return <Redirect to={{ pathname: '/sigin', state: { from: { pathname: "/postad_jobPortal" } } }} />;
-            }
-        }
-        if (goDetail) {
-            return <Redirect to={{ pathname: `/detail_jobPortal`, state: { ...objData, user: user } }} />
-        }
-        if (goForward) {
-            return <Redirect to={{ pathname: `/postad_jobPortal` }} />
-        }
+        // if (goForLogin) {
+        //     if (Object.keys(objData).length > 0) {
+        //         return <Redirect to={{ pathname: '/sigin', state: { from: { pathname: "/detail_jobPortal" }, state: objData } }} />;
+        //     } else {
+        //         return <Redirect to={{ pathname: '/sigin', state: { from: { pathname: "/postad_jobPortal" } } }} />;
+        //     }
+        // }
+        // if (goDetail) {
+        //     return <Redirect to={{ pathname: `/detail_jobPortal`, state: { ...objData, user: user } }} />
+        // }
+        // if (goForward) {
+        //     return <Redirect to={{ pathname: `/postad_jobPortal` }} />
+        // }
 
         const { showAllJobs,
             filteredData,
@@ -111,7 +110,7 @@ class FeaturedBox extends Component {
                                 <div className="col-md-4 col-sm-5">
                                     <div className="">
                                         <div className="featuredjob-imitation">
-                                            <Link to={{ pathname: `/detail_jobPortal`, state: { ...elem, sec: 'mainPart', user: user } }}>
+                                            <Link to={{ pathname: `/detail_jobPortal`, state: { ...elem, sec: 'mainPart', } }}>
                                                 <div className="card2">
                                                     <img alt='' src={elem.arr_url[0]} style={{ filter: 'brightness(0.5)' }} />
                                                 </div>
@@ -172,7 +171,7 @@ class FeaturedBox extends Component {
                                 <div className="col-md-4 col-sm-5">
                                     <div className="">
                                         <div className="featuredjob-imitation">
-                                            <Link to={{ pathname: `/detail_jobPortal`, state: { ...elem, sec: 'mainPart', user: user } }}>
+                                            <Link to={{ pathname: `/detail_jobPortal`, state: { ...elem, sec: 'mainPart', } }}>
                                                 <div className="card2">
                                                     <img alt='' src={elem.arr_url[0]} style={{ filter: 'brightness(0.5)' }} />
                                                 </div>

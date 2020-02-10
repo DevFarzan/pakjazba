@@ -118,6 +118,7 @@ class JobPortal extends Component {
             objData: {},
             states: [],
             cities: [],
+            contactnumber: ''
         }
     }
 
@@ -134,6 +135,7 @@ class JobPortal extends Component {
                 Tagline: data.Tagline,
                 compDescription: data.compDescription,
                 compEmail: data.compEmail,
+                contactnumber: data.contactnumber,
                 email: data.email,
                 experience: data.experience,
                 jobCat: data.jobCat,
@@ -247,6 +249,7 @@ class JobPortal extends Component {
             user_id: userId,
             profileId: profileId,
             compDescription: values.compDescription,
+            contactnumber: values.contactnumber,
             compEmail: values.compEmail,
             compName: values.compName,
             email: values.email,
@@ -356,7 +359,7 @@ class JobPortal extends Component {
     }
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { states, cities, email, jobTitle, jobType, jobCat, salary, compDescription, jobDescription, experience, compEmail, location, previewVisible, previewImage, fileList, objData } = this.state;
+        const { states, cities, email, jobTitle, jobType, jobCat, salary, compDescription, jobDescription, experience, compEmail, location, previewVisible, previewImage, fileList, objData, contactnumber } = this.state;
 
         console.log(cities, 'cities')
         if (this.state.msg === true) {
@@ -782,7 +785,7 @@ class JobPortal extends Component {
                                                         // style={{ padding: '2%' }}
                                                         >
                                                             {getFieldDecorator('contactnumber', {
-                                                                // initialValue: this.state.dataBnumber,
+                                                                initialValue: contactnumber,
                                                                 rules: [{ required: true, message: 'Please input your Number!', whitespace: true },
                                                                 { validator: this.validateNumber.bind(this) }]
                                                             })(

@@ -4,61 +4,61 @@ import Slider from '../header/Slider';
 import Footer from '../footer/footer'
 import Roomrentingthreecontentarea from "./roomrenting3contentarea";
 import { Redirect } from 'react-router';
-import {HttpUtils} from "../../Services/HttpUtils";
+import { HttpUtils } from "../../Services/HttpUtils";
 
-class DetailRoommates extends Component{
-    constructor(props){
-        super()
+class DetailRoommates extends Component {
+    constructor(props) {
+        super(props)
         this.state = {
             isData: true,
             data: {}
         }
     }
 
-    componentDidMount(){
-        window.scrollTo(0,0);
+    componentDidMount() {
+        window.scrollTo(0, 0);
         let data = this.props.location.state;
-        if(data === undefined){
+        if (data === undefined) {
             this.setState({
                 isData: false
             })
-        }else {
+        } else {
             this.getProfile(data)
         }
     }
 
-    async getProfile(data){
+    async getProfile(data) {
         let req = await HttpUtils.get('getprofile?profileId=' + data.profileId)
-        let allData = {...data, ...{userImage: req.content ? req.content.imageurl : ''}}
+        let allData = { ...data, ...{ userImage: req.content ? req.content.imageurl : '' } }
         this.setState({
-            isData : true,
-            data : allData
+            isData: true,
+            data: allData
         })
     }
 
-    render(){
+    render() {
         const { isData, data } = this.state;
         const hide = true;
-
-        if(!isData){
+        console.log(data , 'data in room rent')
+        if (!isData) {
             return <Redirect to='/' />
         }
 
-        return(
+        return (
             <div>
                 <span>
-                    <div className ="" style={{"backgroundImage":"url('../images/bgc-images/busnes-listing.png')", marginTop : "-20px",backgroundSize: 'cover'}}>
+                    <div className="" style={{ "backgroundImage": "url('../images/bgc-images/busnes-listing.png')", marginTop: "-20px", backgroundSize: 'cover' }}>
                         <div className="background-image">
-                            <Headermenu/>
-                            <Slider mainH1="Explore Homes" mainH2="Find Your Perfect Match" hide={hide}/>
+                            <Headermenu />
+                            <Slider mainH1="Explore Homes" mainH2="Find Your Perfect Match" hide={hide} />
                         </div>
                     </div>
-                </span> 
+                </span>
                 <div className="">
-                    {!!data && <Roomrentingthreecontentarea data={data} {...this.props}/>}
+                    {!!data && <Roomrentingthreecontentarea data={data} {...this.props} />}
                 </div>
                 <div>
-                    <Footer/>
+                    <Footer />
                 </div>
             </div>
         )

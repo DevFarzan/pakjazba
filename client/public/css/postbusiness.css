@@ -21,7 +21,7 @@
 }
 .formRadius{
 	border-radius: 25px !important;
-	boxShadow: 0 2px 5px 0 rgba(0,0,0,.07),
+	boxShadow: 0 2px 5px 0 rgba(0,0,0,.07);
 }
 .topRadius{
 	border-top-left-radius: 25px !important;
@@ -116,5 +116,12 @@
 	  }
     
 }
+/* 
+.scroll-container{
+	scroll-padding: 50px 0 0 50px;
+  }
+  .forSpace{
+	margin-top:100px
+  } */
 
 

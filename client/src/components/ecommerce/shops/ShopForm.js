@@ -117,6 +117,8 @@ class ShopForm extends Component {
             objectId: '',
             showAlert: false,
             gridImages: false,
+            contactNumber: '',
+            contactEmail: ''
         }
     }
 
@@ -137,6 +139,8 @@ class ShopForm extends Component {
                 bankName: data.bankName,
                 ibank: data.ibank,
                 swift: data.swift,
+                contactNumber: data.contactNumber,
+                contactEmail: data.contactEmail
                 // fileListLogo: data.shopLogo,
 
             })
@@ -420,6 +424,9 @@ class ShopForm extends Component {
             ibank: values.ibank,
             bankAddress: values.bankAddress,
             swift: values.swift,
+            contactNumber: values.contactNumber,
+            contactEmail: values.contactEmail
+
         }
 
         let reqShopObj = await HttpUtils.post('postshop', shopObj)
@@ -1025,12 +1032,13 @@ class ShopForm extends Component {
                                                     <div className="form-group">
                                                         <label {...formItemLayout} htmlFor="sel1">Number</label>
                                                         <Form.Item
-                                                            // {...formItemLayout}
-                                                            // label="Contact Number"
+                                                        // {...formItemLayout}
+                                                        // label="Contact Number"
 
-                                                            // style={{ padding: '2%' }}
+                                                        // style={{ padding: '2%' }}
                                                         >
                                                             {getFieldDecorator('contactNumber', {
+                                                                initialValue: this.state.contactNumber,
                                                                 rules: [{ required: true, message: 'Please input your Contact Number!', whitespace: true },
                                                                 { validator: this.validateNumber.bind(this) }],
                                                             })(
@@ -1043,12 +1051,13 @@ class ShopForm extends Component {
                                                     <div className="form-group">
                                                         <label {...formItemLayout} htmlFor="sel1">Email</label>
                                                         <Form.Item
-                                                            // {...formItemLayout}
-                                                            // label="Contact Email"
+                                                        // {...formItemLayout}
+                                                        // label="Contact Email"
 
-                                                            // style={{ padding: '2%' }}
+                                                        // style={{ padding: '2%' }}
                                                         >
                                                             {getFieldDecorator('contactEmail', {
+                                                                initialValue: this.state.contactEmail,
                                                                 rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true },
                                                                 {
                                                                     required: true,

@@ -32,7 +32,8 @@ var RoomSchema = new mongoose.Schema({
 	subSubCategory: { type: String },
 	state: { type: String },
 	posted: { type: String },
-	beds: { type: String }
+	beds: { type: String },
+	contactMode: { type: Array }
 });
 
 mongoose.model('roomdata', RoomSchema);

@@ -19,8 +19,10 @@ class Explore extends Component {
         };
     }
 
+    componentWillMount(){
+        window.scrollTop(0, 0);
+    }
     componentWillMount() {
-        window.scrollTo(0, 0);
         let data = this.props.location.state;
         if (data) {
             if (data.homefilter) {

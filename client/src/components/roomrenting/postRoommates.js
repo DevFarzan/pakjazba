@@ -427,7 +427,6 @@ class Postroommates extends Component {
 
     async postData(values, response) {
         const { dateObj, userId, petFriendly, radio, smoking, vegNoVeg, profileId, objectId, imageList } = this.state;
-        console.log(values, 'values')
         let obj = {
             user_id: userId,
             profileId: profileId,

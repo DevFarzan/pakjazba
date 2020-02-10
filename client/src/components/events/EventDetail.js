@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import HeaderMenu from '../header/headermenu';
 import Footer from '../footer/footer';
-import Slider from '../header/Slider';
 import EdetailFirstfold from './EdetailFirstfold';
 import { Redirect } from 'react-router';
 import {HttpUtils} from "../../Services/HttpUtils";

@@ -1050,60 +1050,6 @@ class Postbusiness extends Component {
                                                     </FormItem>
                                                 </div>
                                             </div>
-
-
-                                            {/* <hr className="hrLineStyle"/> */}
-
-                                            {/* <FormItem
-                                                {...formItemLayout}
-                                                label="Business Address"
-
-                                                style={{padding: '2%'}}
-                                            >
-                                                {getFieldDecorator('businessAddress', {
-                                                    initialValue: this.state.dataBaddress,
-                                                    rules: [{ required: true, message: 'Please input your Business Address!', whitespace: true }],
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem> */}
-
-                                            {/* <hr className="hrLineStyle"/> */}
-
-                                            {/* <FormItem
-                                                {...formItemLayout}
-                                                label="Business Owner Name"
-
-                                                style={{padding: '2%'}}
-                                            >
-                                                {getFieldDecorator('businessOwner', {
-                                                    initialValue: this.state.dataBOwnernamae,
-                                                    rules: [{ required: true, message: 'Please input your Business Owner Name!', whitespace: true }],
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem> */}
-
-                                            {/* <hr className="hrLineStyle"/> */}
-
-                                            {/* <FormItem
-                                                {...formItemLayout}
-                                                label="Business Email"
-
-                                                style={{padding: '2%'}}
-                                            >
-                                                {getFieldDecorator('businessEmail', {
-                                                    initialValue: this.state.dataBemail,
-                                                    rules: [
-                                                        { type: 'email', message: 'The input is not valid E-mail!', whitespace: true },
-                                                        { required: true, 
-                                                            message: 'Please input your E-mail!', }
-                                                    ],
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem> */}
-
                                         </div>
                                     </div>
                                     <br />

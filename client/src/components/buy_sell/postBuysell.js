@@ -144,19 +144,21 @@ class Postbuysell extends Component {
     async categorylist() {
         let res = await HttpUtils.get('categoryclassifieddata');
         console.log(res, 'res')
-        let mainCategory = res.data[1]
-        let categ = Object.keys(mainCategory)
-        categ = categ.filter((val) => val !== '_id')
-        categ = categ.map((elem) => {
-            return {
-                value: elem,
-                label: elem
-            }
-        })
-        this.setState({
-            categ: categ,
-            allCateg: mainCategory
-        })
+        if(res){
+            let mainCategory = res.data[1]
+            let categ = Object.keys(mainCategory)
+            categ = categ.filter((val) => val !== '_id')
+            categ = categ.map((elem) => {
+                return {
+                    value: elem,
+                    label: elem
+                }
+            })
+            this.setState({
+                categ: categ,
+                allCateg: mainCategory
+            })
+        }
     }
 
     handleLocalStorage = () => {

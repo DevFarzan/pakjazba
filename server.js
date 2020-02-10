@@ -1274,13 +1274,15 @@ app.post('/api/postroomrent', function (req, res) {
       contactname: postroomrent.contactName,
       contactemail: postroomrent.contactEmail,
       contactnumber: postroomrent.contactNumber,
+      contactMode : postroomrent.contactMode,
       modeofcontact: postroomrent.contactMode,
       profileId: postroomrent.profileId,
       subCategory: postroomrent.subCategory,
       subSubCategory: postroomrent.subSubCategory,
       state: postroomrent.state,
       posted: postroomrent.posted,
-      beds:postroomrent.beds,
+      beds: postroomrent.beds,
+
     })
     roommates_info.save(function (err, data) {
       if (err) {
@@ -1340,7 +1342,7 @@ app.post('/api/postroomrent', function (req, res) {
       roomrentsdata.state = postroomrent.state;
       roomrentsdata.posted = postroomrent.posted;
       roomrentsdata.beds = postroomrent.beds;
-
+      roomrentsdata.contactMode = contactMode;
       roomrentsdata.save(function (err, doc) {
         if (err) {
           return res.status(400).json({ "Unexpected Error:: ": err });
@@ -2393,7 +2395,7 @@ app.post('/api/getShopProducts', (req, res) => {
 
 app.post('/api/getShops', (req, res) => {
   postShopCollection.find(function (err, shopCollection) {
-    console.log(shopCollection , 'shopCollection')
+    console.log(shopCollection, 'shopCollection')
     if (err) {
       res.send({
         code: 404,

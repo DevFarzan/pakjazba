@@ -3,8 +3,7 @@ import { Tabs, Icon } from 'antd';
 import Stories from '../entertainment/entertainmenthome/LatestStories';
 import EntertainmentCategory from '../entertainment/entertainmentPages/EntertainmentTabCategory';
 import axios from "axios/index";
-// import ECategory from './entertainment-category';
-// import EntertainmentHome from '../entertainment/entertainmenthome/EntertainmentHome';
+
 
 class EntertainmentTab extends Component {
     componentDidMount() {
@@ -112,19 +111,12 @@ class EntertainmentTab extends Component {
 
             });
         }
-        // else if(keyValue == 'upload'){
-
-        // }
 
     }
 
     render() {
         const { news, sports, dramas, movies, musics } = this.state;
         const { TabPane } = Tabs;
-        // console.log(this.props, 'this,props in entertainment tab')
-        // const { states, noText, showroomrents, roomrents, filteredArr, cities, to, from, loader, objData, goDetail } = this.state;
-        // const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
-
         return (
             <div>
                 <div className="row">

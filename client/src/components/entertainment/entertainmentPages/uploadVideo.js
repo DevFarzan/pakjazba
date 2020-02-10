@@ -1,21 +1,12 @@
 import React, { Component } from 'react';
 import HeaderMenu from '../../header/headermenu';
-import EHeader from '../entertainmenthome/entertainmentHeader';
 import LatestNews from '../entertainmenthome/LatestnewsSec';
 import { HttpUtils } from '../../../Services/HttpUtils';
-import { isMobile, isTablet, isBrowser } from 'react-device-detect';
-import { connect } from 'react-redux';
-// import { Media, Player, controls } from 'react-media-player';
-import Footer from '../../footer/footer';
+import { isTablet} from 'react-device-detect';
 import axios from "axios/index";
-import Stories from '../entertainmenthome/LatestStories';
-import { Rate,Modal } from 'antd';
-import Loader from 'react-loader-advanced';
+import { Modal } from 'antd';
 import './uploadVideo.css';
 import UploadFunction from './uploadFunction';
-//import LatestNews from '../entertainmenthome/LatestnewsSec';
-
-// const { PlayPause, MuteUnmute } = controls
 
 class UploadVideo extends Component{
   constructor(props) {

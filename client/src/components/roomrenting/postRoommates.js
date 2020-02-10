@@ -589,62 +589,73 @@ class Postroommates extends Component {
                                             <span className="margin_font_location">General</span>
                                         </div>
                                         <div className="formRadius">{/* panel-body*/}
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Category"
+                                            <div className="row">
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Category</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="Category"
 
-                                                style={{ padding: '2%' }}
-                                            >
-                                                {getFieldDecorator('category', {
-                                                    initialValue: this.state.dataCat,
-                                                    rules: [{ type: 'array', required: true, message: 'Please select your Category!' }],
-                                                })(
-                                                    <Cascader options={category} showSearch={{ filter }} />
-                                                )}
-                                            </FormItem>
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('category', {
+                                                            initialValue: this.state.dataCat,
+                                                            rules: [{ type: 'array', required: true, message: 'Please select your Category!' }],
+                                                        })(
+                                                            <Cascader options={category} showSearch={{ filter }} />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Posting Title</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="Posting Title"
+
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('postingTitle', {
+                                                            initialValue: this.state.dataTitle,
+                                                            rules: [{ required: true, message: 'Please input your Posting Title!', whitespace: true }],
+                                                        })(
+                                                            <Input />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                            </div>
 
                                             <hr className="hrLineStyle" />
+                                            <div className="row">
+                                                <div className="col-xs-1 col-sm-3 col-md-3"></div>
+                                                <div className="col-xs-10 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Description/Details</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="Description/Details"
 
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Posting Title"
-
-                                                style={{ padding: '2%' }}
-                                            >
-                                                {getFieldDecorator('postingTitle', {
-                                                    initialValue: this.state.dataTitle,
-                                                    rules: [{ required: true, message: 'Please input your Posting Title!', whitespace: true }],
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem>
-
-                                            <hr className="hrLineStyle" />
-
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Description/Details"
-
-                                                style={{ padding: '2%' }}
-                                            >
-                                                {getFieldDecorator('description', {
-                                                    initialValue: this.state.dataDescription,
-                                                    rules: [
-                                                        {
-                                                            required: true, message: 'Please input your Description/Details!', whitespace: true
-                                                        },
-                                                        {
-                                                            validator: this.checkValue.bind(this)
-                                                        }],
-                                                })(
-                                                    <TextArea
-                                                        rows={6}
-                                                        maxLength="500"
-                                                        style={{ "marginBottom": "10px" }} />
-                                                )}
-                                                <br />
-                                                <span style={{ "float": "right" }}>{500 - desLength} Words</span>
-                                            </FormItem>
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('description', {
+                                                            initialValue: this.state.dataDescription,
+                                                            rules: [
+                                                                {
+                                                                    required: true, message: 'Please input your Description/Details!', whitespace: true
+                                                                },
+                                                                {
+                                                                    validator: this.checkValue.bind(this)
+                                                                }],
+                                                        })(
+                                                            <TextArea
+                                                                rows={6}
+                                                                maxLength="500"
+                                                                style={{ "marginBottom": "10px" }} />
+                                                        )}
+                                                        <br />
+                                                        <span style={{ "float": "right" }}>{500 - desLength} Words</span>
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-xs-1 col-sm-3 col-md-3"></div>
+                                            </div>
 
 
                                             {/* <FormItem
@@ -681,27 +692,53 @@ class Postroommates extends Component {
                                             <span className="margin_font_location">Location</span>
                                         </div>
                                         <div className="formRadius" style={{ backgroundColor: 'white', padding: '1vw 0px 5px 0px', }}>{/*panel-body */}
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Property Location"
+                                            <div className="row">
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Property Location</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="Property Location"
 
-                                                style={{ padding: '2%' }}
-                                            >
-                                                {getFieldDecorator('propertyLocation', {
-                                                    initialValue: this.state.dataLocation,
-                                                    rules: [{
-                                                        required: true,
-                                                        message: 'Please input your Property Location!',
-                                                        whitespace: true
-                                                    }],
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem>
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('propertyLocation', {
+                                                            initialValue: this.state.dataLocation,
+                                                            rules: [{
+                                                                required: true,
+                                                                message: 'Please input your Property Location!',
+                                                                whitespace: true
+                                                            }],
+                                                        })(
+                                                            <Input />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Property Zip Code</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="Property Zip Code"
+
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('zipCode', {
+                                                            initialValue: this.state.dataZip,
+                                                            rules: [{
+                                                                required: true,
+                                                                message: 'Please input your Property Zip Code!',
+                                                                whitespace: true
+                                                            }],
+                                                        })(
+                                                            <Input />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                            </div>
 
                                             <hr className="hrLineStyle" />
+
                                             <div className="row">
-                                                <div className="col-md-6">
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
                                                     <label htmlFor="sel1">State</label>
                                                     <FormItem>
                                                         {getFieldDecorator('state', {
@@ -712,7 +749,7 @@ class Postroommates extends Component {
                                                         )}
                                                     </FormItem>
                                                 </div>
-                                                <div className="col-md-6">
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
                                                     <label htmlFor="sel1">City</label>
                                                     <FormItem>
                                                         {getFieldDecorator('city', {
@@ -724,27 +761,6 @@ class Postroommates extends Component {
                                                     </FormItem>
                                                 </div>
                                             </div>
-
-
-                                            <hr className="hrLineStyle" />
-
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Property Zip Code"
-
-                                                style={{ padding: '2%' }}
-                                            >
-                                                {getFieldDecorator('zipCode', {
-                                                    initialValue: this.state.dataZip,
-                                                    rules: [{
-                                                        required: true,
-                                                        message: 'Please input your Property Zip Code!',
-                                                        whitespace: true
-                                                    }],
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem>
                                         </div>
                                     </div>
                                 </div>
@@ -759,125 +775,138 @@ class Postroommates extends Component {
                                             <span className="margin_font_location">Rent details</span>
                                         </div>
                                         <div className="formRadius">{/* panel-body*/}
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Accommodates"
+                                            <div className="row">
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Accommodates</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="Accommodates"
 
-                                                style={{ padding: '2%' }}
-                                            >
-                                                {getFieldDecorator('accommodates', {
-                                                    initialValue: this.state.dataAccom,
-                                                    rules: [{ type: 'array', required: true, message: 'Please select your Accommodates!' }],
-                                                })(
-                                                    <Cascader options={accomodateCategory} showSearch={{ filter }} />
-                                                )}
-                                            </FormItem>
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('accommodates', {
+                                                            initialValue: this.state.dataAccom,
+                                                            rules: [{ type: 'array', required: true, message: 'Please select your Accommodates!' }],
+                                                        })(
+                                                            <Cascader options={accomodateCategory} showSearch={{ filter }} />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Furnished</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="Furnished"
 
-                                            <hr className="hrLineStyle" />
-
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Furnished"
-
-                                                style={{ padding: '2%' }}
-                                            >
-                                                {getFieldDecorator('furnished', {
-                                                    initialValue: this.state.dataFurn,
-                                                    rules: [{ type: 'array', required: true, message: 'Please select your Furnished!' }],
-                                                })(
-                                                    <Cascader options={furnishedcategory} showSearch={{ filter }} />
-                                                )}
-                                            </FormItem>
-
-                                            <hr className="hrLineStyle" />
-
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Attached Bath"
-
-                                                style={{ padding: '2%' }}
-                                            >
-                                                <RadioGroup onChange={this.changeAttBath} name='radio' value={this.state.radio}>
-                                                    <Radio value={true}>YES</Radio>
-                                                    <Radio value={false}>NO</Radio>
-                                                </RadioGroup>
-                                            </FormItem>
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('furnished', {
+                                                            initialValue: this.state.dataFurn,
+                                                            rules: [{ type: 'array', required: true, message: 'Please select your Furnished!' }],
+                                                        })(
+                                                            <Cascader options={furnishedcategory} showSearch={{ filter }} />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                            </div>
 
                                             <hr className="hrLineStyle" />
 
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Amenities include"
+                                            <div className="row">
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Attached Bath</label>
+                                                    <FormItem
+                                                        // {...formItemLayout}
+                                                        // label="Attached Bath"
 
-                                                style={{ padding: '2%' }}
-                                            >
-                                                {getFieldDecorator('amenities', {
-                                                    initialValue: this.state.dataAmmen,
-                                                    rules: [{ validator: this.checkCheckBox }],
-                                                })(
-                                                    <CheckboxGroup style={{ width: '100%' }} onChange={this.onChangeAmenities.bind(this)}>
-                                                        <Row>
-                                                            <Col span={17}><Checkbox value="Gym/Fitness Center">Gym/Fitness Center</Checkbox></Col>
-                                                            <Col span={17}><Checkbox value="Swimming Pool">Swimming Pool</Checkbox></Col>
-                                                            <Col span={17}><Checkbox value="Car Park">Car Park</Checkbox></Col>
-                                                            <Col span={17}><Checkbox value="Visitors Parking">Visitors Parking</Checkbox></Col>
-                                                            <Col span={17}><Checkbox value="Power Backup">Power Backup</Checkbox></Col>
-                                                            <Col span={17}><Checkbox value="Garbage Disposal">Garbage Disposal</Checkbox></Col>
-                                                            <Col span={17}><Checkbox value="Private Lawn">Private Lawn</Checkbox></Col>
-                                                            <Col span={17}><Checkbox value="Water Heater Plant">Water Heater Plant</Checkbox></Col>
-                                                            <Col span={17}><Checkbox value="Security System">Security System</Checkbox></Col>
-                                                            <Col span={17}><Checkbox value="Laundry Service">Laundry Service </Checkbox></Col>
-                                                            <Col span={17}><Checkbox value="Elevator">Elevator</Checkbox></Col>
-                                                            <Col span={17}><Checkbox value="Club House">Club House</Checkbox></Col>
-                                                        </Row>
-                                                    </CheckboxGroup>
-                                                )}
-                                            </FormItem>
+                                                        style={{ textAlign: 'center' }}
+                                                    >
+                                                        <RadioGroup onChange={this.changeAttBath} name='radio' value={this.state.radio}>
+                                                            <Radio value={true}>YES</Radio>
+                                                            <Radio value={false}>NO</Radio>
+                                                        </RadioGroup>
+                                                    </FormItem>
 
-                                            <hr className="hrLineStyle" />
+                                                    <hr className="hrLineStyle" />
 
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Vegetarians Preferred"
+                                                    <label htmlFor="sel1">Vegetarians Preferred</label>
+                                                    <FormItem
+                                                        // {...formItemLayout}
+                                                        // label="Vegetarians Preferred"
 
-                                                style={{ padding: '2%' }}
-                                            >
-                                                <RadioGroup onChange={this.changeAttBath} name='vegNoVeg' value={this.state.vegNoVeg}>
-                                                    <Radio value={'Yes'}>YES</Radio>
-                                                    <Radio value={'No'}>NO</Radio>
-                                                </RadioGroup>
-                                            </FormItem>
+                                                        style={{ textAlign: 'center' }}
+                                                    >
+                                                        <RadioGroup onChange={this.changeAttBath} name='vegNoVeg' value={this.state.vegNoVeg}>
+                                                            <Radio value={'Yes'}>YES</Radio>
+                                                            <Radio value={'No'}>NO</Radio>
+                                                        </RadioGroup>
+                                                    </FormItem>
 
-                                            <hr className="hrLineStyle" />
+                                                    <hr className="hrLineStyle" />
 
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Smoking"
+                                                    <label htmlFor="sel1">Smoking</label>
+                                                    <FormItem
+                                                        // {...formItemLayout}
+                                                        // label="Smoking"
 
-                                                style={{ padding: '2%' }}
-                                            >
-                                                <RadioGroup onChange={this.changeAttBath} name='smoking' value={this.state.smoking}>
-                                                    <Radio value={'Yes'}>YES</Radio>
-                                                    <Radio value={'No'}>NO</Radio>
-                                                    <Radio value={'Outside'}>Outside only</Radio>
-                                                </RadioGroup>
-                                            </FormItem>
+                                                        style={{ textAlign: 'center' }}
+                                                    >
+                                                        <RadioGroup onChange={this.changeAttBath} name='smoking' value={this.state.smoking}>
+                                                            <Radio value={'Yes'}>YES</Radio>
+                                                            <Radio value={'No'}>NO</Radio>
+                                                            <Radio value={'Outside'}>Outside only</Radio>
+                                                        </RadioGroup>
+                                                    </FormItem>
 
-                                            <hr className="hrLineStyle" />
+                                                    <hr className="hrLineStyle" />
 
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Pet Friendly"
+                                                    <label htmlFor="sel1">Pet Friendly</label>
+                                                    <FormItem
+                                                        // {...formItemLayout}
+                                                        // label="Pet Friendly"
 
-                                                style={{ padding: '2%' }}
-                                            >
-                                                <RadioGroup onChange={this.changeAttBath} name='petFriendly' value={this.state.petFriendly}>
-                                                    <Radio value={'No'}>No</Radio>
-                                                    <Radio value={'Only Cats'}>Only Cats</Radio>
-                                                    <Radio value={'Only Dogs'}>Only Dogs</Radio>
-                                                    <Radio value={'Any Pet'}>Any Pet</Radio>
-                                                </RadioGroup>
-                                            </FormItem>
+                                                        style={{ textAlign: 'center' }}
+                                                    >
+                                                        <RadioGroup onChange={this.changeAttBath} name='petFriendly' value={this.state.petFriendly}>
+                                                            <Radio value={'No'}>No</Radio>
+                                                            <Radio value={'Only Cats'}>Only Cats</Radio>
+                                                            <Radio value={'Only Dogs'}>Only Dogs</Radio>
+                                                            <Radio value={'Any Pet'}>Any Pet</Radio>
+                                                        </RadioGroup>
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Amenities include</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="Amenities include"
+
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('amenities', {
+                                                            initialValue: this.state.dataAmmen,
+                                                            rules: [{ validator: this.checkCheckBox }],
+                                                        })(
+                                                            <CheckboxGroup style={{ width: '100%' }} onChange={this.onChangeAmenities.bind(this)}>
+                                                                <Row>
+                                                                    <Col span={17}><Checkbox value="Gym/Fitness Center">Gym/Fitness Center</Checkbox></Col>
+                                                                    <Col span={17}><Checkbox value="Swimming Pool">Swimming Pool</Checkbox></Col>
+                                                                    <Col span={17}><Checkbox value="Car Park">Car Park</Checkbox></Col>
+                                                                    <Col span={17}><Checkbox value="Visitors Parking">Visitors Parking</Checkbox></Col>
+                                                                    <Col span={17}><Checkbox value="Power Backup">Power Backup</Checkbox></Col>
+                                                                    <Col span={17}><Checkbox value="Garbage Disposal">Garbage Disposal</Checkbox></Col>
+                                                                    <Col span={17}><Checkbox value="Private Lawn">Private Lawn</Checkbox></Col>
+                                                                    <Col span={17}><Checkbox value="Water Heater Plant">Water Heater Plant</Checkbox></Col>
+                                                                    <Col span={17}><Checkbox value="Security System">Security System</Checkbox></Col>
+                                                                    <Col span={17}><Checkbox value="Laundry Service">Laundry Service </Checkbox></Col>
+                                                                    <Col span={17}><Checkbox value="Elevator">Elevator</Checkbox></Col>
+                                                                    <Col span={17}><Checkbox value="Club House">Club House</Checkbox></Col>
+                                                                </Row>
+                                                            </CheckboxGroup>
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -893,7 +922,7 @@ class Postroommates extends Component {
                                         </div>
                                         <div className="formRadius">{/* panel-body*/}
                                             <FormItem
-                                                
+
                                                 label="Images"
 
                                                 style={{ padding: '2%' }}
@@ -951,14 +980,14 @@ class Postroommates extends Component {
 
                                             <hr className="hrLineStyle" />
 
-                                            <div className="row" style={{ 'textAlign': 'center' }}>
-                                                <div className="col-md-1"></div>
-                                                <div className="col-md-5">
+                                            <div className="row">
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Rent</label>
                                                     <FormItem
-                                                        {...formItemLayout}
-                                                        label="Rent"
+                                                    // {...formItemLayout}
+                                                    // label="Rent"
 
-                                                        style={{ padding: '2%' }}
+                                                    // style={{ padding: '2%' }}
                                                     >
                                                         {getFieldDecorator('price', {
                                                             initialValue: this.state.dataRent,
@@ -969,12 +998,13 @@ class Postroommates extends Component {
                                                         )}
                                                     </FormItem>
                                                 </div>
-                                                <div className="col-md-6" style={{ 'textAlign': 'left' }}>
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Price Mode</label>
                                                     <FormItem
-                                                        {...formItemLayout}
-                                                        label="Price Mode"
+                                                    // {...formItemLayout}
+                                                    // label="Price Mode"
 
-                                                        style={{ padding: '2%' }}
+                                                    // style={{ padding: '2%' }}
                                                     >
                                                         {getFieldDecorator('priceMode', {
                                                             initialValue: this.state.dataPmode,
@@ -999,72 +1029,82 @@ class Postroommates extends Component {
                                             <span className="margin_font_location">About</span>
                                         </div>
                                         <div className="formRadius" style={{ padding: '1vw 0 1vw 0' }}>{/* panel-body*/}
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Contact Name"
+                                            <div className="row">
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Contact Name</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="Contact Name"
 
-                                                style={{ padding: '2%' }}
-                                            >
-                                                {getFieldDecorator('contactName', {
-                                                    initialValue: this.state.dataName,
-                                                    rules: [{ required: true, message: 'Please input your Contact Name!', whitespace: true }],
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem>
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('contactName', {
+                                                            initialValue: this.state.dataName,
+                                                            rules: [{ required: true, message: 'Please input your Contact Name!', whitespace: true }],
+                                                        })(
+                                                            <Input />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Contact Email</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="Contact Email"
 
-                                            <hr className="hrLineStyle" />
-
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Contact Email"
-
-                                                style={{ padding: '2%' }}
-                                            >
-                                                {getFieldDecorator('contactEmail', {
-                                                    initialValue: this.state.dataEmail,
-                                                    rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true },
-                                                    {
-                                                        required: true,
-                                                        message: 'Please input your Contact Email!', whitespace: true
-                                                    }],
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem>
-
-                                            <hr className="hrLineStyle" />
-
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Contact Number"
-
-                                                style={{ padding: '2%' }}
-                                            >
-                                                {getFieldDecorator('contactNumber', {
-                                                    initialValue: this.state.dataNumber,
-                                                    rules: [{ required: true, message: 'Please input your Contact Number!', whitespace: true },
-                                                    { validator: this.validateNumber.bind(this) }],
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem>
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('contactEmail', {
+                                                            initialValue: this.state.dataEmail,
+                                                            rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true },
+                                                            {
+                                                                required: true,
+                                                                message: 'Please input your Contact Email!', whitespace: true
+                                                            }],
+                                                        })(
+                                                            <Input />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                            </div>
 
                                             <hr className="hrLineStyle" />
+                                            
+                                            <div className="row">
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Contact Number</label>
+                                                    <FormItem
+                                                        // {...formItemLayout}
+                                                        // label="Contact Number"
 
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Mode of Contact"
+                                                        // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('contactNumber', {
+                                                            initialValue: this.state.dataNumber,
+                                                            rules: [{ required: true, message: 'Please input your Contact Number!', whitespace: true },
+                                                            { validator: this.validateNumber.bind(this) }],
+                                                        })(
+                                                            <Input />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Mode of Contact</label>
+                                                    <FormItem
+                                                        // {...formItemLayout}
+                                                        // label="Mode of Contact"
 
-                                                style={{ padding: '2%' }}
-                                            >
-                                                {getFieldDecorator('contactMode', {
-                                                    initialValue: this.state.dataMcont,
-                                                    rules: [{ validator: this.checkCheckBox }],
-                                                })(
-                                                    <CheckboxGroup options={optionsContact} />
-                                                )}
-                                            </FormItem>
+                                                        // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('contactMode', {
+                                                            initialValue: this.state.dataMcont,
+                                                            rules: [{ validator: this.checkCheckBox }],
+                                                        })(
+                                                            <CheckboxGroup options={optionsContact} />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

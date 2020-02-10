@@ -10,7 +10,7 @@ a:hover,a:focus{
     font-size: 16px;
     color: #333;
     background: transparent;
-    border: 2px solid #37A99B;
+    border: 2px solid rgb(35, 101, 80);
     padding: 10px 45px;
     border-radius: 10px;
     position: relative;
@@ -18,7 +18,7 @@ a:hover,a:focus{
 }
 .tab .nav-tabs li.active a{
     border: 0 none;
-    background: #37A99B;
+    background: rgb(35, 101, 80);
     color: #fff;
 }
 .tab .nav-tabs li.active a:after{
@@ -27,7 +27,7 @@ a:hover,a:focus{
     left: 45%;
     bottom: -14px;
     border: 7px solid transparent;
-    border-top: 7px solid #37A99B;
+    border-top: 7px solid rgb(35, 101, 80);
 }
 .tab .tab-content{
     padding: 12px;

@@ -759,7 +759,7 @@ class JobPortal extends Component {
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Description</label>
-                                                        <FormItem style={{ padding: '2%' }}>
+                                                        <FormItem>
                                                             {getFieldDecorator('compDescription', {
                                                                 initialValue: compDescription,
                                                                 rules: [
@@ -775,7 +775,25 @@ class JobPortal extends Component {
                                                         </FormItem>
                                                     </div>
                                                 </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label htmlFor="sel1">Contact Number</label>
+                                                        <FormItem
+                                                        // {...formItemLayout}
+                                                        // label="Business Number"
 
+                                                        // style={{ padding: '2%' }}
+                                                        >
+                                                            {getFieldDecorator('contactnumber', {
+                                                                // initialValue: this.state.dataBnumber,
+                                                                rules: [{ required: true, message: 'Please input your Number!', whitespace: true },
+                                                                { validator: this.validateNumber.bind(this) }]
+                                                            })(
+                                                                <Input />
+                                                            )}
+                                                        </FormItem>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </section>
                                     </div>

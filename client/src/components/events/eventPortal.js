@@ -23,6 +23,7 @@ import superagent from "superagent";
 import { HttpUtils } from "../../Services/HttpUtils";
 import { Shareholder, CustomTickets } from './ColorPicker';
 import stateCities from "../../lib/countrycitystatejson";
+import './eventPortal.css';
 
 
 const { Link } = Anchor;
@@ -849,10 +850,10 @@ class EventPortal extends Component {
                                             <div className="col-md-12">
                                                 <div className="col-md-7">
                                                     <label style={{ fontSize: '18px' }}>Early Bird</label><br />
-                                                    <label> Available Tickets &nbsp;&nbsp;&nbsp;Total</label>
                                                     <div className="row">
-                                                        <div className="col-md-3" style={{ paddingLeft: '0px' }}>
-                                                            <FormItem style={{ padding: '2% 0%' }}>
+                                                        <div className="col-md-9" style={{ paddingLeft: '0px' }}>
+                                                            <label> Available Tickets Total</label>
+                                                            <FormItem>
                                                                 {getFieldDecorator('earlyBirdAvailableTickets', {
                                                                     initialValue: this.state.earlyBirdAvailableTickets,
                                                                     rules: [{ required: true, message: 'Please input your Available Tickets!', whitespace: true },
@@ -862,9 +863,8 @@ class EventPortal extends Component {
                                                                     <input type="text" className="form-control" />
                                                                 )}
                                                             </FormItem>
-                                                        </div>
-                                                        <div className="col-md-3" style={{ paddingRight: '0px' }}>
-                                                            <FormItem style={{ padding: '2% 0%' }}>
+                                                            <label>Total Ticket</label>
+                                                            <FormItem>
                                                                 {getFieldDecorator('earlyBirdTotalTickets', {
                                                                     initialValue: this.state.earlyBirdTotalTickets,
                                                                     rules: [{ required: true, message: 'Please input your Total Tickets!', whitespace: true },
@@ -874,10 +874,8 @@ class EventPortal extends Component {
                                                                     <input type="text" className="form-control" />
                                                                 )}
                                                             </FormItem>
-                                                        </div>
-                                                        <div className="col-md-3" style={{ marginTop: '-31px' }}>
-                                                            <label> Price </label>
-                                                            <FormItem style={{ padding: '2% 0%' }}>
+                                                            <label> Price of Ticket</label>
+                                                            <FormItem>
                                                                 {getFieldDecorator('earlyBirdPrice', {
                                                                     initialValue: this.state.earlyBirdPrice,
                                                                     rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
@@ -889,13 +887,13 @@ class EventPortal extends Component {
                                                             </FormItem>
                                                         </div>
                                                         <div className="col-md-3">
-                                                            <label className="ant-checkbox ant-checkbox-wrapper">
+                                                            <label className="ant-checkbox ant-checkbox-wrapper margTopEventLable">
                                                                 <Checkbox checked={this.state.earlyBirdFree} onChange={this.onChangePrice1.bind(this)}>(Free)</Checkbox>
                                                             </label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                {!this.state.earlyBirdFree && <div className="col-md-5" style={{ marginTop: '35px' }}>
+                                                {!this.state.earlyBirdFree && <div className="col-md-5 margiTopColSty">
                                                     <label> Mode Of Payment </label>
                                                     <FormItem style={{ padding: '2% 0%' }}>
                                                         {getFieldDecorator('earlyBirdPaymentMode', {
@@ -914,7 +912,7 @@ class EventPortal extends Component {
                                         {this.state.earlyBird && <div>
                                             <hr className="hrLineStyle" />
                                             <div className="row">
-                                                {!this.state.earlyBirdFree && <div className="col-md-6">
+                                                {!this.state.earlyBirdFree && <div className="col-md-12">
                                                     <label>Ticket Delivery</label>
                                                     <FormItem style={{ padding: '2% 0%' }}>
                                                         {getFieldDecorator('earlyBirdDelivery', {
@@ -924,21 +922,19 @@ class EventPortal extends Component {
                                                             <CheckboxGroup options={optionsDelivery} />
                                                         )}
                                                     </FormItem>
+                                                    <hr className="hrLineStyle" />
                                                 </div>}
-                                            </div>
-                                            <div className="col-md-6">
-
                                             </div>
                                         </div>}
 
                                         {this.state.normalTicket && <div className="row">
                                             <div className="col-md-12">
-                                                <div className="col-md-6">
+                                                <div className="col-md-7">
                                                     <label style={{ fontSize: '18px' }}>Normal Ticket</label><br />
-                                                    <label> Available Tickets &nbsp;&nbsp;&nbsp;Total</label>
                                                     <div className="row">
-                                                        <div className="col-md-3" style={{ paddingLeft: '0px' }}>
-                                                            <FormItem style={{ padding: '2% 0%' }}>
+                                                        <div className="col-md-9" style={{ paddingLeft: '0px' }}>
+                                                            <label> Available Tickets</label>
+                                                            <FormItem>
                                                                 {getFieldDecorator('normalTicketAvailableTickets', {
                                                                     initialValue: this.state.normalTicketAvailableTickets,
                                                                     rules: [{ required: true, message: 'Please input your Available Tickets!', whitespace: true },
@@ -948,9 +944,8 @@ class EventPortal extends Component {
                                                                     <input type="text" className="form-control" />
                                                                 )}
                                                             </FormItem>
-                                                        </div>
-                                                        <div className="col-md-3" style={{ paddingRight: '0px' }}>
-                                                            <FormItem style={{ padding: '2% 0%' }}>
+                                                            <label> Total Tickets </label>
+                                                            <FormItem>
                                                                 {getFieldDecorator('normalTicketTotalTickets', {
                                                                     initialValue: this.state.normalTicketTotalTickets,
                                                                     rules: [{ required: true, message: 'Please input your Total Tickets!', whitespace: true },
@@ -960,10 +955,8 @@ class EventPortal extends Component {
                                                                     <input type="text" className="form-control" />
                                                                 )}
                                                             </FormItem>
-                                                        </div>
-                                                        <div className="col-md-3" style={{ marginTop: '-27px' }}>
-                                                            <label> Price </label>
-                                                            <FormItem style={{ padding: '2% 0%' }}>
+                                                            <label> Price of Ticket </label>
+                                                            <FormItem>
                                                                 {getFieldDecorator('normalTicketPrice', {
                                                                     initialValue: this.state.normalTicketPrice,
                                                                     rules: [{ required: true, message: 'Please input your Price!', whitespace: true },
@@ -975,13 +968,13 @@ class EventPortal extends Component {
                                                             </FormItem>
                                                         </div>
                                                         <div className="col-md-3">
-                                                            <label className="ant-checkbox ant-checkbox-wrapper">
+                                                            <label className="ant-checkbox ant-checkbox-wrapper margTopEventLable">
                                                                 <Checkbox checked={this.state.normalTicketFree} onChange={this.onChangePrice2.bind(this)}>(Free)</Checkbox>
                                                             </label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                {!this.state.normalTicketFree && <div className="col-md-6" style={{ marginTop: '35px' }}>
+                                                {!this.state.normalTicketFree && <div className="col-md-5 margiTopColSty">
                                                     <label> Mode Of Payment </label>
                                                     <FormItem style={{ padding: '2% 0%' }}>
                                                         {getFieldDecorator('normalTicketPaymentMode', {

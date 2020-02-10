@@ -16,7 +16,7 @@ class EcomForms extends Component {
     return (
       <div className="">
         <Headermenu />
-        <div className="row jobdetail-page" style={isMobile ? { backgroundColor: "#37a99b", marginTop: "0px" } : { backgroundColor: "#37a99b", marginTop: "100px" }}>
+        <div className="row jobdetail-page" style={isMobile ? { backgroundColor: "rgb(35, 101, 80)", marginTop: "0px" } : { backgroundColor: "rgb(35, 101, 80)", marginTop: "115px" }}>
           <div className="col-md-12 col-sm-12 col-xs-12" style={{ textAlign: "center", marginTop: "25px" }}>
             <div className="">
               <h1 style={{ fontFamily: 'Crimson Text, serif', fontWeight: "bold", color: "white" }}>Add Your Product</h1>

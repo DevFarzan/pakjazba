@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Icon } from 'antd';
+import './eventPortal.css';
 
 export class Shareholder extends Component {
 	state = {
@@ -45,15 +46,15 @@ export class Shareholder extends Component {
 									placeholder={`#${idx + 1}`}
 									value={shareholder.name}
 									id={this.props.id}
-                                    style={{width: '86%'}}
+                                    style={{width: '86%', marginLeft:'5px', marginTop:'8px'}}
                                     className="form-group"
 									onChange={this.handleShareholderNameChange(idx)}
 		                        />
 		                        <button
 			                        type="button"
 			                        onClick={this.handleRemoveShareholder(idx)}
-			                        className="btn btn-sm"
-	                        		style={{margin:'11px 0px 11px 11px'}}
+                                    className="btn btn-sm color_button margLeftInterms"
+	                        		// style={{margin:'11px 0px 11px 11px'}}
                         		>
 		                          X
 		                        </button>
@@ -62,7 +63,8 @@ export class Shareholder extends Component {
 	                <button
 						type="button"
 						onClick={this.handleAddShareholder}
-						className="button_add"
+                        className="button_add color_button"
+                        style={{marginLeft:'8px', marginBottom:'8px'}}
 	                >
 		                Add
 					</button>

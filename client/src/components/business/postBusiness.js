@@ -29,8 +29,8 @@ import './postBusiness.css';
 const { Link } = Anchor;
 
 const handleClick = (e, link) => {
-  e.preventDefault();
-  console.log(link);
+    e.preventDefault();
+    console.log(link);
 };
 
 //const stateCities= require('countrycitystatejson')
@@ -330,7 +330,8 @@ class Postbusiness extends Component {
             loader: false,
             dataOtime: '00:00:00',
             dataCtime: '00:00:00',
-            objData: {}
+            objData: {},
+            tabsScroll: window.scrollTo(0, 0),
         };
     }
 
@@ -445,6 +446,7 @@ class Postbusiness extends Component {
             previewVisible: true,
         });
     }
+
 
     handleChange = ({ fileList }) => {
         this.setState({ fileList })
@@ -670,10 +672,16 @@ class Postbusiness extends Component {
 
     }
 
+    ancharTabsScrolling = () => {
+        this.setState({
+            tabsScroll: window.scrollTo(0, 900)
+        });
+    }
+
     render() {
         const { previewVisible, previewImage, fileList, desLength, socFac, socGoo, socLin, statesUS, citiesUS, objData } = this.state;
         const { getFieldDecorator } = this.props.form;
-console.log()
+        console.log()
         if (this.state.msg === true) {
             return <Redirect to={{ pathname: '/detail_business', state: objData }} />
         }
@@ -740,151 +748,172 @@ console.log()
                 {/*================================post business form start============================*/}
                 <div className="hidden-xs" style={{ width: "100%", height: "67px", marginTop: "3px" }}></div>
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
-                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs" id="section1" style={{marginLeft: '4%',marginTop: '128px', position: 'fixed',}}>
-                    <Anchor className="" style={{margin: '2%',backgroundColor: '#f6f6f6'}}>
-                        <Link href="#scrollChange1" title="General" />
-                        <Link href="#scrollChange2" title="Location" />
+                <div className="col-lg-2 col-md-2 hidden-sm hidden-xs" id="section1" style={{ marginLeft: '4%', marginTop: '128px', position: 'fixed', }}>
+                    <Anchor className="" style={{ margin: '2%', backgroundColor: '#f6f6f6' }}>
+                        <Link href="#scrollChange1" title="General"  />
+                        <Link href="#scrollChange2" title="Location"  />
                         <Link href="#scrollChange3" title="Business" />
                         <Link href="#scrollChange4" title="Social Links" />
                         <Link href="#scrollChange5" title="Upload" />
                     </Anchor>
                 </div>
-                
+
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <Form onSubmit={this.handleSubmit} className="login-form">
-                        <div className="" style={{ paddingTop: "74px",  }}>{/*panel-group 37px*/}
-                            <div style={{textAlign: 'center'}}>
-                                <h2 style={{ color: 'black', fontWeight: 'bold'}}>Your listing details</h2>
+                        <div className="" style={{ paddingTop: "74px", }}>{/*panel-group 37px*/}
+                            <div style={{ textAlign: 'center' }}>
+                                <h2 style={{ color: 'black', fontWeight: 'bold' }}>Your listing details</h2>
                             </div>
                             <div className="">{/*panel panel-default */}
-                                
+
                                 <div className="">
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
                                     <div className="formRadius card" id="scrollChange1">
-                                        <div className="bold_c_text topRadius" 
-                                            style={{ backgroundColor: 'white', color: 'black', padding: '2%', 
-                                                fontFamily: 'Crimson Text, serif !important', border: 'none', 
-                                                borderBottom: '1px solid #d9d9d9', }}>
+                                        <div className="bold_c_text topRadius"
+                                            style={{
+                                                backgroundColor: 'white', color: 'black', padding: '2%',
+                                                fontFamily: 'Crimson Text, serif !important', border: 'none',
+                                                borderBottom: '1px solid #d9d9d9',
+                                            }}>
 
                                             <i class="fa fa-info-circle iconStyle"></i>
                                             <span className="margin_font_location">General</span>
                                         </div>
-                                        <div style={{padding: '8px 0px 8px 0px',}}>
-                                            <FormItem
-                                                    {...formItemLayout}
-                                                    label="Business Category"
+                                        <div style={{ padding: '8px 0px 8px 0px', }}>
 
-                                                    style={{padding: '2%'}}
-                                                >
-                                                    {getFieldDecorator('businessCategory', {
-                                                        initialValue: this.state.dataCategory,
-                                                        rules: [{ type: 'array', required: true, message: 'Please select your Business Category!' }],
-                                                    })(
-                                                        <Cascader options={category} showSearch={{ filter }} />
-                                                    )}
-                                                </FormItem>
+                                            <div className="row">
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Business Category</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="Business Category"
 
-                                                <hr className="hrLineStyle"/>
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('businessCategory', {
+                                                            initialValue: this.state.dataCategory,
+                                                            rules: [{ type: 'array', required: true, message: 'Please select your Business Category!' }],
+                                                        })(
+                                                            <Cascader options={category} showSearch={{ filter }} />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Description</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="Description"
 
-                                                <FormItem
-                                                    {...formItemLayout}
-                                                    label="Description"
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('description', {
+                                                            initialValue: this.state.dataDescription,
+                                                            rules: [
+                                                                {
+                                                                    required: true, message: 'Please input your Description!', whitespace: true
+                                                                },
+                                                                {
+                                                                    validator: this.checkValue.bind(this)
+                                                                }],
+                                                        })(
+                                                            <TextArea style={{ "marginBottom": "12px" }}
+                                                                rows={6}
+                                                                maxLength="500"
+                                                            />
+                                                        )}
+                                                        <br /><br />
+                                                        <span className="text-area_business">{500 - desLength} Words</span>
+                                                    </FormItem>
+                                                </div>
+                                            </div>
 
-                                                    style={{padding: '2%'}}
-                                                >
-                                                    {getFieldDecorator('description', {
-                                                        initialValue: this.state.dataDescription,
-                                                        rules: [
-                                                            {
-                                                                required: true, message: 'Please input your Description!', whitespace: true
-                                                            },
-                                                            {
-                                                                validator: this.checkValue.bind(this)
-                                                            }],
-                                                    })(
-                                                        <TextArea style={{ "marginBottom": "12px" }}
-                                                            rows={6}
-                                                            maxLength="500"
-                                                        />
-                                                    )}
-                                                    <br /><br />
-                                                    <span className="text-area_business">{500 - desLength} Words</span>
-                                            </FormItem>
                                         </div>
                                     </div>
-                                    <br/>
-                                    
+                                    <br />
+
                                     <div className="formRadius card" id="scrollChange2">
                                         <div className="bold_c_text topRadius"
-                                          style={{ backgroundColor: '#fff', color: 'black', padding: '2%', 
-                                          fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid #d9d9d9',
-                                           boxShadow: '0 2px 5px 0 rgba(0,0,0,.07)', }}>
-                                                <i class="fa fa-map-marker iconStyle" aria-hidden="true"></i>
-                                                <span className="margin_font_location">Location</span>
+                                            style={{
+                                                backgroundColor: '#fff', color: 'black', padding: '2%',
+                                                fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid #d9d9d9',
+                                                boxShadow: '0 2px 5px 0 rgba(0,0,0,.07)',
+                                            }}>
+                                            <i class="fa fa-map-marker iconStyle" aria-hidden="true"></i>
+                                            <span className="margin_font_location">Location</span>
                                         </div>
                                         <div className="">{/*panel-body */}
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Address"
+                                            <div className="row">
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Address</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="Address"
 
-                                                style={{padding: '2%'}}
-                                            >
-                                                {getFieldDecorator('address', {
-                                                    initialValue: this.state.dataAddress,
-                                                    rules: [{ required: true, message: 'Please input your Address!', whitespace: true }],
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem>
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('address', {
+                                                            initialValue: this.state.dataAddress,
+                                                            rules: [{ required: true, message: 'Please input your Address!', whitespace: true }],
+                                                        })(
+                                                            <Input />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">State</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="State"
 
-                                            <hr className="hrLineStyle"/>
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('state', {
+                                                            initialValue: this.state.dataState,
+                                                            rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
+                                                        })(
+                                                            <Cascader options={statesUS} onChange={this.onChangeCat.bind(this)} showSearch={{ filter }} />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                            </div>
 
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="State"
+                                            <hr className="hrLineStyle" />
 
-                                                style={{padding: '2%'}}
-                                            >
-                                                {getFieldDecorator('state', {
-                                                    initialValue: this.state.dataState,
-                                                    rules: [{ type: 'array', required: true, message: 'Please select your State!' }],
-                                                })(
-                                                    <Cascader options={statesUS} onChange={this.onChangeCat.bind(this)} showSearch={{ filter }} />
-                                                )}
-                                            </FormItem>
+                                            <div className="row">
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">City</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="City"
 
-                                            <hr className="hrLineStyle"/>
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('city', {
+                                                            initialValue: this.state.dataCity,
+                                                            rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
+                                                        })(
+                                                            <Cascader options={citiesUS} showSearch={{ filter }} />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Zip</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="Zip"
 
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="City"
-
-                                                style={{padding: '2%'}}
-                                            >
-                                                {getFieldDecorator('city', {
-                                                    initialValue: this.state.dataCity,
-                                                    rules: [{ type: 'array', required: true, message: 'Please select your City!' }],
-                                                })(
-                                                    <Cascader options={citiesUS} showSearch={{ filter }} />
-                                                )}
-                                            </FormItem>
-
-                                            <hr className="hrLineStyle"/>
-                                            
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Zip"
-
-                                                style={{padding: '2%'}}
-                                            >
-                                                {getFieldDecorator('zip', {
-                                                    initialValue: this.state.dataZip,
-                                                    rules: [{ required: true, message: 'Please input your Zip!', whitespace: true }],
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem>
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('zip', {
+                                                            initialValue: this.state.dataZip,
+                                                            rules: [{ required: true, message: 'Please input your Zip!', whitespace: true }],
+                                                        })(
+                                                            <Input />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <br />
@@ -895,119 +924,133 @@ console.log()
                                             <i class="fa fa-building iconStyle"></i>
                                             <span className="margin_font_location">Business</span>
                                         </div>
-                                        <div className="bottomRadius card" style={{paddingBottom: '5px',}}>{/*panel-body  */}
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="First Name"
+                                        <div className="bottomRadius card" style={{ paddingBottom: '5px', }}>{/*panel-body  */}
+                                            <div className="row">
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">First Name</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="First Name"
 
-                                                style={{padding: '2%'}}
-                                            >
-                                                {getFieldDecorator('firstName', {
-                                                    initialValue: this.state.dataFname,
-                                                    rules: [{ required: true, message: 'Please input your  First Name!', whitespace: true }],
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem>
-
-                                            <hr className="hrLineStyle"/>
-
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Last Name"
-
-                                                style={{padding: '2%'}}
-                                            >
-                                                {getFieldDecorator('lastName', {
-                                                    initialValue: this.state.dataLname,
-                                                    rules: [{ required: true, message: 'Please input your Last Name!', whitespace: true }],
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem>
-
-                                            <hr className="hrLineStyle"/>
-                                            
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Business Name"
-
-                                                style={{padding: '2%'}}
-                                            >
-                                                {getFieldDecorator('businessName', {
-                                                    initialValue: this.state.dataBname,
-                                                    rules: [
-                                                        { required: true, message: 'Please input your Business Name!', whitespace: true },
-                                                    ],
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem>
-
-                                            <hr className="hrLineStyle"/>
-
-                                            <div className='row' style={{padding: '2%'}}>
-                                                <div className="col-md-4">
-                                                    <label htmlFor="email" style={{ fontColor: 'black', float: 'right' }}>Opening & closing Time:</label>
-                                                </div>
-                                                <div className="col-md-3">
-                                                    <FormItem>
-                                                        {getFieldDecorator('openingTime', {
-                                                            initialValue: moment(this.state.dataOtime, 'HH:mm:ss'),
-                                                            rules: [{ validator: this.validateTime.bind(this) }],
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('firstName', {
+                                                            initialValue: this.state.dataFname,
+                                                            rules: [{ required: true, message: 'Please input your  First Name!', whitespace: true }],
                                                         })(
-                                                            <TimePicker placeholder="Opening Time" onChange={this.onOpeningTime.bind(this)} />
+                                                            <Input />
                                                         )}
                                                     </FormItem>
                                                 </div>
-                                                <div className="col-md-3">
-                                                    <FormItem>
-                                                        {getFieldDecorator('closingTime', {
-                                                            initialValue: moment(this.state.dataCtime, 'HH:mm:ss'),
-                                                            rules: [{ validator: this.validateTime.bind(this) }],
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Last Name</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="Last Name"
+
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('lastName', {
+                                                            initialValue: this.state.dataLname,
+                                                            rules: [{ required: true, message: 'Please input your Last Name!', whitespace: true }],
                                                         })(
-                                                            <TimePicker placeholder="Closing Time" onChange={this.onClosingTime.bind(this)} />
+                                                            <Input />
                                                         )}
                                                     </FormItem>
                                                 </div>
-                                                <div className="col-md-2"></div>
                                             </div>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
+                                            <div className="row">
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Business Name</label>
+                                                    <FormItem
+                                                        // {...formItemLayout}
+                                                        // label="Business Name"
 
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Business Number"
+                                                        // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('businessName', {
+                                                            initialValue: this.state.dataBname,
+                                                            rules: [
+                                                                { required: true, message: 'Please input your Business Name!', whitespace: true },
+                                                            ],
+                                                        })(
+                                                            <Input />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Opening & closing Time:</label>
+                                                    <div className="row" style={{padding:'0px'}}>
+                                                        <div className="col-xs-12 col-sm-6 col-md-6">
+                                                            <FormItem>
+                                                                {getFieldDecorator('openingTime', {
+                                                                    initialValue: moment(this.state.dataOtime, 'HH:mm:ss'),
+                                                                    rules: [{ validator: this.validateTime.bind(this) }],
+                                                                })(
+                                                                    <TimePicker placeholder="Opening Time" onChange={this.onOpeningTime.bind(this)} />
+                                                                )}
+                                                            </FormItem>
+                                                        </div>
+                                                        <div className="col-xs-12 col-sm-6 col-md-6">
+                                                            <FormItem>
+                                                                {getFieldDecorator('closingTime', {
+                                                                    initialValue: moment(this.state.dataCtime, 'HH:mm:ss'),
+                                                                    rules: [{ validator: this.validateTime.bind(this) }],
+                                                                })(
+                                                                    <TimePicker placeholder="Closing Time" onChange={this.onClosingTime.bind(this)} />
+                                                                )}
+                                                            </FormItem>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {/* <label htmlFor="email" style={{ fontColor: 'black', float: 'right' }}></label> */}
 
-                                                style={{padding: '2%'}}
-                                            >
-                                                {getFieldDecorator('businessNumber', {
-                                                    initialValue: this.state.dataBnumber,
-                                                    rules: [{ required: true, message: 'Please input your Business Number!', whitespace: true },
-                                                    { validator: this.validateNumber.bind(this) }]
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
-                                            <FormItem
-                                                {...formItemLayout}
-                                                label="Your Business Email id"
+                                            <div className="row">
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Business Number</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="Business Number"
 
-                                                style={{padding: '2%'}}
-                                            >
-                                                {getFieldDecorator('businessId', {
-                                                    initialValue: this.state.dataBemailId,
-                                                    rules: [{
-                                                         required: true, 
-                                                        message: 'Please input your Business Email id!', whitespace: true },
-                                                    { type: 'email', message: 'The input is not valid E-mail!' }]
-                                                })(
-                                                    <Input />
-                                                )}
-                                            </FormItem>
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('businessNumber', {
+                                                            initialValue: this.state.dataBnumber,
+                                                            rules: [{ required: true, message: 'Please input your Business Number!', whitespace: true },
+                                                            { validator: this.validateNumber.bind(this) }]
+                                                        })(
+                                                            <Input />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                                <div className="col-xs-12 col-sm-6 col-md-6">
+                                                    <label htmlFor="sel1">Your Business Email id</label>
+                                                    <FormItem
+                                                    // {...formItemLayout}
+                                                    // label="Your Business Email id"
+
+                                                    // style={{ padding: '2%' }}
+                                                    >
+                                                        {getFieldDecorator('businessId', {
+                                                            initialValue: this.state.dataBemailId,
+                                                            rules: [{
+                                                                required: true,
+                                                                message: 'Please input your Business Email id!', whitespace: true
+                                                            },
+                                                            { type: 'email', message: 'The input is not valid E-mail!' }]
+                                                        })(
+                                                            <Input />
+                                                        )}
+                                                    </FormItem>
+                                                </div>
+                                            </div>
+
 
                                             {/* <hr className="hrLineStyle"/> */}
 
@@ -1060,46 +1103,46 @@ console.log()
                                                     <Input />
                                                 )}
                                             </FormItem> */}
-                                            
+
                                         </div>
                                     </div>
                                     <br />
-                                    
+
                                     {/*==========Business panel end===========*/}
                                     {/*==========social links box start===========*/}
-                                    <div className="formRadius card" id="scrollChange4" style={{backgroundColor: 'white',marginBottom: '5%'}}>
+                                    <div className="formRadius card" id="scrollChange4" style={{ backgroundColor: 'white', marginBottom: '5%' }}>
                                         <div className="bold_c_text topRadius card" style={{ backgroundColor: 'white', color: 'black', padding: '2%', fontFamily: 'Crimson Text, serif !important', borderBottom: '1px solid #d9d9d9' }}>
                                             <i class="fa fa-link iconStyle"></i>
                                             <span className="margin_font_location">Social Links</span>
                                         </div>
-                                        <div className="bottomRadius card" style={{paddingBottom: '5px',}}>
+                                        <div className="bottomRadius card" style={{ paddingBottom: '5px', }}>
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Facebook"
 
-                                                style={{padding: '2%'}}>
+                                                style={{ padding: '2%' }}>
 
                                                 <Input id='socFac' value={socFac} onChange={this.onChangeSocial.bind(this)} />
                                             </FormItem>
 
-                                            <hr className="hrLineStyle"/>
-                                            
+                                            <hr className="hrLineStyle" />
+
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Google"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 <Input id='socGoo' value={socGoo} onChange={this.onChangeSocial.bind(this)} />
                                             </FormItem>
 
-                                            <hr className="hrLineStyle"/>
+                                            <hr className="hrLineStyle" />
 
                                             <FormItem
                                                 {...formItemLayout}
                                                 label="Linkedin"
 
-                                                style={{padding: '2%'}}
+                                                style={{ padding: '2%' }}
                                             >
                                                 <Input id='socLin' value={socLin} onChange={this.onChangeSocial.bind(this)} />
                                             </FormItem>
@@ -1141,7 +1184,7 @@ console.log()
                     </Form>
                 </div>
                 <div className="col-lg-3 col-md-3 hidden-xs"></div>
-               
+
 
                 {/* <Footer/> */}
             </div>

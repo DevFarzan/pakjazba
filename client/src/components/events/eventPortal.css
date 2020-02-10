@@ -1,0 +1,58 @@
+
+@media only screen and (min-device-width: 330px) and (max-device-width: 767px){
+    .margTopEventLable{
+        margin-top: 30px !important;
+    }
+    .margiTopColSty{
+        margin-top: 50px;
+    }
+    .margLeftInterms{
+        margin-left: 3px;
+    }
+  }
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1023px){
+    .margTopEventLable{
+        margin-top: 30px !important;
+        margin-left: -2vw !important;
+    }
+    .margiTopColSty{
+        margin-top: 10px;
+    }
+    .margLeftInterms{
+        margin-left: 3px;
+    }
+  }
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1365px){
+    .margTopEventLable{
+        margin-top: 2.6vw !important;
+        margin-left: -1vw !important;
+    }
+    .margiTopColSty{
+        margin-top: 47px;
+    }
+    .margLeftInterms{
+        margin-left: -5px;
+    }
+  }
+  @media only screen and (min-device-width: 1366px) and (max-device-width: 1600px){
+    .margTopEventLable{
+        margin-top: 30px !important;
+    }
+    .margiTopColSty{
+        margin-top: 35px;
+    }
+    .margLeftInterms{
+        margin-left: 3px;
+    }
+  }
+  @media only screen and (min-device-width: 1600px){
+    .margTopEventLable{
+        margin-top: 30px !important;
+    }
+    .margiTopColSty{
+        margin-top: 33px;
+    }
+    .margLeftInterms{
+        margin-left: 3px;
+    }
+  }

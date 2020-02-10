@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import VideoDetail from './VideoDetail';
-import EHeader from '../entertainmenthome/entertainmentHeader';
+// import EHeader from '../entertainmenthome/entertainmentHeader';
 import Footer from '../../footer/footer';
-import LatestNews from '../entertainmenthome/LatestnewsSec';
-import Burgermenu from '../../header/burgermenu';
+// import LatestNews from '../entertainmenthome/LatestnewsSec';
+// import Burgermenu from '../../header/burgermenu';
 import HeaderMenu from '../../header/headermenu';
 
 class VideoBox extends Component{

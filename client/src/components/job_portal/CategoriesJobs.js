@@ -150,11 +150,6 @@ class CategoriesjobMarket extends Component {
     this.setState({ cat: value[0] })
   }
 
-  clickItem(item) {
-    const { cat, typeR } = this.state;
-    let str = typeof (item) == 'string' ? item : { cat, typeR };
-    this.props.filteringData(str)
-  }
 
   render() {
     const { states, cities } = this.state;

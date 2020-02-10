@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './burgermenu.css';
 import MainLogin from '../header/mainLogin';
 import Category from '../header/getcategory';
-import EHeader from '../entertainment/entertainmenthome/entertainmentHeader';
+// import EHeader from '../entertainment/entertainmenthome/entertainmentHeader';
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Redirect } from 'react-router';
@@ -114,9 +114,9 @@ class Burgermenu extends Component {
                                 <p rel="noopener noreferrer" onClick={() => this.renderList('EcommerceProfile')} style={{ color: 'black', fontSize: '14px', cursor: 'pointer' }}>Profile</p>
                             </span> */}
                         </div>
-                        {this.props.entertainment && <div className="row" className="hidden-sm">
+                        {/* {this.props.entertainment && <div className="row" className="hidden-sm">
                             <EHeader entertainment={this.props.entertainment} />
-                        </div>}
+                        </div>} */}
                     </div>
                     <div className="row hidden-sm">
                         <div style={{ width: '96%', height: '42px', marginLeft: '16px' }}>
@@ -139,9 +139,9 @@ class Burgermenu extends Component {
                                 <Link rel="noopener noreferrer" to={`/entertainment_Home`} style={{ color: 'black', fontSize: '14px' }}>Entertainment</Link>
                             </span>
                         </div>
-                        {this.props.entertainment && <div className="row" className="visible-sm">
+                        {/* {this.props.entertainment && <div className="row" className="visible-sm">
                             <EHeader entertainment={this.props.entertainment} />
-                        </div>}
+                        </div>} */}
                     </div>
                 </nav>
                 {/*=============================================visible xs============================================*/}
@@ -191,9 +191,9 @@ class Burgermenu extends Component {
                     <div className="col-md-4 col-xs-3">
                     </div>
                 </div>
-                {this.props.entertainment && <div className="row" className="visible-xs">
+                {/* {this.props.entertainment && <div className="row" className="visible-xs">
                     <EHeader entertainment={this.props.entertainment} />
-                </div>}
+                </div>} */}
             </div>
         )
     }

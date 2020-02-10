@@ -3,11 +3,6 @@ import './filterBuySell.css';
 import { Input, Cascader, Checkbox, Row, Col, Button } from 'antd';
 import stateCities from "../../lib/countrycitystatejson";
 
-
-function onChange(value) {
-  console.log(value);
-}
-
 class FilterBuySell extends Component {
   constructor(props) {
     super(props);

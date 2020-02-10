@@ -13,12 +13,9 @@ import {
     Anchor,
 } from 'antd';
 // import Geosuggest from 'react-geosuggest';
-import Burgermenu from '../header/burgermenu';
 import HeaderMenu from '../header/headermenu';
-import Footer from '../footer/footer';
 import sha1 from "sha1";
 import superagent from "superagent";
-// import axios from "axios";
 import { Redirect } from 'react-router';
 import { HttpUtils } from '../../Services/HttpUtils';
 import AsyncStorage from "@callstack/async-storage/lib/index";
@@ -331,12 +328,17 @@ class Postbusiness extends Component {
             dataOtime: '00:00:00',
             dataCtime: '00:00:00',
             objData: {},
-            tabsScroll: window.scrollTo(0, 0),
+            start: 0,
+            end: 0
         };
+    }
+    componentWillMount() {
+        const { start, end } = this.state;
+        window.scrollTo(start, end);
+
     }
 
     componentDidMount() {
-        window.scrollTo(0, 0);
         this.handleLocalStorage();
         let data = this.props.location.state;
         if (data) {
@@ -453,42 +455,6 @@ class Postbusiness extends Component {
     }
     //--------------upload functions end ---------------------
 
-    //--------------delete uploaded image start-------------------
-    // deleteFile = () => {
-    //     const cloudName = 'dxk0bmtei'
-    //     const url = 'https://api.cloudinary.com/v1_1/'+cloudName+'/image/destroy'
-    //     const timestamp = Date.now()/1000
-    //     const publicId = "kc2i5zrbymr6dwlp9man"
-    //     const paramsStr = 'timestamp='+timestamp+'&public_id='+publicId+'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
-    //     const signature = sha1(paramsStr)
-    //     console.log(signature.toString(),' signatureeeeeeeeeeee')
-    // const signature = "f32d42d4c15b560b49ead0878aaefb71016ca04d"
-    // const params = {
-    //     'api_key':'878178936665133',
-    //     'timestamp':timestamp,
-    //     'public_id':publicId,
-    //     'signature':signature.toString()
-    // }
-
-    // axios.post('https://api.cloudinary.com/v1_1/'+cloudName+'/image/destroy?'+'public_id='+publicId+'&timestamp='+timestamp+'&api_key=878178936665133'+'&signature='+signature,{}).then((res) => {
-    //     console.log(res, 'resssssssssss')
-    // }).catch((err) => {
-    //     console.log(err, 'errrrrrrrrrr')
-    // })
-
-    // let deleteRequest = superagent.post(url)
-    // console.log(deleteRequest, 'urlllllllll')
-    // Object.keys(params).forEach((key) =>{
-    //     deleteRequest.field(key, params[key])
-    // })
-    // deleteRequest.end((err, resp) =>{
-    //     console.log(err, 'errrrrrrrrrr')
-    //     console.log(resp, 'respppppppp')
-    //     err ? rej(err) : res(resp);
-    // })
-
-    // }
-    //--------------delete uploaded image end-------------------
 
     //--------------function for cloudnary url ---------------
     uploadFile = (files) => {
@@ -672,16 +638,16 @@ class Postbusiness extends Component {
 
     }
 
-    ancharTabsScrolling = () => {
-        this.setState({
-            tabsScroll: window.scrollTo(0, 900)
-        });
-    }
+    // ancharTabsScrolling = () => {
+    //     this.setState({
+    //         start: 600,
+    //         end: 1600
+    //     });
+    // }
 
     render() {
         const { previewVisible, previewImage, fileList, desLength, socFac, socGoo, socLin, statesUS, citiesUS, objData } = this.state;
         const { getFieldDecorator } = this.props.form;
-        console.log()
         if (this.state.msg === true) {
             return <Redirect to={{ pathname: '/detail_business', state: objData }} />
         }
@@ -749,9 +715,9 @@ class Postbusiness extends Component {
                 <div className="hidden-xs" style={{ width: "100%", height: "67px", marginTop: "3px" }}></div>
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
                 <div className="col-lg-2 col-md-2 hidden-sm hidden-xs" id="section1" style={{ marginLeft: '4%', marginTop: '128px', position: 'fixed', }}>
-                    <Anchor className="" style={{ margin: '2%', backgroundColor: '#f6f6f6' }}>
-                        <Link href="#scrollChange1" title="General"  />
-                        <Link href="#scrollChange2" title="Location"  />
+                    <Anchor className="" style={{ margin: '2%', backgroundColor: '#f6f6f6' }} onClick={this.ancharTabsScrolling}>
+                        <Link href="#scrollChange1" title="General" />
+                        <Link href="#scrollChange2" title="Location" />
                         <Link href="#scrollChange3" title="Business" />
                         <Link href="#scrollChange4" title="Social Links" />
                         <Link href="#scrollChange5" title="Upload" />
@@ -764,12 +730,12 @@ class Postbusiness extends Component {
                             <div style={{ textAlign: 'center' }}>
                                 <h2 style={{ color: 'black', fontWeight: 'bold' }}>Your listing details</h2>
                             </div>
-                            <div className="">{/*panel panel-default */}
+                            <div className="forSpace">{/*panel panel-default */}
 
                                 <div className="">
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
-                                    <div className="formRadius card" id="scrollChange1">
+                                    <div className="formRadius card scroll-container" id="scrollChange1">
                                         <div className="bold_c_text topRadius"
                                             style={{
                                                 backgroundColor: 'white', color: 'black', padding: '2%',
@@ -965,10 +931,10 @@ class Postbusiness extends Component {
                                                 <div className="col-xs-12 col-sm-6 col-md-6">
                                                     <label htmlFor="sel1">Business Name</label>
                                                     <FormItem
-                                                        // {...formItemLayout}
-                                                        // label="Business Name"
+                                                    // {...formItemLayout}
+                                                    // label="Business Name"
 
-                                                        // style={{ padding: '2%' }}
+                                                    // style={{ padding: '2%' }}
                                                     >
                                                         {getFieldDecorator('businessName', {
                                                             initialValue: this.state.dataBname,
@@ -982,7 +948,7 @@ class Postbusiness extends Component {
                                                 </div>
                                                 <div className="col-xs-12 col-sm-6 col-md-6">
                                                     <label htmlFor="sel1">Opening & closing Time:</label>
-                                                    <div className="row" style={{padding:'0px'}}>
+                                                    <div className="row" style={{ padding: '0px' }}>
                                                         <div className="col-xs-12 col-sm-6 col-md-6">
                                                             <FormItem>
                                                                 {getFieldDecorator('openingTime', {

@@ -814,12 +814,11 @@ class Postroommates extends Component {
 
                                             <div className="row">
                                                 <div className="col-xs-12 col-sm-6 col-md-6">
-                                                    <label htmlFor="sel1">Attached Bath</label>
+                                                    <div><label htmlFor="sel1" style={{marginLeft: '8px;'}}>Attached Bath</label></div>
                                                     <FormItem
                                                         // {...formItemLayout}
                                                         // label="Attached Bath"
-
-                                                        style={{ textAlign: 'center' }}
+                                                        style={{marginLeft: '8px'}}
                                                     >
                                                         <RadioGroup onChange={this.changeAttBath} name='radio' value={this.state.radio}>
                                                             <Radio value={true}>YES</Radio>
@@ -829,12 +828,11 @@ class Postroommates extends Component {
 
                                                     <hr className="hrLineStyle" />
 
-                                                    <label htmlFor="sel1">Vegetarians Preferred</label>
+                                                    <label htmlFor="sel1" style={{marginLeft: '8px;'}}>Vegetarians Preferred</label>
                                                     <FormItem
                                                         // {...formItemLayout}
                                                         // label="Vegetarians Preferred"
-
-                                                        style={{ textAlign: 'center' }}
+                                                        style={{marginLeft: '8px'}}
                                                     >
                                                         <RadioGroup onChange={this.changeAttBath} name='vegNoVeg' value={this.state.vegNoVeg}>
                                                             <Radio value={'Yes'}>YES</Radio>
@@ -844,12 +842,11 @@ class Postroommates extends Component {
 
                                                     <hr className="hrLineStyle" />
 
-                                                    <label htmlFor="sel1">Smoking</label>
+                                                    <label htmlFor="sel1" style={{marginLeft: '8px;'}}>Smoking</label>
                                                     <FormItem
                                                         // {...formItemLayout}
                                                         // label="Smoking"
-
-                                                        style={{ textAlign: 'center' }}
+                                                        style={{marginLeft: '8px'}}
                                                     >
                                                         <RadioGroup onChange={this.changeAttBath} name='smoking' value={this.state.smoking}>
                                                             <Radio value={'Yes'}>YES</Radio>
@@ -860,18 +857,17 @@ class Postroommates extends Component {
 
                                                     <hr className="hrLineStyle" />
 
-                                                    <label htmlFor="sel1">Pet Friendly</label>
+                                                    <label htmlFor="sel1" style={{marginLeft: '8px;'}}>Pet Friendly</label>
                                                     <FormItem
                                                         // {...formItemLayout}
                                                         // label="Pet Friendly"
-
-                                                        style={{ textAlign: 'center' }}
+                                                        style={{marginLeft: '8px'}}
                                                     >
                                                         <RadioGroup onChange={this.changeAttBath} name='petFriendly' value={this.state.petFriendly}>
                                                             <Radio value={'No'}>No</Radio>
                                                             <Radio value={'Only Cats'}>Only Cats</Radio>
                                                             <Radio value={'Only Dogs'}>Only Dogs</Radio>
-                                                            <Radio value={'Any Pet'}>Any Pet</Radio>
+                                                            <Radio value={'Any Pet'} style={{marginTop:'10px'}}>Any Pet</Radio>
                                                         </RadioGroup>
                                                     </FormItem>
                                                 </div>

@@ -89,7 +89,7 @@ class EventBanner extends Component {
                                     <Link key={key} to={{ pathname: `/detail_eventPortal/${elem.randomKey}`, state: elem }}>
                                         <div className="col-md-4 col-sm-5">
                                             <div className="eventCard">
-                                                <img alt='' src={elem.images[0]} className="eventImag" />
+                                                <img alt='' src={elem.images[0]} className="eventImagCard" />
                                                 <div className="row" style={{ padding: "0px" }}>
                                                     <div className="col-md-7 col-xs-7">
                                                         <div className="eventLocation">
@@ -142,7 +142,7 @@ class EventBanner extends Component {
                                     <Link key={key} to={{ pathname: `/detail_eventPortal/${elem.randomKey}`, state: elem }}>
                                         <div className="col-md-4 col-sm-5">
                                             <div className="eventCard">
-                                                <img alt='' src={elem.images[0]} className="eventImag" />
+                                                <img alt='' src={elem.images[0]} className="eventImagCard" />
                                                 <div className="row" style={{ padding: "0px" }}>
                                                     <div className="col-md-7 col-xs-7">
                                                         <div className="eventLocation">

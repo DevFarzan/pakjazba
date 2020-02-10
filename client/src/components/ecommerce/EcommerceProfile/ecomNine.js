@@ -14,11 +14,15 @@ class EcomNine extends Component {
         const { allProducts, filterDataShow, filteredData, filterDataNotFound, categoriesName, removeCategories } = this.props;
         return (
             <div className="container" style={{ padding: '0px', width: '100%' }}>
-                {categoriesName.length > 0 ?
-                    <div>
-                        <li>{categoriesName[0]}<span class="close"
+                <div className="row">
+
+                </div>
+                {categoriesName.length > 0 && <div className="col-xs-5 col-sm-3 col-md-3 col-lg-3">
+                    <div className="cross-card">
+                        <li>{categoriesName[0]}<span class="close crossBtnExlpre"
                             onClick={removeCategories.bind(this, 'categories')}>x</span></li>
-                    </div> : null}
+                    </div>
+                </div>}
                 {/* <div className="row">
                     <div className="col-md-12" style={isMobile ? { padding: "0px" } : { padding: "15px" }}>
                         <div className="col-md-3 col-sm-4">

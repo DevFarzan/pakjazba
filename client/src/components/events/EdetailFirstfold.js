@@ -25,28 +25,30 @@ class EdetailFirstfold extends Component {
           {/* <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,1.7)), url(${data.coverPhotoSrc})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center center"}}> */}
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
             <img src={data.coverPhotoSrc} alt="banner" className="EventDetailTopBanner" />
-            <div className="row mainEventBanerPadMarg">
-              <div className="col-xs-12 col-sm-7 col-md-8 col-lg-8">
-                <h1 className="EventBanerTextCsS">{data.eventTitle}</h1>
-                <p className="BanerSmalTextCsS">{data.address},{data.city},{data.state}</p>
-              </div>
-              <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2" style={{ textAlign: 'center' }}>
-                <p className="eventDateBaner">Event starts</p>
-                <h4 className="eventMDayBaner">{date}</h4>
-              </div>
-              <div className="col-xs-12 col-sm-3 col-md-2 col-lg-2">
-                <a href={data.number}>
-                  <button className="btnCallEventbaner">
-                    <Icon type="phone" /> <span>Call Now</span>
-                  </button>
-                </a>
+            <div className="row">
+              <div className="mainEventBanerPadMarg">
+                <div className="col-xs-12 col-sm-7 col-md-8 col-lg-8">
+                  <h1 className="EventBanerTextCsS">{data.eventTitle}</h1>
+                  <p className="BanerSmalTextCsS">{data.address},{data.city},{data.state}</p>
+                </div>
+                <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2" style={{ textAlign: 'center' }}>
+                  <p className="eventDateBaner">Event starts</p>
+                  <h4 className="eventMDayBaner">{date}</h4>
+                </div>
+                <div className="col-xs-12 col-sm-3 col-md-2 col-lg-2">
+                  <a href={data.number}>
+                    <button className="btnCallEventbaner">
+                      <Icon type="phone" /> <span>Call Now</span>
+                    </button>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="row">
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <EventDetailTab data={this.props.data} />
+            <EventDetailTab data={this.props.data} />
           </div>
         </div>
       </div>

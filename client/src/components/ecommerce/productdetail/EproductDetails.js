@@ -29,7 +29,7 @@ class EproductDetail extends Component {
       visible: false,
       goForLogin: false,
       shopId: '',
-      shopLogo:'',
+      shopLogo: '',
     }
   }
   async componentDidMount() {
@@ -55,9 +55,10 @@ class EproductDetail extends Component {
         dataShow: true,
         shopId: data.shopId,
         shopName: data.shopName,
-        
+
       })
-      let logoshop = {shopId: data.shopId
+      let logoshop = {
+        shopId: data.shopId
 
       }
       let reqShopData = await HttpUtils.post('getSpecificShopById', logoshop)
@@ -89,13 +90,13 @@ class EproductDetail extends Component {
 
   //add to cart funtion
   shoppingCartCount = (countCart) => {
-    const { shopLogo, user_Id, profileId, objectId, images, productName, price, description, cartCount, shopName, productId , shopId} = this.state;
+    const { shopLogo, user_Id, profileId, objectId, images, productName, price, description, cartCount, shopName, productId, shopId } = this.state;
     const userData = JSON.parse(localStorage.getItem('user'));
 
     if (userData) {
       //get local storage data
       const addToCartData = JSON.parse(localStorage.getItem('addToCart'));
-      
+
 
       //create obj for values
       let addToCartObj = {};
@@ -197,51 +198,38 @@ class EproductDetail extends Component {
           <div className="" style={isMobile ? { "backgroundImage": "url('../images/bgc-images/buy-sell.png')", marginTop: "10px", backgroundSize: 'cover' } : { "backgroundImage": "url('../images/bgc-images/buy-sell.png')", marginTop: "84px", backgroundSize: 'cover' }}>
             <div className="background-image">
               <HeaderMenu cartCount={cartCount} />
-              <Slider mainH1="Your Market Hub for all Products" mainH2="Find what you need" />
             </div>
           </div>
         </span>
         <div className="row">
-          <div className="" style={{height:"0"}}>
-            <div className="product-banner">
-              <img src="../images/footer-background-icons.jpg" alt="" />
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
+            <img src='../images/footer-background-icons.jpg' alt="banner" className="ecoProducttoP" />
+            <div className="productTitleEcoomerce">
+              <h2>{productName}</h2>
             </div>
-            <div className="row position">
-              <div className="col-md-10 col-sm-9">
-                <div className="row">
-                  <div className="logo-image">
-                    <div className="col-xs-3">
-                        <span><Link to={{
-                              pathname: `/EcommerceProfile/${data.shopId}`,
-                              // state: data.shopId
-                            }}>{shopLogo &&<img src={shopLogo} alt=""/>}</Link>
-                        </span>
-                    </div>
-                    <div className="col-xs-9">
-                      <span>
-                        <Link to={{
-                            pathname: `/EcommerceProfile/${data.shopId}`,
-                            // state: data.shopId
-                          }}><h3>{shopName}</h3></Link>
-                      </span>
-                    </div>
-                    </div>
-                </div>
+            <div className="row" style={{marginTop: '10vw'}}>
+              <div className="col-xs-4 col-sm-2 col-md-1 col-lg-1">
+                <Link to={{ pathname: `/EcommerceProfile/${data.shopId}` }}>
+                  {shopLogo && <img src={shopLogo} alt="" className="BannerIcon" />}
+                </Link>
               </div>
-              <div className="col-md-2 col-sm-3" style={isMobile? {marginTop:"0px"} : {marginTop:"25px"} }>
+              <div className="col-xs-8 col-sm-7 col-md-9 col-lg-9">
+                <Link to={{ pathname: `/EcommerceProfile/${data.shopId}` }}>
+                  <h1 className="BanerTextCsS">{shopName}</h1>
+                </Link>
+              </div>
+              <div className="col-xs-12 col-sm-3 col-md-2 col-lg-2">
                 <div className="price-product">
                   <h2>${price}</h2>
                 </div>
               </div>
             </div>
-            
-            
-            <div className="product-title">
-                <h2>{productName}</h2>
-            </div>
           </div>
-          <div className="col   productId={productId}
-             -md-12">
+        </div>
+        <div className="row">
+          <div className="" style={{ height: "0" }}>
+          </div>
+          <div className="productId={productId}">
             {dataShow ?
               <PthreeColumn data={data}
                 shoppingCartCount={this.shoppingCartCount}
@@ -262,7 +250,7 @@ class EproductDetail extends Component {
             </Modal>}
           </div>
         </div>
-        <Footer/>
+        <Footer />
       </div>
       // <div>
       //   <span>
@@ -308,6 +296,41 @@ const mapStateToProps = (state) => {
     otherData: state.otherData
   })
 }
+
 export default connect(mapStateToProps)(EproductDetail);
 
 // export default EproductDetail;
+{/* <div className="product-banner">
+  <img src="../images/footer-background-icons.jpg" alt="" />
+</div> */}
+
+{/* <div className="row position">
+  <div className="col-md-10 col-sm-9">
+    <div className="row">
+      <div className="logo-image">
+        <div className="col-xs-3">
+            <span><Link to={{
+                  pathname: `/EcommerceProfile/${data.shopId}`,
+                  // state: data.shopId
+                }}>{shopLogo &&<img src={shopLogo} alt=""/>}</Link>
+            </span>
+        </div>
+        <div className="col-xs-9">
+          <span>
+            <Link to={{
+                pathname: `/EcommerceProfile/${data.shopId}`,
+                // state: data.shopId
+              }}><h3>{shopName}</h3></Link>
+          </span>
+        </div>
+        </div>
+    </div>
+  </div>
+  <div className="col-md-2 col-sm-3" style={isMobile? {marginTop:"0px"} : {marginTop:"25px"} }>
+    <div className="price-product">
+      <h2>${price}</h2>
+    </div>
+  </div>
+</div> */}
+
+

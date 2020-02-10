@@ -21,7 +21,7 @@ class FourEcom extends Component {
           <h4 style={{ fontWeight: '700' }}>Related Categories</h4>
           {categories && categories.map((elem, key) => {
             return (
-              <div className="">
+              <div className="" style={{cursor:'pointer'}}>
                 <ol onClick={onChange.bind(this, 'categories', elem)}> {elem}</ol>
               </div>
             )

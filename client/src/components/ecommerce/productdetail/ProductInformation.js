@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Rate, Icon, Button,  Tooltip } from 'antd';
+import { Rate, Icon, Button, Tooltip } from 'antd';
 import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import './PthreeColumn.css'
 
@@ -31,22 +31,16 @@ class ProductInformation extends Component {
     let weight = data.itemWeight;
     let width = data.itemWidth;
     return (
-      <div class="container" style={isMobile? { width: "92%" } : {width: '100%', padding:"0"} }>
-        <div className="new-card">
-          <span style={{display: 'inline-flex'}}>
-            <Icon type="unordered-list" style={{marginRight:"5px"}}/>
-              <h5>Product Information </h5>
-          </span>
+      <div>
         <table class="table table-bordered">
           <tbody>
-            
             {data.lenseColor ?
               <tr>
                 <td><strong>Lense Color</strong></td>
                 <td>{data.lenseColor}</td>
               </tr>
               : null}
-            
+
             {data.countryLabeled ?
               <tr>
                 <td><strong>Country Labeled</strong></td>
@@ -77,7 +71,7 @@ class ProductInformation extends Component {
                 <td>{length.itemLengthNumber} {length.itemLengthUnit}</td>
               </tr>
               : null}
-            
+
             {data.maximumWeight ?
               <tr>
                 <td><strong>Maximum Weight</strong></td>
@@ -145,7 +139,7 @@ class ProductInformation extends Component {
                 <td>{data.variationTheme}</td>
               </tr>
               : null}
-            
+
             {data.sellingDate ?
               <tr>
                 <td><strong>Date First Available</strong></td>
@@ -178,7 +172,6 @@ class ProductInformation extends Component {
               : null}
           </tbody>
         </table>
-        </div>
       </div>
     )
   }

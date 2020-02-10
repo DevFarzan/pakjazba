@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Carousel, Icon } from 'antd';
 import { Redirect } from 'react-router';
 import Buydetailsecondfold from './buydetailsecondfold';
-import './buydetailfirstfold.css'
+import './buydetailfirstfold.css';
 
 class Buydetailfirstfold extends Component {
     constructor(props) {
@@ -16,12 +16,9 @@ class Buydetailfirstfold extends Component {
     componentDidMount() {
         window.scrollTo(0, 0);
         let data = this.props.data;
-        if(data){
-            this.setState({
-                images: data.images,
-                imgPath: data.images
-            })
-        }
+        this.setState({
+            images: data.images,
+        })
     }
     renderImagesPathinLi = (img) => {
         this.setState({
@@ -44,33 +41,36 @@ class Buydetailfirstfold extends Component {
         if (this.state.goProfile) {
             return <Redirect to={{ pathname: `/profile_user/${data.profileid}`, state: { userId: data.userid, profileId: data.profileid } }} />
         }
+        console.log(this.state.images, 'image state')
         console.log(data, 'dataaBuynsell');
         return (
             <div>
                 <div className="row" style={{ marginTop: '-1.5vw' }}>
                     {data.images && <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
                         <img src={data.images[0]} alt="banner" className="BuySellBannertoP" />
-                        <div className="row mainEventBanerPadMarg">
-                            <div className="col-xs-12 col-sm-7 col-md-8 col-lg-8">
-                                <h1 className="EventBanerTextCsS">{data.title}</h1>
-                                <p className="bannerSubtext">{data.category}</p>
-                            </div>
-                            <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2" style={{ textAlign: 'center' }}>
-                                <div className="bannerPriceDivv">
-                                    <h4 className="bannerPriceTag">
-                                        ${data.price}
-                                    </h4>
+                        <div className="row">
+                            <div className="mainBuySellBanerPadMag">
+                                <div className="col-xs-12 col-sm-7 col-md-8 col-lg-8">
+                                    <h1 className="EventBanerTextCsS">{data.title}</h1>
+                                    <p className="bannerSubtext">{data.category}</p>
                                 </div>
-                            </div>
-                            <div className="col-xs-12 col-sm-3 col-md-2 col-lg-2">
-                                <a href={data.contactnumber}>
-                                    <button className="btnCallEventbaner">
-                                        <Icon type="phone" /> <span>Call Now</span>
-                                    </button>
-                                </a>
-                                <span>
-                                    <p className="adPOsted">Ad Posted On {data.posted}</p>
-                                </span>
+                                <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2" style={{ textAlign: 'center' }}>
+                                    <div className="bannerPriceDivv">
+                                        <h4 className="bannerPriceTag">
+                                            ${data.price}
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div className="col-xs-12 col-sm-3 col-md-2 col-lg-2">
+                                    <a href={data.contactnumber}>
+                                        <button className="btnCallEventbaner">
+                                            <Icon type="phone" /> <span>Call Now</span>
+                                        </button>
+                                    </a>
+                                    <span>
+                                        <p className="adPOsted">Ad Posted On {data.posted}</p>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>}
@@ -79,20 +79,20 @@ class Buydetailfirstfold extends Component {
                     <div className="row">
                         <div className="col-md-1"></div>
                         <div className="col-md-5">
-                            <div className="row RoomMainDivS" style={{ height: "auto", margin: '0px 0px 20px 0px' }}>
+                            {data.images && <div className="row RoomMainDivS" style={{ height: "auto", margin: '0px 0px 20px 0px' }}>
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <div className="preview">
                                         <div class="preview-pic tab-content">
-                                            <div class="tab-pane active" id="pic-1"><img src={this.state.imgPath} /></div>
+                                            <div class="tab-pane active" id="pic-1"><img src={data.images[0]} /></div>
                                         </div>
                                         <ul class="preview-thumbnail nav nav-tabs">
-                                            {/* {this.state.images.map(img =>
+                                            {data.images.map(img =>
                                                 <li onClick={() => this.renderImagesPathinLi(img)}>
                                                     <a >
                                                         <img src={img} />
                                                     </a>
                                                 </li>
-                                            )} */}
+                                            )}
                                             {/* {this.state.images.map(img =>
                                                 <li onClick={() => this.renderImagesinLi(img)}>
                                                     <a ><img src={img} /></a>
@@ -110,7 +110,7 @@ class Buydetailfirstfold extends Component {
                                         })}
                                     </Carousel>} */}
                                 </div>
-                            </div>
+                            </div>}
                             <div className="row RoomMainDivS" style={{ paddingBottom: '0px', margin: '0px 0px 20px 0px' }}>
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
                                     <Icon type="unordered-list" /><h5 className="headingMainRoom">Description</h5>
@@ -161,8 +161,8 @@ class Buydetailfirstfold extends Component {
                                 </div><br />
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <div className="row" style={{ textAlign: 'center' }}>
-                                        <div className="col-xs-1 col-md-2 col-sm-2 col-lg-2"></div>
-                                        <div className="col-xs-10 col-md-8 col-sm-8 col-lg-8">
+                                        <div className="hidden-xs col-md-2 col-sm-2 col-lg-2"></div>
+                                        <div className="col-xs-12 col-md-8 col-sm-8 col-lg-8">
                                             <p className="eductionPara">
                                                 {data.delivery.map((elem, key) => {
                                                     return (
@@ -173,7 +173,7 @@ class Buydetailfirstfold extends Component {
                                                 })}
                                             </p>
                                         </div>
-                                        <div className="col-xs-1 col-md-2 col-sm-2 col-lg-2"></div>
+                                        <div className="hidden-xs col-md-2 col-sm-2 col-lg-2"></div>
                                     </div>
                                 </div>
                             </div>}

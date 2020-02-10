@@ -626,11 +626,8 @@ class JobPortal extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <hr className="hrLineStyle" />
-
                                             <div className="row">
-                                                <div className="col-md-6">
+                                                {/* <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Receiving CV/Resume Email</label>
                                                         <FormItem style={{ padding: '2%' }}>
@@ -646,7 +643,7 @@ class JobPortal extends Component {
                                                             )}
                                                         </FormItem>
                                                     </div>
-                                                </div>
+                                                </div> */}
                                                 {/* <div className="col-md-6">
                                                     <div className="form-group">
                                                         <label htmlFor="sel1">Contact No.</label>
@@ -790,6 +787,21 @@ class JobPortal extends Component {
                                                                 { validator: this.validateNumber.bind(this) }]
                                                             })(
                                                                 <Input />
+                                                            )}
+                                                        </FormItem>
+                                                    </div>
+                                                    <div className="form-group">
+                                                        <label htmlFor="sel1">Receiving CV/Resume Email</label>
+                                                        <FormItem>
+                                                            {getFieldDecorator('compEmail', {
+                                                                initialValue: compEmail,
+                                                                rules: [{ type: 'email', message: 'The input is not valid E-mail!', whitespace: true }, {
+                                                                    required: true,
+                                                                    message: 'Please input your Company Email!',
+                                                                    whitespace: true
+                                                                }],
+                                                            })(
+                                                                <input type="text" className="form-control" />
                                                             )}
                                                         </FormItem>
                                                     </div>

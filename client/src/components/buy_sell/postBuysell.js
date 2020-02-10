@@ -859,8 +859,6 @@ class Postbuysell extends Component {
                                             <FormItem
                                             // {...formItemLayout}
                                             // label="Mode of Contact"
-
-                                            // style={{ padding: '2%' }}
                                             >
                                                 {getFieldDecorator('contactMode', {
                                                     initialValue: this.state.dataCheckedList,
@@ -874,19 +872,24 @@ class Postbuysell extends Component {
 
                                     <hr className="hrLineStyle" />
 
-                                    <FormItem
-                                        {...formItemLayout}
-                                        label="Delivery"
+                                    <div className="row">
+                                        <div className="col-xs-12 col-sm-12 col-md-12">
+                                            <label htmlFor="sel1">Delivery</label>
+                                            <FormItem
+                                                // {...formItemLayout}
+                                                // label="Delivery"
 
-                                        style={{ padding: '2%' }}
-                                    >
-                                        {getFieldDecorator('delivery', {
-                                            initialValue: this.state.dataDelivery,
-                                            rules: [{ validator: this.checkCheckBox }],
-                                        })(
-                                            <CheckboxGroup options={optionsDelivery} />
-                                        )}
-                                    </FormItem>
+                                                // style={{ padding: '2%' }}
+                                            >
+                                                {getFieldDecorator('delivery', {
+                                                    initialValue: this.state.dataDelivery,
+                                                    rules: [{ validator: this.checkCheckBox }],
+                                                })(
+                                                    <CheckboxGroup options={optionsDelivery} />
+                                                )}
+                                            </FormItem>
+                                        </div>
+                                    </div>
 
                                     <hr className="hrLineStyle" />
 

@@ -40,7 +40,7 @@ class JobDetail extends Component {
 
     componentDidMount() {
         let data = this.props.location.state || this.props.otherData;
-        console.log(data , 'data in com job detail main ')
+        console.log(data, 'data in com job detail main ')
         if (data === undefined) {
             this.setState({
                 isData: false
@@ -74,7 +74,7 @@ class JobDetail extends Component {
 
     render() {
         const { data, isData, user, goForLogin } = this.state;
-        console.log(data , 'data in render main detail')
+        console.log(data, 'data in render main detail')
         const { TabPane } = Tabs;
         if (!isData) {
             return <Redirect to='/' />
@@ -100,21 +100,23 @@ class JobDetail extends Component {
                     </div>
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ padding: '0' }}>
                         <img src={data.arr_url[0]} alt="banner" className="JobBannertoP" />
-                        <div className="row mainBannerPadMarg">
-                            <div className="col-xs-4 col-sm-2 col-md-1 col-lg-1">
-                                {/* <img src={data.arr_url && data.arr_url} alt="icon" className="BannerIcon" /> */}
-                                <img src={Imggg} alt="icon" className="BannerIcon" />
-                            </div>
-                            <div className="col-xs-8 col-sm-7 col-md-9 col-lg-9">
-                                <h1 className="BanerTextCsS">{data.compName && data.compName}</h1>
-                                <p className="banertitleText">{data.Tagline}</p>
-                            </div>
-                            <div className="col-xs-12 col-sm-3 col-md-2 col-lg-2">
-                                <a href={data.contactnumber}>
-                                    <button className="btnCallbaner">
-                                        <Icon type="phone" /> <span>Call Now</span>
-                                    </button>
-                                </a>
+                        <div className="row">
+                            <div className="mainBannerPadMarg">
+                                <div className="col-xs-4 col-sm-2 col-md-1 col-lg-1">
+                                    {/* <img src={data.arr_url && data.arr_url} alt="icon" className="BannerIcon" /> */}
+                                    <img src={Imggg} alt="icon" className="BannerIcon" />
+                                </div>
+                                <div className="col-xs-8 col-sm-7 col-md-9 col-lg-9">
+                                    <h1 className="BanerTextCsS">{data.compName && data.compName}</h1>
+                                    <p className="banertitleText">{data.Tagline}</p>
+                                </div>
+                                <div className="col-xs-12 col-sm-3 col-md-2 col-lg-2">
+                                    <a href={data.contactnumber}>
+                                        <button className="btnCallbaner">
+                                            <Icon type="phone" /> <span>Call Now</span>
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

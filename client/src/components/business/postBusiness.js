@@ -332,10 +332,12 @@ class Postbusiness extends Component {
             dataCtime: '00:00:00',
             objData: {},
             tabsScroll: window.scrollTo(0, 0),
+            windScrolBusines: ''
         };
     }
 
     componentDidMount() {
+        this.setState({windScrolBusines: window.scrollTo(0, 0) })
         window.scrollTo(0, 0);
         this.handleLocalStorage();
         let data = this.props.location.state;

@@ -38,7 +38,10 @@
     filter: brightness(0.5);
   }
 }
-
+.mainBuySellBanerPadMag{
+  padding-top: 19vw;
+  padding-bottom: 2vw;
+}
 .ant-carousel .slick-slide {
   text-align: center;
   height: 300px;

@@ -39,3 +39,12 @@
         cursor: pointer;
     }
 }
+
+.mainNavBarHeaderStyle{
+    position: fixed !important;
+    width: 100% !important;
+    z-index: 999 !important;
+    margin-top: -19px !important;
+    border: none !important;
+    background-color: #00000052 !important;
+}

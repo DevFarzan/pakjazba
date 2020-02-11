@@ -124,7 +124,7 @@ class BuyTab extends Component {
                         />
                     </div>
                     <div className="col-md-4 col-sm-6 mobMargTopp">
-                        <Button className="btn insidebutton" style={{ width: '100%' }}
+                        <Button className="btn insidebutton submittBtn"
                             onClick={this.routeAndSearchTabs}>
                             <span className="fa fa-search">
 

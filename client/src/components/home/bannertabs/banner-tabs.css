@@ -1,7 +1,10 @@
 .wizard {
    margin-top: -56px;
 }
-
+.submittBtn{
+    width: 100% !important;
+    background:-webkit-linear-gradient(45deg, #236a4b, #224b69) !important;
+}
     .wizard .nav-tabs {
         position: relative;
         margin-top: 75px;

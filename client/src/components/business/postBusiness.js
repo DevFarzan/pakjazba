@@ -341,7 +341,7 @@ class Postbusiness extends Component {
     }
 
     componentDidMount() {
-        this.setState({windScrolBusines: window.scrollTo(0, 0) })
+        this.setState({ windScrolBusines: window.scrollTo(0, 0) })
         window.scrollTo(0, 0);
         this.handleLocalStorage();
         let data = this.props.location.state;
@@ -719,7 +719,8 @@ class Postbusiness extends Component {
                 <div className="hidden-xs" style={{ width: "100%", height: "67px", marginTop: "3px" }}></div>
                 <div className="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
                 <div className="col-lg-2 col-md-2 hidden-sm hidden-xs" id="section1" style={{ marginLeft: '4%', marginTop: '128px', position: 'fixed', }}>
-                    <Anchor className="" style={{ margin: '2%', backgroundColor: '#f6f6f6' }} onClick={this.ancharTabsScrolling}>
+                    {/* onClick={this.ancharTabsScrolling} */}
+                    <Anchor className="" style={{ margin: '2%', backgroundColor: '#f6f6f6' }}>
                         <Link href="#scrollChange1" title="General" />
                         <Link href="#scrollChange2" title="Location" />
                         <Link href="#scrollChange3" title="Business" />

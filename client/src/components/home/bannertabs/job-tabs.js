@@ -197,7 +197,7 @@ class JobTabs extends Component {
                         />
                     </div>
                     <div className="col-md-2 col-sm-6 mobMargTopp">
-                        <Button className="btn insidebutton" style={{ width: '100%' }} onClick={this.routeAndSearchTabs}>
+                        <Button className="btn insidebutton submittBtn" onClick={this.routeAndSearchTabs}>
                             <span className="fa fa-search">
 
                             </span>

@@ -93,23 +93,29 @@ class EcommerceTAB extends Component {
 
         let filterKeys = [];
 
-        if (filterCategoryName.length > 0) {
-            filterKeys.push('category')
+        if (filterCategoryName) {
+            if (filterCategoryName.length > 0) {
+                filterKeys.push('category')
+            }
+            for (var i = 0; i < filterCategoryName.length; i++) {
+                categoryProduct.push(filterCategoryName[i])
+            }
         }
-        if (filterColorFamily.length > 0) {
-            filterKeys.push('color')
+        if (filterColorFamily) {
+            if (filterColorFamily.length > 0) {
+                filterKeys.push('color')
+            }
+            for (var i = 0; i < filterColorFamily.length; i++) {
+                colorsofProduct.push(filterColorFamily[i])
+            }
         }
-        if (filterBrand.length > 0) {
-            filterKeys.push('brandName')
-        }
-        for (var i = 0; i < filterCategoryName.length; i++) {
-            categoryProduct.push(filterCategoryName[i])
-        }
-        for (var i = 0; i < filterColorFamily.length; i++) {
-            colorsofProduct.push(filterColorFamily[i])
-        }
-        for (var i = 0; i < filterBrand.length; i++) {
-            brandofProducts.push(filterBrand[i])
+        if (filterBrand) {
+            if (filterBrand.length > 0) {
+                filterKeys.push('brandName')
+            }
+            for (var i = 0; i < filterBrand.length; i++) {
+                brandofProducts.push(filterBrand[i])
+            }
         }
 
         this.setState({

@@ -1382,7 +1382,8 @@ app.post('/api/postJobPortal', (req, res) => {
       Website: postJobPortal.Website,
       Tagline: postJobPortal.Tagline,
       arr_url: postJobPortal.arr_url,
-      posted: postJobPortal.posted
+      posted: postJobPortal.posted,
+      contactnumber:postJobPortal.contactnumber
     });
 
     jobDataa.save((error, response) => {
@@ -1420,7 +1421,6 @@ app.post('/api/postJobPortal', (req, res) => {
       jobData.jobCat = postJobPortal.jobCat;
       jobData.city = postJobPortal.city;
       jobData.state = postJobPortal.state;
-
       jobData.jobDescription = postJobPortal.jobDescription;
       jobData.jobTitle = postJobPortal.jobTitle;
       jobData.jobType = postJobPortal.jobType[0];
@@ -1433,6 +1433,8 @@ app.post('/api/postJobPortal', (req, res) => {
       jobData.Tagline = postJobPortal.Tagline;
       jobData.arr_url = postJobPortal.arr_url;
       jobData.posted = postJobPortal.posted;
+      jobData.contactnumber = postJobPortal.contactnumber
+      
     });
     jobData.save((error, doc) => {
       if (error) {

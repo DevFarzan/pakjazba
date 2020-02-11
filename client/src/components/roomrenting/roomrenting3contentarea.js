@@ -64,12 +64,14 @@ class Roomrenting3contentarea extends Component {
 
   async getProfile(userObj) {
     let req = await HttpUtils.get('getprofile?profileId=' + userObj.profileId)
-    this.setState({
-      userId: userObj._id,
-      profileId: userObj.profileId,
-      userImg: req.content ? req.content.imageurl : '',
-      userName: userObj.name
-    })
+    if(req){
+      this.setState({
+        userId: userObj._id,
+        profileId: userObj.profileId,
+        userImg: req.content ? req.content.imageurl : '',
+        userName: userObj.name
+      })
+    }
   }
 
   async getReviews(data) {

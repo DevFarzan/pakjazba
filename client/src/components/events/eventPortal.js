@@ -394,7 +394,7 @@ class EventPortal extends Component {
         }
     };
 
-   
+
 
     onChangeValue(e) {
         if (e.target.id === 'faceBook') {
@@ -749,7 +749,7 @@ class EventPortal extends Component {
                                                             {bannerButton}
                                                         </Upload>}
                                                         {this.state.bannerSrc.length > 0 && <div>
-                                                            <img alt="example" src={this.state.bannerSrc} style={{ height: '190px' }} />
+                                                            <img alt="example" src={this.state.bannerSrc} style={{ height: '190px', width: '100%' }} />
                                                         </div>}
                                                     </span>
                                                 )}
@@ -773,7 +773,7 @@ class EventPortal extends Component {
                                                             <p className="ant-upload-hint">Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files</p>
                                                         </Dragger>}
                                                         {this.state.coverPhotoSrc.length > 0 && <div>
-                                                            <img alt="example" src={this.state.coverPhotoSrc} style={{ height: '190px' }} />
+                                                            <img alt="example" src={this.state.coverPhotoSrc} style={{ height: '190px', width: '100%' }} />
                                                         </div>}
                                                     </span>
                                                 )}

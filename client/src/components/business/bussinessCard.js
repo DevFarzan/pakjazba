@@ -152,7 +152,7 @@ class BussinesCard extends Component {
                                     </div>
                                     <div className="col-md-9 col-xs-9">
                                         <h4 style={{ margin: "0" }}>
-                                            <b>{cardDetails.jobCat}</b>
+                                            <b>{cardDetails.jobCat.slice(0, 12)}...</b>
                                         </h4>
                                         <div className="row" style={{ padding: "10px" }}>
                                             <div className="col-md-5 col-xs-4" style={{ padding: "0" }}>
@@ -164,7 +164,7 @@ class BussinesCard extends Component {
                                             <div className="col-md-7 col-xs-8" style={{ padding: "0" }}>
                                                 <span className="fa fa-phone" style={{ color: "#236A4B", margin: "0", left: "-3px", padding: "0" }}>
                                                 </span>
-                                                <span style={{ color: "black" }}></span>
+                                                {/* <span style={{ color: "black" }}>{cardDetails.contactnumber.slice(0, 5)}..</span> */}
                                             </div>
                                         </div>
                                     </div>

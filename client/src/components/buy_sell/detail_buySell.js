@@ -10,40 +10,44 @@ class DetailBuySell extends Component {
         super(props)
         this.state = {
             isData: true,
-            data: {}
+            data: ''
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         window.scrollTo(0, 0);
         let data = this.props.location.state;
-        // console.log(data , 'data')
-        if (data === undefined) {
+        if (data) {
             this.setState({
-                isData: true
+                data: data
             })
-        } else {
-            this.getProfile(data)
         }
+        // if (data === undefined) {
+        //     this.setState({
+        //         isData: true
+        //     })
+        // } else {
+        //     this.getProfile(data)
+        // }
     }
 
-    async getProfile(data) {
-        let _id = data.profileid ? data.profileid : data.profileId ? data.profileId : '';
-        let req = await HttpUtils.get('getprofile?profileId=' + _id);
-        let allData = { ...data, ...{ userImage: req ? req.content.imageurl : '' } }
-        // console.log(allData , 'allData')
-        this.setState({
-            isData: true,
-            data: allData
-        })
-    }
+    // async getProfile(data) {
+    //     let _id = data.profileid ? data.profileid : data.profileId ? data.profileId : '';
+    //     let req = await HttpUtils.get('getprofile?profileId=' + _id);
+    //     let allData = { ...data, ...{ userImage: req ? req.content.imageurl : '' } }
+    //     console.log(allData , 'allData')
+    //     this.setState({
+    //         isData: true,
+    //         data: allData
+    //     })
+    // }
 
     render() {
-        const { isData, data } = this.state;
+        const {  data } = this.state;
 
-        if (!isData) {
-            return <Redirect to='/detail_buySell' />
-        }
+        // if (!isData) {
+        //     return <Redirect to='/detail_buySell' />
+        // }
 
         return (
             <div>

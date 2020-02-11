@@ -272,13 +272,15 @@ class JobPortal extends Component {
             posted: moment().format('LL')
         }
         let req = await HttpUtils.post('postJobPortal', obj)
-        if (req.code === 200) {
-            this.openNotification()
-            this.setState({
-                objData: obj,
-                msg: true,
-                loader: false
-            })
+        if(req){
+            if (req.code === 200) {
+                this.openNotification()
+                this.setState({
+                    objData: obj,
+                    msg: true,
+                    loader: false
+                })
+            }
         }
     }
 

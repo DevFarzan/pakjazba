@@ -1,48 +1,44 @@
 import React, { Component } from 'react';
-import { Carousel, Icon } from 'antd';
+import { Icon } from 'antd';
 import { Redirect } from 'react-router';
-import Buydetailsecondfold from './buydetailsecondfold';
 import './buydetailfirstfold.css';
 
 class Buydetailfirstfold extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            isData: true,
             goProfile: false,
             imgPath: '',
             images: [],
         }
     }
-    componentDidMount() {
+    componentWillMount() {
         window.scrollTo(0, 0);
-        let data = this.props.data;
-        this.setState({
-            images: data.images,
-        })
+        const { data } = this.props;
+        if (data.images !== undefined) {
+            this.setState({
+                isData: true,
+                data: data,
+                images: data.images,
+                imgPath: data.images[0]
+            })
+        }
     }
     renderImagesPathinLi = (img) => {
         this.setState({
             imgPath: img
         })
     }
-    // renderImagesinLi = (img) => {
-    //     this.setState({
-    //       imgUrl: img
-    //     })
-    //   }
+  
     goToProfile() {
         this.setState({ goProfile: true })
     }
     render() {
-        let data = this.props.data;
-        // const { images } = this.state;
-        // let images = data.images || data.arr_url;
-        // console.log(data.sizedimension && data.sizedimension[0], 'data')
+        const { data } = this.props;
         if (this.state.goProfile) {
             return <Redirect to={{ pathname: `/profile_user/${data.profileid}`, state: { userId: data.userid, profileId: data.profileid } }} />
         }
-        console.log(this.state.images, 'image state')
-        console.log(data, 'dataaBuynsell');
         return (
             <div>
                 <div className="row" style={{ marginTop: '-1.5vw' }}>
@@ -83,32 +79,18 @@ class Buydetailfirstfold extends Component {
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <div className="preview">
                                         <div class="preview-pic tab-content">
-                                            <div class="tab-pane active" id="pic-1"><img src={data.images[0]} /></div>
+                                            <div class="tab-pane active" id="pic-1"><img src={this.state.imgPath} /></div>
                                         </div>
                                         <ul class="preview-thumbnail nav nav-tabs">
-                                            {data.images.map(img =>
+                                            {this.state.images.map(img =>
                                                 <li onClick={() => this.renderImagesPathinLi(img)}>
                                                     <a >
                                                         <img src={img} />
                                                     </a>
                                                 </li>
                                             )}
-                                            {/* {this.state.images.map(img =>
-                                                <li onClick={() => this.renderImagesinLi(img)}>
-                                                    <a ><img src={img} /></a>
-                                                </li>)
-                                            } */}
                                         </ul>
                                     </div>
-                                    {/* {data.images && <Carousel>
-                                        {data.images.map((elem, key) => {
-                                            return (
-                                                <div key={key}>
-                                                    <img alt='' src={elem} />
-                                                </div>
-                                            )
-                                        })}
-                                    </Carousel>} */}
                                 </div>
                             </div>}
                             <div className="row RoomMainDivS" style={{ paddingBottom: '0px', margin: '0px 0px 20px 0px' }}>

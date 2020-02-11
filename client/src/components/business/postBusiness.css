@@ -141,8 +141,8 @@ a:hover {
   font-weight: 700;
 }
 .ant-anchor-link {
-  padding: 6px 0 14px 14px !important;
-  line-height: 1 !important;
+  /* padding: 6px 0 14px 14px !important;
+  line-height: 1 !important; */
 }
 .ant-anchor-ink {
    
@@ -173,8 +173,13 @@ a:hover {
   overflow: hidden;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
-  margin-bottom: 6px;
+  /* margin-bottom: 6px; */
 }
+
+.ant-anchor-link-title:only-child {
+  margin-bottom: 0;
+}
+
 @media only screen and (min-device-width: 330px) and (max-device-width: 767px){
   .uplodBusiness{
     padding: 15px;

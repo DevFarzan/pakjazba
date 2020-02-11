@@ -12,7 +12,6 @@ import {
 } from 'antd';
 import { Redirect } from 'react-router';
 import AsyncStorage from "@callstack/async-storage/lib/index";
-import Burgermenu from '../header/burgermenu';
 import HeaderMenu from '../header/headermenu';
 import Footer from '../footer/footer';
 import sha1 from "sha1";
@@ -126,6 +125,7 @@ class JobPortal extends Component {
         window.scrollTo(0, 0);
         this.handleLocalStorage();
         let data = this.props.location.state;
+        console.log(data, 'data')
         if (data) {
             this.setState({
                 faceBook: data.faceBook,
@@ -145,7 +145,9 @@ class JobPortal extends Component {
                 location: data.location,
                 salary: data.salary,
                 imageList: data.arr_url,
-                objectId: data._id
+                objectId: data._id,
+                userId: data.user_id,
+                profileId: data.profileId
             })
         }
         this.stateAndCities();
@@ -244,7 +246,7 @@ class JobPortal extends Component {
     }
 
     async postData(values, response) {
-        const { userId, profileId, faceBook, LinkdIn, Google, Website, Tagline, objectId } = this.state;
+        const { userId, profileId, faceBook, LinkdIn, Google, Website, Tagline, objectId, imageList } = this.state;
         let obj = {
             user_id: userId,
             profileId: profileId,
@@ -267,11 +269,13 @@ class JobPortal extends Component {
             Google,
             Website,
             Tagline,
-            arr_url: response ? response : [],
+            arr_url: response ? response : imageList,
             objectId,
             posted: moment().format('LL')
         }
+        console.log(obj, 'object')
         let req = await HttpUtils.post('postJobPortal', obj)
+        console.log(req, 'req')
         if (req.code === 200) {
             this.openNotification()
             this.setState({

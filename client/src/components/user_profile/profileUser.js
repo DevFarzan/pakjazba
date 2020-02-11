@@ -76,8 +76,19 @@ class ProfileUser extends Component {
                 let req = await HttpUtils.get('getprofile?profileId=' + profileIdFromPath)
                 await this.getprofileData(profileIdFromPath, req.content.user_id)
                 // console.log(req , 'req')
-                console.log(req.content.user_id, 'req.content.user_id')
-
+                if (req) {
+                    this.setState({
+                        reviewProfile: false,
+                        userId: req.content.user_id,
+                        profileId: profileIdFromPath
+                    })
+                }
+            }
+        }
+        else {
+            let req = await HttpUtils.get('getprofile?profileId=' + profileIdFromPath)
+            await this.getprofileData(profileIdFromPath, req.content.user_id)
+            if (req) {
                 this.setState({
                     reviewProfile: false,
                     userId: req.content.user_id,
@@ -85,40 +96,26 @@ class ProfileUser extends Component {
                 })
             }
         }
-        else {
-            let req = await HttpUtils.get('getprofile?profileId=' + profileIdFromPath)
-            await this.getprofileData(profileIdFromPath, req.content.user_id)
-            console.log(req.content.user_id, 'req.content.user_id')
-
-            this.setState({
-                reviewProfile: false,
-                userId: req.content.user_id,
-                profileId: profileIdFromPath
-            })
-        }
     }
 
     async getprofileData(id, userId) {
-        // 1st pera is profileid
-        // 2nd pera is user id
-        console.log(id, 'id')
-        console.log(userId, 'userId')
-
         let req = await HttpUtils.get('getprofile?profileId=' + id)
-        let user = req.content;
-        this.setState({
-            name: user.name,
-            email: user.email,
-            location: user.location,
-            description: user.description,
-            desLen: user.description ? 500 - user.description.length : 500,
-            phone: user.phone,
-            twitter: user.twitterlink,
-            facebook: user.facebooklink,
-            imageUrl: user.imageurl,
-            url: user.imageurl
-        })
-        this.getAllBusiness(userId)
+        if (req) {
+            let user = req.content;
+            this.setState({
+                name: user.name,
+                email: user.email,
+                location: user.location,
+                description: user.description,
+                desLen: user.description ? 500 - user.description.length : 500,
+                phone: user.phone,
+                twitter: user.twitterlink,
+                facebook: user.facebooklink,
+                imageUrl: user.imageurl,
+                url: user.imageurl
+            })
+            this.getAllBusiness(userId)
+        }
     }
 
     async getAllBusiness(id) {

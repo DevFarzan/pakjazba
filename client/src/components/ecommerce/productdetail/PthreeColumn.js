@@ -73,7 +73,7 @@ class PthreeColumn extends Component {
     let length = data.itemLength;
     let weight = data.itemWeight;
     let width = data.itemWidth;
-    const { profileId } = this.props;
+    const { profileId,shopEmail,shopContactNo } = this.props;
     if (editProduct) {
       return (
         <Redirect to={{ pathname: `/Forms_Ecommerce`, state: data }} />
@@ -91,7 +91,7 @@ class PthreeColumn extends Component {
           <div className="col-xs-12 col-sm-5 col-md-5 col-lg-5">
             <div className="row elementMainDivS" style={{ paddingBottom: '0px' }}>
               <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
-                <Icon type="unordered-list" /><h5 className="headMainDivs">Product Images</h5>
+                
               </div>
               <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div className="row" style={{ padding: '0px' }}>
@@ -198,11 +198,11 @@ class PthreeColumn extends Component {
                           </a>
                       <h5 style={{ marginTop: '10px', marginBottom: '7px' }}>
                         <span className="glyphicon glyphicon-phone" style={{ marginRight: "15px", color: "#236A4B" }}></span>
-                        <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.contactNumber}</span>
+                        <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{shopContactNo}</span>
                       </h5>
                       <h5 style={{ marginBottom: '7px' }}>
                         <span className="glyphicon glyphicon-globe" style={{ marginRight: "15px", color: "#236A4B" }}></span>
-                        <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{data.contactEmail}</span>
+                        <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{shopEmail}</span>
                       </h5>
                     </div>
                   </div>
@@ -215,7 +215,7 @@ class PthreeColumn extends Component {
               </div>
               <div className="row" style={{ paddingBottom: '0px', paddingTop: '0px' }}>
                 <div className="col-xs-12 col-md-12 col-sm-12 col-lg-12">
-                  <p>{data.productFeature} </p>
+                  <p style={{margin: '0',marginTop: '8px'}}>{data.productFeature}</p>
                   <div className="row">
                     <div className="col-md-4">
                       <p class="vote">Size: <strong>{data.size}</strong></p>
@@ -244,7 +244,7 @@ class PthreeColumn extends Component {
               </div>
               <div className="row" style={{ paddingBottom: '0px', paddingTop: '0px' }}>
                 <div className="col-xs-12 col-md-12 col-sm-12 col-lg-12">
-                  <p>{data.description}</p>
+                  <p style={{marginTop: '8px'}}>{data.description}</p>
                 </div>
               </div>
             </div>

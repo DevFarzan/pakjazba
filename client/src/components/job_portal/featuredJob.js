@@ -3,6 +3,7 @@ import './featureJob.css';
 import { Redirect } from 'react-router';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
+import '../Explore/explore.css';
 
 class FeaturedBox extends Component {
     constructor(props) {
@@ -40,7 +41,7 @@ class FeaturedBox extends Component {
         return (
             <div className="container" style={{ width: "100%" }}>
                 <div className="row">
-                    {TypeOfJob && TypeOfJob.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                    {TypeOfJob && TypeOfJob.length > 0 && <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                         {TypeOfJob.map((elem, key) => {
                             return (
                                 <div className="cross-card">
@@ -51,7 +52,7 @@ class FeaturedBox extends Component {
                         })}
                     </div>}
 
-                    {categoroyOfJob && categoroyOfJob.length > 0 && <div className="col-xs-5 col-sm-3 col-md-3 col-lg-3">
+                    {categoroyOfJob && categoroyOfJob.length > 0 && <div className="col-xs-6 col-sm-3 col-md-3 col-lg-3">
                         {categoroyOfJob.map((elem, key) => {
                             return (
                                 <div className="cross-card">
@@ -62,7 +63,7 @@ class FeaturedBox extends Component {
                         })}
                     </div>}
 
-                    {stateOfJob && stateOfJob.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                    {stateOfJob && stateOfJob.length > 0 && <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                         {stateOfJob.map((elem, key) => {
                             return (
                                 <div className="cross-card">
@@ -73,7 +74,7 @@ class FeaturedBox extends Component {
                         })}
                     </div>}
 
-                    {cityOfJob && cityOfJob.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                    {cityOfJob && cityOfJob.length > 0 && <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                         {cityOfJob.map((elem, key) => {
                             return (
                                 <div className="cross-card">
@@ -92,10 +93,11 @@ class FeaturedBox extends Component {
                 <div className="row">
                     {notFoundFilterData && filteredData.length == 0 ?
                         <div className="noRecrdTxt">
-                            <p>
+                            <p className="noRecordText">
                                 No Record Found
                                 </p>
                             <button
+                                className="backBtn"
                                 onClick={showAllRooms}
                             >Back</button>
                         </div>
@@ -123,7 +125,7 @@ class FeaturedBox extends Component {
                                                         </div>
                                                         <div className="col-md-9 col-xs-9">
                                                             <h4 style={{ margin: "0" }}>
-                                                                <b>{elem.jobCat}</b>
+                                                                <b>{elem.jobCat.slice(0, 12)}...</b>
                                                             </h4>
                                                             <div className="row" style={{ padding: "10px" }}>
                                                                 <div className="col-md-6 col-xs-6" style={{ padding: "0" }}>
@@ -184,7 +186,7 @@ class FeaturedBox extends Component {
                                                         </div>
                                                         <div className="col-md-9 col-xs-9">
                                                             <h4 style={{ margin: "0" }}>
-                                                                <b>{elem.jobCat}</b>
+                                                                <b>{elem.jobCat.slice(0, 12)}...</b>
                                                             </h4>
                                                             <div className="row" style={{ padding: "10px" }}>
                                                                 <div className="col-md-6 col-xs-6" style={{ padding: "0" }}>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './buyforthfold.css';
+import '../Explore/explore.css'
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
@@ -45,7 +46,7 @@ class Forthfold extends Component {
                     <img alt='' src='./images/blank-card.png' style={{border: '1px solid #3a252542', height: '385px', width: '100%', borderRadius: '13px'}}/>
                 </div>*/}
                 <div className="row">
-                    {categoroyOfRoom && categoroyOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                    {categoroyOfRoom && categoroyOfRoom.length > 0 && <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                         {categoroyOfRoom.map((elem, key) => {
                             return (
                                 <div className="cross-card">
@@ -55,7 +56,7 @@ class Forthfold extends Component {
                                 </div>)
                         })}
                     </div>}
-                    {stateOfRoom && stateOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                    {stateOfRoom && stateOfRoom.length > 0 && <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                         {stateOfRoom.map((elem, key) => {
                             return (
                                 <div className="cross-card">
@@ -65,7 +66,7 @@ class Forthfold extends Component {
                                 </div>)
                         })}
                     </div>}
-                    {cityOfRoom && cityOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                    {cityOfRoom && cityOfRoom.length > 0 && <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                         {cityOfRoom.map((elem, key) => {
                             return (
                                 <div className="cross-card">
@@ -75,7 +76,7 @@ class Forthfold extends Component {
                                 </div>)
                         })}
                     </div>}
-                    {conditionOfRoom && conditionOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                    {conditionOfRoom && conditionOfRoom.length > 0 && <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                         {conditionOfRoom.map((elem, key) => {
                             return (
                                 <div className="cross-card">
@@ -90,10 +91,11 @@ class Forthfold extends Component {
 
                     {notFoundFilterData && filteredData.length == 0 ?
                         <div className="noRecrdTxt">
-                            <p>
+                            <p className="noRecordText">
                                 No Record Found
                                 </p>
                             <button
+                                className="backBtn"
                                 onClick={showAllRooms}
                             >Back</button>
                         </div>

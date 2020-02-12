@@ -664,7 +664,8 @@ class EcomProfile extends Component {
   render() {
     const { shopData, shopEdit, addProduct, profileId, addProductObj, allProducts, categories, color, location, brandName,
       filteredData, filterDataNotFound, filterDataShow, categoriesName, priceRangeNotGiven, oderList, shopId } = this.state;
-    if (shopEdit) {
+      console.log(shopData,'shopData')
+      if (shopEdit) {
       return (
         <Redirect to={{ pathname: '/shopForm', state: shopData }} />
       )

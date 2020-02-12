@@ -260,34 +260,6 @@ class Roomrenting3contentarea extends Component {
                           </div>
                         </div>
                       </div>
-                      <div className="row RoomMainDivS" style={{ paddingBottom: '0px' }}>
-                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
-                          <Icon type="unordered-list" /><h5 className="headingMainRoom">Contact Details</h5>
-                        </div>
-                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ marginTop: '0px' }}>
-                          <div className="row" style={{ padding: "0" }}>
-                            <div className="col-xs-6 col-md-3 col-sm-3">
-                              <div className="profile_img">
-                                <img onClick={() => { this.goToProfile() }} src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="profilePicContactRent" alt="" />
-                              </div>
-                            </div>
-                            <div className="col-xs-12 col-md-9 col-sm-9 margMObilerent">
-                              <span style={{ fontWeight: 'bold' }}>{data.contactname}</span><br />
-                              <a onClick={() => { this.goToProfile() }} style={{ fontSize: '13px', cursor: 'pointer', color: 'rgb(55, 169, 155)' }}>
-                                View Profile
-                              </a>
-                              <h5 style={{ marginTop: '10px', marginBottom: '7px' }}>
-                                <span className="glyphicon glyphicon-phone" style={{ marginRight: "15px", color: "#236A4B" }}></span>
-                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{phone}</span>
-                              </h5>
-                              <h5>
-                                <span className="glyphicon glyphicon-globe" style={{ marginRight: "15px", color: "#236A4B" }}></span>
-                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{email}</span>
-                              </h5>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                       <div className="row RoomMainDivS" style={{ padding: "0px" }}>
                         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex', paddingTop: '15px' }}>
                           <Icon type="unordered-list" /><h5 className="headingMainRoom">Reviews</h5>
@@ -423,7 +395,34 @@ class Roomrenting3contentarea extends Component {
                           </div>
                         </div>}
                       </div>
-
+                      <div className="row RoomMainDivS" style={{ margin: '5% 0%' }}>
+                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex' }}>
+                          <Icon type="unordered-list" /><h5 className="headingMainRoom">Contact Details</h5>
+                        </div>
+                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ marginTop: '0px' }}>
+                          <div className="row" style={{ padding: "0" }}>
+                            <div className="col-xs-6 col-md-3 col-sm-3">
+                              <div className="profile_img">
+                                <img onClick={() => { this.goToProfile() }} src={data.userImage && data.userImage.length ? data.userImage : '../images/images.jpg'} className="profilePicContactRent" alt="" />
+                              </div>
+                            </div>
+                            <div className="col-xs-12 col-md-9 col-sm-9 margMObilerent">
+                              <span style={{ fontWeight: 'bold' }}>{data.contactname}</span><br />
+                              <a onClick={() => { this.goToProfile() }} style={{ fontSize: '13px', cursor: 'pointer', color: 'rgb(55, 169, 155)' }}>
+                                View Profile
+                              </a>
+                              <h5 style={{ marginTop: '10px', marginBottom: '7px' }}>
+                                <span className="glyphicon glyphicon-phone" style={{ marginRight: "15px", color: "#236A4B" }}></span>
+                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{phone}</span>
+                              </h5>
+                              <h5>
+                                <span className="glyphicon glyphicon-globe" style={{ marginRight: "15px", color: "#236A4B" }}></span>
+                                <span style={{ color: "rgba(0, 0, 0, 0.65)" }}>{email}</span>
+                              </h5>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       <div className="col-md-12 RoomMainDivS" style={{ margin: '5% 0%' }}>
                         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" style={{ display: 'inline-flex', marginBottom: '20px' }}>
                           <Icon type="unordered-list" /><h5 className="headingMainRoom">Amenities</h5>

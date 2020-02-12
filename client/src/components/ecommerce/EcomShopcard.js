@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import './EcomShopcard.css'
+import './EcomShopcard.css';
+import '../Explore/explore.css'
 
 class EshopCard extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class EshopCard extends Component {
 
       <div className="container" style={{ width: "95%" }}>
         <div className="row">
-          {categoryProduct && categoryProduct.length > 0 && <div className="col-xs-5 col-sm-4 col-md-4 col-lg-4">
+          {categoryProduct && categoryProduct.length > 0 && <div className="col-xs-6 col-sm-4 col-md-4 col-lg-4">
             {categoryProduct.map((elem, key) => {
               return (
                 <div className="cross-card">
@@ -30,7 +31,7 @@ class EshopCard extends Component {
             })}
           </div>}
 
-          {colors && colors.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+          {colors && colors.length > 0 && <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
             {colors.map((elem, key) => {
               return (
                 <div className="cross-card">
@@ -41,7 +42,7 @@ class EshopCard extends Component {
             })}
           </div>}
 
-          {brands && brands.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+          {brands && brands.length > 0 && <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
             {brands.map((elem, key) => {
               return (
                 <div className="cross-card">
@@ -68,10 +69,10 @@ class EshopCard extends Component {
             {/* filtered data  render*/}
             {notFoundFilterData && filteredData.length == 0 ?
               <div className="noRecrdTxt">
-                <p>
+                <p className="noRecordText">
                   No Record Found
                 </p>
-                <button onClick={showAllProducts}>
+                <button className="backBtn" onClick={showAllProducts}>
                   Back
                 </button>
               </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import { Rate } from 'antd';
 import './secondfold.css'
+import '../Explore/explore.css';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 
@@ -24,7 +25,7 @@ class Secondfold extends Component {
                 <h4 className="headingtext2"><b>No Business to show</b></h4>
             </div>} */}
                 <div className="row">
-                    {categoroyOfRoom && categoroyOfRoom.length > 0 && <div className="col-xs-5 col-sm-3 col-md-3 col-lg-3">
+                    {categoroyOfRoom && categoroyOfRoom.length > 0 && <div className="col-xs-6 col-sm-3 col-md-3 col-lg-3">
                         {categoroyOfRoom.map((elem, key) => {
                             return (
                                 <div className="cross-card">
@@ -34,7 +35,7 @@ class Secondfold extends Component {
                                 </div>)
                         })}
                     </div>}
-                    {stateOfBusniess && stateOfBusniess.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                    {stateOfBusniess && stateOfBusniess.length > 0 && <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                         {stateOfBusniess.map((elem, key) => {
                             return (
                                 <div className="cross-card">
@@ -44,7 +45,7 @@ class Secondfold extends Component {
                                 </div>)
                         })}
                     </div>}
-                    {cityOfRoom && cityOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                    {cityOfRoom && cityOfRoom.length > 0 && <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                         {cityOfRoom.map((elem, key) => {
                             return (
                                 <div className="cross-card">
@@ -66,10 +67,11 @@ class Secondfold extends Component {
                         <div className="row">
                             {notFoundFilterData && filteredData.length == 0 ?
                                 <div className="noRecrdTxt">
-                                    <p>
+                                    <p className="noRecordText">
                                         No Record Found
                                     </p>
                                     <button
+                                        className="backBtn"
                                         onClick={showAllRooms}
                                     >Back</button>
                                 </div>

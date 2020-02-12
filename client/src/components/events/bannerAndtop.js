@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import { Link } from "react-router-dom";
 import './bannerevent.css';
+import '../Explore/explore.css';
 
 class EventBanner extends Component {
     constructor(props) {
@@ -40,7 +41,7 @@ class EventBanner extends Component {
                 {/* <h4 style={{textAlign:"left", fontWeight:"bolder", marginTop:"20px", marginBottom:"0", fontSize:"26px"}}>Top Events</h4> */}
                 
                 <div className="row">
-                    {categoroyOfEvents && categoroyOfEvents.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                    {categoroyOfEvents && categoroyOfEvents.length > 0 && <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                         {categoroyOfEvents.map((elem, key) => {
                             return (
                                 <div className="cross-card">
@@ -50,7 +51,7 @@ class EventBanner extends Component {
                                 </div>)
                         })}
                     </div>}
-                    {stateOfRoom && stateOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                    {stateOfRoom && stateOfRoom.length > 0 && <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                         {stateOfRoom.map((elem, key) => {
                             return (
                                 <div className="cross-card">
@@ -60,7 +61,7 @@ class EventBanner extends Component {
                                 </div>)
                         })}
                     </div>}
-                    {cityOfRoom && cityOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                    {cityOfRoom && cityOfRoom.length > 0 && <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                         {cityOfRoom.map((elem, key) => {
                             return (
                                 <div className="cross-card">
@@ -74,10 +75,11 @@ class EventBanner extends Component {
                 <div className="row">
                     {notFoundFilterData && filteredData.length == 0 ?
                         <div className="noRecrdTxt">
-                            <p>
+                            <p className="noRecordText">
                                 No Record Found
                                 </p>
                             <button
+                                className="backBtn"
                                 onClick={showAllRooms}
                             >Back</button>
                         </div>

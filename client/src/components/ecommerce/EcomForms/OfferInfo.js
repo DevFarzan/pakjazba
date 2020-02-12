@@ -147,6 +147,7 @@ class OfferInfo extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { TextArea } = Input;
     const { herfSec, salePriceDatesStart, salePriceDatesEnd, sellingDate, restockDate, offering, datePicker } = this.state;
     return (
       <div className="container" style={{ width: "100%" }}>
@@ -236,7 +237,7 @@ class OfferInfo extends Component {
                               whitespace: true
                             }],
                           })(
-                            <Input style={{ height: "200px" }} />
+                            <TextArea rows={4} />
                           )}
                         </FormItem>
                         <p className="margin-top">
@@ -385,7 +386,7 @@ class OfferInfo extends Component {
                               whitespace: true
                             }],
                           })(
-                            <Input style={{ height: "200px" }} />
+                            <TextArea rows={4} />
                           )}
                         </FormItem>
                         <p className="margin-top">
@@ -596,7 +597,7 @@ class OfferInfo extends Component {
                               whitespace: true
                             }],
                           })(
-                            <Input style={{ height: "200px" }} />
+                            <TextArea rows={4} />
                           )}
                         </FormItem>
                       </div>
@@ -628,7 +629,6 @@ class OfferInfo extends Component {
                             )}
                           </FormItem>
                         }
-                        <p className="margin-top"> Example: Blue, orange  </p>
                       </div>
                     </div>
                     {/* country as labelled */}

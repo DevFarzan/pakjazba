@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "./headerroomrenting.css";
+import '../Explore/explore.css'
 import { Link } from "react-router-dom";
 import { Rate } from 'antd';
 
@@ -15,7 +16,7 @@ class Roomrenting1content extends Component {
             <div>
                 <div className="row">
 
-                    {categoroyOfRoom && categoroyOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                    {categoroyOfRoom && categoroyOfRoom.length > 0 && <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                         {categoroyOfRoom.map((elem, key) => {
                             return (
                                 <div className="cross-card">
@@ -26,7 +27,7 @@ class Roomrenting1content extends Component {
                         })}
                     </div>}
                     
-                    {stateOfRoom && stateOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                    {stateOfRoom && stateOfRoom.length > 0 && <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                         {stateOfRoom.map((elem, key) => {
                             return (
                                 <div className="cross-card">
@@ -37,7 +38,7 @@ class Roomrenting1content extends Component {
                         })}
                     </div>}
 
-                    {cityOfRoom && cityOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                    {cityOfRoom && cityOfRoom.length > 0 && <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                         {cityOfRoom.map((elem, key) => {
                             return (
                                 <div className="cross-card">
@@ -48,7 +49,7 @@ class Roomrenting1content extends Component {
                         })}
                     </div>}
 
-                    {accomodatesOfRoom && accomodatesOfRoom.length > 0 && <div className="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                    {accomodatesOfRoom && accomodatesOfRoom.length > 0 && <div className="col-xs-6 col-sm-2 col-md-2 col-lg-2">
                         {accomodatesOfRoom.map((elem, key) => {
                             return (
                                 <div className="cross-card">
@@ -70,10 +71,11 @@ class Roomrenting1content extends Component {
                     <div className="row" style={{ marginTop: '-4%' }}>
                         {notFoundFilterData && filteredData.length == 0 ?
                             <div className="noRecrdTxt">
-                                <p>
+                                <p className="noRecordText">
                                     No Record Found
                                 </p>
                                 <button
+                                    className="backBtn"
                                     onClick={showAllRooms}
                                 >Back</button>
                             </div>

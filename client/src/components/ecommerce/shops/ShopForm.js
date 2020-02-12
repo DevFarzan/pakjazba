@@ -20,6 +20,7 @@ import superagent from "superagent";
 import Footer from '../../footer/footer';
 import './shopForm.css'
 import { HttpUtils } from "../../../Services/HttpUtils";
+import stateCities from '../../../lib/countrycitystatejson';
 import { Redirect } from "react-router-dom";
 
 
@@ -109,8 +110,8 @@ class ShopForm extends Component {
             goShop: false,
             shopTitle: '',
             shopAddress: '',
-            shopCity: '',
-            shopState: '',
+            shopCity: [],
+            shopState: [],
             shopCategories: '',
             shopDescription: '',
             shopCategories: [],
@@ -121,15 +122,42 @@ class ShopForm extends Component {
             contactEmail: ''
         }
     }
+    onChangeCat(value) {
+        if (!!value.length) {
+            let cities = stateCities.getCities('US', value[0])
+            cities = cities.map((elem) => {
+                return {
+                    label: elem,
+                    value: elem
+                }
+            })
+            this.setState({
+                citiesUS: cities
+            })
+        }
+    }
+    handleLocalStorage = () => {
+        let states = stateCities.getStatesByShort('US');
+        states = states.map((elem) => {
+            return {
+                label: elem,
+                value: elem
+            }
+        })
+        this.setState({
+            statesUS: states
+        })
+    }
 
     componentDidMount() {
         let data = this.props.location.state;
+        this.handleLocalStorage();
         if (data) {
             this.setState({
                 shopTitle: data.shopTitle,
                 shopAddress: data.shopAddress,
-                shopCity: data.shopCity,
-                shopState: data.shopState,
+                shopCity: [data.shopCity],
+                shopState: [data.shopState],
                 shopDescription: data.shopDescription,
                 shopPurpose: data.shopPurpose,
                 shopCategories: data.shopCategories,
@@ -408,8 +436,8 @@ class ShopForm extends Component {
             shopTitle: values.shopTitle,
             shopCategories: cetogires,
             shopAddress: values.shopAddress,
-            shopCity: values.shopCity,
-            shopState: values.shopState,
+            shopCity: values.shopCity[0],
+            shopState: values.shopState[0],
             shopDescription: values.shopDescription,
             images: images,
             gridImageSrc: banner,
@@ -474,13 +502,15 @@ class ShopForm extends Component {
     openNotification() {
         notification.open({
             message: 'Shop Created Success ',
-            description: "Your shop has been created successfully"
+            description: "Your shop has been updated successfully"
         });
     };
 
     render() {
-        const { fileList, previewImage, previewVisible, fileListLogo, previewImageLogo, previewVisibleLogo, btnDisabeld, mgs, loader, shopData, shopId, goShop, showAlert, gridImages } = this.state;
+        const { fileList, previewImage, previewVisible, fileListLogo, previewImageLogo, previewVisibleLogo,
+            btnDisabeld, mgs, loader, shopData, shopId, goShop, showAlert, gridImages, citiesUS, statesUS } = this.state;
         const { getFieldDecorator, getFieldValue } = this.props.form;
+        console.log(statesUS, 'stateee')
         if (goShop) {
             return (
                 <Redirect to={{ pathname: `/EcommerceProfile/${shopId}`, state: shopData }} />
@@ -516,7 +546,7 @@ class ShopForm extends Component {
                     required={false}
                     key={k}
                 >
-                    <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px' }}>
+                    <div className='row' style={{ paddingTop: '0px', paddingBottom: '0px', padding:'0' }}>
                         <div className="col-md-10 col-sm-10 col-xs-10"
                             key={index} style={{ marginTop: '10px' }}>
                             <label htmlFor="Category"> Category </label>
@@ -654,41 +684,43 @@ class ShopForm extends Component {
                                         <hr className="hrLineStyle" />
 
                                         <div className='row'>
-                                            <div className="col-md-6">
+                                            <div className="col-md-7">
                                                 <div className="row" style={{ padding: '0px' }}>
-                                                    <div className="col-md-7" style={{ display: 'grid' }}>
-                                                        <label> City </label>
-                                                        <Form.Item style={{ padding: '2% 0%' }}>
-                                                            {getFieldDecorator('shopCity', {
-                                                                initialValue: this.state.shopCity,
-                                                                rules: [{
-                                                                    whitespace: true,
-                                                                    required: true,
-                                                                    message: 'Please select your City!'
-                                                                }],
-                                                            })(
-                                                                <Input />
-                                                            )}
-                                                        </Form.Item>
-                                                    </div>
-                                                    <div className="col-md-5">
+                                                    <div className="col-md-6">
                                                         <label> State </label>
                                                         <Form.Item style={{ padding: '2% 0%' }}>
                                                             {getFieldDecorator('shopState', {
                                                                 initialValue: this.state.shopState,
                                                                 rules: [{
+                                                                    type: 'array',
                                                                     whitespace: true,
                                                                     required: true,
                                                                     message: 'Please select your State!'
                                                                 }],
                                                             })(
-                                                                <Input />
+                                                                <Cascader onChange={this.onChangeCat.bind(this)} options={statesUS} />
+                                                            )}
+                                                        </Form.Item>
+                                                    </div>
+                                                    <div className="col-md-6" style={{ display: 'grid' }}>
+                                                        <label> City </label>
+                                                        <Form.Item style={{ padding: '2% 0%' }}>
+                                                            {getFieldDecorator('shopCity', {
+                                                                initialValue: this.state.shopCity,
+                                                                rules: [{
+                                                                    type: 'array',
+                                                                    whitespace: true,
+                                                                    required: true,
+                                                                    message: 'Please select your City!'
+                                                                }],
+                                                            })(
+                                                                <Cascader options={citiesUS} />
                                                             )}
                                                         </Form.Item>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-md-6">
+                                            <div className="col-md-5">
                                                 <div className="row">{/* style={{ padding: '0px' }} */}
                                                     <div className="col-md-6" className="form-group">
                                                         <label htmlFor="sel1">Shop Purpose</label>
@@ -782,31 +814,28 @@ class ShopForm extends Component {
 
                                         <div className="row">
                                             <div className="col-md-12">
-                                                <div className="col-md-6">
-                                                    <div className="form-group">
-                                                        <label htmlFor="sel1">Description</label>
-                                                        <Form.Item style={{ padding: '2% 0%' }}>
-                                                            {getFieldDecorator('shopDescription', {
-                                                                initialValue: this.state.shopDescription,
-                                                                rules: [
-                                                                    {
-                                                                        required: true,
-                                                                        message: 'Please input your Description/Details!',
-                                                                        whitespace: true
-                                                                    }],
-                                                            })(
-                                                                <TextArea
-                                                                    rows={6}
-                                                                    maxLength="500"
-                                                                    style={{ "marginBottom": "10px" }} />
-                                                            )}
-                                                            <br />
-                                                            <span style={{ "float": "right" }}>
-                                                            </span>
-                                                        </Form.Item>
-                                                    </div>
+                                                <div className="form-group">
+                                                    <label htmlFor="sel1">Description</label>
+                                                    <Form.Item>
+                                                        {getFieldDecorator('shopDescription', {
+                                                            initialValue: this.state.shopDescription,
+                                                            rules: [
+                                                                {
+                                                                    required: true,
+                                                                    message: 'Please input your Description/Details!',
+                                                                    whitespace: true
+                                                                }],
+                                                        })(
+                                                            <TextArea
+                                                                rows={6}
+                                                                maxLength="500"
+                                                                style={{ "marginBottom": "10px" }} />
+                                                        )}
+                                                        <br />
+                                                        <span style={{ "float": "right" }}>
+                                                        </span>
+                                                    </Form.Item>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </section>
@@ -827,7 +856,7 @@ class ShopForm extends Component {
 
                                 <div className="container" style={{ marginBottom: '3%', width: '95%' }}>{/*  style={{ width: '95%' }}*/}
                                     <section className="row">
-                                        <div className="col-md-9" style={{ padding: '0px' }}>
+                                        <div className="col-md-6 col-sm-6" style={{ padding: '0px' }}>
                                             <label htmlFor="sel1">Shop Logo</label>
 
                                             <Form.Item style={{ padding: '2% 0%' }}>
@@ -847,7 +876,7 @@ class ShopForm extends Component {
                                                             onChange={this.handleChangeLogo}
                                                             style={{ padding: '50px' }}
                                                         >
-                                                            {fileListLogo.length > 1 ? null : uploadButtonLogo}
+                                                            {fileListLogo.length > 0 ? null : uploadButtonLogo}
                                                         </Upload>
                                                         <div>
                                                             <Modal visible={previewVisibleLogo} footer={null} onCancel={this.handleCancelLogo}>
@@ -858,9 +887,35 @@ class ShopForm extends Component {
                                                 )}
                                             </Form.Item>
                                         </div>
-                                        <div className="col-md-3">
+                                        <div className="col-md-6 col-sm-6">
+                                                    <label htmlFor="sel1">Shop Grid(Potrait) Image</label>
 
-                                        </div>
+                                                    <Form.Item style={{ width: '100%', padding: '2% 0%', }}>
+                                                        {getFieldDecorator('gridImage', {
+                                                            rules: [{
+                                                                required: true,
+                                                                message: 'Please upload your Images!',
+                                                                whitespace: true
+                                                            }],
+                                                        })(
+                                                            <span style={{ width: '100%' }}>
+                                                                {this.state.bannerSrc.length == 0 && <Upload
+                                                                    action="//jsonplaceholder.typicode.com/posts/"
+                                                                    onPreview={this.handlePreview}
+                                                                    onChange={this.onChangeBanner}
+                                                                >
+                                                                    {gridImage}
+                                                                </Upload>}
+                                                                {this.state.bannerSrc.length > 0 && <div>
+                                                                    <img alt="example"
+                                                                        src={this.state.bannerSrc}
+                                                                        style={{ width: '100%' }}
+                                                                        className="shopcataloge" />
+                                                                </div>}
+                                                            </span>
+                                                        )}
+                                                    </Form.Item>
+                                                </div>
 
                                         <div className="col-md-12" style={{ padding: '0px' }}>
                                             <label htmlFor="sel1">Shop Banner</label>
@@ -924,6 +979,7 @@ class ShopForm extends Component {
                                                                         fileList={fileList}
                                                                         onPreview={this.handlePreview}
                                                                         onChange={this.handleChange}
+                                                                        style={{width: '143px'}}
                                                                     >
                                                                         {fileList.length > 3 ? null : uploadButton}
                                                                     </Upload>
@@ -938,35 +994,7 @@ class ShopForm extends Component {
                                                         </Modal>
                                                     </div>
                                                 </div>
-                                                <div className="col-md-12 col-sm-12">
-                                                    <label htmlFor="sel1">Shop Grid(Potrait) Image</label>
-
-                                                    <Form.Item style={{ width: '100%', padding: '2% 0%', }}>
-                                                        {getFieldDecorator('gridImage', {
-                                                            rules: [{
-                                                                required: true,
-                                                                message: 'Please upload your Images!',
-                                                                whitespace: true
-                                                            }],
-                                                        })(
-                                                            <span style={{ width: '100%' }}>
-                                                                {this.state.bannerSrc.length == 0 && <Upload
-                                                                    action="//jsonplaceholder.typicode.com/posts/"
-                                                                    onPreview={this.handlePreview}
-                                                                    onChange={this.onChangeBanner}
-                                                                >
-                                                                    {gridImage}
-                                                                </Upload>}
-                                                                {this.state.bannerSrc.length > 0 && <div>
-                                                                    <img alt="example"
-                                                                        src={this.state.bannerSrc}
-                                                                        style={{ width: '100%' }}
-                                                                        className="shopcataloge" />
-                                                                </div>}
-                                                            </span>
-                                                        )}
-                                                    </Form.Item>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </section>
@@ -1164,7 +1192,9 @@ class ShopForm extends Component {
                         </div>}
                     </Form>
                 </div>
+                <div>
                 {/* <Footer /> */}
+                </div>
             </div >
         )
     }

@@ -737,10 +737,10 @@ class Postbusiness extends Component {
                             </div>
                             <div className="forSpace">{/*panel panel-default */}
 
-                                <div className="">
+                                <div className="" id="scrollChange1">
                                     {/*==========main panel content=============*/}
                                     {/*==========location panel start=========*/}
-                                    <div className="formRadius card scroll-container" id="scrollChange1">
+                                    <div className="formRadius card scroll-container">
                                         <div className="bold_c_text topRadius"
                                             style={{
                                                 backgroundColor: 'white', color: 'black', padding: '2%',

@@ -3,6 +3,7 @@ import moment from 'moment';
 import { Link } from "react-router-dom";
 import './bannerevent.css';
 import '../Explore/explore.css';
+import { Spin, Icon } from 'antd';
 
 class EventBanner extends Component {
     constructor(props) {
@@ -35,6 +36,8 @@ class EventBanner extends Component {
         console.log(this.props.events, 'events')
         const { events, filteredData, notFoundFilterData, showRecord, categoroyOfEvents, stateOfRoom, cityOfRoom, removeValue, showAllRooms
         } = this.props;
+        const antIcon =
+            <Icon type="loading" style={{ fontSize: '110px' }} spin />;
         console.log(categoroyOfEvents, 'categoroyOfEvents')
         return (
             <div>
@@ -72,6 +75,8 @@ class EventBanner extends Component {
                         })}
                     </div>}
                 </div>    
+                {events.length == 0 ? <div style={{ textAlign: 'center' }}> <Spin indicator={antIcon} /> </div>
+                    :
                 <div className="row">
                     {notFoundFilterData && filteredData.length == 0 ?
                         <div className="noRecrdTxt">
@@ -189,7 +194,7 @@ class EventBanner extends Component {
                             }
                         })
                         : null}
-                </div>
+                </div>}
                 {/* <div className="hidden-xs">
                     <div className="EventBanner" style={{width:"100%", }}>
                         <div className="row">

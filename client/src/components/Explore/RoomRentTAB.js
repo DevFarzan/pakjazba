@@ -30,10 +30,12 @@ class RoomRentTAB extends Component {
             stateOfRoom: [],
             cityOfRoom: [],
             accomodatesOfRoom: [],
-            cities: []
+            cities: [],
         }
     }
-
+    componentDidMount() {
+        window.scrollTo(0, 0)
+      }
     componentWillMount() {
         this.getAllBusiness()
         this.handleLocalStorage();
@@ -649,7 +651,7 @@ class RoomRentTAB extends Component {
             }
         }
     }
-
+    
     render() {
         const { TabPane } = Tabs;
         const { showroomrents, filteredData, categoroyOfRoom, stateOfRoom, cityOfRoom, accomodatesOfRoom, notFoundFilterData, showRecord, categoryRoom, cities } = this.state;

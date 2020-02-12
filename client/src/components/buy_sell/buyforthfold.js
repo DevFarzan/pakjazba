@@ -3,7 +3,7 @@ import './buyforthfold.css';
 import '../Explore/explore.css'
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-
+import { Spin, Icon } from 'antd';
 class Forthfold extends Component {
     constructor(props) {
         super(props);
@@ -27,7 +27,8 @@ class Forthfold extends Component {
         const { showBuySell, filteredData, notFoundFilterData, showRecord, categoroyOfRoom, stateOfRoom, cityOfRoom, conditionOfRoom,
             removeValue, showAllRooms } = this.props;
         const { detailPage, goProfile, objData } = this.state;
-
+        const antIcon =
+        <Icon type="loading" style={{ fontSize: '110px' }} spin />;
        
         if (detailPage) {
             return <Redirect to={{ pathname: `/detail_buySell`, state: objData }} />
@@ -87,8 +88,9 @@ class Forthfold extends Component {
                         })}
                     </div>}
                 </div>
+                {showBuySell.length == 0 ? <div style={{ textAlign: 'center' }}> <Spin indicator={antIcon} /> </div>
+                    :
                 <div className="row">
-
                     {notFoundFilterData && filteredData.length == 0 ?
                         <div className="noRecrdTxt">
                             <p className="noRecordText">
@@ -141,7 +143,6 @@ class Forthfold extends Component {
                         })
                     }
 
-
                     {notFoundFilterData == false && filteredData.length == 0 && showRecord ?
                         showBuySell && showBuySell.map((elem, key) => {
                             let str = elem.address || '';
@@ -185,7 +186,8 @@ class Forthfold extends Component {
                         :
                         null
                     }
-                </div>
+                </div>}
+                    
                 {/* {this.state.loader && <div className="col-md-12" style={{textAlign: 'center', marginLeft: '-50px', marginBottom: '20px'}}>
                     <Spin indicator={antIcon} />
                 </div>} */}

@@ -4,13 +4,14 @@ import { Redirect } from 'react-router';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import '../Explore/explore.css';
+import { Spin, Icon } from 'antd';
 
 class FeaturedBox extends Component {
     constructor(props) {
         super(props)
     }
 
-   
+
     render() {
 
         // if (goForLogin) {
@@ -37,7 +38,8 @@ class FeaturedBox extends Component {
             TypeOfJob,
             removeValue,
             showAllRooms } = this.props;
-
+        const antIcon =
+            <Icon type="loading" style={{ fontSize: '110px' }} spin />;
         return (
             <div className="container" style={{ width: "100%" }}>
                 <div className="row">
@@ -89,143 +91,144 @@ class FeaturedBox extends Component {
 
                 {showAllJobs.length > 0 && <h4 className="" style={{ fontWeight: "bold", marginTop: "20px" }}>
                     Featured Jobs </h4>}
-
-                <div className="row">
-                    {notFoundFilterData && filteredData.length == 0 ?
-                        <div className="noRecrdTxt">
-                            <p className="noRecordText">
-                                No Record Found
+                {showAllJobs.length == 0 ? <div style={{ textAlign: 'center' }}> <Spin indicator={antIcon} /> </div>
+                    :
+                    <div className="row">
+                        {notFoundFilterData && filteredData.length == 0 ?
+                            <div className="noRecrdTxt">
+                                <p className="noRecordText">
+                                    No Record Found
                                 </p>
-                            <button
-                                className="backBtn"
-                                onClick={showAllRooms}
-                            >Back</button>
-                        </div>
-                        :
-                        filteredData && filteredData.map((elem) => {
-                            let str = elem.location || '';
-                            if (str.length > 8) {
-                                str = str.substring(0, 8);
-                                str = str + '...'
-                            }
-                            return (
-                                <div className="col-md-4 col-sm-5">
-                                    <div className="">
-                                        <div className="featuredjob-imitation">
-                                            <Link to={{ pathname: `/detail_jobPortal`, state: { ...elem, sec: 'mainPart', } }}>
-                                                <div className="card2">
-                                                    <img alt='' src={elem.arr_url[0]} style={{ filter: 'brightness(0.5)' }} />
-                                                </div>
-                                                <div className="jobcardcarousel">
-                                                    <div className="row">
-                                                        <div className="col-md-3 col-xs-3">
-                                                            <div className="jobownerimage">
-                                                                <img src="./images/images.jpg" alt="" />
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-md-9 col-xs-9">
-                                                            <h4 style={{ margin: "0" }}>
-                                                                <b>{elem.jobCat.slice(0, 12)}...</b>
-                                                            </h4>
-                                                            <div className="row" style={{ padding: "10px" }}>
-                                                                <div className="col-md-6 col-xs-6" style={{ padding: "0" }}>
-                                                                    <span className="glyphicon glyphicon-map-marker"
-                                                                        style={{ color: "#236A4B", marginRight: "2px" }}
-                                                                    ></span>
-                                                                    <span style={{ color: "black" }}>{elem.location.slice(0, 7)}...</span>
+                                <button
+                                    className="backBtn"
+                                    onClick={showAllRooms}
+                                >Back</button>
+                            </div>
+                            :
+                            filteredData && filteredData.map((elem) => {
+                                let str = elem.location || '';
+                                if (str.length > 8) {
+                                    str = str.substring(0, 8);
+                                    str = str + '...'
+                                }
+                                return (
+                                    <div className="col-md-4 col-sm-5">
+                                        <div className="">
+                                            <div className="featuredjob-imitation">
+                                                <Link to={{ pathname: `/detail_jobPortal`, state: { ...elem, sec: 'mainPart', } }}>
+                                                    <div className="card2">
+                                                        <img alt='' src={elem.arr_url[0]} style={{ filter: 'brightness(0.5)' }} />
+                                                    </div>
+                                                    <div className="jobcardcarousel">
+                                                        <div className="row">
+                                                            <div className="col-md-3 col-xs-3">
+                                                                <div className="jobownerimage">
+                                                                    <img src="./images/images.jpg" alt="" />
                                                                 </div>
-                                                                <div className="col-md-6 col-xs-6" style={{ padding: "0" }}>
-                                                                    <span className="fa fa-phone" style={{ color: "#236A4B", margin: "0", left: "-3px", padding: "0" }}>
-                                                                    </span>
-                                                                    <span style={{ color: "black" }}></span>
+                                                            </div>
+                                                            <div className="col-md-9 col-xs-9">
+                                                                <h4 style={{ margin: "0" }}>
+                                                                    <b>{elem.jobCat.slice(0, 12)}...</b>
+                                                                </h4>
+                                                                <div className="row" style={{ padding: "10px" }}>
+                                                                    <div className="col-md-6 col-xs-6" style={{ padding: "0" }}>
+                                                                        <span className="glyphicon glyphicon-map-marker"
+                                                                            style={{ color: "#236A4B", marginRight: "2px" }}
+                                                                        ></span>
+                                                                        <span style={{ color: "black" }}>{elem.location.slice(0, 7)}...</span>
+                                                                    </div>
+                                                                    <div className="col-md-6 col-xs-6" style={{ padding: "0" }}>
+                                                                        <span className="fa fa-phone" style={{ color: "#236A4B", margin: "0", left: "-3px", padding: "0" }}>
+                                                                        </span>
+                                                                        <span style={{ color: "black" }}></span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className="jobcategorycarousel">
-                                                    <div className="row">
-                                                        <div className="col-md-7" style={{ left: "15px" }}>
-                                                            <span className="fa fa-bookmark das">
-                                                            </span>
-                                                            <span style={{ color: "black" }}>{elem.jobType && elem.jobType}</span>
-                                                        </div>
-                                                        <div className="col-md-5">
+                                                    <div className="jobcategorycarousel">
+                                                        <div className="row">
+                                                            <div className="col-md-7" style={{ left: "15px" }}>
+                                                                <span className="fa fa-bookmark das">
+                                                                </span>
+                                                                <span style={{ color: "black" }}>{elem.jobType && elem.jobType}</span>
+                                                            </div>
+                                                            <div className="col-md-5">
 
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </Link>
+                                                </Link>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            )
-                        })
-                    }
-                    {notFoundFilterData == false && filteredData.length == 0 && showRecord ?
-                        showAllJobs && showAllJobs.map((elem) => {
-                            let str = elem.location || '';
-                            if (str.length > 8) {
-                                str = str.substring(0, 8);
-                                str = str + '...'
-                            }
-                            return (
-                                <div className="col-md-4 col-sm-5">
-                                    <div className="">
-                                        <div className="featuredjob-imitation">
-                                            <Link to={{ pathname: `/detail_jobPortal`, state: { ...elem, sec: 'mainPart', } }}>
-                                                <div className="card2">
-                                                    <img alt='' src={elem.arr_url[0]} style={{ filter: 'brightness(0.5)' }} />
-                                                </div>
-                                                <div className="jobcardcarousel">
-                                                    <div className="row">
-                                                        <div className="col-md-3 col-xs-3">
-                                                            <div className="jobownerimage">
-                                                                <img src="./images/images.jpg" alt="" />
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-md-9 col-xs-9">
-                                                            <h4 style={{ margin: "0" }}>
-                                                                <b>{elem.jobCat.slice(0, 12)}...</b>
-                                                            </h4>
-                                                            <div className="row" style={{ padding: "10px" }}>
-                                                                <div className="col-md-6 col-xs-6" style={{ padding: "0" }}>
-                                                                    <span className="glyphicon glyphicon-map-marker"
-                                                                        style={{ color: "#236A4B", marginRight: "2px" }}
-                                                                    ></span>
-                                                                    <span style={{ color: "black" }}>{elem.location.slice(0, 7)}...</span>
+                                )
+                            })
+                        }
+                        {notFoundFilterData == false && filteredData.length == 0 && showRecord ?
+                            showAllJobs && showAllJobs.map((elem) => {
+                                let str = elem.location || '';
+                                if (str.length > 8) {
+                                    str = str.substring(0, 8);
+                                    str = str + '...'
+                                }
+                                return (
+                                    <div className="col-md-4 col-sm-5">
+                                        <div className="">
+                                            <div className="featuredjob-imitation">
+                                                <Link to={{ pathname: `/detail_jobPortal`, state: { ...elem, sec: 'mainPart', } }}>
+                                                    <div className="card2">
+                                                        <img alt='' src={elem.arr_url[0]} style={{ filter: 'brightness(0.5)' }} />
+                                                    </div>
+                                                    <div className="jobcardcarousel">
+                                                        <div className="row">
+                                                            <div className="col-md-3 col-xs-3">
+                                                                <div className="jobownerimage">
+                                                                    <img src="./images/images.jpg" alt="" />
                                                                 </div>
-                                                                <div className="col-md-6 col-xs-6" style={{ padding: "0" }}>
-                                                                    <span className="fa fa-phone" style={{ color: "#236A4B", margin: "0", left: "-3px", padding: "0" }}>
-                                                                    </span>
-                                                                    <span style={{ color: "black" }}></span>
+                                                            </div>
+                                                            <div className="col-md-9 col-xs-9">
+                                                                <h4 style={{ margin: "0" }}>
+                                                                    <b>{elem.jobCat.slice(0, 12)}...</b>
+                                                                </h4>
+                                                                <div className="row" style={{ padding: "10px" }}>
+                                                                    <div className="col-md-6 col-xs-6" style={{ padding: "0" }}>
+                                                                        <span className="glyphicon glyphicon-map-marker"
+                                                                            style={{ color: "#236A4B", marginRight: "2px" }}
+                                                                        ></span>
+                                                                        <span style={{ color: "black" }}>{elem.location.slice(0, 7)}...</span>
+                                                                    </div>
+                                                                    <div className="col-md-6 col-xs-6" style={{ padding: "0" }}>
+                                                                        <span className="fa fa-phone" style={{ color: "#236A4B", margin: "0", left: "-3px", padding: "0" }}>
+                                                                        </span>
+                                                                        <span style={{ color: "black" }}></span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className="jobcategorycarousel">
-                                                    <div className="row">
-                                                        <div className="col-md-7" style={{ left: "15px" }}>
-                                                            <span className="fa fa-bookmark das">
-                                                            </span>
-                                                            <span style={{ color: "black" }}>{elem.jobType && elem.jobType}</span>
-                                                        </div>
-                                                        <div className="col-md-5">
+                                                    <div className="jobcategorycarousel">
+                                                        <div className="row">
+                                                            <div className="col-md-7" style={{ left: "15px" }}>
+                                                                <span className="fa fa-bookmark das">
+                                                                </span>
+                                                                <span style={{ color: "black" }}>{elem.jobType && elem.jobType}</span>
+                                                            </div>
+                                                            <div className="col-md-5">
 
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </Link>
+                                                </Link>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            )
-                        })
-                        : null
-                    }
-                </div>
-
+                                )
+                            })
+                            : null
+                        }
+                    </div>
+                }
 
                 {/* {this.state.loader && <div className="row">
                     <div className="col-md-4"></div>

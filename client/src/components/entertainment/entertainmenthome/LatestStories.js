@@ -3,6 +3,7 @@ import './LatestStories.css';
 import { connect } from 'react-redux'
 import LatestNews from './LatestnewsSec';
 import './LatestStories.css';
+import { Spin, Icon } from 'antd';
 
 class Stories extends Component {
 
@@ -21,9 +22,12 @@ class Stories extends Component {
     render() {
         const { news, sports, dramas, movies, musics } = this.props.entertainment;
         let detail = Object.values(this.props.entertainment);
-
+        const antIcon =
+        <Icon type="loading" style={{ fontSize: '110px' }} spin />;
         return (
             <div>
+                {Object.keys(detail).length == 0 ? <div style={{ textAlign: 'center' }}> <Spin indicator={antIcon} /> </div>
+                    :
                 <div className="row" style={{ padding: "0", marginTop: "45px" }}>
                     <div className="col-md-8 col-sm-8">
                         {detail && detail[0].length > 0 && detail[1].length > 0 && detail[2].length > 0 &&
@@ -94,7 +98,7 @@ class Stories extends Component {
                     <div className="col-md-4 col-sm-4">
                             <LatestNews data={{ news, sports }} callRoute={this.nextVideo.bind(this)} />
                     </div>
-                </div>
+                </div>}
             </div>
         )
     }

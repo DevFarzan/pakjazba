@@ -1411,6 +1411,7 @@ app.post('/api/postJobPortal', (req, res) => {
       if (err) {
         return res.status(400).json({ "Unexpected Error:: ": err });
       }
+      
       jobData.user_id = postJobPortal.user_id;
       jobData.profileId = postJobPortal.profileId;
       jobData.compDescription = postJobPortal.compDescription;

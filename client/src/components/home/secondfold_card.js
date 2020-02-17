@@ -225,7 +225,7 @@ class SecondfoldCard extends Component {
                                             <div className="col-md-6" style={{ padding: "10px 15px" }}>
                                                 <div className="cardsecond_fold">
 
-                                                    <img src="./images/homepage/comingsoon-m.jpg" />
+                                                    <img src="./images/homepage/comingsoond.jpg" />
 
                                                 </div>
                                             </div>

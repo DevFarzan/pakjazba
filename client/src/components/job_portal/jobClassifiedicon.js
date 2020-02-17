@@ -63,7 +63,7 @@ class ClassifiedIcons extends Component {
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Customer Service') }} style={{ cursor: 'pointer' }}>
               <div className="wrimagecard wrimagecard-topimage">
-                <div className="wrimagecard-topimage_headerHealthCare">
+                <div className="wrimagecard-topimage_headerCustomerService">
                   <center>
                     <h3 className="categoryInnerText">Customer Service</h3>
                   </center>
@@ -72,7 +72,7 @@ class ClassifiedIcons extends Component {
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Diversity Opportunities') }} style={{ cursor: 'pointer' }}>
               <div className="wrimagecard wrimagecard-topimage">
-                <div className="wrimagecard-topimage_headerFreelancer">
+                <div className="wrimagecard-topimage_headerDiversity">
                   <center>
                     <h3 className="categoryInnerText">Diversity Opportunities</h3>
                   </center>
@@ -81,7 +81,7 @@ class ClassifiedIcons extends Component {
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Engineering') }} style={{ cursor: 'pointer' }}>
               <div className="wrimagecard wrimagecard-topimage">
-                <div className="wrimagecard-topimage_headerHealthCare">
+                <div className="wrimagecard-topimage_headerEngineering">
                   <center>
                     <h3 className="categoryInnerText">Engineering</h3>
                   </center>
@@ -90,7 +90,7 @@ class ClassifiedIcons extends Component {
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Executive') }} style={{ cursor: 'pointer' }}>
               <div className="wrimagecard wrimagecard-topimage">
-                <div className="wrimagecard-topimage_headerFreelancer">
+                <div className="wrimagecard-topimage_headerExecutive">
                   <center>
                     <h3 className="categoryInnerText">Executive</h3>
                   </center>
@@ -99,7 +99,7 @@ class ClassifiedIcons extends Component {
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Franchise') }} style={{ cursor: 'pointer' }}>
               <div className="wrimagecard wrimagecard-topimage">
-                <div className="wrimagecard-topimage_headerHealthCare">
+                <div className="wrimagecard-topimage_headerFranchise">
                   <center>
                     <h3 className="categoryInnerText">Franchise</h3>
                   </center>
@@ -108,7 +108,7 @@ class ClassifiedIcons extends Component {
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Government') }} style={{ cursor: 'pointer' }}>
               <div className="wrimagecard wrimagecard-topimage">
-                <div className="wrimagecard-topimage_headerFreelancer">
+                <div className="wrimagecard-topimage_headerGovernMent">
                   <center>
                     <h3 className="categoryInnerText">Government</h3>
                   </center>
@@ -126,7 +126,7 @@ class ClassifiedIcons extends Component {
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Hospitality') }} style={{ cursor: 'pointer' }}>
               <div className="wrimagecard wrimagecard-topimage">
-                <div className="wrimagecard-topimage_headerFreelancer">
+                <div className="wrimagecard-topimage_headerHospitality">
                   <center>
                     <h3 className="categoryInnerText">Hospitality</h3>
                   </center>
@@ -135,7 +135,7 @@ class ClassifiedIcons extends Component {
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Human Resources') }} style={{ cursor: 'pointer' }}>
               <div className="wrimagecard wrimagecard-topimage">
-                <div className="wrimagecard-topimage_headerHealthCare">
+                <div className="wrimagecard-topimage_headerHumanResource">
                   <center>
                     <h3 className="categoryInnerText">Human Resources</h3>
                   </center>
@@ -144,7 +144,7 @@ class ClassifiedIcons extends Component {
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Information Technology') }} style={{ cursor: 'pointer' }}>
               <div className="wrimagecard wrimagecard-topimage">
-                <div className="wrimagecard-topimage_headerFreelancer">
+                <div className="wrimagecard-topimage_headerInformation">
                   <center>
                     <h3 className="categoryInnerText">Information Technology</h3>
                   </center>
@@ -153,7 +153,7 @@ class ClassifiedIcons extends Component {
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Internships & Collage') }} style={{ cursor: 'pointer' }}>
               <div className="wrimagecard wrimagecard-topimage">
-                <div className="wrimagecard-topimage_headerHealthCare">
+                <div className="wrimagecard-topimage_headerInternShip">
                   <center>
                     <h3 className="categoryInnerText">Internships & Collage</h3>
                   </center>
@@ -162,7 +162,7 @@ class ClassifiedIcons extends Component {
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Manufacturing') }} style={{ cursor: 'pointer' }}>
               <div className="wrimagecard wrimagecard-topimage">
-                <div className="wrimagecard-topimage_headerFreelancer">
+                <div className="wrimagecard-topimage_headerManufeaturing">
                   <center>
                     <h3 className="categoryInnerText">Manufacturing</h3>
                   </center>
@@ -171,7 +171,7 @@ class ClassifiedIcons extends Component {
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Nonprofit') }} style={{ cursor: 'pointer' }}>
               <div className="wrimagecard wrimagecard-topimage">
-                <div className="wrimagecard-topimage_headerHealthCare">
+                <div className="wrimagecard-topimage_headerNonProfit">
                   <center>
                     <h3 className="categoryInnerText">Nonprofit</h3>
                   </center>
@@ -180,7 +180,7 @@ class ClassifiedIcons extends Component {
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Retail') }} style={{ cursor: 'pointer' }}>
               <div className="wrimagecard wrimagecard-topimage">
-                <div className="wrimagecard-topimage_headerFreelancer">
+                <div className="wrimagecard-topimage_headerRetail">
                   <center>
                     <h3 className="categoryInnerText">Retail</h3>
                   </center>
@@ -198,7 +198,7 @@ class ClassifiedIcons extends Component {
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Science & Biotech') }} style={{ cursor: 'pointer' }}>
               <div className="wrimagecard wrimagecard-topimage">
-                <div className="wrimagecard-topimage_headerFreelancer">
+                <div className="wrimagecard-topimage_headerScienceNBio">
                   <center>
                     <h3 className="categoryInnerText">Science & Biotech</h3>
                   </center>
@@ -207,7 +207,7 @@ class ClassifiedIcons extends Component {
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Transportation') }} style={{ cursor: 'pointer' }}>
               <div className="wrimagecard wrimagecard-topimage">
-                <div className="wrimagecard-topimage_headerHealthCare">
+                <div className="wrimagecard-topimage_headerTransport">
                   <center>
                     <h3 className="categoryInnerText">Transportation</h3>
                   </center>

@@ -157,7 +157,42 @@ padding: 50px;
   padding: 25px;
 }
 .wrimagecard-topimage_headerBusines5{
-  background-image: url("../../images/BusinessListing/shop.jpg");
+  background-image: url("../../images/BusinessListing/business-advisor.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerBusines6{
+  background-image: url("../../images/BusinessListing/car-sales.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerBusines7{
+  background-image: url("../../images/BusinessListing/chef.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerBusines8{
+  background-image: url("../../images/BusinessListing/clothing-supplier.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerBusines9{
+  background-image: url("../../images/BusinessListing/hr-consultant.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerBusines10{
+  background-image: url("../../images/BusinessListing/internet\ marketing.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -46,9 +46,8 @@ class Firstfold extends Component {
                     </div>
                 </div>
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style={{ cursor: 'pointer' }}>
-
                     <div className="wrimagecard wrimagecard-topimage">
-                        <div className="wrimagecard-topimage_headerHomeBuy" onClick={this.dropDown.bind(this, 'Home')} >
+                        <div className="wrimagecard-topimage_headerColNArt" onClick={this.dropDown.bind(this, 'Home')} >
                             <center>
                                 <h3 className="categoryInnerText">Collectibles & Art</h3>
                             </center>
@@ -56,7 +55,6 @@ class Firstfold extends Component {
                     </div>
                 </div>
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style={{ cursor: 'pointer' }}>
-
                     <div className="wrimagecard wrimagecard-topimage">
                         <div className="wrimagecard-topimage_headerHomeBuy" onClick={this.dropDown.bind(this, 'Home')} >
                             <center>
@@ -76,7 +74,7 @@ class Firstfold extends Component {
                 </div>
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style={{ cursor: 'pointer' }}>
                     <div className="wrimagecard wrimagecard-topimage">
-                        <div className="wrimagecard-topimage_headerToy" onClick={this.dropDown.bind(this, 'Toys')}>
+                        <div className="wrimagecard-topimage_headerSportingGood" onClick={this.dropDown.bind(this, 'Toys')}>
                             <center>
                                 <h3 className="categoryInnerText">Sporting Goods</h3>
                             </center>
@@ -94,7 +92,7 @@ class Firstfold extends Component {
                 </div>
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style={{ cursor: 'pointer' }}>
                     <div className="wrimagecard wrimagecard-topimage">
-                        <div className="wrimagecard-topimage_headerToy" onClick={this.dropDown.bind(this, 'Toys')}>
+                        <div className="wrimagecard-topimage_headerIndstry" onClick={this.dropDown.bind(this, 'Toys')}>
                             <center>
                                 <h3 className="categoryInnerText">Business & Industrial</h3>
                             </center>
@@ -103,7 +101,7 @@ class Firstfold extends Component {
                 </div>
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style={{ cursor: 'pointer' }}>
                     <div className="wrimagecard wrimagecard-topimage">
-                        <div className="wrimagecard-topimage_headerToy" onClick={this.dropDown.bind(this, 'Toys')}>
+                        <div className="wrimagecard-topimage_headerMusic" onClick={this.dropDown.bind(this, 'Toys')}>
                             <center>
                                 <h3 className="categoryInnerText">Music</h3>
                             </center>

@@ -385,14 +385,14 @@
   padding: 25px;
 }
 .wrimagecard-topimage_headerEvent10{
-  background-image: url("../../images/Events/literary.jpg");
+  background-image: url("../../images/Events/kidFriendly.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   padding: 25px;
 }
 .wrimagecard-topimage_headerEvent11{
-  background-image: url("../../images/Events/outdoor.jpg");
+  background-image: url("../../images/Events/literary.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -406,13 +406,33 @@
   padding: 25px;
 }
 .wrimagecard-topimage_headerEvent13{
+  background-image: url("../../images/Events/outdoor.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerEvent14{
+  background-image: url("../../images/Events/sales.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerEvent15{
+  background-image: url("../../images/Events/singles.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerEvent16{
   background-image: url("../../images/Events/tech.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   padding: 25px;
 }
-
 @media only screen and (min-device-width: 330px) and (max-device-width: 767px){
   .EventDetailTopBanner{
     width: 100%;

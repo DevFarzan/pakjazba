@@ -135,7 +135,7 @@ class EventCategory extends Component {
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('sale') }} style={{ cursor: 'pointer' }}>
                         <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_headerEvent13">
+                            <div className="wrimagecard-topimage_headerEvent14">
                                 <center>
                                     <h3 className="categoryInnerText">Sale</h3>
                                 </center>
@@ -144,7 +144,7 @@ class EventCategory extends Component {
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('singles') }} style={{ cursor: 'pointer' }}>
                         <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_headerEvent13">
+                            <div className="wrimagecard-topimage_headerEvent15">
                                 <center>
                                     <h3 className="categoryInnerText">Singles</h3>
                                 </center>
@@ -153,7 +153,7 @@ class EventCategory extends Component {
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('tech') }} style={{ cursor: 'pointer' }}>
                         <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_headerEvent13">
+                            <div className="wrimagecard-topimage_headerEvent16">
                                 <center>
                                     <h3 className="categoryInnerText">Tech</h3>
                                 </center>

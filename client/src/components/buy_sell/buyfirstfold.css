@@ -35,6 +35,13 @@
   background-size: cover;
   padding: 25px;
 }
+.wrimagecard-topimage_headerColNArt{
+  background-image: url("../../images/BuySell/toys.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
 .wrimagecard-topimage_headerGarden{
   background-image: url("../../images/BuySell/gardening.jpg");
   background-position: center;
@@ -42,8 +49,29 @@
   background-size: cover;
   padding: 25px;
 }
+.wrimagecard-topimage_headerSportingGood{
+  background-image: url("../../images/BuySell/sporting-goods.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
 .wrimagecard-topimage_headerToy{
   background-image: url("../../images/BuySell/toys.jpg ");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerIndstry{
+  background-image: url("../../images/BuySell/business-and-industrial.jpg ");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25px;
+}
+.wrimagecard-topimage_headerMusic{
+  background-image: url("../../images/BuySell/music.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

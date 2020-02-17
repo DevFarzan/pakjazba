@@ -68,7 +68,7 @@ class BusinessCategory extends Component {
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Car Sales Showroom') }} style={{ cursor: 'pointer' }}>
                         <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_headerBusines5">
+                            <div className="wrimagecard-topimage_headerBusines6">
                                 <center>
                                     <h3 className="categoryInnerText">Car Sales Showroom</h3>
                                 </center>
@@ -77,7 +77,7 @@ class BusinessCategory extends Component {
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Chef') }} style={{ cursor: 'pointer' }}>
                         <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_headerBusines5">
+                            <div className="wrimagecard-topimage_headerBusines7">
                                 <center>
                                     <h3 className="categoryInnerText">Chef</h3>
                                 </center>
@@ -86,7 +86,7 @@ class BusinessCategory extends Component {
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Clothing Supplier') }} style={{ cursor: 'pointer' }}>
                         <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_headerBusines5">
+                            <div className="wrimagecard-topimage_headerBusines8">
                                 <center>
                                     <h3 className="categoryInnerText">Clothing Supplier</h3>
                                 </center>
@@ -95,7 +95,7 @@ class BusinessCategory extends Component {
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Human Resources Consultant') }} style={{ cursor: 'pointer' }}>
                         <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_headerBusines5">
+                            <div className="wrimagecard-topimage_headerBusines9">
                                 <center>
                                     <h3 className="categoryInnerText">Human Resources Consultant</h3>
                                 </center>
@@ -104,7 +104,7 @@ class BusinessCategory extends Component {
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onClick={() => { this.clickItem('Internet Marketing Consultant') }} style={{ cursor: 'pointer' }}>
                         <div className="wrimagecard wrimagecard-topimage">
-                            <div className="wrimagecard-topimage_headerBusines5">
+                            <div className="wrimagecard-topimage_headerBusines10">
                                 <center>
                                     <h3 className="categoryInnerText">Internet Marketing Consultant</h3>
                                 </center>

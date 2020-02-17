@@ -78,7 +78,7 @@ a.jobIconbox:hover, .jobIconbox-topimage:hover {
     padding: 25px;
 }
 .wrimagecard-topimage_headerCustomerService{
-    background-image: url("../../images/Jobs/customer\ services.jpg");
+    background-image: url("../../images/Jobs/customer-service.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -120,7 +120,84 @@ a.jobIconbox:hover, .jobIconbox-topimage:hover {
     padding: 25px;
 }
 .wrimagecard-topimage_headerTransport{
-    background-image: url("../../images/Jobs/transport.jpg");
+    background-image: url("../../images/Jobs/transportation.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerScienceNBio{
+    background-image: url("../../images/Jobs/science-biotech.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerNonProfit{
+    background-image: url("../../images/Jobs/non-profit.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerManufeaturing{
+    background-image: url("../../images/Jobs/manufacturing.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerInternShip{
+    background-image: url("../../images/Jobs/internship.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerInformation{
+    background-image: url("../../images/Jobs/information-technology.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerHumanResource{
+    background-image: url("../../images/Jobs/human-resource.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerHospitality{
+    background-image: url("../../images/Jobs/hospitality.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerGovernMent{
+    background-image: url("../../images/Jobs/government.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerFranchise{
+    background-image: url("../../images/Jobs/franchise.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerEngineering{
+    background-image: url("../../images/Jobs/engineering.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+.wrimagecard-topimage_headerDiversity{
+    background-image: url("../../images/BusinessListing/hr-consultant.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

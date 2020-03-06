@@ -452,7 +452,7 @@
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1365px){
   .EventDetailTopBanner{
     width: 100%;
-    height: 41vh;
+    height: 43vh;
     position: absolute;
     filter: brightness(0.5);
   }

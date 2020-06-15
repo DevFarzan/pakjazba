@@ -544,7 +544,6 @@ class RoomRentTAB extends Component {
         this.setState({
             showRecord: true,
             notFoundFilterData: false,
-            billboardFilterdData: [],
             statusValue: '',
             categoryRoom: []
         })

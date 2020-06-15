@@ -69,7 +69,8 @@ class Roomrenting1content extends Component {
                         <br />
                     </div>
                 </div>}
-                {showroomrents.length == 0 ? <div style={{ textAlign: 'center' }}> <Spin indicator={antIcon} /> </div>
+                {showroomrents.length == 0 ? 
+                <div style={{ textAlign: 'center' }}> <Spin indicator={antIcon} /> </div>
                     :
                     <div className="">
                         <div className="row" style={{ marginTop: '-4%' }}>

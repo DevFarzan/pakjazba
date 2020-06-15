@@ -786,7 +786,6 @@ class JobPortal extends Component {
                                                         <FormItem
                                                         // {...formItemLayout}
                                                         // label="Business Number"
-
                                                         // style={{ padding: '2%' }}
                                                         >
                                                             {getFieldDecorator('contactnumber', {
